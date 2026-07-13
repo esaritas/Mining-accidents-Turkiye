@@ -157,5 +157,113 @@ def packets(
     console.print(f"[green]Generated {len(paths)} review packet(s).[/green]")
 
 
+@app.command("import-registry")
+def import_registry(
+    db_path: Path = DB_OPTION,
+    registry_csv: Path = typer.Option(
+        Path("docs/source_registry.csv"), help="Source registry CSV to synchronize."
+    ),
+) -> None:
+    """Synchronize docs/source_registry.csv into the source_registry table."""
+    from mining_accidents import provenance
+
+    conn = database.get_connection(db_path)
+    try:
+        created, updated = provenance.import_source_registry(conn, registry_csv)
+    finally:
+        conn.close()
+    console.print(f"[green]Registry synchronized:[/green] {created} created, {updated} updated.")
+
+
+@app.command("decide")
+def decide(
+    db_path: Path = DB_OPTION,
+    incident_id: int = typer.Option(..., help="Incident the decision applies to."),
+    field: str = typer.Option(..., help="Field name (e.g. fatalities_current)."),
+    decision: str = typer.Option(..., help="accept_claim | reject_field | manual_override | defer"),
+    rationale: str = typer.Option(..., help="Why this decision was taken (required)."),
+    reviewer: str = typer.Option(..., help="Reviewer identity (required; never automated)."),
+    claim_id: int = typer.Option(None, help="Selected claim (required for accept_claim)."),
+    manual_value: str = typer.Option(None, help="Value for manual_override."),
+    rationale_claim_id: list[int] = typer.Option(
+        None, help="Supporting claim id (repeatable; required for manual_override)."
+    ),
+    supersedes: int = typer.Option(
+        None, help="Decision id being superseded (required if one is active)."
+    ),
+) -> None:
+    """Record a reviewer decision; the canonical value is promoted by code."""
+    from mining_accidents import review
+    from mining_accidents.models import ClaimDecision
+
+    conn = database.get_connection(db_path)
+    try:
+        try:
+            decision_id = review.record_decision(
+                conn,
+                ClaimDecision(
+                    incident_id=incident_id,
+                    field_name=field,
+                    decision=decision,  # validated by the model
+                    selected_claim_id=claim_id,
+                    manual_value=manual_value,
+                    rationale=rationale,
+                    rationale_claim_ids=list(rationale_claim_id or []),
+                    reviewer=reviewer,
+                    supersedes_decision_id=supersedes,
+                ),
+            )
+        except (review.ReviewError, ValueError) as exc:
+            console.print(f"[red]Decision rejected:[/red] {exc}")
+            raise typer.Exit(code=1) from exc
+    finally:
+        conn.close()
+    console.print(f"[green]Decision {decision_id} recorded[/green] ({decision} on {field}).")
+
+
+@app.command("assign-public-id")
+def assign_public_id(
+    db_path: Path = DB_OPTION,
+    incident_id: int = typer.Option(..., help="Incident to assign a public id to."),
+    actor: str = typer.Option(..., help="Actor recorded in the review log."),
+) -> None:
+    """Assign the next TR-MINE-YYYY-NNNN id (once; never reused)."""
+    from mining_accidents import review
+
+    conn = database.get_connection(db_path)
+    try:
+        try:
+            public_id = review.assign_public_incident_id(conn, incident_id, actor=actor)
+        except review.ReviewError as exc:
+            console.print(f"[red]Assignment rejected:[/red] {exc}")
+            raise typer.Exit(code=1) from exc
+    finally:
+        conn.close()
+    console.print(f"[green]Assigned[/green] {public_id} to incident {incident_id}.")
+
+
+@app.command("merge")
+def merge(
+    db_path: Path = DB_OPTION,
+    surviving_id: int = typer.Option(..., help="Incident that remains canonical."),
+    merged_id: int = typer.Option(..., help="Duplicate incident being merged away."),
+    reason: str = typer.Option(..., help="Why these records are the same incident."),
+    reviewer: str = typer.Option(..., help="Reviewer identity."),
+) -> None:
+    """Record a reviewed merge; the merged public id stays as an export redirect."""
+    from mining_accidents import review
+
+    conn = database.get_connection(db_path)
+    try:
+        try:
+            review.merge_incidents(conn, surviving_id, merged_id, reason, reviewer)
+        except review.ReviewError as exc:
+            console.print(f"[red]Merge rejected:[/red] {exc}")
+            raise typer.Exit(code=1) from exc
+    finally:
+        conn.close()
+    console.print(f"[green]Merged[/green] incident {merged_id} into {surviving_id}.")
+
+
 if __name__ == "__main__":
     app()

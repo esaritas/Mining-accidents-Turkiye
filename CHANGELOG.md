@@ -24,3 +24,8 @@ semantic versioning once the project reaches a first release.
   (datapackage + sha256 manifest), review-packet generator.
 - Phase 4: twelve empty pilot packet slots, CLI test coverage, full README
   with architecture and next-stage plan.
+- Reviewer CLI (`decide`, `assign-public-id`, `merge`) so decisions are
+  recorded through tooling as the manual review protocol requires,
+  `import-registry` command synchronizing `docs/source_registry.csv` into the
+  `source_registry` table watched by QC-W05, and a GitHub Actions CI workflow
+  (lint, vocabulary validation, tests, schema-snapshot sync check).
