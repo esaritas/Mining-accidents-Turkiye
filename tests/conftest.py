@@ -97,3 +97,118 @@ def make_organization(conn: sqlite3.Connection, **overrides: Any) -> int:
     }
     values.update(overrides)
     return insert(conn, "organizations", **values)
+
+
+def make_publishable_incident(conn: sqlite3.Connection, seq_hint: str = "A") -> dict[str, Any]:
+    """A fully synthetic incident satisfying all seven publication rules.
+
+    Builds the complete evidence chain via the real review module:
+    document -> claims -> decisions -> canonical values -> sign-off flags.
+    """
+    from mining_accidents import review
+    from mining_accidents.models import ClaimDecision
+
+    doc = make_source_document(
+        conn,
+        title=f"TEST synthetic report {seq_hint}",
+        url=f"file:///dev/null/TEST-{seq_hint}",
+        content_hash=(f"{ord(seq_hint):02x}" * 32),
+    )
+    incident = make_incident(
+        conn,
+        canonical_title_tr=f"TEST olay kaydı {seq_hint}",
+        incident_status="in_scope",
+        scope_rationale="TEST synthetic fixture",
+        date_precision="exact_date",
+    )
+    claims = {
+        "incident_start_datetime": make_claim(
+            conn,
+            doc,
+            incident_id=incident,
+            field_name="incident_start_datetime",
+            raw_value="10 Mayıs 2099",
+            normalized_value="2099-05-10T00:00:00+03:00",
+            assertion_status="official_finding",
+        ),
+        "province_code": make_claim(
+            conn,
+            doc,
+            incident_id=incident,
+            field_name="province_code",
+            raw_value="TEST ili",
+            normalized_value="67",
+            assertion_status="official_finding",
+        ),
+        "fatalities_current": make_claim(
+            conn,
+            doc,
+            incident_id=incident,
+            field_name="fatalities_current",
+            raw_value="üç",
+            normalized_value="3",
+            assertion_status="official_finding",
+        ),
+    }
+    for field, claim_id in claims.items():
+        review.record_decision(
+            conn,
+            ClaimDecision(
+                incident_id=incident,
+                field_name=field,
+                decision="accept_claim",
+                selected_claim_id=claim_id,
+                rationale="TEST synthetic decision",
+                reviewer="TEST-reviewer",
+            ),
+        )
+    public_id = review.assign_public_incident_id(conn, incident, actor="TEST-reviewer")
+
+    classification_claim = make_claim(
+        conn,
+        doc,
+        incident_id=incident,
+        claim_subject_type="classification",
+        field_name="event_mechanism",
+        raw_value="göçük",
+        normalized_value="roof_or_ground_collapse",
+        assertion_status="official_finding",
+    )
+    insert(
+        conn,
+        "incident_classifications",
+        incident_id=incident,
+        classification_system="project_event_mechanism",
+        classification_code="roof_or_ground_collapse",
+        classification_label_tr="tavan/göçük",
+        assertion_status="official_finding",
+        source_claim_id=classification_claim,
+        review_status="reviewed",
+    )
+    org = make_organization(conn, organization_name_tr=f"TEST Madencilik {seq_hint} A.Ş.")
+    role_claim = make_claim(
+        conn,
+        doc,
+        incident_id=incident,
+        claim_subject_type="organization",
+        field_name="operator",
+        raw_value=f"TEST Madencilik {seq_hint} A.Ş.",
+        assertion_status="reported",
+    )
+    insert(
+        conn,
+        "incident_organization_roles",
+        incident_id=incident,
+        organization_id=org,
+        role="operator",
+        source_claim_id=role_claim,
+        assertion_status="reported",
+        review_status="reviewed",
+    )
+    conn.execute(
+        "UPDATE incidents SET verification_status = 'reviewed', publication_status = 'publishable' "
+        "WHERE incident_id = ?",
+        (incident,),
+    )
+    conn.commit()
+    return {"incident": incident, "doc": doc, "org": org, "public_id": public_id, **claims}
