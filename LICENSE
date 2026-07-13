@@ -1,0 +1,13 @@
+LICENCE PLACEHOLDER — NOT YET DECIDED
+
+The licence for this project is an OPEN QUESTION (see docs/open_questions.md,
+question 1). The decision involves two separate choices:
+
+  1. Code licence: MIT vs Apache-2.0 (or another OSI-approved licence).
+  2. Data licence: CC BY 4.0 vs ODbL (affects reuse and attribution machinery).
+
+Until an explicit editorial decision is recorded, all rights are reserved and
+no reuse permission is granted by this placeholder. Do not treat this file as
+a licence grant.
+
+STATUS: PROPOSED — awaiting editorial decision.

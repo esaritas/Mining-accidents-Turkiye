@@ -1,0 +1,9 @@
+source_key,organization_or_family,family,tier_proposed,url,access_status,automated_collection_permitted,licence_or_reuse_notes,last_assessed,assessment_notes
+official_statements,"Official ministry / public-enterprise statements",official,1,TO_ASSESS,TO_ASSESS,unclear,TO_ASSESS,,"Registry entry + adapter stub only. Assessment requires network access — out of scope for foundation build."
+tbmm,"TBMM research reports & minutes",parliamentary,1,TO_ASSESS,TO_ASSESS,unclear,TO_ASSESS,,"Recommended first adapter to assess: Tier-1 public record, long-form, low legal risk, rich in findings and recommendations. Confirm access terms first."
+sgk,"SGK annual aggregate statistics",official_statistics,1,TO_ASSESS,TO_ASSESS,unclear,TO_ASSESS,,"Tier 1 for AGGREGATES ONLY — feeds aggregate_* tables, never incident-level evidence."
+tmmob_maden,"TMMOB Maden Mühendisleri Odası reports",professional_chamber,2,TO_ASSESS,TO_ASSESS,unclear,TO_ASSESS,,"Registry entry + adapter stub only."
+isig_meclisi,"İSİG Meclisi reports",civil_society,2,TO_ASSESS,TO_ASSESS,unclear,TO_ASSESS,,"Registry entry + adapter stub only."
+academic,"Academic publications",academic,2,TO_ASSESS,TO_ASSESS,unclear,TO_ASSESS,,"Registry entry only; no adapter planned for MVP."
+news,"Reputable national/local news",news_media,3,TO_ASSESS,TO_ASSESS,unclear,TO_ASSESS,,"Registry entry only; no adapter planned for MVP. Per-outlet assessment required."
+manual,"Manual entry",manual,,,available,yes,"Human-entered evidence; carrier for documents collected under each source's own terms",,"Fully implemented importer (adapters/manual.py)."

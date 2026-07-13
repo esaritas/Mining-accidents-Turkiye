@@ -1,0 +1,13 @@
+# Frozen from pyproject.toml runtime dependencies (make install). Regenerate with:
+#   pip freeze | grep ... (see Makefile/README)
+annotated-types==0.7.0
+numpy==2.4.6
+pandas==3.0.3
+pandera==0.32.1
+pydantic==2.13.4
+pydantic_core==2.46.4
+python-dateutil==2.9.0.post0
+PyYAML==6.0.1
+rich==15.0.0
+typer==0.26.8
+typing_extensions==4.16.0

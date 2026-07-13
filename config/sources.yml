@@ -1,0 +1,47 @@
+# Source families and adapter status. Assessment fields requiring network
+# verification are marked TO_ASSESS — verifying them is out of scope for the
+# foundation build (no network access for data). Tiers are PROPOSED, pending
+# docs/source_assessment_protocol.md review.
+
+sources:
+  - key: official_statements
+    family: "Official ministry / public-enterprise statements"
+    tier_proposed: 1
+    adapter: null            # registry entry + stub only
+    status: TO_ASSESS
+  - key: tbmm
+    family: "TBMM research reports & minutes"
+    tier_proposed: 1
+    adapter: mining_accidents.adapters.tbmm
+    status: TO_ASSESS        # recommended first adapter to assess (see README)
+  - key: sgk
+    family: "SGK annual aggregate statistics"
+    tier_proposed: 1
+    tier_note: "aggregate only — never incident-level"
+    adapter: mining_accidents.adapters.sgk
+    status: TO_ASSESS
+  - key: tmmob_maden
+    family: "TMMOB Maden Mühendisleri Odası reports"
+    tier_proposed: 2
+    adapter: mining_accidents.adapters.tmmob
+    status: TO_ASSESS
+  - key: isig_meclisi
+    family: "İSİG Meclisi reports"
+    tier_proposed: 2
+    adapter: mining_accidents.adapters.isig
+    status: TO_ASSESS
+  - key: academic
+    family: "Academic publications"
+    tier_proposed: 2
+    adapter: null            # registry entry, no adapter
+    status: TO_ASSESS
+  - key: news
+    family: "Reputable national/local news"
+    tier_proposed: 3
+    adapter: null            # registry entry, no adapter
+    status: TO_ASSESS
+  - key: manual
+    family: "Manual entry"
+    tier_proposed: null      # n/a — carrier for human-entered evidence
+    adapter: mining_accidents.adapters.manual
+    status: IMPLEMENTED

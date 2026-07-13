@@ -1,0 +1,32 @@
+# Databases (created by CLI, never committed)
+database/*.sqlite
+database/*.sqlite-shm
+database/*.sqlite-wal
+database/*.sqlite3
+
+# Raw evidence storage is never committed
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/README.md
+
+# Generated reports and exports
+data/interim/quality_report.json
+data/public/*
+!data/public/.gitkeep
+!data/public/README.md
+
+# Environment
+.env
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/

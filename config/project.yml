@@ -1,0 +1,54 @@
+# Project-wide configuration. Values here are the single source for scope
+# window, geographic sanity bounds, excerpt caps, and export behaviour.
+
+project:
+  name: turkey-mining-accidents
+  primary_language: tr
+
+scope:
+  # MVP: Türkiye, 2010 -> present, fatal incidents in mining, quarrying, and
+  # mine-associated processing/waste facilities (solid minerals).
+  country: TR
+  start_date: "2010-01-01"
+  end_date: null            # open-ended (present)
+  severity: fatal
+
+geography:
+  # Heuristic sanity bounding box for Türkiye — NOT a border test.
+  # Validators flag (never auto-reject) coordinates outside this box.
+  bounding_box:
+    lat_min: 35.5
+    lat_max: 42.5
+    lon_min: 25.5
+    lon_max: 45.0
+
+excerpts:
+  # Copyright restraint: evidence excerpts are capped (proposed <= 40 words;
+  # see docs/editorial_and_legal_protocol.md — STATUS: PROPOSED).
+  max_words: 40
+
+duplicates:
+  # Blocking key for duplicate-candidate detection (research protocol §7):
+  # same province + incident date within +/- N days + fuzzy facility match.
+  date_window_days: 3
+  facility_similarity_threshold: 0.75
+
+export:
+  output_dir: data/public
+  # Conservative default: incidents with a `defer` decision on a
+  # publication-critical field are EXCLUDED. Setting this true instead exports
+  # the conflict in a disclosed_conflicts structure (spec §11 rule 6).
+  disclose_conflicts: false
+
+database:
+  path: database/mining_accidents.sqlite
+  migrations_dir: database/migrations
+  schema_snapshot: database/schema.sql
+
+vocabularies:
+  dir: data/vocabularies
+
+quality:
+  report_path: data/interim/quality_report.json
+  # Source-registry assessments older than this are flagged as stale.
+  registry_stale_days: 365

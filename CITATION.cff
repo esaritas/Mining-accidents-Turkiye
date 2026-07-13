@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software or database structure, please cite it using the
+  metadata below. Note: this repository currently contains no factual incident
+  data; it is the evidence-management foundation only.
+title: "Turkey Mining & Quarrying Accidents Database (foundation)"
+type: software
+version: 0.1.0
+date-released: "2026-07-13"
+abstract: >-
+  Evidence-management foundation for a database of fatal mining and quarrying
+  accidents in Türkiye (2010-present): schema, controlled vocabularies,
+  claim/decision review model, quality checks, and public-export machinery.
+authors:
+  - name: "Turkey Mining Accidents Project"
+keywords:
+  - occupational safety
+  - mining
+  - Türkiye
+  - data journalism
+license: LicenseRef-Pending
