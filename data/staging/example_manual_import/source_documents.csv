@@ -1,0 +1,3 @@
+source_organization,title,document_type,url,publication_date,retrieved_at,language,content_hash,source_tier,licence_or_reuse_notes,notes
+TEST Kaynak Kurumu,TEST synthetic report about a fictional event,other,file:///dev/null/TEST-DOC-A,2099-01-01,2099-01-02T00:00:00Z,tr,49036086ece675075c16f2127a6412c8cf7e3d2722efce055809d04cd6eb83c3,2,synthetic demonstration data,Fabricated document — demonstrates the import format only
+TEST Haber Ajansı,TEST synthetic follow-up article about the same fictional event,news_article,file:///dev/null/TEST-DOC-B,2099-01-03,2099-01-04T00:00:00Z,tr,603d235a1f89d44cb13898ed3b4840c8b34af33e5e0463da6d6ad6109767609a,3,synthetic demonstration data,Fabricated document — demonstrates the import format only

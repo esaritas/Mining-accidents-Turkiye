@@ -1,0 +1,5 @@
+source_document_hash,claim_subject_type,field_name,raw_value,normalized_value,extraction_method,assertion_status,review_status,short_evidence_excerpt,confidence_score
+49036086ece675075c16f2127a6412c8cf7e3d2722efce055809d04cd6eb83c3,incident,fatalities_current,iki,2,manual,reported,pending,TEST synthetic excerpt: fictional initial figure,
+603d235a1f89d44cb13898ed3b4840c8b34af33e5e0463da6d6ad6109767609a,incident,fatalities_current,üç,3,manual,reported,pending,TEST synthetic excerpt: fictional revised figure,
+603d235a1f89d44cb13898ed3b4840c8b34af33e5e0463da6d6ad6109767609a,incident,fatalities_current,dört,4,manual,disputed,pending,TEST synthetic excerpt: fictional conflicting figure,
+49036086ece675075c16f2127a6412c8cf7e3d2722efce055809d04cd6eb83c3,incident,province_code,TEST ili,35,ai_assisted,reported,needs_review,TEST synthetic excerpt: fictional place mention (A.Y. redacted),0.7
