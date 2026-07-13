@@ -1,0 +1,10 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+reported,aktarılan,reported,Reported by a source without independent verification,initial news reports,1.0,,
+alleged,iddia edilen,alleged,Allegation not established as fact,claims about responsibility,1.0,,never rendered as established fact (editorial protocol §2)
+preliminary_finding,ön bulgu,preliminary finding,Preliminary finding of an investigation,initial inspection notes,1.0,,
+technical_finding,teknik bulgu,technical finding,Finding of a technical or expert examination,expert report conclusions,1.0,,
+official_finding,resmî bulgu,official finding,Finding of an official investigation,ministry investigation conclusions,1.0,,
+judicial_finding,yargı bulgusu,judicial finding,Finding established in judicial proceedings,court judgment findings,1.0,,
+disputed,ihtilaflı,disputed,Actively contradicted by another credible source,conflicting casualty totals,1.0,,
+withdrawn,geri çekilmiş,withdrawn,Withdrawn or retracted by the original source,corrected news reports,1.0,,
+unknown,bilinmiyor,unknown,Assertion strength not determinable,,1.0,,

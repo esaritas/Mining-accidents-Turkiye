@@ -1,0 +1,17 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+methane,metan (grizu),methane,Methane gas present in the working environment,firedamp accumulation in coal workings,1.0,,
+coal_dust,kömür tozu,coal dust,Combustible coal dust as a suspended or deposited hazard,dust clouds capable of propagating explosion,1.0,,
+unstable_ground,duraysız zemin/kaya,unstable ground,Rock or soil mass liable to collapse or slide,unsupported roof; weak strata; loose highwall,1.0,,
+water_ingress,su geliri,water ingress,Water able to enter workings,old flooded workings; aquifer; surface water,1.0,,
+fire,yangın,fire,Combustible material and ignition potential,belt fires; spontaneous combustion,1.0,,
+electrical_energy,elektrik enerjisi,electrical energy,Electrical installations or equipment as energy source,cables; switchgear; portable equipment,1.0,,
+moving_machinery,hareketli makine,moving machinery,Machinery with moving parts,conveyors; crushers; winches,1.0,,
+vehicle,araç,vehicle,Mobile equipment or transport vehicles,haul trucks; loaders; rail cars,1.0,,
+explosive_material,patlayıcı madde,explosive material,Explosives stored or used on site,blasting agents; detonators,1.0,,
+chemical_process,kimyasal süreç,chemical process,Process chemicals or reactions,cyanide leaching; acid handling,1.0,,
+heap_or_tailings_instability,yığın/atık tesisi duraysızlığı,heap or tailings instability,Instability of heap-leach pads or tailings storage,over-steepened heap; saturated tailings dam,1.0,,
+oxygen_deficient_atmosphere,oksijeni yetersiz atmosfer,oxygen-deficient atmosphere,Atmosphere unable to support life,blackdamp; sealed area atmospheres,1.0,,
+high_temperature,yüksek sıcaklık,high temperature,Hot environment or hot surfaces/materials,deep workings; heated strata after fire,1.0,,
+rockburst_or_seismicity,kaya patlaması/sismisite,rockburst or seismicity,Sudden violent rock failure or induced/natural seismic events,strain bursts; mining-induced seismicity,1.0,,
+unknown,bilinmiyor,unknown,Hazard cannot be determined from available sources,,1.0,,honest default; never guessed
+other,diğer,other,Hazard outside listed categories,,1.0,,requires an explanatory note

@@ -1,0 +1,7 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+exact_verified,doğrulanmış kesin nokta,exact verified,Verified exact facility/point location,,1.0,,requires location_source_claim_id (QC critical)
+facility_approximate,tesis düzeyinde yaklaşık,facility approximate,Approximate location of the facility,,1.0,,worst precision renderable as an exact pin
+settlement,yerleşim,settlement,Nearest settlement,,1.0,,never render as exact pin
+district_centroid,ilçe merkezi,district centroid,District centroid placeholder,,1.0,,never render as exact pin
+province_centroid,il merkezi,province centroid,Province centroid placeholder,,1.0,,never render as exact pin
+unknown,bilinmiyor,unknown,Location precision unknown,,1.0,,coordinates should be omitted from display

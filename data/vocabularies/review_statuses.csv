@@ -1,0 +1,4 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+pending,beklemede,pending,Not yet examined by a reviewer,,1.0,,
+needs_review,inceleme gerekli,needs review,Flagged for mandatory human review,all ai_assisted/ocr_assisted claims start here,1.0,,
+reviewed,incelendi,reviewed,Examined and confirmed by a human reviewer,,1.0,,

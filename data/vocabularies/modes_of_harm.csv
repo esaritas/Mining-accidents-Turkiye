@@ -1,0 +1,12 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+poisoning_or_asphyxiation,zehirlenme/asfiksi,poisoning or asphyxiation,Harm from toxic gas or lack of oxygen,carbon monoxide poisoning; suffocation,1.0,,
+crushing,ezilme,crushing,Harm from compressive force,buried under collapse; crushed by machinery,1.0,,
+drowning,suda boğulma,drowning,Harm from submersion in liquid,drowning in flooded workings,1.0,,
+burn,yanık,burn,Thermal or chemical burns,flash burns from explosion,1.0,,
+impact,darbe/çarpma,impact,Harm from being struck or striking,struck by flyrock; vehicle impact,1.0,,
+entrapment,mahsur kalma/sıkışma,entrapment,Person trapped without immediate physical trauma,cut off behind collapse,1.0,,often co-occurs with other modes
+electrocution,elektrik çarpması,electrocution,Harm from electric current through the body,contact with live conductor,1.0,,
+fall_related_trauma,düşmeye bağlı travma,fall-related trauma,Trauma from a fall,injuries from fall into shaft,1.0,,
+thermal_or_smoke_inhalation,ısı/duman soluma,thermal or smoke inhalation,Harm from inhaling hot gases or smoke,smoke inhalation during mine fire,1.0,,
+unknown,bilinmiyor,unknown,Mode of harm cannot be determined from available sources,,1.0,,
+other,diğer,other,Mode outside listed categories,,1.0,,requires an explanatory note

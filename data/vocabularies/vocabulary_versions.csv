@@ -1,0 +1,14 @@
+file,version,date,change_summary
+hazards.csv,1.0,2026-07-13,Initial vocabulary
+event_mechanisms.csv,1.0,2026-07-13,Initial vocabulary
+modes_of_harm.csv,1.0,2026-07-13,Initial vocabulary
+contributing_conditions.csv,1.0,2026-07-13,Initial vocabulary
+organization_roles.csv,1.0,2026-07-13,Initial vocabulary
+organization_types.csv,1.0,2026-07-13,Initial vocabulary
+source_types.csv,1.0,2026-07-13,Initial vocabulary
+assertion_statuses.csv,1.0,2026-07-13,Initial vocabulary
+review_statuses.csv,1.0,2026-07-13,Initial vocabulary
+date_precisions.csv,1.0,2026-07-13,Initial vocabulary
+coordinate_precisions.csv,1.0,2026-07-13,Initial vocabulary
+turkey_admin_areas.csv,1.0,2026-07-13,81 provinces with official plate codes (public reference data)
+nace_versions.csv,1.0,2026-07-13,Version identifiers only; no activity codes

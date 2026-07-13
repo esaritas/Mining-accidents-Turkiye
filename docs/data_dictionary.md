@@ -38,9 +38,10 @@ Two mechanisms, chosen deliberately:
 `source_documents`, `ingestion_runs`, `review_log`: fully append-only
 (triggers reject UPDATE and DELETE).
 
-`claims`: evidence content is immutable; **only** `review_status` may be
-updated (the workflow field of the claim state machine). A trigger rejects
-any UPDATE touching another column, and all DELETEs.
+`claims`: evidence content is immutable; only `review_status` (the claim
+state machine) and `incident_id` (linking a claim to an incident, which the
+spec allows to happen after creation) may be updated. A trigger rejects any
+UPDATE touching another column, and all DELETEs.
 
 `casualty_observations`: figures are immutable; only `is_current_canonical`
 and `review_status` may change (set via decisions). DELETE rejected.

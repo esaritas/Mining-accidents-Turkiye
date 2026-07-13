@@ -1,0 +1,10 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+licence_holder,ruhsat sahibi,licence holder,Holder of the mining licence,,1.0,,high defamation risk field; see editorial_and_legal_protocol.md §2
+owner,mal sahibi,owner,Owner of the facility or operation,,1.0,,
+operator,işletmeci,operator,Entity operating the site,,1.0,,high defamation risk field; see editorial_and_legal_protocol.md §2
+subcontractor,alt yüklenici,subcontractor,Contracted entity performing work,,1.0,,
+employer,işveren,employer,Employer of affected workers,,1.0,,
+public_authority,kamu otoritesi,public authority,State body with regulatory or oversight role,,1.0,,
+rescue_organization,kurtarma kuruluşu,rescue organization,Organization conducting rescue response,,1.0,,
+other,diğer,other,Role outside listed categories,,1.0,,requires an explanatory note
+unknown,bilinmiyor,unknown,Role asserted but not determinable,,1.0,,

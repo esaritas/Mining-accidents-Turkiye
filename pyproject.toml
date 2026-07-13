@@ -41,6 +41,13 @@ src = ["src", "tests", "scripts"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "W"]
 
+[tool.ruff.lint.per-file-ignores]
+# typer.Option in defaults is the canonical Typer API style.
+"src/mining_accidents/cli.py" = ["B008"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["mining_accidents", "conftest"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"

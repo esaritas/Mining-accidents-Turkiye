@@ -1,0 +1,14 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+official_statement,resmî açıklama,official statement,Statement by ministry or public enterprise,,1.0,,
+parliamentary_report,meclis araştırma raporu,parliamentary report,TBMM research commission report,,1.0,,
+parliamentary_minutes,meclis tutanağı,parliamentary minutes,TBMM session minutes,,1.0,,
+inspection_report,denetim raporu,inspection report,Regulatory or internal inspection report,,1.0,,
+court_document,mahkeme belgesi,court document,Judicial decision or filing,,1.0,,
+expert_report,bilirkişi raporu,expert report,Court-appointed expert report,,1.0,,
+statistical_yearbook,istatistik yıllığı,statistical yearbook,Official aggregate statistics publication,,1.0,,aggregate context only; never incident-level evidence
+chamber_report,oda raporu,chamber report,Professional chamber report,,1.0,,
+ngo_report,STK raporu,NGO report,Civil-society organization report,,1.0,,
+academic_article,akademik makale,academic article,Peer-reviewed academic publication,,1.0,,
+news_article,haber,news article,News media article,,1.0,,
+press_release,basın bülteni,press release,Press release by any organization,,1.0,,
+other,diğer,other,Document type outside listed categories,,1.0,,requires an explanatory note

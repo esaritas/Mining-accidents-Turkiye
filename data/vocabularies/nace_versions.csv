@@ -1,0 +1,4 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+NACE_REV_1_1,NACE Rev. 1.1,NACE Rev. 1.1,Version identifier for NACE Rev. 1.1,,1.0,,structure only; activity codes are never invented by this project
+NACE_REV_2,NACE Rev. 2,NACE Rev. 2,Version identifier for NACE Rev. 2,,1.0,,structure only
+NACE_REV_2_1,NACE Rev. 2.1,NACE Rev. 2.1,Version identifier for NACE Rev. 2.1,,1.0,,structure only

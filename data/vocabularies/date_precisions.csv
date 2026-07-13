@@ -1,0 +1,6 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+exact_datetime,tam tarih-saat,exact datetime,Date and time known,2099-01-01T03:15:00+03:00,1.0,,
+exact_date,tam tarih,exact date,Date known; time unknown,2099-01-01,1.0,,
+month,ay,month,Known to the month,2099-01,1.0,,
+year,yıl,year,Known to the year,2099,1.0,,
+approximate,yaklaşık,approximate,Approximate dating only,"about early 2099",1.0,,

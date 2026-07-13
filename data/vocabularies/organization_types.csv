@@ -1,0 +1,10 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+private_company,özel şirket,private company,Privately owned company,,1.0,,
+state_enterprise,kamu iktisadi teşebbüsü,state enterprise,State-owned economic enterprise,,1.0,,
+public_authority,kamu otoritesi,public authority,Government body or agency,,1.0,,
+cooperative,kooperatif,cooperative,Cooperative entity,,1.0,,
+informal_operation,kayıt dışı işletme,informal operation,Unregistered or informal operation,,1.0,,
+union_or_chamber,sendika/oda,union or chamber,Trade union or professional chamber,,1.0,,
+ngo,sivil toplum kuruluşu,NGO,Non-governmental organization,,1.0,,
+unknown,bilinmiyor,unknown,Type not determinable,,1.0,,
+other,diğer,other,Type outside listed categories,,1.0,,requires an explanatory note

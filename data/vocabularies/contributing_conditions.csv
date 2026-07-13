@@ -1,0 +1,21 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+ventilation,havalandırma,ventilation,Ventilation system adequacy or operation,insufficient airflow cited by inspection,1.0,,coded only when source-backed; never inferred
+gas_monitoring,gaz izleme,gas monitoring,Gas detection and monitoring arrangements,absent or non-functional detectors cited,1.0,,coded only when source-backed
+ground_support,tahkimat,ground support,Ground/roof support systems,inadequate supports cited in findings,1.0,,coded only when source-backed
+water_management,su yönetimi,water management,Management of water hazards,unmapped old workings cited,1.0,,coded only when source-backed
+maintenance,bakım,maintenance,Equipment or infrastructure maintenance,poor equipment condition cited,1.0,,coded only when source-backed
+inspection,denetim,inspection,Internal or regulatory inspection regime,missed or ineffective inspections cited,1.0,,coded only when source-backed
+emergency_preparedness,acil durum hazırlığı,emergency preparedness,Emergency plans equipment and readiness,refuge chambers absent cited,1.0,,coded only when source-backed
+evacuation,tahliye,evacuation,Evacuation arrangements and execution,delayed evacuation cited,1.0,,coded only when source-backed
+training,eğitim,training,Worker or supervisor training,insufficient safety training cited,1.0,,coded only when source-backed
+communication,iletişim,communication,Communication systems or practices,failed underground communication cited,1.0,,coded only when source-backed
+contracting_arrangements,alt işverenlik/sözleşme düzenlemeleri,contracting arrangements,Subcontracting and production contracting structures,production-based subcontracting cited,1.0,,coded only when source-backed
+production_management,üretim yönetimi,production management,Production pressure and management decisions,production prioritized over safety cited,1.0,,coded only when source-backed
+licensing_or_permitting,ruhsatlandırma/izin,licensing or permitting,Licence and permit status or conditions,operation outside licence conditions cited,1.0,,coded only when source-backed
+warning_response,uyarılara yanıt,warning response,Response to prior warnings or precursor events,ignored gas alarms cited,1.0,,coded only when source-backed
+geological_assessment,jeolojik değerlendirme,geological assessment,Assessment of geological conditions,unrecognized fault zone cited,1.0,,coded only when source-backed
+tailings_or_heap_management,atık/yığın yönetimi,tailings or heap management,Management of tailings and heap facilities,dam raise without review cited,1.0,,coded only when source-backed
+informal_or_illegal_operation,kayıt dışı/ruhsatsız işletme,informal or illegal operation,Operation informal unlicensed or illegal,unlicensed coal digging cited,1.0,,also used as scope flag per research protocol §6
+ppe_or_self_rescuer,KKD/ferdi kurtarıcı,PPE or self-rescuer,Personal protective and self-rescue equipment,non-functional self-rescuers cited,1.0,,coded only when source-backed
+unknown,bilinmiyor,unknown,Contributing conditions cannot be determined,,1.0,,
+other,diğer,other,Condition outside listed categories,,1.0,,requires an explanatory note

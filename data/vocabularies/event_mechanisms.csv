@@ -1,0 +1,17 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+gas_explosion,gaz (grizu) patlaması,gas explosion,Explosion of accumulated gas,methane/firedamp explosion,1.0,,not a root cause and not a statement of legal responsibility
+dust_explosion,toz patlaması,dust explosion,Explosion propagated by combustible dust,coal dust explosion following gas ignition,1.0,,
+fire,yangın,fire,Uncontrolled fire event,conveyor belt fire; spontaneous combustion fire,1.0,,
+roof_or_ground_collapse,tavan/göçük,roof or ground collapse,Fall of roof or collapse of ground in workings,goaf collapse; pillar failure,1.0,,
+landslide_or_slope_failure,heyelan/şev duraysızlığı,landslide or slope failure,Failure of natural or engineered slopes,open-pit highwall failure; waste dump slide,1.0,,
+flooding_or_inrush,su baskını/ani su geliri,flooding or inrush,Sudden entry of water or semi-fluid material,inrush from old workings,1.0,,
+loss_of_vehicle_control,araç kontrol kaybı,loss of vehicle control,Vehicle leaving intended path or control,runaway haul truck; overturned loader,1.0,,
+machinery_entanglement,makineye kapılma,machinery entanglement,Person caught in moving machinery,conveyor entanglement,1.0,,
+electrical_event,elektrik olayı,electrical event,Unintended electrical discharge or fault,cable fault; contact with live parts,1.0,,
+blasting_event,patlatma olayı,blasting event,Abnormal event connected to blasting,premature detonation; flyrock,1.0,,
+fall_from_height,yüksekten düşme,fall from height,Person falling from elevation,fall into shaft or bunker,1.0,,
+fall_of_object,cisim düşmesi,fall of object,Object falling onto person,rock fall from face; dropped load,1.0,,
+chemical_release,kimyasal salım,chemical release,Uncontrolled release of chemical substance,process solution spill; toxic gas release,1.0,,
+tailings_dam_failure,atık barajı yıkılması,tailings dam failure,Failure of tailings storage facility,dam breach releasing tailings,1.0,,
+unknown,bilinmiyor,unknown,Mechanism cannot be determined from available sources,,1.0,,
+other,diğer,other,Mechanism outside listed categories,,1.0,,requires an explanatory note
