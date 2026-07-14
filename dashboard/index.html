@@ -10,29 +10,14 @@
 <script src="vendor/leaflet/leaflet.js"></script>
 <script src="data.js"></script>
 <style>
-  :root { color-scheme: light dark; }
+  :root { color-scheme: light; }
+  /* Single light theme (project decision, 2026-07-14): cool-gray neutrals. */
   .viz-root {
     color-scheme: light;
-    --surface-1: #fcfcfb; --page: #f9f9f7;
-    --ink-1: #0b0b0b; --ink-2: #52514e; --ink-muted: #898781;
-    --grid: #e1e0d9; --baseline: #c3c2b7; --border: rgba(11,11,11,.10);
+    --surface-1: #fbfbfc; --page: #eef0f2;
+    --ink-1: #17181a; --ink-2: #53565a; --ink-muted: #83868b;
+    --grid: #e2e4e7; --baseline: #c3c6ca; --border: rgba(23,24,26,.11);
     --series-1: #2a78d6; --series-1-soft: rgba(42,120,214,.14);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:where(:not([data-theme="light"])) .viz-root {
-      color-scheme: dark;
-      --surface-1: #1a1a19; --page: #0d0d0d;
-      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-muted: #898781;
-      --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,.10);
-      --series-1: #3987e5; --series-1-soft: rgba(57,135,229,.20);
-    }
-  }
-  :root[data-theme="dark"] .viz-root {
-    color-scheme: dark;
-    --surface-1: #1a1a19; --page: #0d0d0d;
-    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-muted: #898781;
-    --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,.10);
-    --series-1: #3987e5; --series-1-soft: rgba(57,135,229,.20);
   }
   * { box-sizing: border-box; }
   body.viz-root {
@@ -58,8 +43,7 @@
   section.panel p.caption { color: var(--ink-muted); font-size: 13px; margin: 0 0 12px; }
 
   #map { height: 440px; border-radius: 8px; background: var(--page); }
-  :root[data-theme="dark"] .leaflet-tile,
-  html.osdark .leaflet-tile { filter: grayscale(.35) invert(1) contrast(.85) hue-rotate(180deg) brightness(.85); }
+  .leaflet-tile { filter: grayscale(.55); }
   .leaflet-container { font: inherit; }
   .leaflet-popup-content { font: 13px/1.5 system-ui, sans-serif; }
   .leaflet-popup-content b { font-size: 14px; }
@@ -140,8 +124,9 @@
     <p class="caption">
       Marker area reflects recorded deaths. All current locations are
       <em>facility-approximate</em> — markers indicate the mine or its vicinity, never an
-      exact point. Select a marker for details and sources. Records without published
-      coordinates (most historic entries) appear in the chart and table only.
+      exact point. Records without published coordinates appear as hollow
+      <em>province-level</em> circles at the province's reference point — a summary for
+      that province, never an incident location. Select any marker for details and sources.
     </p>
     <div id="map" role="region" aria-label="Map of published mining accident records in Türkiye"></div>
   </section>
@@ -206,12 +191,6 @@
   const mechanismText = id => mechanismsOf(id)
     .map(c => `${c.label_en} (${c.label_tr})`).join("; ");
 
-  // Track OS dark mode on <html> so the map-tile filter can follow it.
-  const mq = window.matchMedia("(prefers-color-scheme: dark)");
-  const syncDark = () => document.documentElement.classList.toggle("osdark",
-    mq.matches && document.documentElement.getAttribute("data-theme") !== "light");
-  mq.addEventListener("change", syncDark); syncDark();
-
   // ---- KPI tiles -----------------------------------------------------------
   const tiles = [
     { v: incidents.length, l: "published incident records", s: "passed the full review threshold" },
@@ -256,8 +235,38 @@
     );
     return m;
   });
-  const group = L.featureGroup(markers).addTo(map);
-  if (located.length) { map.fitBounds(group.getBounds().pad(0.35)); }
+  // Province-level marks for records without published coordinates:
+  // hollow dashed circles at the province reference point (clearly labeled;
+  // the data contract forbids rendering these as exact pins).
+  const unlocated = incidents.filter(i => i.latitude == null || i.longitude == null);
+  const byProvince = new Map();
+  for (const i of unlocated) {
+    if (!i.province_code || !D.province_centroids[i.province_code]) continue;
+    const b = byProvince.get(i.province_code) || [];
+    b.push(i); byProvince.set(i.province_code, b);
+  }
+  const provinceMarkers = [...byProvince.entries()].map(([code, recs]) => {
+    const c = D.province_centroids[code];
+    const deaths = recs.reduce((s, i) => s + (i.fatalities_current || 0), 0);
+    const r = 6 + Math.sqrt(deaths || 1) * 2.1;
+    const m = L.circleMarker([c.latitude, c.longitude], {
+      radius: r, color: "#2a78d6", weight: 2, dashArray: "4 3",
+      fillColor: "#2a78d6", fillOpacity: 0.12,
+    });
+    const rows = recs.map(i =>
+      `${i.public_incident_id} · ${(i.incident_start_datetime || "").slice(0, 10)} · ` +
+      `${fmt.format(i.fatalities_current)} deaths`).join("<br>");
+    m.bindPopup(
+      `<b>${c.label_tr} — province-level summary</b><br>` +
+      `<span class="meta">Shown at the province reference point; exact locations are not ` +
+      `published for these records.</span><br>` +
+      `${recs.length} record(s), ${fmt.format(deaths)} recorded deaths<hr ` +
+      `style="border:none;border-top:1px solid #ddd">${rows}`
+    );
+    return m;
+  });
+  const group = L.featureGroup([...provinceMarkers, ...markers]).addTo(map);
+  if (markers.length + provinceMarkers.length) { map.fitBounds(group.getBounds().pad(0.2)); }
   else { map.setView([39.0, 35.2], 6); }
   }
 

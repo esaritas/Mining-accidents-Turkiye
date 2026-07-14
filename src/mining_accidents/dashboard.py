@@ -78,6 +78,26 @@ def _aggregates(conn: sqlite3.Connection) -> list[dict[str, object]]:
     ]
 
 
+def _province_centroids() -> dict[str, dict[str, float | str]]:
+    """Display-only reference points (Wikidata CC0) for province-level marks.
+
+    Never incident locations: the dashboard renders these as clearly-labeled
+    centroid symbols per the data contract."""
+    import csv
+
+    result: dict[str, dict[str, float | str]] = {}
+    with Path("data/vocabularies/province_centroids.csv").open(
+        encoding="utf-8", newline=""
+    ) as fh:
+        for row in csv.DictReader(fh):
+            result[row["code"]] = {
+                "label_tr": row["label_tr"],
+                "latitude": float(row["latitude"]),
+                "longitude": float(row["longitude"]),
+            }
+    return result
+
+
 def _pipeline_status(conn: sqlite3.Connection) -> dict[str, int]:
     def count(sql: str) -> int:
         return int(conn.execute(sql).fetchone()[0])
@@ -117,6 +137,7 @@ def build_dashboard_data(
         "citations": _citations(public_dir),
         "classifications": _classifications(public_dir),
         "aggregates": _aggregates(conn),
+        "province_centroids": _province_centroids(),
         "pipeline": _pipeline_status(conn),
         "export_timestamp": manifest["export_timestamp"],
         "schema_version": manifest["db_schema_version"],

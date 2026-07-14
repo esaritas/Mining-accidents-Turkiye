@@ -1880,5 +1880,402 @@ window.MINING_DATA = {
     "records_in_review": 32,
     "source_documents": 28
   },
+  "province_centroids": {
+    "01": {
+      "label_tr": "Adana",
+      "latitude": 37.36833,
+      "longitude": 35.70611
+    },
+    "02": {
+      "label_tr": "Adıyaman",
+      "latitude": 37.76,
+      "longitude": 38.27861
+    },
+    "03": {
+      "label_tr": "Afyonkarahisar",
+      "latitude": 38.75667,
+      "longitude": 30.53972
+    },
+    "04": {
+      "label_tr": "Ağrı",
+      "latitude": 39.71861,
+      "longitude": 43.05222
+    },
+    "05": {
+      "label_tr": "Amasya",
+      "latitude": 40.65028,
+      "longitude": 35.83278
+    },
+    "06": {
+      "label_tr": "Ankara",
+      "latitude": 39.92639,
+      "longitude": 32.85611
+    },
+    "07": {
+      "label_tr": "Antalya",
+      "latitude": 37.18167,
+      "longitude": 30.93333
+    },
+    "08": {
+      "label_tr": "Artvin",
+      "latitude": 41.13333,
+      "longitude": 41.85
+    },
+    "09": {
+      "label_tr": "Aydın",
+      "latitude": 37.72833,
+      "longitude": 27.93722
+    },
+    "10": {
+      "label_tr": "Balıkesir",
+      "latitude": 39.74083,
+      "longitude": 27.81917
+    },
+    "11": {
+      "label_tr": "Bilecik",
+      "latitude": 40.0,
+      "longitude": 30.16667
+    },
+    "12": {
+      "label_tr": "Bingöl",
+      "latitude": 39.04111,
+      "longitude": 40.67583
+    },
+    "13": {
+      "label_tr": "Bitlis",
+      "latitude": 38.52583,
+      "longitude": 42.38778
+    },
+    "14": {
+      "label_tr": "Bolu",
+      "latitude": 40.67917,
+      "longitude": 31.55833
+    },
+    "15": {
+      "label_tr": "Burdur",
+      "latitude": 37.42389,
+      "longitude": 30.08444
+    },
+    "16": {
+      "label_tr": "Bursa",
+      "latitude": 40.15,
+      "longitude": 29.02083
+    },
+    "17": {
+      "label_tr": "Çanakkale",
+      "latitude": 40.15056,
+      "longitude": 26.41111
+    },
+    "18": {
+      "label_tr": "Çankırı",
+      "latitude": 40.73556,
+      "longitude": 33.36611
+    },
+    "19": {
+      "label_tr": "Çorum",
+      "latitude": 40.55222,
+      "longitude": 34.95389
+    },
+    "20": {
+      "label_tr": "Denizli",
+      "latitude": 37.84016,
+      "longitude": 29.06982
+    },
+    "21": {
+      "label_tr": "Diyarbakır",
+      "latitude": 38.14222,
+      "longitude": 40.27111
+    },
+    "22": {
+      "label_tr": "Edirne",
+      "latitude": 41.12,
+      "longitude": 26.52056
+    },
+    "23": {
+      "label_tr": "Elazığ",
+      "latitude": 38.6675,
+      "longitude": 39.35972
+    },
+    "24": {
+      "label_tr": "Erzincan",
+      "latitude": 39.67833,
+      "longitude": 39.33
+    },
+    "25": {
+      "label_tr": "Erzurum",
+      "latitude": 40.06306,
+      "longitude": 41.56694
+    },
+    "26": {
+      "label_tr": "Eskişehir",
+      "latitude": 39.6825,
+      "longitude": 31.0725
+    },
+    "27": {
+      "label_tr": "Gaziantep",
+      "latitude": 37.08333,
+      "longitude": 37.33333
+    },
+    "28": {
+      "label_tr": "Giresun",
+      "latitude": 40.57972,
+      "longitude": 38.59444
+    },
+    "29": {
+      "label_tr": "Gümüşhane",
+      "latitude": 40.38806,
+      "longitude": 39.41861
+    },
+    "30": {
+      "label_tr": "Hakkari",
+      "latitude": 37.46611,
+      "longitude": 44.06444
+    },
+    "31": {
+      "label_tr": "Hatay",
+      "latitude": 36.2,
+      "longitude": 36.15
+    },
+    "32": {
+      "label_tr": "Isparta",
+      "latitude": 37.95667,
+      "longitude": 30.96083
+    },
+    "33": {
+      "label_tr": "Mersin",
+      "latitude": 36.67861,
+      "longitude": 33.80528
+    },
+    "34": {
+      "label_tr": "İstanbul",
+      "latitude": 41.01222,
+      "longitude": 28.97611
+    },
+    "35": {
+      "label_tr": "İzmir",
+      "latitude": 38.41889,
+      "longitude": 27.12972
+    },
+    "36": {
+      "label_tr": "Kars",
+      "latitude": 40.45472,
+      "longitude": 43.06028
+    },
+    "37": {
+      "label_tr": "Kastamonu",
+      "latitude": 41.51944,
+      "longitude": 33.68972
+    },
+    "38": {
+      "label_tr": "Kayseri",
+      "latitude": 38.73695,
+      "longitude": 35.49683
+    },
+    "39": {
+      "label_tr": "Kırklareli",
+      "latitude": 41.68111,
+      "longitude": 27.47139
+    },
+    "40": {
+      "label_tr": "Kırşehir",
+      "latitude": 39.32389,
+      "longitude": 34.12917
+    },
+    "41": {
+      "label_tr": "Kocaeli",
+      "latitude": 40.76444,
+      "longitude": 29.945
+    },
+    "43": {
+      "label_tr": "Kütahya",
+      "latitude": 39.30472,
+      "longitude": 29.59
+    },
+    "44": {
+      "label_tr": "Malatya",
+      "latitude": 38.34806,
+      "longitude": 38.31778
+    },
+    "45": {
+      "label_tr": "Manisa",
+      "latitude": 38.74944,
+      "longitude": 28.12278
+    },
+    "46": {
+      "label_tr": "Kahramanmaraş",
+      "latitude": 37.89833,
+      "longitude": 36.97111
+    },
+    "47": {
+      "label_tr": "Mardin",
+      "latitude": 37.31775,
+      "longitude": 40.71533
+    },
+    "48": {
+      "label_tr": "Muğla",
+      "latitude": 37.03028,
+      "longitude": 28.50639
+    },
+    "49": {
+      "label_tr": "Muş",
+      "latitude": 39.00056,
+      "longitude": 41.82722
+    },
+    "50": {
+      "label_tr": "Nevşehir",
+      "latitude": 38.78167,
+      "longitude": 34.68806
+    },
+    "51": {
+      "label_tr": "Niğde",
+      "latitude": 37.91583,
+      "longitude": 34.69361
+    },
+    "52": {
+      "label_tr": "Ordu",
+      "latitude": 40.81139,
+      "longitude": 37.54056
+    },
+    "53": {
+      "label_tr": "Rize",
+      "latitude": 40.93167,
+      "longitude": 40.84778
+    },
+    "54": {
+      "label_tr": "Sakarya",
+      "latitude": 40.69722,
+      "longitude": 30.45667
+    },
+    "55": {
+      "label_tr": "Samsun",
+      "latitude": 41.20444,
+      "longitude": 36.00722
+    },
+    "56": {
+      "label_tr": "Siirt",
+      "latitude": 37.93,
+      "longitude": 42.27028
+    },
+    "57": {
+      "label_tr": "Sinop",
+      "latitude": 41.60917,
+      "longitude": 34.90194
+    },
+    "58": {
+      "label_tr": "Sivas",
+      "latitude": 39.75028,
+      "longitude": 37.01611
+    },
+    "59": {
+      "label_tr": "Tekirdağ",
+      "latitude": 40.97778,
+      "longitude": 27.51833
+    },
+    "60": {
+      "label_tr": "Tokat",
+      "latitude": 40.35278,
+      "longitude": 36.56444
+    },
+    "61": {
+      "label_tr": "Trabzon",
+      "latitude": 40.78056,
+      "longitude": 39.81222
+    },
+    "62": {
+      "label_tr": "Uşak",
+      "latitude": 38.52389,
+      "longitude": 29.34194
+    },
+    "63": {
+      "label_tr": "Şanlıurfa",
+      "latitude": 37.25417,
+      "longitude": 39.0425
+    },
+    "65": {
+      "label_tr": "Van",
+      "latitude": 38.50111,
+      "longitude": 43.37306
+    },
+    "66": {
+      "label_tr": "Yozgat",
+      "latitude": 39.66944,
+      "longitude": 35.26917
+    },
+    "67": {
+      "label_tr": "Zonguldak",
+      "latitude": 41.32056,
+      "longitude": 31.73361
+    },
+    "68": {
+      "label_tr": "Aksaray",
+      "latitude": 38.43083,
+      "longitude": 33.86222
+    },
+    "69": {
+      "label_tr": "Bayburt",
+      "latitude": 40.23667,
+      "longitude": 40.22361
+    },
+    "70": {
+      "label_tr": "Karaman",
+      "latitude": 37.01667,
+      "longitude": 33.08333
+    },
+    "71": {
+      "label_tr": "Kırıkkale",
+      "latitude": 39.86972,
+      "longitude": 33.71611
+    },
+    "72": {
+      "label_tr": "Batman",
+      "latitude": 38.08194,
+      "longitude": 41.40722
+    },
+    "73": {
+      "label_tr": "Şırnak",
+      "latitude": 37.51917,
+      "longitude": 42.45417
+    },
+    "74": {
+      "label_tr": "Bartın",
+      "latitude": 41.60444,
+      "longitude": 32.51111
+    },
+    "75": {
+      "label_tr": "Ardahan",
+      "latitude": 41.11306,
+      "longitude": 42.82083
+    },
+    "76": {
+      "label_tr": "Iğdır",
+      "latitude": 39.89361,
+      "longitude": 43.99778
+    },
+    "77": {
+      "label_tr": "Yalova",
+      "latitude": 40.64417,
+      "longitude": 29.19361
+    },
+    "78": {
+      "label_tr": "Karabük",
+      "latitude": 41.22361,
+      "longitude": 32.64028
+    },
+    "79": {
+      "label_tr": "Kilis",
+      "latitude": 36.80083,
+      "longitude": 37.12389
+    },
+    "80": {
+      "label_tr": "Osmaniye",
+      "latitude": 37.22806,
+      "longitude": 36.2125
+    },
+    "81": {
+      "label_tr": "Düzce",
+      "latitude": 40.94694,
+      "longitude": 31.23806
+    }
+  },
   "schema_version": "001"
 };
