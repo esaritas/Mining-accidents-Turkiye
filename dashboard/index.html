@@ -297,6 +297,7 @@
   }
   parts.push(`<line class="axisline" x1="${M.l}" x2="${W - M.r}" y1="${M.t + ih}" y2="${M.t + ih}"></line>`);
 
+  const labelParts = [];
   const peak = years.reduce((best, y) =>
     ((byYear.get(y) || { deaths: 0 }).deaths > (byYear.get(best) || { deaths: 0 }).deaths ? y : best), y0);
   years.forEach((year, idx) => {
@@ -306,8 +307,9 @@
       const r = Math.min(4, bw / 2, bh);                 // rounded data-end, anchored baseline
       parts.push(`<path class="bar" data-year="${year}" d="M${bx},${M.t + ih} v${-(bh - r)} q0,${-r} ${r},${-r} h${bw - 2 * r} q${r},0 ${r},${r} v${bh - r} z"></path>`);
       if (year === peak && bh > 26) {
-        // Label sits inside the bar top so it never collides with the context line.
-        parts.push(`<text class="direct-label inside" x="${bx + bw / 2}" y="${by + 15}" text-anchor="middle">${fmt.format(e.deaths)}</text>`);
+        // Label sits inside the bar top, drawn after the context series so
+        // the line never crosses it.
+        labelParts.push(`<text class="direct-label inside" x="${bx + bw / 2}" y="${by + 15}" text-anchor="middle">${fmt.format(e.deaths)}</text>`);
       }
     }
     const every = years.length > 24 ? 5 : (years.length > 12 ? 2 : 1);
@@ -328,6 +330,7 @@
       parts.push(`<circle class="context-dot" cx="${x(p.idx) + bw / 2}" cy="${yScale(p.v)}" r="3"></circle>`);
     }
   }
+  parts.push(...labelParts);
   svg.innerHTML = parts.join("");
 
   // ---- Mechanism breakdown (published records with a source-backed code) ---
