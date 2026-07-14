@@ -211,6 +211,25 @@ def build_dashboard(
     console.print(f"[green]Dashboard data written:[/green] {path}")
 
 
+@app.command("build-artifact")
+def build_artifact_cmd(
+    db_path: Path = DB_OPTION,
+    public_dir: Path = typer.Option(Path("data/public"), help="Public export directory."),
+    output: Path = typer.Option(
+        Path("dashboard/artifact.html"), help="Self-contained artifact output."
+    ),
+) -> None:
+    """Build the self-contained artifact page from dashboard/index.html."""
+    from mining_accidents import artifact as artifact_mod
+
+    conn = database.get_connection(db_path)
+    try:
+        path = artifact_mod.build_artifact(conn, public_dir, output_path=output)
+    finally:
+        conn.close()
+    console.print(f"[green]Artifact written:[/green] {path}")
+
+
 @app.command("import-registry")
 def import_registry(
     db_path: Path = DB_OPTION,

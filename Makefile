@@ -39,6 +39,7 @@ ingest:
 
 dashboard:
 	$(PYTHON) -m mining_accidents.cli build-dashboard --db-path $(DB_PATH)
+	$(PYTHON) -m mining_accidents.cli build-artifact --db-path $(DB_PATH)
 
 test:
 	$(PYTHON) -m pytest --cov=mining_accidents --cov-report=term-missing

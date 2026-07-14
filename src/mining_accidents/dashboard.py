@@ -14,7 +14,7 @@ import json
 import sqlite3
 from pathlib import Path
 
-from mining_accidents import vocabularies
+from mining_accidents import analysis, vocabularies
 
 DEFAULT_PUBLIC_DIR = Path("data/public")
 DEFAULT_OUTPUT = Path("dashboard/data.js")
@@ -86,9 +86,7 @@ def _province_centroids() -> dict[str, dict[str, float | str]]:
     import csv
 
     result: dict[str, dict[str, float | str]] = {}
-    with Path("data/vocabularies/province_centroids.csv").open(
-        encoding="utf-8", newline=""
-    ) as fh:
+    with Path("data/vocabularies/province_centroids.csv").open(encoding="utf-8", newline="") as fh:
         for row in csv.DictReader(fh):
             result[row["code"]] = {
                 "label_tr": row["label_tr"],
@@ -96,6 +94,75 @@ def _province_centroids() -> dict[str, dict[str, float | str]]:
                 "longitude": float(row["longitude"]),
             }
     return result
+
+
+OUTLINE_GEOJSON = Path("dashboard/tur-outline.geo.json")
+_PROJ = {"lon0": 25.3, "lon1": 45.1, "lat0": 35.5, "lat1": 42.4, "k": 46.0}
+
+
+def _map_vector(
+    incidents: list[dict[str, object]], centroids: dict[str, dict[str, float | str]]
+) -> dict[str, object]:
+    """Projected vector map (Türkiye outline + marks) for tile-free rendering.
+
+    Outline: world.geo.json (Natural Earth derived, public domain). Simple
+    equirectangular projection; display-only geometry, not evidence."""
+    import math
+
+    cos = math.cos(math.radians((_PROJ["lat0"] + _PROJ["lat1"]) / 2))
+
+    def px(lon: float, lat: float) -> tuple[float, float]:
+        return (
+            round((lon - _PROJ["lon0"]) * _PROJ["k"] * cos, 1),
+            round((_PROJ["lat1"] - lat) * _PROJ["k"], 1),
+        )
+
+    geometry = json.loads(OUTLINE_GEOJSON.read_text(encoding="utf-8"))["features"][0]["geometry"]
+    paths = [
+        "M" + " L".join(f"{x},{y}" for x, y in (px(lon, lat) for lon, lat in ring)) + " Z"
+        for polygon in geometry["coordinates"]
+        for ring in polygon
+    ]
+    width, height = px(_PROJ["lon1"], _PROJ["lat0"])
+
+    located, by_province = [], {}
+    for i in incidents:
+        deaths = i.get("fatalities_current") or 0
+        if i.get("latitude") is not None and i.get("longitude") is not None:
+            x, y = px(i["longitude"], i["latitude"])
+            located.append(
+                {
+                    "x": x,
+                    "y": y,
+                    "r": round(6 + (deaths or 1) ** 0.5 * 2.4, 1),
+                    "id": i["public_incident_id"],
+                }
+            )
+        elif i.get("province_code") in centroids:
+            by_province.setdefault(i["province_code"], []).append(i)
+    province_marks = []
+    for code, records in sorted(by_province.items()):
+        c = centroids[code]
+        x, y = px(float(c["longitude"]), float(c["latitude"]))
+        deaths = sum(i.get("fatalities_current") or 0 for i in records)
+        province_marks.append(
+            {
+                "x": x,
+                "y": y,
+                "r": round(6 + max(deaths, 1) ** 0.5 * 2.4, 1),
+                "code": code,
+                "label": c["label_tr"],
+                "deaths": deaths,
+                "ids": [i["public_incident_id"] for i in records],
+            }
+        )
+    return {
+        "W": width,
+        "H": height,
+        "outline": " ".join(paths),
+        "markers": located,
+        "provinceMarks": province_marks,
+    }
 
 
 def _pipeline_status(conn: sqlite3.Connection) -> dict[str, int]:
@@ -120,11 +187,10 @@ def _pipeline_status(conn: sqlite3.Connection) -> dict[str, int]:
     }
 
 
-def build_dashboard_data(
-    conn: sqlite3.Connection,
-    public_dir: str | Path = DEFAULT_PUBLIC_DIR,
-    output_path: str | Path = DEFAULT_OUTPUT,
-) -> Path:
+def build_payload(
+    conn: sqlite3.Connection, public_dir: str | Path = DEFAULT_PUBLIC_DIR
+) -> dict[str, object]:
+    """The full dashboard payload (shared by data.js and the artifact build)."""
     public_dir = Path(public_dir)
     incidents = json.loads((public_dir / "incidents.json").read_text(encoding="utf-8"))
     manifest = json.loads((public_dir / "export_manifest.json").read_text(encoding="utf-8"))
@@ -138,10 +204,24 @@ def build_dashboard_data(
         "classifications": _classifications(public_dir),
         "aggregates": _aggregates(conn),
         "province_centroids": _province_centroids(),
+        "map_vector": _map_vector(incidents, _province_centroids()),
+        "coverage_gap": analysis.coverage_gap(conn),
+        "projection": analysis.projection(conn),
+        "policy_events": analysis.policy_events(),
+        "rate_context": analysis.rate_context(conn),
         "pipeline": _pipeline_status(conn),
         "export_timestamp": manifest["export_timestamp"],
         "schema_version": manifest["db_schema_version"],
     }
+    return payload
+
+
+def build_dashboard_data(
+    conn: sqlite3.Connection,
+    public_dir: str | Path = DEFAULT_PUBLIC_DIR,
+    output_path: str | Path = DEFAULT_OUTPUT,
+) -> Path:
+    payload = build_payload(conn, public_dir)
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(

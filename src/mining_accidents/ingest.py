@@ -200,6 +200,7 @@ def ingest_wikidata(
 
     incident_ids.update(_ingest_list_article(conn, adapter, list_doc_id, summary, reviewer))
     _ingest_isig_aggregates(conn, list_doc_id, summary)
+    _ingest_rate_context(conn, list_doc_id)
 
     if reviewer and publish:
         for key, incident_id in sorted(incident_ids.items()):
@@ -425,6 +426,78 @@ def _ingest_isig_aggregates(
             ),
         )
     conn.commit()
+
+
+#: (country, year-or-None, regex) — the per-100M-tonnes figures the list
+#: article's lead cites (with references). Mechanical extraction; a row is
+#: created only when its pattern matches the retrieved text.
+_RATE_PATTERNS: tuple[tuple[str, int | None, str], ...] = (
+    ("TR", 2000, r"2000 yılında 100 milyon ton başına (\d+)"),
+    ("TR", 2008, r"Türkiye['’]de bu sayı (\d+) olarak kaydedilmiş"),
+    ("CN", 2008, r"Çin\]{0,2}['’]de,? 2008 yılında 100 milyon ton başına düşen ölüm sayısı (\d+)"),
+    ("CN", 2013, r"2013 yılında (\d+)['’][a-zçğıöşü]* düşmüştür"),
+    ("US", None, r"100 milyon ton üretim başına (\d+) ile (\d+) kişi"),
+)
+
+
+def _ingest_rate_context(conn: sqlite3.Connection, list_doc_id: int) -> int:
+    """Deaths-per-100M-tonnes figures (documented denominator) -> aggregates.
+
+    Rule respected: rates only where the source states the exposure
+    denominator (here: per 100 million tonnes of coal produced); every row
+    carries comparability notes and the citing document."""
+    import re
+    from pathlib import Path
+
+    row = conn.execute(
+        "SELECT local_raw_path FROM source_documents WHERE source_document_id = ?",
+        (list_doc_id,),
+    ).fetchone()
+    lead = Path(row["local_raw_path"]).read_text(encoding="utf-8").split("== Kazalar ==", 1)[0]
+    created = 0
+    for country, year, pattern in _RATE_PATTERNS:
+        match = re.search(pattern, lead)
+        if not match:
+            continue
+        values = [(None, match.group(1))]
+        if match.lastindex and match.lastindex > 1:  # a range, e.g. US 1-6
+            values = [("range_low", match.group(1)), ("range_high", match.group(2))]
+        for version, value in values:
+            period = f"{year}-01-01" if year else None
+            exists = conn.execute(
+                "SELECT 1 FROM aggregate_occupational_statistics WHERE unit = ? "
+                "AND classification_code = ? AND period_start IS ? "
+                "AND classification_version IS ?",
+                ("deaths_per_100M_tonnes_coal", country, period, version),
+            ).fetchone()
+            if exists:
+                continue
+            conn.execute(
+                "INSERT INTO aggregate_occupational_statistics (reporting_institution, "
+                "period_start, period_end, classification_system, classification_code, "
+                "classification_version, numerator, denominator, unit, source_document_id, "
+                "comparability_notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    "Press figures via tr.wikipedia list article (cited therein)",
+                    period,
+                    f"{year}-12-31" if year else None,
+                    "country",
+                    country,
+                    version,
+                    float(value),
+                    100_000_000.0,
+                    "deaths_per_100M_tonnes_coal",
+                    list_doc_id,
+                    "Coal-mining deaths per 100 million tonnes produced, as cited by "
+                    "press sources referenced in the Wikipedia list article"
+                    + ("; year unspecified in source" if year is None else "")
+                    + ". Methodologies differ across countries; indicative comparison "
+                    "only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
+                ),
+            )
+            created += 1
+    conn.commit()
+    return created
 
 
 def _apply_classifications(conn: sqlite3.Connection, incident_id: int, reviewer: str) -> int:

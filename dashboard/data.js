@@ -903,6 +903,112 @@ window.MINING_DATA = {
       }
     ]
   },
+  "coverage_gap": {
+    "caveat": "Different measures: the register counts deaths in publicly recorded, reviewed incidents; İSİG Meclisi counts all miner work deaths from all causes. The gap is loss that never became a publicly recorded incident.",
+    "total_gap": 905,
+    "total_isig": 1345,
+    "total_recorded": 440,
+    "years": [
+      {
+        "coverage_pct": 0.0,
+        "gap": 81,
+        "isig_total": 81,
+        "register_deaths": 0,
+        "year": 2012
+      },
+      {
+        "coverage_pct": 9.7,
+        "gap": 84,
+        "isig_total": 93,
+        "register_deaths": 9,
+        "year": 2013
+      },
+      {
+        "coverage_pct": 87.6,
+        "gap": 48,
+        "isig_total": 386,
+        "register_deaths": 338,
+        "year": 2014
+      },
+      {
+        "coverage_pct": 9.0,
+        "gap": 61,
+        "isig_total": 67,
+        "register_deaths": 6,
+        "year": 2015
+      },
+      {
+        "coverage_pct": 0.0,
+        "gap": 73,
+        "isig_total": 73,
+        "register_deaths": 0,
+        "year": 2016
+      },
+      {
+        "coverage_pct": 0.0,
+        "gap": 93,
+        "isig_total": 93,
+        "register_deaths": 0,
+        "year": 2017
+      },
+      {
+        "coverage_pct": 0.0,
+        "gap": 66,
+        "isig_total": 66,
+        "register_deaths": 0,
+        "year": 2018
+      },
+      {
+        "coverage_pct": 3.2,
+        "gap": 61,
+        "isig_total": 63,
+        "register_deaths": 2,
+        "year": 2019
+      },
+      {
+        "coverage_pct": 0.0,
+        "gap": 61,
+        "isig_total": 61,
+        "register_deaths": 0,
+        "year": 2020
+      },
+      {
+        "coverage_pct": 0.0,
+        "gap": 70,
+        "isig_total": 70,
+        "register_deaths": 0,
+        "year": 2021
+      },
+      {
+        "coverage_pct": 40.0,
+        "gap": 63,
+        "isig_total": 105,
+        "register_deaths": 42,
+        "year": 2022
+      },
+      {
+        "coverage_pct": 0.0,
+        "gap": 51,
+        "isig_total": 51,
+        "register_deaths": 0,
+        "year": 2023
+      },
+      {
+        "coverage_pct": 14.7,
+        "gap": 64,
+        "isig_total": 75,
+        "register_deaths": 11,
+        "year": 2024
+      },
+      {
+        "coverage_pct": 52.5,
+        "gap": 29,
+        "isig_total": 61,
+        "register_deaths": 32,
+        "year": 2025
+      }
+    ]
+  },
   "export_timestamp": "2026-07-14T17:40:21Z",
   "incidents": [
     {
@@ -1872,6 +1978,306 @@ window.MINING_DATA = {
       "settlement": null
     }
   ],
+  "map_vector": {
+    "H": 317.4,
+    "W": 708.3,
+    "markers": [
+      {
+        "id": "TR-MINE-2010-0001",
+        "r": 19.1,
+        "x": 234.8,
+        "y": 42.1
+      },
+      {
+        "id": "TR-MINE-2014-0001",
+        "r": 47.6,
+        "x": 79.6,
+        "y": 152.8
+      },
+      {
+        "id": "TR-MINE-2022-0001",
+        "r": 21.6,
+        "x": 252.2,
+        "y": 31.2
+      },
+      {
+        "id": "TR-MINE-2024-0001",
+        "r": 13.2,
+        "x": 473.5,
+        "y": 136.2
+      },
+      {
+        "id": "TR-MINE-2025-0001",
+        "r": 8.4,
+        "x": 454.6,
+        "y": 124.5
+      }
+    ],
+    "outline": "M415.4,49.0 L466.8,66.8 L508.4,59.7 L539.2,63.8 L581.5,39.8 L619.6,37.6 L654.0,60.2 L660.1,76.4 L656.7,98.7 L683.3,110.2 L697.4,123.6 L672.9,136.7 L684.0,189.5 L677.0,203.7 L696.6,240.6 L679.5,248.3 L666.9,236.6 L625.3,230.7 L609.9,237.8 L569.2,245.0 L550.0,244.2 L508.8,261.5 L479.4,261.6 L460.3,252.9 L420.9,265.7 L409.2,256.8 L407.3,282.5 L397.7,292.5 L388.1,302.6 L375.0,281.8 L388.5,264.5 L366.7,268.4 L336.8,257.8 L312.2,284.3 L257.9,289.5 L228.9,264.8 L190.4,263.2 L182.1,282.3 L157.4,287.8 L122.8,263.3 L83.8,264.1 L62.6,218.3 L36.4,192.8 L53.8,157.1 L31.2,135.1 L70.8,91.1 L125.9,89.2 L140.9,54.3 L209.1,60.4 L252.1,30.5 L293.8,17.5 L353.0,16.5 L415.4,49.0 Z M67.7,78.6 L37.8,103.4 L26.6,82.0 L27.1,72.5 L35.6,67.3 L46.7,38.5 L29.2,26.4 L65.7,11.9 L96.5,18.1 L100.7,35.7 L132.0,50.6 L125.4,61.9 L83.0,64.4 L67.7,78.6 Z",
+    "provinceMarks": [
+      {
+        "code": "05",
+        "deaths": 6,
+        "ids": [
+          "TR-MINE-2014-0003",
+          "TR-MINE-2015-0004"
+        ],
+        "label": "Amasya",
+        "r": 11.9,
+        "x": 376.8,
+        "y": 80.5
+      },
+      {
+        "code": "06",
+        "deaths": 1,
+        "ids": [
+          "TR-MINE-2015-0005"
+        ],
+        "label": "Ankara",
+        "r": 8.4,
+        "x": 270.3,
+        "y": 113.8
+      },
+      {
+        "code": "09",
+        "deaths": 4,
+        "ids": [
+          "TR-MINE-2025-0002"
+        ],
+        "label": "Aydın",
+        "r": 10.8,
+        "x": 94.3,
+        "y": 214.9
+      },
+      {
+        "code": "10",
+        "deaths": 35,
+        "ids": [
+          "TR-MINE-2006-0001",
+          "TR-MINE-2025-0003"
+        ],
+        "label": "Balıkesir",
+        "r": 20.2,
+        "x": 90.1,
+        "y": 122.3
+      },
+      {
+        "code": "12",
+        "deaths": 1,
+        "ids": [
+          "TR-MINE-2014-0008"
+        ],
+        "label": "Bingöl",
+        "r": 8.4,
+        "x": 550.1,
+        "y": 154.5
+      },
+      {
+        "code": "16",
+        "deaths": 21,
+        "ids": [
+          "TR-MINE-2009-0001",
+          "TR-MINE-2010-0003"
+        ],
+        "label": "Bursa",
+        "r": 17.0,
+        "x": 133.1,
+        "y": 103.5
+      },
+      {
+        "code": "17",
+        "deaths": 3,
+        "ids": [
+          "TR-MINE-2025-0006"
+        ],
+        "label": "Çanakkale",
+        "r": 10.2,
+        "x": 39.7,
+        "y": 103.5
+      },
+      {
+        "code": "19",
+        "deaths": 3,
+        "ids": [
+          "TR-MINE-2004-0001"
+        ],
+        "label": "Çorum",
+        "r": 10.2,
+        "x": 345.4,
+        "y": 85.0
+      },
+      {
+        "code": "22",
+        "deaths": 6,
+        "ids": [
+          "TR-MINE-2010-0002",
+          "TR-MINE-2014-0011"
+        ],
+        "label": "Edirne",
+        "r": 11.9,
+        "x": 43.7,
+        "y": 58.9
+      },
+      {
+        "code": "23",
+        "deaths": 1,
+        "ids": [
+          "TR-MINE-2014-0005"
+        ],
+        "label": "Elazığ",
+        "r": 8.4,
+        "x": 503.0,
+        "y": 171.7
+      },
+      {
+        "code": "25",
+        "deaths": 7,
+        "ids": [
+          "TR-MINE-2003-0002"
+        ],
+        "label": "Erzurum",
+        "r": 12.3,
+        "x": 581.9,
+        "y": 107.5
+      },
+      {
+        "code": "43",
+        "deaths": 18,
+        "ids": [
+          "TR-MINE-2005-0001"
+        ],
+        "label": "Kütahya",
+        "r": 16.2,
+        "x": 153.5,
+        "y": 142.4
+      },
+      {
+        "code": "45",
+        "deaths": 6,
+        "ids": [
+          "TR-MINE-2013-0001",
+          "TR-MINE-2019-0002",
+          "TR-MINE-2024-0002",
+          "TR-MINE-2025-0005"
+        ],
+        "label": "Manisa",
+        "r": 11.9,
+        "x": 101.0,
+        "y": 167.9
+      },
+      {
+        "code": "46",
+        "deaths": 1,
+        "ids": [
+          "TR-MINE-2014-0006"
+        ],
+        "label": "Kahramanmaraş",
+        "r": 8.4,
+        "x": 417.5,
+        "y": 207.1
+      },
+      {
+        "code": "48",
+        "deaths": 2,
+        "ids": [
+          "TR-MINE-2015-0003",
+          "TR-MINE-2015-0006"
+        ],
+        "label": "Muğla",
+        "r": 9.4,
+        "x": 114.7,
+        "y": 247.0
+      },
+      {
+        "code": "50",
+        "deaths": 1,
+        "ids": [
+          "TR-MINE-2014-0009"
+        ],
+        "label": "Nevşehir",
+        "r": 8.4,
+        "x": 335.8,
+        "y": 166.4
+      },
+      {
+        "code": "58",
+        "deaths": 1,
+        "ids": [
+          "TR-MINE-2015-0001"
+        ],
+        "label": "Sivas",
+        "r": 8.4,
+        "x": 419.1,
+        "y": 121.9
+      },
+      {
+        "code": "66",
+        "deaths": 38,
+        "ids": [
+          "TR-MINE-1995-0001"
+        ],
+        "label": "Yozgat",
+        "r": 20.8,
+        "x": 356.6,
+        "y": 125.6
+      },
+      {
+        "code": "67",
+        "deaths": 398,
+        "ids": [
+          "TR-MINE-1983-0001",
+          "TR-MINE-1983-0002",
+          "TR-MINE-1987-0001",
+          "TR-MINE-1992-0001",
+          "TR-MINE-2013-0002",
+          "TR-MINE-2015-0002",
+          "TR-MINE-2019-0001",
+          "TR-MINE-2024-0003",
+          "TR-MINE-2025-0004"
+        ],
+        "label": "Zonguldak",
+        "r": 53.9,
+        "x": 230.2,
+        "y": 49.7
+      },
+      {
+        "code": "70",
+        "deaths": 28,
+        "ids": [
+          "TR-MINE-2003-0001",
+          "TR-MINE-2014-0004"
+        ],
+        "label": "Karaman",
+        "r": 18.7,
+        "x": 278.4,
+        "y": 247.6
+      },
+      {
+        "code": "73",
+        "deaths": 4,
+        "ids": [
+          "TR-MINE-2014-0007",
+          "TR-MINE-2014-0010"
+        ],
+        "label": "Şırnak",
+        "r": 10.8,
+        "x": 613.7,
+        "y": 224.5
+      },
+      {
+        "code": "74",
+        "deaths": 8,
+        "ids": [
+          "TR-MINE-1990-0001",
+          "TR-MINE-2014-0002"
+        ],
+        "label": "Bartın",
+        "r": 12.8,
+        "x": 258.0,
+        "y": 36.6
+      }
+    ]
+  },
   "pipeline": {
     "claims_awaiting_review": 10,
     "claims_total": 435,
@@ -1879,6 +2285,66 @@ window.MINING_DATA = {
     "published_incidents": 46,
     "records_in_review": 32,
     "source_documents": 28
+  },
+  "policy_events": [
+    {
+      "date": "1992-03-03",
+      "kind": "disaster",
+      "label_en": "Kozlu disaster (263 deaths)",
+      "label_tr": "Kozlu grizu faciası (263 can kaybı)",
+      "notes": "Register record TR-MINE-1992-0001; deadliest mining disaster in the series.",
+      "source_url": "https://tr.wikipedia.org/wiki/1992_Kozlu_grizu_facias%C4%B1"
+    },
+    {
+      "date": "2010-05-17",
+      "kind": "disaster",
+      "label_en": "Karadon disaster (30 deaths)",
+      "label_tr": "Karadon maden kazası (30 can kaybı)",
+      "notes": "Register record TR-MINE-2010-0001.",
+      "source_url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
+    },
+    {
+      "date": "2014-05-13",
+      "kind": "disaster",
+      "label_en": "Soma disaster (301 deaths)",
+      "label_tr": "Soma Faciası (301 can kaybı)",
+      "notes": "Register record TR-MINE-2014-0001; deadliest in republican history.",
+      "source_url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
+    },
+    {
+      "date": "2014-09-11",
+      "kind": "law",
+      "label_en": "Law No. 6552 (post-Soma amendments incl. mining work conditions)",
+      "label_tr": "6552 sayılı Kanun (maden çalışma koşulları değişiklikleri)",
+      "notes": "Omnibus law published in the Official Gazette after Soma; descriptive marker only, no causal claim. Verify link before publication.",
+      "source_url": "https://www.resmigazete.gov.tr/eskiler/2014/09/20140911M1-1.htm"
+    },
+    {
+      "date": "2015-03-23",
+      "kind": "treaty",
+      "label_en": "Ratification of ILO Convention C176 (Safety and Health in Mines)",
+      "label_tr": "ILO 176 No'lu Sözleşme'nin onaylanması",
+      "notes": "Ratification registered 2015; in force for Türkiye 2016. Descriptive marker only. Verify link before publication.",
+      "source_url": "https://www.ilo.org/dyn/normlex/en/f?p=1000:11200:0::NO:11200:P11200_COUNTRY_ID:102893"
+    },
+    {
+      "date": "2022-10-14",
+      "kind": "disaster",
+      "label_en": "Amasra disaster (42 deaths)",
+      "label_tr": "Amasra maden kazası (42 can kaybı)",
+      "notes": "Register record TR-MINE-2022-0001.",
+      "source_url": "https://tr.wikipedia.org/wiki/Amasra_maden_kazas%C4%B1"
+    }
+  ],
+  "projection": {
+    "basis_years": [
+      2018,
+      2025
+    ],
+    "expected": 69,
+    "high": 96,
+    "low": 42,
+    "method": "Naive continuation baseline: mean of the most recent complete İSİG years with a ~90% interval widened to at least Poisson dispersion (sd = sqrt(max(sample variance, mean))). Not a forecast model; see docs/analysis_methods.md (STATUS: PROPOSED)."
   },
   "province_centroids": {
     "01": {
@@ -2277,5 +2743,49 @@ window.MINING_DATA = {
       "longitude": 31.23806
     }
   },
+  "rate_context": [
+    {
+      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
+      "country": "CN",
+      "unit": "deaths_per_100M_tonnes_coal",
+      "value": 127.0,
+      "year": 2008
+    },
+    {
+      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
+      "country": "CN",
+      "unit": "deaths_per_100M_tonnes_coal",
+      "value": 37.0,
+      "year": 2013
+    },
+    {
+      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
+      "country": "TR",
+      "unit": "deaths_per_100M_tonnes_coal",
+      "value": 710.0,
+      "year": 2000
+    },
+    {
+      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
+      "country": "TR",
+      "unit": "deaths_per_100M_tonnes_coal",
+      "value": 722.0,
+      "year": 2008
+    },
+    {
+      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article; year unspecified in source. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
+      "country": "US",
+      "unit": "deaths_per_100M_tonnes_coal",
+      "value": 1.0,
+      "year": null
+    },
+    {
+      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article; year unspecified in source. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
+      "country": "US",
+      "unit": "deaths_per_100M_tonnes_coal",
+      "value": 6.0,
+      "year": null
+    }
+  ],
   "schema_version": "001"
 };

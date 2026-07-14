@@ -27,6 +27,8 @@ the decision, decider, and date here, then update the relevant protocol.
 | 14 | Mandatory rationale checklist for conflict decisions. | conflict_resolution_protocol.md §4 | OPEN |
 | 15 | Takedown response-time commitment. | privacy_and_persons_protocol.md §4 | OPEN |
 | 16 | Distinct content-reviewer vs editorial-approver identities on packet sign-off. | manual_review_protocol.md | OPEN |
+| 17 | **Cost-of-inaction projection methodology** (basis window, interval, whether to display) — currently a naive Poisson-floored baseline. | analysis_methods.md §4 | OPEN |
+| 18 | **TÜİK/TKİ production & employment series** for real deaths-per-output rates (current rate context is press-cited figures only). | analysis_methods.md §2 | OPEN |
 
 ## Implementation notes (conservative interpretations logged per spec §0.3)
 

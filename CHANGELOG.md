@@ -35,6 +35,21 @@ semantic versioning once the project reaches a first release.
   superseded for assessed open sources; recorded in CLAUDE.md and the source
   registry. Constraints 3-7 remain fully in force.
 
+### Added — analysis layer & humane redesign (2026-07-14)
+- `analysis.py`: recording-undercount (coverage gap vs İSİG totals), rate
+  context with documented denominators (deaths per 100M tonnes, press-cited),
+  curated policy timeline (`data/vocabularies/policy_events.csv`), and a
+  cost-of-inaction baseline (Poisson-floored interval) — all documented in
+  `docs/analysis_methods.md` as STATUS: PROPOSED (open questions #17, #18);
+  incident-level ML prediction explicitly rejected as indefensible.
+- Dashboard redesigned as a humane public record: one-mark-one-person hero
+  (976 marks + 905 outlined marks for counted-but-unrecorded deaths),
+  narrative sentences from data, "on this day" remembrance, undercount
+  columns and policy markers on the chart, rate comparison, and an
+  "If nothing changes" card. Adaptive map (Leaflet or embedded vector);
+  `build-artifact` renders the same template into a committed
+  self-contained `dashboard/artifact.html`.
+
 ### Added — data-collection stage
 - Implemented Wikidata/Wikipedia adapter (polite rate-limited fetching,
   immutable raw storage, mechanical vs `ai_assisted` extraction honesty) and
