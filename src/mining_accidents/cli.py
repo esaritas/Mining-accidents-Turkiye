@@ -180,7 +180,8 @@ def ingest_wikidata_cmd(
     console.print(
         f"[green]Ingest complete[/green] (run {summary.run_id}): "
         f"{summary.documents} documents, {summary.incidents_created} new incidents, "
-        f"{summary.claims_created} new claims, {summary.decisions_recorded} decisions."
+        f"{summary.claims_created} new claims, {summary.decisions_recorded} decisions, "
+        f"{summary.classifications_created} cause classifications."
     )
     if summary.published:
         console.print(f"Published: {', '.join(summary.published)}")

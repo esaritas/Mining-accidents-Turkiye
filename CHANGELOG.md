@@ -48,3 +48,16 @@ semantic versioning once the project reaches a first release.
   (`dashboard/index.html` + generated `data.js`): precision-aware Leaflet map
   (vendored library), deaths-by-year chart, table view, light/dark modes,
   pipeline-status tiles.
+- Historic extension + cause coding (project owner directive, 2026-07-14):
+  navbox + list-article discovery on tr.wikipedia brings per-incident records
+  back to 1983 (46 published incidents, 976 recorded deaths); pre-2010
+  incidents are now in scope. Mechanical cause extraction populates the
+  four-axis `incident_classifications` (Wikidata P31 classes + Turkish
+  incident-type phrases -> event mechanism/hazard, 67 source-backed rows).
+  Death sentences with multiple numbers are ambiguity-guarded into the
+  human-review queue instead of auto-published; list bullets matching an
+  existing incident (province + date ±3 days) attach as corroborating claims
+  instead of duplicates. İSİG Meclisi annual miner-death totals (2012-2025)
+  land in `aggregate_occupational_statistics` with comparability notes and
+  appear on the dashboard as a clearly-labeled context series; the dashboard
+  also gains a mechanism breakdown and per-record mechanism display.

@@ -2,7 +2,177 @@
 // Contents mirror data/public/ (the reviewed public export) plus
 // aggregate pipeline-status counts. See dashboard/README.md.
 window.MINING_DATA = {
+  "aggregates": [
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 81,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2012
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 93,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2013
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 386,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2014
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 67,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2015
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 73,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2016
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 93,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2017
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 66,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2018
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 63,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2019
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 61,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2020
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 70,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2021
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 105,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2022
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 51,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2023
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 75,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2024
+    },
+    {
+      "comparability_notes": "Sector-wide miner work deaths, all causes, per İSİG annual reports as transcribed by the Wikipedia list. NOT comparable to the per-incident register (which covers listed accidents only) and never a rate: no exposure denominator.",
+      "deaths": 61,
+      "institution": "İSİG Meclisi (via tr.wikipedia list article)",
+      "year": 2025
+    }
+  ],
   "citations": {
+    "TR-MINE-1983-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-1983-0002": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-1987-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-1990-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-1992-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-1995-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2003-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2003-0002": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2004-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2005-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2006-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2009-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
     "TR-MINE-2010-0001": [
       {
         "organization": "Wikidata",
@@ -13,11 +183,44 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "title": "Karadon maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
+      }
+    ],
+    "TR-MINE-2010-0002": [
+      {
+        "organization": "Wikidata",
+        "title": "Wikidata item Q6015822: Küçükdoğanca maden kazası",
+        "url": "https://www.wikidata.org/wiki/Q6015822"
       },
       {
-        "organization": "Wikipedia (en)",
-        "title": "2010 Zonguldak mine disaster",
-        "url": "https://en.wikipedia.org/wiki/2010_Zonguldak_mine_disaster"
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Küçükdoğanca maden kazası",
+        "url": "https://tr.wikipedia.org/wiki/K%C3%BC%C3%A7%C3%BCkdo%C4%9Fanca_maden_kazas%C4%B1"
+      }
+    ],
+    "TR-MINE-2010-0003": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2013-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2013-0002": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       }
     ],
     "TR-MINE-2014-0001": [
@@ -32,6 +235,132 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
       }
     ],
+    "TR-MINE-2014-0002": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2014-0003": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2014-0004": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2014-0005": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2014-0006": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2014-0007": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2014-0008": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2014-0009": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2014-0010": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2014-0011": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2015-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2015-0002": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2015-0003": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2015-0004": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2015-0005": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2015-0006": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2019-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2019-0002": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
     "TR-MINE-2022-0001": [
       {
         "organization": "Wikidata",
@@ -42,11 +371,6 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "title": "Amasra maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Amasra_maden_kazas%C4%B1"
-      },
-      {
-        "organization": "Wikipedia (en)",
-        "title": "Amasra mine explosion",
-        "url": "https://en.wikipedia.org/wiki/Amasra_mine_explosion"
       }
     ],
     "TR-MINE-2024-0001": [
@@ -66,6 +390,20 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/%C4%B0li%C3%A7_maden_kazas%C4%B1"
       }
     ],
+    "TR-MINE-2024-0002": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2024-0003": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
     "TR-MINE-2025-0001": [
       {
         "organization": "Wikidata",
@@ -77,10 +415,748 @@ window.MINING_DATA = {
         "title": "Zara maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Zara_maden_kazas%C4%B1"
       }
+    ],
+    "TR-MINE-2025-0002": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2025-0003": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2025-0004": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2025-0005": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2025-0006": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
     ]
   },
-  "export_timestamp": "2026-07-14T10:11:41Z",
+  "classifications": {
+    "TR-MINE-1983-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-1983-0002": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-1987-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-1990-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-1992-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-1995-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2003-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2003-0002": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2004-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2005-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2006-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2009-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2010-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2010-0002": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2013-0002": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2014-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "fire",
+        "label_en": "fire",
+        "label_tr": "yangın",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "fire",
+        "label_en": "fire",
+        "label_tr": "yangın",
+        "system": "project_hazard"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2014-0002": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2014-0003": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2014-0004": [
+      {
+        "assertion_status": "reported",
+        "code": "flooding_or_inrush",
+        "label_en": "flooding or inrush",
+        "label_tr": "su baskını/ani su geliri",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "water_ingress",
+        "label_en": "water ingress",
+        "label_tr": "su geliri",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2014-0007": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2014-0009": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2014-0010": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2014-0011": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2015-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2015-0002": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2015-0004": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2019-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2022-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2024-0003": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2025-0003": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2025-0004": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2025-0006": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ]
+  },
+  "export_timestamp": "2026-07-14T17:40:21Z",
   "incidents": [
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "1983 Armutçuk grizu faciası",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 103,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "1983-03-07T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-1983-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Zonguldak (1983-04-10)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 10,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "1983-04-10T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-1983-0002",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Zonguldak (1987-01-01)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 8,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "1987-01-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-1987-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Bartın (1990-01-31)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 5,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "1990-01-31T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "74",
+      "province_name": "Bartın",
+      "public_incident_id": "TR-MINE-1990-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "1992 Kozlu grizu faciası",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 263,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "1992-03-03T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-1992-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Yozgat (1995-03-26)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 38,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "1995-03-26T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "66",
+      "province_name": "Yozgat",
+      "public_incident_id": "TR-MINE-1995-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Karaman (2003-11-22)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 10,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2003-11-22T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "70",
+      "province_name": "Karaman",
+      "public_incident_id": "TR-MINE-2003-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Erzurum (2003-08-08)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 7,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2003-08-08T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "25",
+      "province_name": "Erzurum",
+      "public_incident_id": "TR-MINE-2003-0002",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Çorum (2004-08-01)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 3,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2004-08-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "19",
+      "province_name": "Çorum",
+      "public_incident_id": "TR-MINE-2004-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Kütahya (2005-04-01)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 18,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2005-04-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "43",
+      "province_name": "Kütahya",
+      "public_incident_id": "TR-MINE-2005-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Balıkesir (2006-06-01)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 17,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2006-06-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "10",
+      "province_name": "Balıkesir",
+      "public_incident_id": "TR-MINE-2006-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Bursa (2009-12-10)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 19,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2009-12-10T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "16",
+      "province_name": "Bursa",
+      "public_incident_id": "TR-MINE-2009-0001",
+      "settlement": null
+    },
     {
       "canonical_title_en": "2010 Zonguldak mine disaster",
       "canonical_title_tr": "Karadon Maden Kazası",
@@ -103,6 +1179,90 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
+      "canonical_title_en": "Küçükdoğanca mining accident",
+      "canonical_title_tr": "Küçükdoğanca maden kazası",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 3,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2010-07-07T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "22",
+      "province_name": "Edirne",
+      "public_incident_id": "TR-MINE-2010-0002",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Bursa (2010-10-26)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 2,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2010-10-26T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "16",
+      "province_name": "Bursa",
+      "public_incident_id": "TR-MINE-2010-0003",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Manisa (2013-01-18)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2013-01-18T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "45",
+      "province_name": "Manisa",
+      "public_incident_id": "TR-MINE-2013-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Zonguldak (2013-01-08)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 8,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2013-01-08T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-2013-0002",
+      "settlement": null
+    },
+    {
       "canonical_title_en": "Soma mine disaster",
       "canonical_title_tr": "Soma Faciası",
       "casualty_status": null,
@@ -121,6 +1281,384 @@ window.MINING_DATA = {
       "province_code": "45",
       "province_name": "Manisa",
       "public_incident_id": "TR-MINE-2014-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Bartın (2014-11-01)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 3,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-11-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "74",
+      "province_name": "Bartın",
+      "public_incident_id": "TR-MINE-2014-0002",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Amasya (2014-06-29)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 5,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-06-29T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "05",
+      "province_name": "Amasya",
+      "public_incident_id": "TR-MINE-2014-0003",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Karaman (2014-10-28)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 18,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-10-28T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "70",
+      "province_name": "Karaman",
+      "public_incident_id": "TR-MINE-2014-0004",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Elazığ (2014-11-06)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-11-06T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "23",
+      "province_name": "Elazığ",
+      "public_incident_id": "TR-MINE-2014-0005",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Kahramanmaraş (2014-06-01)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-06-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "46",
+      "province_name": "Kahramanmaraş",
+      "public_incident_id": "TR-MINE-2014-0006",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Şırnak (2014-06-11)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 3,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-06-11T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "73",
+      "province_name": "Şırnak",
+      "public_incident_id": "TR-MINE-2014-0007",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Bingöl (2014-11-19)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-11-19T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "12",
+      "province_name": "Bingöl",
+      "public_incident_id": "TR-MINE-2014-0008",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Nevşehir (2014-04-26)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-04-26T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "50",
+      "province_name": "Nevşehir",
+      "public_incident_id": "TR-MINE-2014-0009",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Şırnak (2014-06-18)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-06-18T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "73",
+      "province_name": "Şırnak",
+      "public_incident_id": "TR-MINE-2014-0010",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Edirne (2014-11-13)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 3,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-11-13T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "22",
+      "province_name": "Edirne",
+      "public_incident_id": "TR-MINE-2014-0011",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Sivas (2015-01-21)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2015-01-21T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "58",
+      "province_name": "Sivas",
+      "public_incident_id": "TR-MINE-2015-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Zonguldak (2015-03-10)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2015-03-10T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-2015-0002",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Muğla (2015-02-07)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2015-02-07T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "48",
+      "province_name": "Muğla",
+      "public_incident_id": "TR-MINE-2015-0003",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Amasya (2015-06-08)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2015-06-08T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "05",
+      "province_name": "Amasya",
+      "public_incident_id": "TR-MINE-2015-0004",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Ankara (2015-07-27)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2015-07-27T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "06",
+      "province_name": "Ankara",
+      "public_incident_id": "TR-MINE-2015-0005",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Muğla (2015-07-21)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2015-07-21T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "48",
+      "province_name": "Muğla",
+      "public_incident_id": "TR-MINE-2015-0006",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Zonguldak (2019-12-01)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2019-12-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-2019-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Manisa (2019-02-03)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2019-02-03T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "45",
+      "province_name": "Manisa",
+      "public_incident_id": "TR-MINE-2019-0002",
       "settlement": null
     },
     {
@@ -166,6 +1704,48 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Manisa (2024-10-22)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2024-10-22T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "45",
+      "province_name": "Manisa",
+      "public_incident_id": "TR-MINE-2024-0002",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Zonguldak (2024-08-08)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2024-08-08T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-2024-0003",
+      "settlement": null
+    },
+    {
       "canonical_title_en": "Zara mine explosion",
       "canonical_title_tr": "Zara maden kazası",
       "casualty_status": null,
@@ -185,15 +1765,120 @@ window.MINING_DATA = {
       "province_name": "Sivas",
       "public_incident_id": "TR-MINE-2025-0001",
       "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Aydın (2025-01-22)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 4,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2025-01-22T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "09",
+      "province_name": "Aydın",
+      "public_incident_id": "TR-MINE-2025-0002",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Balıkesir (2025-01-22)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 18,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2025-01-22T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "10",
+      "province_name": "Balıkesir",
+      "public_incident_id": "TR-MINE-2025-0003",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Zonguldak (2025-01-22)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 3,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2025-01-22T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-2025-0004",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Manisa (2025-01-22)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 3,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2025-01-22T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "45",
+      "province_name": "Manisa",
+      "public_incident_id": "TR-MINE-2025-0005",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Çanakkale (2025-01-22)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 3,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2025-01-22T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "17",
+      "province_name": "Çanakkale",
+      "public_incident_id": "TR-MINE-2025-0006",
+      "settlement": null
     }
   ],
   "pipeline": {
-    "claims_awaiting_review": 2,
-    "claims_total": 84,
-    "decisions_total": 66,
-    "published_incidents": 5,
-    "records_in_review": 4,
-    "source_documents": 23
+    "claims_awaiting_review": 10,
+    "claims_total": 435,
+    "decisions_total": 313,
+    "published_incidents": 46,
+    "records_in_review": 32,
+    "source_documents": 28
   },
   "schema_version": "001"
 };

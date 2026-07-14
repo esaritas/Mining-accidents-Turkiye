@@ -104,3 +104,61 @@ def test_province_frequency_beats_stray_mention() -> None:
 
 def test_article_without_extractable_values_yields_no_claims() -> None:
     assert _parse_article("'''TEST''' hakkında kısa bir metin.") == []
+
+
+def test_list_bullet_parsing_mechanical() -> None:
+    from mining_accidents.adapters.wikidata import parse_list_article
+
+    wikitext = (
+        "== Kazalar ==\n=== 2099 ===\n"
+        "* 10 Mayıs 2099 tarihinde [[Zonguldak (il)|Zonguldak]]'ın TEST ocağında "
+        "meydana gelen grizu patlamasında 30 işçi yaşamını yitirmiştir.\n"
+        "== Ayrıca bakınız ==\n"
+    )
+    drafts = parse_list_article(wikitext)
+    fields = {d.field_name: d for d in drafts}
+    assert fields["incident_start_datetime"].normalized_value == "2099-05-10T00:00:00+03:00"
+    assert fields["fatalities_current"].normalized_value == "30"
+    assert fields["fatalities_current"].extraction_method == "html_parser"
+    assert fields["province_code"].normalized_value == "67"
+    assert fields["event_mechanism"].normalized_value == "gas_explosion"
+    assert fields["hazard"].normalized_value == "methane"
+    assert len({d.notes["group"] for d in drafts}) == 1
+
+
+def test_list_bullet_ambiguous_numbers_go_to_review() -> None:
+    from mining_accidents.adapters.wikidata import parse_list_article
+
+    wikitext = (
+        "== Kazalar ==\n=== 2099 ===\n"
+        "* Ocak ayında TEST ocağında 46 işçiden 13 işçi göçük altında kalarak "
+        "hayatını kaybetmiştir.\n"
+    )
+    drafts = parse_list_article(wikitext)
+    deaths = next(d for d in drafts if d.field_name == "fatalities_current")
+    assert deaths.extraction_method == "ai_assisted"  # ambiguous -> human review
+    assert deaths.review_status == "needs_review"
+    assert deaths.normalized_value == "13"  # last-number candidate for the reviewer
+    date = next(d for d in drafts if d.field_name == "incident_start_datetime")
+    assert date.normalized_value == "2099-01-01T00:00:00+03:00"
+    assert next(d for d in drafts if d.field_name == "date_precision").normalized_value == "month"
+
+
+def test_list_bullet_without_deaths_is_dropped() -> None:
+    from mining_accidents.adapters.wikidata import parse_list_article
+
+    wikitext = (
+        "== Kazalar ==\n=== 2099 ===\n"
+        "* 10 Mayıs 2099 tarihinde TEST ocağında göçük meydana geldi, işçiler kurtarıldı.\n"
+    )
+    assert parse_list_article(wikitext) == []
+
+
+def test_isig_table_parsing() -> None:
+    from mining_accidents.adapters.wikidata import parse_isig_table
+
+    wikitext = (
+        '{| class="wikitable"\n|+TEST tablo\n!Yıl\n!Sayı\n'
+        "|-\n|2098\n|81\n|-\n|2099\n|93\n|-\n|'''Toplam'''\n|'''174'''\n|}"
+    )
+    assert parse_isig_table(wikitext) == [(2098, 81), (2099, 93)]

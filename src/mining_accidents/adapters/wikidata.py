@@ -54,6 +54,37 @@ SELECT DISTINCT ?item WHERE {
 #: misses (documented discovery, not invention).
 EXTRA_QIDS: tuple[str, ...] = ("Q124522721",)  # Çöpler mine disaster (2024)
 
+#: tr.wikipedia navigation template that indexes the mining-accident articles
+#: (including historic pre-2010 incidents Wikidata classes miss).
+NAVBOX_TITLE = "Şablon:Türkiye'deki maden kazaları ve felaketleri"
+
+#: tr.wikipedia list article with per-incident bullets back to 1983 and the
+#: İSİG Meclisi annual miner-death table. Bullets are formulaic one-sentence
+#: entries; extraction is pattern-based and requires date AND death-count
+#: patterns to co-match within one bullet — partial matches are dropped, not
+#: guessed (docs/source_assessment_protocol.md §5 rule 7).
+LIST_TITLE = "Türkiye'deki madencilik kazaları listesi"
+
+_TR_MONTHS = {
+    name: idx + 1
+    for idx, name in enumerate(
+        "Ocak Şubat Mart Nisan Mayıs Haziran Temmuz Ağustos Eylül Ekim Kasım Aralık".split()
+    )
+}
+_LIST_DATE = re.compile(r"(\d{1,2})\s+(" + "|".join(_TR_MONTHS) + r")\s+(\d{4})")
+_LIST_MONTH = re.compile(r"(" + "|".join(_TR_MONTHS) + r")\s+ayında")
+_LIST_DEATHS = re.compile(
+    r"(\d+)\s*(?:maden işçisi|işçi|kişi|madenci)"
+    r"[^.]{0,70}?(?:yaşamını yitir|hayatını kaybet|öldü|ölmüş|can ver)"
+)
+_LIST_TITLE_LINK = re.compile(r"^\*\s*\[\[([^\]|#]+)(?:\|[^\]]*)?\]\]\s*:")
+_ISIG_ROW = re.compile(r"^\|\s*(\d{4})\s*\n\|\s*(\d+)", re.M)
+
+#: navbox links that are not incident articles.
+_NAVBOX_SKIP = re.compile(
+    r"^(Dosya|Kategori|Şablon|Portal):|Bölgesi$|listesi$|^Türkiye'de madencilik$"
+)
+
 #: Items excluded with reasons — curation decisions, kept visible here.
 EXCLUDED_QIDS: dict[str, str] = {
     "Q118344293": "article about international reactions, not an incident",
@@ -61,6 +92,28 @@ EXCLUDED_QIDS: dict[str, str] = {
 
 #: Wikidata time precision -> project date_precision
 _WD_DATE_PRECISION = {11: "exact_date", 10: "month", 9: "year"}
+
+#: Wikidata P31 classes -> project event mechanism (mechanical mapping of what
+#: the source item states; extended only with verified QIDs).
+P31_EVENT_MECHANISMS: dict[str, str] = {
+    "Q1362483": "gas_explosion",  # gas explosion
+    "Q1425553": "fire",  # coal seam fire
+    "Q19850480": "tailings_dam_failure",
+}
+
+#: Turkish incident-type phrases (infobox `tür=` values and lead wording) ->
+#: (event_mechanism, hazard-or-None). "grizu" IS firedamp/methane by
+#: definition, so the methane hazard is part of what the source states.
+TR_MECHANISM_PHRASES: tuple[tuple[str, str, str | None], ...] = (
+    ("grizu", "gas_explosion", "methane"),
+    ("toz patlaması", "dust_explosion", "coal_dust"),
+    ("su baskını", "flooding_or_inrush", "water_ingress"),
+    ("göçük", "roof_or_ground_collapse", None),
+    ("gocuk", "roof_or_ground_collapse", None),
+    ("heyelan", "landslide_or_slope_failure", None),
+    ("toprak kayması", "landslide_or_slope_failure", None),
+    ("yangın", "fire", "fire"),
+)
 
 
 #: seconds between requests — adapter conduct rule 3 (conservative rate).
@@ -155,7 +208,69 @@ class WikidataAdapter(SourceAdapter):
         bindings = json.loads(payload)["results"]["bindings"]
         qids = {row["item"]["value"].rsplit("/", 1)[-1] for row in bindings}
         qids.update(EXTRA_QIDS)
+        qids.update(self._discover_navbox_qids())
         return sorted(q for q in qids if q not in EXCLUDED_QIDS)
+
+    def _discover_navbox_qids(self) -> set[str]:
+        """Incident items indexed by the tr.wikipedia navigation template."""
+        payload = _http_get(
+            "https://tr.wikipedia.org/w/api.php",
+            {"action": "parse", "page": NAVBOX_TITLE, "prop": "wikitext", "format": "json"},
+        )
+        _store_raw(self.raw_dir, payload, "navbox-discovery")
+        wikitext = json.loads(payload)["parse"]["wikitext"]["*"]
+        titles = [
+            link.strip()
+            for link in _WIKILINK.findall(wikitext)
+            if not _NAVBOX_SKIP.search(link.strip())
+        ]
+        qids: set[str] = set()
+        for start in range(0, len(titles), 50):
+            batch = titles[start : start + 50]
+            payload = _http_get(
+                "https://tr.wikipedia.org/w/api.php",
+                {
+                    "action": "query",
+                    "prop": "pageprops",
+                    "ppprop": "wikibase_item",
+                    "titles": "|".join(batch),
+                    "redirects": "1",
+                    "format": "json",
+                },
+            )
+            pages = json.loads(payload).get("query", {}).get("pages", {})
+            for page in pages.values():
+                qid = page.get("pageprops", {}).get("wikibase_item")
+                if qid:
+                    qids.add(qid)
+        return qids
+
+    def fetch_list_article(self, conn: sqlite3.Connection) -> int:
+        """Fetch the tr.wikipedia list article as one source document."""
+        payload = _http_get(
+            "https://tr.wikipedia.org/w/api.php",
+            {"action": "parse", "page": LIST_TITLE, "prop": "wikitext", "format": "json"},
+        )
+        wikitext = json.loads(payload)["parse"]["wikitext"]["*"]
+        raw_path, digest = _store_raw(self.raw_dir, wikitext.encode(), "list-article")
+        doc_id = _insert_document(
+            conn,
+            source_organization="Wikipedia (tr)",
+            title=LIST_TITLE,
+            document_type="other",
+            url="https://tr.wikipedia.org/wiki/" + urllib.parse.quote(LIST_TITLE.replace(" ", "_")),
+            retrieved_at=utc_now_iso(),
+            language="tr",
+            content_hash=digest,
+            local_raw_path=str(raw_path),
+            licence_or_reuse_notes="CC BY-SA 4.0 (attribution required)",
+            attribution_required=1,
+            source_tier=3,
+            access_status="available",
+            notes="kind=wikipedia_list",
+        )
+        conn.commit()
+        return doc_id
 
     def fetch(self, conn: sqlite3.Connection | None = None) -> list[int]:  # type: ignore[override]
         """Fetch entities + linked articles; insert source_documents rows.
@@ -258,8 +373,11 @@ class WikidataAdapter(SourceAdapter):
         if row is None:
             raise ValueError(f"source document {source_document_id} not found")
         raw = Path(row["local_raw_path"]).read_bytes()
-        if "kind=wikidata_entity" in (row["notes"] or ""):
+        notes = row["notes"] or ""
+        if "kind=wikidata_entity" in notes:
             return _parse_entity(json.loads(raw))
+        if "kind=wikipedia_list" in notes:
+            return parse_list_article(raw.decode())
         return _parse_article(raw.decode())
 
 
@@ -315,6 +433,15 @@ def _parse_entity(entity: dict) -> list[ClaimDraft]:
     if coord:
         drafts.append(draft("latitude", str(coord["latitude"]), f"{coord['latitude']:.6f}"))
         drafts.append(draft("longitude", str(coord["longitude"]), f"{coord['longitude']:.6f}"))
+
+    # Cause axes: P31 classes the item itself declares, mapped mechanically.
+    for statement in claims.get("P31", []):
+        p31 = statement["mainsnak"].get("datavalue", {}).get("value", {}).get("id")
+        mechanism = P31_EVENT_MECHANISMS.get(p31 or "")
+        if mechanism:
+            classification = draft("event_mechanism", f"P31={p31}", mechanism)
+            classification.claim_subject_type = "classification"
+            drafts.append(classification)
     return drafts
 
 
@@ -411,6 +538,27 @@ def _parse_article(wikitext: str) -> list[ClaimDraft]:
             drafts.append(draft("latitude", decimal.group(0)[:120], decimal.group(1)))
             drafts.append(draft("longitude", decimal.group(0)[:120], decimal.group(2)))
 
+    # Cause axes: the infobox `tür=` value, else the first type phrase in the
+    # lead (text before the first section heading) — deterministic phrase
+    # table, first match only.
+    type_match = re.search(r"\|\s*tür\s*=\s*([^\n|]+)", wikitext, re.IGNORECASE)
+    lead = wikitext.split("==", 1)[0]
+    cause_text = type_match.group(1).strip() if type_match else lead
+    cause_source = "infobox" if type_match else "lead_prose"
+    folded = normalize_tr(cause_text)
+    for phrase, mechanism, hazard in TR_MECHANISM_PHRASES:
+        if normalize_tr(phrase) in folded:
+            mech_draft = draft("event_mechanism", cause_text[:120] or phrase, mechanism)
+            mech_draft.claim_subject_type = "classification"
+            mech_draft.section_reference = cause_source
+            drafts.append(mech_draft)
+            if hazard:
+                hazard_draft = draft("hazard", cause_text[:120] or phrase, hazard)
+                hazard_draft.claim_subject_type = "classification"
+                hazard_draft.section_reference = cause_source
+                drafts.append(hazard_draft)
+            break
+
     # Province: the most-mentioned province wikilink wins (a single stray
     # mention of another province — hatnotes, comparisons — must not win over
     # the article's actual setting). Ties break to the earliest mention.
@@ -430,3 +578,117 @@ def _parse_article(wikitext: str) -> list[ClaimDraft]:
         drafts.append(draft("province_code", first_raw[code], code))
 
     return drafts
+
+
+# ----------------------------------------------------------------------
+# List-article parsing (tr.wikipedia incident list, 1983 -> present)
+# ----------------------------------------------------------------------
+
+
+def _bullet_date(line: str, section_year: str | None) -> tuple[str, str] | None:
+    """(iso_datetime, date_precision) from a bullet, or None."""
+    match = _LIST_DATE.search(line)
+    if match:
+        day, month_name, year = match.groups()
+        return (
+            f"{int(year):04d}-{_TR_MONTHS[month_name]:02d}-{int(day):02d}T00:00:00+03:00",
+            "exact_date",
+        )
+    match = _LIST_MONTH.search(line)
+    if match and section_year:
+        return (
+            f"{int(section_year):04d}-{_TR_MONTHS[match.group(1)]:02d}-01T00:00:00+03:00",
+            "month",
+        )
+    return None
+
+
+def _bullet_province(line: str) -> str | None:
+    provinces = _province_lookup()
+    for token in normalize_tr(line).split():
+        code = provinces.get(token)
+        if code:
+            return code
+    return None
+
+
+def parse_list_article(wikitext: str) -> list[ClaimDraft]:
+    """One-sentence incident bullets -> grouped claim drafts.
+
+    Every draft carries ``notes={'group': <key>}`` so the ingest layer can
+    reassemble per-incident groups; a bullet qualifies only when BOTH a date
+    and a death-count pattern match inside it — otherwise it is dropped
+    entirely (never guessed, never fabricated).
+    """
+    body = wikitext.split("== Kazalar ==", 1)[-1].split("== Ayrıca", 1)[0]
+    drafts: list[ClaimDraft] = []
+    section_year: str | None = None
+    for line in body.splitlines():
+        heading = re.match(r"^===\s*(\d{4})", line)
+        if heading:
+            section_year = heading.group(1)
+            continue
+        if not line.lstrip().startswith("*"):
+            continue
+        date = _bullet_date(line, section_year)
+        deaths = _LIST_DEATHS.search(line)
+        if not date or not deaths:
+            continue
+        # Ambiguity guard: a death sentence carrying several (non-year)
+        # numbers — "46 işçiden 13'ü…", "2 işçi yanarak 66 işçi…" — cannot be
+        # resolved mechanically. It becomes an ai_assisted claim (mandatory
+        # human review) carrying the last number as the candidate value.
+        span_numbers = [
+            n for n in re.findall(r"\d+", deaths.group(0)) if not 1900 <= int(n) <= 2099
+        ]
+        deaths_ambiguous = len(span_numbers) > 1
+        deaths_value = span_numbers[-1] if span_numbers else deaths.group(1)
+        key = sha256_bytes(line.strip().encode())[:12]
+        section = f"Kazalar/{section_year}"
+
+        def draft(
+            field: str, raw: str, normalized: str, key: str = key, section: str = section
+        ) -> ClaimDraft:
+            d = ClaimDraft(
+                field_name=field,
+                raw_value=raw[:160],
+                normalized_value=normalized,
+                extraction_method="html_parser",
+                extractor_version=WikidataAdapter.adapter_version,
+                assertion_status="reported",
+                section_reference=section,
+                review_status="pending",
+            )
+            d.notes = {"group": key}
+            return d
+
+        drafts.append(draft("incident_start_datetime", line.strip()[:160], date[0]))
+        drafts.append(draft("date_precision", date[0], date[1]))
+        deaths_draft = draft("fatalities_current", deaths.group(0), deaths_value)
+        if deaths_ambiguous:
+            deaths_draft.extraction_method = "ai_assisted"
+            deaths_draft.review_status = "needs_review"
+        drafts.append(deaths_draft)
+        province = _bullet_province(line)
+        if province:
+            drafts.append(draft("province_code", line.strip()[:120], province))
+        title = _LIST_TITLE_LINK.match(line.strip())
+        if title:
+            drafts.append(draft("canonical_title_tr", title.group(0), title.group(1)))
+        folded = normalize_tr(line)
+        for phrase, mechanism, hazard in TR_MECHANISM_PHRASES:
+            if normalize_tr(phrase) in folded:
+                mech = draft("event_mechanism", line.strip()[:120], mechanism)
+                mech.claim_subject_type = "classification"
+                drafts.append(mech)
+                if hazard:
+                    hz = draft("hazard", line.strip()[:120], hazard)
+                    hz.claim_subject_type = "classification"
+                    drafts.append(hz)
+                break
+    return drafts
+
+
+def parse_isig_table(wikitext: str) -> list[tuple[int, int]]:
+    """(year, miner deaths) rows from the İSİG Meclisi annual table."""
+    return [(int(y), int(n)) for y, n in _ISIG_ROW.findall(wikitext)]

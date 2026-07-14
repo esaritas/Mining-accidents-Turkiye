@@ -73,6 +73,8 @@
   .axisline { stroke: var(--baseline); stroke-width: 1; }
   .ticklabel { fill: var(--ink-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
   .direct-label { fill: var(--ink-2); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .direct-label.inside { fill: #fcfcfb; font-weight: 600; }
+  td:first-child, td:nth-child(2) { white-space: nowrap; }
   #tooltip { position: absolute; pointer-events: none; display: none; z-index: 30;
              background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px;
              padding: 8px 10px; font-size: 13px; box-shadow: 0 4px 14px rgba(0,0,0,.12);
@@ -91,6 +93,22 @@
   td a:hover { text-decoration: underline; }
   .pill { display: inline-block; font-size: 12px; color: var(--ink-2);
           border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px; }
+  .legend { display: flex; gap: 18px; font-size: 13px; color: var(--ink-2); margin: 0 0 8px; }
+  .legend .swatch { display: inline-block; width: 14px; height: 10px; border-radius: 3px;
+                    vertical-align: baseline; margin-right: 5px; }
+  .legend .bar-swatch { background: var(--series-1); }
+  .legend .line-swatch { background: none; height: 0; width: 16px;
+                         border-top: 2px solid var(--ink-muted); vertical-align: middle; }
+  .context-line { stroke: var(--ink-muted); stroke-width: 2; fill: none; }
+  .context-dot { fill: var(--ink-muted); }
+  #mechanisms .mrow { display: grid; grid-template-columns: 220px 1fr 52px;
+                      align-items: center; gap: 10px; padding: 5px 0; }
+  #mechanisms .mlabel { font-size: 14px; color: var(--ink-1); }
+  #mechanisms .mlabel .tr { color: var(--ink-muted); font-size: 12px; }
+  #mechanisms .mtrack { height: 12px; }
+  #mechanisms .mfill { height: 12px; background: var(--series-1); border-radius: 3px; }
+  #mechanisms .mcount { text-align: right; font-variant-numeric: tabular-nums;
+                        color: var(--ink-2); font-size: 13px; }
 
   footer { color: var(--ink-muted); font-size: 13px; margin-top: 28px; max-width: 80ch; }
   footer a { color: var(--series-1); }
@@ -122,18 +140,38 @@
     <p class="caption">
       Marker area reflects recorded deaths. All current locations are
       <em>facility-approximate</em> — markers indicate the mine or its vicinity, never an
-      exact point. Select a marker for details and sources.
+      exact point. Select a marker for details and sources. Records without published
+      coordinates (most historic entries) appear in the chart and table only.
     </p>
     <div id="map" role="region" aria-label="Map of published mining accident records in Türkiye"></div>
   </section>
 
   <section class="panel">
-    <h2>Recorded deaths by year — published records only</h2>
-    <p class="caption" id="chart-caption">Hover a year for details.</p>
+    <h2>Recorded deaths by year</h2>
+    <p class="caption" id="chart-caption">
+      Bars: deaths in this register's <em>published incident records</em>. Gray line:
+      İSİG Meclisi's sector-wide annual miner work-death totals (all causes) — a
+      broader measure, shown for context, <em>not comparable</em> to the bars. The gap
+      between them is unrecorded loss. Hover a year for both figures.
+    </p>
+    <div class="legend" aria-hidden="true">
+      <span class="key"><span class="swatch bar-swatch"></span> published records (this register)</span>
+      <span class="key"><span class="swatch line-swatch"></span> İSİG sector-wide total (context)</span>
+    </div>
     <div id="chart-wrap">
       <svg id="chart" aria-describedby="chart-caption" role="img"></svg>
       <div id="tooltip"></div>
     </div>
+  </section>
+
+  <section class="panel">
+    <h2>Recorded event mechanisms</h2>
+    <p class="caption">
+      What sources report happened — never a root cause and never a statement of legal
+      responsibility (see the cause coding protocol). Counted over published records
+      with a source-backed classification.
+    </p>
+    <div id="mechanisms"></div>
   </section>
 
   <section class="panel">
@@ -144,7 +182,7 @@
         <thead>
           <tr>
             <th>Public ID</th><th>Date</th><th>Province</th><th>Record title</th>
-            <th class="num">Deaths</th><th>Location precision</th><th>Sources</th>
+            <th class="num">Deaths</th><th>Reported mechanism</th><th>Sources</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -163,6 +201,10 @@
   const incidents = D.incidents.slice().sort((a, b) =>
     (a.incident_start_datetime || "").localeCompare(b.incident_start_datetime || ""));
   const totalDeaths = incidents.reduce((s, i) => s + (i.fatalities_current || 0), 0);
+  const mechanismsOf = id => (D.classifications[id] || [])
+    .filter(c => c.system === "project_event_mechanism");
+  const mechanismText = id => mechanismsOf(id)
+    .map(c => `${c.label_en} (${c.label_tr})`).join("; ");
 
   // Track OS dark mode on <html> so the map-tile filter can follow it.
   const mq = window.matchMedia("(prefers-color-scheme: dark)");
@@ -202,11 +244,13 @@
     const cites = (D.citations[i.public_incident_id] || [])
       .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}: ${c.title}</a>`)
       .join("<br>");
+    const mech = mechanismText(i.public_incident_id);
     m.bindPopup(
       `<b>${i.canonical_title_tr}</b><br>` +
       `<span class="meta">${i.public_incident_id} · ${(i.incident_start_datetime || "").slice(0, 10)}` +
       ` · ${i.province_name}</span><br>` +
       `Recorded deaths: <b>${fmt.format(i.fatalities_current)}</b><br>` +
+      (mech ? `<span class="meta">Reported mechanism: ${mech}</span><br>` : "") +
       `<span class="meta">Location precision: ${i.coordinate_precision.replace(/_/g, " ")}</span>` +
       (cites ? `<hr style="border:none;border-top:1px solid #ddd">${cites}` : "")
     );
@@ -226,10 +270,14 @@
     e.deaths += i.fatalities_current || 0; e.incidents += 1;
     byYear.set(y, e);
   }
+  const isigByYear = new Map(D.aggregates.map(a => [a.year, a.deaths]));
   const years = [];
-  const y0 = 2010, y1 = Math.max(new Date().getFullYear(), ...byYear.keys());
+  const y0 = Math.min(...byYear.keys(), 2010);
+  const y1 = Math.max(new Date().getFullYear(), ...byYear.keys());
   for (let y = y0; y <= y1; y++) years.push(y);
-  const maxDeaths = Math.max(...years.map(y => (byYear.get(y) || { deaths: 0 }).deaths), 1);
+  const maxDeaths = Math.max(
+    ...years.map(y => (byYear.get(y) || { deaths: 0 }).deaths),
+    ...isigByYear.values(), 1);
 
   const W = 1000, H = 300, M = { t: 18, r: 12, b: 30, l: 44 };
   const iw = W - M.l - M.r, ih = H - M.t - M.b;
@@ -257,18 +305,48 @@
     if (e.deaths > 0) {
       const r = Math.min(4, bw / 2, bh);                 // rounded data-end, anchored baseline
       parts.push(`<path class="bar" data-year="${year}" d="M${bx},${M.t + ih} v${-(bh - r)} q0,${-r} ${r},${-r} h${bw - 2 * r} q${r},0 ${r},${r} v${bh - r} z"></path>`);
-      if (year === peak) {
-        parts.push(`<text class="direct-label" x="${bx + bw / 2}" y="${by - 6}" text-anchor="middle">${fmt.format(e.deaths)}</text>`);
+      if (year === peak && bh > 26) {
+        // Label sits inside the bar top so it never collides with the context line.
+        parts.push(`<text class="direct-label inside" x="${bx + bw / 2}" y="${by + 15}" text-anchor="middle">${fmt.format(e.deaths)}</text>`);
       }
     }
-    const every = years.length > 12 ? 2 : 1;
-    if (idx % every === 0) {
+    const every = years.length > 24 ? 5 : (years.length > 12 ? 2 : 1);
+    if (year % every === 0 || years.length <= 12) {
       parts.push(`<text class="ticklabel" x="${bx + bw / 2}" y="${M.t + ih + 18}" text-anchor="middle">${year}</text>`);
     }
     // invisible hover target wider than the mark
     parts.push(`<rect class="hit" data-year="${year}" x="${M.l + (iw / years.length) * idx}" y="${M.t}" width="${iw / years.length}" height="${ih}" fill="transparent"></rect>`);
   });
+  // İSİG sector-wide context series (line + dots, de-emphasis gray).
+  const contextPts = years
+    .map((year, idx) => ({ year, idx, v: isigByYear.get(year) }))
+    .filter(p => p.v != null);
+  if (contextPts.length) {
+    const pt = p => `${x(p.idx) + bw / 2},${yScale(p.v)}`;
+    parts.push(`<polyline class="context-line" points="${contextPts.map(pt).join(" ")}"></polyline>`);
+    for (const p of contextPts) {
+      parts.push(`<circle class="context-dot" cx="${x(p.idx) + bw / 2}" cy="${yScale(p.v)}" r="3"></circle>`);
+    }
+  }
   svg.innerHTML = parts.join("");
+
+  // ---- Mechanism breakdown (published records with a source-backed code) ---
+  const mechCounts = new Map();
+  for (const i of incidents) {
+    for (const c of mechanismsOf(i.public_incident_id)) {
+      const key = `${c.label_en}|${c.label_tr}`;
+      mechCounts.set(key, (mechCounts.get(key) || 0) + 1);
+    }
+  }
+  const mechRows = [...mechCounts.entries()].sort((a, b) => b[1] - a[1]);
+  const mechMax = Math.max(...mechRows.map(r => r[1]), 1);
+  document.getElementById("mechanisms").innerHTML = mechRows.map(([key, n]) => {
+    const [en, tr] = key.split("|");
+    return `<div class="mrow">` +
+      `<div class="mlabel">${en} <span class="tr" lang="tr">${tr}</span></div>` +
+      `<div class="mtrack"><div class="mfill" style="width:${(n / mechMax) * 100}%"></div></div>` +
+      `<div class="mcount">${n}</div></div>`;
+  }).join("") || '<p class="caption">No source-backed mechanism classifications yet.</p>';
 
   const tooltip = document.getElementById("tooltip");
   const wrap = document.getElementById("chart-wrap");
@@ -280,9 +358,11 @@
     const bar = svg.querySelector(`.bar[data-year="${year}"]`);
     if (bar) bar.classList.add("is-hover");
     const e = byYear.get(+year) || { deaths: 0, incidents: 0 };
+    const isig = isigByYear.get(+year);
     tooltip.innerHTML = `<div class="t-title">${year}</div>` +
       `<div class="t-row"><span>Recorded deaths</span><span class="v">${fmt.format(e.deaths)}</span></div>` +
       `<div class="t-row"><span>Published records</span><span class="v">${fmt.format(e.incidents)}</span></div>` +
+      (isig != null ? `<div class="t-row"><span>İSİG sector total</span><span class="v">${fmt.format(isig)}</span></div>` : "") +
       (e.incidents === 0 ? `<div class="t-row"><span>No published record</span></div>` : "");
     tooltip.style.display = "block";
     const box = wrap.getBoundingClientRect();
@@ -300,13 +380,14 @@
     const cites = (D.citations[i.public_incident_id] || [])
       .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}</a>`)
       .filter((v, k, arr) => arr.indexOf(v) === k).join(", ");
+    const mech = mechanismsOf(i.public_incident_id).map(c => c.label_en).join(", ");
     return `<tr>
       <td>${i.public_incident_id}</td>
       <td>${(i.incident_start_datetime || "").slice(0, 10)}</td>
       <td>${i.province_name || ""}</td>
       <td lang="tr">${i.canonical_title_tr}</td>
       <td class="num">${fmt.format(i.fatalities_current)}</td>
-      <td><span class="pill">${(i.coordinate_precision || "not published").replace(/_/g, " ")}</span></td>
+      <td>${mech ? `<span class="pill">${mech}</span>` : '<span class="pill">not classified</span>'}</td>
       <td>${cites}</td>
     </tr>`;
   }).join("");

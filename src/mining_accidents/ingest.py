@@ -12,11 +12,12 @@ resolution protocol.
 from __future__ import annotations
 
 import sqlite3
+from collections import defaultdict
 from dataclasses import dataclass, field
 
-from mining_accidents import review
+from mining_accidents import review, validators, vocabularies
 from mining_accidents.adapters.base import ClaimDraft
-from mining_accidents.adapters.wikidata import WikidataAdapter
+from mining_accidents.adapters.wikidata import WikidataAdapter, parse_isig_table
 from mining_accidents.database import utc_now_iso
 from mining_accidents.models import ClaimDecision, IngestionRun
 from mining_accidents.normalization import normalize_tr
@@ -47,6 +48,15 @@ _BULK_RATIONALE = (
 )
 
 
+#: classification claim field -> classification_system (+ backing vocabulary)
+_CLASSIFICATION_SYSTEMS = {
+    "hazard": ("project_hazard", "hazards"),
+    "event_mechanism": ("project_event_mechanism", "event_mechanisms"),
+    "mode_of_harm": ("project_mode_of_harm", "modes_of_harm"),
+    "contributing_condition": ("project_contributing_condition", "contributing_conditions"),
+}
+
+
 @dataclass
 class IngestSummary:
     run_id: int | None = None
@@ -54,6 +64,7 @@ class IngestSummary:
     incidents_created: int = 0
     claims_created: int = 0
     decisions_recorded: int = 0
+    classifications_created: int = 0
     published: list[str] = field(default_factory=list)
     unpublished: dict[str, list[str]] = field(default_factory=dict)
     claims_needing_review: int = 0
@@ -161,6 +172,7 @@ def ingest_wikidata(
             docs_by_qid.setdefault(qid, []).append(row)
 
     incident_ids: dict[str, int] = {}
+    list_doc_id = adapter.fetch_list_article(conn)
     for qid, docs in sorted(docs_by_qid.items()):
         drafts_by_doc = {
             doc["source_document_id"]: adapter.parse(doc["source_document_id"], conn)
@@ -180,18 +192,22 @@ def ingest_wikidata(
         for doc_id, drafts in drafts_by_doc.items():
             for draft in drafts:
                 summary.claims_created += int(_insert_claim(conn, incident_id, doc_id, draft))
-    conn.commit()
+        conn.commit()
+        # Decide immediately so canonical date/province exist before the list
+        # pass runs its duplicate blocking-key matches against them.
+        if reviewer:
+            _decide_incident(conn, incident_id, reviewer, summary)
 
-    if reviewer:
-        for qid, incident_id in sorted(incident_ids.items()):
-            summary.decisions_recorded += _bulk_decide(conn, incident_id, reviewer)
-            _set_scope(conn, incident_id, reviewer)
-            if publish:
-                public_id_or_blockers = _publish_if_complete(conn, incident_id, reviewer)
-                if isinstance(public_id_or_blockers, str):
-                    summary.published.append(public_id_or_blockers)
-                else:
-                    summary.unpublished[qid] = public_id_or_blockers
+    incident_ids.update(_ingest_list_article(conn, adapter, list_doc_id, summary, reviewer))
+    _ingest_isig_aggregates(conn, list_doc_id, summary)
+
+    if reviewer and publish:
+        for key, incident_id in sorted(incident_ids.items()):
+            public_id_or_blockers = _publish_if_complete(conn, incident_id, reviewer)
+            if isinstance(public_id_or_blockers, str):
+                summary.published.append(public_id_or_blockers)
+            else:
+                summary.unpublished[key] = public_id_or_blockers
 
     summary.claims_needing_review = conn.execute(
         "SELECT COUNT(*) FROM claims WHERE review_status = 'needs_review'"
@@ -211,6 +227,15 @@ def ingest_wikidata(
         ),
     )
     return summary
+
+
+def _decide_incident(
+    conn: sqlite3.Connection, incident_id: int, reviewer: str, summary: IngestSummary
+) -> None:
+    """Bulk decisions + cause rows + scope for one incident (idempotent)."""
+    summary.decisions_recorded += _bulk_decide(conn, incident_id, reviewer)
+    summary.classifications_created += _apply_classifications(conn, incident_id, reviewer)
+    _set_scope(conn, incident_id, reviewer)
 
 
 def _bulk_decide(conn: sqlite3.Connection, incident_id: int, reviewer: str) -> int:
@@ -282,6 +307,192 @@ def _bulk_decide(conn: sqlite3.Connection, incident_id: int, reviewer: str) -> i
     return decisions
 
 
+def _find_matching_incident(
+    conn: sqlite3.Connection, province_code: str | None, iso_datetime: str | None
+) -> int | None:
+    """Blocking-key match (province + date ±3 days) against existing incidents,
+    so a list bullet about an already-seeded incident becomes corroborating
+    evidence instead of a duplicate record."""
+    if not province_code or not iso_datetime:
+        return None
+    row = conn.execute(
+        """
+        SELECT incident_id FROM incidents
+        WHERE province_code = ? AND incident_start_datetime IS NOT NULL
+          AND ABS(julianday(incident_start_datetime) - julianday(?)) <= 3
+        ORDER BY incident_id LIMIT 1
+        """,
+        (province_code, iso_datetime),
+    ).fetchone()
+    return int(row["incident_id"]) if row else None
+
+
+def _ingest_list_article(
+    conn: sqlite3.Connection,
+    adapter: WikidataAdapter,
+    list_doc_id: int,
+    summary: IngestSummary,
+    reviewer: str | None = None,
+) -> dict[str, int]:
+    """Per-bullet incident groups from the tr.wikipedia list article."""
+    provinces = {e.code: e.label_tr for e in vocabularies.load_vocabulary("turkey_admin_areas")}
+    groups: dict[str, list[ClaimDraft]] = defaultdict(list)
+    for draft in adapter.parse(list_doc_id, conn):
+        groups[draft.notes["group"]].append(draft)
+
+    incident_ids: dict[str, int] = {}
+    for key, drafts in sorted(groups.items()):
+        fields = {
+            d.field_name: d.normalized_value for d in drafts if d.claim_subject_type == "incident"
+        }
+        date = fields.get("incident_start_datetime")
+        province = fields.get("province_code")
+        marker = f"trlist:{key}"
+        existing = conn.execute(
+            "SELECT incident_id FROM incidents WHERE scope_rationale LIKE ?", (f"%{marker}%",)
+        ).fetchone()
+        if existing:
+            incident_id = int(existing["incident_id"])
+        else:
+            matched = _find_matching_incident(conn, province, date)
+            if matched is not None:
+                incident_id = matched  # corroborating claims for a known incident
+            else:
+                title = fields.get("canonical_title_tr") or (
+                    f"Maden kazası — {provinces.get(province or '', 'yeri belirsiz')}"
+                    f" ({(date or '')[:10]})"
+                )
+                cur = conn.execute(
+                    "INSERT INTO incidents (canonical_title_tr, canonical_title_tr_normalized, "
+                    "incident_status, scope_rationale) VALUES (?, ?, 'scope_undetermined', ?)",
+                    (
+                        title,
+                        normalize_tr(title),
+                        f"Seeded from {marker} (tr.wikipedia incident list); descriptive "
+                        "title is project-assigned; scope set after decisions.",
+                    ),
+                )
+                incident_id = int(cur.lastrowid)
+                summary.incidents_created += 1
+        incident_ids[marker] = incident_id
+        for draft in drafts:
+            summary.claims_created += int(_insert_claim(conn, incident_id, list_doc_id, draft))
+        conn.commit()
+        # Decide now so the next bullet's blocking-key match sees this one.
+        if reviewer:
+            _decide_incident(conn, incident_id, reviewer, summary)
+    return incident_ids
+
+
+def _ingest_isig_aggregates(
+    conn: sqlite3.Connection, list_doc_id: int, summary: IngestSummary
+) -> None:
+    """İSİG Meclisi annual miner-death totals -> aggregate context table.
+
+    Aggregate context only: sector-wide work deaths from all causes, NOT
+    comparable to the per-incident register (rule: raw counts are never
+    labeled 'risk'; comparability_notes ship with every row)."""
+    from pathlib import Path
+
+    row = conn.execute(
+        "SELECT local_raw_path FROM source_documents WHERE source_document_id = ?",
+        (list_doc_id,),
+    ).fetchone()
+    wikitext = Path(row["local_raw_path"]).read_text(encoding="utf-8")
+    for year, deaths in parse_isig_table(wikitext):
+        exists = conn.execute(
+            "SELECT 1 FROM aggregate_occupational_statistics "
+            "WHERE reporting_institution = ? AND period_start = ?",
+            ("İSİG Meclisi (via tr.wikipedia list article)", f"{year}-01-01"),
+        ).fetchone()
+        if exists:
+            continue
+        conn.execute(
+            "INSERT INTO aggregate_occupational_statistics (reporting_institution, "
+            "period_start, period_end, numerator, unit, source_document_id, "
+            "comparability_notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (
+                "İSİG Meclisi (via tr.wikipedia list article)",
+                f"{year}-01-01",
+                f"{year}-12-31",
+                float(deaths),
+                "deaths",
+                list_doc_id,
+                "Sector-wide miner work deaths, all causes, per İSİG annual reports "
+                "as transcribed by the Wikipedia list. NOT comparable to the "
+                "per-incident register (which covers listed accidents only) and "
+                "never a rate: no exposure denominator.",
+            ),
+        )
+    conn.commit()
+
+
+def _apply_classifications(conn: sqlite3.Connection, incident_id: int, reviewer: str) -> int:
+    """Materialize classification claims into incident_classifications rows.
+
+    Only mechanical extractions (or human-reviewed AI claims) qualify; codes
+    are validated against the backing vocabulary; every row keeps its
+    source_claim_id (cause_coding_protocol.md §2 — an event mechanism is not a
+    root cause and not a statement of legal responsibility).
+    """
+    created = 0
+    claims = conn.execute(
+        """
+        SELECT claim_id, field_name, normalized_value, assertion_status FROM claims
+        WHERE incident_id = ? AND claim_subject_type = 'classification'
+          AND NOT (extraction_method IN ('ai_assisted', 'ocr_assisted')
+                   AND review_status != 'reviewed')
+        ORDER BY claim_id
+        """,
+        (incident_id,),
+    ).fetchall()
+    for claim in claims:
+        mapping = _CLASSIFICATION_SYSTEMS.get(claim["field_name"])
+        if mapping is None or not claim["normalized_value"]:
+            continue
+        system, vocab_name = mapping
+        code = claim["normalized_value"]
+        try:
+            validators.validate_classification_code(system, code)
+        except validators.ValidationError:
+            continue  # unknown code: leave as claim only, never invent a row
+        exists = conn.execute(
+            "SELECT 1 FROM incident_classifications WHERE incident_id = ? "
+            "AND classification_system = ? AND classification_code = ?",
+            (incident_id, system, code),
+        ).fetchone()
+        if exists:
+            continue
+        entry = next(e for e in vocabularies.load_vocabulary(vocab_name) if e.code == code)
+        conn.execute(
+            "INSERT INTO incident_classifications (incident_id, classification_system, "
+            "classification_code, classification_label_tr, classification_label_en, "
+            "assertion_status, source_claim_id, review_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            (
+                incident_id,
+                system,
+                code,
+                entry.label_tr,
+                entry.label_en,
+                claim["assertion_status"],
+                claim["claim_id"],
+                "reviewed",
+            ),
+        )
+        review.log_review_action(
+            conn,
+            reviewer,
+            "classification_added",
+            "incident",
+            incident_id,
+            after_summary=f"{system}={code} (claim {claim['claim_id']})",
+            notes=_BULK_RATIONALE,
+        )
+        created += 1
+    conn.commit()
+    return created
+
+
 def _set_scope(conn: sqlite3.Connection, incident_id: int, reviewer: str) -> None:
     row = conn.execute(
         "SELECT incident_start_datetime, fatalities_current, scope_rationale, incident_status "
@@ -293,12 +504,14 @@ def _set_scope(conn: sqlite3.Connection, incident_id: int, reviewer: str) -> Non
     date, fatalities = row["incident_start_datetime"], row["fatalities_current"]
     if date is None:
         return  # stays scope_undetermined until the date is decided
-    if date < "2010-01-01":
-        status, reason = "out_of_scope", "pre-2010 incident (MVP scope starts 2010-01-01)"
-    elif fatalities == 0:
-        status, reason = "out_of_scope", "non-fatal incident (MVP scope is fatal incidents)"
+    if fatalities == 0:
+        status, reason = "out_of_scope", "non-fatal incident (scope is fatal incidents)"
     elif fatalities is None:
         return  # cannot confirm fatal scope yet
+    elif date < "2010-01-01":
+        # Historic extension per project owner directive (2026-07-14): the
+        # schema always accommodated pre-2010; they are now collected too.
+        status, reason = "in_scope", "fatal mining incident (historic, pre-2010 extension)"
     else:
         status, reason = "in_scope", "fatal mining incident in Türkiye within 2010-present"
     conn.execute(

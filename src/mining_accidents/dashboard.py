@@ -43,6 +43,41 @@ def _citations(public_dir: Path) -> dict[str, list[dict[str, str]]]:
     return citations
 
 
+def _classifications(public_dir: Path) -> dict[str, list[dict[str, str]]]:
+    import csv
+
+    result: dict[str, list[dict[str, str]]] = {}
+    with (public_dir / "incident_classifications.csv").open(encoding="utf-8", newline="") as fh:
+        for row in csv.DictReader(fh):
+            result.setdefault(row["public_incident_id"], []).append(
+                {
+                    "system": row["classification_system"],
+                    "code": row["classification_code"],
+                    "label_tr": row["classification_label_tr"],
+                    "label_en": row["classification_label_en"],
+                    "assertion_status": row["assertion_status"],
+                }
+            )
+    return result
+
+
+def _aggregates(conn: sqlite3.Connection) -> list[dict[str, object]]:
+    """İSİG context series (aggregate table). Comparability notes travel along."""
+    return [
+        {
+            "year": int(row["period_start"][:4]),
+            "deaths": int(row["numerator"]),
+            "institution": row["reporting_institution"],
+            "comparability_notes": row["comparability_notes"],
+        }
+        for row in conn.execute(
+            "SELECT period_start, numerator, reporting_institution, comparability_notes "
+            "FROM aggregate_occupational_statistics WHERE unit = 'deaths' "
+            "ORDER BY period_start"
+        )
+    ]
+
+
 def _pipeline_status(conn: sqlite3.Connection) -> dict[str, int]:
     def count(sql: str) -> int:
         return int(conn.execute(sql).fetchone()[0])
@@ -80,6 +115,8 @@ def build_dashboard_data(
     payload = {
         "incidents": incidents,
         "citations": _citations(public_dir),
+        "classifications": _classifications(public_dir),
+        "aggregates": _aggregates(conn),
         "pipeline": _pipeline_status(conn),
         "export_timestamp": manifest["export_timestamp"],
         "schema_version": manifest["db_schema_version"],
