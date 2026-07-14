@@ -9,11 +9,9 @@ data/raw/*
 !data/raw/.gitkeep
 !data/raw/README.md
 
-# Generated reports and exports
+# Generated reports (the public export in data/public/ IS committed since the
+# data-collection stage began — it is the publishable dataset)
 data/interim/quality_report.json
-data/public/*
-!data/public/.gitkeep
-!data/public/README.md
 
 # Environment
 .env

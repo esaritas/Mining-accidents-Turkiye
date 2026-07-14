@@ -17,15 +17,15 @@ runner = CliRunner()
 def test_registry_csv_loads_and_upserts(conn: sqlite3.Connection) -> None:
     csv_path = REPO_ROOT / "docs" / "source_registry.csv"
     created, updated = provenance.import_source_registry(conn, csv_path)
-    assert created == 8 and updated == 0
+    assert created == 10 and updated == 0
 
     keys = {row["source_key"] for row in conn.execute("SELECT source_key FROM source_registry")}
-    assert {"tbmm", "sgk", "manual", "isig_meclisi"} <= keys
+    assert {"tbmm", "sgk", "manual", "isig_meclisi", "wikidata", "wikipedia"} <= keys
 
     # Second run updates in place instead of duplicating.
     created, updated = provenance.import_source_registry(conn, csv_path)
-    assert created == 0 and updated == 8
-    assert conn.execute("SELECT COUNT(*) FROM source_registry").fetchone()[0] == 8
+    assert created == 0 and updated == 10
+    assert conn.execute("SELECT COUNT(*) FROM source_registry").fetchone()[0] == 10
 
 
 def test_registry_entries_flagged_stale_by_qc(conn: sqlite3.Connection) -> None:
@@ -33,8 +33,8 @@ def test_registry_entries_flagged_stale_by_qc(conn: sqlite3.Connection) -> None:
 
     provenance.import_source_registry(conn, REPO_ROOT / "docs" / "source_registry.csv")
     findings = quality.check_source_registry_freshness(conn, "2100-01-01T00:00:00Z")
-    # Every unassessed (TO_ASSESS / empty last_assessed) entry is surfaced.
-    assert len(findings) == 8
+    # Unassessed entries + assessments stale relative to the pinned clock.
+    assert len(findings) == 10
     assert all(f.check_id == "QC-W05" for f in findings)
 
 
@@ -49,7 +49,7 @@ def test_import_registry_command(tmp_path: Path) -> None:
     db = _cli_db(tmp_path)
     result = runner.invoke(app, ["import-registry", "--db-path", str(db)])
     assert result.exit_code == 0, result.output
-    assert "8 created" in result.output
+    assert "10 created" in result.output
 
 
 def test_decide_assign_merge_flow(tmp_path: Path) -> None:

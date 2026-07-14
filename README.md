@@ -1,17 +1,21 @@
-# Turkey Mining & Quarrying Accidents Database — foundation
+# Turkey Mining & Quarrying Accidents Database
 
-Evidence-management foundation for a database of **fatal mining, quarrying,
-and mine-associated processing/waste facility accidents in Türkiye
-(2010-present)**.
+An evidence-based database of **fatal mining, quarrying, and mine-associated
+processing/waste facility accidents in Türkiye (2010-present)**.
 
 > **What this repository is:** schema, controlled vocabularies, claim/decision
-> review machinery, quality checks, and public-export tooling.
+> review machinery, quality checks, public-export tooling — and, since the
+> data-collection stage began (2026-07-13), a first **seed of real incident
+> records** ingested from assessed open sources (Wikidata CC0, Wikipedia
+> CC BY-SA) through the evidence pipeline, plus a static dashboard with a map
+> ([`dashboard/index.html`](dashboard/index.html)).
 >
-> **What it is not (yet):** it contains **no factual incident data**, no
-> scrapers, and no dashboard. All fixtures are synthetic (`TEST-` prefixed).
-> See [`CLAUDE.md`](CLAUDE.md) for the seven hard constraints that govern all
-> work here, and [`docs/open_questions.md`](docs/open_questions.md) for
-> unresolved editorial decisions.
+> Test fixtures remain strictly synthetic (`TEST-` prefixed). See
+> [`CLAUDE.md`](CLAUDE.md) for the hard constraints (and the stage note
+> superseding the foundation-build ones) and
+> [`docs/open_questions.md`](docs/open_questions.md) for unresolved editorial
+> decisions. Seed values are tier-3 and await corroboration against Tier 1-2
+> sources; conflicting evidence is preserved, never overwritten.
 
 ## Evidence flow (core principle)
 
@@ -39,6 +43,8 @@ make lint      # ruff check + format check
 | Command | What it does |
 |---|---|
 | `make db` | Apply migrations; regenerate `database/schema.sql` snapshot |
+| `make ingest REVIEWER="<name>"` | Fetch the Wikidata/Wikipedia seed through the pipeline (claims → bulk decisions → publication for complete records) |
+| `make dashboard` | Regenerate `dashboard/data.js` from the public export |
 | `make import-example` | Import clearly-labeled synthetic `TEST-` demo data into a separate staging DB |
 | `make qc` | Run quality checks → `data/interim/quality_report.json` (non-zero exit on critical) |
 | `make export` | Build public export → `data/public/` (aborted by any critical QC finding) |

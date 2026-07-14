@@ -1,0 +1,39 @@
+{
+  "db_schema_version": "001",
+  "export_timestamp": "2026-07-14T10:11:41Z",
+  "file_sha256": {
+    "datapackage.json": "b11ad5729137c584540b07ea68ccb03cae505f06d68ef3bc347376abc2c3969d",
+    "incident_classifications.csv": "4391bc72a6f8da7d1aa96caa4d17b95db703220cb28221d980a7f8e1482b219c",
+    "incident_organization_roles.csv": "34f228de008ec74abd5548cc27693dca1770aec84f8b95543f0085a8a8c9491e",
+    "incidents.csv": "3d69e4a3dfa0a42cfaeb8d7aaccf75305545badeae7c7d22ca119cf67e7af4c1",
+    "merged_id_redirects.csv": "26158d38632470f27afc9c5de47bc7f989785e46a81ee313d9cc05f737c7296b",
+    "sources.csv": "a14141cab2eba4513a6878521f321310f15dffff89e6e61d67520220fb420b61"
+  },
+  "git_commit": "f24ec4ffa096dd5bfc074d62ac5bd62b672daafd",
+  "quality_findings": {
+    "critical": 0,
+    "warning": 8
+  },
+  "row_counts": {
+    "incident_classifications": 0,
+    "incident_organization_roles": 0,
+    "incidents": 5,
+    "merged_id_redirects": 0,
+    "sources": 40
+  },
+  "vocabulary_versions": {
+    "assertion_statuses.csv": "1.0",
+    "contributing_conditions.csv": "1.0",
+    "coordinate_precisions.csv": "1.0",
+    "date_precisions.csv": "1.0",
+    "event_mechanisms.csv": "1.0",
+    "hazards.csv": "1.0",
+    "modes_of_harm.csv": "1.0",
+    "nace_versions.csv": "1.0",
+    "organization_roles.csv": "1.0",
+    "organization_types.csv": "1.0",
+    "review_statuses.csv": "1.0",
+    "source_types.csv": "1.0",
+    "turkey_admin_areas.csv": "1.0"
+  }
+}

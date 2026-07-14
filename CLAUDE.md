@@ -10,11 +10,19 @@ protocols — no factual incident data, no scraping, no dashboard.
 
 ## Seven global hard constraints (override everything else)
 
-1. **No network access for data.** Never fetch, scrape, or verify external
-   URLs as part of a build. All source adapters except `adapters/manual.py`
-   are stubs that raise `NotImplementedError`.
-2. **No factual data.** Never insert a real incident, casualty figure, company
-   name, coordinate, or source document into the database or fixtures. All
+> **Stage note (2026-07-13, project owner directive):** constraints 1-2 were
+> foundation-build constraints and are now superseded for the data-collection
+> stage: assessed open sources (Wikidata CC0, Wikipedia CC BY-SA — both permit
+> API collection) may be fetched via implemented adapters, and real incident
+> data may enter the database **through the evidence pipeline only**
+> (documents → claims → decisions). Constraints 3-7 remain fully in force,
+> and **test fixtures still use synthetic `TEST-` data only**.
+
+1. **No network access for data** *(superseded — see stage note)*: originally,
+   never fetch, scrape, or verify external URLs as part of a build. Adapters
+   for unassessed sources remain stubs that raise `NotImplementedError`.
+2. **No factual data** *(superseded for the database — see stage note; still
+   binding for tests/fixtures)*: never insert real data into fixtures. All
    test fixtures use clearly synthetic data prefixed `TEST-`
    (e.g., incident `TEST-2099-0001`, organization `TEST Madencilik A.Ş.`).
 3. **No invented methodology presented as settled.** Editorial rules are
@@ -47,9 +55,11 @@ was selected and why.
 ```
 make install         # pip install -e .[dev]
 make db              # create database/mining_accidents.sqlite from migrations
+make ingest REVIEWER="<name>"  # Wikidata/Wikipedia seed via the pipeline
 make import-example  # synthetic TEST- demo data into a separate staging DB
 make qc              # quality checks -> data/interim/quality_report.json
 make export          # public export -> data/public/ (blocked by critical QC)
+make dashboard       # regenerate dashboard/data.js from the public export
 make packets         # generate review packets
 make test            # pytest with coverage
 make lint            # ruff check + format check

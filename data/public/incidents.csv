@@ -1,0 +1,6 @@
+public_incident_id,canonical_title_tr,canonical_title_en,incident_start_datetime,incident_end_datetime,date_precision,incident_status,province_code,district_code,settlement,latitude,longitude,coordinate_precision,location_uncertainty_m,fatalities_current,injuries_current,missing_current,casualty_status
+TR-MINE-2010-0001,Karadon Maden Kazası,2010 Zonguldak mine disaster,2010-05-17T00:00:00+03:00,,exact_date,in_scope,67,,,41.485865,31.864072,facility_approximate,,30,,,
+TR-MINE-2014-0001,Soma Faciası,Soma mine disaster,2014-05-13T00:00:00+03:00,,exact_date,in_scope,45,,,39.077194,27.525258,facility_approximate,,301,,,
+TR-MINE-2022-0001,Amasra maden kazası,Amasra mine explosion,2022-10-14T00:00:00+03:00,,exact_date,in_scope,74,,,41.721848,32.349063,facility_approximate,,42,,,
+TR-MINE-2024-0001,Erzincan maden kazası,Çöpler mine disaster,2024-02-13T00:00:00+03:00,,exact_date,in_scope,24,,,39.439234,38.536482,facility_approximate,,9,,,
+TR-MINE-2025-0001,Zara maden kazası,Zara mine explosion,2025-05-26T00:00:00+03:00,,exact_date,in_scope,58,,,39.69449,38.00883,facility_approximate,,1,,,

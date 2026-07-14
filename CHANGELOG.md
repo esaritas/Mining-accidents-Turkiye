@@ -29,3 +29,22 @@ semantic versioning once the project reaches a first release.
   `import-registry` command synchronizing `docs/source_registry.csv` into the
   `source_registry` table watched by QC-W05, and a GitHub Actions CI workflow
   (lint, vocabulary validation, tests, schema-snapshot sync check).
+
+### Changed — data-collection stage (project owner directive, 2026-07-13)
+- Foundation constraints 1-2 (no network for data / no factual data)
+  superseded for assessed open sources; recorded in CLAUDE.md and the source
+  registry. Constraints 3-7 remain fully in force.
+
+### Added — data-collection stage
+- Implemented Wikidata/Wikipedia adapter (polite rate-limited fetching,
+  immutable raw storage, mechanical vs `ai_assisted` extraction honesty) and
+  `ingest-wikidata` orchestration: claims → deterministic bulk accept
+  decisions under a named human reviewer → scope → publication sign-off for
+  complete records only.
+- First real seed: 9 incidents, 23 source documents, 84 claims; 5 records
+  published (Karadon 2010, Soma 2014, Amasra 2022, Çöpler/İliç 2024, Zara
+  2025); prose-extracted values wait in the mandatory review queue.
+- Committed public export in `data/public/` and a static dashboard
+  (`dashboard/index.html` + generated `data.js`): precision-aware Leaflet map
+  (vendored library), deaths-by-year chart, table view, light/dark modes,
+  pipeline-status tiles.

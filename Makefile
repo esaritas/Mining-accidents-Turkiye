@@ -5,7 +5,7 @@ PYTHON ?= python3
 DB_PATH ?= database/mining_accidents.sqlite
 EXAMPLE_DB ?= database/staging_example.sqlite
 
-.PHONY: install db import-example packets qc export test lint clean
+.PHONY: install db import-example ingest packets qc export dashboard test lint clean
 
 install:
 	$(PYTHON) -m pip install -e ".[dev]"
@@ -30,6 +30,15 @@ qc:
 
 export:
 	$(PYTHON) -m mining_accidents.cli export --db-path $(DB_PATH)
+
+# Fetch the Wikidata/Wikipedia seed through the evidence pipeline.
+# REVIEWER identifies the human authorizing the bulk decisions.
+ingest:
+	$(PYTHON) -m mining_accidents.cli ingest-wikidata --db-path $(DB_PATH) \
+		$(if $(REVIEWER),--reviewer "$(REVIEWER)",)
+
+dashboard:
+	$(PYTHON) -m mining_accidents.cli build-dashboard --db-path $(DB_PATH)
 
 test:
 	$(PYTHON) -m pytest --cov=mining_accidents --cov-report=term-missing

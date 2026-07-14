@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Türkiye Mining Accidents — reviewed public records</title>
+<!-- Leaflet 1.9.4 vendored locally (BSD-2-Clause) so the page works without a
+     CDN; only the map tiles require network access. -->
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="data.js"></script>
+<style>
+  :root { color-scheme: light dark; }
+  .viz-root {
+    color-scheme: light;
+    --surface-1: #fcfcfb; --page: #f9f9f7;
+    --ink-1: #0b0b0b; --ink-2: #52514e; --ink-muted: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7; --border: rgba(11,11,11,.10);
+    --series-1: #2a78d6; --series-1-soft: rgba(42,120,214,.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1: #1a1a19; --page: #0d0d0d;
+      --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-muted: #898781;
+      --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,.10);
+      --series-1: #3987e5; --series-1-soft: rgba(57,135,229,.20);
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-1: #1a1a19; --page: #0d0d0d;
+    --ink-1: #ffffff; --ink-2: #c3c2b7; --ink-muted: #898781;
+    --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,.10);
+    --series-1: #3987e5; --series-1-soft: rgba(57,135,229,.20);
+  }
+  * { box-sizing: border-box; }
+  body.viz-root {
+    margin: 0; background: var(--page); color: var(--ink-1);
+    font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 56px; }
+  header.page h1 { font-size: 24px; margin: 0 0 4px; font-weight: 650; }
+  header.page p.lede { color: var(--ink-2); margin: 0; max-width: 72ch; }
+  header.page p.note { color: var(--ink-muted); font-size: 13px; max-width: 78ch; }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+           gap: 12px; margin: 24px 0; }
+  .tile { background: var(--surface-1); border: 1px solid var(--border);
+          border-radius: 10px; padding: 14px 16px; }
+  .tile .value { font-size: 32px; font-weight: 650; line-height: 1.15; }
+  .tile .label { color: var(--ink-2); font-size: 13px; margin-top: 2px; }
+  .tile .sub { color: var(--ink-muted); font-size: 12px; }
+
+  section.panel { background: var(--surface-1); border: 1px solid var(--border);
+                  border-radius: 12px; padding: 18px 18px 14px; margin: 18px 0; }
+  section.panel h2 { font-size: 16px; font-weight: 650; margin: 0 0 2px; }
+  section.panel p.caption { color: var(--ink-muted); font-size: 13px; margin: 0 0 12px; }
+
+  #map { height: 440px; border-radius: 8px; background: var(--page); }
+  :root[data-theme="dark"] .leaflet-tile,
+  html.osdark .leaflet-tile { filter: grayscale(.35) invert(1) contrast(.85) hue-rotate(180deg) brightness(.85); }
+  .leaflet-container { font: inherit; }
+  .leaflet-popup-content { font: 13px/1.5 system-ui, sans-serif; }
+  .leaflet-popup-content b { font-size: 14px; }
+  .leaflet-popup-content .meta { color: #52514e; }
+
+  #chart-wrap { position: relative; }
+  #chart-wrap svg { display: block; width: 100%; height: auto; }
+  .bar { fill: var(--series-1); }
+  .bar.is-hover { filter: brightness(1.12); }
+  .gridline { stroke: var(--grid); stroke-width: 1; }
+  .axisline { stroke: var(--baseline); stroke-width: 1; }
+  .ticklabel { fill: var(--ink-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .direct-label { fill: var(--ink-2); font-size: 11px; font-variant-numeric: tabular-nums; }
+  #tooltip { position: absolute; pointer-events: none; display: none; z-index: 30;
+             background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px;
+             padding: 8px 10px; font-size: 13px; box-shadow: 0 4px 14px rgba(0,0,0,.12);
+             min-width: 150px; }
+  #tooltip .t-title { font-weight: 650; }
+  #tooltip .t-row { color: var(--ink-2); display: flex; justify-content: space-between; gap: 14px; }
+  #tooltip .t-row .v { font-variant-numeric: tabular-nums; color: var(--ink-1); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; color: var(--ink-2); font-weight: 600; font-size: 13px;
+       border-bottom: 1px solid var(--baseline); padding: 8px 10px; }
+  td { border-bottom: 1px solid var(--grid); padding: 8px 10px; vertical-align: top; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  th.num { text-align: right; }
+  td a { color: var(--series-1); text-decoration: none; }
+  td a:hover { text-decoration: underline; }
+  .pill { display: inline-block; font-size: 12px; color: var(--ink-2);
+          border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px; }
+
+  footer { color: var(--ink-muted); font-size: 13px; margin-top: 28px; max-width: 80ch; }
+  footer a { color: var(--series-1); }
+  @media (max-width: 640px) { #map { height: 320px; } .tile .value { font-size: 26px; } }
+</style>
+</head>
+<body class="viz-root">
+<main>
+  <header class="page">
+    <h1>Türkiye Mining &amp; Quarrying Accidents — reviewed public records</h1>
+    <p class="lede">
+      An evidence-based record of fatal mining and quarrying accidents in Türkiye.
+      Every value shown traces to cited source documents through recorded reviewer
+      decisions. This page documents deaths; it is presented for remembrance and
+      accountability, not comparison.
+    </p>
+    <p class="note">
+      Current records are seeded from open tertiary sources (Wikidata, Wikipedia) and
+      await corroboration against official and professional-chamber sources. Coverage
+      is <strong>partial</strong>: years without a mark are years without a <em>published,
+      reviewed record</em> — not years without loss.
+    </p>
+  </header>
+
+  <div class="tiles" id="tiles" role="list"></div>
+
+  <section class="panel">
+    <h2>Where the published incidents happened</h2>
+    <p class="caption">
+      Marker area reflects recorded deaths. All current locations are
+      <em>facility-approximate</em> — markers indicate the mine or its vicinity, never an
+      exact point. Select a marker for details and sources.
+    </p>
+    <div id="map" role="region" aria-label="Map of published mining accident records in Türkiye"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Recorded deaths by year — published records only</h2>
+    <p class="caption" id="chart-caption">Hover a year for details.</p>
+    <div id="chart-wrap">
+      <svg id="chart" aria-describedby="chart-caption" role="img"></svg>
+      <div id="tooltip"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Published records</h2>
+    <p class="caption">The complete table behind the map and chart.</p>
+    <div style="overflow-x:auto">
+      <table id="records">
+        <thead>
+          <tr>
+            <th>Public ID</th><th>Date</th><th>Province</th><th>Record title</th>
+            <th class="num">Deaths</th><th>Location precision</th><th>Sources</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer id="foot"></footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  const D = window.MINING_DATA;
+  const fmt = new Intl.NumberFormat("en-US");
+  const incidents = D.incidents.slice().sort((a, b) =>
+    (a.incident_start_datetime || "").localeCompare(b.incident_start_datetime || ""));
+  const totalDeaths = incidents.reduce((s, i) => s + (i.fatalities_current || 0), 0);
+
+  // Track OS dark mode on <html> so the map-tile filter can follow it.
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  const syncDark = () => document.documentElement.classList.toggle("osdark",
+    mq.matches && document.documentElement.getAttribute("data-theme") !== "light");
+  mq.addEventListener("change", syncDark); syncDark();
+
+  // ---- KPI tiles -----------------------------------------------------------
+  const tiles = [
+    { v: incidents.length, l: "published incident records", s: "passed the full review threshold" },
+    { v: totalDeaths, l: "recorded deaths", s: "in published records" },
+    { v: D.pipeline.records_in_review, l: "records in review", s: "not yet publishable" },
+    { v: D.pipeline.claims_awaiting_review, l: "claims awaiting human review", s: "machine-extracted, unconfirmed" },
+  ];
+  document.getElementById("tiles").innerHTML = tiles.map(t =>
+    `<div class="tile" role="listitem"><div class="value">${fmt.format(t.v)}</div>` +
+    `<div class="label">${t.l}</div><div class="sub">${t.s}</div></div>`).join("");
+
+  // ---- Map (degrades gracefully if the map library cannot load) ------------
+  try { buildMap(); } catch (err) {
+    document.getElementById("map").innerHTML =
+      '<p style="padding:16px;color:var(--ink-2)">The map could not load ' +
+      "(offline or the map library was blocked). The table below lists every record.</p>";
+  }
+  function buildMap() {
+  const map = L.map("map", { scrollWheelZoom: false });
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 12,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+  const located = incidents.filter(i => i.latitude != null && i.longitude != null);
+  const markers = located.map(i => {
+    const r = 6 + Math.sqrt(i.fatalities_current || 1) * 2.1;
+    const m = L.circleMarker([i.latitude, i.longitude], {
+      radius: r, color: "#fcfcfb", weight: 2, fillColor: "#2a78d6", fillOpacity: 0.85,
+    });
+    const cites = (D.citations[i.public_incident_id] || [])
+      .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}: ${c.title}</a>`)
+      .join("<br>");
+    m.bindPopup(
+      `<b>${i.canonical_title_tr}</b><br>` +
+      `<span class="meta">${i.public_incident_id} · ${(i.incident_start_datetime || "").slice(0, 10)}` +
+      ` · ${i.province_name}</span><br>` +
+      `Recorded deaths: <b>${fmt.format(i.fatalities_current)}</b><br>` +
+      `<span class="meta">Location precision: ${i.coordinate_precision.replace(/_/g, " ")}</span>` +
+      (cites ? `<hr style="border:none;border-top:1px solid #ddd">${cites}` : "")
+    );
+    return m;
+  });
+  const group = L.featureGroup(markers).addTo(map);
+  if (located.length) { map.fitBounds(group.getBounds().pad(0.35)); }
+  else { map.setView([39.0, 35.2], 6); }
+  }
+
+  // ---- Bar chart: deaths per year (single series -> sequential hue) --------
+  const byYear = new Map();
+  for (const i of incidents) {
+    const y = +(i.incident_start_datetime || "").slice(0, 4);
+    if (!y) continue;
+    const e = byYear.get(y) || { deaths: 0, incidents: 0 };
+    e.deaths += i.fatalities_current || 0; e.incidents += 1;
+    byYear.set(y, e);
+  }
+  const years = [];
+  const y0 = 2010, y1 = Math.max(new Date().getFullYear(), ...byYear.keys());
+  for (let y = y0; y <= y1; y++) years.push(y);
+  const maxDeaths = Math.max(...years.map(y => (byYear.get(y) || { deaths: 0 }).deaths), 1);
+
+  const W = 1000, H = 300, M = { t: 18, r: 12, b: 30, l: 44 };
+  const iw = W - M.l - M.r, ih = H - M.t - M.b;
+  const bw = Math.min(40, iw / years.length - 2);       // 2px surface gap between bars
+  const x = idx => M.l + (iw / years.length) * idx + ((iw / years.length) - bw) / 2;
+  const yScale = v => M.t + ih * (1 - v / maxDeaths);
+  const svg = document.getElementById("chart");
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+
+  let parts = [];
+  const gridSteps = 4;
+  for (let g = 1; g <= gridSteps; g++) {
+    const gy = M.t + (ih / gridSteps) * (gridSteps - g);
+    const gv = Math.round((maxDeaths / gridSteps) * g);
+    parts.push(`<line class="gridline" x1="${M.l}" x2="${W - M.r}" y1="${gy}" y2="${gy}"></line>`);
+    parts.push(`<text class="ticklabel" x="${M.l - 8}" y="${gy + 4}" text-anchor="end">${gv}</text>`);
+  }
+  parts.push(`<line class="axisline" x1="${M.l}" x2="${W - M.r}" y1="${M.t + ih}" y2="${M.t + ih}"></line>`);
+
+  const peak = years.reduce((best, y) =>
+    ((byYear.get(y) || { deaths: 0 }).deaths > (byYear.get(best) || { deaths: 0 }).deaths ? y : best), y0);
+  years.forEach((year, idx) => {
+    const e = byYear.get(year) || { deaths: 0, incidents: 0 };
+    const bx = x(idx), by = yScale(e.deaths), bh = M.t + ih - by;
+    if (e.deaths > 0) {
+      const r = Math.min(4, bw / 2, bh);                 // rounded data-end, anchored baseline
+      parts.push(`<path class="bar" data-year="${year}" d="M${bx},${M.t + ih} v${-(bh - r)} q0,${-r} ${r},${-r} h${bw - 2 * r} q${r},0 ${r},${r} v${bh - r} z"></path>`);
+      if (year === peak) {
+        parts.push(`<text class="direct-label" x="${bx + bw / 2}" y="${by - 6}" text-anchor="middle">${fmt.format(e.deaths)}</text>`);
+      }
+    }
+    const every = years.length > 12 ? 2 : 1;
+    if (idx % every === 0) {
+      parts.push(`<text class="ticklabel" x="${bx + bw / 2}" y="${M.t + ih + 18}" text-anchor="middle">${year}</text>`);
+    }
+    // invisible hover target wider than the mark
+    parts.push(`<rect class="hit" data-year="${year}" x="${M.l + (iw / years.length) * idx}" y="${M.t}" width="${iw / years.length}" height="${ih}" fill="transparent"></rect>`);
+  });
+  svg.innerHTML = parts.join("");
+
+  const tooltip = document.getElementById("tooltip");
+  const wrap = document.getElementById("chart-wrap");
+  svg.addEventListener("mousemove", ev => {
+    const hit = ev.target.closest(".hit");
+    svg.querySelectorAll(".bar.is-hover").forEach(b => b.classList.remove("is-hover"));
+    if (!hit) { tooltip.style.display = "none"; return; }
+    const year = hit.dataset.year;
+    const bar = svg.querySelector(`.bar[data-year="${year}"]`);
+    if (bar) bar.classList.add("is-hover");
+    const e = byYear.get(+year) || { deaths: 0, incidents: 0 };
+    tooltip.innerHTML = `<div class="t-title">${year}</div>` +
+      `<div class="t-row"><span>Recorded deaths</span><span class="v">${fmt.format(e.deaths)}</span></div>` +
+      `<div class="t-row"><span>Published records</span><span class="v">${fmt.format(e.incidents)}</span></div>` +
+      (e.incidents === 0 ? `<div class="t-row"><span>No published record</span></div>` : "");
+    tooltip.style.display = "block";
+    const box = wrap.getBoundingClientRect();
+    let tx = ev.clientX - box.left + 14, ty = ev.clientY - box.top - 10;
+    if (tx + tooltip.offsetWidth > box.width) tx -= tooltip.offsetWidth + 26;
+    tooltip.style.left = tx + "px"; tooltip.style.top = ty + "px";
+  });
+  svg.addEventListener("mouseleave", () => {
+    tooltip.style.display = "none";
+    svg.querySelectorAll(".bar.is-hover").forEach(b => b.classList.remove("is-hover"));
+  });
+
+  // ---- Table ---------------------------------------------------------------
+  document.querySelector("#records tbody").innerHTML = incidents.map(i => {
+    const cites = (D.citations[i.public_incident_id] || [])
+      .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}</a>`)
+      .filter((v, k, arr) => arr.indexOf(v) === k).join(", ");
+    return `<tr>
+      <td>${i.public_incident_id}</td>
+      <td>${(i.incident_start_datetime || "").slice(0, 10)}</td>
+      <td>${i.province_name || ""}</td>
+      <td lang="tr">${i.canonical_title_tr}</td>
+      <td class="num">${fmt.format(i.fatalities_current)}</td>
+      <td><span class="pill">${(i.coordinate_precision || "not published").replace(/_/g, " ")}</span></td>
+      <td>${cites}</td>
+    </tr>`;
+  }).join("");
+
+  // ---- Footer --------------------------------------------------------------
+  document.getElementById("foot").innerHTML =
+    `Export of ${D.export_timestamp} · schema ${D.schema_version} · ` +
+    `${fmt.format(D.pipeline.source_documents)} source documents · ` +
+    `${fmt.format(D.pipeline.claims_total)} claims · ${fmt.format(D.pipeline.decisions_total)} recorded decisions.<br>` +
+    `Every published value was selected from source claims by a recorded reviewer decision ` +
+    `(<em>source document → claim → decision → canonical value → export</em>). Current seed sources are ` +
+    `tertiary: <a href="https://www.wikidata.org" rel="noopener">Wikidata</a> (CC0) and ` +
+    `<a href="https://www.wikipedia.org" rel="noopener">Wikipedia</a> (text CC BY-SA 4.0 — article ` +
+    `links above credit the source); values await corroboration against official and ` +
+    `professional-chamber records. Corrections: see the project repository's issue templates. ` +
+    `No personal data of victims is stored or shown.`;
+})();
+</script>
+</body>
+</html>

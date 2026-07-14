@@ -157,6 +157,59 @@ def packets(
     console.print(f"[green]Generated {len(paths)} review packet(s).[/green]")
 
 
+@app.command("ingest-wikidata")
+def ingest_wikidata_cmd(
+    db_path: Path = DB_OPTION,
+    reviewer: str = typer.Option(
+        None,
+        help="Human reviewer identity for bulk decisions. Omit to ingest evidence only "
+        "(no decisions, nothing published).",
+    ),
+    publish: bool = typer.Option(
+        True, help="Sign off complete in-scope records as publishable (needs --reviewer)."
+    ),
+) -> None:
+    """Fetch the Wikidata/Wikipedia seed and route it through the evidence pipeline."""
+    from mining_accidents import ingest
+
+    conn = database.get_connection(db_path)
+    try:
+        summary = ingest.ingest_wikidata(conn, reviewer=reviewer, publish=publish)
+    finally:
+        conn.close()
+    console.print(
+        f"[green]Ingest complete[/green] (run {summary.run_id}): "
+        f"{summary.documents} documents, {summary.incidents_created} new incidents, "
+        f"{summary.claims_created} new claims, {summary.decisions_recorded} decisions."
+    )
+    if summary.published:
+        console.print(f"Published: {', '.join(summary.published)}")
+    for qid, blockers in summary.unpublished.items():
+        console.print(f"[yellow]Not published[/yellow] {qid}: {', '.join(blockers)}")
+    if summary.claims_needing_review:
+        console.print(
+            f"[yellow]{summary.claims_needing_review} claim(s) await human review[/yellow] "
+            "(ai_assisted prose extractions — see docs/manual_review_protocol.md)."
+        )
+
+
+@app.command("build-dashboard")
+def build_dashboard(
+    db_path: Path = DB_OPTION,
+    public_dir: Path = typer.Option(Path("data/public"), help="Public export directory."),
+    output: Path = typer.Option(Path("dashboard/data.js"), help="Generated data file."),
+) -> None:
+    """Package the public export + pipeline status into dashboard/data.js."""
+    from mining_accidents import dashboard as dashboard_mod
+
+    conn = database.get_connection(db_path)
+    try:
+        path = dashboard_mod.build_dashboard_data(conn, public_dir, output)
+    finally:
+        conn.close()
+    console.print(f"[green]Dashboard data written:[/green] {path}")
+
+
 @app.command("import-registry")
 def import_registry(
     db_path: Path = DB_OPTION,

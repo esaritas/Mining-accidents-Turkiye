@@ -1,0 +1,225 @@
+{
+  "description": "Reviewed, source-traceable records of fatal mining and quarrying accidents in Türkiye. Every value traces to source documents through recorded reviewer decisions. Assertion statuses must be displayed; 'alleged' is never established fact.",
+  "name": "turkey-mining-accidents-public-export",
+  "profile": "tabular-data-package",
+  "resources": [
+    {
+      "name": "incidents",
+      "path": "incidents.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "public_incident_id",
+            "type": "any"
+          },
+          {
+            "name": "canonical_title_tr",
+            "type": "any"
+          },
+          {
+            "name": "canonical_title_en",
+            "type": "any"
+          },
+          {
+            "name": "incident_start_datetime",
+            "type": "any"
+          },
+          {
+            "name": "incident_end_datetime",
+            "type": "any"
+          },
+          {
+            "name": "date_precision",
+            "type": "any"
+          },
+          {
+            "name": "incident_status",
+            "type": "any"
+          },
+          {
+            "name": "province_code",
+            "type": "any"
+          },
+          {
+            "name": "district_code",
+            "type": "any"
+          },
+          {
+            "name": "settlement",
+            "type": "any"
+          },
+          {
+            "name": "latitude",
+            "type": "any"
+          },
+          {
+            "name": "longitude",
+            "type": "any"
+          },
+          {
+            "name": "coordinate_precision",
+            "type": "any"
+          },
+          {
+            "name": "location_uncertainty_m",
+            "type": "any"
+          },
+          {
+            "name": "fatalities_current",
+            "type": "any"
+          },
+          {
+            "name": "injuries_current",
+            "type": "any"
+          },
+          {
+            "name": "missing_current",
+            "type": "any"
+          },
+          {
+            "name": "casualty_status",
+            "type": "any"
+          }
+        ]
+      }
+    },
+    {
+      "name": "incident_classifications",
+      "path": "incident_classifications.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "public_incident_id",
+            "type": "any"
+          },
+          {
+            "name": "classification_system",
+            "type": "any"
+          },
+          {
+            "name": "classification_level",
+            "type": "any"
+          },
+          {
+            "name": "classification_code",
+            "type": "any"
+          },
+          {
+            "name": "classification_label_tr",
+            "type": "any"
+          },
+          {
+            "name": "classification_label_en",
+            "type": "any"
+          },
+          {
+            "name": "assertion_status",
+            "type": "any"
+          }
+        ]
+      }
+    },
+    {
+      "name": "incident_organization_roles",
+      "path": "incident_organization_roles.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "public_incident_id",
+            "type": "any"
+          },
+          {
+            "name": "organization_name_tr",
+            "type": "any"
+          },
+          {
+            "name": "organization_type",
+            "type": "any"
+          },
+          {
+            "name": "role",
+            "type": "any"
+          },
+          {
+            "name": "assertion_status",
+            "type": "any"
+          }
+        ]
+      }
+    },
+    {
+      "name": "sources",
+      "path": "sources.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "public_incident_id",
+            "type": "any"
+          },
+          {
+            "name": "field_name",
+            "type": "any"
+          },
+          {
+            "name": "source_organization",
+            "type": "any"
+          },
+          {
+            "name": "title",
+            "type": "any"
+          },
+          {
+            "name": "document_type",
+            "type": "any"
+          },
+          {
+            "name": "url",
+            "type": "any"
+          },
+          {
+            "name": "publication_date",
+            "type": "any"
+          },
+          {
+            "name": "retrieved_at",
+            "type": "any"
+          },
+          {
+            "name": "language",
+            "type": "any"
+          },
+          {
+            "name": "source_tier",
+            "type": "any"
+          },
+          {
+            "name": "short_evidence_excerpt",
+            "type": "any"
+          }
+        ]
+      }
+    },
+    {
+      "name": "merged_id_redirects",
+      "path": "merged_id_redirects.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "merged_public_incident_id",
+            "type": "any"
+          },
+          {
+            "name": "surviving_public_incident_id",
+            "type": "any"
+          }
+        ]
+      }
+    }
+  ],
+  "title": "Turkey Mining & Quarrying Accidents Database — public export"
+}
