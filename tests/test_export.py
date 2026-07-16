@@ -75,8 +75,15 @@ def test_publishable_record_exports_and_below_threshold_excluded(
     assert {r["path"] for r in datapackage["resources"]} >= {
         "incidents.csv",
         "sources.csv",
+        "facilities.csv",
+        "facility_organization_roles.csv",
         "merged_id_redirects.csv",
     }
+    # Sites context registry ships (empty here — no claim-backed facilities),
+    # and the partial-coverage statement travels with the datapackage.
+    assert (out / "facilities.csv").exists()
+    assert (out / "facility_organization_roles.csv").exists()
+    assert "not a complete register" in datapackage["description"]
 
 
 def test_export_is_deterministic_byte_identical(conn: sqlite3.Connection, tmp_path: Path) -> None:
@@ -98,7 +105,7 @@ def test_manifest_contents(conn: sqlite3.Connection, tmp_path: Path) -> None:
     _build(conn, out)
     manifest = json.loads((out / "export_manifest.json").read_text(encoding="utf-8"))
     assert manifest["export_timestamp"] == "2100-01-01T00:00:00Z"
-    assert manifest["db_schema_version"] == "001"
+    assert manifest["db_schema_version"] == "002"
     assert set(manifest["file_sha256"]) >= {"incidents.csv", "datapackage.json"}
     assert all(len(h) == 64 for h in manifest["file_sha256"].values())
     assert manifest["vocabulary_versions"]["hazards.csv"] == "1.0"

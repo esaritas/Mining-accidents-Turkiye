@@ -5,7 +5,7 @@ PYTHON ?= python3
 DB_PATH ?= database/mining_accidents.sqlite
 EXAMPLE_DB ?= database/staging_example.sqlite
 
-.PHONY: install db import-example ingest packets qc export dashboard test lint clean
+.PHONY: install db import-example ingest ingest-sites packets qc export dashboard test lint clean
 
 install:
 	$(PYTHON) -m pip install -e ".[dev]"
@@ -35,6 +35,11 @@ export:
 # REVIEWER identifies the human authorizing the bulk decisions.
 ingest:
 	$(PYTHON) -m mining_accidents.cli ingest-wikidata --db-path $(DB_PATH) \
+		$(if $(REVIEWER),--reviewer "$(REVIEWER)",)
+
+# Fetch Wikidata mining-site items into the facilities context registry.
+ingest-sites:
+	$(PYTHON) -m mining_accidents.cli ingest-sites --db-path $(DB_PATH) \
 		$(if $(REVIEWER),--reviewer "$(REVIEWER)",)
 
 dashboard:

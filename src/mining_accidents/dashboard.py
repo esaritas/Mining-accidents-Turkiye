@@ -78,6 +78,50 @@ def _aggregates(conn: sqlite3.Connection) -> list[dict[str, object]]:
     ]
 
 
+def _sites(public_dir: Path) -> list[dict[str, object]]:
+    """Active-sites context registry from the public export (partial coverage:
+    open structured sources only — never presented as a complete register)."""
+    import csv
+
+    facilities_csv = public_dir / "facilities.csv"
+    if not facilities_csv.exists():
+        return []
+    operators: dict[str, list[dict[str, str]]] = {}
+    roles_csv = public_dir / "facility_organization_roles.csv"
+    if roles_csv.exists():
+        with roles_csv.open(encoding="utf-8", newline="") as fh:
+            for row in csv.DictReader(fh):
+                operators.setdefault(row["facility_ref"], []).append(
+                    {
+                        "name": row["organization_name_tr"],
+                        "country_code": row["organization_country_code"],
+                        "country_label": row["organization_country_label"],
+                        "role": row["role"],
+                        "assertion_status": row["assertion_status"],
+                    }
+                )
+    sites = []
+    with facilities_csv.open(encoding="utf-8", newline="") as fh:
+        for row in csv.DictReader(fh):
+            sites.append(
+                {
+                    "ref": row["facility_ref"],
+                    "name": row["facility_name_tr"],
+                    "type": row["facility_type"],
+                    "commodity_code": row["commodity_code"],
+                    "commodity_label": row["commodity_label"],
+                    "province_code": row["province_code"],
+                    "latitude": float(row["latitude"]) if row["latitude"] else None,
+                    "longitude": float(row["longitude"]) if row["longitude"] else None,
+                    "coordinate_precision": row["coordinate_precision"],
+                    "status": row["operational_status"],
+                    "source_url": row["source_url"],
+                    "organizations": operators.get(row["facility_ref"], []),
+                }
+            )
+    return sites
+
+
 def _province_centroids() -> dict[str, dict[str, float | str]]:
     """Display-only reference points (Wikidata CC0) for province-level marks.
 
@@ -101,7 +145,9 @@ _PROJ = {"lon0": 25.3, "lon1": 45.1, "lat0": 35.5, "lat1": 42.4, "k": 46.0}
 
 
 def _map_vector(
-    incidents: list[dict[str, object]], centroids: dict[str, dict[str, float | str]]
+    incidents: list[dict[str, object]],
+    centroids: dict[str, dict[str, float | str]],
+    sites: list[dict[str, object]] | None = None,
 ) -> dict[str, object]:
     """Projected vector map (Türkiye outline + marks) for tile-free rendering.
 
@@ -156,12 +202,19 @@ def _map_vector(
                 "ids": [i["public_incident_id"] for i in records],
             }
         )
+    site_marks = []
+    for site in sites or []:
+        if site.get("latitude") is None or site.get("longitude") is None:
+            continue
+        x, y = px(float(site["longitude"]), float(site["latitude"]))
+        site_marks.append({"x": x, "y": y, "ref": site["ref"]})
     return {
         "W": width,
         "H": height,
         "outline": " ".join(paths),
         "markers": located,
         "provinceMarks": province_marks,
+        "siteMarks": site_marks,
     }
 
 
@@ -198,13 +251,15 @@ def build_payload(
     for incident in incidents:
         incident["province_name"] = provinces.get(incident.get("province_code") or "", "")
 
+    sites = _sites(public_dir)
     payload = {
         "incidents": incidents,
+        "sites": sites,
         "citations": _citations(public_dir),
         "classifications": _classifications(public_dir),
         "aggregates": _aggregates(conn),
         "province_centroids": _province_centroids(),
-        "map_vector": _map_vector(incidents, _province_centroids()),
+        "map_vector": _map_vector(incidents, _province_centroids(), sites),
         "coverage_gap": analysis.coverage_gap(conn),
         "projection": analysis.projection(conn),
         "policy_events": analysis.policy_events(),

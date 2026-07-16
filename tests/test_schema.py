@@ -28,6 +28,7 @@ def test_all_expected_tables_exist(conn: sqlite3.Connection) -> None:
         "organizations",
         "organization_aliases",
         "incident_organization_roles",
+        "facility_organization_roles",
         "incident_classifications",
         "recommendations",
         "source_registry",

@@ -45,3 +45,18 @@ sources:
     tier_proposed: null      # n/a — carrier for human-entered evidence
     adapter: mining_accidents.adapters.manual
     status: IMPLEMENTED
+  - key: wikidata_sites
+    family: "Wikidata (mining/quarrying site items)"
+    tier_proposed: 3
+    adapter: mining_accidents.adapters.wikidata_sites
+    status: IMPLEMENTED     # assessed 2026-07-15; partial coverage, labeled
+  - key: gem_tracker
+    family: "Global Energy Monitor mine trackers"
+    tier_proposed: 2
+    adapter: null            # registry entry only — access/reuse TO_ASSESS
+    status: TO_ASSESS        # would complete operators/status (open question #19)
+  - key: mapeg
+    family: "MAPEG licence data"
+    tier_proposed: 1
+    adapter: null            # registry entry only — no open bulk registry found
+    status: TO_ASSESS        # open question #19

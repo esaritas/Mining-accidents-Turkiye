@@ -107,9 +107,31 @@ Facility identity + name history. Aliases carry `alias_normalized`,
 `alias_type` (`former_name|spelling_variant|local_name|abbreviation`),
 `valid_from`, `valid_to`, `source_claim_id`.
 
+Since migration 002 (active-sites layer, 2026-07-15) facilities also carry
+`commodity_code`/`commodity_label` (vocabulary `commodities.csv`),
+`operational_status` (`operating|closed|proposed|unknown` — `closed` only when
+the source asserts a closure statement; never guessed "operating"),
+`facility_type` codes from `facility_types.csv`, and `external_ref`
+(idempotency key, e.g. `wikidata:Q...`). The facilities table is a **context
+registry**, not incident evidence: values are written with their
+`source_claim_id` plus a `review_log` sign-off under a named reviewer — the
+incident `claim_decisions` machinery stays incident-scoped by design.
+Coverage is partial (open structured sources only) and must be labeled as
+such wherever the layer is displayed (open question #19).
+
 ### organizations / organization_aliases
 Same pattern. `organization_type`:
 `private_company|state_enterprise|public_authority|cooperative|informal_operation|union_or_chamber|ngo|unknown|other`.
+Since migration 002: `country_code` (ISO 3166-1 alpha-2) / `country_label`
+for the organization's home country as stated by the source, and
+`external_ref` (e.g. `wikidata:Q...`).
+
+### facility_organization_roles
+Mirror of `incident_organization_roles` for sites: `role`
+(`operator|owner|licence_holder`), `valid_from`/`valid_to`,
+`source_claim_id` (NOT NULL), `assertion_status`, `review_status`, unique on
+(facility_id, organization_id, role). Only `reviewed` rows are exported, and
+assertion status ships with every row.
 
 ### incident_organization_roles
 `role`

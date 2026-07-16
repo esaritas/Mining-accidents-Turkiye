@@ -40,6 +40,15 @@ review"), never as data points.
 - **Non-sensational design.** This data documents deaths. No leaderboards, no
   rankings framed as competition, no gamified counters. Sober framing, always
   linked to sources and methodology; coverage gaps are stated explicitly.
+- **Sites-layer honesty.** The documented-mining-sites layer (gray diamonds,
+  sites table) comes from open structured sources only and covers a fraction
+  of licensed operations; every display of it must say so. Operator/owner
+  and company-country entries appear only where the source states them, with
+  their assertion status; operating status is shown only when asserted
+  (never an implied "operating").
+- **Story prologue.** The scroll narrative adds nothing that is not in the
+  data below it; it must honor `prefers-reduced-motion` with a static
+  fallback and keep the memorial voice (no gamification, no photos).
 
 ## Verify integrity
 

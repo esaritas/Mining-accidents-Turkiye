@@ -466,11 +466,30 @@ _MAP_LATLON = re.compile(
     r"lat_deg\s*=\s*(-?\d+\.\d+).{0,200}?lon_deg\s*=\s*(-?\d+\.\d+)", re.DOTALL
 )
 _WIKILINK = re.compile(r"\[\[([^\]|#]+)")
+#: infobox operating-company fields (tr/en). Mechanical extraction; the
+#: ingest layer requires >= 2 independent documents before the role row is
+#: marked reviewed (editorial protocol §2 corroboration threshold).
+_INFOBOX_OPERATOR = re.compile(
+    r"\|\s*(?:[İi]şletmeci|[İi]şleten|operat[oö]r|owner|şirket)\s*=\s*([^\n]+)"
+)
 #: prose fatality statements — inherently interpretive -> ai_assisted
 _PROSE_DEATHS = re.compile(
     r"(\d+)\s*(?:tanesi|işçi(?:nin|den)?|kişi(?:nin)?|madenci(?:nin)?)"
     r"[^.]{0,80}?(?:öl(?:dü|ürken|en)|hayatını kaybet|yaşamını yitir)",
 )
+
+
+def _clean_org_wikitext(value: str) -> str | None:
+    """Company name from an infobox value: wikilink display text preferred,
+    markup and references stripped; empty/template-only values rejected."""
+    value = re.sub(r"<ref[^>]*>.*?</ref>|<ref[^>]*/>", "", value, flags=re.DOTALL)
+    value = re.sub(r"\{\{[^}]*\}\}", "", value)
+    link = re.match(r"\s*\[\[([^\]|]+)(?:\|([^\]]+))?\]\]", value)
+    if link:
+        cleaned = (link.group(2) or link.group(1)).strip()
+    else:
+        cleaned = re.sub(r"[\[\]']", "", value).strip()
+    return cleaned[:120] or None
 
 
 def _province_lookup() -> dict[str, str]:
@@ -537,6 +556,15 @@ def _parse_article(wikitext: str) -> list[ClaimDraft]:
         if decimal:
             drafts.append(draft("latitude", decimal.group(0)[:120], decimal.group(1)))
             drafts.append(draft("longitude", decimal.group(0)[:120], decimal.group(2)))
+
+    operator = _INFOBOX_OPERATOR.search(wikitext)
+    if operator:
+        company = _clean_org_wikitext(operator.group(1))
+        if company:
+            org_draft = draft("operator_organization", operator.group(0)[:160], company)
+            org_draft.claim_subject_type = "organization"
+            org_draft.notes = {"role": "operator"}
+            drafts.append(org_draft)
 
     # Cause axes: the infobox `tür=` value, else the first type phrase in the
     # lead (text before the first section heading) — deterministic phrase

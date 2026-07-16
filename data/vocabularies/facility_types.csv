@@ -1,0 +1,9 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+mine_underground,yeraltı madeni,underground mine,Underground mining operation,coal galleries,1.0,,
+mine_openpit,açık ocak,open-pit mine,Open-pit or open-cast mining operation,lignite open casts,1.0,,
+mine_unspecified,maden (türü belirtilmemiş),mine (type unspecified),Mining operation whose working method the source does not state,,1.0,,honest default when sources say only "mine"
+quarry,taş ocağı,quarry,Quarrying operation for stone/aggregate/marble,marble quarries,1.0,,
+processing_plant,zenginleştirme/işleme tesisi,processing plant,Mineral preparation or processing facility,coal washing plants,1.0,,
+tailings_facility,atık (tailings) tesisi,tailings facility,Tailings storage or heap-leach facility,tailings dams,1.0,,
+unknown,bilinmiyor,unknown,Facility type not determinable,,1.0,,
+other,diğer,other,Facility outside listed categories,,1.0,,requires an explanatory note

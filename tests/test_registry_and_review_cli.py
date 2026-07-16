@@ -17,15 +17,25 @@ runner = CliRunner()
 def test_registry_csv_loads_and_upserts(conn: sqlite3.Connection) -> None:
     csv_path = REPO_ROOT / "docs" / "source_registry.csv"
     created, updated = provenance.import_source_registry(conn, csv_path)
-    assert created == 12 and updated == 0
+    assert created == 15 and updated == 0
 
     keys = {row["source_key"] for row in conn.execute("SELECT source_key FROM source_registry")}
-    assert {"tbmm", "sgk", "manual", "isig_meclisi", "wikidata", "wikipedia"} <= keys
+    assert {
+        "tbmm",
+        "sgk",
+        "manual",
+        "isig_meclisi",
+        "wikidata",
+        "wikipedia",
+        "wikidata_sites",
+        "gem_tracker",
+        "mapeg",
+    } <= keys
 
     # Second run updates in place instead of duplicating.
     created, updated = provenance.import_source_registry(conn, csv_path)
-    assert created == 0 and updated == 12
-    assert conn.execute("SELECT COUNT(*) FROM source_registry").fetchone()[0] == 12
+    assert created == 0 and updated == 15
+    assert conn.execute("SELECT COUNT(*) FROM source_registry").fetchone()[0] == 15
 
 
 def test_registry_entries_flagged_stale_by_qc(conn: sqlite3.Connection) -> None:
@@ -34,7 +44,7 @@ def test_registry_entries_flagged_stale_by_qc(conn: sqlite3.Connection) -> None:
     provenance.import_source_registry(conn, REPO_ROOT / "docs" / "source_registry.csv")
     findings = quality.check_source_registry_freshness(conn, "2100-01-01T00:00:00Z")
     # Unassessed entries + assessments stale relative to the pinned clock.
-    assert len(findings) == 12
+    assert len(findings) == 15
     assert all(f.check_id == "QC-W05" for f in findings)
 
 
@@ -49,7 +59,7 @@ def test_import_registry_command(tmp_path: Path) -> None:
     db = _cli_db(tmp_path)
     result = runner.invoke(app, ["import-registry", "--db-path", str(db)])
     assert result.exit_code == 0, result.output
-    assert "12 created" in result.output
+    assert "15 created" in result.output
 
 
 def test_decide_assign_merge_flow(tmp_path: Path) -> None:

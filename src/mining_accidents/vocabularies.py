@@ -43,6 +43,8 @@ VOCABULARY_FILES: dict[str, str] = {
     "coordinate_precisions": "coordinate_precisions.csv",
     "turkey_admin_areas": "turkey_admin_areas.csv",
     "nace_versions": "nace_versions.csv",
+    "facility_types": "facility_types.csv",
+    "commodities": "commodities.csv",
 }
 
 #: classification_system value -> vocabulary backing its codes.

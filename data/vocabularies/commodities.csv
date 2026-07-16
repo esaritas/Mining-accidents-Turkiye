@@ -1,0 +1,15 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+coal,taş kömürü,hard coal,Hard coal / bituminous coal,,1.0,,
+lignite,linyit,lignite,Lignite / brown coal,,1.0,,
+chromium,krom,chromium,Chromite / chromium ore,,1.0,,
+iron,demir,iron ore,Iron ore,,1.0,,
+copper,bakır,copper,Copper ore,,1.0,,
+gold,altın,gold,Gold ore,,1.0,,
+silver,gümüş,silver,Silver ore,,1.0,,
+zinc,çinko,zinc,Zinc ore,,1.0,,
+lead,kurşun,lead,Lead ore,,1.0,,
+phosphate,fosfat,phosphate,Phosphate rock,,1.0,,
+boron,bor,boron,Boron minerals,,1.0,,
+marble,mermer,marble,Marble and dimension stone,,1.0,,
+unknown,bilinmiyor,unknown,Commodity not determinable from sources,,1.0,,
+other,diğer,other,Commodity outside listed categories,,1.0,,label carried in commodity_label

@@ -1009,7 +1009,7 @@ window.MINING_DATA = {
       }
     ]
   },
-  "export_timestamp": "2026-07-14T17:40:21Z",
+  "export_timestamp": "2026-07-16T11:10:41Z",
   "incidents": [
     {
       "canonical_title_en": null,
@@ -2276,15 +2276,207 @@ window.MINING_DATA = {
         "x": 258.0,
         "y": 36.6
       }
+    ],
+    "siteMarks": [
+      {
+        "ref": "wikidata:Q114678822",
+        "x": 252.2,
+        "y": 31.1
+      },
+      {
+        "ref": "wikidata:Q137925109",
+        "x": 325.6,
+        "y": 36.0
+      },
+      {
+        "ref": "wikidata:Q137942956",
+        "x": 516.6,
+        "y": 179.6
+      },
+      {
+        "ref": "wikidata:Q139421918",
+        "x": 34.0,
+        "y": 123.4
+      },
+      {
+        "ref": "wikidata:Q139423910",
+        "x": 97.2,
+        "y": 181.4
+      },
+      {
+        "ref": "wikidata:Q139436433",
+        "x": 186.7,
+        "y": 217.0
+      },
+      {
+        "ref": "wikidata:Q139436487",
+        "x": 184.7,
+        "y": 249.4
+      },
+      {
+        "ref": "wikidata:Q15849063",
+        "x": 359.8,
+        "y": 119.0
+      },
+      {
+        "ref": "wikidata:Q16509436",
+        "x": 137.7,
+        "y": 180.3
+      },
+      {
+        "ref": "wikidata:Q16833789",
+        "x": 473.0,
+        "y": 136.8
+      },
+      {
+        "ref": "wikidata:Q16837830",
+        "x": 79.6,
+        "y": 152.8
+      },
+      {
+        "ref": "wikidata:Q16950520",
+        "x": 79.6,
+        "y": 152.8
+      },
+      {
+        "ref": "wikidata:Q16950634",
+        "x": 543.8,
+        "y": 224.7
+      },
+      {
+        "ref": "wikidata:Q16957840",
+        "x": 450.5,
+        "y": 158.5
+      },
+      {
+        "ref": "wikidata:Q16958957",
+        "x": 185.8,
+        "y": 142.8
+      },
+      {
+        "ref": "wikidata:Q16958967",
+        "x": 421.5,
+        "y": 186.7
+      },
+      {
+        "ref": "wikidata:Q23755156",
+        "x": 59.8,
+        "y": 146.8
+      },
+      {
+        "ref": "wikidata:Q31191435",
+        "x": 59.9,
+        "y": 189.2
+      },
+      {
+        "ref": "wikidata:Q4705477",
+        "x": 361.3,
+        "y": 223.3
+      },
+      {
+        "ref": "wikidata:Q49099415",
+        "x": 101.3,
+        "y": 135.2
+      },
+      {
+        "ref": "wikidata:Q49408861",
+        "x": 646.5,
+        "y": 143.4
+      },
+      {
+        "ref": "wikidata:Q49410841",
+        "x": 538.8,
+        "y": 225.3
+      },
+      {
+        "ref": "wikidata:Q49413427",
+        "x": 149.1,
+        "y": 127.2
+      },
+      {
+        "ref": "wikidata:Q49413429",
+        "x": 82.5,
+        "y": 149.8
+      },
+      {
+        "ref": "wikidata:Q49422733",
+        "x": 495.3,
+        "y": 93.9
+      },
+      {
+        "ref": "wikidata:Q49453128",
+        "x": 592.6,
+        "y": 224.3
+      },
+      {
+        "ref": "wikidata:Q49460136",
+        "x": 456.9,
+        "y": 137.0
+      },
+      {
+        "ref": "wikidata:Q49460138",
+        "x": 612.4,
+        "y": 226.1
+      },
+      {
+        "ref": "wikidata:Q49460147",
+        "x": 279.6,
+        "y": 167.4
+      },
+      {
+        "ref": "wikidata:Q49460268",
+        "x": 564.0,
+        "y": 207.3
+      },
+      {
+        "ref": "wikidata:Q49460391",
+        "x": 585.4,
+        "y": 207.7
+      },
+      {
+        "ref": "wikidata:Q49460461",
+        "x": 268.3,
+        "y": 264.5
+      },
+      {
+        "ref": "wikidata:Q6009374",
+        "x": 503.9,
+        "y": 87.4
+      },
+      {
+        "ref": "wikidata:Q61074517",
+        "x": 503.9,
+        "y": 87.4
+      },
+      {
+        "ref": "wikidata:Q64699212",
+        "x": 123.1,
+        "y": 214.9
+      },
+      {
+        "ref": "wikidata:Q8077429",
+        "x": 582.4,
+        "y": 53.1
+      },
+      {
+        "ref": "wikidata:Q8077449",
+        "x": 86.4,
+        "y": 180.5
+      },
+      {
+        "ref": "wikidata:Q99791861",
+        "x": 328.6,
+        "y": 166.8
+      }
     ]
   },
   "pipeline": {
     "claims_awaiting_review": 10,
-    "claims_total": 435,
+    "claims_total": 958,
     "decisions_total": 313,
     "published_incidents": 46,
     "records_in_review": 32,
-    "source_documents": 28
+    "source_documents": 106
   },
   "policy_events": [
     {
@@ -2787,5 +2979,1073 @@ window.MINING_DATA = {
       "year": null
     }
   ],
-  "schema_version": "001"
+  "schema_version": "002",
+  "sites": [
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 41.723056,
+      "longitude": 32.350278,
+      "name": "Amasra Kömür Madeni",
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Türkiye",
+          "name": "Türkiye Taşkömürü Kurumu",
+          "role": "operator"
+        }
+      ],
+      "province_code": "74",
+      "ref": "wikidata:Q114678822",
+      "source_url": "https://www.wikidata.org/wiki/Q114678822",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Sorgun coal mine",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q117471695",
+      "source_url": "https://www.wikidata.org/wiki/Q117471695",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "South Aegean coal mines",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q118874645",
+      "source_url": "https://www.wikidata.org/wiki/Q118874645",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Tunçbilek coal mine",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q118874850",
+      "source_url": "https://www.wikidata.org/wiki/Q118874850",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Collum Coal Mine",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q121494242",
+      "source_url": "https://www.wikidata.org/wiki/Q121494242",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Ömerler coal mine",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q122237641",
+      "source_url": "https://www.wikidata.org/wiki/Q122237641",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Kınık coal mine",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q122790689",
+      "source_url": "https://www.wikidata.org/wiki/Q122790689",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "other",
+      "commodity_label": "Platin",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 41.618,
+      "longitude": 34.401,
+      "name": "Gokirmak",
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Türkiye",
+          "name": "Acacia Maden İşletmeleri A.Ş.",
+          "role": "operator"
+        }
+      ],
+      "province_code": "",
+      "ref": "wikidata:Q137925109",
+      "source_url": "https://www.wikidata.org/wiki/Q137925109",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "other",
+      "commodity_label": "Kobalt",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.495,
+      "longitude": 39.74,
+      "name": "Kapin",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q137942956",
+      "source_url": "https://www.wikidata.org/wiki/Q137942956",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.717598,
+      "longitude": 26.249405,
+      "name": "Antik Taş Ocağı (Kayacık)",
+      "organizations": [],
+      "province_code": "17",
+      "ref": "wikidata:Q139421918",
+      "source_url": "https://www.wikidata.org/wiki/Q139421918",
+      "status": "unknown",
+      "type": "quarry"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.456881,
+      "longitude": 28.016055,
+      "name": "Kısıklı Deresi Antik Taş Ocağı",
+      "organizations": [],
+      "province_code": "45",
+      "ref": "wikidata:Q139423910",
+      "source_url": "https://www.wikidata.org/wiki/Q139423910",
+      "status": "unknown",
+      "type": "quarry"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 37.68174,
+      "longitude": 30.51893,
+      "name": "Sagalassos Taş Ocağı",
+      "organizations": [],
+      "province_code": "15",
+      "ref": "wikidata:Q139436433",
+      "source_url": "https://www.wikidata.org/wiki/Q139436433",
+      "status": "unknown",
+      "type": "quarry"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 36.978725,
+      "longitude": 30.462008,
+      "name": "Termessos Antik Taş Ocağı",
+      "organizations": [],
+      "province_code": "07",
+      "ref": "wikidata:Q139436487",
+      "source_url": "https://www.wikidata.org/wiki/Q139436487",
+      "status": "unknown",
+      "type": "quarry"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.8132,
+      "longitude": 35.3578,
+      "name": "Karakız Taş Ocağı",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q15849063",
+      "source_url": "https://www.wikidata.org/wiki/Q15849063",
+      "status": "unknown",
+      "type": "quarry"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Afşin-C coal mine",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q16002015",
+      "source_url": "https://www.wikidata.org/wiki/Q16002015",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Afşin-D coal mine",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q16002017",
+      "source_url": "https://www.wikidata.org/wiki/Q16002017",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Afşin-E coal mine",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q16002019",
+      "source_url": "https://www.wikidata.org/wiki/Q16002019",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Armutçuk Kömür Madeni",
+      "organizations": [],
+      "province_code": "67",
+      "ref": "wikidata:Q16251758",
+      "source_url": "https://www.wikidata.org/wiki/Q16251758",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "copper",
+      "commodity_label": "copper",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Cevizlidere mine",
+      "organizations": [],
+      "province_code": "62",
+      "ref": "wikidata:Q16256069",
+      "source_url": "https://www.wikidata.org/wiki/Q16256069",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Çöllolar Kömür Madeni",
+      "organizations": [],
+      "province_code": "46",
+      "ref": "wikidata:Q16258699",
+      "source_url": "https://www.wikidata.org/wiki/Q16258699",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "gold",
+      "commodity_label": "gold",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.4813,
+      "longitude": 29.1498,
+      "name": "Kışladağ altın madeni",
+      "organizations": [],
+      "province_code": "64",
+      "ref": "wikidata:Q16509436",
+      "source_url": "https://www.wikidata.org/wiki/Q16509436",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "boron",
+      "commodity_label": "boron",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Bigadiç Madeni",
+      "organizations": [],
+      "province_code": "10",
+      "ref": "wikidata:Q16827283",
+      "source_url": "https://www.wikidata.org/wiki/Q16827283",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "copper",
+      "commodity_label": "copper",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.426,
+      "longitude": 38.522,
+      "name": "Çöpler Altın Madeni",
+      "organizations": [],
+      "province_code": "24",
+      "ref": "wikidata:Q16833789",
+      "source_url": "https://www.wikidata.org/wiki/Q16833789",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Deniş coal mine",
+      "organizations": [],
+      "province_code": "45",
+      "ref": "wikidata:Q16834934",
+      "source_url": "https://www.wikidata.org/wiki/Q16834934",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Ereğli coal mine",
+      "organizations": [],
+      "province_code": "67",
+      "ref": "wikidata:Q16837106",
+      "source_url": "https://www.wikidata.org/wiki/Q16837106",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.077194,
+      "longitude": 27.525258,
+      "name": "Eynez kömür ocağı",
+      "organizations": [],
+      "province_code": "45",
+      "ref": "wikidata:Q16837830",
+      "source_url": "https://www.wikidata.org/wiki/Q16837830",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "silver",
+      "commodity_label": "silver",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Gümüşköy mine",
+      "organizations": [],
+      "province_code": "43",
+      "ref": "wikidata:Q16841259",
+      "source_url": "https://www.wikidata.org/wiki/Q16841259",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Karadon coal mine",
+      "organizations": [],
+      "province_code": "67",
+      "ref": "wikidata:Q16852311",
+      "source_url": "https://www.wikidata.org/wiki/Q16852311",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Karapınar Kömür Sahası",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q16852339",
+      "source_url": "https://www.wikidata.org/wiki/Q16852339",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "boron",
+      "commodity_label": "boron",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Emet mine",
+      "organizations": [],
+      "province_code": "43",
+      "ref": "wikidata:Q16947725",
+      "source_url": "https://www.wikidata.org/wiki/Q16947725",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.077194,
+      "longitude": 27.525258,
+      "name": "Soma Kömür Madeni",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q16950520",
+      "source_url": "https://www.wikidata.org/wiki/Q16950520",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "phosphate",
+      "commodity_label": "Fosfat",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 37.5153,
+      "longitude": 40.5014,
+      "name": "Mardin madeni",
+      "organizations": [],
+      "province_code": "47",
+      "ref": "wikidata:Q16950634",
+      "source_url": "https://www.wikidata.org/wiki/Q16950634",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "iron",
+      "commodity_label": "iron ore",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.95444,
+      "longitude": 37.89278,
+      "name": "Hasançelebi Madeni",
+      "organizations": [],
+      "province_code": "58",
+      "ref": "wikidata:Q16957840",
+      "source_url": "https://www.wikidata.org/wiki/Q16957840",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "boron",
+      "commodity_label": "boron",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.295742,
+      "longitude": 30.493194,
+      "name": "Kırka madeni",
+      "organizations": [],
+      "province_code": "26",
+      "ref": "wikidata:Q16958957",
+      "source_url": "https://www.wikidata.org/wiki/Q16958957",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "gold",
+      "commodity_label": "gold",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Kişladağ mine",
+      "organizations": [],
+      "province_code": "64",
+      "ref": "wikidata:Q16958962",
+      "source_url": "https://www.wikidata.org/wiki/Q16958962",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "lignite",
+      "commodity_label": "lignite",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.340685,
+      "longitude": 37.082979,
+      "name": "Kışlaköy Kömür sahası",
+      "organizations": [],
+      "province_code": "46",
+      "ref": "wikidata:Q16958967",
+      "source_url": "https://www.wikidata.org/wiki/Q16958967",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Kozlu coal mine",
+      "organizations": [],
+      "province_code": "67",
+      "ref": "wikidata:Q16959210",
+      "source_url": "https://www.wikidata.org/wiki/Q16959210",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Üzülmez coal mine",
+      "organizations": [],
+      "province_code": "67",
+      "ref": "wikidata:Q16959758",
+      "source_url": "https://www.wikidata.org/wiki/Q16959758",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "other",
+      "commodity_label": "boksit",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Seydişehir mine",
+      "organizations": [],
+      "province_code": "42",
+      "ref": "wikidata:Q16961925",
+      "source_url": "https://www.wikidata.org/wiki/Q16961925",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "gold",
+      "commodity_label": "gold",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.209722,
+      "longitude": 26.971944,
+      "name": "Çukuralan altın madeni",
+      "organizations": [],
+      "province_code": "35",
+      "ref": "wikidata:Q23755156",
+      "source_url": "https://www.wikidata.org/wiki/Q23755156",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "other",
+      "commodity_label": "mangan",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.286667,
+      "longitude": 26.973889,
+      "name": "Efemçukuru altın madeni",
+      "organizations": [],
+      "province_code": "35",
+      "ref": "wikidata:Q31191435",
+      "source_url": "https://www.wikidata.org/wiki/Q31191435",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "chromium",
+      "commodity_label": "chromium",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 37.54649,
+      "longitude": 35.39873,
+      "name": "Aladağ madeni",
+      "organizations": [],
+      "province_code": "01",
+      "ref": "wikidata:Q4705477",
+      "source_url": "https://www.wikidata.org/wiki/Q4705477",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "iron",
+      "commodity_label": "iron ore",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Attepe mine",
+      "organizations": [],
+      "province_code": "51",
+      "ref": "wikidata:Q4818250",
+      "source_url": "https://www.wikidata.org/wiki/Q4818250",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "iron",
+      "commodity_label": "iron ore",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Avnik mine",
+      "organizations": [],
+      "province_code": "12",
+      "ref": "wikidata:Q4829084",
+      "source_url": "https://www.wikidata.org/wiki/Q4829084",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.461944,
+      "longitude": 28.130278,
+      "name": "Şavakçı Maden İşletmesi",
+      "organizations": [],
+      "province_code": "10",
+      "ref": "wikidata:Q49099415",
+      "source_url": "https://www.wikidata.org/wiki/Q49099415",
+      "status": "unknown",
+      "type": "quarry"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.283611,
+      "longitude": 43.372778,
+      "name": "Doğu Anadolu Linyit İşletmesi",
+      "organizations": [],
+      "province_code": "65",
+      "ref": "wikidata:Q49408861",
+      "source_url": "https://www.wikidata.org/wiki/Q49408861",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 37.501944,
+      "longitude": 40.361944,
+      "name": "Etibank Mazıdağı Fosfat İşletmesi",
+      "organizations": [],
+      "province_code": "47",
+      "ref": "wikidata:Q49410841",
+      "source_url": "https://www.wikidata.org/wiki/Q49410841",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.634167,
+      "longitude": 29.466667,
+      "name": "Garp Linyitleri İşletmesi",
+      "organizations": [],
+      "province_code": "43",
+      "ref": "wikidata:Q49413427",
+      "source_url": "https://www.wikidata.org/wiki/Q49413427",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.143056,
+      "longitude": 27.606389,
+      "name": "Garp Linyitleri İşletmesi",
+      "organizations": [],
+      "province_code": "45",
+      "ref": "wikidata:Q49413429",
+      "source_url": "https://www.wikidata.org/wiki/Q49413429",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 40.359167,
+      "longitude": 39.145,
+      "name": "Karadağ Madeni",
+      "organizations": [],
+      "province_code": "29",
+      "ref": "wikidata:Q49422733",
+      "source_url": "https://www.wikidata.org/wiki/Q49422733",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 37.524167,
+      "longitude": 41.864167,
+      "name": "Süvari Ocak",
+      "organizations": [],
+      "province_code": "73",
+      "ref": "wikidata:Q49453128",
+      "source_url": "https://www.wikidata.org/wiki/Q49453128",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.422536,
+      "longitude": 38.072862,
+      "name": "Çürek Maden İşletmesi",
+      "organizations": [],
+      "province_code": "58",
+      "ref": "wikidata:Q49460136",
+      "source_url": "https://www.wikidata.org/wiki/Q49460136",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 37.484722,
+      "longitude": 42.419167,
+      "name": "Şırnak Kömür Ocakları",
+      "organizations": [],
+      "province_code": "73",
+      "ref": "wikidata:Q49460138",
+      "source_url": "https://www.wikidata.org/wiki/Q49460138",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "other",
+      "commodity_label": "rock salt",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.760278,
+      "longitude": 33.115556,
+      "name": "Yavşan Tuzlası",
+      "organizations": [],
+      "province_code": "42",
+      "ref": "wikidata:Q49460147",
+      "source_url": "https://www.wikidata.org/wiki/Q49460147",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 37.8925,
+      "longitude": 41.065278,
+      "name": "Kamilintuğla Ocağı",
+      "organizations": [],
+      "province_code": "72",
+      "ref": "wikidata:Q49460268",
+      "source_url": "https://www.wikidata.org/wiki/Q49460268",
+      "status": "unknown",
+      "type": "quarry"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 37.885556,
+      "longitude": 41.663889,
+      "name": "Taş Ocağı",
+      "organizations": [],
+      "province_code": "56",
+      "ref": "wikidata:Q49460391",
+      "source_url": "https://www.wikidata.org/wiki/Q49460391",
+      "status": "unknown",
+      "type": "quarry"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 36.65,
+      "longitude": 32.798889,
+      "name": "Ermenek Kömür İşletmesi",
+      "organizations": [],
+      "province_code": "70",
+      "ref": "wikidata:Q49460461",
+      "source_url": "https://www.wikidata.org/wiki/Q49460461",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "copper",
+      "commodity_label": "copper",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Damar mine",
+      "organizations": [],
+      "province_code": "08",
+      "ref": "wikidata:Q5211983",
+      "source_url": "https://www.wikidata.org/wiki/Q5211983",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "iron",
+      "commodity_label": "iron ore",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Divriği A-Kafa mine",
+      "organizations": [],
+      "province_code": "58",
+      "ref": "wikidata:Q5284687",
+      "source_url": "https://www.wikidata.org/wiki/Q5284687",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "iron",
+      "commodity_label": "iron ore",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Divriği B-Kafa mine",
+      "organizations": [],
+      "province_code": "58",
+      "ref": "wikidata:Q5284688",
+      "source_url": "https://www.wikidata.org/wiki/Q5284688",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "gold",
+      "commodity_label": "gold",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 40.501,
+      "longitude": 39.387,
+      "name": "Mastra altın madeni",
+      "organizations": [],
+      "province_code": "29",
+      "ref": "wikidata:Q6009374",
+      "source_url": "https://www.wikidata.org/wiki/Q6009374",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "coal",
+      "commodity_label": "coal",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Silopi asphaltite mine",
+      "organizations": [],
+      "province_code": "73",
+      "ref": "wikidata:Q60745269",
+      "source_url": "https://www.wikidata.org/wiki/Q60745269",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 40.501,
+      "longitude": 39.387,
+      "name": "Sart altın madeni",
+      "organizations": [],
+      "province_code": "45",
+      "ref": "wikidata:Q61074517",
+      "source_url": "https://www.wikidata.org/wiki/Q61074517",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "phosphate",
+      "commodity_label": "Fosfat",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Kasrık mine",
+      "organizations": [],
+      "province_code": "47",
+      "ref": "wikidata:Q6374695",
+      "source_url": "https://www.wikidata.org/wiki/Q6374695",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "iron",
+      "commodity_label": "iron ore",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Kesikköprü mine",
+      "organizations": [],
+      "province_code": "40",
+      "ref": "wikidata:Q6395082",
+      "source_url": "https://www.wikidata.org/wiki/Q6395082",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "",
+      "commodity_label": "",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 37.7275,
+      "longitude": 28.74139,
+      "name": "Afrodisias Mermer Ocakları",
+      "organizations": [],
+      "province_code": "09",
+      "ref": "wikidata:Q64699212",
+      "source_url": "https://www.wikidata.org/wiki/Q64699212",
+      "status": "unknown",
+      "type": "quarry"
+    },
+    {
+      "commodity_code": "zinc",
+      "commodity_label": "zinc",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Murgul bakır madeni",
+      "organizations": [],
+      "province_code": "08",
+      "ref": "wikidata:Q6938476",
+      "source_url": "https://www.wikidata.org/wiki/Q6938476",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "chromium",
+      "commodity_label": "chromium",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Orhaneli mine",
+      "organizations": [],
+      "province_code": "16",
+      "ref": "wikidata:Q7102181",
+      "source_url": "https://www.wikidata.org/wiki/Q7102181",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "copper",
+      "commodity_label": "copper",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Tirebolu mine",
+      "organizations": [],
+      "province_code": "28",
+      "ref": "wikidata:Q7809175",
+      "source_url": "https://www.wikidata.org/wiki/Q7809175",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "other",
+      "commodity_label": "mangan",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Ulukent mine",
+      "organizations": [],
+      "province_code": "20",
+      "ref": "wikidata:Q7880800",
+      "source_url": "https://www.wikidata.org/wiki/Q7880800",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "copper",
+      "commodity_label": "copper",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 41.245547,
+      "longitude": 41.580248,
+      "name": "Çakmakkaya bakır madeni",
+      "organizations": [],
+      "province_code": "08",
+      "ref": "wikidata:Q8077429",
+      "source_url": "https://www.wikidata.org/wiki/Q8077429",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "other",
+      "commodity_label": "nikel",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.475,
+      "longitude": 27.713889,
+      "name": "Çaldağ madeni",
+      "organizations": [],
+      "province_code": "45",
+      "ref": "wikidata:Q8077449",
+      "source_url": "https://www.wikidata.org/wiki/Q8077449",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "silver",
+      "commodity_label": "silver",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Çayeli bakır madeni",
+      "organizations": [],
+      "province_code": "53",
+      "ref": "wikidata:Q8077592",
+      "source_url": "https://www.wikidata.org/wiki/Q8077592",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "gold",
+      "commodity_label": "gold",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Öksüt altın madeni",
+      "organizations": [],
+      "province_code": "",
+      "ref": "wikidata:Q97236653",
+      "source_url": "https://www.wikidata.org/wiki/Q97236653",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "other",
+      "commodity_label": "rock salt",
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.773155,
+      "longitude": 34.485397,
+      "name": "Gülşehir Tuz Madeni",
+      "organizations": [],
+      "province_code": "50",
+      "ref": "wikidata:Q99791861",
+      "source_url": "https://www.wikidata.org/wiki/Q99791861",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    }
+  ]
 };

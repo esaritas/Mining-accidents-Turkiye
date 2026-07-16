@@ -194,6 +194,35 @@ def ingest_wikidata_cmd(
         )
 
 
+@app.command("ingest-sites")
+def ingest_sites_cmd(
+    db_path: Path = DB_OPTION,
+    reviewer: str = typer.Option(
+        None,
+        help="Human reviewer identity signing off site registrations. Omit to "
+        "ingest evidence only (roles stay pending, no sign-off logged).",
+    ),
+) -> None:
+    """Fetch Wikidata mining-site items into the facilities context registry."""
+    from mining_accidents import ingest_sites
+
+    conn = database.get_connection(db_path)
+    try:
+        summary = ingest_sites.ingest_wikidata_sites(conn, reviewer=reviewer)
+    finally:
+        conn.close()
+    console.print(
+        f"[green]Sites ingest complete[/green] (run {summary.run_id}): "
+        f"{summary.documents} documents, {summary.facilities_created} new facilities "
+        f"({summary.facilities_updated} refreshed), {summary.claims_created} new claims, "
+        f"{summary.organizations_created} organizations, {summary.roles_created} role rows."
+    )
+    console.print(
+        "[yellow]Coverage note:[/yellow] open structured sources document a fraction "
+        "of licensed operations — this layer is labeled partial wherever shown."
+    )
+
+
 @app.command("build-dashboard")
 def build_dashboard(
     db_path: Path = DB_OPTION,

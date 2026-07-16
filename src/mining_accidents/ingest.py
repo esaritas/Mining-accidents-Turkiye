@@ -65,6 +65,7 @@ class IngestSummary:
     claims_created: int = 0
     decisions_recorded: int = 0
     classifications_created: int = 0
+    organization_roles_created: int = 0
     published: list[str] = field(default_factory=list)
     unpublished: dict[str, list[str]] = field(default_factory=dict)
     claims_needing_review: int = 0
@@ -236,6 +237,7 @@ def _decide_incident(
     """Bulk decisions + cause rows + scope for one incident (idempotent)."""
     summary.decisions_recorded += _bulk_decide(conn, incident_id, reviewer)
     summary.classifications_created += _apply_classifications(conn, incident_id, reviewer)
+    summary.organization_roles_created += _apply_organization_roles(conn, incident_id, reviewer)
     _set_scope(conn, incident_id, reviewer)
 
 
@@ -561,6 +563,80 @@ def _apply_classifications(conn: sqlite3.Connection, incident_id: int, reviewer:
             after_summary=f"{system}={code} (claim {claim['claim_id']})",
             notes=_BULK_RATIONALE,
         )
+        created += 1
+    conn.commit()
+    return created
+
+
+def _apply_organization_roles(conn: sqlite3.Connection, incident_id: int, reviewer: str) -> int:
+    """Operator claims -> incident_organization_roles rows.
+
+    Corroboration threshold (editorial protocol §2): the role row is marked
+    ``reviewed`` — and therefore exportable — only when >= 2 distinct source
+    documents assert the same normalized company for this incident. A single
+    assertion stays ``pending`` (recorded, never published). Assertion status
+    is always ``reported``: an operator role is who ran the site, never a
+    statement of legal responsibility.
+    """
+    from mining_accidents.ingest_sites import _upsert_organization
+
+    claims = conn.execute(
+        """
+        SELECT claim_id, source_document_id, normalized_value FROM claims
+        WHERE incident_id = ? AND claim_subject_type = 'organization'
+          AND field_name = 'operator_organization' AND normalized_value IS NOT NULL
+        ORDER BY claim_id
+        """,
+        (incident_id,),
+    ).fetchall()
+    groups: dict[str, list[sqlite3.Row]] = {}
+    for claim in claims:
+        groups.setdefault(normalize_tr(claim["normalized_value"]), []).append(claim)
+
+    created = 0
+    for _, group in sorted(groups.items()):
+        corroborated = len({c["source_document_id"] for c in group}) >= 2
+        status = "reviewed" if corroborated else "pending"
+        org_id, _ = _upsert_organization(conn, group[0]["normalized_value"], None, None, None)
+        existing = conn.execute(
+            "SELECT incident_organization_role_id, review_status FROM "
+            "incident_organization_roles WHERE incident_id = ? AND organization_id = ? "
+            "AND role = 'operator'",
+            (incident_id, org_id),
+        ).fetchone()
+        if existing:
+            if corroborated and existing["review_status"] == "pending":
+                conn.execute(
+                    "UPDATE incident_organization_roles SET review_status = 'reviewed' "
+                    "WHERE incident_organization_role_id = ?",
+                    (existing["incident_organization_role_id"],),
+                )
+                review.log_review_action(
+                    conn,
+                    reviewer,
+                    "organization_role_corroborated",
+                    "incident",
+                    incident_id,
+                    after_summary=f"operator={group[0]['normalized_value']} (>=2 sources)",
+                )
+            continue
+        conn.execute(
+            "INSERT INTO incident_organization_roles (incident_id, organization_id, role, "
+            "source_claim_id, assertion_status, review_status) VALUES (?, ?, 'operator', ?, "
+            "'reported', ?)",
+            (incident_id, org_id, group[0]["claim_id"], status),
+        )
+        if corroborated:
+            review.log_review_action(
+                conn,
+                reviewer,
+                "organization_role_added",
+                "incident",
+                incident_id,
+                after_summary=f"operator={group[0]['normalized_value']} "
+                f"({len(group)} claims, corroborated)",
+                notes=_BULK_RATIONALE,
+            )
         created += 1
     conn.commit()
     return created

@@ -163,7 +163,9 @@ CREATE TABLE facilities (
     notes TEXT,
     created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
     updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
-);
+, commodity_code TEXT, commodity_label TEXT, operational_status TEXT
+    CHECK (operational_status IS NULL OR operational_status IN
+        ('operating', 'closed', 'proposed', 'unknown')), external_ref TEXT);
 
 CREATE TABLE facility_aliases (
     alias_id INTEGER PRIMARY KEY,
@@ -177,6 +179,25 @@ CREATE TABLE facility_aliases (
     source_claim_id INTEGER REFERENCES claims (claim_id),
     created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
     updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
+);
+
+CREATE TABLE facility_organization_roles (
+    facility_organization_role_id INTEGER PRIMARY KEY,
+    facility_id INTEGER NOT NULL REFERENCES facilities (facility_id),
+    organization_id INTEGER NOT NULL REFERENCES organizations (organization_id),
+    role TEXT NOT NULL CHECK (role IN ('operator', 'owner', 'licence_holder')),
+    valid_from TEXT,
+    valid_to TEXT,
+    source_claim_id INTEGER NOT NULL REFERENCES claims (claim_id),
+    assertion_status TEXT NOT NULL DEFAULT 'unknown' CHECK (assertion_status IN
+        ('reported', 'alleged', 'preliminary_finding', 'technical_finding',
+         'official_finding', 'judicial_finding', 'disputed', 'withdrawn', 'unknown')),
+    review_status TEXT NOT NULL DEFAULT 'pending' CHECK (review_status IN
+        ('pending', 'needs_review', 'reviewed')),
+    notes TEXT,
+    created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
+    updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
+    UNIQUE (facility_id, organization_id, role)
 );
 
 CREATE TABLE incident_classifications (
@@ -310,7 +331,7 @@ CREATE TABLE organizations (
     notes TEXT,
     created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
     updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
-);
+, country_code TEXT, country_label TEXT, external_ref TEXT);
 
 CREATE TABLE recommendations (
     recommendation_id INTEGER PRIMARY KEY,
@@ -398,6 +419,8 @@ CREATE INDEX idx_claims_incident_field ON claims (incident_id, field_name);
 
 CREATE INDEX idx_claims_source_document ON claims (source_document_id);
 
+CREATE INDEX idx_facilities_external_ref ON facilities (external_ref);
+
 CREATE INDEX idx_facility_aliases_normalized ON facility_aliases (alias_normalized);
 
 CREATE INDEX idx_incidents_province ON incidents (province_code);
@@ -407,6 +430,8 @@ CREATE INDEX idx_incidents_publication_status ON incidents (publication_status);
 CREATE INDEX idx_incidents_start ON incidents (incident_start_datetime);
 
 CREATE INDEX idx_organization_aliases_normalized ON organization_aliases (alias_normalized);
+
+CREATE INDEX idx_organizations_external_ref ON organizations (external_ref);
 
 CREATE INDEX idx_source_documents_hash ON source_documents (content_hash);
 
@@ -485,6 +510,13 @@ AFTER UPDATE ON facilities
 BEGIN
     UPDATE facilities SET updated_at = strftime('%Y-%m-%dT%H:%M:%SZ', 'now')
     WHERE facility_id = NEW.facility_id;
+END;
+
+CREATE TRIGGER trg_facility_organization_roles_updated_at
+AFTER UPDATE ON facility_organization_roles
+BEGIN
+    UPDATE facility_organization_roles SET updated_at = strftime('%Y-%m-%dT%H:%M:%SZ', 'now')
+    WHERE facility_organization_role_id = NEW.facility_organization_role_id;
 END;
 
 CREATE TRIGGER trg_incident_classifications_updated_at

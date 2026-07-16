@@ -17,14 +17,18 @@
     --surface-1: #fbfbfc; --page: #eef0f2;
     --ink-1: #17181a; --ink-2: #53565a; --ink-muted: #83868b;
     --grid: #e2e4e7; --baseline: #c3c6ca; --border: rgba(23,24,26,.11);
-    --series-1: #2a78d6;
+    --series-1: #2a78d6; --site: #8a8f96;
   }
   * { box-sizing: border-box; }
   body.viz-root {
     margin: 0; background: var(--page); color: var(--ink-1);
     font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
   }
-  main { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+  main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 56px; }
+  nav.anchors { display: flex; gap: 18px; font-size: 13px; color: var(--ink-muted);
+                padding: 0 0 18px; flex-wrap: wrap; }
+  nav.anchors a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid transparent; }
+  nav.anchors a:hover { border-bottom-color: var(--ink-2); }
   header.page h1 { font-size: 24px; margin: 0 0 4px; font-weight: 650; text-wrap: balance; }
   header.page p.lede { color: var(--ink-2); margin: 0; max-width: 70ch; }
   header.page p.note { color: var(--ink-muted); font-size: 13px; max-width: 78ch; }
@@ -33,24 +37,51 @@
                color: var(--ink-2); font-size: 14px; max-width: 72ch; }
   #onthisday b { color: var(--ink-1); }
 
-  /* ---- Hero: one mark = one person ------------------------------------- */
-  .hero { margin: 34px 0 10px; }
-  .hero .statement { font-size: 21px; line-height: 1.45; max-width: 62ch;
-                     text-wrap: balance; margin: 0 0 18px; }
-  .hero .statement b { font-weight: 700; }
-  .hero .statement .n { color: var(--series-1); font-weight: 700; }
-  .markfield { display: flex; flex-wrap: wrap; gap: 3px; position: relative;
-               animation: rise .9s ease-out; }
-  @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .markfield { animation: none; } }
-  .mark { width: 7px; height: 10px; border-radius: 2px; background: var(--series-1); }
+  /* ---- Story prologue: pinned marks canvas + scrolling chapters ---------- */
+  #story { position: relative; margin: 26px 0 8px; }
+  .stage { position: sticky; top: 0; height: 100vh; height: 100svh;
+           display: flex; flex-direction: column; justify-content: center;
+           gap: 14px; z-index: 0; }
+  .stage .era-label { color: var(--ink-muted); font-size: 13px; letter-spacing: .08em;
+                      text-transform: uppercase; min-height: 1.4em; }
+  .stage .era-count { color: var(--ink-2); font-size: 14px; min-height: 1.5em; }
+  .stage .era-count b { color: var(--ink-1); }
+  .chapters { position: relative; z-index: 1; margin-top: -100vh; margin-top: -100svh; }
+  .chapter { min-height: 95vh; display: flex; align-items: center; }
+  .chapter.tall { min-height: 110vh; }
+  .chapter .card { background: rgba(251,251,252,.94); border: 1px solid var(--border);
+                   border-radius: 12px; padding: 20px 22px; max-width: 46ch;
+                   box-shadow: 0 6px 24px rgba(23,24,26,.07); }
+  .chapter .card p { margin: 0; font-size: 17px; line-height: 1.6; }
+  .chapter .card p + p { margin-top: 10px; }
+  .chapter .card .k { font-size: 21px; font-weight: 650; line-height: 1.4; }
+  .chapter .card .n { color: var(--series-1); font-weight: 700; }
+  .chapter .card .quiet { color: var(--ink-2); font-size: 14.5px; }
+  .chapter .card .src { color: var(--ink-muted); font-size: 12.5px; margin-top: 12px; }
+  .chapter.first .card { background: none; border: none; box-shadow: none; padding: 0; }
+  .chapter.first .card .k { font-size: 26px; max-width: 30ch; text-wrap: balance; }
+  .scrollhint { color: var(--ink-muted); font-size: 13px; margin-top: 16px; }
+
+  .markfield { display: flex; flex-wrap: wrap; gap: 3px; position: relative; }
+  .mark { width: 7px; height: 10px; border-radius: 2px; background: var(--series-1);
+          transition: opacity .55s ease; }
+  .mark.off { opacity: 0; }
   .mark.dim { opacity: .25; }
-  .mark.lit { outline: 1px solid var(--ink-1); }
+  .stage.focus .mark { opacity: .08; }
+  .stage.focus .mark.focal { opacity: 1; }
   .mark.ghost { background: none; border: 1px solid var(--ink-muted); opacity: .75; }
-  .hero .gapline { color: var(--ink-2); font-size: 15px; max-width: 68ch;
-                   margin: 26px 0 14px; }
-  .hero .gapline b { color: var(--ink-1); }
-  .hero .fieldnote { color: var(--ink-muted); font-size: 12.5px; margin: 8px 0 0; }
+  .stage .ghostfield { display: none; }
+  .stage .ghostfield.show { display: flex; }
+  .stage .fieldnote { color: var(--ink-muted); font-size: 12.5px; min-height: 1.4em; }
+  @media (prefers-reduced-motion: reduce) {
+    .stage { position: static; height: auto; }
+    .chapters { margin-top: 0; }
+    .chapter, .chapter.tall { min-height: 0; margin: 22px 0; }
+    .mark { transition: none; }
+    .mark.off { opacity: 1; }
+    .stage.focus .mark { opacity: 1; }
+    .stage .ghostfield { display: flex; }
+  }
 
   .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
            gap: 12px; margin: 26px 0; }
@@ -60,10 +91,39 @@
   .tile .label { color: var(--ink-2); font-size: 13px; margin-top: 2px; }
   .tile .sub { color: var(--ink-muted); font-size: 12px; }
 
+  /* ---- Filter bar --------------------------------------------------------- */
+  #filters { position: sticky; top: 0; z-index: 50; background: var(--page);
+             border-bottom: 1px solid var(--border); padding: 10px 0;
+             display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  #filters label { font-size: 12.5px; color: var(--ink-2); display: flex;
+                   flex-direction: column; gap: 2px; }
+  #filters select { font: 13px system-ui, sans-serif; color: var(--ink-1);
+                    background: var(--surface-1); border: 1px solid var(--baseline);
+                    border-radius: 7px; padding: 5px 8px; max-width: 180px; }
+  #filters button { font: 13px system-ui, sans-serif; color: var(--ink-2);
+                    background: var(--surface-1); border: 1px solid var(--baseline);
+                    border-radius: 7px; padding: 5px 12px; cursor: pointer; align-self: end; }
+  #filters button:hover { color: var(--ink-1); }
+  #filter-result { font-size: 13px; color: var(--ink-2); margin-left: auto; }
+  #filter-result b { color: var(--ink-1); }
+
   section.panel { background: var(--surface-1); border: 1px solid var(--border);
                   border-radius: 12px; padding: 18px 18px 14px; margin: 18px 0; }
   section.panel h2 { font-size: 16px; font-weight: 650; margin: 0 0 2px; }
   section.panel p.caption { color: var(--ink-muted); font-size: 13px; margin: 0 0 12px; max-width: 95ch; }
+
+  .layer-toggle { display: flex; gap: 4px; margin: 0 0 10px; flex-wrap: wrap; }
+  .layer-toggle button { font: 13px system-ui, sans-serif; border: 1px solid var(--baseline);
+                         background: var(--surface-1); color: var(--ink-2); cursor: pointer;
+                         padding: 5px 12px; border-radius: 999px; }
+  .layer-toggle button[aria-pressed="true"] { background: var(--ink-1); color: var(--surface-1);
+                                              border-color: var(--ink-1); }
+  .maplegend { display: flex; gap: 18px; font-size: 13px; color: var(--ink-2);
+               margin: 8px 0 0; flex-wrap: wrap; }
+  .maplegend .sw-acc { display: inline-block; width: 11px; height: 11px; border-radius: 50%;
+                       background: var(--series-1); opacity: .85; margin-right: 5px; }
+  .maplegend .sw-site { display: inline-block; width: 9px; height: 9px; background: var(--site);
+                        transform: rotate(45deg); margin-right: 6px; opacity: .8; }
 
   #map { min-height: 320px; border-radius: 8px; background: var(--page); }
   #map-wrap { position: relative; }
@@ -75,13 +135,18 @@
   .svg-pmarker { fill: var(--series-1); fill-opacity: .10; stroke: var(--series-1);
                  stroke-width: 1.6; stroke-dasharray: 4 3; cursor: pointer; }
   .svg-pmarker.is-hover { fill-opacity: .22; }
+  .svg-site { fill: var(--site); fill-opacity: .8; stroke: var(--surface-1);
+              stroke-width: 1; cursor: pointer; }
+  .svg-site.is-hover { fill-opacity: 1; }
+  .site-diamond div { width: 9px; height: 9px; background: var(--site);
+                      transform: rotate(45deg); border: 1px solid #fff; opacity: .85; }
   .leaflet-tile { filter: grayscale(.55); }
   .leaflet-container { font: inherit; }
   .leaflet-popup-content { font: 13px/1.5 system-ui, sans-serif; }
   .leaflet-popup-content b { font-size: 14px; }
   .leaflet-popup-content .meta { color: #52514e; }
 
-  #chart-wrap, #hero-wrap { position: relative; }
+  #chart-wrap { position: relative; }
   #chart-wrap svg { display: block; width: 100%; height: auto; }
   .bar { fill: var(--series-1); }
   .bar.is-hover { filter: brightness(1.12); }
@@ -94,14 +159,14 @@
   .event-line { stroke: var(--ink-2); stroke-width: 1; stroke-dasharray: 2 3; }
   .event-label { fill: var(--ink-2); font-size: 10.5px; }
   td:first-child, td:nth-child(2) { white-space: nowrap; }
-  #tooltip, #hero-tip, #map-tip { position: absolute; pointer-events: none; display: none; z-index: 30;
+  #tooltip, #map-tip { position: absolute; pointer-events: none; display: none; z-index: 30;
              background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px;
              padding: 8px 10px; font-size: 13px; box-shadow: 0 4px 14px rgba(0,0,0,.12);
              min-width: 150px; max-width: 320px; }
-  #tooltip .t-title, #hero-tip .t-title, #map-tip .t-title { font-weight: 650; }
+  #tooltip .t-title, #map-tip .t-title { font-weight: 650; }
   #tooltip .t-row { color: var(--ink-2); display: flex; justify-content: space-between; gap: 14px; }
   #tooltip .t-row .v { font-variant-numeric: tabular-nums; color: var(--ink-1); }
-  #hero-tip .t-meta, #map-tip .t-meta { color: var(--ink-muted); font-size: 12px; }
+  #map-tip .t-meta { color: var(--ink-muted); font-size: 12px; }
 
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
   th { text-align: left; color: var(--ink-2); font-weight: 600; font-size: 13px;
@@ -149,11 +214,21 @@
   footer { color: var(--ink-muted); font-size: 13px; margin-top: 28px; max-width: 82ch; }
   footer a { color: var(--series-1); }
   @media (max-width: 640px) { #map { height: 320px; } .tile .value { font-size: 26px; }
-    .hero .statement { font-size: 18px; } #mechanisms .mrow, #rates .rrow { grid-template-columns: 130px 1fr 48px; } }
+    .chapter .card p { font-size: 15px; } .chapter .card .k { font-size: 18px; }
+    #filters select { max-width: 140px; }
+    #mechanisms .mrow, #rates .rrow { grid-template-columns: 130px 1fr 48px; } }
 </style>
 </head>
 <body class="viz-root">
 <main>
+  <nav class="anchors" aria-label="Sections">
+    <a href="#story">Story</a>
+    <a href="#map-panel">Map</a>
+    <a href="#years">Years</a>
+    <a href="#sites-panel">Active sites</a>
+    <a href="#records-panel">Records</a>
+    <a href="#inaction">If nothing changes</a>
+  </nav>
   <header class="page">
     <h1>Türkiye Mining &amp; Quarrying Accidents — a public record</h1>
     <p class="lede">
@@ -170,37 +245,67 @@
     <div id="onthisday" hidden></div>
   </header>
 
-  <div class="hero">
-    <p class="statement" id="hero-statement"></p>
-    <div id="hero-wrap">
-      <div class="markfield" id="marks" aria-label="One mark for each person who lost their life, grouped by incident"></div>
-      <div id="hero-tip"></div>
+  <!-- ---- Story prologue: one mark = one person, told in chapters -------- -->
+  <section id="story" aria-label="The record, told in order">
+    <div class="stage" id="stage" aria-hidden="true">
+      <div class="era-label" id="era-label"></div>
+      <div class="markfield" id="marks"></div>
+      <div class="ghostfield markfield" id="ghost-marks"></div>
+      <div class="era-count" id="era-count"></div>
+      <div class="fieldnote" id="stage-note"></div>
     </div>
-    <p class="fieldnote">One mark is one person, in published incident records, oldest first.
-      Rest on a group to see the incident.</p>
-    <p class="gapline" id="gapline"></p>
-    <div class="markfield" id="ghost-marks" aria-label="One outlined mark for each counted death that never became a publicly recorded incident"></div>
-    <p class="fieldnote" id="ghost-note"></p>
-  </div>
+    <div class="chapters" id="chapters"></div>
+  </section>
 
   <div class="tiles" id="tiles" role="list"></div>
 
-  <section class="panel">
-    <h2>Where it happened</h2>
+  <!-- ---- Filters: drive the map, the sites layer and both tables -------- -->
+  <div id="filters" role="group" aria-label="Filters for the map and tables">
+    <label>Province
+      <select id="f-province"><option value="">All provinces</option></select>
+    </label>
+    <label>Reported mechanism
+      <select id="f-mechanism"><option value="">All mechanisms</option></select>
+    </label>
+    <label>From
+      <select id="f-from"></select>
+    </label>
+    <label>To
+      <select id="f-to"></select>
+    </label>
+    <label>Site commodity
+      <select id="f-commodity"><option value="">All commodities</option></select>
+    </label>
+    <button id="f-clear" type="button">Clear</button>
+    <span id="filter-result" aria-live="polite"></span>
+  </div>
+
+  <section class="panel" id="map-panel">
+    <h2>Where it happened — and where mining happens</h2>
     <p class="caption">
       Marker area reflects the number of people who died. Solid markers are
       <em>facility-approximate</em> locations — the mine or its vicinity, never an exact
       point. Hollow dashed circles summarize records <em>without published coordinates</em>
-      at their province's reference point — a province-level summary, never an incident
-      location. Select any marker to read what happened.
+      at their province's reference point. Gray diamonds are <em>documented mining sites</em>
+      from open structured sources — a fraction of licensed operations, shown for context.
+      Select any marker to read more.
     </p>
+    <div class="layer-toggle" role="group" aria-label="Map layers">
+      <button type="button" data-layer="accidents" aria-pressed="false">Accidents</button>
+      <button type="button" data-layer="sites" aria-pressed="false">Active sites</button>
+      <button type="button" data-layer="both" aria-pressed="true">Both</button>
+    </div>
     <div id="map-wrap">
-      <div id="map" role="region" aria-label="Map of published mining accident records in Türkiye"></div>
+      <div id="map" role="region" aria-label="Map of published mining accident records and documented mining sites in Türkiye"></div>
       <div id="map-tip"></div>
+    </div>
+    <div class="maplegend" aria-hidden="true">
+      <span><span class="sw-acc"></span> accident record (area = people lost)</span>
+      <span><span class="sw-site"></span> documented mining site (partial coverage)</span>
     </div>
   </section>
 
-  <section class="panel">
+  <section class="panel" id="years">
     <h2>People lost, year by year</h2>
     <p class="caption" id="chart-caption">
       Blue bars: people who died in this register's <em>published incident records</em>.
@@ -208,7 +313,8 @@
       a broader measure, not comparable to the bars. The pale gray columns between them are
       <strong>deaths that were counted but never became a publicly recorded incident</strong>.
       Dashed vertical lines mark public-record events (descriptive only — this chart makes
-      no causal claim). Hover a year for the figures.
+      no causal claim). Hover a year for the figures. The chart always shows the full
+      register; filters above apply to the map and the tables.
     </p>
     <div class="legend" aria-hidden="true">
       <span><span class="swatch bar-swatch"></span> published records (this register)</span>
@@ -243,9 +349,34 @@
     <div id="mechanisms"></div>
   </section>
 
-  <section class="panel">
+  <section class="panel" id="sites-panel">
+    <h2>Documented mining sites</h2>
+    <p class="caption" id="sites-caption">
+      Mining and quarrying sites documented in open structured sources (Wikidata, CC0),
+      registered through the same evidence pipeline as the accident records: every row keeps
+      its source link. <strong>Coverage is partial</strong> — these are the sites open data
+      documents, a fraction of the operations licensed in Türkiye; absence from this table
+      means nothing. Operator and ownership entries appear only where the source states
+      them, with their assertion status; operating status is shown only when the source
+      asserts it. Fuller registers (Global Energy Monitor, MAPEG licence data) are open
+      assessment tasks.
+    </p>
+    <div style="overflow-x:auto">
+      <table id="sites-table">
+        <thead>
+          <tr>
+            <th>Site</th><th>Type</th><th>Commodity</th><th>Province</th>
+            <th>Operator / owner</th><th>Company home country</th><th>Status</th><th>Source</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel" id="records-panel">
     <h2>The records</h2>
-    <p class="caption">The complete table behind everything above.</p>
+    <p class="caption">The complete table behind everything above. Filters apply.</p>
     <div style="overflow-x:auto">
       <table id="records">
         <thead>
@@ -277,9 +408,14 @@
   const fmt = new Intl.NumberFormat("en-US");
   const incidents = D.incidents.slice().sort((a, b) =>
     (a.incident_start_datetime || "").localeCompare(b.incident_start_datetime || ""));
+  const sites = (D.sites || []).slice().sort((a, b) => a.name.localeCompare(b.name, "tr"));
   const totalDeaths = incidents.reduce((s, i) => s + (i.fatalities_current || 0), 0);
   const mechanismsOf = id => (D.classifications[id] || [])
     .filter(c => c.system === "project_event_mechanism");
+  const provinceName = code =>
+    (D.province_centroids[code] || {}).label_tr || code || "";
+  const yearOf = i => +(i.incident_start_datetime || "").slice(0, 4) || null;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const MONTHS = ["January","February","March","April","May","June","July",
                   "August","September","October","November","December"];
@@ -309,110 +445,307 @@
       `${sentence(i)} (${i.public_incident_id}, ${(i.incident_start_datetime || "").slice(0, 4)})`).join(" ");
   }
 
-  // ---- Hero: one mark = one person -------------------------------------------
+  // ---- Story prologue ---------------------------------------------------------
+  // Eras are cumulative chapters; the worst single loss gets its own chapter.
+  const ERAS = [
+    { until: 2000, label: "1983–1999" },
+    { until: 2010, label: "2000–2009" },
+    { until: 2020, label: "2010–2019" },
+    { until: 9999, label: "2020–today" },
+  ];
+  const eraOf = i => ERAS.findIndex(e => (yearOf(i) || 0) < e.until);
+  const worst = incidents.reduce((w, i) =>
+    ((i.fatalities_current || 0) > (w.fatalities_current || 0) ? i : w), incidents[0] || {});
   const firstYear = (incidents[0]?.incident_start_datetime || "1983").slice(0, 4);
-  document.getElementById("hero-statement").innerHTML =
-    `Since ${firstYear}, at least <span class="n">${fmt.format(totalDeaths)} people</span> ` +
-    `have gone to work in Türkiye's mines and not come home — in the ` +
-    `<b>${fmt.format(incidents.length)} incidents</b> this register has been able to ` +
-    `publicly document so far.`;
-  const marksHtml = [];
-  incidents.forEach((i, idx) => {
-    for (let k = 0; k < (i.fatalities_current || 0); k++) {
-      marksHtml.push(`<span class="mark" data-idx="${idx}"></span>`);
-    }
-  });
-  const marksEl = document.getElementById("marks");
-  marksEl.innerHTML = marksHtml.join("");
-  const heroTip = document.getElementById("hero-tip");
-  const heroWrap = document.getElementById("hero-wrap");
-  marksEl.addEventListener("mousemove", ev => {
-    const mark = ev.target.closest(".mark");
-    if (!mark) { heroTip.style.display = "none"; marksEl.classList.remove("focus"); return; }
-    const idx = mark.dataset.idx;
-    marksEl.querySelectorAll(".mark").forEach(m =>
-      m.classList.toggle("dim", m.dataset.idx !== idx));
-    const i = incidents[+idx];
-    heroTip.innerHTML = `<div class="t-title">${i.canonical_title_tr}</div>` +
-      `<div>${sentence(i)}</div><div class="t-meta">${i.public_incident_id}</div>`;
-    heroTip.style.display = "block";
-    const box = heroWrap.getBoundingClientRect();
-    let tx = ev.clientX - box.left + 14, ty = ev.clientY - box.top + 14;
-    if (tx + heroTip.offsetWidth > box.width) tx -= heroTip.offsetWidth + 26;
-    heroTip.style.left = tx + "px"; heroTip.style.top = ty + "px";
-  });
-  marksEl.addEventListener("mouseleave", () => {
-    heroTip.style.display = "none";
-    marksEl.querySelectorAll(".mark.dim").forEach(m => m.classList.remove("dim"));
-  });
-
   const gap = D.coverage_gap;
+
+  const marksEl = document.getElementById("marks");
+  marksEl.innerHTML = incidents.map((i, idx) => {
+    const focal = i === worst ? " focal" : "";
+    return `<span class="mark off${focal}" data-idx="${idx}" data-era="${eraOf(i)}"></span>`
+      .repeat(i.fatalities_current || 0);
+  }).join("");
   if (gap && gap.total_gap > 0) {
-    const y0 = gap.years[0].year, y1 = gap.years[gap.years.length - 1].year;
-    document.getElementById("gapline").innerHTML =
-      `And they are the documented minority. Between ${y0} and ${y1} alone, İSİG Meclisi ` +
-      `counted <b>${fmt.format(gap.total_gap)} more miner deaths</b> that never became a ` +
-      `publicly recorded incident. Each outline below is one of those people — counted, ` +
-      `but never named in public record.`;
     document.getElementById("ghost-marks").innerHTML =
       new Array(gap.total_gap).fill('<span class="mark ghost"></span>').join("");
-    document.getElementById("ghost-note").textContent =
-      "Sector-wide İSİG totals minus deaths in published records, " + y0 + "–" + y1 + ". " +
-      gap.caveat;
+  }
+
+  const eraStats = ERAS.map((e, k) => {
+    const list = incidents.filter(i => eraOf(i) === k);
+    const deaths = list.reduce((s, i) => s + (i.fatalities_current || 0), 0);
+    const deadliest = list.reduce((w, i) =>
+      ((i.fatalities_current || 0) > (w?.fatalities_current || 0) ? i : w), null);
+    return { ...e, list, deaths, deadliest };
+  });
+
+  function eraCard(k) {
+    const s = eraStats[k];
+    if (!s.list.length) return "";
+    const head = `<p class="k">${s.label}. <span class="n">${fmt.format(s.deaths)} people</span> in ${s.list.length} published record${s.list.length === 1 ? "" : "s"}.</p>`;
+    const worstLine = s.deadliest && s.deadliest !== worst
+      ? `<p class="quiet" lang="tr">${s.deadliest.canonical_title_tr}</p><p class="quiet">${sentence(s.deadliest)}</p>` : "";
+    return head + worstLine;
+  }
+
+  const gapY0 = gap && gap.years.length ? gap.years[0].year : null;
+  const gapY1 = gap && gap.years.length ? gap.years[gap.years.length - 1].year : null;
+  const chapters = [
+    { html: `<p class="k">This is a record of people who went to work and did not come home.</p>` +
+            `<p class="quiet">Since ${firstYear}, this register has been able to publicly document ` +
+            `<b>${fmt.format(totalDeaths)} deaths</b> in ${fmt.format(incidents.length)} mining and quarrying ` +
+            `accidents in Türkiye. One mark is one person.</p>` +
+            `<p class="scrollhint">Scroll.</p>`,
+      cls: "first", state: { upTo: -1 } },
+    { html: eraCard(0), state: { upTo: 0, label: eraStats[0].label, count: eraStats[0].deaths } },
+    { html: eraCard(1), state: { upTo: 1, label: eraStats[1].label, count: eraStats[1].deaths } },
+    { html: eraCard(2), state: { upTo: 2, label: eraStats[2].label, count: eraStats[2].deaths } },
+    worst && worst.public_incident_id ? {
+      html: `<p class="k" lang="tr">${worst.canonical_title_tr}</p>` +
+            `<p>${sentence(worst)}</p>` +
+            `<p class="quiet">The single largest loss in this record. Every lit mark on this page is one of them.</p>` +
+            `<p class="src">${worst.public_incident_id} — every value traces to cited sources.</p>`,
+      cls: "tall", state: { upTo: 2, focus: true, label: (worst.incident_start_datetime || "").slice(0, 10), count: worst.fatalities_current } } : null,
+    { html: eraCard(3), state: { upTo: 3, label: eraStats[3].label, count: eraStats[3].deaths } },
+    gap && gap.total_gap > 0 ? {
+      html: `<p class="k">And they are the documented minority.</p>` +
+            `<p>Between ${gapY0} and ${gapY1} alone, İSİG Meclisi counted ` +
+            `<span class="n">${fmt.format(gap.total_gap)} more miner deaths</span> that never became a ` +
+            `publicly recorded incident. Each outline is one of those people — counted, but never ` +
+            `named in public record.</p>` +
+            `<p class="src">${gap.caveat}</p>`,
+      cls: "tall", state: { upTo: 3, ghosts: true, label: `${gapY0}–${gapY1}`, count: gap.total_gap } } : null,
+    { html: `<p class="k">The full record is below.</p>` +
+            `<p class="quiet">Every mark, every source, every reviewer decision — the map, the years, ` +
+            `the documented mine sites, and the complete table. Filters are yours.</p>`,
+      state: { upTo: 3, ghosts: gap && gap.total_gap > 0, label: "The record", count: totalDeaths } },
+  ].filter(Boolean);
+
+  document.getElementById("chapters").innerHTML = chapters.map((c, k) =>
+    `<article class="chapter ${c.cls || ""}" data-ch="${k}"><div class="card">${c.html}</div></article>`
+  ).join("");
+
+  const stage = document.getElementById("stage");
+  const eraLabel = document.getElementById("era-label");
+  const eraCount = document.getElementById("era-count");
+  const stageNote = document.getElementById("stage-note");
+  const ghostField = document.getElementById("ghost-marks");
+  const allMarks = marksEl.querySelectorAll(".mark");
+
+  function applyState(st) {
+    allMarks.forEach(m => m.classList.toggle("off", +m.dataset.era > st.upTo));
+    stage.classList.toggle("focus", !!st.focus);
+    ghostField.classList.toggle("show", !!st.ghosts);
+    eraLabel.textContent = st.label || "";
+    eraCount.innerHTML = st.count != null
+      ? (st.ghosts ? `<b>${fmt.format(st.count)}</b> counted, never publicly recorded`
+                   : `<b>${fmt.format(st.count)}</b> people`)
+      : "";
+    stageNote.textContent = st.upTo >= 0
+      ? "One mark is one person, in published incident records, oldest first." : "";
+  }
+
+  if (reducedMotion) {
+    applyState({ upTo: 3, ghosts: gap && gap.total_gap > 0, label: "The record",
+                 count: totalDeaths });
+  } else {
+    applyState(chapters[0].state);
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) applyState(chapters[+entry.target.dataset.ch].state);
+      }
+    }, { threshold: 0.45 });
+    document.querySelectorAll(".chapter").forEach(ch => observer.observe(ch));
   }
 
   // ---- Tiles ------------------------------------------------------------------
   const tiles = [
     { v: totalDeaths, l: "people lost their lives", s: "in published incident records" },
     { v: incidents.length, l: "published incident records", s: "passed the full review threshold" },
-    { v: gap ? gap.total_gap : 0, l: "counted, never publicly recorded", s: `İSİG ${gap.years[0].year}–${gap.years[gap.years.length-1].year} vs this register` },
+    { v: gap ? gap.total_gap : 0, l: "counted, never publicly recorded", s: gap && gap.years.length ? `İSİG ${gap.years[0].year}–${gap.years[gap.years.length-1].year} vs this register` : "" },
+    { v: sites.length, l: "documented mining sites", s: "open structured sources — partial coverage" },
     { v: D.pipeline.records_in_review + D.pipeline.claims_awaiting_review, l: "records and claims in review", s: "not yet publishable" },
   ];
   document.getElementById("tiles").innerHTML = tiles.map(t =>
     `<div class="tile" role="listitem"><div class="value">${fmt.format(t.v)}</div>` +
     `<div class="label">${t.l}</div><div class="sub">${t.s}</div></div>`).join("");
 
+  // ---- Filters ------------------------------------------------------------------
+  const TYPE_LABELS = {
+    mine_underground: "Underground mine", mine_openpit: "Open-pit mine",
+    mine_unspecified: "Mine", quarry: "Quarry", processing_plant: "Processing plant",
+    tailings_facility: "Tailings facility", unknown: "Type not stated", other: "Other",
+  };
+  const STATUS_LABELS = { operating: "Operating", closed: "Closed",
+                          proposed: "Proposed", unknown: "Not stated" };
+  const state = { province: "", mechanism: "", from: null, to: null, commodity: "", layer: "both" };
+
+  const provSel = document.getElementById("f-province");
+  const mechSel = document.getElementById("f-mechanism");
+  const fromSel = document.getElementById("f-from");
+  const toSel = document.getElementById("f-to");
+  const commSel = document.getElementById("f-commodity");
+
+  const provCodes = [...new Set([
+    ...incidents.map(i => i.province_code).filter(Boolean),
+    ...sites.map(s => s.province_code).filter(Boolean),
+  ])].sort((a, b) => provinceName(a).localeCompare(provinceName(b), "tr"));
+  provSel.innerHTML += provCodes.map(c =>
+    `<option value="${c}">${provinceName(c)}</option>`).join("");
+
+  const mechs = new Map();
+  for (const i of incidents) for (const c of mechanismsOf(i.public_incident_id)) {
+    mechs.set(c.code, c.label_en);
+  }
+  mechSel.innerHTML += [...mechs.entries()].sort((a, b) => a[1].localeCompare(b[1]))
+    .map(([code, label]) => `<option value="${code}">${label}</option>`).join("");
+
+  const yearsAll = incidents.map(yearOf).filter(Boolean);
+  const minY = Math.min(...yearsAll), maxY = Math.max(...yearsAll);
+  state.from = minY; state.to = maxY;
+  for (let y = minY; y <= maxY; y++) {
+    fromSel.innerHTML += `<option value="${y}">${y}</option>`;
+    toSel.innerHTML += `<option value="${y}">${y}</option>`;
+  }
+  fromSel.value = String(minY); toSel.value = String(maxY);
+
+  const comms = new Map();
+  for (const s of sites) {
+    if (s.commodity_code) comms.set(s.commodity_code, s.commodity_label || s.commodity_code);
+  }
+  commSel.innerHTML += [...comms.entries()].sort((a, b) => String(a[1]).localeCompare(String(b[1])))
+    .map(([code, label]) => `<option value="${code}">${label}</option>`).join("");
+
+  const incidentMatches = i =>
+    (!state.province || i.province_code === state.province) &&
+    (!state.mechanism || mechanismsOf(i.public_incident_id).some(c => c.code === state.mechanism)) &&
+    (yearOf(i) == null || (yearOf(i) >= state.from && yearOf(i) <= state.to));
+  const siteMatches = s =>
+    (!state.province || s.province_code === state.province) &&
+    (!state.commodity || s.commodity_code === state.commodity);
+
+  function applyFilters() {
+    const fi = incidents.filter(incidentMatches);
+    const fs = sites.filter(siteMatches);
+    renderRecords(fi);
+    renderSites(fs);
+    renderMap(fi, fs);
+    const people = fi.reduce((s, i) => s + (i.fatalities_current || 0), 0);
+    document.getElementById("filter-result").innerHTML =
+      `<b>${fmt.format(fi.length)}</b> records · <b>${fmt.format(people)}</b> people · ` +
+      `<b>${fmt.format(fs.length)}</b> sites`;
+  }
+
+  provSel.addEventListener("change", () => { state.province = provSel.value; applyFilters(); });
+  mechSel.addEventListener("change", () => { state.mechanism = mechSel.value; applyFilters(); });
+  fromSel.addEventListener("change", () => {
+    state.from = +fromSel.value;
+    if (state.from > state.to) { state.to = state.from; toSel.value = fromSel.value; }
+    applyFilters();
+  });
+  toSel.addEventListener("change", () => {
+    state.to = +toSel.value;
+    if (state.to < state.from) { state.from = state.to; fromSel.value = toSel.value; }
+    applyFilters();
+  });
+  commSel.addEventListener("change", () => { state.commodity = commSel.value; applyFilters(); });
+  document.getElementById("f-clear").addEventListener("click", () => {
+    state.province = ""; state.mechanism = ""; state.commodity = "";
+    state.from = minY; state.to = maxY;
+    provSel.value = ""; mechSel.value = ""; commSel.value = "";
+    fromSel.value = String(minY); toSel.value = String(maxY);
+    applyFilters();
+  });
+  document.querySelectorAll(".layer-toggle button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.layer = btn.dataset.layer;
+      document.querySelectorAll(".layer-toggle button").forEach(b =>
+        b.setAttribute("aria-pressed", String(b === btn)));
+      applyFilters();
+    });
+  });
+
   // ---- Map ----------------------------------------------------------------
-  try { window.L ? buildLeafletMap() : buildSvgMap(); } catch (err) {
-    try { buildSvgMap(); } catch (err2) {
+  function siteTip(s) {
+    const orgLines = (s.organizations || []).map(o =>
+      `${o.role === "owner" ? "Owner" : "Operator"}: ${o.name}` +
+      (o.country_label ? ` (${o.country_label})` : "") +
+      ` <span class="t-meta">[${o.assertion_status}]</span>`);
+    return `<div class="t-title" lang="tr">${s.name}</div>` +
+      `<div>${TYPE_LABELS[s.type] || s.type || ""}` +
+      (s.commodity_label ? ` · ${s.commodity_label}` : "") +
+      (s.province_code ? ` · ${provinceName(s.province_code)}` : "") + `</div>` +
+      (orgLines.length ? `<div>${orgLines.join("<br>")}</div>` : "") +
+      `<div class="t-meta">Status: ${STATUS_LABELS[s.status] || "Not stated"} · ` +
+      `location: facility-approximate</div>` +
+      `<div class="t-meta">Open structured sources only — a fraction of licensed operations.</div>`;
+  }
+
+  let leafletMap = null, leafletAccidents = null, leafletSites = null;
+  let mapMode = null;
+  function renderMap(fi, fs) {
+    const wantLeaflet = !!window.L;
+    try {
+      if (wantLeaflet) { renderLeaflet(fi, fs); mapMode = "leaflet"; return; }
+    } catch (err) { /* fall through to SVG */ }
+    try { renderSvgMap(fi, fs); mapMode = "svg"; } catch (err2) {
       document.getElementById("map").innerHTML =
         '<p style="padding:16px;color:var(--ink-2)">The map could not load. ' +
-        "The table below lists every record.</p>";
+        "The tables below list every record.</p>";
     }
   }
 
-  function buildSvgMap() {
+  function renderSvgMap(fi, fs) {
     const V = D.map_vector;
     const el = document.getElementById("map");
+    const byId = new Map(incidents.map(i => [i.public_incident_id, i]));
+    const okIds = new Set(fi.map(i => i.public_incident_id));
+    const okRefs = new Set(fs.map(s => s.ref));
+    const showAcc = state.layer !== "sites", showSites = state.layer !== "accidents";
+
+    const pParts = (V.provinceMarks || []).map(m => {
+      const ids = m.ids.filter(id => okIds.has(id));
+      if (!showAcc || !ids.length) return "";
+      const deaths = ids.reduce((s, id) => s + (byId.get(id).fatalities_current || 0), 0);
+      const r = Math.round((6 + Math.sqrt(Math.max(deaths, 1)) * 2.4) * 10) / 10;
+      return `<circle class="svg-pmarker" data-code="${m.code}" data-ids="${ids.join(",")}" cx="${m.x}" cy="${m.y}" r="${r}"></circle>`;
+    }).join("");
+    const aParts = (V.markers || []).map(m =>
+      showAcc && okIds.has(m.id)
+        ? `<circle class="svg-marker" data-id="${m.id}" cx="${m.x}" cy="${m.y}" r="${m.r}"></circle>` : ""
+    ).join("");
+    const sParts = (V.siteMarks || []).map(m =>
+      showSites && okRefs.has(m.ref)
+        ? `<path class="svg-site" data-ref="${m.ref}" d="M${m.x},${m.y - 4.2} L${m.x + 4.2},${m.y} L${m.x},${m.y + 4.2} L${m.x - 4.2},${m.y} Z"></path>` : ""
+    ).join("");
     el.innerHTML = `<svg viewBox="-8 -8 ${V.W + 16} ${V.H + 16}" role="img" ` +
-      `aria-label="Outline map of Türkiye with accident records">` +
-      `<path class="tr-outline" d="${V.outline}"></path>` +
-      V.provinceMarks.map(m => `<circle class="svg-pmarker" data-code="${m.code}" cx="${m.x}" cy="${m.y}" r="${m.r}"></circle>`).join("") +
-      V.markers.map(m => `<circle class="svg-marker" data-id="${m.id}" cx="${m.x}" cy="${m.y}" r="${m.r}"></circle>`).join("") +
-      `</svg>`;
-    const byIncidentId = new Map(incidents.map(i => [i.public_incident_id, i]));
-    const byCode = new Map(V.provinceMarks.map(m => [m.code, m]));
+      `aria-label="Outline map of Türkiye with accident records and documented mining sites">` +
+      `<path class="tr-outline" d="${V.outline}"></path>` + sParts + pParts + aParts + `</svg>`;
+
+    const bySiteRef = new Map(sites.map(s => [s.ref, s]));
     const tip = document.getElementById("map-tip");
     const wrapEl = document.getElementById("map-wrap");
     const svgEl = el.querySelector("svg");
     svgEl.addEventListener("mousemove", ev => {
-      const hit = ev.target.closest(".svg-marker, .svg-pmarker");
+      const hit = ev.target.closest(".svg-marker, .svg-pmarker, .svg-site");
       svgEl.querySelectorAll(".is-hover").forEach(n => n.classList.remove("is-hover"));
       if (!hit) { tip.style.display = "none"; return; }
       hit.classList.add("is-hover");
-      if (hit.classList.contains("svg-pmarker")) {
-        const m = byCode.get(hit.dataset.code);
-        const rows = m.ids.map(id => {
-          const r = byIncidentId.get(id);
+      if (hit.classList.contains("svg-site")) {
+        tip.innerHTML = siteTip(bySiteRef.get(hit.dataset.ref));
+      } else if (hit.classList.contains("svg-pmarker")) {
+        const ids = hit.dataset.ids.split(",").filter(Boolean);
+        const deaths = ids.reduce((s, id) => s + (byId.get(id).fatalities_current || 0), 0);
+        const rows = ids.map(id => {
+          const r = byId.get(id);
           return `${r.public_incident_id} · ${(r.incident_start_datetime || "").slice(0, 10)} · ${fmt.format(r.fatalities_current)} people`;
         }).join("<br>");
-        tip.innerHTML = `<div class="t-title">${m.label} — province-level summary</div>` +
+        tip.innerHTML = `<div class="t-title">${provinceName(hit.dataset.code)} — province-level summary</div>` +
           `<div class="t-meta">Shown at the province reference point; exact locations are not published for these records.</div>` +
-          `<div>${m.ids.length} record(s); ${fmt.format(m.deaths)} people lost their lives</div>` +
+          `<div>${ids.length} record(s); ${fmt.format(deaths)} people lost their lives</div>` +
           `<div class="t-meta">${rows}</div>`;
       } else {
-        const i = byIncidentId.get(hit.dataset.id);
-        tip.innerHTML = `<div class="t-title">${i.canonical_title_tr}</div>` +
+        const i = byId.get(hit.dataset.id);
+        tip.innerHTML = `<div class="t-title" lang="tr">${i.canonical_title_tr}</div>` +
           `<div>${sentence(i)}</div>` +
           `<div class="t-meta">${i.public_incident_id} · location: facility-approximate</div>`;
       }
@@ -425,66 +758,86 @@
     svgEl.addEventListener("mouseleave", () => { tip.style.display = "none"; });
   }
 
-  function buildLeafletMap() {
-  document.getElementById("map").style.height = "440px";
-  const map = L.map("map", { scrollWheelZoom: false });
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 12,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
-  const located = incidents.filter(i => i.latitude != null && i.longitude != null);
-  const markers = located.map(i => {
-    const r = 6 + Math.sqrt(i.fatalities_current || 1) * 2.1;
-    const m = L.circleMarker([i.latitude, i.longitude], {
-      radius: r, color: "#fbfbfc", weight: 2, fillColor: "#2a78d6", fillOpacity: 0.85,
-    });
-    const cites = (D.citations[i.public_incident_id] || [])
-      .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}: ${c.title}</a>`)
-      .join("<br>");
-    m.bindPopup(
-      `<b>${i.canonical_title_tr}</b><br>` +
-      `${sentence(i)}<br>` +
-      `<span class="meta">${i.public_incident_id} · location: facility-approximate</span>` +
-      (cites ? `<hr style="border:none;border-top:1px solid #ddd">${cites}` : "")
-    );
-    return m;
-  });
-  const unlocated = incidents.filter(i => i.latitude == null || i.longitude == null);
-  const byProvince = new Map();
-  for (const i of unlocated) {
-    if (!i.province_code || !D.province_centroids[i.province_code]) continue;
-    const b = byProvince.get(i.province_code) || [];
-    b.push(i); byProvince.set(i.province_code, b);
-  }
-  const provinceMarkers = [...byProvince.entries()].map(([code, recs]) => {
-    const c = D.province_centroids[code];
-    const deaths = recs.reduce((s, i) => s + (i.fatalities_current || 0), 0);
-    const r = 6 + Math.sqrt(deaths || 1) * 2.1;
-    const m = L.circleMarker([c.latitude, c.longitude], {
-      radius: r, color: "#2a78d6", weight: 2, dashArray: "4 3",
-      fillColor: "#2a78d6", fillOpacity: 0.12,
-    });
-    const rows = recs.map(i =>
-      `${i.public_incident_id} · ${(i.incident_start_datetime || "").slice(0, 10)} · ` +
-      `${fmt.format(i.fatalities_current)} people`).join("<br>");
-    m.bindPopup(
-      `<b>${c.label_tr} — province-level summary</b><br>` +
-      `<span class="meta">Shown at the province reference point; exact locations are not ` +
-      `published for these records.</span><br>` +
-      `${recs.length} record(s); ${fmt.format(deaths)} people lost their lives<hr ` +
-      `style="border:none;border-top:1px solid #ddd">${rows}`
-    );
-    return m;
-  });
-  const group = L.featureGroup([...provinceMarkers, ...markers]).addTo(map);
-  if (markers.length + provinceMarkers.length) { map.fitBounds(group.getBounds().pad(0.2)); }
-  else { map.setView([39.0, 35.2], 6); }
+  function renderLeaflet(fi, fs) {
+    if (!leafletMap) {
+      document.getElementById("map").style.height = "440px";
+      leafletMap = L.map("map", { scrollWheelZoom: false });
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 12,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(leafletMap);
+    }
+    if (leafletAccidents) leafletMap.removeLayer(leafletAccidents);
+    if (leafletSites) leafletMap.removeLayer(leafletSites);
+
+    const showAcc = state.layer !== "sites", showSites = state.layer !== "accidents";
+    const accMarkers = [];
+    if (showAcc) {
+      for (const i of fi.filter(i => i.latitude != null && i.longitude != null)) {
+        const r = 6 + Math.sqrt(i.fatalities_current || 1) * 2.1;
+        const m = L.circleMarker([i.latitude, i.longitude], {
+          radius: r, color: "#fbfbfc", weight: 2, fillColor: "#2a78d6", fillOpacity: 0.85,
+        });
+        const cites = (D.citations[i.public_incident_id] || [])
+          .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}: ${c.title}</a>`)
+          .join("<br>");
+        m.bindPopup(
+          `<b lang="tr">${i.canonical_title_tr}</b><br>${sentence(i)}<br>` +
+          `<span class="meta">${i.public_incident_id} · location: facility-approximate</span>` +
+          (cites ? `<hr style="border:none;border-top:1px solid #ddd">${cites}` : ""));
+        accMarkers.push(m);
+      }
+      const byProvince = new Map();
+      for (const i of fi.filter(i => i.latitude == null || i.longitude == null)) {
+        if (!i.province_code || !D.province_centroids[i.province_code]) continue;
+        const b = byProvince.get(i.province_code) || [];
+        b.push(i); byProvince.set(i.province_code, b);
+      }
+      for (const [code, recs] of byProvince) {
+        const c = D.province_centroids[code];
+        const deaths = recs.reduce((s, i) => s + (i.fatalities_current || 0), 0);
+        const r = 6 + Math.sqrt(deaths || 1) * 2.1;
+        const m = L.circleMarker([c.latitude, c.longitude], {
+          radius: r, color: "#2a78d6", weight: 2, dashArray: "4 3",
+          fillColor: "#2a78d6", fillOpacity: 0.12,
+        });
+        const rows = recs.map(i =>
+          `${i.public_incident_id} · ${(i.incident_start_datetime || "").slice(0, 10)} · ` +
+          `${fmt.format(i.fatalities_current)} people`).join("<br>");
+        m.bindPopup(
+          `<b>${c.label_tr} — province-level summary</b><br>` +
+          `<span class="meta">Shown at the province reference point; exact locations are not ` +
+          `published for these records.</span><br>` +
+          `${recs.length} record(s); ${fmt.format(deaths)} people lost their lives<hr ` +
+          `style="border:none;border-top:1px solid #ddd">${rows}`);
+        accMarkers.push(m);
+      }
+    }
+    const siteMarkers = [];
+    if (showSites) {
+      for (const s of fs.filter(s => s.latitude != null && s.longitude != null)) {
+        const m = L.marker([s.latitude, s.longitude], {
+          icon: L.divIcon({ className: "site-diamond", html: "<div></div>",
+                            iconSize: [9, 9], iconAnchor: [4.5, 4.5] }),
+          keyboard: false,
+        });
+        m.bindPopup(siteTip(s) +
+          (s.source_url ? `<br><a href="${s.source_url}" target="_blank" rel="noopener">Source (Wikidata)</a>` : ""));
+        siteMarkers.push(m);
+      }
+    }
+    leafletSites = L.featureGroup(siteMarkers).addTo(leafletMap);
+    leafletAccidents = L.featureGroup(accMarkers).addTo(leafletMap);
+    const all = L.featureGroup([...accMarkers, ...siteMarkers]);
+    if (accMarkers.length + siteMarkers.length) {
+      leafletMap.fitBounds(all.getBounds().pad(0.2));
+    } else { leafletMap.setView([39.0, 35.2], 6); }
   }
 
-  // ---- Chart ----------------------------------------------------------------
+  // ---- Chart (always the full register) --------------------------------------
   const byYear = new Map();
   for (const i of incidents) {
-    const y = +(i.incident_start_datetime || "").slice(0, 4);
+    const y = yearOf(i);
     if (!y) continue;
     const e = byYear.get(y) || { deaths: 0, incidents: 0 };
     e.deaths += i.fatalities_current || 0; e.incidents += 1;
@@ -652,22 +1005,48 @@
       `<div class="mcount">${n}</div></div>`;
   }).join("") || '<p class="caption">No source-backed mechanism classifications yet.</p>';
 
-  // ---- Table --------------------------------------------------------------------
-  document.querySelector("#records tbody").innerHTML = incidents.map(i => {
-    const cites = (D.citations[i.public_incident_id] || [])
-      .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}</a>`)
-      .filter((v, k, arr) => arr.indexOf(v) === k).join(", ");
-    const mech = mechanismsOf(i.public_incident_id).map(c => c.label_en).join(", ");
-    return `<tr>
-      <td>${i.public_incident_id}</td>
-      <td>${(i.incident_start_datetime || "").slice(0, 10)}</td>
-      <td>${i.province_name || ""}</td>
-      <td lang="tr">${i.canonical_title_tr}</td>
-      <td class="num">${fmt.format(i.fatalities_current)}</td>
-      <td>${mech ? `<span class="pill">${mech}</span>` : '<span class="pill">not classified</span>'}</td>
-      <td>${cites}</td>
-    </tr>`;
-  }).join("");
+  // ---- Sites table -----------------------------------------------------------
+  function renderSites(fs) {
+    document.querySelector("#sites-table tbody").innerHTML = fs.map(s => {
+      const orgs = (s.organizations || []);
+      const orgNames = orgs.map(o =>
+        `<span lang="tr">${o.name}</span> <span class="pill">${o.role} · ${o.assertion_status}</span>`).join("<br>") ||
+        '<span class="pill">not stated in source</span>';
+      const countries = [...new Set(orgs.map(o => o.country_label).filter(Boolean))].join(", ") ||
+        (orgs.length ? '<span class="pill">not stated</span>' : "—");
+      return `<tr>
+        <td lang="tr">${s.name}</td>
+        <td>${TYPE_LABELS[s.type] || s.type || ""}</td>
+        <td>${s.commodity_label || (s.commodity_code ? s.commodity_code : '<span class="pill">not stated</span>')}</td>
+        <td>${s.province_code ? provinceName(s.province_code) : '<span class="pill">not stated</span>'}</td>
+        <td>${orgNames}</td>
+        <td>${countries}</td>
+        <td>${STATUS_LABELS[s.status] || "Not stated"}</td>
+        <td>${s.source_url ? `<a href="${s.source_url}" target="_blank" rel="noopener">Wikidata</a>` : ""}</td>
+      </tr>`;
+    }).join("") || '<tr><td colspan="8">No documented sites match the current filters.</td></tr>';
+  }
+
+  // ---- Records table -------------------------------------------------------------
+  function renderRecords(fi) {
+    document.querySelector("#records tbody").innerHTML = fi.map(i => {
+      const cites = (D.citations[i.public_incident_id] || [])
+        .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}</a>`)
+        .filter((v, k, arr) => arr.indexOf(v) === k).join(", ");
+      const mech = mechanismsOf(i.public_incident_id).map(c => c.label_en).join(", ");
+      return `<tr>
+        <td>${i.public_incident_id}</td>
+        <td>${(i.incident_start_datetime || "").slice(0, 10)}</td>
+        <td>${i.province_name || ""}</td>
+        <td lang="tr">${i.canonical_title_tr}</td>
+        <td class="num">${fmt.format(i.fatalities_current)}</td>
+        <td>${mech ? `<span class="pill">${mech}</span>` : '<span class="pill">not classified</span>'}</td>
+        <td>${cites}</td>
+      </tr>`;
+    }).join("") || '<tr><td colspan="7">No records match the current filters.</td></tr>';
+  }
+
+  applyFilters();
 
   // ---- If nothing changes --------------------------------------------------------
   const proj = D.projection;
@@ -696,7 +1075,8 @@
     `tertiary: <a href="https://www.wikidata.org" rel="noopener">Wikidata</a> (CC0) and ` +
     `<a href="https://www.wikipedia.org" rel="noopener">Wikipedia</a> (text CC BY-SA 4.0 — article ` +
     `links above credit the source); values await corroboration against official and ` +
-    `professional-chamber records. Analysis methods are documented and provisional ` +
+    `professional-chamber records. The sites layer covers only what open structured sources ` +
+    `document — never a complete register. Analysis methods are documented and provisional ` +
     `(docs/analysis_methods.md). Corrections: see the project repository's issue templates. ` +
     `No personal data of victims is stored or shown.`;
 })();

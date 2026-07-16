@@ -80,6 +80,30 @@ SOURCE_COLUMNS = [
     "short_evidence_excerpt",
 ]
 
+FACILITY_COLUMNS = [
+    "facility_ref",
+    "facility_name_tr",
+    "facility_type",
+    "commodity_code",
+    "commodity_label",
+    "province_code",
+    "latitude",
+    "longitude",
+    "coordinate_precision",
+    "operational_status",
+    "source_url",
+]
+
+FACILITY_ROLE_COLUMNS = [
+    "facility_ref",
+    "facility_name_tr",
+    "organization_name_tr",
+    "organization_country_code",
+    "organization_country_label",
+    "role",
+    "assertion_status",
+]
+
 REDIRECT_COLUMNS = ["merged_public_incident_id", "surviving_public_incident_id"]
 
 CONFLICT_COLUMNS = ["public_incident_id", "field_name", "status"]
@@ -274,6 +298,43 @@ def _collect_sources(conn: sqlite3.Connection, ids: list[int]) -> list[dict[str,
     return result
 
 
+def _collect_facilities(conn: sqlite3.Connection) -> list[dict[str, object]]:
+    """Context-registry sites: claim-backed rows only (source_claim_id set).
+
+    Coverage honesty: open structured sources document a fraction of licensed
+    operations — the datapackage description and every display of this layer
+    say so."""
+    rows = conn.execute(
+        """
+        SELECT f.external_ref AS facility_ref, f.facility_name_tr, f.facility_type,
+               f.commodity_code, f.commodity_label, f.province_code, f.latitude,
+               f.longitude, f.coordinate_precision, f.operational_status, sd.url AS source_url
+        FROM facilities f
+        JOIN claims c ON c.claim_id = f.source_claim_id
+        JOIN source_documents sd ON sd.source_document_id = c.source_document_id
+        WHERE f.external_ref IS NOT NULL AND f.source_claim_id IS NOT NULL
+        ORDER BY f.external_ref
+        """
+    ).fetchall()
+    return [dict(row) for row in rows]
+
+
+def _collect_facility_roles(conn: sqlite3.Connection) -> list[dict[str, object]]:
+    rows = conn.execute(
+        """
+        SELECT f.external_ref AS facility_ref, f.facility_name_tr,
+               o.organization_name_tr, o.country_code AS organization_country_code,
+               o.country_label AS organization_country_label, r.role, r.assertion_status
+        FROM facility_organization_roles r
+        JOIN facilities f ON f.facility_id = r.facility_id
+        JOIN organizations o ON o.organization_id = r.organization_id
+        WHERE r.review_status = 'reviewed' AND f.external_ref IS NOT NULL
+        ORDER BY f.external_ref, o.organization_name_tr, r.role
+        """
+    ).fetchall()
+    return [dict(row) for row in rows]
+
+
 def _collect_redirects(conn: sqlite3.Connection) -> list[dict[str, object]]:
     rows = conn.execute(
         """
@@ -296,7 +357,9 @@ def _datapackage(resources: list[tuple[str, list[str]]]) -> dict[str, object]:
             "Reviewed, source-traceable records of fatal mining and quarrying "
             "accidents in Türkiye. Every value traces to source documents through "
             "recorded reviewer decisions. Assertion statuses must be displayed; "
-            "'alleged' is never established fact."
+            "'alleged' is never established fact. facilities.csv is a context "
+            "registry from open structured sources (Wikidata) and covers only a "
+            "fraction of licensed operations — it is not a complete register."
         ),
         "resources": [
             {
@@ -350,6 +413,8 @@ def build_public_export(
     classifications = _collect_classifications(conn, eligible_ids)
     roles = _collect_roles(conn, eligible_ids)
     sources = _collect_sources(conn, eligible_ids)
+    facilities = _collect_facilities(conn)
+    facility_roles = _collect_facility_roles(conn)
     redirects = _collect_redirects(conn)
     conflicts: list[dict[str, object]] = []
     if disclose_conflicts:
@@ -375,6 +440,10 @@ def build_public_export(
     _write_csv(output_dir / "incident_classifications.csv", CLASSIFICATION_COLUMNS, classifications)
     _write_csv(output_dir / "incident_organization_roles.csv", ROLE_COLUMNS, roles)
     _write_csv(output_dir / "sources.csv", SOURCE_COLUMNS, sources)
+    _write_csv(output_dir / "facilities.csv", FACILITY_COLUMNS, facilities)
+    _write_csv(
+        output_dir / "facility_organization_roles.csv", FACILITY_ROLE_COLUMNS, facility_roles
+    )
     _write_csv(output_dir / "merged_id_redirects.csv", REDIRECT_COLUMNS, redirects)
     if disclose_conflicts:
         _write_csv(output_dir / "disclosed_conflicts.csv", CONFLICT_COLUMNS, conflicts)
@@ -384,6 +453,8 @@ def build_public_export(
         ("incident_classifications.csv", CLASSIFICATION_COLUMNS),
         ("incident_organization_roles.csv", ROLE_COLUMNS),
         ("sources.csv", SOURCE_COLUMNS),
+        ("facilities.csv", FACILITY_COLUMNS),
+        ("facility_organization_roles.csv", FACILITY_ROLE_COLUMNS),
         ("merged_id_redirects.csv", REDIRECT_COLUMNS),
     ]
     if disclose_conflicts:
@@ -400,6 +471,8 @@ def build_public_export(
             "incident_classifications": len(classifications),
             "incident_organization_roles": len(roles),
             "sources": len(sources),
+            "facilities": len(facilities),
+            "facility_organization_roles": len(facility_roles),
             "merged_id_redirects": len(redirects),
             **({"disclosed_conflicts": len(conflicts)} if disclose_conflicts else {}),
         },

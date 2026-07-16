@@ -1,5 +1,5 @@
 {
-  "description": "Reviewed, source-traceable records of fatal mining and quarrying accidents in Türkiye. Every value traces to source documents through recorded reviewer decisions. Assertion statuses must be displayed; 'alleged' is never established fact.",
+  "description": "Reviewed, source-traceable records of fatal mining and quarrying accidents in Türkiye. Every value traces to source documents through recorded reviewer decisions. Assertion statuses must be displayed; 'alleged' is never established fact. facilities.csv is a context registry from open structured sources (Wikidata) and covers only a fraction of licensed operations — it is not a complete register.",
   "name": "turkey-mining-accidents-public-export",
   "profile": "tabular-data-package",
   "resources": [
@@ -198,6 +198,96 @@
           },
           {
             "name": "short_evidence_excerpt",
+            "type": "any"
+          }
+        ]
+      }
+    },
+    {
+      "name": "facilities",
+      "path": "facilities.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "facility_ref",
+            "type": "any"
+          },
+          {
+            "name": "facility_name_tr",
+            "type": "any"
+          },
+          {
+            "name": "facility_type",
+            "type": "any"
+          },
+          {
+            "name": "commodity_code",
+            "type": "any"
+          },
+          {
+            "name": "commodity_label",
+            "type": "any"
+          },
+          {
+            "name": "province_code",
+            "type": "any"
+          },
+          {
+            "name": "latitude",
+            "type": "any"
+          },
+          {
+            "name": "longitude",
+            "type": "any"
+          },
+          {
+            "name": "coordinate_precision",
+            "type": "any"
+          },
+          {
+            "name": "operational_status",
+            "type": "any"
+          },
+          {
+            "name": "source_url",
+            "type": "any"
+          }
+        ]
+      }
+    },
+    {
+      "name": "facility_organization_roles",
+      "path": "facility_organization_roles.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "facility_ref",
+            "type": "any"
+          },
+          {
+            "name": "facility_name_tr",
+            "type": "any"
+          },
+          {
+            "name": "organization_name_tr",
+            "type": "any"
+          },
+          {
+            "name": "organization_country_code",
+            "type": "any"
+          },
+          {
+            "name": "organization_country_label",
+            "type": "any"
+          },
+          {
+            "name": "role",
+            "type": "any"
+          },
+          {
+            "name": "assertion_status",
             "type": "any"
           }
         ]

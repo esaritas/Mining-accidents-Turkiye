@@ -6,6 +6,35 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Added — active-sites layer, explorer filters & story prologue (2026-07-15)
+- Migration 002: facilities gain `commodity_code`/`commodity_label`,
+  `operational_status`, `external_ref`; organizations gain home-country
+  columns (`country_code`/`country_label`) and `external_ref`; new
+  `facility_organization_roles` table mirrors the incident role table
+  (claim-backed, assertion + review statuses). New vocabularies
+  `facility_types.csv` and `commodities.csv`.
+- `wikidata_sites` adapter + `ingest-sites` CLI/make target: mining and
+  quarrying site items in Türkiye (SPARQL P31/P279* mine, P17 TR) become a
+  claim-backed facilities *context registry* — name, type, commodity,
+  location, province, operator/owner with the company's home country where
+  the source states them. 75 sites registered; coverage honestly labeled
+  partial (open question #19: GEM tracker and MAPEG licence data registered
+  `TO_ASSESS` for fuller company/status coverage).
+- Public export gains `facilities.csv` + `facility_organization_roles.csv`
+  (reviewed role rows only, assertion status always shipped).
+- Infobox operating-company extraction for accident articles
+  (`işletmeci|işleten|operator=`), with a ≥2-independent-documents
+  corroboration threshold before an incident operator role row is marked
+  reviewed/exportable (current sources state operators in prose only, so
+  none auto-published).
+- Dashboard: scroll-driven story prologue (pinned one-mark-one-person canvas;
+  chapters per era 1983→today, the single largest loss, the İSİG undercount
+  ghosts; reduced-motion static fallback), interactive filter bar
+  (province / mechanism / year range / site commodity) driving map and
+  tables, active-sites map layer (muted diamonds; Accidents/Sites/Both
+  toggle) in both Leaflet and SVG variants, and a documented-sites table
+  with operator and company home country columns.
+
 ### Added
 - Phase 0: repository scaffolding, protocol document templates, open-questions
   register, configuration files, issue templates.
