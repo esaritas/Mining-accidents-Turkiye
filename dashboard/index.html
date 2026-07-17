@@ -383,8 +383,10 @@
       documents, a fraction of the operations licensed in Türkiye; absence from this table
       means nothing. Operator and ownership entries appear only where the source states
       them, with their assertion status; operating status is shown only when the source
-      asserts it. Fuller registers (Global Energy Monitor, MAPEG licence data) are open
-      assessment tasks.
+      asserts it. Context entities — operating directorates, regional aggregates,
+      archaeological quarries — are listed here with their type but kept off the
+      operational map. Fuller registers (Global Energy Monitor, MAPEG licence data) are
+      open assessment tasks.
     </p>
     <div style="overflow-x:auto">
       <table id="sites-table">
@@ -400,8 +402,10 @@
   </section>
 
   <section class="panel" id="records-panel">
-    <h2>The records</h2>
-    <p class="caption">The complete table behind everything above. Filters apply.</p>
+    <h2>Accident records currently documented in the project</h2>
+    <p class="caption">Every published record behind the views above — a partial national
+      picture, not a complete registry. Records still in review are counted in the tiles
+      but never listed. Filters apply.</p>
     <div style="overflow-x:auto">
       <table id="records">
         <thead>
@@ -460,6 +464,15 @@
 
   const MONTHS = ["January","February","March","April","May","June","July",
                   "August","September","October","November","December"];
+  // Dates render at their recorded precision — a month-known date must read
+  // "April 2005", never "2005-04-01" (audit rule, 2026-07-17).
+  function fmtDate(i) {
+    const d = i.incident_start_datetime || "";
+    if (!d) return "";
+    if (i.date_precision === "month") return `${MONTHS[+d.slice(5, 7) - 1]} ${d.slice(0, 4)}`;
+    if (i.date_precision === "year" || i.date_precision === "approximate") return d.slice(0, 4);
+    return d.slice(0, 10);
+  }
   function sentence(i) {
     const n = i.fatalities_current;
     const who = n === 1 ? "one person was" : `${fmt.format(n)} people were`;
@@ -615,7 +628,15 @@
     mine_underground: "Underground mine", mine_openpit: "Open-pit mine",
     mine_unspecified: "Mine", quarry: "Quarry", processing_plant: "Processing plant",
     tailings_facility: "Tailings facility", unknown: "Type not stated", other: "Other",
+    archaeological_quarry: "Archaeological quarry", mining_field: "Mining field",
+    operating_directorate: "Operating directorate", regional_group: "Regional group",
+    deposit: "Deposit", proposed_project: "Proposed project",
   };
+  // Context entities (directorates, regional aggregates, archaeological
+  // quarries…) stay off the operational map; the table lists them labeled.
+  const CONTEXT_TYPES = new Set(["archaeological_quarry", "mining_field",
+    "operating_directorate", "regional_group", "deposit", "proposed_project"]);
+  const isOperational = s => !CONTEXT_TYPES.has(s.type);
   const STATUS_LABELS = { operating: "Operating", closed: "Closed",
                           proposed: "Proposed", unknown: "Not stated" };
   // Commodity groups (validated palette; gray = not stated in source).
@@ -749,7 +770,7 @@
     const el = document.getElementById("map");
     const byId = new Map(incidents.map(i => [i.public_incident_id, i]));
     const okIds = new Set(fi.map(i => i.public_incident_id));
-    const okRefs = new Set(fs.map(s => s.ref));
+    const okRefs = new Set(fs.filter(isOperational).map(s => s.ref));
     const showAcc = state.layer !== "sites", showSites = state.layer !== "accidents";
 
     const provParts = (V.provinces || []).map(p =>
@@ -882,7 +903,7 @@
     }
     const siteMarkers = [];
     if (showSites) {
-      for (const s of fs.filter(s => s.latitude != null && s.longitude != null)) {
+      for (const s of fs.filter(s => isOperational(s) && s.latitude != null && s.longitude != null)) {
         const m = L.marker([s.latitude, s.longitude], {
           icon: L.divIcon({ className: "site-diamond",
                             html: `<div style="background:${GROUP_HEX[groupOf(s)]}"></div>`,
@@ -1104,7 +1125,7 @@
       const mech = mechanismsOf(i.public_incident_id).map(c => c.label_en).join(", ");
       return `<tr>
         <td>${i.public_incident_id}</td>
-        <td>${(i.incident_start_datetime || "").slice(0, 10)}</td>
+        <td>${fmtDate(i)}</td>
         <td>${i.province_name || ""}</td>
         <td lang="tr">${i.canonical_title_tr}</td>
         <td class="num">${fmt.format(i.fatalities_current)}${i.injuries_current != null ? `<br><span class="pill">${fmt.format(i.injuries_current)} injured</span>` : ""}</td>
@@ -1156,6 +1177,7 @@
     const rows = incidents.filter(incidentMatches).map(i => ({
       public_incident_id: i.public_incident_id,
       date: (i.incident_start_datetime || "").slice(0, 10),
+      date_display: fmtDate(i),
       date_precision: i.date_precision,
       province: i.province_name || provinceName(i.province_code),
       title_tr: i.canonical_title_tr,

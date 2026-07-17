@@ -103,6 +103,13 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       }
     ],
+    "TR-MINE-1983-0003": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
     "TR-MINE-1987-0001": [
       {
         "organization": "Wikipedia (tr)",
@@ -111,6 +118,13 @@ window.MINING_DATA = {
       }
     ],
     "TR-MINE-1990-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-1990-0002": [
       {
         "organization": "Wikipedia (tr)",
         "title": "Türkiye'deki madencilik kazaları listesi",
@@ -146,6 +160,13 @@ window.MINING_DATA = {
       }
     ],
     "TR-MINE-2004-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2004-0002": [
       {
         "organization": "Wikipedia (tr)",
         "title": "Türkiye'deki madencilik kazaları listesi",
@@ -209,6 +230,30 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       }
     ],
+    "TR-MINE-2010-0004": [
+      {
+        "organization": "Wikidata",
+        "title": "Wikidata item Q6084742: Odaköy maden kazası",
+        "url": "https://www.wikidata.org/wiki/Q6084742"
+      },
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Odaköy maden kazası",
+        "url": "https://tr.wikipedia.org/wiki/Odak%C3%B6y_maden_kazas%C4%B1"
+      }
+    ],
+    "TR-MINE-2011-0001": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
     "TR-MINE-2013-0001": [
       {
         "organization": "Wikipedia (tr)",
@@ -233,13 +278,6 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "title": "Soma Faciası",
         "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
-      }
-    ],
-    "TR-MINE-2014-0002": [
-      {
-        "organization": "Wikipedia (tr)",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       }
     ],
     "TR-MINE-2014-0003": [
@@ -305,6 +343,20 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       }
     ],
+    "TR-MINE-2014-0012": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2014-0013": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
     "TR-MINE-2015-0001": [
       {
         "organization": "Wikipedia (tr)",
@@ -341,6 +393,13 @@ window.MINING_DATA = {
       }
     ],
     "TR-MINE-2015-0006": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2016-0001": [
       {
         "organization": "Wikipedia (tr)",
         "title": "Türkiye'deki madencilik kazaları listesi",
@@ -404,6 +463,27 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       }
     ],
+    "TR-MINE-2024-0004": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2024-0005": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2024-0006": [
+      {
+        "organization": "Wikipedia (tr)",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
     "TR-MINE-2025-0001": [
       {
         "organization": "Wikidata",
@@ -414,41 +494,6 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "title": "Zara maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Zara_maden_kazas%C4%B1"
-      }
-    ],
-    "TR-MINE-2025-0002": [
-      {
-        "organization": "Wikipedia (tr)",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
-      }
-    ],
-    "TR-MINE-2025-0003": [
-      {
-        "organization": "Wikipedia (tr)",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
-      }
-    ],
-    "TR-MINE-2025-0004": [
-      {
-        "organization": "Wikipedia (tr)",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
-      }
-    ],
-    "TR-MINE-2025-0005": [
-      {
-        "organization": "Wikipedia (tr)",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
-      }
-    ],
-    "TR-MINE-2025-0006": [
-      {
-        "organization": "Wikipedia (tr)",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       }
     ]
   },
@@ -485,6 +530,22 @@ window.MINING_DATA = {
         "system": "project_hazard"
       }
     ],
+    "TR-MINE-1983-0003": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
     "TR-MINE-1987-0001": [
       {
         "assertion_status": "reported",
@@ -495,6 +556,22 @@ window.MINING_DATA = {
       }
     ],
     "TR-MINE-1990-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-1990-0002": [
       {
         "assertion_status": "reported",
         "code": "gas_explosion",
@@ -590,6 +667,22 @@ window.MINING_DATA = {
         "system": "project_hazard"
       }
     ],
+    "TR-MINE-2004-0002": [
+      {
+        "assertion_status": "reported",
+        "code": "fire",
+        "label_en": "fire",
+        "label_tr": "yangın",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "fire",
+        "label_en": "fire",
+        "label_tr": "yangın",
+        "system": "project_hazard"
+      }
+    ],
     "TR-MINE-2005-0001": [
       {
         "assertion_status": "reported",
@@ -648,6 +741,13 @@ window.MINING_DATA = {
       },
       {
         "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
         "code": "methane",
         "label_en": "methane",
         "label_tr": "metan (grizu)",
@@ -660,6 +760,31 @@ window.MINING_DATA = {
         "code": "roof_or_ground_collapse",
         "label_en": "roof or ground collapse",
         "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2010-0004": [
+      {
+        "assertion_status": "reported",
+        "code": "gas_explosion",
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2011-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "landslide_or_slope_failure",
+        "label_en": "landslide or slope failure",
+        "label_tr": "heyelan/şev duraysızlığı",
         "system": "project_event_mechanism"
       }
     ],
@@ -689,33 +814,10 @@ window.MINING_DATA = {
       },
       {
         "assertion_status": "reported",
-        "code": "gas_explosion",
-        "label_en": "gas explosion",
-        "label_tr": "gaz (grizu) patlaması",
-        "system": "project_event_mechanism"
-      },
-      {
-        "assertion_status": "reported",
         "code": "fire",
         "label_en": "fire",
         "label_tr": "yangın",
         "system": "project_hazard"
-      },
-      {
-        "assertion_status": "reported",
-        "code": "methane",
-        "label_en": "methane",
-        "label_tr": "metan (grizu)",
-        "system": "project_hazard"
-      }
-    ],
-    "TR-MINE-2014-0002": [
-      {
-        "assertion_status": "reported",
-        "code": "roof_or_ground_collapse",
-        "label_en": "roof or ground collapse",
-        "label_tr": "tavan/göçük",
-        "system": "project_event_mechanism"
       }
     ],
     "TR-MINE-2014-0003": [
@@ -800,6 +902,24 @@ window.MINING_DATA = {
         "system": "project_hazard"
       }
     ],
+    "TR-MINE-2014-0012": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2014-0013": [
+      {
+        "assertion_status": "reported",
+        "code": "loss_of_vehicle_control",
+        "label_en": "loss of vehicle control",
+        "label_tr": "araç kontrol kaybı",
+        "system": "project_event_mechanism"
+      }
+    ],
     "TR-MINE-2015-0001": [
       {
         "assertion_status": "reported",
@@ -859,6 +979,22 @@ window.MINING_DATA = {
         "system": "project_hazard"
       }
     ],
+    "TR-MINE-2024-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "landslide_or_slope_failure",
+        "label_en": "landslide or slope failure",
+        "label_tr": "heyelan/şev duraysızlığı",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
     "TR-MINE-2024-0003": [
       {
         "assertion_status": "reported",
@@ -868,23 +1004,7 @@ window.MINING_DATA = {
         "system": "project_event_mechanism"
       }
     ],
-    "TR-MINE-2025-0003": [
-      {
-        "assertion_status": "reported",
-        "code": "gas_explosion",
-        "label_en": "gas explosion",
-        "label_tr": "gaz (grizu) patlaması",
-        "system": "project_event_mechanism"
-      },
-      {
-        "assertion_status": "reported",
-        "code": "methane",
-        "label_en": "methane",
-        "label_tr": "metan (grizu)",
-        "system": "project_hazard"
-      }
-    ],
-    "TR-MINE-2025-0004": [
+    "TR-MINE-2024-0004": [
       {
         "assertion_status": "reported",
         "code": "roof_or_ground_collapse",
@@ -893,7 +1013,7 @@ window.MINING_DATA = {
         "system": "project_event_mechanism"
       }
     ],
-    "TR-MINE-2025-0006": [
+    "TR-MINE-2024-0005": [
       {
         "assertion_status": "reported",
         "code": "roof_or_ground_collapse",
@@ -905,9 +1025,9 @@ window.MINING_DATA = {
   },
   "coverage_gap": {
     "caveat": "Different measures: the register counts deaths in publicly recorded, reviewed incidents; İSİG Meclisi counts all miner work deaths from all causes. The gap is loss that never became a publicly recorded incident.",
-    "total_gap": 905,
+    "total_gap": 915,
     "total_isig": 1345,
-    "total_recorded": 440,
+    "total_recorded": 430,
     "years": [
       {
         "coverage_pct": 0.0,
@@ -938,10 +1058,10 @@ window.MINING_DATA = {
         "year": 2015
       },
       {
-        "coverage_pct": 0.0,
-        "gap": 73,
+        "coverage_pct": 21.9,
+        "gap": 57,
         "isig_total": 73,
-        "register_deaths": 0,
+        "register_deaths": 16,
         "year": 2016
       },
       {
@@ -994,22 +1114,22 @@ window.MINING_DATA = {
         "year": 2023
       },
       {
-        "coverage_pct": 14.7,
-        "gap": 64,
+        "coverage_pct": 21.3,
+        "gap": 59,
         "isig_total": 75,
-        "register_deaths": 11,
+        "register_deaths": 16,
         "year": 2024
       },
       {
-        "coverage_pct": 52.5,
-        "gap": 29,
+        "coverage_pct": 1.6,
+        "gap": 60,
         "isig_total": 61,
-        "register_deaths": 32,
+        "register_deaths": 1,
         "year": 2025
       }
     ]
   },
-  "export_timestamp": "2026-07-17T13:16:00Z",
+  "export_timestamp": "2026-07-17T16:18:19Z",
   "incidents": [
     {
       "canonical_title_en": null,
@@ -1055,6 +1175,27 @@ window.MINING_DATA = {
     },
     {
       "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Amasya (1983-07-01)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 5,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "1983-07-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "05",
+      "province_name": "Amasya",
+      "public_incident_id": "TR-MINE-1983-0003",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
       "canonical_title_tr": "Maden kazası — Zonguldak (1987-01-01)",
       "casualty_status": null,
       "coordinate_precision": null,
@@ -1093,6 +1234,27 @@ window.MINING_DATA = {
       "province_code": "74",
       "province_name": "Bartın",
       "public_incident_id": "TR-MINE-1990-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "1990 Amasya grizu faciası",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 68,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "1990-02-07T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "05",
+      "province_name": "Amasya",
+      "public_incident_id": "TR-MINE-1990-0002",
       "settlement": null
     },
     {
@@ -1198,6 +1360,27 @@ window.MINING_DATA = {
       "province_code": "19",
       "province_name": "Çorum",
       "public_incident_id": "TR-MINE-2004-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Kastamonu (2004-09-08)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 19,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2004-09-08T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "37",
+      "province_name": "Kastamonu",
+      "public_incident_id": "TR-MINE-2004-0002",
       "settlement": null
     },
     {
@@ -1327,6 +1510,48 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
+      "canonical_title_en": "Odaköy mining accident",
+      "canonical_title_tr": "Odaköy maden kazası",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 17,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2010-02-23T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "10",
+      "province_name": "Balıkesir",
+      "public_incident_id": "TR-MINE-2010-0004",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Çöllolar maden kazası — Afşin-Elbistan (Şubat 2011)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 11,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2011-02-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "46",
+      "province_name": "Kahramanmaraş",
+      "public_incident_id": "TR-MINE-2011-0001",
+      "settlement": null
+    },
+    {
       "canonical_title_en": null,
       "canonical_title_tr": "Maden kazası — Manisa (2013-01-18)",
       "casualty_status": null,
@@ -1387,27 +1612,6 @@ window.MINING_DATA = {
       "province_code": "45",
       "province_name": "Manisa",
       "public_incident_id": "TR-MINE-2014-0001",
-      "settlement": null
-    },
-    {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası — Bartın (2014-11-01)",
-      "casualty_status": null,
-      "coordinate_precision": null,
-      "date_precision": "exact_date",
-      "district_code": null,
-      "fatalities_current": 3,
-      "incident_end_datetime": null,
-      "incident_start_datetime": "2014-11-01T00:00:00+03:00",
-      "incident_status": "in_scope",
-      "injuries_current": null,
-      "latitude": null,
-      "location_uncertainty_m": null,
-      "longitude": null,
-      "missing_current": null,
-      "province_code": "74",
-      "province_name": "Bartın",
-      "public_incident_id": "TR-MINE-2014-0002",
       "settlement": null
     },
     {
@@ -1601,6 +1805,48 @@ window.MINING_DATA = {
     },
     {
       "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Amasra, Bartın (2014-11-01)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 2,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-11-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "74",
+      "province_name": "Bartın",
+      "public_incident_id": "TR-MINE-2014-0012",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Gelik, Zonguldak (2014-11-01)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2014-11-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-2014-0013",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
       "canonical_title_tr": "Maden kazası — Sivas (2015-01-21)",
       "casualty_status": null,
       "coordinate_precision": null,
@@ -1727,6 +1973,27 @@ window.MINING_DATA = {
     },
     {
       "canonical_title_en": null,
+      "canonical_title_tr": "Şirvan maden kazası",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 16,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2016-11-17T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "56",
+      "province_name": "Siirt",
+      "public_incident_id": "TR-MINE-2016-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
       "canonical_title_tr": "Maden kazası — Zonguldak (2019-12-01)",
       "casualty_status": null,
       "coordinate_precision": null,
@@ -1770,7 +2037,7 @@ window.MINING_DATA = {
     {
       "canonical_title_en": "Amasra mine explosion",
       "canonical_title_tr": "Amasra maden kazası",
-      "casualty_status": null,
+      "casualty_status": "disputed",
       "coordinate_precision": "facility_approximate",
       "date_precision": "exact_date",
       "district_code": null,
@@ -1852,6 +2119,69 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Siirt (2024-10-23)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 3,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2024-10-23T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "56",
+      "province_name": "Siirt",
+      "public_incident_id": "TR-MINE-2024-0004",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Zonguldak (2024-06-04)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2024-06-04T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-2024-0005",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": null,
+      "canonical_title_tr": "Maden kazası — Bolu (2024-09-19)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2024-09-19T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "14",
+      "province_name": "Bolu",
+      "public_incident_id": "TR-MINE-2024-0006",
+      "settlement": null
+    },
+    {
       "canonical_title_en": "Zara mine explosion",
       "canonical_title_tr": "Zara maden kazası",
       "casualty_status": null,
@@ -1870,111 +2200,6 @@ window.MINING_DATA = {
       "province_code": "58",
       "province_name": "Sivas",
       "public_incident_id": "TR-MINE-2025-0001",
-      "settlement": null
-    },
-    {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası — Aydın (2025-01-22)",
-      "casualty_status": null,
-      "coordinate_precision": null,
-      "date_precision": "exact_date",
-      "district_code": null,
-      "fatalities_current": 4,
-      "incident_end_datetime": null,
-      "incident_start_datetime": "2025-01-22T00:00:00+03:00",
-      "incident_status": "in_scope",
-      "injuries_current": null,
-      "latitude": null,
-      "location_uncertainty_m": null,
-      "longitude": null,
-      "missing_current": null,
-      "province_code": "09",
-      "province_name": "Aydın",
-      "public_incident_id": "TR-MINE-2025-0002",
-      "settlement": null
-    },
-    {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası — Balıkesir (2025-01-22)",
-      "casualty_status": null,
-      "coordinate_precision": null,
-      "date_precision": "exact_date",
-      "district_code": null,
-      "fatalities_current": 18,
-      "incident_end_datetime": null,
-      "incident_start_datetime": "2025-01-22T00:00:00+03:00",
-      "incident_status": "in_scope",
-      "injuries_current": null,
-      "latitude": null,
-      "location_uncertainty_m": null,
-      "longitude": null,
-      "missing_current": null,
-      "province_code": "10",
-      "province_name": "Balıkesir",
-      "public_incident_id": "TR-MINE-2025-0003",
-      "settlement": null
-    },
-    {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası — Zonguldak (2025-01-22)",
-      "casualty_status": null,
-      "coordinate_precision": null,
-      "date_precision": "exact_date",
-      "district_code": null,
-      "fatalities_current": 3,
-      "incident_end_datetime": null,
-      "incident_start_datetime": "2025-01-22T00:00:00+03:00",
-      "incident_status": "in_scope",
-      "injuries_current": null,
-      "latitude": null,
-      "location_uncertainty_m": null,
-      "longitude": null,
-      "missing_current": null,
-      "province_code": "67",
-      "province_name": "Zonguldak",
-      "public_incident_id": "TR-MINE-2025-0004",
-      "settlement": null
-    },
-    {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası — Manisa (2025-01-22)",
-      "casualty_status": null,
-      "coordinate_precision": null,
-      "date_precision": "exact_date",
-      "district_code": null,
-      "fatalities_current": 3,
-      "incident_end_datetime": null,
-      "incident_start_datetime": "2025-01-22T00:00:00+03:00",
-      "incident_status": "in_scope",
-      "injuries_current": null,
-      "latitude": null,
-      "location_uncertainty_m": null,
-      "longitude": null,
-      "missing_current": null,
-      "province_code": "45",
-      "province_name": "Manisa",
-      "public_incident_id": "TR-MINE-2025-0005",
-      "settlement": null
-    },
-    {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası — Çanakkale (2025-01-22)",
-      "casualty_status": null,
-      "coordinate_precision": null,
-      "date_precision": "exact_date",
-      "district_code": null,
-      "fatalities_current": 3,
-      "incident_end_datetime": null,
-      "incident_start_datetime": "2025-01-22T00:00:00+03:00",
-      "incident_status": "in_scope",
-      "injuries_current": null,
-      "latitude": null,
-      "location_uncertainty_m": null,
-      "longitude": null,
-      "missing_current": null,
-      "province_code": "17",
-      "province_name": "Çanakkale",
-      "public_incident_id": "TR-MINE-2025-0006",
       "settlement": null
     }
   ],
@@ -2016,13 +2241,15 @@ window.MINING_DATA = {
     "provinceMarks": [
       {
         "code": "05",
-        "deaths": 6,
+        "deaths": 79,
         "ids": [
+          "TR-MINE-1983-0003",
+          "TR-MINE-1990-0002",
           "TR-MINE-2014-0003",
           "TR-MINE-2015-0004"
         ],
         "label": "Amasya",
-        "r": 11.9,
+        "r": 27.3,
         "x": 376.8,
         "y": 80.5
       },
@@ -2038,25 +2265,14 @@ window.MINING_DATA = {
         "y": 113.8
       },
       {
-        "code": "09",
-        "deaths": 4,
-        "ids": [
-          "TR-MINE-2025-0002"
-        ],
-        "label": "Aydın",
-        "r": 10.8,
-        "x": 94.3,
-        "y": 214.9
-      },
-      {
         "code": "10",
-        "deaths": 35,
+        "deaths": 34,
         "ids": [
           "TR-MINE-2006-0001",
-          "TR-MINE-2025-0003"
+          "TR-MINE-2010-0004"
         ],
         "label": "Balıkesir",
-        "r": 20.2,
+        "r": 20.0,
         "x": 90.1,
         "y": 122.3
       },
@@ -2072,6 +2288,17 @@ window.MINING_DATA = {
         "y": 154.5
       },
       {
+        "code": "14",
+        "deaths": 1,
+        "ids": [
+          "TR-MINE-2024-0006"
+        ],
+        "label": "Bolu",
+        "r": 8.4,
+        "x": 223.9,
+        "y": 79.2
+      },
+      {
         "code": "16",
         "deaths": 21,
         "ids": [
@@ -2081,17 +2308,6 @@ window.MINING_DATA = {
         "label": "Bursa",
         "r": 17.0,
         "x": 133.1,
-        "y": 103.5
-      },
-      {
-        "code": "17",
-        "deaths": 3,
-        "ids": [
-          "TR-MINE-2025-0006"
-        ],
-        "label": "Çanakkale",
-        "r": 10.2,
-        "x": 39.7,
         "y": 103.5
       },
       {
@@ -2140,6 +2356,17 @@ window.MINING_DATA = {
         "y": 107.5
       },
       {
+        "code": "37",
+        "deaths": 19,
+        "ids": [
+          "TR-MINE-2004-0002"
+        ],
+        "label": "Kastamonu",
+        "r": 16.5,
+        "x": 300.1,
+        "y": 40.5
+      },
+      {
         "code": "43",
         "deaths": 18,
         "ids": [
@@ -2152,26 +2379,26 @@ window.MINING_DATA = {
       },
       {
         "code": "45",
-        "deaths": 6,
+        "deaths": 3,
         "ids": [
           "TR-MINE-2013-0001",
           "TR-MINE-2019-0002",
-          "TR-MINE-2024-0002",
-          "TR-MINE-2025-0005"
+          "TR-MINE-2024-0002"
         ],
         "label": "Manisa",
-        "r": 11.9,
+        "r": 10.2,
         "x": 101.0,
         "y": 167.9
       },
       {
         "code": "46",
-        "deaths": 1,
+        "deaths": 12,
         "ids": [
+          "TR-MINE-2011-0001",
           "TR-MINE-2014-0006"
         ],
         "label": "Kahramanmaraş",
-        "r": 8.4,
+        "r": 14.3,
         "x": 417.5,
         "y": 207.1
       },
@@ -2199,6 +2426,18 @@ window.MINING_DATA = {
         "y": 166.4
       },
       {
+        "code": "56",
+        "deaths": 19,
+        "ids": [
+          "TR-MINE-2016-0001",
+          "TR-MINE-2024-0004"
+        ],
+        "label": "Siirt",
+        "r": 16.5,
+        "x": 607.1,
+        "y": 205.6
+      },
+      {
         "code": "58",
         "deaths": 1,
         "ids": [
@@ -2222,20 +2461,21 @@ window.MINING_DATA = {
       },
       {
         "code": "67",
-        "deaths": 398,
+        "deaths": 397,
         "ids": [
           "TR-MINE-1983-0001",
           "TR-MINE-1983-0002",
           "TR-MINE-1987-0001",
           "TR-MINE-1992-0001",
           "TR-MINE-2013-0002",
+          "TR-MINE-2014-0013",
           "TR-MINE-2015-0002",
           "TR-MINE-2019-0001",
           "TR-MINE-2024-0003",
-          "TR-MINE-2025-0004"
+          "TR-MINE-2024-0005"
         ],
         "label": "Zonguldak",
-        "r": 53.9,
+        "r": 53.8,
         "x": 230.2,
         "y": 49.7
       },
@@ -2265,13 +2505,13 @@ window.MINING_DATA = {
       },
       {
         "code": "74",
-        "deaths": 8,
+        "deaths": 7,
         "ids": [
           "TR-MINE-1990-0001",
-          "TR-MINE-2014-0002"
+          "TR-MINE-2014-0012"
         ],
         "label": "Bartın",
-        "r": 12.8,
+        "r": 12.3,
         "x": 258.0,
         "y": 36.6
       }
@@ -2816,11 +3056,11 @@ window.MINING_DATA = {
     ]
   },
   "pipeline": {
-    "claims_awaiting_review": 10,
-    "claims_total": 1386,
-    "decisions_total": 317,
-    "published_incidents": 46,
-    "records_in_review": 32,
+    "claims_awaiting_review": 9,
+    "claims_total": 1475,
+    "decisions_total": 361,
+    "published_incidents": 51,
+    "records_in_review": 1,
     "source_documents": 221
   },
   "policy_events": [
@@ -3443,8 +3683,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "",
-      "commodity_label": "",
+      "commodity_code": "coal",
+      "commodity_label": "coal",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -3470,7 +3710,7 @@ window.MINING_DATA = {
       "ref": "wikidata:Q118874645",
       "source_url": "https://www.wikidata.org/wiki/Q118874645",
       "status": "unknown",
-      "type": "mine_unspecified"
+      "type": "regional_group"
     },
     {
       "commodity_code": "coal",
@@ -3533,8 +3773,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "Platin",
+      "commodity_code": "gold",
+      "commodity_label": "gold",
       "coordinate_precision": "facility_approximate",
       "latitude": 41.618,
       "longitude": 34.401,
@@ -3557,7 +3797,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "other",
-      "commodity_label": "Kobalt",
+      "commodity_label": "cobalt",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.495,
       "longitude": 39.74,
@@ -3583,7 +3823,7 @@ window.MINING_DATA = {
       "ref": "wikidata:Q139421918",
       "source_url": "https://www.wikidata.org/wiki/Q139421918",
       "status": "unknown",
-      "type": "quarry"
+      "type": "archaeological_quarry"
     },
     {
       "commodity_code": "",
@@ -3598,7 +3838,7 @@ window.MINING_DATA = {
       "ref": "wikidata:Q139423910",
       "source_url": "https://www.wikidata.org/wiki/Q139423910",
       "status": "unknown",
-      "type": "quarry"
+      "type": "archaeological_quarry"
     },
     {
       "commodity_code": "",
@@ -3628,7 +3868,7 @@ window.MINING_DATA = {
       "ref": "wikidata:Q139436487",
       "source_url": "https://www.wikidata.org/wiki/Q139436487",
       "status": "unknown",
-      "type": "quarry"
+      "type": "archaeological_quarry"
     },
     {
       "commodity_code": "",
@@ -3646,8 +3886,8 @@ window.MINING_DATA = {
       "type": "quarry"
     },
     {
-      "commodity_code": "",
-      "commodity_label": "",
+      "commodity_code": "coal",
+      "commodity_label": "coal",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -3661,8 +3901,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "",
-      "commodity_label": "",
+      "commodity_code": "coal",
+      "commodity_label": "coal",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -3676,8 +3916,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "",
-      "commodity_label": "",
+      "commodity_code": "coal",
+      "commodity_label": "coal",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -3766,8 +4006,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "copper",
-      "commodity_label": "copper",
+      "commodity_code": "gold",
+      "commodity_label": "gold",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.426,
       "longitude": 38.522,
@@ -3856,8 +4096,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "",
-      "commodity_label": "",
+      "commodity_code": "coal",
+      "commodity_label": "kömür",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -3886,23 +4126,23 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "",
-      "commodity_label": "",
+      "commodity_code": "coal",
+      "commodity_label": "kömür",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.077194,
       "longitude": 27.525258,
       "name": "Soma Kömür Madeni",
       "organizations": [],
-      "province_code": "35",
-      "province_name": "İzmir",
+      "province_code": "45",
+      "province_name": "Manisa",
       "ref": "wikidata:Q16950520",
       "source_url": "https://www.wikidata.org/wiki/Q16950520",
       "status": "unknown",
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "phosphate",
-      "commodity_label": "Fosfat",
+      "commodity_code": "other",
+      "commodity_label": "phosphates",
       "coordinate_precision": "facility_approximate",
       "latitude": 37.5153,
       "longitude": 40.5014,
@@ -3923,8 +4163,8 @@ window.MINING_DATA = {
       "longitude": 37.89278,
       "name": "Hasançelebi Madeni",
       "organizations": [],
-      "province_code": "58",
-      "province_name": "Sivas",
+      "province_code": "44",
+      "province_name": "Malatya",
       "ref": "wikidata:Q16957840",
       "source_url": "https://www.wikidata.org/wiki/Q16957840",
       "status": "unknown",
@@ -3946,23 +4186,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "gold",
-      "commodity_label": "gold",
-      "coordinate_precision": "",
-      "latitude": null,
-      "longitude": null,
-      "name": "Kişladağ mine",
-      "organizations": [],
-      "province_code": "64",
-      "province_name": "Uşak",
-      "ref": "wikidata:Q16958962",
-      "source_url": "https://www.wikidata.org/wiki/Q16958962",
-      "status": "unknown",
-      "type": "mine_unspecified"
-    },
-    {
-      "commodity_code": "lignite",
-      "commodity_label": "lignite",
+      "commodity_code": "coal",
+      "commodity_label": "kömür",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.340685,
       "longitude": 37.082979,
@@ -4007,7 +4232,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "other",
-      "commodity_label": "boksit",
+      "commodity_label": "bauxite",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -4036,8 +4261,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "mangan",
+      "commodity_code": "gold",
+      "commodity_label": "gold",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.286667,
       "longitude": 26.973889,
@@ -4111,8 +4336,8 @@ window.MINING_DATA = {
       "type": "quarry"
     },
     {
-      "commodity_code": "",
-      "commodity_label": "",
+      "commodity_code": "lignite",
+      "commodity_label": "linyit",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.283611,
       "longitude": 43.372778,
@@ -4126,8 +4351,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "",
-      "commodity_label": "",
+      "commodity_code": "phosphate",
+      "commodity_label": "fosfat",
       "coordinate_precision": "facility_approximate",
       "latitude": 37.501944,
       "longitude": 40.361944,
@@ -4153,7 +4378,7 @@ window.MINING_DATA = {
       "ref": "wikidata:Q49413427",
       "source_url": "https://www.wikidata.org/wiki/Q49413427",
       "status": "unknown",
-      "type": "mine_unspecified"
+      "type": "operating_directorate"
     },
     {
       "commodity_code": "",
@@ -4168,7 +4393,7 @@ window.MINING_DATA = {
       "ref": "wikidata:Q49413429",
       "source_url": "https://www.wikidata.org/wiki/Q49413429",
       "status": "unknown",
-      "type": "mine_unspecified"
+      "type": "operating_directorate"
     },
     {
       "commodity_code": "",
@@ -4193,8 +4418,8 @@ window.MINING_DATA = {
       "longitude": 41.864167,
       "name": "Süvari Ocak",
       "organizations": [],
-      "province_code": "73",
-      "province_name": "Şırnak",
+      "province_code": "47",
+      "province_name": "Mardin",
       "ref": "wikidata:Q49453128",
       "source_url": "https://www.wikidata.org/wiki/Q49453128",
       "status": "unknown",
@@ -4216,8 +4441,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "",
-      "commodity_label": "",
+      "commodity_code": "coal",
+      "commodity_label": "kömür",
       "coordinate_precision": "facility_approximate",
       "latitude": 37.484722,
       "longitude": 42.419167,
@@ -4366,23 +4591,23 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "",
-      "commodity_label": "",
+      "commodity_code": "gold",
+      "commodity_label": "altın",
       "coordinate_precision": "facility_approximate",
       "latitude": 40.501,
       "longitude": 39.387,
       "name": "Sart altın madeni",
       "organizations": [],
-      "province_code": "45",
-      "province_name": "Manisa",
+      "province_code": "29",
+      "province_name": "Gümüşhane",
       "ref": "wikidata:Q61074517",
       "source_url": "https://www.wikidata.org/wiki/Q61074517",
       "status": "unknown",
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "phosphate",
-      "commodity_label": "Fosfat",
+      "commodity_code": "other",
+      "commodity_label": "phosphates",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -4411,8 +4636,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "",
-      "commodity_label": "",
+      "commodity_code": "marble",
+      "commodity_label": "mermer",
       "coordinate_precision": "facility_approximate",
       "latitude": 37.7275,
       "longitude": 28.74139,
@@ -4426,8 +4651,8 @@ window.MINING_DATA = {
       "type": "quarry"
     },
     {
-      "commodity_code": "zinc",
-      "commodity_label": "zinc",
+      "commodity_code": "copper",
+      "commodity_label": "bakır",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -4472,7 +4697,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "other",
-      "commodity_label": "mangan",
+      "commodity_label": "manganese",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -4502,7 +4727,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "other",
-      "commodity_label": "nikel",
+      "commodity_label": "nickel",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.475,
       "longitude": 27.713889,
@@ -4516,8 +4741,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "silver",
-      "commodity_label": "silver",
+      "commodity_code": "copper",
+      "commodity_label": "bakır",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,

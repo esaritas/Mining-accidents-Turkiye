@@ -6,6 +6,40 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Fixed — external audit corrections (2026-07-17, owner-forwarded)
+Register: 51 published records / 1,086 deaths (was 46 / 976). Every action is
+in `docs/corrections_log.csv` with original value, corrected value, and
+rationale; unverifiable audit items are logged PENDING, never applied.
+- **Parser root causes**: citation `<ref>` markup is stripped before date/
+  death extraction (five records had carried a citation's *access date* as
+  the accident date); monthly/aggregate summary bullets ("… ayında madenlerde
+  yaşanan iş kazalarında…", "raporuna göre en az…", "iki ayrı kazada") are
+  skipped entirely; death-verb coverage widened (ölürken/ölüm/yaşamını
+  kaybet/çalışan); soft hyphens stripped; the article lead now contributes
+  mechanisms alongside the infobox type (İliç: çökme AND heyelan).
+- **Withdrawn**: the five false 2025-01-22 records, the conflated Bartın
+  2014-11-01 record (split into Amasra/Bartın 2 deaths + Gelik/Zonguldak 1
+  death, wagon collision), 25 never-published access-date/aggregate draft
+  artifacts, and re-parse/title duplicates (merged with redirects).
+- **Added to the register** (from the same assessed sources after the
+  fixes): Yeni Çeltek 1990 (68), Yeni Çeltek 1983 (5), Küre 2004 (19),
+  Odaköy/Dursunbey 2010 (17), Çöllolar 2011 (11), Şirvan 2016 (16), Gelik
+  2024 (1), Mengen 2024 (1), Şirvan 2024 (3).
+- **Amasra**: `casualty_status = disputed` (TBMM documents 43 cumulative
+  deaths; assessed sources still say 42/27 — open question #20).
+- **Soma**: `gas_explosion`/`methane` classifications demoted to the review
+  queue; `fire` remains the established mechanism.
+- **Sites**: commodity now chosen from ALL stated products plus the site's
+  own name (Çöpler/Efemçukuru → gold, Çayeli/Murgul → copper); provinces
+  from robust point-in-polygon with stated-vs-coordinates conflicts logged
+  (Hasançelebi → Malatya); Soma Kömür Madeni → Manisa; Kışladağ duplicate
+  merged; Garp Linyitleri marked operating directorate; ancient quarries
+  and regional aggregates typed and kept off the operational map
+  (facility_types v1.1).
+- **Display**: dates render at recorded precision ("April 2005", never
+  "2005-04-01"); the records table is labeled "Accident records currently
+  documented in the project" — explicitly not a complete registry.
+
 ### Changed — carnations, commodity colors, names & downloads (2026-07-16, owner feedback)
 - All person figures replaced with red carnations (karanfil) — the memorial
   flower: story marks, map accident markers (Leaflet + SVG), legend swatches.

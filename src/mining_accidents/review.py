@@ -34,6 +34,7 @@ CANONICAL_INCIDENT_FIELDS = frozenset(
         "fatalities_current",
         "injuries_current",
         "missing_current",
+        "casualty_status",
     }
 )
 _INT_FIELDS = frozenset({"fatalities_current", "injuries_current", "missing_current"})

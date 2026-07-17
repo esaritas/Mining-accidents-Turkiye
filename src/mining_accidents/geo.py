@@ -57,3 +57,23 @@ def province_of_point(latitude: float, longitude: float) -> str | None:
             if _ring_contains(ring, longitude, latitude):
                 return code
     return None
+
+
+def robust_province_of_point(
+    latitude: float, longitude: float, delta_deg: float = 0.03
+) -> str | None:
+    """Province code only when the point is safely inside it.
+
+    The reference geometry is simplified (Natural Earth 10m); points near a
+    provincial border can fall on the wrong side (audit case: the Soma/Eynez
+    pits sit metres from the Manisa–İzmir line). The point qualifies only
+    when it AND four ~3 km offsets all land in the same province — otherwise
+    None, and the caller must not guess.
+    """
+    center = province_of_point(latitude, longitude)
+    if center is None:
+        return None
+    for dlat, dlon in ((delta_deg, 0), (-delta_deg, 0), (0, delta_deg), (0, -delta_deg)):
+        if province_of_point(latitude + dlat, longitude + dlon) != center:
+            return None
+    return center

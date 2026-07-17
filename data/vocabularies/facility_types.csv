@@ -7,3 +7,9 @@ processing_plant,zenginleştirme/işleme tesisi,processing plant,Mineral prepara
 tailings_facility,atık (tailings) tesisi,tailings facility,Tailings storage or heap-leach facility,tailings dams,1.0,,
 unknown,bilinmiyor,unknown,Facility type not determinable,,1.0,,
 other,diğer,other,Facility outside listed categories,,1.0,,requires an explanatory note
+archaeological_quarry,antik taş ocağı,archaeological quarry,Ancient/archaeological quarry site — historical context only never an operating site,Sagalassos Termessos quarries,1.1,,excluded from the operational map layer (audit 2026-07-17)
+mining_field,maden sahası/havzası,mining field,A field/basin/deposit area rather than one operating site,coal basins,1.1,,context entity (audit 2026-07-17)
+operating_directorate,işletme müdürlüğü/müessese,operating directorate,An operating enterprise/directorate overseeing several sites — not one mine,Garp Linyitleri İşletmesi,1.1,,context entity (audit 2026-07-17)
+regional_group,bölgesel grup,regional group,A regional aggregate of several mines,South Aegean coal mines,1.1,,context entity (audit 2026-07-17)
+deposit,yatak/cevherleşme,deposit,A mineral deposit with no stated operation,,1.1,,context entity (audit 2026-07-17)
+proposed_project,önerilen proje,proposed project,A proposed/planned project not yet operating,,1.1,,context entity (audit 2026-07-17)

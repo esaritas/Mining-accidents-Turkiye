@@ -223,6 +223,26 @@ def ingest_sites_cmd(
     )
 
 
+@app.command("apply-audit")
+def apply_audit_cmd(
+    db_path: Path = DB_OPTION,
+    reviewer: str = typer.Option(..., help="Human reviewer applying the audited corrections."),
+) -> None:
+    """Apply the 2026-07-17 external-audit corrections (offline, idempotent)."""
+    from mining_accidents import corrections
+
+    conn = database.get_connection(db_path)
+    try:
+        reparsed = corrections.reparse_stored_sources(conn, reviewer)
+        applied = corrections.apply_audit_corrections(conn, reviewer)
+        resolved = corrections.resolve_audit_reviewed_values(conn, reviewer)
+    finally:
+        conn.close()
+    console.print(f"[green]Re-parse:[/green] {reparsed}")
+    console.print(f"[green]Corrections:[/green] {applied}; reviewed values resolved: {resolved}")
+    console.print(f"Corrections log: {corrections.CORRECTIONS_LOG}")
+
+
 @app.command("build-dashboard")
 def build_dashboard(
     db_path: Path = DB_OPTION,

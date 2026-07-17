@@ -1,0 +1,20 @@
+entity,field,original_value,corrected_value,action,rationale
+TR-MINE-2025-0002,publication_status,publishable,withdrawn,withdrawn,"Bullet is Dev. Maden-Sen's February 2021 monthly multi-incident summary (Aydın+Elazığ+Aydın); '2025-01-22' was a citation access date, not an event date."
+TR-MINE-2025-0003,publication_status,publishable,withdrawn,withdrawn,Bullet describes the 23 February 2010 Dursunbey (Odaköy) disaster with no in-text date; '2025-01-22' was a citation access date. The disaster re-enters from its own dated list entry.
+TR-MINE-2025-0004,publication_status,publishable,withdrawn,withdrawn,Bullet is the April 2021 monthly multi-incident summary; date was a citation access date.
+TR-MINE-2025-0005,publication_status,publishable,withdrawn,withdrawn,Bullet is the May 2021 monthly multi-incident summary (Manisa+Denizli+Bursa); date was a citation access date.
+TR-MINE-2025-0006,publication_status,publishable,withdrawn,withdrawn,Bullet is the March 2021 monthly multi-incident summary; date was a citation access date.
+TR-MINE-2014-0002,publication_status,publishable,withdrawn,withdrawn,"Bullet conflates two same-day accidents in different provinces (Amasra/Bartın roof collapse, 2 deaths; Gelik/Zonguldak wagon collision, 1 death). Replaced by two separate records."
+audit2026:bartin-amasra-2014,record,(part of TR-MINE-2014-0002),"Maden kazası — Amasra, Bartın (2014-11-01): 2 deaths",created,Split of the conflated 2014-11-01 bullet (audit §2).
+audit2026:zonguldak-gelik-2014,record,(part of TR-MINE-2014-0002),"Maden kazası — Gelik, Zonguldak (2014-11-01): 1 deaths",created,Split of the conflated 2014-11-01 bullet (audit §2).
+TR-MINE-2022-0001,casualty_status,None,disputed,decision,42 vs 43 cumulative deaths; revision pending TBMM assessment.
+TR-MINE-2014-0001,event_mechanism,fire + gas_explosion,fire (gas_explosion needs_review),demoted,Fire is the established mechanism (audit §6).
+wikidata:Q16950520,province_code,None,45,corrected,"Soma is a district of Manisa; the twin item (Eynez, identical coordinates) states Manisa; the coordinates sit on the simplified Manisa-İzmir boundary so geometric derivation is not usable here."
+wikidata:Q49413427,facility_type,mine_unspecified,operating_directorate,corrected,"Garp Linyitleri İşletmesi is TKİ's operating directorate at Tavşanlı, Kütahya — an enterprise over several sites, not one mine (audit §7)."
+wikidata:Q49413429,facility_type,mine_unspecified,operating_directorate,corrected,Second Wikidata item for the same TKİ directorate (audit §7).
+wikidata:Q16958962,duplicate_of,,wikidata:Q16509436,deduplicated,'Kişladağ mine' and 'Kışladağ altın madeni' are spelling variants of the same Uşak gold mine.
+TR-MINE-2022-0001 fatalities 42 -> 43,,,,pending,TBMM records document a 43rd death (April 2023); TBMM is TO_ASSESS in the source registry. casualty_status set to 'disputed' meanwhile; open question #20.
+wikidata:Q137925109 (Gökırmak) commodity -> copper,,,,pending,Operator sources describe a copper project; Wikidata states Pt/Pd/Rb/Au only. Kept source-stated value; pending operator-source assessment.
+wikidata:Q97236653 (Öksüt) province -> Kayseri,,,,pending,"No assessed source states the province (no coordinates, no admin statement, no linked article). Pending operator/official-source assessment."
+TR-MINE-2010-0002 (Küçükdoğanca) mechanism += fire,,,,pending,Audit reports fire-then-collapse; the stored article text does not mention fire. Pending a source that states it.
+"Yeni Çeltek 1983 (5) and 1990-02-07 (68), Amasya",,,,pending,"Absent from all assessed sources (list article, navbox, Wikidata class query). Known coverage gap pending TBB/TMMOB source assessment; open question #21."

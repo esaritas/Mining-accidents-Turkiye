@@ -170,6 +170,31 @@ def map_commodity(label: str | None) -> tuple[str | None, str | None]:
     return folded.get(normalize_tr(label), "other"), label
 
 
+def pick_commodity(name: str, p1056_labels: list[str]) -> tuple[str | None, str | None]:
+    """Primary commodity from ALL stated products plus the site's own name.
+
+    Audit finding (2026-07-17): taking products[0] blindly mislabeled gold
+    mines as copper/manganese. Rule: (1) a commodity word in the site's NAME
+    wins — the source states it in the very name (Çöpler *Altın* Madeni);
+    (2) else the first *mappable* stated product; (3) else the first stated
+    product as `other`. Nothing is ever invented.
+    """
+    import re
+
+    folded_name = normalize_tr(name)
+    for term, code in COMMODITY_LABELS.items():
+        if re.search(rf"\b{re.escape(normalize_tr(term))}\b", folded_name):
+            matching = next((lb for lb in p1056_labels if map_commodity(lb)[0] == code), None)
+            return code, matching or term
+    for label in p1056_labels:
+        code, _ = map_commodity(label)
+        if code and code != "other":
+            return code, label
+    if p1056_labels:
+        return "other", p1056_labels[0]
+    return None, None
+
+
 def parse_site_entity(entity: dict, references: dict[str, dict]) -> list[ClaimDraft]:
     """Mechanical facility-subject claims from one Wikidata site entity.
 
@@ -207,32 +232,41 @@ def parse_site_entity(entity: dict, references: dict[str, dict]) -> list[ClaimDr
     for class_qid in class_qids:
         ref = references.get(class_qid, {})
         class_labels.extend(lb for lb in (ref.get("label_en"), ref.get("label")) if lb)
+    facility_type = map_facility_type(class_labels)
+    # Entity-level distinctions the class alone misses (audit, 2026-07-17):
+    # ancient quarries and regional aggregates must never sit unlabeled among
+    # operating industrial sites.
+    folded_name = normalize_tr(label)
+    if "antik" in folded_name.split() or "ancient" in folded_name.split():
+        facility_type = "archaeological_quarry"
+    elif folded_name.endswith(" mines") or "madenleri" in folded_name.split():
+        facility_type = "regional_group"
     drafts.append(
         draft(
             "facility_type",
             "P31=" + ",".join(class_qids) if class_qids else "P31 absent",
-            map_facility_type(class_labels),
+            facility_type,
         )
     )
 
     commodity_qids = _statement_qids(claims, "P1056")
-    if commodity_qids:
-        ref = references.get(commodity_qids[0], {})
-        # Try the English label, then the Turkish one; keep whichever maps.
-        code, label_out = None, None
+    p1056_labels: list[str] = []
+    for commodity_qid in commodity_qids:
+        ref = references.get(commodity_qid, {})
         for candidate in (ref.get("label_en"), ref.get("label")):
-            code, label_out = map_commodity(candidate)
-            if code and code != "other":
+            if candidate:
+                p1056_labels.append(candidate)
                 break
-        if code:
-            drafts.append(
-                draft(
-                    "commodity_code",
-                    f"P1056={commodity_qids[0]} ({label_out})",
-                    code,
-                    commodity_label=label_out or "",
-                )
+    code, label_out = pick_commodity(label, p1056_labels)
+    if code:
+        drafts.append(
+            draft(
+                "commodity_code",
+                f"P1056={','.join(commodity_qids) or 'name'} ({', '.join(p1056_labels)})",
+                code,
+                commodity_label=label_out or "",
             )
+        )
 
     coordinate = _best_coordinate(claims)
     if coordinate:

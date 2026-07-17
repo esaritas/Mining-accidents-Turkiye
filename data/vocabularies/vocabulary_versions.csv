@@ -12,5 +12,5 @@ date_precisions.csv,1.0,2026-07-13,Initial vocabulary
 coordinate_precisions.csv,1.0,2026-07-13,Initial vocabulary
 turkey_admin_areas.csv,1.0,2026-07-13,81 provinces with official plate codes (public reference data)
 nace_versions.csv,1.0,2026-07-13,Version identifiers only; no activity codes
-facility_types.csv,1.0,2026-07-15,Initial vocabulary (active-sites layer)
+facility_types.csv,1.1,2026-07-17,"Entity-level codes added (archaeological_quarry, mining_field, operating_directorate, regional_group, deposit, proposed_project) per external audit"
 commodities.csv,1.0,2026-07-15,Initial vocabulary (active-sites layer)

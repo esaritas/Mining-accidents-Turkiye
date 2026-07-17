@@ -1,29 +1,29 @@
 {
   "db_schema_version": "002",
-  "export_timestamp": "2026-07-17T13:16:00Z",
+  "export_timestamp": "2026-07-17T16:18:19Z",
   "file_sha256": {
     "datapackage.json": "0483c302a6f425e745c5d9e714f4ff1b4c6869276782a30f50d36b6ae4c7d268",
-    "facilities.csv": "d2a6746633cb81cb1b8ae7a55f15b54d31e6d4a4db3a0477993a0a5f7c457642",
+    "facilities.csv": "91bfe8c45c0c7e852d461182c88f718981fa5d6e650ecd2e2792ffb19551234c",
     "facility_organization_roles.csv": "44a653b819fadd875506cc672280ac8eb68ffae74d72662fefc3d63ba030e33e",
-    "incident_classifications.csv": "8c41d5e4eb3dd28dc725d4d40489b894bcab3f12ca176316daba0b9d2f5910f0",
+    "incident_classifications.csv": "61d5f8dc30db7759ea59b14e61f6e22609269a1a5af0865e2418c3baa7625d9d",
     "incident_organization_roles.csv": "34f228de008ec74abd5548cc27693dca1770aec84f8b95543f0085a8a8c9491e",
-    "incidents.csv": "525b20bcc9801038619a1122dc0d38aa730dbadb4c01ecb9ee244b44a075b661",
+    "incidents.csv": "9ca490e5cea6b373b27f0bf733545b7c40f969d4e2e6c32088616215f1348acb",
     "merged_id_redirects.csv": "26158d38632470f27afc9c5de47bc7f989785e46a81ee313d9cc05f737c7296b",
-    "sources.csv": "b9b9ae271356f6cc3688e39678dd91291f4ef8fe96950936794f7830f2b4814f"
+    "sources.csv": "fc064d4ae5e5cb7ee968706ae22b2279cd8d259b51b8e9f0c63982ace1c7f05e"
   },
-  "git_commit": "05b30bd55b9e023721931d4d9df4535c27584183",
+  "git_commit": "abee967f9d0c920b2a1b0425d993a36e0270da16",
   "quality_findings": {
     "critical": 0,
-    "warning": 10
+    "warning": 11
   },
   "row_counts": {
-    "facilities": 75,
+    "facilities": 74,
     "facility_organization_roles": 2,
-    "incident_classifications": 55,
+    "incident_classifications": 64,
     "incident_organization_roles": 0,
-    "incidents": 46,
+    "incidents": 51,
     "merged_id_redirects": 0,
-    "sources": 212
+    "sources": 234
   },
   "vocabulary_versions": {
     "assertion_statuses.csv": "1.0",
@@ -32,7 +32,7 @@
     "coordinate_precisions.csv": "1.0",
     "date_precisions.csv": "1.0",
     "event_mechanisms.csv": "1.0",
-    "facility_types.csv": "1.0",
+    "facility_types.csv": "1.1",
     "hazards.csv": "1.0",
     "modes_of_harm.csv": "1.0",
     "nace_versions.csv": "1.0",

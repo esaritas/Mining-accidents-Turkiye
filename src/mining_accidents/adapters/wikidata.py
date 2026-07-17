@@ -74,8 +74,19 @@ _TR_MONTHS = {
 _LIST_DATE = re.compile(r"(\d{1,2})\s+(" + "|".join(_TR_MONTHS) + r")\s+(\d{4})")
 _LIST_MONTH = re.compile(r"(" + "|".join(_TR_MONTHS) + r")\s+ayında")
 _LIST_DEATHS = re.compile(
-    r"(\d+)\s*(?:maden işçisi|işçi|kişi|madenci)"
-    r"[^.]{0,70}?(?:yaşamını yitir|hayatını kaybet|öldü|ölmüş|can ver)"
+    r"(\d+)\s*(?:maden işçisi|işçi|kişi|madenci|mühendis|çalışan)"
+    r"[^.]{0,70}?(?:yaşamını yitir|yaşamını kaybet|hayatını kaybet"
+    r"|öl(?:dü|müş|üm|ürken|erek)|can ver)"
+)
+#: reference markup inside a bullet — access/archive dates in citations must
+#: never be read as event dates (audit finding, 2026-07-17).
+_REF_MARKUP = re.compile(r"<ref[^>/]*/>|<ref[^>]*>.*?</ref>", re.DOTALL)
+#: monthly/annual multi-incident summary bullets ("2021 Şubat ayında
+#: madenlerde yaşanan iş kazalarında en az N ...") aggregate several
+#: accidents — never extractable as one incident (audit finding).
+_AGGREGATE_BULLET = re.compile(
+    r"(?:ayında|yılında)\s+madenlerde yaşanan iş kazaları"
+    r"|ayrı kazada|raporuna göre en az"
 )
 _LIST_TITLE_LINK = re.compile(r"^\*\s*\[\[([^\]|#]+)(?:\|[^\]]*)?\]\]\s*:")
 _ISIG_ROW = re.compile(r"^\|\s*(\d{4})\s*\n\|\s*(\d+)", re.M)
@@ -110,9 +121,11 @@ TR_MECHANISM_PHRASES: tuple[tuple[str, str, str | None], ...] = (
     ("su baskını", "flooding_or_inrush", "water_ingress"),
     ("göçük", "roof_or_ground_collapse", None),
     ("gocuk", "roof_or_ground_collapse", None),
+    ("çökme", "roof_or_ground_collapse", None),
     ("heyelan", "landslide_or_slope_failure", None),
     ("toprak kayması", "landslide_or_slope_failure", None),
     ("yangın", "fire", "fire"),
+    ("vagon çarpması", "loss_of_vehicle_control", None),
 )
 
 
@@ -575,26 +588,38 @@ def _parse_article(wikitext: str) -> list[ClaimDraft]:
             org_draft.notes = {"role": "operator"}
             drafts.append(org_draft)
 
-    # Cause axes: the infobox `tür=` value, else the first type phrase in the
-    # lead (text before the first section heading) — deterministic phrase
-    # table, first match only.
+    # Cause axes: the infobox `tür=` value AND the lead (text before the
+    # first section heading) — deterministic phrase table, first match per
+    # source region, deduplicated. Both regions are what this one source
+    # states; the infobox alone can miss the lead's description (audit
+    # finding, 2026-07-17: İliç's infobox says çökme, its lead heyelan).
     type_match = re.search(r"\|\s*tür\s*=\s*([^\n|]+)", wikitext, re.IGNORECASE)
     lead = wikitext.split("==", 1)[0]
-    cause_text = type_match.group(1).strip() if type_match else lead
-    cause_source = "infobox" if type_match else "lead_prose"
-    folded = normalize_tr(cause_text)
-    for phrase, mechanism, hazard in TR_MECHANISM_PHRASES:
-        if normalize_tr(phrase) in folded:
-            mech_draft = draft("event_mechanism", cause_text[:120] or phrase, mechanism)
-            mech_draft.claim_subject_type = "classification"
-            mech_draft.section_reference = cause_source
-            drafts.append(mech_draft)
-            if hazard:
-                hazard_draft = draft("hazard", cause_text[:120] or phrase, hazard)
-                hazard_draft.claim_subject_type = "classification"
-                hazard_draft.section_reference = cause_source
-                drafts.append(hazard_draft)
-            break
+    regions = []
+    if type_match:
+        regions.append(("infobox", type_match.group(1).strip()))
+    regions.append(("lead_prose", lead))
+    # The typed infobox field takes its first matching phrase; the lead —
+    # a summary that may state several mechanisms (İliç: çökme AND heyelan)
+    # — contributes every distinct phrase it contains.
+    seen_mechanisms: set[str] = set()
+    for cause_source, cause_text in regions:
+        folded = normalize_tr(cause_text)
+        for phrase, mechanism, hazard in TR_MECHANISM_PHRASES:
+            if normalize_tr(phrase) in folded:
+                if mechanism not in seen_mechanisms:
+                    seen_mechanisms.add(mechanism)
+                    mech_draft = draft("event_mechanism", cause_text[:120] or phrase, mechanism)
+                    mech_draft.claim_subject_type = "classification"
+                    mech_draft.section_reference = cause_source
+                    drafts.append(mech_draft)
+                    if hazard:
+                        hazard_draft = draft("hazard", cause_text[:120] or phrase, hazard)
+                        hazard_draft.claim_subject_type = "classification"
+                        hazard_draft.section_reference = cause_source
+                        drafts.append(hazard_draft)
+                if cause_source == "infobox":
+                    break
 
     # Province: the most-mentioned province wikilink wins (a single stray
     # mention of another province — hatnotes, comparisons — must not win over
@@ -667,6 +692,13 @@ def parse_list_article(wikitext: str) -> list[ClaimDraft]:
             continue
         if not line.lstrip().startswith("*"):
             continue
+        # Strip citation markup FIRST: dates inside <ref> tags are access or
+        # archive dates, not event dates (audit finding, 2026-07-17: five
+        # records carried a citation's access date as the accident date).
+        # Soft hyphens split words and break pattern matching.
+        line = _REF_MARKUP.sub(" ", line).replace("&shy;", "")
+        if _AGGREGATE_BULLET.search(line):
+            continue  # monthly summary of several accidents — not one incident
         date = _bullet_date(line, section_year)
         deaths = _LIST_DEATHS.search(line)
         if not date or not deaths:

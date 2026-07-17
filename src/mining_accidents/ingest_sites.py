@@ -167,16 +167,29 @@ def _write_facility_values(
     longitude = fields.get("longitude")
     province = fields.get("province_code").normalized_value if fields.get("province_code") else None
     notes = "Registered from open structured sources (partial coverage)."
-    if province is None and latitude and longitude:
-        derived = geo.province_of_point(
+    if latitude and longitude:
+        # Robust derivation only: near-border points return None rather than
+        # guessing the wrong side of a simplified boundary.
+        derived = geo.robust_province_of_point(
             float(latitude.normalized_value), float(longitude.normalized_value)
         )
-        if derived:
+        if province is None and derived:
             province = derived
             notes += (
                 " Province derived from source-stated coordinates "
                 "(point-in-polygon, Natural Earth reference geometry)."
             )
+        elif derived and province and derived != province:
+            # Stated admin area conflicts with robustly-located coordinates
+            # (audit case, 2026-07-17: Hasançelebi carried Sivas while its
+            # coordinates sit well inside Malatya). Coordinates win; the
+            # conflict is recorded, never resolved silently out of sight.
+            notes += (
+                f" CONFLICT: source-stated admin area (code {province}) "
+                f"disagrees with source-stated coordinates (code {derived}); "
+                "coordinates used, per audit rule of 2026-07-17."
+            )
+            province = derived
     conn.execute(
         """
         UPDATE facilities SET

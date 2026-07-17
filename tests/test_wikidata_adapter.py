@@ -162,3 +162,58 @@ def test_isig_table_parsing() -> None:
         "|-\n|2098\n|81\n|-\n|2099\n|93\n|-\n|'''Toplam'''\n|'''174'''\n|}"
     )
     assert parse_isig_table(wikitext) == [(2098, 81), (2099, 93)]
+
+
+def test_ref_access_dates_never_become_event_dates() -> None:
+    """Audit 2026-07-17: citation access dates must not be read as event dates."""
+    from mining_accidents.adapters.wikidata import parse_list_article
+
+    wikitext = (
+        "== Kazalar ==\n=== 2099 ===\n"
+        "* TEST ilinde kömür ocağında göçükte 3 işçi hayatını kaybetti."
+        "<ref>{{Web kaynağı|url=http://example.test|erişimtarihi=22 Ocak 2098}}</ref>\n"
+    )
+    drafts = parse_list_article(wikitext)
+    # No in-text date -> the bullet is dropped entirely, never dated from a ref.
+    assert drafts == []
+
+
+def test_monthly_aggregate_bullets_are_skipped() -> None:
+    from mining_accidents.adapters.wikidata import parse_list_article
+
+    wikitext = (
+        "== Kazalar ==\n=== 2099 ===\n"
+        "* 2099 Şubat ayında madenlerde yaşanan iş kazalarında en az 4 maden işçisi "
+        "hayatını kaybetmiştir. TESTİL'de bir, TESTKENT'te iki kaza oldu.\n"
+        "* TEST raporuna göre en az 5 maden işçisi hayatını kaybetmiş ve 3 işçi "
+        "yaralanmıştır. 1 Ocak 2099 tarihinde açıklandı.\n"
+    )
+    assert parse_list_article(wikitext) == []
+
+
+def test_expanded_death_verbs_extract() -> None:
+    from mining_accidents.adapters.wikidata import parse_list_article
+
+    wikitext = (
+        "== Kazalar ==\n=== 2099 ===\n"
+        "* 8 Eylül 2099 tarihinde TEST ocağında yangında toplam 19 çalışan ölmüştür.\n"
+        "* 17 Kasım 2099 tarihinde TEST madeninde 16 işçinin ölümüyle sonuçlanan kaza.\n"
+        "* 19 Eylül 2099 tarihinde TEST işletmesinde 1 maden işçisi yaşamını kaybetti.\n"
+    )
+    drafts = parse_list_article(wikitext)
+    deaths = sorted(d.normalized_value for d in drafts if d.field_name == "fatalities_current")
+    assert deaths == ["1", "16", "19"]
+
+
+def test_lead_contributes_additional_mechanisms() -> None:
+    """İliç pattern: infobox says çökme, the lead says heyelan — keep both."""
+    from mining_accidents.adapters.wikidata import _parse_article
+
+    wikitext = (
+        "{{Infobox|tür = Maden çökmesi}}\n"
+        "TEST madeninde heyelan sonucu göçük meydana geldi.\n== Kaynakça ==\n"
+    )
+    mechanisms = {
+        d.normalized_value for d in _parse_article(wikitext) if d.field_name == "event_mechanism"
+    }
+    assert mechanisms == {"roof_or_ground_collapse", "landslide_or_slope_failure"}
