@@ -35,6 +35,7 @@ _DECIDED_FIELDS = (
     "date_precision",
     "province_code",
     "fatalities_current",
+    "injuries_current",
     "latitude",
     "longitude",
 )

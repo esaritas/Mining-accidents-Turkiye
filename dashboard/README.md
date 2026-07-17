@@ -15,8 +15,9 @@ make dashboard                                  # regenerates dashboard/data.js
 `data/public/` plus aggregate pipeline-status counts, derived analysis
 (coverage gap, rate context, policy events, cost-of-inaction baseline — see
 `docs/analysis_methods.md`, all STATUS: PROPOSED), province centroids, and
-projected vector-map geometry (`tur-outline.geo.json`, Natural Earth derived,
-public domain). `mining-accidents build-artifact` renders the same template
+projected vector-map geometry (`data/reference/tur_provinces.geo.json`,
+Natural Earth 10m admin-1, public domain — province boundaries, one path per
+province). `mining-accidents build-artifact` renders the same template
 into the self-contained `artifact.html` (embedded data, SVG map, no external
 requests). Records that have not
 passed the full publication threshold appear **only** as counts ("records in

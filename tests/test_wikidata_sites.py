@@ -157,3 +157,68 @@ def test_ingest_without_reviewer_keeps_roles_pending(conn, tmp_path) -> None:
         ).fetchone()[0]
         == 0
     )
+
+
+def test_province_of_point_reference_geometry() -> None:
+    from mining_accidents import geo
+
+    assert geo.province_of_point(39.93, 32.86) == "06"  # Ankara
+    assert geo.province_of_point(41.723, 32.350) == "74"  # Bartın coast
+    assert geo.province_of_point(35.0, 29.0) is None  # open sea
+
+
+def test_link_incident_facilities_blocking_rule(conn) -> None:
+    from mining_accidents.ingest_sites import link_incident_facilities
+
+    conn.execute(
+        "INSERT INTO source_documents (source_organization, title, document_type, url, "
+        "retrieved_at, content_hash, local_raw_path, source_tier, access_status) "
+        "VALUES ('TEST', 'TEST doc', 'other', 'https://example.test/doc', "
+        "'2099-01-01T00:00:00Z', 'TEST-hash-link', '/dev/null', 3, 'available')"
+    )
+    doc_id = conn.execute("SELECT MAX(source_document_id) FROM source_documents").fetchone()[0]
+    conn.execute(
+        "INSERT INTO claims (source_document_id, claim_subject_type, field_name, "
+        "normalized_value, extraction_method) VALUES (?, 'facility', 'facility_name_tr', "
+        "'TEST Eynez Ocağı', 'api')",
+        (doc_id,),
+    )
+    claim_id = conn.execute("SELECT MAX(claim_id) FROM claims").fetchone()[0]
+    conn.execute(
+        "INSERT INTO facilities (facility_name_tr, facility_name_normalized, province_code, "
+        "latitude, longitude, source_claim_id, external_ref) "
+        "VALUES ('TEST Eynez Ocağı', 'test eynez ocagi', '45', 39.1, 27.6, ?, "
+        "'wikidata:Q99999902')",
+        (claim_id,),
+    )
+    # Title names the facility ('test eynez'), same province -> links.
+    conn.execute(
+        "INSERT INTO incidents (canonical_title_tr, canonical_title_tr_normalized, "
+        "province_code, incident_status) "
+        "VALUES ('TEST Eynez faciası', 'test eynez faciasi', '45', 'in_scope')"
+    )
+    # Same province but generic title -> must NOT link.
+    conn.execute(
+        "INSERT INTO incidents (canonical_title_tr, canonical_title_tr_normalized, "
+        "province_code, incident_status) "
+        "VALUES ('TEST maden kazası Manisa', 'test maden kazasi manisa', '45', 'in_scope')"
+    )
+    conn.commit()
+
+    linked = link_incident_facilities(conn, "TEST Reviewer")
+    assert linked == 1
+    named = conn.execute(
+        "SELECT latitude, longitude, coordinate_precision, facility_id FROM incidents "
+        "WHERE canonical_title_tr_normalized = 'test eynez faciasi'"
+    ).fetchone()
+    assert named["latitude"] == 39.1 and named["coordinate_precision"] == "facility_approximate"
+    assert named["facility_id"] is not None
+    generic = conn.execute(
+        "SELECT latitude FROM incidents "
+        "WHERE canonical_title_tr_normalized = 'test maden kazasi manisa'"
+    ).fetchone()
+    assert generic["latitude"] is None
+    decision = conn.execute(
+        "SELECT decision, reviewer FROM claim_decisions WHERE field_name = 'latitude'"
+    ).fetchone()
+    assert decision["decision"] == "manual_override"

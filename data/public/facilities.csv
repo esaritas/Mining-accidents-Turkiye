@@ -3,21 +3,21 @@ wikidata:Q114678822,Amasra Kömür Madeni,mine_unspecified,coal,coal,74,41.72305
 wikidata:Q117471695,Sorgun coal mine,mine_unspecified,,,,,,,unknown,https://www.wikidata.org/wiki/Q117471695
 wikidata:Q118874645,South Aegean coal mines,mine_unspecified,coal,coal,,,,,unknown,https://www.wikidata.org/wiki/Q118874645
 wikidata:Q118874850,Tunçbilek coal mine,mine_unspecified,coal,coal,,,,,unknown,https://www.wikidata.org/wiki/Q118874850
-wikidata:Q121494242,Collum Coal Mine,mine_unspecified,coal,coal,,,,,unknown,https://www.wikidata.org/wiki/Q121494242
+wikidata:Q121494242,Collum Coal Mine,mine_unspecified,coal,coal,,-17.15,27.36,facility_approximate,unknown,https://www.wikidata.org/wiki/Q121494242
 wikidata:Q122237641,Ömerler coal mine,mine_unspecified,coal,coal,,,,,unknown,https://www.wikidata.org/wiki/Q122237641
 wikidata:Q122790689,Kınık coal mine,mine_unspecified,coal,coal,,,,,unknown,https://www.wikidata.org/wiki/Q122790689
-wikidata:Q137925109,Gokirmak,mine_unspecified,other,Platin,,41.618,34.401,facility_approximate,unknown,https://www.wikidata.org/wiki/Q137925109
-wikidata:Q137942956,Kapin,mine_unspecified,other,Kobalt,,38.495,39.74,facility_approximate,unknown,https://www.wikidata.org/wiki/Q137942956
+wikidata:Q137925109,Gokirmak,mine_unspecified,other,Platin,37,41.618,34.401,facility_approximate,unknown,https://www.wikidata.org/wiki/Q137925109
+wikidata:Q137942956,Kapin,mine_unspecified,other,Kobalt,23,38.495,39.74,facility_approximate,unknown,https://www.wikidata.org/wiki/Q137942956
 wikidata:Q139421918,Antik Taş Ocağı (Kayacık),quarry,,,17,39.717598,26.249405,facility_approximate,unknown,https://www.wikidata.org/wiki/Q139421918
 wikidata:Q139423910,Kısıklı Deresi Antik Taş Ocağı,quarry,,,45,38.456881,28.016055,facility_approximate,unknown,https://www.wikidata.org/wiki/Q139423910
 wikidata:Q139436433,Sagalassos Taş Ocağı,quarry,,,15,37.68174,30.51893,facility_approximate,unknown,https://www.wikidata.org/wiki/Q139436433
 wikidata:Q139436487,Termessos Antik Taş Ocağı,quarry,,,07,36.978725,30.462008,facility_approximate,unknown,https://www.wikidata.org/wiki/Q139436487
-wikidata:Q15849063,Karakız Taş Ocağı,quarry,,,,39.8132,35.3578,facility_approximate,unknown,https://www.wikidata.org/wiki/Q15849063
+wikidata:Q15849063,Karakız Taş Ocağı,quarry,,,66,39.8132,35.3578,facility_approximate,unknown,https://www.wikidata.org/wiki/Q15849063
 wikidata:Q16002015,Afşin-C coal mine,mine_unspecified,,,,,,,unknown,https://www.wikidata.org/wiki/Q16002015
 wikidata:Q16002017,Afşin-D coal mine,mine_unspecified,,,,,,,unknown,https://www.wikidata.org/wiki/Q16002017
 wikidata:Q16002019,Afşin-E coal mine,mine_unspecified,,,,,,,unknown,https://www.wikidata.org/wiki/Q16002019
 wikidata:Q16251758,Armutçuk Kömür Madeni,mine_unspecified,coal,coal,67,,,,unknown,https://www.wikidata.org/wiki/Q16251758
-wikidata:Q16256069,Cevizlidere mine,mine_unspecified,copper,copper,62,,,,unknown,https://www.wikidata.org/wiki/Q16256069
+wikidata:Q16256069,Cevizlidere mine,mine_unspecified,copper,copper,62,39.266669,39.6,facility_approximate,unknown,https://www.wikidata.org/wiki/Q16256069
 wikidata:Q16258699,Çöllolar Kömür Madeni,mine_unspecified,coal,coal,46,,,,unknown,https://www.wikidata.org/wiki/Q16258699
 wikidata:Q16509436,Kışladağ altın madeni,mine_unspecified,gold,gold,64,38.4813,29.1498,facility_approximate,unknown,https://www.wikidata.org/wiki/Q16509436
 wikidata:Q16827283,Bigadiç Madeni,mine_unspecified,boron,boron,10,,,,unknown,https://www.wikidata.org/wiki/Q16827283
@@ -29,7 +29,7 @@ wikidata:Q16841259,Gümüşköy mine,mine_unspecified,silver,silver,43,,,,unknow
 wikidata:Q16852311,Karadon coal mine,mine_unspecified,coal,coal,67,,,,unknown,https://www.wikidata.org/wiki/Q16852311
 wikidata:Q16852339,Karapınar Kömür Sahası,mine_unspecified,,,,,,,unknown,https://www.wikidata.org/wiki/Q16852339
 wikidata:Q16947725,Emet mine,mine_unspecified,boron,boron,43,,,,unknown,https://www.wikidata.org/wiki/Q16947725
-wikidata:Q16950520,Soma Kömür Madeni,mine_unspecified,,,,39.077194,27.525258,facility_approximate,unknown,https://www.wikidata.org/wiki/Q16950520
+wikidata:Q16950520,Soma Kömür Madeni,mine_unspecified,,,35,39.077194,27.525258,facility_approximate,unknown,https://www.wikidata.org/wiki/Q16950520
 wikidata:Q16950634,Mardin madeni,mine_unspecified,phosphate,Fosfat,47,37.5153,40.5014,facility_approximate,unknown,https://www.wikidata.org/wiki/Q16950634
 wikidata:Q16957840,Hasançelebi Madeni,mine_unspecified,iron,iron ore,58,38.95444,37.89278,facility_approximate,unknown,https://www.wikidata.org/wiki/Q16957840
 wikidata:Q16958957,Kırka madeni,mine_unspecified,boron,boron,26,39.295742,30.493194,facility_approximate,unknown,https://www.wikidata.org/wiki/Q16958957
@@ -42,7 +42,7 @@ wikidata:Q23755156,Çukuralan altın madeni,mine_unspecified,gold,gold,35,39.209
 wikidata:Q31191435,Efemçukuru altın madeni,mine_unspecified,other,mangan,35,38.286667,26.973889,facility_approximate,unknown,https://www.wikidata.org/wiki/Q31191435
 wikidata:Q4705477,Aladağ madeni,mine_unspecified,chromium,chromium,01,37.54649,35.39873,facility_approximate,unknown,https://www.wikidata.org/wiki/Q4705477
 wikidata:Q4818250,Attepe mine,mine_unspecified,iron,iron ore,51,,,,unknown,https://www.wikidata.org/wiki/Q4818250
-wikidata:Q4829084,Avnik mine,mine_unspecified,iron,iron ore,12,,,,unknown,https://www.wikidata.org/wiki/Q4829084
+wikidata:Q4829084,Avnik mine,mine_unspecified,iron,iron ore,12,38.65,40.333061,facility_approximate,unknown,https://www.wikidata.org/wiki/Q4829084
 wikidata:Q49099415,Şavakçı Maden İşletmesi,quarry,,,10,39.461944,28.130278,facility_approximate,unknown,https://www.wikidata.org/wiki/Q49099415
 wikidata:Q49408861,Doğu Anadolu Linyit İşletmesi,mine_unspecified,,,65,39.283611,43.372778,facility_approximate,unknown,https://www.wikidata.org/wiki/Q49408861
 wikidata:Q49410841,Etibank Mazıdağı Fosfat İşletmesi,mine_unspecified,,,47,37.501944,40.361944,facility_approximate,unknown,https://www.wikidata.org/wiki/Q49410841
@@ -57,7 +57,7 @@ wikidata:Q49460268,Kamilintuğla Ocağı,quarry,,,72,37.8925,41.065278,facility_
 wikidata:Q49460391,Taş Ocağı,quarry,,,56,37.885556,41.663889,facility_approximate,unknown,https://www.wikidata.org/wiki/Q49460391
 wikidata:Q49460461,Ermenek Kömür İşletmesi,mine_unspecified,coal,coal,70,36.65,32.798889,facility_approximate,unknown,https://www.wikidata.org/wiki/Q49460461
 wikidata:Q5211983,Damar mine,mine_unspecified,copper,copper,08,,,,unknown,https://www.wikidata.org/wiki/Q5211983
-wikidata:Q5284687,Divriği A-Kafa mine,mine_unspecified,iron,iron ore,58,,,,unknown,https://www.wikidata.org/wiki/Q5284687
+wikidata:Q5284687,Divriği A-Kafa mine,mine_unspecified,iron,iron ore,58,39.4247,38.0832,facility_approximate,unknown,https://www.wikidata.org/wiki/Q5284687
 wikidata:Q5284688,Divriği B-Kafa mine,mine_unspecified,iron,iron ore,58,,,,unknown,https://www.wikidata.org/wiki/Q5284688
 wikidata:Q6009374,Mastra altın madeni,mine_unspecified,gold,gold,29,40.501,39.387,facility_approximate,unknown,https://www.wikidata.org/wiki/Q6009374
 wikidata:Q60745269,Silopi asphaltite mine,mine_unspecified,coal,coal,73,,,,unknown,https://www.wikidata.org/wiki/Q60745269

@@ -140,7 +140,7 @@ def _province_centroids() -> dict[str, dict[str, float | str]]:
     return result
 
 
-OUTLINE_GEOJSON = Path("dashboard/tur-outline.geo.json")
+PROVINCES_GEOJSON = Path("data/reference/tur_provinces.geo.json")
 _PROJ = {"lon0": 25.3, "lon1": 45.1, "lat0": 35.5, "lat1": 42.4, "k": 46.0}
 
 
@@ -149,10 +149,12 @@ def _map_vector(
     centroids: dict[str, dict[str, float | str]],
     sites: list[dict[str, object]] | None = None,
 ) -> dict[str, object]:
-    """Projected vector map (Türkiye outline + marks) for tile-free rendering.
+    """Projected vector map (Türkiye province boundaries + marks) for
+    tile-free rendering.
 
-    Outline: world.geo.json (Natural Earth derived, public domain). Simple
-    equirectangular projection; display-only geometry, not evidence."""
+    Geometry: Natural Earth 10m admin-1 (public domain), one path per
+    province. Simple equirectangular projection; display-only geometry,
+    not evidence."""
     import math
 
     cos = math.cos(math.radians((_PROJ["lat0"] + _PROJ["lat1"]) / 2))
@@ -163,12 +165,18 @@ def _map_vector(
             round((_PROJ["lat1"] - lat) * _PROJ["k"], 1),
         )
 
-    geometry = json.loads(OUTLINE_GEOJSON.read_text(encoding="utf-8"))["features"][0]["geometry"]
-    paths = [
-        "M" + " L".join(f"{x},{y}" for x, y in (px(lon, lat) for lon, lat in ring)) + " Z"
-        for polygon in geometry["coordinates"]
-        for ring in polygon
-    ]
+    provinces = []
+    for feature in json.loads(PROVINCES_GEOJSON.read_text(encoding="utf-8"))["features"]:
+        geometry = feature["geometry"]
+        polygons = (
+            [geometry["coordinates"]] if geometry["type"] == "Polygon" else geometry["coordinates"]
+        )
+        path = " ".join(
+            "M" + " L".join(f"{x},{y}" for x, y in (px(lon, lat) for lon, lat in ring)) + " Z"
+            for polygon in polygons
+            for ring in polygon
+        )
+        provinces.append({"code": feature["properties"]["code"], "d": path})
     width, height = px(_PROJ["lon1"], _PROJ["lat0"])
 
     located, by_province = [], {}
@@ -211,7 +219,7 @@ def _map_vector(
     return {
         "W": width,
         "H": height,
-        "outline": " ".join(paths),
+        "provinces": provinces,
         "markers": located,
         "provinceMarks": province_marks,
         "siteMarks": site_marks,

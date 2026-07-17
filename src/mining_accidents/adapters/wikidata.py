@@ -452,6 +452,10 @@ def _parse_entity(entity: dict) -> list[ClaimDraft]:
 _INFOBOX_DEATHS = re.compile(
     r"\|\s*(?:ölüsayısı|ölü sayısı|deaths|fatalities)\s*=\s*([0-9][0-9.,]*)", re.IGNORECASE
 )
+_INFOBOX_INJURIES = re.compile(
+    r"\|\s*(?:yaralısayısı|yaralı sayısı|yaralı|injuries|injured)\s*=\s*([0-9][0-9.,]*)",
+    re.IGNORECASE,
+)
 _START_DATE_TPL = re.compile(
     r"\{\{(?:Başlangıç tarihi|start date)[^}]*?\|(\d{4})\|(\d{1,2})\|(\d{1,2})", re.IGNORECASE
 )
@@ -528,6 +532,11 @@ def _parse_article(wikitext: str) -> list[ClaimDraft]:
                     method="ai_assisted",
                 )
             )
+
+    injured = _INFOBOX_INJURIES.search(wikitext)
+    if injured:
+        number = injured.group(1).replace(".", "").replace(",", "")
+        drafts.append(draft("injuries_current", injured.group(0).strip(), number))
 
     match = _START_DATE_TPL.search(wikitext)
     if match:

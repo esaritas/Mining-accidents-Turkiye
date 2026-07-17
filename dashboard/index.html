@@ -62,14 +62,18 @@
   .chapter.first .card .k { font-size: 26px; max-width: 30ch; text-wrap: balance; }
   .scrollhint { color: var(--ink-muted); font-size: 13px; margin-top: 16px; }
 
-  .markfield { display: flex; flex-wrap: wrap; gap: 3px; position: relative; }
-  .mark { width: 7px; height: 10px; border-radius: 2px; background: var(--series-1);
-          transition: opacity .55s ease; }
+  .markfield { display: flex; flex-wrap: wrap; gap: 3px 4px; position: relative;
+               align-content: flex-start; }
+  /* One small human figure per person (head + body, CSS mask). */
+  .mark { width: 9px; height: 14px; background: var(--series-1);
+          transition: opacity .55s ease;
+          -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'><circle cx='12' cy='6.5' r='5.5'/><rect x='5' y='13.5' width='14' height='22' rx='6'/></svg>") center/contain no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'><circle cx='12' cy='6.5' r='5.5'/><rect x='5' y='13.5' width='14' height='22' rx='6'/></svg>") center/contain no-repeat; }
   .mark.off { opacity: 0; }
   .mark.dim { opacity: .25; }
   .stage.focus .mark { opacity: .08; }
   .stage.focus .mark.focal { opacity: 1; }
-  .mark.ghost { background: none; border: 1px solid var(--ink-muted); opacity: .75; }
+  .mark.ghost { background: var(--ink-muted); opacity: .45; }
   .stage .ghostfield { display: none; }
   .stage .ghostfield.show { display: flex; }
   .stage .fieldnote { color: var(--ink-muted); font-size: 12.5px; min-height: 1.4em; }
@@ -120,17 +124,21 @@
                                               border-color: var(--ink-1); }
   .maplegend { display: flex; gap: 18px; font-size: 13px; color: var(--ink-2);
                margin: 8px 0 0; flex-wrap: wrap; }
-  .maplegend .sw-acc { display: inline-block; width: 11px; height: 11px; border-radius: 50%;
-                       background: var(--series-1); opacity: .85; margin-right: 5px; }
+  .maplegend .sw-acc { display: inline-block; width: 9px; height: 13px;
+                       background: var(--series-1); opacity: .88; margin-right: 5px;
+                       vertical-align: -2px;
+                       -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'><circle cx='12' cy='6.5' r='5.5'/><rect x='5' y='13.5' width='14' height='22' rx='6'/></svg>") center/contain no-repeat;
+                       mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'><circle cx='12' cy='6.5' r='5.5'/><rect x='5' y='13.5' width='14' height='22' rx='6'/></svg>") center/contain no-repeat; }
   .maplegend .sw-site { display: inline-block; width: 9px; height: 9px; background: var(--site);
                         transform: rotate(45deg); margin-right: 6px; opacity: .8; }
 
   #map { min-height: 320px; border-radius: 8px; background: var(--page); }
   #map-wrap { position: relative; }
   #map svg { display: block; width: 100%; height: auto; }
-  .tr-outline { fill: #e4e6e9; stroke: var(--baseline); stroke-width: 1; }
-  .svg-marker { fill: var(--series-1); fill-opacity: .85; stroke: var(--surface-1);
-                stroke-width: 2; cursor: pointer; }
+  .tr-prov { fill: #e8eaed; stroke: #c9ccd2; stroke-width: .7; }
+  .tr-prov.is-hover { fill: #e0e3e7; }
+  .svg-marker { fill: var(--series-1); fill-opacity: .88; stroke: var(--surface-1);
+                stroke-width: 1; cursor: pointer; }
   .svg-marker.is-hover { fill-opacity: 1; }
   .svg-pmarker { fill: var(--series-1); fill-opacity: .10; stroke: var(--series-1);
                  stroke-width: 1.6; stroke-dasharray: 4 3; cursor: pointer; }
@@ -283,12 +291,12 @@
   <section class="panel" id="map-panel">
     <h2>Where it happened — and where mining happens</h2>
     <p class="caption">
-      Marker area reflects the number of people who died. Solid markers are
-      <em>facility-approximate</em> locations — the mine or its vicinity, never an exact
-      point. Hollow dashed circles summarize records <em>without published coordinates</em>
+      Each blue figure stands where people died; its size reflects how many. Positions are
+      <em>facility-approximate</em> — the mine or its vicinity, never an exact point.
+      Hollow dashed circles summarize records <em>without published coordinates</em>
       at their province's reference point. Gray diamonds are <em>documented mining sites</em>
       from open structured sources — a fraction of licensed operations, shown for context.
-      Select any marker to read more.
+      Province boundaries: Natural Earth (public domain). Select any marker to read more.
     </p>
     <div class="layer-toggle" role="group" aria-label="Map layers">
       <button type="button" data-layer="accidents" aria-pressed="false">Accidents</button>
@@ -300,7 +308,7 @@
       <div id="map-tip"></div>
     </div>
     <div class="maplegend" aria-hidden="true">
-      <span><span class="sw-acc"></span> accident record (area = people lost)</span>
+      <span><span class="sw-acc"></span> accident record (figure size = people lost)</span>
       <span><span class="sw-site"></span> documented mining site (partial coverage)</span>
     </div>
   </section>
@@ -702,6 +710,8 @@
     const okRefs = new Set(fs.map(s => s.ref));
     const showAcc = state.layer !== "sites", showSites = state.layer !== "accidents";
 
+    const provParts = (V.provinces || []).map(p =>
+      `<path class="tr-prov" data-prov="${p.code}" d="${p.d}"></path>`).join("");
     const pParts = (V.provinceMarks || []).map(m => {
       const ids = m.ids.filter(id => okIds.has(id));
       if (!showAcc || !ids.length) return "";
@@ -709,17 +719,26 @@
       const r = Math.round((6 + Math.sqrt(Math.max(deaths, 1)) * 2.4) * 10) / 10;
       return `<circle class="svg-pmarker" data-code="${m.code}" data-ids="${ids.join(",")}" cx="${m.x}" cy="${m.y}" r="${r}"></circle>`;
     }).join("");
-    const aParts = (V.markers || []).map(m =>
-      showAcc && okIds.has(m.id)
-        ? `<circle class="svg-marker" data-id="${m.id}" cx="${m.x}" cy="${m.y}" r="${m.r}"></circle>` : ""
-    ).join("");
+    // One standing figure per located record, scaled by the number of people
+    // (capped so the largest losses stay figures, not blots — the popup and
+    // table carry the exact numbers).
+    const aParts = (V.markers || []).map(m => {
+      if (!showAcc || !okIds.has(m.id)) return "";
+      const s = Math.min(Math.max(Math.round((m.r / 11) * 100) / 100, 0.7), 2.1);
+      return `<use href="#person-fig" class="svg-marker" data-id="${m.id}" ` +
+        `transform="translate(${m.x},${m.y}) scale(${s})"></use>`;
+    }).join("");
     const sParts = (V.siteMarks || []).map(m =>
       showSites && okRefs.has(m.ref)
         ? `<path class="svg-site" data-ref="${m.ref}" d="M${m.x},${m.y - 4.2} L${m.x + 4.2},${m.y} L${m.x},${m.y + 4.2} L${m.x - 4.2},${m.y} Z"></path>` : ""
     ).join("");
     el.innerHTML = `<svg viewBox="-8 -8 ${V.W + 16} ${V.H + 16}" role="img" ` +
-      `aria-label="Outline map of Türkiye with accident records and documented mining sites">` +
-      `<path class="tr-outline" d="${V.outline}"></path>` + sParts + pParts + aParts + `</svg>`;
+      `aria-label="Province map of Türkiye with accident records and documented mining sites">` +
+      `<defs><g id="person-fig">` +
+      `<circle cx="0" cy="-12.2" r="4.2"></circle>` +
+      `<rect x="-5" y="-6" width="10" height="16.5" rx="4.5"></rect>` +
+      `</g></defs>` +
+      provParts + sParts + pParts + aParts + `</svg>`;
 
     const bySiteRef = new Map(sites.map(s => [s.ref, s]));
     const tip = document.getElementById("map-tip");
@@ -772,11 +791,18 @@
 
     const showAcc = state.layer !== "sites", showSites = state.layer !== "accidents";
     const accMarkers = [];
+    const personSvg = (h, fill) =>
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 36" width="${(h * 24) / 36}" height="${h}">` +
+      `<g fill="${fill}" stroke="#fbfbfc" stroke-width="1.4">` +
+      `<circle cx="12" cy="5.6" r="5"></circle>` +
+      `<rect x="5" y="13.5" width="14" height="22" rx="6"></rect></g></svg>`;
     if (showAcc) {
       for (const i of fi.filter(i => i.latitude != null && i.longitude != null)) {
-        const r = 6 + Math.sqrt(i.fatalities_current || 1) * 2.1;
-        const m = L.circleMarker([i.latitude, i.longitude], {
-          radius: r, color: "#fbfbfc", weight: 2, fillColor: "#2a78d6", fillOpacity: 0.85,
+        const h = Math.min(Math.round(14 + Math.sqrt(i.fatalities_current || 1) * 4.4), 52);
+        const w = Math.round((h * 24) / 36);
+        const m = L.marker([i.latitude, i.longitude], {
+          icon: L.divIcon({ className: "person-marker", html: personSvg(h, "#2a78d6"),
+                            iconSize: [w, h], iconAnchor: [w / 2, h / 2] }),
         });
         const cites = (D.citations[i.public_incident_id] || [])
           .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}: ${c.title}</a>`)
@@ -1039,7 +1065,7 @@
         <td>${(i.incident_start_datetime || "").slice(0, 10)}</td>
         <td>${i.province_name || ""}</td>
         <td lang="tr">${i.canonical_title_tr}</td>
-        <td class="num">${fmt.format(i.fatalities_current)}</td>
+        <td class="num">${fmt.format(i.fatalities_current)}${i.injuries_current != null ? `<br><span class="pill">${fmt.format(i.injuries_current)} injured</span>` : ""}</td>
         <td>${mech ? `<span class="pill">${mech}</span>` : '<span class="pill">not classified</span>'}</td>
         <td>${cites}</td>
       </tr>`;

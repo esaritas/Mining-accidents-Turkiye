@@ -41,10 +41,13 @@ from mining_accidents.normalization import normalize_tr
 
 DEFAULT_RAW_DIR = Path("data/raw/wikidata_sites")
 
-#: instances of `mine` (Q820477) or subclasses, in Türkiye (Q43).
+#: instances of `mine` (Q820477) or `quarry` (Q188040) or subclasses, in
+#: Türkiye (Q43). Quarries are not subclasses of mine, hence the UNION.
 SPARQL_QUERY = """
 SELECT DISTINCT ?item WHERE {
-  ?item wdt:P31/wdt:P279* wd:Q820477 .
+  { ?item wdt:P31/wdt:P279* wd:Q820477 . }
+  UNION
+  { ?item wdt:P31/wdt:P279* wd:Q188040 . }
   ?item wdt:P17 wd:Q43 .
 }
 """
@@ -300,6 +303,48 @@ def _strip_admin_suffix(label: str) -> str:
     )
 
 
+def parse_site_article_coords(wikitext: str) -> list[ClaimDraft]:
+    """Infobox/template coordinates from a linked site article (mechanical).
+
+    Reuses the accident adapter's coordinate patterns; only coordinates are
+    extracted from site articles — everything else stays with the structured
+    item."""
+    from mining_accidents.adapters.wikidata import _COORD_DECIMAL, _KOORDINAT_DMS, _MAP_LATLON
+
+    def draft(field: str, raw: str, normalized: str) -> ClaimDraft:
+        return ClaimDraft(
+            field_name=field,
+            raw_value=raw[:160],
+            normalized_value=normalized,
+            claim_subject_type="facility",
+            extraction_method="html_parser",
+            extractor_version=WikidataSitesAdapter.adapter_version,
+            assertion_status="reported",
+            section_reference="infobox",
+            review_status="pending",
+        )
+
+    coord = _KOORDINAT_DMS.search(wikitext)
+    if coord:
+        lat = int(coord.group(1)) + int(coord.group(2)) / 60 + float(coord.group(3)) / 3600
+        lon = int(coord.group(5)) + int(coord.group(6)) / 60 + float(coord.group(7)) / 3600
+        if coord.group(4).upper() == "S":
+            lat = -lat
+        if coord.group(8).upper() == "W":
+            lon = -lon
+        return [
+            draft("latitude", coord.group(0), f"{lat:.6f}"),
+            draft("longitude", coord.group(0), f"{lon:.6f}"),
+        ]
+    decimal = _COORD_DECIMAL.search(wikitext) or _MAP_LATLON.search(wikitext)
+    if decimal:
+        return [
+            draft("latitude", decimal.group(0), decimal.group(1)),
+            draft("longitude", decimal.group(0), decimal.group(2)),
+        ]
+    return []
+
+
 class WikidataSitesAdapter(SourceAdapter):
     source_key = "wikidata_sites"
     adapter_version = "1.0.0"
@@ -329,7 +374,9 @@ class WikidataSitesAdapter(SourceAdapter):
         bindings = json.loads(payload)["results"]["bindings"]
         return sorted({row["item"]["value"].rsplit("/", 1)[-1] for row in bindings})
 
-    def _fetch_entities(self, qids: list[str], stem: str) -> dict[str, dict]:
+    def _fetch_entities(
+        self, qids: list[str], stem: str, props: str = "labels|claims"
+    ) -> dict[str, dict]:
         entities: dict[str, dict] = {}
         for start in range(0, len(qids), 50):
             batch = qids[start : start + 50]
@@ -338,7 +385,7 @@ class WikidataSitesAdapter(SourceAdapter):
                 {
                     "action": "wbgetentities",
                     "ids": "|".join(batch),
-                    "props": "labels|claims",
+                    "props": props,
                     "format": "json",
                 },
             )
@@ -391,7 +438,7 @@ class WikidataSitesAdapter(SourceAdapter):
         if conn is None:
             raise ValueError("fetch() needs an open database connection")
         qids = self.discover_qids()
-        entities = self._fetch_entities(qids, "site-entities")
+        entities = self._fetch_entities(qids, "site-entities", props="labels|claims|sitelinks")
         self._references = self._build_references(entities)
 
         document_ids: list[int] = []
@@ -419,8 +466,50 @@ class WikidataSitesAdapter(SourceAdapter):
                     notes=f"kind=wikidata_site qid={qid}",
                 )
             )
+            # Item lacks coordinates but links an article: fetch it so its
+            # infobox coordinates can become claims (gap-filling, mechanical).
+            if not entity.get("claims", {}).get("P625"):
+                document_ids.extend(self._fetch_site_article(conn, qid, entity, retrieved_at))
         conn.commit()
         return document_ids
+
+    def _fetch_site_article(
+        self, conn: sqlite3.Connection, qid: str, entity: dict, retrieved_at: str
+    ) -> list[int]:
+        for site in ("trwiki", "enwiki"):
+            sitelink = entity.get("sitelinks", {}).get(site)
+            if not sitelink:
+                continue
+            lang, article = site[:2], sitelink["title"]
+            payload = _http_get(
+                f"https://{lang}.wikipedia.org/w/api.php",
+                {"action": "parse", "page": article, "prop": "wikitext", "format": "json"},
+            )
+            parsed = json.loads(payload).get("parse")
+            if not parsed:
+                continue
+            wikitext = parsed["wikitext"]["*"]
+            raw_path, digest = _store_raw(self.raw_dir, wikitext.encode(), f"{qid}-{lang}wiki")
+            return [
+                _insert_document(
+                    conn,
+                    source_organization=f"Wikipedia ({lang})",
+                    title=article,
+                    document_type="other",
+                    url=f"https://{lang}.wikipedia.org/wiki/"
+                    + urllib.parse.quote(article.replace(" ", "_")),
+                    retrieved_at=retrieved_at,
+                    language=lang,
+                    content_hash=digest,
+                    local_raw_path=str(raw_path),
+                    licence_or_reuse_notes="CC BY-SA 4.0 (attribution required)",
+                    attribution_required=1,
+                    source_tier=3,
+                    access_status="available",
+                    notes=f"kind=wikipedia_site_article qid={qid} lang={lang}",
+                )
+            ]
+        return []
 
     def parse(
         self, source_document_id: int, conn: sqlite3.Connection | None = None
@@ -433,8 +522,10 @@ class WikidataSitesAdapter(SourceAdapter):
         ).fetchone()
         if row is None:
             raise ValueError(f"source document {source_document_id} not found")
-        entity = json.loads(Path(row["local_raw_path"]).read_bytes())
-        return parse_site_entity(entity, self._load_references())
+        raw = Path(row["local_raw_path"]).read_bytes()
+        if "kind=wikipedia_site_article" in (row["notes"] or ""):
+            return parse_site_article_coords(raw.decode())
+        return parse_site_entity(json.loads(raw), self._load_references())
 
     def _load_references(self) -> dict[str, dict]:
         if not self._references:

@@ -1,17 +1,17 @@
 {
   "db_schema_version": "002",
-  "export_timestamp": "2026-07-16T11:10:41Z",
+  "export_timestamp": "2026-07-17T10:36:13Z",
   "file_sha256": {
     "datapackage.json": "9e6125b2b6688eff8f0aa45eaecf7f62abb67a37b8a7317303f832b1c283e185",
-    "facilities.csv": "fdf26fc34a6b1583ca1250955f7e46bf4b001974bc1c12669631409b57155205",
+    "facilities.csv": "fc79bf1f4cc62719ec36bc7f85902aca39bae5ab44f07f408e5274f6449964e9",
     "facility_organization_roles.csv": "44a653b819fadd875506cc672280ac8eb68ffae74d72662fefc3d63ba030e33e",
     "incident_classifications.csv": "8c41d5e4eb3dd28dc725d4d40489b894bcab3f12ca176316daba0b9d2f5910f0",
     "incident_organization_roles.csv": "34f228de008ec74abd5548cc27693dca1770aec84f8b95543f0085a8a8c9491e",
-    "incidents.csv": "5b0303c62c307f15e1fe4faa3e05866e0b7f24efa5a72984e3fdce08af9a6cbf",
+    "incidents.csv": "bfb49da865ab5676ed58ae8e4be3ce0b7ae422861c84e24f01a74c96610dae0b",
     "merged_id_redirects.csv": "26158d38632470f27afc9c5de47bc7f989785e46a81ee313d9cc05f737c7296b",
-    "sources.csv": "d8daccb8ea27fd885fea88be5183547bccb304328c92c560f2bf41065de0950b"
+    "sources.csv": "b9b9ae271356f6cc3688e39678dd91291f4ef8fe96950936794f7830f2b4814f"
   },
-  "git_commit": "54455a5d4c9ab01534db3cc69aa1701f664c062a",
+  "git_commit": "0ecea45332de57d3734114c743a26aefe0b6f64c",
   "quality_findings": {
     "critical": 0,
     "warning": 10
@@ -23,7 +23,7 @@
     "incident_organization_roles": 0,
     "incidents": 46,
     "merged_id_redirects": 0,
-    "sources": 208
+    "sources": 212
   },
   "vocabulary_versions": {
     "assertion_statuses.csv": "1.0",

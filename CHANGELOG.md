@@ -6,6 +6,24 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Changed — map, marks & data completeness (2026-07-16, owner feedback)
+- Vector map rebuilt on Natural Earth 10m admin-1 geometry
+  (`data/reference/tur_provinces.geo.json`, public domain): all 81 province
+  boundaries drawn per-path, replacing the coarse country outline.
+- One-mark-one-person fields and map accident markers now render as small
+  human figures (CSS-mask / SVG pictograms; figure size = people lost on the
+  map); undercount marks are gray figures instead of hollow boxes.
+- Data completeness: quarry class added to site discovery (Wikidata has no
+  further TR items — 78 is everything open data documents); linked-article
+  infobox coordinates fetched for site items without P625 (+4 sites located);
+  province derived from source-stated coordinates by point-in-polygon
+  (`geo.py`, recorded as a derivation — implementation note E); infobox
+  injury counts (`yaralı sayısı=`) extracted and decided alongside deaths;
+  `link_incident_facilities` copies facility coordinates onto incidents via
+  recorded manual_override decisions under a strict name+province blocking
+  rule (implementation note F, STATUS: PROPOSED — zero links with current
+  generated titles, engages as named records arrive).
+
 ### Added — active-sites layer, explorer filters & story prologue (2026-07-15)
 - Migration 002: facilities gain `commodity_code`/`commodity_label`,
   `operational_status`, `external_ref`; organizations gain home-country
