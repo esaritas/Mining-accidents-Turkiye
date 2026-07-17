@@ -6,6 +6,26 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Changed — carnations, commodity colors, names & downloads (2026-07-16, owner feedback)
+- All person figures replaced with red carnations (karanfil) — the memorial
+  flower: story marks, map accident markers (Leaflet + SVG), legend swatches.
+  Red now consistently encodes loss across the page (marks, chart bars,
+  mechanism/rate fills, accents); blue remains links only.
+- Mining sites colored by commodity group — coal & lignite, metal ores,
+  industrial minerals, not-stated — with a full map legend and colored chips
+  in the sites table. Palette validated with the dataviz six-check validator
+  (CVD + contrast) against the page surface.
+- Province-name fixes: `province_centroids.csv` had Konya filed under Rize's
+  plate code (53) and Uşak under Tunceli's (62), and Hakkâri misspelled —
+  repaired and now validated 81/81 against `turkey_admin_areas.csv`. The
+  dashboard resolves names from the full province vocabulary (centroids are
+  fallback), and the public export gains `province_name` columns in
+  `incidents.csv` and `facilities.csv`.
+- "Take the data with you" panel: filter-aware CSV downloads (accident
+  records, mining sites) and a JSON download of everything shown, generated
+  client-side; caption points to the canonical checksummed export in
+  `data/public/`.
+
 ### Changed — map, marks & data completeness (2026-07-16, owner feedback)
 - Vector map rebuilt on Natural Earth 10m admin-1 geometry
   (`data/reference/tur_provinces.geo.json`, public domain): all 81 province

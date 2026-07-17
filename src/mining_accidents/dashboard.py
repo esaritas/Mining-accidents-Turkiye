@@ -260,9 +260,12 @@ def build_payload(
         incident["province_name"] = provinces.get(incident.get("province_code") or "", "")
 
     sites = _sites(public_dir)
+    for site in sites:
+        site["province_name"] = provinces.get(site.get("province_code") or "", "")
     payload = {
         "incidents": incidents,
         "sites": sites,
+        "province_names": provinces,
         "citations": _citations(public_dir),
         "classifications": _classifications(public_dir),
         "aggregates": _aggregates(conn),

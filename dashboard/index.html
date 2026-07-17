@@ -18,6 +18,16 @@
     --ink-1: #17181a; --ink-2: #53565a; --ink-muted: #83868b;
     --grid: #e2e4e7; --baseline: #c3c6ca; --border: rgba(23,24,26,.11);
     --series-1: #2a78d6; --site: #8a8f96;
+    /* Red carries loss — every carnation, bar, and count of the dead.
+       Site commodity groups (validated palette): coal/lignite, metal ores,
+       industrial minerals; gray = not stated. Blue remains links only. */
+    --loss: #c22f2f;
+    --c-coal: #4a5fc1; --c-metal: #a08000; --c-mineral: #0f8a5f;
+  }
+  /* One red carnation (karanfil) per person — bloom, calyx, stem, leaf. */
+  .carn-mask {
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'><path d='M12 1.5 L14.4 5.2 L17.8 3.4 L18.4 7.3 L22.3 8 L20.5 11.6 C18.8 15 15.6 16.8 12 16.8 C8.4 16.8 5.2 15 3.5 11.6 L1.7 8 L5.6 7.3 L6.2 3.4 L9.6 5.2 Z M9 16.3 L15 16.3 L13.3 22.3 L10.7 22.3 Z M11.2 21.8 L12.8 21.8 L12.8 34.5 L11.2 34.5 Z M12.8 27.5 C15.4 26.8 17 24.8 17.5 22.6 C14.9 23.3 13.3 25.3 12.8 27.5 Z'/></svg>") center/contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'><path d='M12 1.5 L14.4 5.2 L17.8 3.4 L18.4 7.3 L22.3 8 L20.5 11.6 C18.8 15 15.6 16.8 12 16.8 C8.4 16.8 5.2 15 3.5 11.6 L1.7 8 L5.6 7.3 L6.2 3.4 L9.6 5.2 Z M9 16.3 L15 16.3 L13.3 22.3 L10.7 22.3 Z M11.2 21.8 L12.8 21.8 L12.8 34.5 L11.2 34.5 Z M12.8 27.5 C15.4 26.8 17 24.8 17.5 22.6 C14.9 23.3 13.3 25.3 12.8 27.5 Z'/></svg>") center/contain no-repeat;
   }
   * { box-sizing: border-box; }
   body.viz-root {
@@ -32,7 +42,7 @@
   header.page h1 { font-size: 24px; margin: 0 0 4px; font-weight: 650; text-wrap: balance; }
   header.page p.lede { color: var(--ink-2); margin: 0; max-width: 70ch; }
   header.page p.note { color: var(--ink-muted); font-size: 13px; max-width: 78ch; }
-  #onthisday { margin: 14px 0 0; padding: 10px 14px; border-left: 3px solid var(--series-1);
+  #onthisday { margin: 14px 0 0; padding: 10px 14px; border-left: 3px solid var(--loss);
                background: var(--surface-1); border-radius: 0 8px 8px 0;
                color: var(--ink-2); font-size: 14px; max-width: 72ch; }
   #onthisday b { color: var(--ink-1); }
@@ -55,7 +65,7 @@
   .chapter .card p { margin: 0; font-size: 17px; line-height: 1.6; }
   .chapter .card p + p { margin-top: 10px; }
   .chapter .card .k { font-size: 21px; font-weight: 650; line-height: 1.4; }
-  .chapter .card .n { color: var(--series-1); font-weight: 700; }
+  .chapter .card .n { color: var(--loss); font-weight: 700; }
   .chapter .card .quiet { color: var(--ink-2); font-size: 14.5px; }
   .chapter .card .src { color: var(--ink-muted); font-size: 12.5px; margin-top: 12px; }
   .chapter.first .card { background: none; border: none; box-shadow: none; padding: 0; }
@@ -64,11 +74,9 @@
 
   .markfield { display: flex; flex-wrap: wrap; gap: 3px 4px; position: relative;
                align-content: flex-start; }
-  /* One small human figure per person (head + body, CSS mask). */
-  .mark { width: 9px; height: 14px; background: var(--series-1);
-          transition: opacity .55s ease;
-          -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'><circle cx='12' cy='6.5' r='5.5'/><rect x='5' y='13.5' width='14' height='22' rx='6'/></svg>") center/contain no-repeat;
-          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'><circle cx='12' cy='6.5' r='5.5'/><rect x='5' y='13.5' width='14' height='22' rx='6'/></svg>") center/contain no-repeat; }
+  /* One red carnation per person (see .carn-mask). */
+  .mark { width: 10px; height: 15px; background: var(--loss);
+          transition: opacity .55s ease; }
   .mark.off { opacity: 0; }
   .mark.dim { opacity: .25; }
   .stage.focus .mark { opacity: .08; }
@@ -124,29 +132,32 @@
                                               border-color: var(--ink-1); }
   .maplegend { display: flex; gap: 18px; font-size: 13px; color: var(--ink-2);
                margin: 8px 0 0; flex-wrap: wrap; }
-  .maplegend .sw-acc { display: inline-block; width: 9px; height: 13px;
-                       background: var(--series-1); opacity: .88; margin-right: 5px;
-                       vertical-align: -2px;
-                       -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'><circle cx='12' cy='6.5' r='5.5'/><rect x='5' y='13.5' width='14' height='22' rx='6'/></svg>") center/contain no-repeat;
-                       mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 36'><circle cx='12' cy='6.5' r='5.5'/><rect x='5' y='13.5' width='14' height='22' rx='6'/></svg>") center/contain no-repeat; }
-  .maplegend .sw-site { display: inline-block; width: 9px; height: 9px; background: var(--site);
-                        transform: rotate(45deg); margin-right: 6px; opacity: .8; }
+  .maplegend .sw-acc { display: inline-block; width: 10px; height: 14px;
+                       background: var(--loss); opacity: .9; margin-right: 5px;
+                       vertical-align: -2px; }
+  .maplegend .sw-site { display: inline-block; width: 9px; height: 9px;
+                        transform: rotate(45deg); margin-right: 6px; opacity: .85; }
+  .maplegend .sw-circle { display: inline-block; width: 11px; height: 11px;
+                          border: 1.5px dashed var(--loss); border-radius: 50%;
+                          margin-right: 5px; vertical-align: -2px; opacity: .7; }
+  .comm-chip { display: inline-block; width: 8px; height: 8px; transform: rotate(45deg);
+               margin-right: 6px; vertical-align: 0; opacity: .85; }
 
   #map { min-height: 320px; border-radius: 8px; background: var(--page); }
   #map-wrap { position: relative; }
   #map svg { display: block; width: 100%; height: auto; }
   .tr-prov { fill: #e8eaed; stroke: #c9ccd2; stroke-width: .7; }
   .tr-prov.is-hover { fill: #e0e3e7; }
-  .svg-marker { fill: var(--series-1); fill-opacity: .88; stroke: var(--surface-1);
+  .svg-marker { fill: var(--loss); fill-opacity: .9; stroke: var(--surface-1);
                 stroke-width: 1; cursor: pointer; }
   .svg-marker.is-hover { fill-opacity: 1; }
-  .svg-pmarker { fill: var(--series-1); fill-opacity: .10; stroke: var(--series-1);
+  .svg-pmarker { fill: var(--loss); fill-opacity: .08; stroke: var(--loss);
                  stroke-width: 1.6; stroke-dasharray: 4 3; cursor: pointer; }
   .svg-pmarker.is-hover { fill-opacity: .22; }
-  .svg-site { fill: var(--site); fill-opacity: .8; stroke: var(--surface-1);
+  .svg-site { fill-opacity: .82; stroke: var(--surface-1);
               stroke-width: 1; cursor: pointer; }
   .svg-site.is-hover { fill-opacity: 1; }
-  .site-diamond div { width: 9px; height: 9px; background: var(--site);
+  .site-diamond div { width: 9px; height: 9px;
                       transform: rotate(45deg); border: 1px solid #fff; opacity: .85; }
   .leaflet-tile { filter: grayscale(.55); }
   .leaflet-container { font: inherit; }
@@ -156,7 +167,7 @@
 
   #chart-wrap { position: relative; }
   #chart-wrap svg { display: block; width: 100%; height: auto; }
-  .bar { fill: var(--series-1); }
+  .bar { fill: var(--loss); }
   .bar.is-hover { filter: brightness(1.12); }
   .gap-col { fill: var(--ink-muted); opacity: .18; }
   .gridline { stroke: var(--grid); stroke-width: 1; }
@@ -189,7 +200,7 @@
   .legend { display: flex; gap: 18px; font-size: 13px; color: var(--ink-2); margin: 0 0 8px; flex-wrap: wrap; }
   .legend .swatch { display: inline-block; width: 14px; height: 10px; border-radius: 3px;
                     vertical-align: baseline; margin-right: 5px; }
-  .legend .bar-swatch { background: var(--series-1); }
+  .legend .bar-swatch { background: var(--loss); }
   .legend .gap-swatch { background: var(--ink-muted); opacity: .25; }
   .legend .line-swatch { background: none; height: 0; width: 16px;
                          border-top: 2px solid var(--ink-muted); vertical-align: middle; }
@@ -199,7 +210,7 @@
                       align-items: center; gap: 10px; padding: 5px 0; }
   #mechanisms .mlabel { font-size: 14px; color: var(--ink-1); }
   #mechanisms .mlabel .tr { color: var(--ink-muted); font-size: 12px; }
-  #mechanisms .mfill { height: 12px; background: var(--series-1); border-radius: 3px; }
+  #mechanisms .mfill { height: 12px; background: var(--loss); border-radius: 3px; }
   #mechanisms .mcount { text-align: right; font-variant-numeric: tabular-nums;
                         color: var(--ink-2); font-size: 13px; }
 
@@ -207,12 +218,12 @@
                  gap: 10px; padding: 5px 0; }
   #rates .rlabel { font-size: 14px; }
   #rates .rlabel .ry { color: var(--ink-muted); font-size: 12px; }
-  #rates .rfill { height: 12px; background: var(--series-1); border-radius: 3px; }
+  #rates .rfill { height: 12px; background: var(--loss); border-radius: 3px; }
   #rates .rfill.other { background: var(--baseline); }
   #rates .rcount { text-align: right; font-variant-numeric: tabular-nums;
                    color: var(--ink-2); font-size: 13px; }
 
-  .inaction { border-left: 3px solid var(--series-1); }
+  .inaction { border-left: 3px solid var(--loss); }
   .inaction .range { font-size: 34px; font-weight: 650; margin: 6px 0 2px; }
   .inaction .range small { font-size: 16px; font-weight: 400; color: var(--ink-2); }
   .inaction p { max-width: 72ch; }
@@ -235,6 +246,7 @@
     <a href="#years">Years</a>
     <a href="#sites-panel">Active sites</a>
     <a href="#records-panel">Records</a>
+    <a href="#download-panel">Download</a>
     <a href="#inaction">If nothing changes</a>
   </nav>
   <header class="page">
@@ -291,12 +303,13 @@
   <section class="panel" id="map-panel">
     <h2>Where it happened — and where mining happens</h2>
     <p class="caption">
-      Each blue figure stands where people died; its size reflects how many. Positions are
+      Each red carnation stands where people died; its size reflects how many. Positions are
       <em>facility-approximate</em> — the mine or its vicinity, never an exact point.
       Hollow dashed circles summarize records <em>without published coordinates</em>
-      at their province's reference point. Gray diamonds are <em>documented mining sites</em>
-      from open structured sources — a fraction of licensed operations, shown for context.
-      Province boundaries: Natural Earth (public domain). Select any marker to read more.
+      at their province's reference point. Diamonds are <em>documented mining sites</em>
+      from open structured sources, colored by what is mined — a fraction of licensed
+      operations, shown for context. Province boundaries: Natural Earth (public domain).
+      Select any marker to read more.
     </p>
     <div class="layer-toggle" role="group" aria-label="Map layers">
       <button type="button" data-layer="accidents" aria-pressed="false">Accidents</button>
@@ -307,9 +320,13 @@
       <div id="map" role="region" aria-label="Map of published mining accident records and documented mining sites in Türkiye"></div>
       <div id="map-tip"></div>
     </div>
-    <div class="maplegend" aria-hidden="true">
-      <span><span class="sw-acc"></span> accident record (figure size = people lost)</span>
-      <span><span class="sw-site"></span> documented mining site (partial coverage)</span>
+    <div class="maplegend">
+      <span><span class="sw-acc carn-mask"></span> accident — one carnation per record (size = people lost)</span>
+      <span><span class="sw-circle"></span> province summary (no published coordinates)</span>
+      <span><span class="sw-site" style="background:var(--c-coal)"></span> coal &amp; lignite site</span>
+      <span><span class="sw-site" style="background:var(--c-metal)"></span> metal-ore site</span>
+      <span><span class="sw-site" style="background:var(--c-mineral)"></span> industrial-mineral site</span>
+      <span><span class="sw-site" style="background:var(--site)"></span> site, commodity not stated</span>
     </div>
   </section>
 
@@ -398,6 +415,21 @@
     </div>
   </section>
 
+  <section class="panel" id="download-panel">
+    <h2>Take the data with you</h2>
+    <p class="caption">
+      Downloads reflect the filters you have set above (clear them for the full set).
+      The canonical, evidence-linked export — with per-value source citations, a
+      datapackage, and sha256 checksums — lives in the project repository under
+      <code>data/public/</code>; these files are a convenience copy of what this page shows.
+    </p>
+    <div class="layer-toggle" role="group" aria-label="Download the data">
+      <button type="button" id="dl-records">Accident records (CSV)</button>
+      <button type="button" id="dl-sites">Mining sites (CSV)</button>
+      <button type="button" id="dl-json">Everything on this page (JSON)</button>
+    </div>
+  </section>
+
   <section class="panel inaction" id="inaction" hidden>
     <h2>If nothing changes</h2>
     <div class="range" id="inaction-range"></div>
@@ -421,6 +453,7 @@
   const mechanismsOf = id => (D.classifications[id] || [])
     .filter(c => c.system === "project_event_mechanism");
   const provinceName = code =>
+    (D.province_names || {})[code] ||
     (D.province_centroids[code] || {}).label_tr || code || "";
   const yearOf = i => +(i.incident_start_datetime || "").slice(0, 4) || null;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -470,12 +503,12 @@
   const marksEl = document.getElementById("marks");
   marksEl.innerHTML = incidents.map((i, idx) => {
     const focal = i === worst ? " focal" : "";
-    return `<span class="mark off${focal}" data-idx="${idx}" data-era="${eraOf(i)}"></span>`
+    return `<span class="mark carn-mask off${focal}" data-idx="${idx}" data-era="${eraOf(i)}"></span>`
       .repeat(i.fatalities_current || 0);
   }).join("");
   if (gap && gap.total_gap > 0) {
     document.getElementById("ghost-marks").innerHTML =
-      new Array(gap.total_gap).fill('<span class="mark ghost"></span>').join("");
+      new Array(gap.total_gap).fill('<span class="mark carn-mask ghost"></span>').join("");
   }
 
   const eraStats = ERAS.map((e, k) => {
@@ -501,7 +534,7 @@
     { html: `<p class="k">This is a record of people who went to work and did not come home.</p>` +
             `<p class="quiet">Since ${firstYear}, this register has been able to publicly document ` +
             `<b>${fmt.format(totalDeaths)} deaths</b> in ${fmt.format(incidents.length)} mining and quarrying ` +
-            `accidents in Türkiye. One mark is one person.</p>` +
+            `accidents in Türkiye. One red carnation is one person.</p>` +
             `<p class="scrollhint">Scroll.</p>`,
       cls: "first", state: { upTo: -1 } },
     { html: eraCard(0), state: { upTo: 0, label: eraStats[0].label, count: eraStats[0].deaths } },
@@ -510,7 +543,7 @@
     worst && worst.public_incident_id ? {
       html: `<p class="k" lang="tr">${worst.canonical_title_tr}</p>` +
             `<p>${sentence(worst)}</p>` +
-            `<p class="quiet">The single largest loss in this record. Every lit mark on this page is one of them.</p>` +
+            `<p class="quiet">The single largest loss in this record. Every lit carnation on this page is one of them.</p>` +
             `<p class="src">${worst.public_incident_id} — every value traces to cited sources.</p>`,
       cls: "tall", state: { upTo: 2, focus: true, label: (worst.incident_start_datetime || "").slice(0, 10), count: worst.fatalities_current } } : null,
     { html: eraCard(3), state: { upTo: 3, label: eraStats[3].label, count: eraStats[3].deaths } },
@@ -518,12 +551,12 @@
       html: `<p class="k">And they are the documented minority.</p>` +
             `<p>Between ${gapY0} and ${gapY1} alone, İSİG Meclisi counted ` +
             `<span class="n">${fmt.format(gap.total_gap)} more miner deaths</span> that never became a ` +
-            `publicly recorded incident. Each outline is one of those people — counted, but never ` +
+            `publicly recorded incident. Each gray carnation is one of those people — counted, but never ` +
             `named in public record.</p>` +
             `<p class="src">${gap.caveat}</p>`,
       cls: "tall", state: { upTo: 3, ghosts: true, label: `${gapY0}–${gapY1}`, count: gap.total_gap } } : null,
     { html: `<p class="k">The full record is below.</p>` +
-            `<p class="quiet">Every mark, every source, every reviewer decision — the map, the years, ` +
+            `<p class="quiet">Every carnation, every source, every reviewer decision — the map, the years, ` +
             `the documented mine sites, and the complete table. Filters are yours.</p>`,
       state: { upTo: 3, ghosts: gap && gap.total_gap > 0, label: "The record", count: totalDeaths } },
   ].filter(Boolean);
@@ -549,7 +582,7 @@
                    : `<b>${fmt.format(st.count)}</b> people`)
       : "";
     stageNote.textContent = st.upTo >= 0
-      ? "One mark is one person, in published incident records, oldest first." : "";
+      ? "One carnation is one person, in published incident records, oldest first." : "";
   }
 
   if (reducedMotion) {
@@ -585,6 +618,15 @@
   };
   const STATUS_LABELS = { operating: "Operating", closed: "Closed",
                           proposed: "Proposed", unknown: "Not stated" };
+  // Commodity groups (validated palette; gray = not stated in source).
+  const COMM_GROUPS = {
+    coal: "coal", lignite: "coal",
+    chromium: "metal", iron: "metal", copper: "metal", gold: "metal",
+    silver: "metal", zinc: "metal", lead: "metal",
+    boron: "mineral", phosphate: "mineral", marble: "mineral",
+  };
+  const GROUP_HEX = { coal: "#4a5fc1", metal: "#a08000", mineral: "#0f8a5f", other: "#8a8f96" };
+  const groupOf = site => COMM_GROUPS[site.commodity_code] || "other";
   const state = { province: "", mechanism: "", from: null, to: null, commodity: "", layer: "both" };
 
   const provSel = document.getElementById("f-province");
@@ -719,24 +761,25 @@
       const r = Math.round((6 + Math.sqrt(Math.max(deaths, 1)) * 2.4) * 10) / 10;
       return `<circle class="svg-pmarker" data-code="${m.code}" data-ids="${ids.join(",")}" cx="${m.x}" cy="${m.y}" r="${r}"></circle>`;
     }).join("");
-    // One standing figure per located record, scaled by the number of people
-    // (capped so the largest losses stay figures, not blots — the popup and
+    // One carnation per located record, scaled by the number of people
+    // (capped so the largest losses stay flowers, not blots — the popup and
     // table carry the exact numbers).
     const aParts = (V.markers || []).map(m => {
       if (!showAcc || !okIds.has(m.id)) return "";
-      const s = Math.min(Math.max(Math.round((m.r / 11) * 100) / 100, 0.7), 2.1);
-      return `<use href="#person-fig" class="svg-marker" data-id="${m.id}" ` +
+      const s = Math.min(Math.max(Math.round((m.r / 12) * 100) / 100, 0.65), 1.9);
+      return `<use href="#carnation-fig" class="svg-marker" data-id="${m.id}" ` +
         `transform="translate(${m.x},${m.y}) scale(${s})"></use>`;
     }).join("");
-    const sParts = (V.siteMarks || []).map(m =>
-      showSites && okRefs.has(m.ref)
-        ? `<path class="svg-site" data-ref="${m.ref}" d="M${m.x},${m.y - 4.2} L${m.x + 4.2},${m.y} L${m.x},${m.y + 4.2} L${m.x - 4.2},${m.y} Z"></path>` : ""
-    ).join("");
+    const bySiteRefAll = new Map(sites.map(st => [st.ref, st]));
+    const sParts = (V.siteMarks || []).map(m => {
+      if (!showSites || !okRefs.has(m.ref)) return "";
+      const fill = GROUP_HEX[groupOf(bySiteRefAll.get(m.ref) || {})];
+      return `<path class="svg-site" fill="${fill}" data-ref="${m.ref}" d="M${m.x},${m.y - 4.4} L${m.x + 4.4},${m.y} L${m.x},${m.y + 4.4} L${m.x - 4.4},${m.y} Z"></path>`;
+    }).join("");
     el.innerHTML = `<svg viewBox="-8 -8 ${V.W + 16} ${V.H + 16}" role="img" ` +
       `aria-label="Province map of Türkiye with accident records and documented mining sites">` +
-      `<defs><g id="person-fig">` +
-      `<circle cx="0" cy="-12.2" r="4.2"></circle>` +
-      `<rect x="-5" y="-6" width="10" height="16.5" rx="4.5"></rect>` +
+      `<defs><g id="carnation-fig" transform="translate(-12,-9)">` +
+      `<path d="M12 1.5 L14.4 5.2 L17.8 3.4 L18.4 7.3 L22.3 8 L20.5 11.6 C18.8 15 15.6 16.8 12 16.8 C8.4 16.8 5.2 15 3.5 11.6 L1.7 8 L5.6 7.3 L6.2 3.4 L9.6 5.2 Z M9 16.3 L15 16.3 L13.3 22.3 L10.7 22.3 Z M11.2 21.8 L12.8 21.8 L12.8 34.5 L11.2 34.5 Z M12.8 27.5 C15.4 26.8 17 24.8 17.5 22.6 C14.9 23.3 13.3 25.3 12.8 27.5 Z"></path>` +
       `</g></defs>` +
       provParts + sParts + pParts + aParts + `</svg>`;
 
@@ -791,17 +834,15 @@
 
     const showAcc = state.layer !== "sites", showSites = state.layer !== "accidents";
     const accMarkers = [];
-    const personSvg = (h, fill) =>
+    const carnationSvg = (h, fill) =>
       `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 36" width="${(h * 24) / 36}" height="${h}">` +
-      `<g fill="${fill}" stroke="#fbfbfc" stroke-width="1.4">` +
-      `<circle cx="12" cy="5.6" r="5"></circle>` +
-      `<rect x="5" y="13.5" width="14" height="22" rx="6"></rect></g></svg>`;
+      `<path fill="${fill}" stroke="#fbfbfc" stroke-width="1.2" d="M12 1.5 L14.4 5.2 L17.8 3.4 L18.4 7.3 L22.3 8 L20.5 11.6 C18.8 15 15.6 16.8 12 16.8 C8.4 16.8 5.2 15 3.5 11.6 L1.7 8 L5.6 7.3 L6.2 3.4 L9.6 5.2 Z M9 16.3 L15 16.3 L13.3 22.3 L10.7 22.3 Z M11.2 21.8 L12.8 21.8 L12.8 34.5 L11.2 34.5 Z M12.8 27.5 C15.4 26.8 17 24.8 17.5 22.6 C14.9 23.3 13.3 25.3 12.8 27.5 Z"></path></svg>`;
     if (showAcc) {
       for (const i of fi.filter(i => i.latitude != null && i.longitude != null)) {
-        const h = Math.min(Math.round(14 + Math.sqrt(i.fatalities_current || 1) * 4.4), 52);
+        const h = Math.min(Math.round(16 + Math.sqrt(i.fatalities_current || 1) * 4.4), 54);
         const w = Math.round((h * 24) / 36);
         const m = L.marker([i.latitude, i.longitude], {
-          icon: L.divIcon({ className: "person-marker", html: personSvg(h, "#2a78d6"),
+          icon: L.divIcon({ className: "carnation-marker", html: carnationSvg(h, "#c22f2f"),
                             iconSize: [w, h], iconAnchor: [w / 2, h / 2] }),
         });
         const cites = (D.citations[i.public_incident_id] || [])
@@ -843,7 +884,8 @@
     if (showSites) {
       for (const s of fs.filter(s => s.latitude != null && s.longitude != null)) {
         const m = L.marker([s.latitude, s.longitude], {
-          icon: L.divIcon({ className: "site-diamond", html: "<div></div>",
+          icon: L.divIcon({ className: "site-diamond",
+                            html: `<div style="background:${GROUP_HEX[groupOf(s)]}"></div>`,
                             iconSize: [9, 9], iconAnchor: [4.5, 4.5] }),
           keyboard: false,
         });
@@ -1043,7 +1085,7 @@
       return `<tr>
         <td lang="tr">${s.name}</td>
         <td>${TYPE_LABELS[s.type] || s.type || ""}</td>
-        <td>${s.commodity_label || (s.commodity_code ? s.commodity_code : '<span class="pill">not stated</span>')}</td>
+        <td><span class="comm-chip" style="background:${GROUP_HEX[groupOf(s)]}"></span>${s.commodity_label || s.commodity_code || '<span class="pill">not stated</span>'}</td>
         <td>${s.province_code ? provinceName(s.province_code) : '<span class="pill">not stated</span>'}</td>
         <td>${orgNames}</td>
         <td>${countries}</td>
@@ -1090,6 +1132,72 @@
     document.getElementById("inaction-method").textContent =
       proj.method + " Status: proposed methodology, open question #17.";
   }
+
+  // ---- Downloads (filter-aware, built from the same payload) -----------------
+  function toCsv(rows, columns) {
+    const esc = v => {
+      const t = v == null ? "" : String(v);
+      return /[",\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t;
+    };
+    return [columns.join(",")]
+      .concat(rows.map(r => columns.map(c => esc(r[c])).join(",")))
+      .join("\n") + "\n";
+  }
+  function download(name, text, type) {
+    const blob = new Blob([text], { type });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  }
+  const stamp = () => (D.export_timestamp || "").slice(0, 10) || "export";
+  document.getElementById("dl-records").addEventListener("click", () => {
+    const rows = incidents.filter(incidentMatches).map(i => ({
+      public_incident_id: i.public_incident_id,
+      date: (i.incident_start_datetime || "").slice(0, 10),
+      date_precision: i.date_precision,
+      province: i.province_name || provinceName(i.province_code),
+      title_tr: i.canonical_title_tr,
+      deaths: i.fatalities_current,
+      injuries: i.injuries_current,
+      mechanisms: mechanismsOf(i.public_incident_id).map(c => c.label_en).join("; "),
+      latitude: i.latitude, longitude: i.longitude,
+      coordinate_precision: i.coordinate_precision,
+      sources: (D.citations[i.public_incident_id] || []).map(c => c.url)
+        .filter((v, k, arr) => arr.indexOf(v) === k).join("; "),
+    }));
+    download(`mining-accident-records-${stamp()}.csv`, toCsv(rows, Object.keys(rows[0] || { public_incident_id: 1 })), "text/csv;charset=utf-8");
+  });
+  document.getElementById("dl-sites").addEventListener("click", () => {
+    const rows = sites.filter(siteMatches).map(st => ({
+      site: st.name,
+      type: TYPE_LABELS[st.type] || st.type,
+      commodity: st.commodity_label || st.commodity_code,
+      commodity_group: groupOf(st),
+      province: st.province_name || provinceName(st.province_code),
+      operators: (st.organizations || []).map(o => `${o.name} (${o.role})`).join("; "),
+      operator_countries: (st.organizations || []).map(o => o.country_label).filter(Boolean).join("; "),
+      status: STATUS_LABELS[st.status] || "",
+      latitude: st.latitude, longitude: st.longitude,
+      coordinate_precision: st.coordinate_precision,
+      source_url: st.source_url,
+    }));
+    download(`mining-sites-${stamp()}.csv`, toCsv(rows, Object.keys(rows[0] || { site: 1 })), "text/csv;charset=utf-8");
+  });
+  document.getElementById("dl-json").addEventListener("click", () => {
+    const payload = {
+      note: "Public reviewed export of the Türkiye mining accidents record. " +
+        "Every value traces to source documents through recorded reviewer decisions. " +
+        "Sites layer: open structured sources only — not a complete register.",
+      export_timestamp: D.export_timestamp,
+      schema_version: D.schema_version,
+      incidents: incidents, sites: sites, citations: D.citations,
+      classifications: D.classifications, aggregates: D.aggregates,
+      coverage_gap: D.coverage_gap, rate_context: D.rate_context,
+    };
+    download(`mining-accidents-${stamp()}.json`, JSON.stringify(payload, null, 2), "application/json");
+  });
 
   // ---- Footer ----------------------------------------------------------------------
   document.getElementById("foot").innerHTML =

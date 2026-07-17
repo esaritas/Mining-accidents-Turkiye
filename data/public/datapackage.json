@@ -42,6 +42,10 @@
             "type": "any"
           },
           {
+            "name": "province_name",
+            "type": "any"
+          },
+          {
             "name": "district_code",
             "type": "any"
           },
@@ -231,6 +235,10 @@
           },
           {
             "name": "province_code",
+            "type": "any"
+          },
+          {
+            "name": "province_name",
             "type": "any"
           },
           {

@@ -36,6 +36,7 @@ INCIDENT_COLUMNS = [
     "date_precision",
     "incident_status",
     "province_code",
+    "province_name",
     "district_code",
     "settlement",
     "latitude",
@@ -87,6 +88,7 @@ FACILITY_COLUMNS = [
     "commodity_code",
     "commodity_label",
     "province_code",
+    "province_name",
     "latitude",
     "longitude",
     "coordinate_precision",
@@ -222,13 +224,22 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _province_labels() -> dict[str, str]:
+    from mining_accidents.vocabularies import load_vocabulary
+
+    return {e.code: e.label_tr for e in load_vocabulary("turkey_admin_areas")}
+
+
 def _collect_incident_rows(conn: sqlite3.Connection, ids: list[int]) -> list[dict[str, object]]:
+    provinces = _province_labels()
     rows = []
     for incident_id in ids:
         row = conn.execute(
             "SELECT * FROM incidents WHERE incident_id = ?", (incident_id,)
         ).fetchone()
-        rows.append({col: row[col] for col in INCIDENT_COLUMNS})
+        record = {col: row[col] for col in INCIDENT_COLUMNS if col != "province_name"}
+        record["province_name"] = provinces.get(row["province_code"] or "", "")
+        rows.append(record)
     return sorted(rows, key=lambda r: r["public_incident_id"])
 
 
@@ -304,6 +315,7 @@ def _collect_facilities(conn: sqlite3.Connection) -> list[dict[str, object]]:
     Coverage honesty: open structured sources document a fraction of licensed
     operations — the datapackage description and every display of this layer
     say so."""
+    provinces = _province_labels()
     rows = conn.execute(
         """
         SELECT f.external_ref AS facility_ref, f.facility_name_tr, f.facility_type,
@@ -316,7 +328,10 @@ def _collect_facilities(conn: sqlite3.Connection) -> list[dict[str, object]]:
         ORDER BY f.external_ref
         """
     ).fetchall()
-    return [dict(row) for row in rows]
+    return [
+        {**dict(row), "province_name": provinces.get(row["province_code"] or "", "")}
+        for row in rows
+    ]
 
 
 def _collect_facility_roles(conn: sqlite3.Connection) -> list[dict[str, object]]:

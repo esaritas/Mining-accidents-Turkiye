@@ -16,6 +16,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "67",
+    "province_name": "Zonguldak",
     "public_incident_id": "TR-MINE-1983-0001",
     "settlement": null
   },
@@ -36,6 +37,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "67",
+    "province_name": "Zonguldak",
     "public_incident_id": "TR-MINE-1983-0002",
     "settlement": null
   },
@@ -56,6 +58,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "67",
+    "province_name": "Zonguldak",
     "public_incident_id": "TR-MINE-1987-0001",
     "settlement": null
   },
@@ -76,6 +79,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "74",
+    "province_name": "Bartın",
     "public_incident_id": "TR-MINE-1990-0001",
     "settlement": null
   },
@@ -96,6 +100,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "67",
+    "province_name": "Zonguldak",
     "public_incident_id": "TR-MINE-1992-0001",
     "settlement": null
   },
@@ -116,6 +121,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "66",
+    "province_name": "Yozgat",
     "public_incident_id": "TR-MINE-1995-0001",
     "settlement": null
   },
@@ -136,6 +142,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "70",
+    "province_name": "Karaman",
     "public_incident_id": "TR-MINE-2003-0001",
     "settlement": null
   },
@@ -156,6 +163,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "25",
+    "province_name": "Erzurum",
     "public_incident_id": "TR-MINE-2003-0002",
     "settlement": null
   },
@@ -176,6 +184,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "19",
+    "province_name": "Çorum",
     "public_incident_id": "TR-MINE-2004-0001",
     "settlement": null
   },
@@ -196,6 +205,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "43",
+    "province_name": "Kütahya",
     "public_incident_id": "TR-MINE-2005-0001",
     "settlement": null
   },
@@ -216,6 +226,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "10",
+    "province_name": "Balıkesir",
     "public_incident_id": "TR-MINE-2006-0001",
     "settlement": null
   },
@@ -236,6 +247,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "16",
+    "province_name": "Bursa",
     "public_incident_id": "TR-MINE-2009-0001",
     "settlement": null
   },
@@ -256,6 +268,7 @@
     "longitude": 31.864072,
     "missing_current": null,
     "province_code": "67",
+    "province_name": "Zonguldak",
     "public_incident_id": "TR-MINE-2010-0001",
     "settlement": null
   },
@@ -276,6 +289,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "22",
+    "province_name": "Edirne",
     "public_incident_id": "TR-MINE-2010-0002",
     "settlement": null
   },
@@ -296,6 +310,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "16",
+    "province_name": "Bursa",
     "public_incident_id": "TR-MINE-2010-0003",
     "settlement": null
   },
@@ -316,6 +331,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "45",
+    "province_name": "Manisa",
     "public_incident_id": "TR-MINE-2013-0001",
     "settlement": null
   },
@@ -336,6 +352,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "67",
+    "province_name": "Zonguldak",
     "public_incident_id": "TR-MINE-2013-0002",
     "settlement": null
   },
@@ -356,6 +373,7 @@
     "longitude": 27.525258,
     "missing_current": null,
     "province_code": "45",
+    "province_name": "Manisa",
     "public_incident_id": "TR-MINE-2014-0001",
     "settlement": null
   },
@@ -376,6 +394,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "74",
+    "province_name": "Bartın",
     "public_incident_id": "TR-MINE-2014-0002",
     "settlement": null
   },
@@ -396,6 +415,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "05",
+    "province_name": "Amasya",
     "public_incident_id": "TR-MINE-2014-0003",
     "settlement": null
   },
@@ -416,6 +436,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "70",
+    "province_name": "Karaman",
     "public_incident_id": "TR-MINE-2014-0004",
     "settlement": null
   },
@@ -436,6 +457,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "23",
+    "province_name": "Elazığ",
     "public_incident_id": "TR-MINE-2014-0005",
     "settlement": null
   },
@@ -456,6 +478,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "46",
+    "province_name": "Kahramanmaraş",
     "public_incident_id": "TR-MINE-2014-0006",
     "settlement": null
   },
@@ -476,6 +499,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "73",
+    "province_name": "Şırnak",
     "public_incident_id": "TR-MINE-2014-0007",
     "settlement": null
   },
@@ -496,6 +520,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "12",
+    "province_name": "Bingöl",
     "public_incident_id": "TR-MINE-2014-0008",
     "settlement": null
   },
@@ -516,6 +541,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "50",
+    "province_name": "Nevşehir",
     "public_incident_id": "TR-MINE-2014-0009",
     "settlement": null
   },
@@ -536,6 +562,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "73",
+    "province_name": "Şırnak",
     "public_incident_id": "TR-MINE-2014-0010",
     "settlement": null
   },
@@ -556,6 +583,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "22",
+    "province_name": "Edirne",
     "public_incident_id": "TR-MINE-2014-0011",
     "settlement": null
   },
@@ -576,6 +604,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "58",
+    "province_name": "Sivas",
     "public_incident_id": "TR-MINE-2015-0001",
     "settlement": null
   },
@@ -596,6 +625,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "67",
+    "province_name": "Zonguldak",
     "public_incident_id": "TR-MINE-2015-0002",
     "settlement": null
   },
@@ -616,6 +646,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "48",
+    "province_name": "Muğla",
     "public_incident_id": "TR-MINE-2015-0003",
     "settlement": null
   },
@@ -636,6 +667,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "05",
+    "province_name": "Amasya",
     "public_incident_id": "TR-MINE-2015-0004",
     "settlement": null
   },
@@ -656,6 +688,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "06",
+    "province_name": "Ankara",
     "public_incident_id": "TR-MINE-2015-0005",
     "settlement": null
   },
@@ -676,6 +709,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "48",
+    "province_name": "Muğla",
     "public_incident_id": "TR-MINE-2015-0006",
     "settlement": null
   },
@@ -696,6 +730,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "67",
+    "province_name": "Zonguldak",
     "public_incident_id": "TR-MINE-2019-0001",
     "settlement": null
   },
@@ -716,6 +751,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "45",
+    "province_name": "Manisa",
     "public_incident_id": "TR-MINE-2019-0002",
     "settlement": null
   },
@@ -736,6 +772,7 @@
     "longitude": 32.349063,
     "missing_current": null,
     "province_code": "74",
+    "province_name": "Bartın",
     "public_incident_id": "TR-MINE-2022-0001",
     "settlement": null
   },
@@ -756,6 +793,7 @@
     "longitude": 38.536482,
     "missing_current": null,
     "province_code": "24",
+    "province_name": "Erzincan",
     "public_incident_id": "TR-MINE-2024-0001",
     "settlement": null
   },
@@ -776,6 +814,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "45",
+    "province_name": "Manisa",
     "public_incident_id": "TR-MINE-2024-0002",
     "settlement": null
   },
@@ -796,6 +835,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "67",
+    "province_name": "Zonguldak",
     "public_incident_id": "TR-MINE-2024-0003",
     "settlement": null
   },
@@ -816,6 +856,7 @@
     "longitude": 38.00883,
     "missing_current": null,
     "province_code": "58",
+    "province_name": "Sivas",
     "public_incident_id": "TR-MINE-2025-0001",
     "settlement": null
   },
@@ -836,6 +877,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "09",
+    "province_name": "Aydın",
     "public_incident_id": "TR-MINE-2025-0002",
     "settlement": null
   },
@@ -856,6 +898,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "10",
+    "province_name": "Balıkesir",
     "public_incident_id": "TR-MINE-2025-0003",
     "settlement": null
   },
@@ -876,6 +919,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "67",
+    "province_name": "Zonguldak",
     "public_incident_id": "TR-MINE-2025-0004",
     "settlement": null
   },
@@ -896,6 +940,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "45",
+    "province_name": "Manisa",
     "public_incident_id": "TR-MINE-2025-0005",
     "settlement": null
   },
@@ -916,6 +961,7 @@
     "longitude": null,
     "missing_current": null,
     "province_code": "17",
+    "province_name": "Çanakkale",
     "public_incident_id": "TR-MINE-2025-0006",
     "settlement": null
   }
