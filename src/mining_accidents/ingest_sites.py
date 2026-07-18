@@ -166,7 +166,33 @@ def _write_facility_values(
     latitude = fields.get("latitude")
     longitude = fields.get("longitude")
     province = fields.get("province_code").normalized_value if fields.get("province_code") else None
+    # Editorial markers (duplicates, out-of-scope, coordinate conflicts) are
+    # reviewer acts recorded in review_log — a mechanical re-parse must never
+    # clobber them (QA rule, 2026-07-18).
+    existing_notes = conn.execute(
+        "SELECT notes FROM facilities WHERE facility_id = ?", (facility_id,)
+    ).fetchone()["notes"]
+    if existing_notes and existing_notes.startswith(
+        ("DUPLICATE of", "OUT_OF_SCOPE", "COORD_CONFLICT")
+    ):
+        return
     notes = "Registered from open structured sources (partial coverage)."
+    if latitude and longitude:
+        lat_v, lon_v = float(latitude.normalized_value), float(longitude.normalized_value)
+        if not (35.0 <= lat_v <= 42.5 and 25.0 <= lon_v <= 45.5):
+            # The source's country statement contradicts its own coordinates
+            # (QC-W06). Register the row but mark it out of scope; it never
+            # reaches the export or the map.
+            conn.execute(
+                "UPDATE facilities SET notes = ? WHERE facility_id = ?",
+                (
+                    "OUT_OF_SCOPE: source-stated coordinates "
+                    f"({lat_v}, {lon_v}) lie outside Türkiye although the source "
+                    "states country=TR; excluded from export pending upstream fix.",
+                    facility_id,
+                ),
+            )
+            return
     if latitude and longitude:
         # Robust derivation only: near-border points return None rather than
         # guessing the wrong side of a simplified boundary.

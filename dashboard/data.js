@@ -1129,7 +1129,7 @@ window.MINING_DATA = {
       }
     ]
   },
-  "export_timestamp": "2026-07-17T16:18:19Z",
+  "export_timestamp": "2026-07-18T09:01:31Z",
   "incidents": [
     {
       "canonical_title_en": null,
@@ -2849,11 +2849,6 @@ window.MINING_DATA = {
         "y": 31.1
       },
       {
-        "ref": "wikidata:Q121494242",
-        "x": 73.7,
-        "y": 2739.3
-      },
-      {
         "ref": "wikidata:Q137925109",
         "x": 325.6,
         "y": 36.0
@@ -3029,11 +3024,6 @@ window.MINING_DATA = {
         "y": 87.4
       },
       {
-        "ref": "wikidata:Q61074517",
-        "x": 503.9,
-        "y": 87.4
-      },
-      {
         "ref": "wikidata:Q64699212",
         "x": 123.1,
         "y": 214.9
@@ -3061,7 +3051,8 @@ window.MINING_DATA = {
     "decisions_total": 361,
     "published_incidents": 51,
     "records_in_review": 1,
-    "source_documents": 221
+    "source_documents": 221,
+    "withdrawn_records": 36
   },
   "policy_events": [
     {
@@ -3724,21 +3715,6 @@ window.MINING_DATA = {
       "province_name": "",
       "ref": "wikidata:Q118874850",
       "source_url": "https://www.wikidata.org/wiki/Q118874850",
-      "status": "unknown",
-      "type": "mine_unspecified"
-    },
-    {
-      "commodity_code": "coal",
-      "commodity_label": "coal",
-      "coordinate_precision": "facility_approximate",
-      "latitude": -17.15,
-      "longitude": 27.36,
-      "name": "Collum Coal Mine",
-      "organizations": [],
-      "province_code": "",
-      "province_name": "",
-      "ref": "wikidata:Q121494242",
-      "source_url": "https://www.wikidata.org/wiki/Q121494242",
       "status": "unknown",
       "type": "mine_unspecified"
     },
@@ -4593,13 +4569,13 @@ window.MINING_DATA = {
     {
       "commodity_code": "gold",
       "commodity_label": "altın",
-      "coordinate_precision": "facility_approximate",
-      "latitude": 40.501,
-      "longitude": 39.387,
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
       "name": "Sart altın madeni",
       "organizations": [],
-      "province_code": "29",
-      "province_name": "Gümüşhane",
+      "province_code": "",
+      "province_name": "",
       "ref": "wikidata:Q61074517",
       "source_url": "https://www.wikidata.org/wiki/Q61074517",
       "status": "unknown",

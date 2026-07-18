@@ -325,7 +325,8 @@ def _collect_facilities(conn: sqlite3.Connection) -> list[dict[str, object]]:
         JOIN claims c ON c.claim_id = f.source_claim_id
         JOIN source_documents sd ON sd.source_document_id = c.source_document_id
         WHERE f.external_ref IS NOT NULL AND f.source_claim_id IS NOT NULL
-          AND (f.notes IS NULL OR f.notes NOT LIKE 'DUPLICATE of%')
+          AND (f.notes IS NULL OR (f.notes NOT LIKE 'DUPLICATE of%'
+               AND f.notes NOT LIKE 'OUT_OF_SCOPE%'))
         ORDER BY f.external_ref
         """
     ).fetchall()

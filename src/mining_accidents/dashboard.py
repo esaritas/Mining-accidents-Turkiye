@@ -242,6 +242,9 @@ def _pipeline_status(conn: sqlite3.Connection) -> dict[str, int]:
         "claims_awaiting_review": count(
             "SELECT COUNT(*) FROM claims WHERE review_status = 'needs_review'"
         ),
+        "withdrawn_records": count(
+            "SELECT COUNT(*) FROM incidents WHERE publication_status = 'withdrawn'"
+        ),
         "source_documents": count("SELECT COUNT(*) FROM source_documents"),
         "claims_total": count("SELECT COUNT(*) FROM claims"),
         "decisions_total": count("SELECT COUNT(*) FROM claim_decisions"),

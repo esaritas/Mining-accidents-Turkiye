@@ -103,6 +103,27 @@ FACILITY_FIXES: tuple[tuple[str, str, str, str], ...] = (
     ),
 )
 
+#: rows whose notes get a suppression marker: (external_ref, marker_note, reason)
+FACILITY_SUPPRESSIONS: tuple[tuple[str, str, str], ...] = (
+    (
+        "wikidata:Q121494242",
+        "OUT_OF_SCOPE: source-stated coordinates (-17.15, 27.36) lie in Zambia "
+        "although the source states country=TR; excluded from export pending "
+        "upstream fix.",
+        "Collum Coal Mine is in Sinazongwe, Zambia; the Wikidata item carries an "
+        "erroneous country statement (QA check QC-W06, 2026-07-18).",
+    ),
+    (
+        "wikidata:Q61074517",
+        "COORD_CONFLICT: source-stated coordinates are identical to Mastra "
+        "(wikidata:Q6009374) and resolve to Gümüşhane, while Sart is in Salihli, "
+        "Manisa — likely a source copy error. Coordinates and the province "
+        "derived from them suppressed pending upstream fix.",
+        "Sart and Mastra gold mines carry the same point (QA check QC-W07, "
+        "2026-07-18); the point is consistent with Mastra only.",
+    ),
+)
+
 #: (external_ref, duplicate_of, reason)
 FACILITY_DUPLICATES: tuple[tuple[str, str, str], ...] = (
     (
@@ -415,6 +436,38 @@ def apply_audit_corrections(conn: sqlite3.Connection, reviewer: str) -> dict[str
             notes=_RATIONALE_PREFIX + reason,
         )
         add_log(external_ref, field, str(row["current"]), value, "corrected", reason)
+        counts["facility_fixes"] += 1
+
+    # 5b. Suppressions (out-of-scope location / coordinate conflicts) ------
+    for external_ref, marker_note, reason in FACILITY_SUPPRESSIONS:
+        row = conn.execute(
+            "SELECT facility_id, notes FROM facilities WHERE external_ref = ?",
+            (external_ref,),
+        ).fetchone()
+        if row is None or (row["notes"] or "").startswith(("OUT_OF_SCOPE", "COORD_CONFLICT")):
+            continue
+        if marker_note.startswith("COORD_CONFLICT"):
+            conn.execute(
+                "UPDATE facilities SET latitude = NULL, longitude = NULL, "
+                "coordinate_precision = NULL, province_code = NULL, notes = ? "
+                "WHERE facility_id = ?",
+                (marker_note, row["facility_id"]),
+            )
+        else:
+            conn.execute(
+                "UPDATE facilities SET notes = ? WHERE facility_id = ?",
+                (marker_note, row["facility_id"]),
+            )
+        review.log_review_action(
+            conn,
+            reviewer,
+            "facility_suppressed",
+            "facility",
+            row["facility_id"],
+            after_summary=f"{external_ref}: {marker_note.split(':')[0]}",
+            notes=_RATIONALE_PREFIX + reason,
+        )
+        add_log(external_ref, "suppression", "", marker_note.split(":")[0], "suppressed", reason)
         counts["facility_fixes"] += 1
 
     # 6. Duplicates --------------------------------------------------------

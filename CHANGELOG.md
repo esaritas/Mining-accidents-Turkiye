@@ -6,6 +6,23 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Fixed — QA pass (2026-07-18)
+- New automated checks: QC-W06 (exported site located outside Türkiye — the
+  source's country statement is wrong) and QC-W07 (multiple exported sites
+  sharing identical coordinates — source copy error). Both caught real
+  defects on first run: Collum Coal Mine (in Zambia, erroneous P17=TR on
+  Wikidata) is now OUT_OF_SCOPE and excluded; Sart altın madeni carried
+  Mastra's exact coordinates — its coordinate-derived values are suppressed
+  as COORD_CONFLICT. Editorial markers now survive mechanical re-parses.
+- Contract compliance: `casualty_status='disputed'` is finally *displayed*
+  — "toll disputed" badge in the records table, a sentence in map popups,
+  and a column in the CSV download (Amasra).
+- Display consistency: commodity labels unified to English (source wording
+  kept in the tooltip); "not classified" → "not stated in sources"; chart
+  gains a "people" unit label; identical-coordinate site pins are nudged
+  apart so both stay visible; footer states records-in-review and
+  withdrawn-after-audit counts with a pointer to the corrections log.
+
 ### Fixed — external audit corrections (2026-07-17, owner-forwarded)
 Register: 51 published records / 1,086 deaths (was 46 / 976). Every action is
 in `docs/corrections_log.csv` with original value, corrected value, and

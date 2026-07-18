@@ -197,6 +197,7 @@
   td a:hover { text-decoration: underline; }
   .pill { display: inline-block; font-size: 12px; color: var(--ink-2);
           border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px; }
+  .pill-dispute { color: var(--loss); border-color: var(--loss); }
   .legend { display: flex; gap: 18px; font-size: 13px; color: var(--ink-2); margin: 0 0 8px; flex-wrap: wrap; }
   .legend .swatch { display: inline-block; width: 14px; height: 10px; border-radius: 3px;
                     vertical-align: baseline; margin-right: 5px; }
@@ -483,7 +484,9 @@
       : i.date_precision === "month" ? `In ${month} ${d.slice(0, 4)}` : `In ${d.slice(0, 4)}`;
     const mech = mechanismsOf(i.public_incident_id).map(c => c.label_en).join(", ");
     return `${when}, ${who} killed in a mining accident in ${i.province_name} province` +
-      (mech ? ` — ${mech}.` : ".");
+      (mech ? ` — ${mech}.` : ".") +
+      (i.casualty_status === "disputed"
+        ? " The death toll is disputed between sources (see corrections log)." : "");
   }
 
   // ---- On this day ----------------------------------------------------------
@@ -648,6 +651,15 @@
   };
   const GROUP_HEX = { coal: "#4a5fc1", metal: "#a08000", mineral: "#0f8a5f", other: "#8a8f96" };
   const groupOf = site => COMM_GROUPS[site.commodity_code] || "other";
+  // Unified English display labels; the source's own wording stays in the
+  // tooltip (labels arrive in mixed languages: kömür / coal / altın).
+  const COMM_EN = { coal: "Coal", lignite: "Lignite", chromium: "Chromium",
+    iron: "Iron", copper: "Copper", gold: "Gold", silver: "Silver", zinc: "Zinc",
+    lead: "Lead", phosphate: "Phosphate", boron: "Boron", marble: "Marble" };
+  const commodityText = site => site.commodity_code
+    ? (COMM_EN[site.commodity_code] ||
+       (site.commodity_label ? `Other (${site.commodity_label})` : "Other"))
+    : null;
   const state = { province: "", mechanism: "", from: null, to: null, commodity: "", layer: "both" };
 
   const provSel = document.getElementById("f-province");
@@ -743,7 +755,7 @@
       ` <span class="t-meta">[${o.assertion_status}]</span>`);
     return `<div class="t-title" lang="tr">${s.name}</div>` +
       `<div>${TYPE_LABELS[s.type] || s.type || ""}` +
-      (s.commodity_label ? ` · ${s.commodity_label}` : "") +
+      (commodityText(s) ? ` · ${commodityText(s)}` : "") +
       (s.province_code ? ` · ${provinceName(s.province_code)}` : "") + `</div>` +
       (orgLines.length ? `<div>${orgLines.join("<br>")}</div>` : "") +
       `<div class="t-meta">Status: ${STATUS_LABELS[s.status] || "Not stated"} · ` +
@@ -792,10 +804,15 @@
         `transform="translate(${m.x},${m.y}) scale(${s})"></use>`;
     }).join("");
     const bySiteRefAll = new Map(sites.map(st => [st.ref, st]));
+    const seenXY = new Map();
     const sParts = (V.siteMarks || []).map(m => {
       if (!showSites || !okRefs.has(m.ref)) return "";
+      const key = `${m.x},${m.y}`;
+      const bump = seenXY.get(key) || 0;
+      seenXY.set(key, bump + 1);
+      const x = m.x + bump * 7;  // nudge identical points apart (both stay visible)
       const fill = GROUP_HEX[groupOf(bySiteRefAll.get(m.ref) || {})];
-      return `<path class="svg-site" fill="${fill}" data-ref="${m.ref}" d="M${m.x},${m.y - 4.4} L${m.x + 4.4},${m.y} L${m.x},${m.y + 4.4} L${m.x - 4.4},${m.y} Z"></path>`;
+      return `<path class="svg-site" fill="${fill}" data-ref="${m.ref}" d="M${x},${m.y - 4.4} L${x + 4.4},${m.y} L${x},${m.y + 4.4} L${x - 4.4},${m.y} Z"></path>`;
     }).join("");
     el.innerHTML = `<svg viewBox="-8 -8 ${V.W + 16} ${V.H + 16}" role="img" ` +
       `aria-label="Province map of Türkiye with accident records and documented mining sites">` +
@@ -958,6 +975,7 @@
     parts.push(`<text class="ticklabel" x="${M.l - 8}" y="${gy + 4}" text-anchor="end">${gv}</text>`);
   }
   parts.push(`<line class="axisline" x1="${M.l}" x2="${W - M.r}" y1="${M.t + ih}" y2="${M.t + ih}"></line>`);
+  parts.push(`<text class="ticklabel" x="${M.l - 8}" y="${M.t - 10}" text-anchor="end">people</text>`);
 
   // Undercount columns behind everything: register-recorded top -> İSİG total.
   years.forEach((year, idx) => {
@@ -1106,7 +1124,7 @@
       return `<tr>
         <td lang="tr">${s.name}</td>
         <td>${TYPE_LABELS[s.type] || s.type || ""}</td>
-        <td><span class="comm-chip" style="background:${GROUP_HEX[groupOf(s)]}"></span>${s.commodity_label || s.commodity_code || '<span class="pill">not stated</span>'}</td>
+        <td title="${s.commodity_label || ""}"><span class="comm-chip" style="background:${GROUP_HEX[groupOf(s)]}"></span>${commodityText(s) || '<span class="pill">not stated</span>'}</td>
         <td>${s.province_code ? provinceName(s.province_code) : '<span class="pill">not stated</span>'}</td>
         <td>${orgNames}</td>
         <td>${countries}</td>
@@ -1128,8 +1146,8 @@
         <td>${fmtDate(i)}</td>
         <td>${i.province_name || ""}</td>
         <td lang="tr">${i.canonical_title_tr}</td>
-        <td class="num">${fmt.format(i.fatalities_current)}${i.injuries_current != null ? `<br><span class="pill">${fmt.format(i.injuries_current)} injured</span>` : ""}</td>
-        <td>${mech ? `<span class="pill">${mech}</span>` : '<span class="pill">not classified</span>'}</td>
+        <td class="num">${fmt.format(i.fatalities_current)}${i.casualty_status === "disputed" ? `<br><span class="pill pill-dispute">toll disputed</span>` : ""}${i.injuries_current != null ? `<br><span class="pill">${fmt.format(i.injuries_current)} injured</span>` : ""}</td>
+        <td>${mech ? `<span class="pill">${mech}</span>` : '<span class="pill">not stated in sources</span>'}</td>
         <td>${cites}</td>
       </tr>`;
     }).join("") || '<tr><td colspan="7">No records match the current filters.</td></tr>';
@@ -1182,6 +1200,7 @@
       province: i.province_name || provinceName(i.province_code),
       title_tr: i.canonical_title_tr,
       deaths: i.fatalities_current,
+      casualty_status: i.casualty_status,
       injuries: i.injuries_current,
       mechanisms: mechanismsOf(i.public_incident_id).map(c => c.label_en).join("; "),
       latitude: i.latitude, longitude: i.longitude,
@@ -1224,6 +1243,8 @@
   // ---- Footer ----------------------------------------------------------------------
   document.getElementById("foot").innerHTML =
     `Export of ${D.export_timestamp} · schema ${D.schema_version} · ` +
+    `${fmt.format(D.pipeline.records_in_review || 0)} records in review · ` +
+    `${fmt.format(D.pipeline.withdrawn_records || 0)} withdrawn after audit (docs/corrections_log.csv) · ` +
     `${fmt.format(D.pipeline.source_documents)} source documents · ` +
     `${fmt.format(D.pipeline.claims_total)} claims · ${fmt.format(D.pipeline.decisions_total)} recorded decisions.<br>` +
     `Every published value was selected from source claims by a recorded reviewer decision ` +

@@ -351,6 +351,62 @@ def check_bbox(conn: sqlite3.Connection) -> list[QualityFinding]:
     return findings
 
 
+#: generous Türkiye bounding box for the sites registry (WGS84).
+_TR_BBOX = {"lat0": 35.0, "lat1": 42.5, "lon0": 25.0, "lon1": 45.5}
+
+
+def check_site_coordinates_in_turkiye(conn: sqlite3.Connection) -> list[QualityFinding]:
+    """QC-W06: an exported site located outside Türkiye means the source's
+    country statement is wrong (audit case: a Zambian mine carrying P17=TR).
+    Sites already marked OUT_OF_SCOPE are the handled state, not a finding."""
+    findings = []
+    for row in conn.execute(
+        "SELECT facility_id, facility_name_tr, latitude, longitude FROM facilities "
+        "WHERE latitude IS NOT NULL AND source_claim_id IS NOT NULL "
+        "AND (notes IS NULL OR (notes NOT LIKE 'OUT_OF_SCOPE%' "
+        "AND notes NOT LIKE 'DUPLICATE of%'))"
+    ):
+        if not (
+            _TR_BBOX["lat0"] <= row["latitude"] <= _TR_BBOX["lat1"]
+            and _TR_BBOX["lon0"] <= row["longitude"] <= _TR_BBOX["lon1"]
+        ):
+            findings.append(
+                QualityFinding(
+                    "QC-W06",
+                    "warning",
+                    f"facility:{row['facility_id']}",
+                    f"site '{row['facility_name_tr']}' has coordinates outside "
+                    f"Türkiye ({row['latitude']}, {row['longitude']}) — source "
+                    "country statement is likely wrong; mark OUT_OF_SCOPE or fix",
+                )
+            )
+    return findings
+
+
+def check_duplicate_site_coordinates(conn: sqlite3.Connection) -> list[QualityFinding]:
+    """QC-W07: two exported sites sharing identical coordinates usually means
+    a copy error in the source (audit case: Sart carrying Mastra's point)."""
+    findings = []
+    for row in conn.execute(
+        "SELECT latitude, longitude, COUNT(*) AS n, "
+        "GROUP_CONCAT(facility_name_tr, ' | ') AS names FROM facilities "
+        "WHERE latitude IS NOT NULL AND source_claim_id IS NOT NULL "
+        "AND (notes IS NULL OR (notes NOT LIKE 'OUT_OF_SCOPE%' "
+        "AND notes NOT LIKE 'DUPLICATE of%' AND notes NOT LIKE 'COORD_CONFLICT%')) "
+        "GROUP BY latitude, longitude HAVING n > 1"
+    ):
+        findings.append(
+            QualityFinding(
+                "QC-W07",
+                "warning",
+                f"facilities@{row['latitude']},{row['longitude']}",
+                f"{row['n']} sites share identical coordinates ({row['names']}) — "
+                "likely a source copy error; verify and suppress the wrong one",
+            )
+        )
+    return findings
+
+
 def check_duplicate_candidates(conn: sqlite3.Connection) -> list[QualityFinding]:
     return [
         QualityFinding(
@@ -475,6 +531,8 @@ def run_all_checks(
     findings += check_cited_documents_complete(conn)
     findings += check_reretrieval_hash_conflicts(conn)
     findings += check_bbox(conn)
+    findings += check_site_coordinates_in_turkiye(conn)
+    findings += check_duplicate_site_coordinates(conn)
     findings += check_duplicate_candidates(conn)
     findings += check_conflicting_casualty_claims(conn)
     findings += check_single_canonical_observation(conn)
