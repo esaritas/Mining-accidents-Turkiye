@@ -238,9 +238,7 @@ def _provinces_geo() -> list[dict[str, object]]:
     for feature in json.loads(PROVINCES_GEOJSON.read_text(encoding="utf-8"))["features"]:
         geometry = feature["geometry"]
         polygons = (
-            [geometry["coordinates"]]
-            if geometry["type"] == "Polygon"
-            else geometry["coordinates"]
+            [geometry["coordinates"]] if geometry["type"] == "Polygon" else geometry["coordinates"]
         )
         rings = []
         for polygon in polygons:
