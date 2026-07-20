@@ -6,6 +6,15 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Added — province color scale (2026-07-18, owner feedback)
+- The map now represents every published record: provinces are shaded on a
+  sequential red scale by people lost there (fixed breaks 1/5/20/100/300+,
+  filter-aware, in both the SVG and Leaflet variants), so records without
+  published coordinates are no longer hidden — hovering a province lists
+  them, along with the province's documented site counts. The dashed
+  province-summary circles are replaced by the shading; carnations continue
+  to mark records with source-stated coordinates.
+
 ### Fixed — QA pass (2026-07-18)
 - New automated checks: QC-W06 (exported site located outside Türkiye — the
   source's country statement is wrong) and QC-W07 (multiple exported sites

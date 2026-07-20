@@ -137,9 +137,7 @@
                        vertical-align: -2px; }
   .maplegend .sw-site { display: inline-block; width: 9px; height: 9px;
                         transform: rotate(45deg); margin-right: 6px; opacity: .85; }
-  .maplegend .sw-circle { display: inline-block; width: 11px; height: 11px;
-                          border: 1.5px dashed var(--loss); border-radius: 50%;
-                          margin-right: 5px; vertical-align: -2px; opacity: .7; }
+
   .comm-chip { display: inline-block; width: 8px; height: 8px; transform: rotate(45deg);
                margin-right: 6px; vertical-align: 0; opacity: .85; }
 
@@ -151,9 +149,10 @@
   .svg-marker { fill: var(--loss); fill-opacity: .9; stroke: var(--surface-1);
                 stroke-width: 1; cursor: pointer; }
   .svg-marker.is-hover { fill-opacity: 1; }
-  .svg-pmarker { fill: var(--loss); fill-opacity: .08; stroke: var(--loss);
-                 stroke-width: 1.6; stroke-dasharray: 4 3; cursor: pointer; }
-  .svg-pmarker.is-hover { fill-opacity: .22; }
+  .tr-prov.has-data { cursor: pointer; }
+  .tr-prov.is-hover { stroke: var(--ink-2); stroke-width: 1.2; }
+  .ramp { display: inline-flex; vertical-align: middle; margin: 0 6px; }
+  .ramp span { width: 22px; height: 11px; display: inline-block; }
   .svg-site { fill-opacity: .82; stroke: var(--surface-1);
               stroke-width: 1; cursor: pointer; }
   .svg-site.is-hover { fill-opacity: 1; }
@@ -304,13 +303,14 @@
   <section class="panel" id="map-panel">
     <h2>Where it happened — and where mining happens</h2>
     <p class="caption">
-      Each red carnation stands where people died; its size reflects how many. Positions are
-      <em>facility-approximate</em> — the mine or its vicinity, never an exact point.
-      Hollow dashed circles summarize records <em>without published coordinates</em>
-      at their province's reference point. Diamonds are <em>documented mining sites</em>
-      from open structured sources, colored by what is mined — a fraction of licensed
-      operations, shown for context. Province boundaries: Natural Earth (public domain).
-      Select any marker to read more.
+      Every published record colors its province: the darker the red, the more people
+      died there. Carnations mark the records whose sources state coordinates
+      (<em>facility-approximate</em> — the mine or its vicinity, never an exact point);
+      records without published coordinates are inside their province's shade — rest on a
+      province to see them. Diamonds are <em>documented mining sites</em> from open
+      structured sources, colored by what is mined; sites without published coordinates
+      are counted in the province tooltips and listed in the table below. Province
+      boundaries: Natural Earth (public domain).
     </p>
     <div class="layer-toggle" role="group" aria-label="Map layers">
       <button type="button" data-layer="accidents" aria-pressed="false">Accidents</button>
@@ -323,7 +323,9 @@
     </div>
     <div class="maplegend">
       <span><span class="sw-acc carn-mask"></span> accident — one carnation per record (size = people lost)</span>
-      <span><span class="sw-circle"></span> province summary (no published coordinates)</span>
+      <span>province shade = people lost there (all published records)
+        <span class="ramp" aria-hidden="true"><span style="background:#f6ddda"></span><span style="background:#eab5b0"></span><span style="background:#d97f77"></span><span style="background:#c24a42"></span><span style="background:#99231d"></span></span>
+        1&nbsp;·&nbsp;5&nbsp;·&nbsp;20&nbsp;·&nbsp;100&nbsp;·&nbsp;300+</span>
       <span><span class="sw-site" style="background:var(--c-coal)"></span> coal &amp; lignite site</span>
       <span><span class="sw-site" style="background:var(--c-metal)"></span> metal-ore site</span>
       <span><span class="sw-site" style="background:var(--c-mineral)"></span> industrial-mineral site</span>
@@ -763,7 +765,48 @@
       `<div class="t-meta">Open structured sources only — a fraction of licensed operations.</div>`;
   }
 
-  let leafletMap = null, leafletAccidents = null, leafletSites = null;
+  // Sequential red scale, fixed breaks so shades stay comparable while
+  // filtering: 0 · 1-4 · 5-19 · 20-99 · 100-299 · 300+ people.
+  const RAMP = ["#f6ddda", "#eab5b0", "#d97f77", "#c24a42", "#99231d"];
+  const rampColor = deaths => deaths <= 0 ? null
+    : deaths < 5 ? RAMP[0] : deaths < 20 ? RAMP[1] : deaths < 100 ? RAMP[2]
+    : deaths < 300 ? RAMP[3] : RAMP[4];
+  function provinceStats(fi, fs) {
+    const stats = new Map();
+    const get = code => {
+      if (!stats.has(code)) stats.set(code, { deaths: 0, records: 0, unlocated: [],
+                                              sites: 0, sitesUnlocated: 0 });
+      return stats.get(code);
+    };
+    for (const i of fi) {
+      if (!i.province_code) continue;
+      const e = get(i.province_code);
+      e.deaths += i.fatalities_current || 0; e.records += 1;
+      if (i.latitude == null) e.unlocated.push(i);
+    }
+    for (const st of fs) {
+      if (!st.province_code) continue;
+      const e = get(st.province_code);
+      e.sites += 1;
+      if (st.latitude == null) e.sitesUnlocated += 1;
+    }
+    return stats;
+  }
+  function provinceTipHtml(code, e) {
+    const rows = e.unlocated.slice(0, 8).map(i =>
+      `${i.public_incident_id} · ${fmtDate(i)} · ${fmt.format(i.fatalities_current)} people`
+    ).join("<br>");
+    return `<div class="t-title">${provinceName(code)}</div>` +
+      (e.records
+        ? `<div>${fmt.format(e.deaths)} people lost in ${e.records} published record${e.records === 1 ? "" : "s"}</div>`
+        : `<div class="t-meta">No published accident record in this province — a coverage statement, not a safety one.</div>`) +
+      (e.unlocated.length ? `<div class="t-meta">${e.unlocated.length} record(s) without published coordinates:<br>${rows}${e.unlocated.length > 8 ? "<br>…" : ""}</div>` : "") +
+      (e.sites ? `<div class="t-meta">${e.sites} documented mining site(s)` +
+        (e.sitesUnlocated ? ` — ${e.sitesUnlocated} without published coordinates` : "") +
+        `</div>` : "");
+  }
+
+  let leafletMap = null, leafletAccidents = null, leafletSites = null, leafletProvinces = null;
   let mapMode = null;
   function renderMap(fi, fs) {
     const wantLeaflet = !!window.L;
@@ -771,6 +814,7 @@
       if (wantLeaflet) { renderLeaflet(fi, fs); mapMode = "leaflet"; return; }
     } catch (err) { /* fall through to SVG */ }
     try { renderSvgMap(fi, fs); mapMode = "svg"; } catch (err2) {
+      console.error("svg map failed:", err2);
       document.getElementById("map").innerHTML =
         '<p style="padding:16px;color:var(--ink-2)">The map could not load. ' +
         "The tables below list every record.</p>";
@@ -785,14 +829,12 @@
     const okRefs = new Set(fs.filter(isOperational).map(s => s.ref));
     const showAcc = state.layer !== "sites", showSites = state.layer !== "accidents";
 
-    const provParts = (V.provinces || []).map(p =>
-      `<path class="tr-prov" data-prov="${p.code}" d="${p.d}"></path>`).join("");
-    const pParts = (V.provinceMarks || []).map(m => {
-      const ids = m.ids.filter(id => okIds.has(id));
-      if (!showAcc || !ids.length) return "";
-      const deaths = ids.reduce((s, id) => s + (byId.get(id).fatalities_current || 0), 0);
-      const r = Math.round((6 + Math.sqrt(Math.max(deaths, 1)) * 2.4) * 10) / 10;
-      return `<circle class="svg-pmarker" data-code="${m.code}" data-ids="${ids.join(",")}" cx="${m.x}" cy="${m.y}" r="${r}"></circle>`;
+    const stats = provinceStats(fi, fs);
+    const provParts = (V.provinces || []).map(p => {
+      const e = stats.get(p.code);
+      const fill = showAcc && e ? rampColor(e.deaths) : null;
+      const cls = "tr-prov" + (e ? " has-data" : "");
+      return `<path class="${cls}" data-prov="${p.code}" ${fill ? `style="fill:${fill}"` : ""} d="${p.d}"></path>`;
     }).join("");
     // One carnation per located record, scaled by the number of people
     // (capped so the largest losses stay flowers, not blots — the popup and
@@ -819,30 +861,21 @@
       `<defs><g id="carnation-fig" transform="translate(-12,-9)">` +
       `<path d="M12 1.5 L14.4 5.2 L17.8 3.4 L18.4 7.3 L22.3 8 L20.5 11.6 C18.8 15 15.6 16.8 12 16.8 C8.4 16.8 5.2 15 3.5 11.6 L1.7 8 L5.6 7.3 L6.2 3.4 L9.6 5.2 Z M9 16.3 L15 16.3 L13.3 22.3 L10.7 22.3 Z M11.2 21.8 L12.8 21.8 L12.8 34.5 L11.2 34.5 Z M12.8 27.5 C15.4 26.8 17 24.8 17.5 22.6 C14.9 23.3 13.3 25.3 12.8 27.5 Z"></path>` +
       `</g></defs>` +
-      provParts + sParts + pParts + aParts + `</svg>`;
+      provParts + sParts + aParts + `</svg>`;
 
     const bySiteRef = new Map(sites.map(s => [s.ref, s]));
     const tip = document.getElementById("map-tip");
     const wrapEl = document.getElementById("map-wrap");
     const svgEl = el.querySelector("svg");
     svgEl.addEventListener("mousemove", ev => {
-      const hit = ev.target.closest(".svg-marker, .svg-pmarker, .svg-site");
+      const hit = ev.target.closest(".svg-marker, .svg-site, .tr-prov.has-data");
       svgEl.querySelectorAll(".is-hover").forEach(n => n.classList.remove("is-hover"));
       if (!hit) { tip.style.display = "none"; return; }
       hit.classList.add("is-hover");
       if (hit.classList.contains("svg-site")) {
         tip.innerHTML = siteTip(bySiteRef.get(hit.dataset.ref));
-      } else if (hit.classList.contains("svg-pmarker")) {
-        const ids = hit.dataset.ids.split(",").filter(Boolean);
-        const deaths = ids.reduce((s, id) => s + (byId.get(id).fatalities_current || 0), 0);
-        const rows = ids.map(id => {
-          const r = byId.get(id);
-          return `${r.public_incident_id} · ${(r.incident_start_datetime || "").slice(0, 10)} · ${fmt.format(r.fatalities_current)} people`;
-        }).join("<br>");
-        tip.innerHTML = `<div class="t-title">${provinceName(hit.dataset.code)} — province-level summary</div>` +
-          `<div class="t-meta">Shown at the province reference point; exact locations are not published for these records.</div>` +
-          `<div>${ids.length} record(s); ${fmt.format(deaths)} people lost their lives</div>` +
-          `<div class="t-meta">${rows}</div>`;
+      } else if (hit.classList.contains("tr-prov")) {
+        tip.innerHTML = provinceTipHtml(hit.dataset.prov, stats.get(hit.dataset.prov));
       } else {
         const i = byId.get(hit.dataset.id);
         tip.innerHTML = `<div class="t-title" lang="tr">${i.canonical_title_tr}</div>` +
@@ -869,6 +902,7 @@
     }
     if (leafletAccidents) leafletMap.removeLayer(leafletAccidents);
     if (leafletSites) leafletMap.removeLayer(leafletSites);
+    if (leafletProvinces) leafletMap.removeLayer(leafletProvinces);
 
     const showAcc = state.layer !== "sites", showSites = state.layer !== "accidents";
     const accMarkers = [];
@@ -892,30 +926,21 @@
           (cites ? `<hr style="border:none;border-top:1px solid #ddd">${cites}` : ""));
         accMarkers.push(m);
       }
-      const byProvince = new Map();
-      for (const i of fi.filter(i => i.latitude == null || i.longitude == null)) {
-        if (!i.province_code || !D.province_centroids[i.province_code]) continue;
-        const b = byProvince.get(i.province_code) || [];
-        b.push(i); byProvince.set(i.province_code, b);
-      }
-      for (const [code, recs] of byProvince) {
-        const c = D.province_centroids[code];
-        const deaths = recs.reduce((s, i) => s + (i.fatalities_current || 0), 0);
-        const r = 6 + Math.sqrt(deaths || 1) * 2.1;
-        const m = L.circleMarker([c.latitude, c.longitude], {
-          radius: r, color: "#2a78d6", weight: 2, dashArray: "4 3",
-          fillColor: "#2a78d6", fillOpacity: 0.12,
+    }
+    // Province choropleth: every record shades its province, located or not.
+    const stats = provinceStats(fi, fs);
+    const provPolys = [];
+    if (showAcc) {
+      for (const prov of (D.provinces_geo || [])) {
+        const e = stats.get(prov.code);
+        const fill = e ? rampColor(e.deaths) : null;
+        const poly = L.polygon(prov.rings, {
+          color: "#9aa0a6", weight: 0.6,
+          fillColor: fill || "#e8eaed", fillOpacity: fill ? 0.55 : 0.15,
+          interactive: !!e,
         });
-        const rows = recs.map(i =>
-          `${i.public_incident_id} · ${(i.incident_start_datetime || "").slice(0, 10)} · ` +
-          `${fmt.format(i.fatalities_current)} people`).join("<br>");
-        m.bindPopup(
-          `<b>${c.label_tr} — province-level summary</b><br>` +
-          `<span class="meta">Shown at the province reference point; exact locations are not ` +
-          `published for these records.</span><br>` +
-          `${recs.length} record(s); ${fmt.format(deaths)} people lost their lives<hr ` +
-          `style="border:none;border-top:1px solid #ddd">${rows}`);
-        accMarkers.push(m);
+        if (e) poly.bindPopup(provinceTipHtml(prov.code, e));
+        provPolys.push(poly);
       }
     }
     const siteMarkers = [];
@@ -932,11 +957,12 @@
         siteMarkers.push(m);
       }
     }
+    leafletProvinces = L.featureGroup(provPolys).addTo(leafletMap);
     leafletSites = L.featureGroup(siteMarkers).addTo(leafletMap);
     leafletAccidents = L.featureGroup(accMarkers).addTo(leafletMap);
-    const all = L.featureGroup([...accMarkers, ...siteMarkers]);
-    if (accMarkers.length + siteMarkers.length) {
-      leafletMap.fitBounds(all.getBounds().pad(0.2));
+    const all = L.featureGroup([...accMarkers, ...siteMarkers, ...provPolys]);
+    if (accMarkers.length + siteMarkers.length + provPolys.length) {
+      leafletMap.fitBounds(all.getBounds().pad(0.1));
     } else { leafletMap.setView([39.0, 35.2], 6); }
   }
 

@@ -226,6 +226,31 @@ def _map_vector(
     }
 
 
+def _provinces_geo() -> list[dict[str, object]]:
+    """Decimated lat/lon province rings for the Leaflet choropleth layer.
+
+    Same Natural Earth source as the vector map; every 2nd vertex at 2
+    decimals is ample for a fill layer at country zoom. Display geometry
+    only, never evidence."""
+    from mining_accidents.geo import PROVINCES_GEOJSON
+
+    provinces = []
+    for feature in json.loads(PROVINCES_GEOJSON.read_text(encoding="utf-8"))["features"]:
+        geometry = feature["geometry"]
+        polygons = (
+            [geometry["coordinates"]]
+            if geometry["type"] == "Polygon"
+            else geometry["coordinates"]
+        )
+        rings = []
+        for polygon in polygons:
+            ring = polygon[0]
+            decimated = ring[::2] if len(ring) > 60 else ring
+            rings.append([[round(lat, 2), round(lon, 2)] for lon, lat in decimated])
+        provinces.append({"code": feature["properties"]["code"], "rings": rings})
+    return provinces
+
+
 def _pipeline_status(conn: sqlite3.Connection) -> dict[str, int]:
     def count(sql: str) -> int:
         return int(conn.execute(sql).fetchone()[0])
@@ -273,6 +298,7 @@ def build_payload(
         "classifications": _classifications(public_dir),
         "aggregates": _aggregates(conn),
         "province_centroids": _province_centroids(),
+        "provinces_geo": _provinces_geo(),
         "map_vector": _map_vector(incidents, _province_centroids(), sites),
         "coverage_gap": analysis.coverage_gap(conn),
         "projection": analysis.projection(conn),
