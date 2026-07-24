@@ -6,6 +6,18 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Added — bilingual page & GitHub Pages (2026-07-18, owner feedback)
+- The dashboard is fully bilingual: a Türkçe/English switcher in the nav
+  (browser-language default, persisted), covering every caption, chapter,
+  tooltip, table, legend, download and footer; dates and numbers follow the
+  locale ("7 Mart 1983", "1.086"); mechanisms and policy events use their
+  Turkish labels in Turkish. The map caption now states explicitly that a
+  missing site diamond never means no mine — the sites layer holds only what
+  open data documents.
+- GitHub Pages workflow (.github/workflows/pages.yml): publishes the
+  committed self-contained dashboard (dashboard/artifact.html) as the site
+  index on every push; no build step, no external requests.
+
 ### Added — province color scale (2026-07-18, owner feedback)
 - The map now represents every published record: provinces are shaded on a
   sequential red scale by people lost there (fixed breaks 1/5/20/100/300+,

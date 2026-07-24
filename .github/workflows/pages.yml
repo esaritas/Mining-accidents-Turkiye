@@ -1,0 +1,47 @@
+# Publish the self-contained dashboard (dashboard/artifact.html) to GitHub
+# Pages. The artifact build embeds the reviewed public export and the vector
+# map, so the published page needs no build step and makes no external
+# requests (only the committed file is served).
+name: Deploy dashboard to GitHub Pages
+
+on:
+  push:
+    branches: [main, claude/project-setup-file-kuvfuu]
+    paths:
+      - "dashboard/artifact.html"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp dashboard/artifact.html _site/index.html
+          touch _site/.nojekyll
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
