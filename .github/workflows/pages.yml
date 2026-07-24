@@ -4,12 +4,15 @@
 # requests (only the committed file is served).
 name: Deploy dashboard to GitHub Pages
 
-# Deploy from a single branch (main) only. Triggering on two branches raced
-# two runs against the one GitHub Pages environment and one would fail; main
-# holds the canonical deployed state, so it is the sole publish source.
+# Deploy from a single branch only, to avoid two runs racing the one GitHub
+# Pages environment. The environment's deployment-branch policy permits
+# `claude/project-setup-file-kuvfuu` (the branch that first set up Pages), so
+# that branch is the sole publish source; `main` mirrors the same content but
+# is blocked at the environment gate. To publish from main instead, add it
+# under Settings -> Environments -> github-pages -> deployment branches.
 on:
   push:
-    branches: [main]
+    branches: [claude/project-setup-file-kuvfuu]
     paths:
       - "dashboard/artifact.html"
       - ".github/workflows/pages.yml"
