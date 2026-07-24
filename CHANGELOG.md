@@ -6,6 +6,23 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Changed: readability and language polish (2026-07-24, owner feedback)
+- The record and site tables now scroll inside their panels (pinned headers,
+  fixed max height) so a long list no longer pushes the rest of the page down.
+- The Turkish text was rewritten for natural, fluent phrasing throughout
+  (lede, captions, story chapters, tooltips, footer); stiff literal
+  constructions and translationese were removed.
+- Neutral, non-political framing: the "remembrance and accountability" wording
+  became "remembrance and documentation" (TR: "anmak ve belgelemek"), and the
+  speculative "If nothing changes" projection panel was removed. This is a
+  documentation project, not an accountability instrument.
+- No long dashes anywhere in display text: em/en dashes were replaced with
+  commas, colons or sentence breaks across the page, the README and generated
+  file headers. Project-assigned descriptive incident titles were retitled the
+  same way through superseding claim_decisions (logged as `style_retitle` in
+  docs/corrections_log.csv); no factual value changed, and the auto-title
+  generator now uses a comma.
+
 ### Added — bilingual page & GitHub Pages (2026-07-18, owner feedback)
 - The dashboard is fully bilingual: a Türkçe/English switcher in the nav
   (browser-language default, persisted), covering every caption, chapter,

@@ -363,7 +363,7 @@ def _ingest_list_article(
                 incident_id = matched  # corroborating claims for a known incident
             else:
                 title = fields.get("canonical_title_tr") or (
-                    f"Maden kazası — {provinces.get(province or '', 'yeri belirsiz')}"
+                    f"Maden kazası, {provinces.get(province or '', 'yeri belirsiz')}"
                     f" ({(date or '')[:10]})"
                 )
                 cur = conn.execute(

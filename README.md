@@ -1,14 +1,14 @@
 # Turkey Mining & Quarrying Accidents Database
 
 **Live site / Canlı sayfa:** https://esaritas.github.io/Mining-accidents-Turkiye/
-(bilingual Türkçe/English — the reviewed public record with map, story, and
+(bilingual Türkçe/English: the reviewed public record with map, story, and
 downloadable data; redeployed automatically from `dashboard/artifact.html`).
 
-An evidence-based database of **fatal mining, quarrying, and mine-associated
-processing/waste facility accidents in Türkiye (1983-present)**.
+A database, built on evidence, of **fatal accidents in the mines, quarries and
+associated processing and waste facilities of Türkiye (1983 to present)**.
 
 > **What this repository is:** schema, controlled vocabularies, claim/decision
-> review machinery, quality checks, public-export tooling — and, since the
+> review machinery, quality checks, public export tooling, and, since the
 > data-collection stage began (2026-07-13), a first **seed of real incident
 > records** ingested from assessed open sources (Wikidata CC0, Wikipedia
 > CC BY-SA) through the evidence pipeline, plus a static dashboard with a map
@@ -55,7 +55,7 @@ make lint      # ruff check + format check
 | `make packets` | Generate review packets for incidents with claims |
 | `make test` / `make lint` / `make clean` | Test suite / lint / cleanup |
 
-The `mining-accidents` CLI (Typer) exposes the same operations with options —
+The `mining-accidents` CLI (Typer) exposes the same operations with options:
 `python -m mining_accidents.cli --help`. Thin wrappers live in `scripts/`.
 
 ## Architecture
@@ -80,7 +80,7 @@ The `mining-accidents` CLI (Typer) exposes the same operations with options —
                                     │ quality.py (critical findings block)
                                     ▼
                     ┌─────────────────────────────────────────────┐
-                    │ export.py — 7-rule publication threshold    │
+                    │ export.py: 7 rule publication threshold     │
                     │ data/public/ + datapackage + manifest       │
                     └─────────────────────────────────────────────┘
 ```
@@ -88,7 +88,7 @@ The `mining-accidents` CLI (Typer) exposes the same operations with options —
 Key modules (`src/mining_accidents/`): `database.py` (connections,
 checksummed migrations, schema snapshot) · `models.py` (Pydantic v2 per
 table) · `validators.py` (+ Pandera file-boundary schemas) ·
-`normalization.py` (Turkish-aware casefolding — never plain `.lower()`) ·
+`normalization.py` (Turkish aware casefolding, never plain `.lower()`) ·
 `vocabularies.py` (versioned CSV vocabularies as source of truth) ·
 `entity_resolution.py` (duplicate *candidates*, never auto-merge) ·
 `geography.py` (precision semantics, bbox heuristic) · `provenance.py`
@@ -129,5 +129,5 @@ empty `PILOT-*` slot templates.
 
 ## Licence and citation
 
-The licence is deliberately undecided (open question #1) — see
+The licence is deliberately undecided (open question #1); see
 [`LICENSE`](LICENSE). Cite via [`CITATION.cff`](CITATION.cff).

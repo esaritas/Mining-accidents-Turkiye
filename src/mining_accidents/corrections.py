@@ -60,7 +60,7 @@ WITHDRAWALS: tuple[tuple[str, str], ...] = (
 SPLIT_RECORDS: tuple[tuple[str, str, str, str, int, str | None, str], ...] = (
     (
         "audit2026:bartin-amasra-2014",
-        "Maden kazası — Amasra, Bartın (2014-11-01)",
+        "Maden kazası, Amasra, Bartın (2014-11-01)",
         "2014-11-01T00:00:00+03:00",
         "74",
         2,
@@ -69,7 +69,7 @@ SPLIT_RECORDS: tuple[tuple[str, str, str, str, int, str | None, str], ...] = (
     ),
     (
         "audit2026:zonguldak-gelik-2014",
-        "Maden kazası — Gelik, Zonguldak (2014-11-01)",
+        "Maden kazası, Gelik, Zonguldak (2014-11-01)",
         "2014-11-01T00:00:00+03:00",
         "67",
         1,
@@ -498,9 +498,75 @@ def apply_audit_corrections(conn: sqlite3.Connection, reviewer: str) -> dict[str
     for entity, reason in PENDING:
         add_log(entity, "", "", "", "pending", reason)
 
+    # 8. Style: no long dashes in project-assigned descriptive titles -----
+    retitled = _retitle_dash_style(conn, reviewer)
+    if retitled:
+        add_log(
+            "incidents",
+            "canonical_title_tr",
+            "descriptive titles containing a long dash",
+            "same titles with a comma instead",
+            "style_retitle",
+            "Owner directive (2026-07-24): no long dashes in display text. "
+            "The titles are project-assigned descriptive labels; no factual change.",
+        )
+        counts["decisions"] += retitled
+
     conn.commit()
     _write_log(log)
     return counts
+
+
+_DASH_RETITLE_RATIONALE = (
+    "Style correction: project-assigned descriptive titles use a comma instead "
+    "of a long dash (owner directive, 2026-07-24). No factual change."
+)
+
+
+def _retitle_dash_style(conn: sqlite3.Connection, reviewer: str) -> int:
+    """Reformat titles containing a long dash; superseding decisions record it.
+
+    Only project-assigned descriptive titles are touched: every dashed title in
+    the register was synthesized by the pipeline (list-seeded or split records),
+    never taken verbatim from a source, so this is presentation, not evidence.
+    """
+    from mining_accidents.normalization import normalize_tr
+
+    changed = 0
+    rows = conn.execute(
+        "SELECT incident_id, canonical_title_tr FROM incidents WHERE canonical_title_tr LIKE '%—%'"
+    ).fetchall()
+    for row in rows:
+        title = row["canonical_title_tr"].replace(" — ", ", ").replace("—", ",")
+        supporting = _supporting_claims(conn, row["incident_id"]) or [
+            int(r["claim_id"])
+            for r in conn.execute(
+                "SELECT claim_id FROM claims WHERE incident_id = ? ORDER BY claim_id LIMIT 1",
+                (row["incident_id"],),
+            )
+        ]
+        if not supporting:
+            continue  # draft without claims; nothing citable to hang a decision on
+        active = review.get_active_decision(conn, row["incident_id"], "canonical_title_tr")
+        review.record_decision(
+            conn,
+            ClaimDecision(
+                incident_id=row["incident_id"],
+                field_name="canonical_title_tr",
+                decision="manual_override",
+                manual_value=title,
+                rationale=_RATIONALE_PREFIX + _DASH_RETITLE_RATIONALE,
+                rationale_claim_ids=supporting,
+                supersedes_decision_id=active["decision_id"] if active else None,
+                reviewer=reviewer,
+            ),
+        )
+        conn.execute(
+            "UPDATE incidents SET canonical_title_tr_normalized = ? WHERE incident_id = ?",
+            (normalize_tr(title), row["incident_id"]),
+        )
+        changed += 1
+    return changed
 
 
 #: ai_assisted claims the audit reviewed against the bullet text:
@@ -574,7 +640,7 @@ EXPLICIT_TITLE_MERGES: tuple[tuple[str, str, str], ...] = (
 TITLE_FIXES: tuple[tuple[str, str, str], ...] = (
     (
         "TR-MINE-2011-0001",
-        "Çöllolar maden kazası — Afşin-Elbistan (Şubat 2011)",
+        "Çöllolar maden kazası, Afşin-Elbistan (Şubat 2011)",
         "Project-assigned descriptive title; the bullet names the Çöllolar "
         "mine at Afşin-Elbistan (Kahramanmaraş), decided province 46.",
     ),

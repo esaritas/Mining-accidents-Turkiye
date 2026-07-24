@@ -19,3 +19,4 @@ wikidata:Q97236653 (Öksüt) province -> Kayseri,,,,pending,"No assessed source 
 TR-MINE-2010-0002 (Küçükdoğanca) mechanism += fire,,,,pending,Audit reports fire-then-collapse; the stored article text does not mention fire. Pending a source that states it.
 "Yeni Çeltek 1983 (5) and 1990-02-07 (68), Amasya",,,,pending,"Absent from all assessed sources (list article, navbox, Wikidata class query). Known coverage gap pending TBB/TMMOB source assessment; open question #21."
 wikidata:Q61074517,suppression,,COORD_CONFLICT,suppressed,"Sart and Mastra gold mines carry the same point (QA check QC-W07, 2026-07-18); the point is consistent with Mastra only."
+incidents,canonical_title_tr,descriptive titles containing a long dash,same titles with a comma instead,style_retitle,Owner directive (2026-07-24): no long dashes in display text. The titles are project-assigned descriptive labels; no factual change.
