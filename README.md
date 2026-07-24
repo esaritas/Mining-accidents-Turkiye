@@ -1,7 +1,11 @@
 # Turkey Mining & Quarrying Accidents Database
 
+**Live site / Canlı sayfa:** https://esaritas.github.io/Mining-accidents-Turkiye/
+(bilingual Türkçe/English — the reviewed public record with map, story, and
+downloadable data; redeployed automatically from `dashboard/artifact.html`).
+
 An evidence-based database of **fatal mining, quarrying, and mine-associated
-processing/waste facility accidents in Türkiye (2010-present)**.
+processing/waste facility accidents in Türkiye (1983-present)**.
 
 > **What this repository is:** schema, controlled vocabularies, claim/decision
 > review machinery, quality checks, public-export tooling — and, since the
