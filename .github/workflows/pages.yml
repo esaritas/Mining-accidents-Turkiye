@@ -4,9 +4,12 @@
 # requests (only the committed file is served).
 name: Deploy dashboard to GitHub Pages
 
+# Deploy from a single branch (main) only. Triggering on two branches raced
+# two runs against the one GitHub Pages environment and one would fail; main
+# holds the canonical deployed state, so it is the sole publish source.
 on:
   push:
-    branches: [main, claude/project-setup-file-kuvfuu]
+    branches: [main]
     paths:
       - "dashboard/artifact.html"
       - ".github/workflows/pages.yml"
