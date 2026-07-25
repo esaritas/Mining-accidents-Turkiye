@@ -365,28 +365,196 @@ def _collect_redirects(conn: sqlite3.Connection) -> list[dict[str, object]]:
     return [dict(row) for row in rows]
 
 
+# Frictionless Table Schema field descriptors per column (any column not
+# listed defaults to a plain string). Shared across resources so a column
+# means the same type everywhere it appears.
+_DATE_PRECISIONS = ["exact_datetime", "exact_date", "month", "year", "approximate"]
+_FIELD_TYPES: dict[str, dict[str, object]] = {
+    "public_incident_id": {"type": "string", "constraints": {"required": True}},
+    "canonical_title_tr": {"type": "string", "constraints": {"required": True}},
+    "canonical_title_en": {"type": "string"},
+    "incident_start_datetime": {"type": "datetime"},
+    "incident_end_datetime": {"type": "datetime"},
+    "date_precision": {"type": "string", "constraints": {"enum": _DATE_PRECISIONS}},
+    "incident_status": {"type": "string"},
+    "province_code": {"type": "string"},
+    "province_name": {"type": "string"},
+    "district_code": {"type": "string"},
+    "settlement": {"type": "string"},
+    "latitude": {"type": "number", "constraints": {"minimum": -90, "maximum": 90}},
+    "longitude": {"type": "number", "constraints": {"minimum": -180, "maximum": 180}},
+    "coordinate_precision": {"type": "string"},
+    "location_uncertainty_m": {"type": "number", "constraints": {"minimum": 0}},
+    "fatalities_current": {"type": "integer", "constraints": {"minimum": 0}},
+    "injuries_current": {"type": "integer", "constraints": {"minimum": 0}},
+    "missing_current": {"type": "integer", "constraints": {"minimum": 0}},
+    "casualty_status": {"type": "string"},
+    "assertion_status": {"type": "string"},
+    "url": {"type": "string", "format": "uri"},
+    "source_url": {"type": "string", "format": "uri"},
+    "publication_date": {"type": "date"},
+    "retrieved_at": {"type": "datetime"},
+    "facility_ref": {"type": "string", "constraints": {"required": True}},
+    "facility_name_tr": {"type": "string", "constraints": {"required": True}},
+}
+
+# Primary keys and cross-resource foreign keys (resource name without .csv).
+_RESOURCE_KEYS: dict[str, dict[str, object]] = {
+    "incidents": {"primaryKey": "public_incident_id"},
+    "incident_classifications": {
+        "foreignKeys": [
+            _FK := {
+                "fields": "public_incident_id",
+                "reference": {"resource": "incidents", "fields": "public_incident_id"},
+            }
+        ],
+    },
+    "incident_organization_roles": {"foreignKeys": [_FK]},
+    "sources": {"foreignKeys": [_FK]},
+    "facilities": {"primaryKey": "facility_ref"},
+    "facility_organization_roles": {
+        "foreignKeys": [
+            {
+                "fields": "facility_ref",
+                "reference": {"resource": "facilities", "fields": "facility_ref"},
+            }
+        ],
+    },
+    "merged_id_redirects": {
+        "primaryKey": "merged_public_incident_id",
+        "foreignKeys": [
+            {
+                "fields": "surviving_public_incident_id",
+                "reference": {"resource": "incidents", "fields": "public_incident_id"},
+            }
+        ],
+    },
+    "disclosed_conflicts": {"foreignKeys": [_FK]},
+}
+
+
+def _field_descriptor(col: str) -> dict[str, object]:
+    return {"name": col, **_FIELD_TYPES.get(col, {"type": "string"})}
+
+
 def _datapackage(resources: list[tuple[str, list[str]]]) -> dict[str, object]:
     return {
         "profile": "tabular-data-package",
         "name": "turkey-mining-accidents-public-export",
-        "title": "Turkey Mining & Quarrying Accidents Database — public export",
+        "title": "Turkey Mining & Quarrying Accidents Database, public export",
         "description": (
             "Reviewed, source-traceable records of fatal mining and quarrying "
             "accidents in Türkiye. Every value traces to source documents through "
-            "recorded reviewer decisions. Assertion statuses must be displayed; "
-            "'alleged' is never established fact. facilities.csv is a context "
-            "registry from open structured sources (Wikidata) and covers only a "
-            "fraction of licensed operations — it is not a complete register."
+            "recorded reviewer decisions. Most records are seeded from tertiary "
+            "open sources (Wikidata, Wikipedia) and await corroboration from "
+            "official or professional-chamber sources; this is a partial research "
+            "register, not a complete national registry. Assertion statuses must "
+            "be displayed; 'alleged' is never established fact. Conditional rule: "
+            "when latitude or longitude is present, coordinate_precision must also "
+            "be present. facilities.csv is a context registry from open structured "
+            "sources (Wikidata) covering only a fraction of licensed operations, "
+            "not a complete register. See validation_report.json for a "
+            "machine-readable check of these constraints."
         ),
         "resources": [
             {
                 "name": name.removesuffix(".csv"),
                 "path": name,
                 "profile": "tabular-data-resource",
-                "schema": {"fields": [{"name": col, "type": "any"} for col in columns]},
+                "schema": {
+                    "fields": [_field_descriptor(col) for col in columns],
+                    **_RESOURCE_KEYS.get(name.removesuffix(".csv"), {}),
+                },
             }
             for name, columns in resources
         ],
+    }
+
+
+def _validate_rows(name: str, columns: list[str], rows: list[dict[str, object]]) -> list[dict]:
+    """Check exported rows against the declared field types and constraints.
+
+    A lightweight, dependency-free validator (no network, no Frictionless
+    runtime): types, integer/number ranges, enums, required fields, plus the
+    cross-field coordinate rule. Returns a list of violation records.
+    """
+    errors: list[dict] = []
+
+    def add(i: int, field: str, rule: str, value: object) -> None:
+        errors.append(
+            {
+                "resource": name,
+                "row": i,
+                "field": field,
+                "rule": rule,
+                "value": None if value is None else str(value),
+            }
+        )
+
+    for i, row in enumerate(rows):
+        for col in columns:
+            spec = _FIELD_TYPES.get(col)
+            if spec is None:
+                continue
+            value = row.get(col)
+            cons = spec.get("constraints", {})
+            blank = value is None or value == ""
+            if blank:
+                if cons.get("required"):
+                    add(i, col, "required", value)
+                continue
+            typ = spec["type"]
+            if typ == "integer":
+                try:
+                    n = int(value)
+                except (TypeError, ValueError):
+                    add(i, col, "type:integer", value)
+                    continue
+                if "minimum" in cons and n < cons["minimum"]:
+                    add(i, col, f"minimum:{cons['minimum']}", value)
+            elif typ == "number":
+                try:
+                    x = float(value)
+                except (TypeError, ValueError):
+                    add(i, col, "type:number", value)
+                    continue
+                if "minimum" in cons and x < cons["minimum"]:
+                    add(i, col, f"minimum:{cons['minimum']}", value)
+                if "maximum" in cons and x > cons["maximum"]:
+                    add(i, col, f"maximum:{cons['maximum']}", value)
+            if "enum" in cons and value not in cons["enum"]:
+                add(i, col, "enum", value)
+        # Cross-field rule: coordinates require a stated precision.
+        if "latitude" in columns or "longitude" in columns:
+            has_coord = row.get("latitude") not in (None, "") or row.get("longitude") not in (
+                None,
+                "",
+            )
+            if has_coord and row.get("coordinate_precision") in (None, ""):
+                add(i, "coordinate_precision", "required_when_coordinates_present", None)
+    return errors
+
+
+def _validation_report(
+    datasets: list[tuple[str, list[str], list[dict[str, object]]]],
+) -> dict[str, object]:
+    per_resource: dict[str, object] = {}
+    total = 0
+    for name, columns, rows in datasets:
+        errs = _validate_rows(name.removesuffix(".csv"), columns, rows)
+        total += len(errs)
+        per_resource[name.removesuffix(".csv")] = {
+            "rows": len(rows),
+            "error_count": len(errs),
+            "errors": errs[:200],
+        }
+    return {
+        "generated_at": _export_timestamp(),
+        "validator": "internal lightweight schema validator (types, ranges, enums, "
+        "required fields, coordinate-precision conditional)",
+        "valid": total == 0,
+        "total_errors": total,
+        "resources": per_resource,
     }
 
 
@@ -478,6 +646,21 @@ def build_public_export(
         resources.append(("disclosed_conflicts.csv", CONFLICT_COLUMNS))
     _write_json(output_dir / "datapackage.json", _datapackage(resources))
 
+    # Machine-readable validation of the exported rows against the schema.
+    datasets = [
+        ("incidents.csv", INCIDENT_COLUMNS, incidents),
+        ("incident_classifications.csv", CLASSIFICATION_COLUMNS, classifications),
+        ("incident_organization_roles.csv", ROLE_COLUMNS, roles),
+        ("sources.csv", SOURCE_COLUMNS, sources),
+        ("facilities.csv", FACILITY_COLUMNS, facilities),
+        ("facility_organization_roles.csv", FACILITY_ROLE_COLUMNS, facility_roles),
+        ("merged_id_redirects.csv", REDIRECT_COLUMNS, redirects),
+    ]
+    if disclose_conflicts:
+        datasets.append(("disclosed_conflicts.csv", CONFLICT_COLUMNS, conflicts))
+    validation = _validation_report(datasets)
+    _write_json(output_dir / "validation_report.json", validation)
+
     schema_version = conn.execute("SELECT MAX(version) FROM schema_migrations").fetchone()[0]
     manifest = {
         "export_timestamp": _export_timestamp(),
@@ -494,12 +677,21 @@ def build_public_export(
             **({"disclosed_conflicts": len(conflicts)} if disclose_conflicts else {}),
         },
         "file_sha256": {
-            name: _sha256(output_dir / name) for name, _ in [*resources, ("datapackage.json", [])]
+            name: _sha256(output_dir / name)
+            for name, _ in [
+                *resources,
+                ("datapackage.json", []),
+                ("validation_report.json", []),
+            ]
         },
         "vocabulary_versions": {row["file"]: row["version"] for row in load_versions()},
         "quality_findings": {
             "critical": 0,
             "warning": sum(1 for f in findings if f.severity == "warning"),
+        },
+        "schema_validation": {
+            "valid": validation["valid"],
+            "total_errors": validation["total_errors"],
         },
     }
     _write_json(output_dir / "export_manifest.json", manifest)

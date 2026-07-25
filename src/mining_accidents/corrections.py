@@ -169,6 +169,78 @@ _RATIONALE_PREFIX = (
     "raw source documents. "
 )
 
+_REVIEW2_PREFIX = (
+    "Senior analyst review of 2026-07-25 (owner-forwarded), verified against the "
+    "stored raw source documents. "
+)
+
+#: Canonical-value corrections the 2026-07-25 review found and that our own
+#: stored sources confirm. Each becomes a superseding manual_override decision,
+#: so the prior (mis-parsed) claim is preserved, not overwritten.
+#: (public_id, field_name, value, fragment_hint, reason). fragment_hint picks
+#: the supporting claim whose raw text states the corrected value; None falls
+#: back to any claim on the incident.
+REVIEW2_VALUE_OVERRIDES: tuple[tuple[str, str, str, str | None, str], ...] = (
+    (
+        "TR-MINE-2019-0002",
+        "incident_start_datetime",
+        "2019-01-13T00:00:00+03:00",
+        "13 Ocak",
+        "The stored source bullet reads \"13 Ocak'ta Manisa'nin Soma ilcesinde "
+        'meydana gelen kaza": the event date is 13 January 2019. The published '
+        "2019-02-03 was a parser error (a reference/access date read as the event "
+        "date). Corrects a day/date inversion of our own extraction.",
+    ),
+    (
+        "TR-MINE-2019-0002",
+        "injuries_current",
+        "1",
+        "13 Ocak",
+        'The same source clause states "1 isci yaralandi" (1 injured); the value '
+        "was present in the source but not extracted.",
+    ),
+    (
+        "TR-MINE-2019-0002",
+        "canonical_title_tr",
+        "Maden kazası, Manisa (2019-01-13)",
+        None,
+        "Project-assigned descriptive title updated to the corrected event date.",
+    ),
+    (
+        "TR-MINE-2003-0002",
+        "casualty_status",
+        "disputed",
+        None,
+        "The 8 August 2003 Askale (Erzurum) grizu explosion toll differs across "
+        "sources (reports of 7, 8 and 9 dead). Marked disputed pending a primary or "
+        "authoritative source; the stored value of 7 is retained meanwhile.",
+    ),
+)
+
+#: Source-dependent items from the 2026-07-25 review: logged, not applied,
+#: because acting would change canonical numbers without a document we hold.
+REVIEW2_PENDING: tuple[tuple[str, str], ...] = (
+    (
+        "İSİG mining totals 2016/2018/2019 -> 74/67/64",
+        "The review cites revised retrospective İSİG figures (2016 73->74, 2018 "
+        "66->67, 2019 63->64). Our stored series holds 73/66/63; updating requires "
+        "the revised İSİG source. Pending İSİG source re-assessment.",
+    ),
+    (
+        "TR-MINE-2022-0001 (Amasra) cumulative 42 -> 43 with structure",
+        "The review asks for an immediate/subsequent split (42 initial + 1 April "
+        "2023 = 43 cumulative, with an as-of date). Needs the casualty-qualifier "
+        "schema and the TBMM source (TO_ASSESS); already tracked as open question "
+        "#20. casualty_status stays 'disputed' meanwhile.",
+    ),
+    (
+        "extractor: guard access-date-as-event-date and day/date inversions",
+        "The 2019-0002 error shows the list parser can take a reference access date "
+        "as the event date. Add a parser rule and a regression test; pending "
+        "extractor work (review P2).",
+    ),
+)
+
 
 def reparse_stored_sources(conn: sqlite3.Connection, reviewer: str) -> dict[str, int]:
     """Re-run the fixed parsers over the already-stored raw documents.
@@ -498,7 +570,22 @@ def apply_audit_corrections(conn: sqlite3.Connection, reviewer: str) -> dict[str
     for entity, reason in PENDING:
         add_log(entity, "", "", "", "pending", reason)
 
-    # 8. Style: no long dashes in project-assigned descriptive titles -----
+    # 8. 2026-07-25 review: canonical corrections our sources confirm ------
+    for public_id, field_name, value, hint, reason in REVIEW2_VALUE_OVERRIDES:
+        if _apply_value_override(conn, reviewer, public_id, field_name, value, hint, reason):
+            add_log(
+                public_id,
+                field_name,
+                "",
+                value,
+                "corrected",
+                _REVIEW2_PREFIX + reason,
+            )
+            counts["decisions"] += 1
+    for entity, reason in REVIEW2_PENDING:
+        add_log(entity, "", "", "", "pending", reason)
+
+    # 9. Style: no long dashes in project-assigned descriptive titles -----
     retitled = _retitle_dash_style(conn, reviewer)
     if retitled:
         add_log(
@@ -923,6 +1010,76 @@ def _merge_reparse_duplicates(conn: sqlite3.Connection, reviewer: str) -> None:
                     "(group key changed when citation markup stripping was added).",
                     reviewer,
                 )
+
+
+def _apply_value_override(
+    conn: sqlite3.Connection,
+    reviewer: str,
+    public_id: str,
+    field_name: str,
+    value: str,
+    fragment_hint: str | None,
+    reason: str,
+) -> bool:
+    """Record a superseding manual_override for one canonical field.
+
+    Idempotent: returns False (no-op) once the canonical column already holds
+    the target value. The prior claim is never deleted; a new decision selects
+    the corrected value and records why, preserving the conflicting evidence.
+    """
+    from mining_accidents.normalization import normalize_tr
+
+    row = conn.execute(
+        f"SELECT incident_id, {field_name} AS current FROM incidents "  # noqa: S608 (field is a fixed literal)
+        "WHERE public_incident_id = ?",
+        (public_id,),
+    ).fetchone()
+    if row is None:
+        return False
+    if str(row["current"]) == value:
+        return False  # already corrected
+    incident_id = int(row["incident_id"])
+
+    supporting: list[int] = []
+    if fragment_hint is not None:
+        hit = conn.execute(
+            "SELECT claim_id FROM claims WHERE incident_id = ? AND raw_value LIKE ? "
+            "ORDER BY claim_id LIMIT 1",
+            (incident_id, f"%{fragment_hint}%"),
+        ).fetchone()
+        if hit is not None:
+            supporting = [int(hit["claim_id"])]
+    if not supporting:
+        supporting = _supporting_claims(conn, incident_id) or [
+            int(r["claim_id"])
+            for r in conn.execute(
+                "SELECT claim_id FROM claims WHERE incident_id = ? ORDER BY claim_id LIMIT 1",
+                (incident_id,),
+            )
+        ]
+    if not supporting:
+        return False  # no citable claim to anchor the decision
+
+    active = review.get_active_decision(conn, incident_id, field_name)
+    review.record_decision(
+        conn,
+        ClaimDecision(
+            incident_id=incident_id,
+            field_name=field_name,
+            decision="manual_override",
+            manual_value=value,
+            rationale=_REVIEW2_PREFIX + reason,
+            rationale_claim_ids=supporting,
+            supersedes_decision_id=active["decision_id"] if active else None,
+            reviewer=reviewer,
+        ),
+    )
+    if field_name == "canonical_title_tr":
+        conn.execute(
+            "UPDATE incidents SET canonical_title_tr_normalized = ? WHERE incident_id = ?",
+            (normalize_tr(value), incident_id),
+        )
+    return True
 
 
 def _supporting_claims(conn: sqlite3.Connection, incident_id: int) -> list[int]:

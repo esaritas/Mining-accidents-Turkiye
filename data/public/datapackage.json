@@ -1,5 +1,5 @@
 {
-  "description": "Reviewed, source-traceable records of fatal mining and quarrying accidents in Türkiye. Every value traces to source documents through recorded reviewer decisions. Assertion statuses must be displayed; 'alleged' is never established fact. facilities.csv is a context registry from open structured sources (Wikidata) and covers only a fraction of licensed operations — it is not a complete register.",
+  "description": "Reviewed, source-traceable records of fatal mining and quarrying accidents in Türkiye. Every value traces to source documents through recorded reviewer decisions. Most records are seeded from tertiary open sources (Wikidata, Wikipedia) and await corroboration from official or professional-chamber sources; this is a partial research register, not a complete national registry. Assertion statuses must be displayed; 'alleged' is never established fact. Conditional rule: when latitude or longitude is present, coordinate_precision must also be present. facilities.csv is a context registry from open structured sources (Wikidata) covering only a fraction of licensed operations, not a complete register. See validation_report.json for a machine-readable check of these constraints.",
   "name": "turkey-mining-accidents-public-export",
   "profile": "tabular-data-package",
   "resources": [
@@ -10,82 +10,118 @@
       "schema": {
         "fields": [
           {
+            "constraints": {
+              "required": true
+            },
             "name": "public_incident_id",
-            "type": "any"
+            "type": "string"
           },
           {
+            "constraints": {
+              "required": true
+            },
             "name": "canonical_title_tr",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "canonical_title_en",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "incident_start_datetime",
-            "type": "any"
+            "type": "datetime"
           },
           {
             "name": "incident_end_datetime",
-            "type": "any"
+            "type": "datetime"
           },
           {
+            "constraints": {
+              "enum": [
+                "exact_datetime",
+                "exact_date",
+                "month",
+                "year",
+                "approximate"
+              ]
+            },
             "name": "date_precision",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "incident_status",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "province_code",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "province_name",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "district_code",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "settlement",
-            "type": "any"
+            "type": "string"
           },
           {
+            "constraints": {
+              "maximum": 90,
+              "minimum": -90
+            },
             "name": "latitude",
-            "type": "any"
+            "type": "number"
           },
           {
+            "constraints": {
+              "maximum": 180,
+              "minimum": -180
+            },
             "name": "longitude",
-            "type": "any"
+            "type": "number"
           },
           {
             "name": "coordinate_precision",
-            "type": "any"
+            "type": "string"
           },
           {
+            "constraints": {
+              "minimum": 0
+            },
             "name": "location_uncertainty_m",
-            "type": "any"
+            "type": "number"
           },
           {
+            "constraints": {
+              "minimum": 0
+            },
             "name": "fatalities_current",
-            "type": "any"
+            "type": "integer"
           },
           {
+            "constraints": {
+              "minimum": 0
+            },
             "name": "injuries_current",
-            "type": "any"
+            "type": "integer"
           },
           {
+            "constraints": {
+              "minimum": 0
+            },
             "name": "missing_current",
-            "type": "any"
+            "type": "integer"
           },
           {
             "name": "casualty_status",
-            "type": "any"
+            "type": "string"
           }
-        ]
+        ],
+        "primaryKey": "public_incident_id"
       }
     },
     {
@@ -95,32 +131,44 @@
       "schema": {
         "fields": [
           {
+            "constraints": {
+              "required": true
+            },
             "name": "public_incident_id",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "classification_system",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "classification_level",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "classification_code",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "classification_label_tr",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "classification_label_en",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "assertion_status",
-            "type": "any"
+            "type": "string"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "fields": "public_incident_id",
+            "reference": {
+              "fields": "public_incident_id",
+              "resource": "incidents"
+            }
           }
         ]
       }
@@ -132,24 +180,36 @@
       "schema": {
         "fields": [
           {
+            "constraints": {
+              "required": true
+            },
             "name": "public_incident_id",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "organization_name_tr",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "organization_type",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "role",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "assertion_status",
-            "type": "any"
+            "type": "string"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "fields": "public_incident_id",
+            "reference": {
+              "fields": "public_incident_id",
+              "resource": "incidents"
+            }
           }
         ]
       }
@@ -161,48 +221,61 @@
       "schema": {
         "fields": [
           {
+            "constraints": {
+              "required": true
+            },
             "name": "public_incident_id",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "field_name",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "source_organization",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "title",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "document_type",
-            "type": "any"
+            "type": "string"
           },
           {
+            "format": "uri",
             "name": "url",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "publication_date",
-            "type": "any"
+            "type": "date"
           },
           {
             "name": "retrieved_at",
-            "type": "any"
+            "type": "datetime"
           },
           {
             "name": "language",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "source_tier",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "short_evidence_excerpt",
-            "type": "any"
+            "type": "string"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "fields": "public_incident_id",
+            "reference": {
+              "fields": "public_incident_id",
+              "resource": "incidents"
+            }
           }
         ]
       }
@@ -214,54 +287,70 @@
       "schema": {
         "fields": [
           {
+            "constraints": {
+              "required": true
+            },
             "name": "facility_ref",
-            "type": "any"
+            "type": "string"
           },
           {
+            "constraints": {
+              "required": true
+            },
             "name": "facility_name_tr",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "facility_type",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "commodity_code",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "commodity_label",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "province_code",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "province_name",
-            "type": "any"
+            "type": "string"
           },
           {
+            "constraints": {
+              "maximum": 90,
+              "minimum": -90
+            },
             "name": "latitude",
-            "type": "any"
+            "type": "number"
           },
           {
+            "constraints": {
+              "maximum": 180,
+              "minimum": -180
+            },
             "name": "longitude",
-            "type": "any"
+            "type": "number"
           },
           {
             "name": "coordinate_precision",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "operational_status",
-            "type": "any"
+            "type": "string"
           },
           {
+            "format": "uri",
             "name": "source_url",
-            "type": "any"
+            "type": "string"
           }
-        ]
+        ],
+        "primaryKey": "facility_ref"
       }
     },
     {
@@ -271,32 +360,47 @@
       "schema": {
         "fields": [
           {
+            "constraints": {
+              "required": true
+            },
             "name": "facility_ref",
-            "type": "any"
+            "type": "string"
           },
           {
+            "constraints": {
+              "required": true
+            },
             "name": "facility_name_tr",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "organization_name_tr",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "organization_country_code",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "organization_country_label",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "role",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "assertion_status",
-            "type": "any"
+            "type": "string"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "fields": "facility_ref",
+            "reference": {
+              "fields": "facility_ref",
+              "resource": "facilities"
+            }
           }
         ]
       }
@@ -309,15 +413,25 @@
         "fields": [
           {
             "name": "merged_public_incident_id",
-            "type": "any"
+            "type": "string"
           },
           {
             "name": "surviving_public_incident_id",
-            "type": "any"
+            "type": "string"
           }
-        ]
+        ],
+        "foreignKeys": [
+          {
+            "fields": "surviving_public_incident_id",
+            "reference": {
+              "fields": "public_incident_id",
+              "resource": "incidents"
+            }
+          }
+        ],
+        "primaryKey": "merged_public_incident_id"
       }
     }
   ],
-  "title": "Turkey Mining & Quarrying Accidents Database — public export"
+  "title": "Turkey Mining & Quarrying Accidents Database, public export"
 }

@@ -33,7 +33,10 @@ def test_coverage_gap_math(conn: sqlite3.Connection) -> None:
     assert by_year[2099]["gap"] == 37
     assert by_year[2099]["coverage_pct"] == 7.5
     assert gap["total_isig"] == 90 and gap["total_gap"] == 87
-    assert "never became" in gap["caveat"]
+    # The caveat must frame the difference as under-representation in this
+    # register, not as deaths absent from all public records (2026-07-25 review).
+    assert "not yet represented in this register" in gap["caveat"]
+    assert "never" not in gap["caveat"]
 
 
 def test_coverage_gap_never_negative(conn: sqlite3.Connection) -> None:

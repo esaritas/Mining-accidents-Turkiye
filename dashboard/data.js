@@ -1024,7 +1024,7 @@ window.MINING_DATA = {
     ]
   },
   "coverage_gap": {
-    "caveat": "Different measures: the register counts deaths in publicly recorded, reviewed incidents; İSİG Meclisi counts all miner work deaths from all causes. The gap is loss that never became a publicly recorded incident.",
+    "caveat": "Different measures: this register counts deaths in reviewed, published incidents; İSİG Meclisi counts all miner work deaths from all causes. The difference is loss not yet represented in this register, not loss that no public source recorded.",
     "total_gap": 915,
     "total_isig": 1345,
     "total_recorded": 430,
@@ -1129,7 +1129,7 @@ window.MINING_DATA = {
       }
     ]
   },
-  "export_timestamp": "2026-07-24T15:43:28Z",
+  "export_timestamp": "2026-07-25T11:33:47Z",
   "incidents": [
     {
       "canonical_title_en": null,
@@ -1323,7 +1323,7 @@ window.MINING_DATA = {
     {
       "canonical_title_en": null,
       "canonical_title_tr": "Maden kazası, Erzurum (2003-08-08)",
-      "casualty_status": null,
+      "casualty_status": "disputed",
       "coordinate_precision": null,
       "date_precision": "exact_date",
       "district_code": null,
@@ -2015,16 +2015,16 @@ window.MINING_DATA = {
     },
     {
       "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Manisa (2019-02-03)",
+      "canonical_title_tr": "Maden kazası, Manisa (2019-01-13)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
       "district_code": null,
       "fatalities_current": 1,
       "incident_end_datetime": null,
-      "incident_start_datetime": "2019-02-03T00:00:00+03:00",
+      "incident_start_datetime": "2019-01-13T00:00:00+03:00",
       "incident_status": "in_scope",
-      "injuries_current": null,
+      "injuries_current": 1,
       "latitude": null,
       "location_uncertainty_m": null,
       "longitude": null,
@@ -3048,7 +3048,7 @@ window.MINING_DATA = {
   "pipeline": {
     "claims_awaiting_review": 9,
     "claims_total": 1475,
-    "decisions_total": 434,
+    "decisions_total": 439,
     "published_incidents": 51,
     "records_in_review": 1,
     "source_documents": 221,

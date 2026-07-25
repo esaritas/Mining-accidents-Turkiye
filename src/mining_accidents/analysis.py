@@ -20,9 +20,10 @@ from pathlib import Path
 POLICY_EVENTS_CSV = Path("data/vocabularies/policy_events.csv")
 
 GAP_CAVEAT = (
-    "Different measures: the register counts deaths in publicly recorded, "
-    "reviewed incidents; İSİG Meclisi counts all miner work deaths from all "
-    "causes. The gap is loss that never became a publicly recorded incident."
+    "Different measures: this register counts deaths in reviewed, published "
+    "incidents; İSİG Meclisi counts all miner work deaths from all causes. The "
+    "difference is loss not yet represented in this register, not loss that no "
+    "public source recorded."
 )
 
 PROJECTION_METHOD = (

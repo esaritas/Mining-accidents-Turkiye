@@ -8,7 +8,7 @@ TR-MINE-1990-0002,1990 Amasya grizu faciası,,1990-02-07T00:00:00+03:00,,exact_d
 TR-MINE-1992-0001,1992 Kozlu grizu faciası,,1992-03-03T00:00:00+03:00,,exact_date,in_scope,67,Zonguldak,,,,,,,263,,,
 TR-MINE-1995-0001,"Maden kazası, Yozgat (1995-03-26)",,1995-03-26T00:00:00+03:00,,exact_date,in_scope,66,Yozgat,,,,,,,38,,,
 TR-MINE-2003-0001,"Maden kazası, Karaman (2003-11-22)",,2003-11-22T00:00:00+03:00,,exact_date,in_scope,70,Karaman,,,,,,,10,,,
-TR-MINE-2003-0002,"Maden kazası, Erzurum (2003-08-08)",,2003-08-08T00:00:00+03:00,,exact_date,in_scope,25,Erzurum,,,,,,,7,,,
+TR-MINE-2003-0002,"Maden kazası, Erzurum (2003-08-08)",,2003-08-08T00:00:00+03:00,,exact_date,in_scope,25,Erzurum,,,,,,,7,,,disputed
 TR-MINE-2004-0001,"Maden kazası, Çorum (2004-08-01)",,2004-08-01T00:00:00+03:00,,month,in_scope,19,Çorum,,,,,,,3,,,
 TR-MINE-2004-0002,"Maden kazası, Kastamonu (2004-09-08)",,2004-09-08T00:00:00+03:00,,exact_date,in_scope,37,Kastamonu,,,,,,,19,,,
 TR-MINE-2005-0001,"Maden kazası, Kütahya (2005-04-01)",,2005-04-01T00:00:00+03:00,,month,in_scope,43,Kütahya,,,,,,,18,,,
@@ -41,7 +41,7 @@ TR-MINE-2015-0005,"Maden kazası, Ankara (2015-07-27)",,2015-07-27T00:00:00+03:0
 TR-MINE-2015-0006,"Maden kazası, Muğla (2015-07-21)",,2015-07-21T00:00:00+03:00,,exact_date,in_scope,48,Muğla,,,,,,,1,,,
 TR-MINE-2016-0001,Şirvan maden kazası,,2016-11-17T00:00:00+03:00,,exact_date,in_scope,56,Siirt,,,,,,,16,,,
 TR-MINE-2019-0001,"Maden kazası, Zonguldak (2019-12-01)",,2019-12-01T00:00:00+03:00,,month,in_scope,67,Zonguldak,,,,,,,1,,,
-TR-MINE-2019-0002,"Maden kazası, Manisa (2019-02-03)",,2019-02-03T00:00:00+03:00,,exact_date,in_scope,45,Manisa,,,,,,,1,,,
+TR-MINE-2019-0002,"Maden kazası, Manisa (2019-01-13)",,2019-01-13T00:00:00+03:00,,exact_date,in_scope,45,Manisa,,,,,,,1,1,,
 TR-MINE-2022-0001,Amasra maden kazası,Amasra mine explosion,2022-10-14T00:00:00+03:00,,exact_date,in_scope,74,Bartın,,,41.721848,32.349063,facility_approximate,,42,27,,disputed
 TR-MINE-2024-0001,Erzincan maden kazası,Çöpler mine disaster,2024-02-13T00:00:00+03:00,,exact_date,in_scope,24,Erzincan,,,39.439234,38.536482,facility_approximate,,9,,,
 TR-MINE-2024-0002,"Maden kazası, Manisa (2024-10-22)",,2024-10-22T00:00:00+03:00,,exact_date,in_scope,45,Manisa,,,,,,,1,,,

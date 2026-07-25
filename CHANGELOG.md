@@ -6,6 +6,35 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Changed: senior-analyst review response, P0 + schema (2026-07-25)
+- Corrected the 2019 Soma/Manisa record against our own stored source: the
+  bullet reads "13 Ocak" with "1 işçi yaralandı", so the event date is now
+  13 January 2019 (was a mis-parsed 3 February) and injuries is 1 (was blank).
+  Applied as superseding claim_decisions, so the prior claim is preserved.
+- Marked the 2003 Aşkale/Erzurum toll (7) as disputed, since sources report
+  7, 8 or 9; the stated value is retained pending an authoritative source.
+- Reframed the İSİG "coverage gap" everywhere (tiles, chart, story, legend,
+  tooltip, and the payload caveat) from "counted, never publicly recorded" to
+  "counted by İSİG but not represented in this register" (EN+TR). İSİG is
+  itself a public record, so the old wording was a logical overclaim.
+- Renamed "Active sites" to "Documented sites"; the map heading no longer says
+  "where mining happens"; "passed the full review threshold" is now "met the
+  project's current publication rules"; the international panel is renamed to
+  "Selected historical deaths-per-output estimates (not directly comparable)"
+  with a prominent "not a safety ranking" warning. Added a bold "partial,
+  source-traceable research register" notice and retitled the page to
+  "Mining Accidents in Türkiye: A Public Research Register".
+- Datapackage: replaced every `any` field type with proper string/date/
+  datetime/number/integer types, constraints (non-negative casualties, lat/lon
+  ranges, date_precision enum, required keys), primary keys and cross-resource
+  foreign keys. Each export now also writes a machine-readable
+  `validation_report.json` (types, ranges, enums, required fields, and the
+  coordinate-precision conditional) and records its result in the manifest.
+- Source-dependent review items (revised İSİG 2016/2018/2019 totals, the
+  Amasra 42→43 cumulative structure, an access-date/day-inversion parser
+  guard) are logged as pending in docs/corrections_log.csv, not applied,
+  because acting would change canonical values without a source we hold.
+
 ### Changed: readability and language polish (2026-07-24, owner feedback)
 - The record and site tables now scroll inside their panels (pinned headers,
   fixed max height) so a long list no longer pushes the rest of the page down.
