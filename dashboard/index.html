@@ -1170,6 +1170,16 @@
   const maxDeaths = Math.max(
     ...chartYears.map(y => (byYear.get(y) || { deaths: 0 }).deaths),
     ...isigByYear.values(), 1);
+  // Round the axis up to a "nice" step so the ticks read 100/200/300/400
+  // rather than 97/193/290/386. The bars scale to this same top.
+  const GRID_STEPS = 4;
+  const axisMax = (() => {
+    const raw = maxDeaths / GRID_STEPS;
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const norm = raw / mag;
+    const step = (norm <= 1 ? 1 : norm <= 2 ? 2 : norm <= 2.5 ? 2.5 : norm <= 5 ? 5 : 10) * mag;
+    return step * GRID_STEPS;
+  })();
 
   function renderChart() {
     const years = chartYears;
@@ -1177,15 +1187,15 @@
     const iw = W - M.l - M.r, ih = H - M.t - M.b;
     const bw = Math.min(40, iw / years.length - 2);
     const x = idx => M.l + (iw / years.length) * idx + ((iw / years.length) - bw) / 2;
-    const yScale = v => M.t + ih * (1 - v / maxDeaths);
+    const yScale = v => M.t + ih * (1 - v / axisMax);
     const svg = document.getElementById("chart");
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
 
     let parts = [];
-    const gridSteps = 4;
+    const gridSteps = GRID_STEPS;
     for (let g = 1; g <= gridSteps; g++) {
       const gy = M.t + (ih / gridSteps) * (gridSteps - g);
-      const gv = Math.round((maxDeaths / gridSteps) * g);
+      const gv = fmt.format((axisMax / gridSteps) * g);
       parts.push(`<line class="gridline" x1="${M.l}" x2="${W - M.r}" y1="${gy}" y2="${gy}"></line>`);
       parts.push(`<text class="ticklabel" x="${M.l - 8}" y="${gy + 4}" text-anchor="end">${gv}</text>`);
     }

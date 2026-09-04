@@ -38,8 +38,29 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp dashboard/artifact.html _site/index.html
+          # dashboard/artifact.html is deliberately head-less: Claude artifact
+          # hosting injects its own <!doctype>/<head> skeleton. A statically
+          # served page gets no such wrapper, so without one browsers fall into
+          # quirks mode and phones lay the page out at 980px with inflated
+          # text. Wrap it into a real document for Pages.
+          title=$(grep -m1 -o '<title>[^<]*</title>' dashboard/artifact.html)
+          {
+            echo '<!doctype html>'
+            echo '<html lang="en">'
+            echo '<head>'
+            echo '<meta charset="utf-8">'
+            echo '<meta name="viewport" content="width=device-width, initial-scale=1">'
+            echo "${title:-<title>Mining Accidents in Türkiye</title>}"
+            echo '</head>'
+            echo '<body>'
+            grep -v '^<title>' dashboard/artifact.html
+            echo '</body>'
+            echo '</html>'
+          } > _site/index.html
           touch _site/.nojekyll
+          # Fail the build if the wrapper ever silently stops applying.
+          grep -q '<!doctype html>' _site/index.html
+          grep -q 'name="viewport"' _site/index.html
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
