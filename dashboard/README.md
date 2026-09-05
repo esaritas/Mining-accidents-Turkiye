@@ -1,9 +1,20 @@
 # Dashboard
 
-A static, dependency-light visualization of the **public export** — never the
-raw database. Open `index.html` in a browser (map tiles need network access;
-everything else works offline — Leaflet is vendored under `vendor/leaflet/`,
-BSD-2-Clause).
+A static, dependency-free visualization of the **public export** — never the
+raw database. Open `index.html` in a browser; it works fully offline. There is
+no mapping library and no tile service: the map is inline SVG, projected in the
+browser, so the local page and the published artifact render identically.
+
+**Cartography.** Province rings from the payload (`provinces_geo`, Natural
+Earth 10m admin-1, public domain) are projected with an **Albers Equal Area
+Conic** fitted to Türkiye (standard parallels 37.5°N/41.5°N). Equal-area is
+required because the map fills areas with colour. Counts are carried by
+**proportional carnation marks** (area scales with the number of people, one
+fixed reference maximum so marks stay comparable while filtering), not by the
+province fill; a "Shaded provinces" view is available as a secondary encoding
+with fixed breaks 1/5/20/50/300+. Records whose sources publish no coordinates
+are drawn as **hollow** marks on a computed interior point of their province and
+are never exact pins — see implementation note G in `docs/open_questions.md`.
 
 ```
 make db && make ingest REVIEWER="<your name>"   # populate via the pipeline
@@ -36,8 +47,10 @@ review"), never as data points.
   as established fact); disclosed conflicts are shown, not averaged away;
   `merged_id_redirects.csv` must keep old public IDs resolvable.
 - **Accessibility.** WCAG 2.1 AA; a table view of every plotted record is
-  always present; no meaning is carried by color alone; light and dark modes
-  are both first-class (`prefers-color-scheme` + `data-theme` override).
+  always present; no meaning is carried by color alone. Map features are
+  reachable by pointer, touch and keyboard (`tabindex`, Enter/Space, Escape to
+  dismiss) and carry `<title>` names. The page ships a **single light theme**
+  by project decision (2026-07-14); it does not implement a dark mode.
 - **Non-sensational design.** This data documents deaths. No leaderboards, no
   rankings framed as competition, no gamified counters. Sober framing, always
   linked to sources and methodology; coverage gaps are stated explicitly.

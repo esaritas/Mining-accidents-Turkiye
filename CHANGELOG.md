@@ -6,6 +6,48 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Changed: map and narrative redesign (2026-09-05, owner request)
+- **The published map now works on a phone.** Its only listeners were
+  `mousemove`/`mouseleave`, so tapping did nothing and the map carried no
+  detail at all for touch users; there was also no keyboard or screen-reader
+  access. Features are now reachable by pointer, tap, and keyboard (Enter or
+  Space, Escape to dismiss), carry `<title>` names and `tabindex`, and have
+  70px hit targets (WCAG 2.5.8 asks for 24px).
+- **Equal-area projection.** Province geometry is projected in the browser with
+  an Albers Equal Area Conic fitted to Türkiye (standard parallels 37.5N/41.5N),
+  replacing an equirectangular projection that sheared the country north to
+  south. Measured on equal-area test quads: 0% error, against 7.3% before.
+  Colouring areas requires an equal-area projection.
+- **Counts are carried by proportional marks, not by province colour.** Shading
+  absolute counts on an area-varying base let large provinces look worse for
+  being large, and no exposure denominator exists in the repository to normalize
+  it (open questions #6, #18). The choropleth remains as a secondary "Shaded
+  provinces" view, with breaks re-cut to the real distribution (1/5/20/50/300+);
+  the old 100-299 class was empty and 427 and 304 shared a shade.
+- **All 51 records are now on the map**, not 5. Records whose sources publish no
+  coordinates appear as hollow marks on a computed interior point of their
+  province, never as pins, labelled "province-level; exact site not published"
+  (implementation note G). Mark area scales with the count against a fixed
+  reference maximum, and a size legend was added; the old scale capped at ~49
+  deaths, so Soma (301) looked identical to a 49-fatality event.
+- **Co-located sites cluster** with a count instead of being nudged apart; the
+  old nudge displaced marks about 17 km east with no visual cue.
+- **Linked and shareable.** Selecting a province filters the whole page, and the
+  filter state is reflected in the URL, so a view can be shared or bookmarked.
+- **Era small multiples** show where loss sat in each era and filter the page to
+  those years. Filtered counts only, no new metric.
+- **Record detail panel** with every citation and assertion status, opened from
+  a row or a mark; both tables are now sortable with `aria-sort`.
+- **The story costs half what it did**: five chapters instead of eight, ~3.5
+  viewport heights instead of ~6.9. Long captions collapse on small screens.
+- **Leaflet removed.** The artifact never emitted the vendor tags, so the tile
+  map was dead code on the published site while disagreeing with the SVG
+  renderer on marker anchor, size law and cap. One renderer now.
+- `build-artifact` falls back to the committed `dashboard/data.js` when no
+  populated database is present, so the artifact is rebuildable from a clean
+  clone. First tests for the artifact template contract (four regexes that
+  nothing covered) and for `I18N` en/tr key parity.
+
 ### Changed: senior-analyst review response, P0 + schema (2026-07-25)
 - Corrected the 2019 Soma/Manisa record against our own stored source: the
   bullet reads "13 Ocak" with "1 işçi yaralandı", so the event date is now

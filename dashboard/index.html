@@ -4,10 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mining Accidents in Türkiye: A Public Research Register</title>
-<!-- Leaflet 1.9.4 vendored locally (BSD-2-Clause) so the page works without a
-     CDN; only the map tiles require network access. -->
-<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
-<script src="vendor/leaflet/leaflet.js"></script>
+<!-- The map is inline SVG projected in the browser: no tiles, no vendor
+     library, no network. One renderer, so the local page and the published
+     artifact are always identical. -->
 <script src="data.js"></script>
 <style>
   :root { color-scheme: light; }
@@ -57,6 +56,10 @@
 
   /* ---- Story prologue: pinned marks canvas + scrolling chapters ---------- */
   #story { position: relative; margin: 26px 0 8px; }
+  .skiplink { position: sticky; top: 10px; z-index: 3; float: right; font-size: 12.5px;
+              color: var(--ink-2); background: var(--surface-1); border: 1px solid var(--baseline);
+              border-radius: 999px; padding: 5px 12px; text-decoration: none; }
+  .skiplink:hover, .skiplink:focus-visible { color: var(--ink-1); border-color: var(--ink-2); }
   .stage { position: sticky; top: 0; height: 100vh; height: 100svh;
            display: flex; flex-direction: column; justify-content: center;
            gap: 14px; z-index: 0; }
@@ -65,8 +68,8 @@
   .stage .era-count { color: var(--ink-2); font-size: 14px; min-height: 1.5em; }
   .stage .era-count b { color: var(--ink-1); }
   .chapters { position: relative; z-index: 1; margin-top: -100vh; margin-top: -100svh; }
-  .chapter { min-height: 95vh; display: flex; align-items: center; }
-  .chapter.tall { min-height: 110vh; }
+  .chapter { min-height: 70vh; display: flex; align-items: center; }
+  .chapter.tall { min-height: 80vh; }
   .chapter .card { background: rgba(251,251,252,.94); border: 1px solid var(--border);
                    border-radius: 12px; padding: 20px 22px; max-width: 46ch;
                    box-shadow: 0 6px 24px rgba(23,24,26,.07); }
@@ -131,7 +134,14 @@
                   border-radius: 12px; padding: 18px 18px 14px; margin: 18px 0; }
   section.panel h2 { font-size: 16px; font-weight: 650; margin: 0 0 2px; }
   section.panel p.caption { color: var(--ink-muted); font-size: 13px; margin: 0 0 12px; max-width: 95ch; }
+  p.caption.clamped { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+                      overflow: hidden; margin-bottom: 2px; }
+  .cap-toggle { font: 12.5px system-ui, sans-serif; color: var(--ink-2); background: none;
+                border: none; border-bottom: 1px solid var(--baseline); cursor: pointer;
+                padding: 0 0 1px; margin: 0 0 12px; }
+  .cap-toggle:hover { color: var(--ink-1); }
 
+  .map-controls { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
   .layer-toggle { display: flex; gap: 4px; margin: 0 0 10px; flex-wrap: wrap; }
   .layer-toggle button { font: 13px system-ui, sans-serif; border: 1px solid var(--baseline);
                          background: var(--surface-1); color: var(--ink-2); cursor: pointer;
@@ -149,28 +159,55 @@
   .comm-chip { display: inline-block; width: 8px; height: 8px; transform: rotate(45deg);
                margin-right: 6px; vertical-align: 0; opacity: .85; }
 
-  #map { min-height: 320px; border-radius: 8px; background: var(--page); }
+  #map { border-radius: 8px; background: var(--page); }
   #map-wrap { position: relative; }
-  #map svg { display: block; width: 100%; height: auto; }
-  .tr-prov { fill: #e8eaed; stroke: #c9ccd2; stroke-width: .7; }
-  .tr-prov.is-hover { fill: #e0e3e7; }
-  .svg-marker { fill: var(--loss); fill-opacity: .9; stroke: var(--surface-1);
-                stroke-width: 1; cursor: pointer; }
-  .svg-marker.is-hover { fill-opacity: 1; }
-  .tr-prov.has-data { cursor: pointer; }
-  .tr-prov.is-hover { stroke: var(--ink-2); stroke-width: 1.2; }
+  #map svg { display: block; width: 100%; height: auto; touch-action: manipulation; }
+  .tr-prov { fill: #eceef1; stroke: #c9ccd2; stroke-width: 1; }
+  /* Presence tint: shows where published records exist. It is deliberately
+     NOT a magnitude ramp in the default view - counts are carried by the
+     proportional marks, because colouring by area would let large provinces
+     look worse simply for being large. */
+  .tr-prov.has-rec { fill: #e0e2e6; cursor: pointer; }
+  .tr-prov.is-hover { stroke: var(--ink-2); stroke-width: 1.6; }
+  .tr-prov.is-sel { stroke: var(--ink-1); stroke-width: 2.4; }
   .ramp { display: inline-flex; vertical-align: middle; margin: 0 6px; }
   .ramp span { width: 22px; height: 11px; display: inline-block; }
-  .svg-site { fill-opacity: .82; stroke: var(--surface-1);
-              stroke-width: 1; cursor: pointer; }
-  .svg-site.is-hover { fill-opacity: 1; }
-  .site-diamond div { width: 9px; height: 9px;
-                      transform: rotate(45deg); border: 1px solid #fff; opacity: .85; }
-  .leaflet-tile { filter: grayscale(.55); }
-  .leaflet-container { font: inherit; }
-  .leaflet-popup-content { font: 13px/1.5 system-ui, sans-serif; }
-  .leaflet-popup-content b { font-size: 14px; }
-  .leaflet-popup-content .meta { color: #52514e; }
+  .mark-wrap, .svg-site { cursor: pointer; }
+  .mark-wrap .hit, .svg-site .hit { fill: transparent; stroke: none; }
+  .svg-marker { fill: var(--loss); stroke: var(--surface-1); stroke-width: 1.6; }
+  .svg-marker.located { fill-opacity: .92; }
+  /* Province-level: the province is known but no coordinate is published, so
+     the mark is hollow and never reads as an exact pin. */
+  .svg-marker.province-level { fill: var(--surface-1); fill-opacity: .96;
+                               stroke: var(--loss); stroke-width: 2.6; }
+  .mark-wrap.is-hover .svg-marker { fill-opacity: 1; stroke: var(--ink-1); }
+  .mark-wrap:focus, .svg-site:focus, .tr-prov:focus { outline: none; }
+  .mark-wrap:focus-visible .svg-marker, .svg-site:focus-visible path,
+  .tr-prov:focus-visible { stroke: var(--ink-1); stroke-width: 3; }
+  .svg-site path { fill-opacity: .85; stroke: var(--surface-1); stroke-width: 1.2; }
+  .svg-site.is-hover path { fill-opacity: 1; }
+  .svg-site .site-n { fill: var(--ink-2); font-size: 15px; font-weight: 600; }
+  .maplegend .lg-size { display: inline-flex; align-items: flex-end; gap: 8px; }
+  .maplegend .szitem { display: inline-flex; flex-direction: column;
+                       align-items: center; gap: 2px; }
+  .maplegend .szitem svg { display: block; }
+  .maplegend .szitem i { font-style: normal; font-size: 11px; color: var(--ink-muted);
+                         font-variant-numeric: tabular-nums; }
+  .maplegend .sw-acc.hollow { background: var(--loss); opacity: .45; }
+  .sm-h { font-size: 14px; font-weight: 650; margin: 18px 0 2px; }
+  .smallmults { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                gap: 10px; margin-top: 6px; }
+  .sm-item { display: flex; flex-direction: column; gap: 2px; align-items: stretch;
+             background: var(--surface-1); border: 1px solid var(--border);
+             border-radius: 10px; padding: 8px 10px 9px; cursor: pointer; text-align: left; }
+  .sm-item:hover { border-color: var(--baseline); }
+  .sm-item.is-sel { border-color: var(--ink-1); box-shadow: inset 0 0 0 1px var(--ink-1); }
+  .sm-item svg { display: block; width: 100%; height: auto; }
+  .sm-prov { fill: #eceef1; stroke: #d6d9dd; stroke-width: 1.4; }
+  .sm-prov.on { fill: #dfe2e6; }
+  .sm-mark { fill: var(--loss); fill-opacity: .9; stroke: var(--surface-1); stroke-width: 2.4; }
+  .sm-label { font-size: 12.5px; color: var(--ink-1); font-weight: 600; }
+  .sm-n { font-size: 12px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
 
   #chart-wrap { position: relative; }
   #chart-wrap svg { display: block; width: 100%; height: auto; }
@@ -237,9 +274,39 @@
                            background: var(--surface-1);
                            box-shadow: 0 1px 0 var(--baseline); border-bottom: none; }
 
+  th[data-sort] { cursor: pointer; user-select: none; white-space: nowrap; }
+  th[data-sort]:hover { color: var(--ink-1); }
+  th[data-sort] .arr { color: var(--ink-muted); font-size: 10px; margin-left: 3px; }
+  th[aria-sort] { color: var(--ink-1); }
+  tr.rec-row { cursor: pointer; }
+  tr.rec-row:hover td { background: #f2f3f5; }
+
+  .detail { position: fixed; right: 18px; bottom: 18px; width: min(420px, calc(100vw - 36px));
+            max-height: 70vh; overflow: auto; z-index: 200; background: var(--surface-1);
+            border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px 14px;
+            box-shadow: 0 10px 34px rgba(23,24,26,.18); }
+  .detail h3 { margin: 0 6px 6px 0; font-size: 16px; font-weight: 650; }
+  .detail .d-meta { color: var(--ink-2); font-size: 13.5px; margin: 0 0 8px; }
+  .detail .d-sec { margin-top: 10px; font-size: 13px; color: var(--ink-2); }
+  .detail .d-sec b { color: var(--ink-1); font-weight: 600; }
+  .detail ul { margin: 4px 0 0; padding-left: 18px; }
+  .detail li { margin: 2px 0; }
+  .detail a { color: var(--series-1); }
+  #detail-close { position: absolute; top: 8px; right: 10px; border: none; background: none;
+                  font-size: 22px; line-height: 1; cursor: pointer; color: var(--ink-muted); }
+  #detail-close:hover { color: var(--ink-1); }
+  @media (max-width: 640px) {
+    .detail { right: 0; left: 0; bottom: 0; width: auto; max-height: 62vh;
+              border-radius: 12px 12px 0 0; }
+  }
+
   footer { color: var(--ink-muted); font-size: 13px; margin-top: 28px; max-width: 82ch; }
   footer a { color: var(--series-1); }
-  @media (max-width: 640px) { #map { height: 320px; } .tile .value { font-size: 26px; }
+  @media (max-width: 640px) {
+    .tr-prov { stroke-width: 2; }
+    .svg-marker { stroke-width: 2.6; }
+    .svg-marker.province-level { stroke-width: 4; }
+    .svg-site path { stroke-width: 2; } .tile .value { font-size: 26px; }
     .chapter .card p { font-size: 15px; } .chapter .card .k { font-size: 18px; }
     #filters select { max-width: 140px; }
     #mechanisms .mrow, #rates .rrow { grid-template-columns: 130px 1fr 48px; } }
@@ -247,12 +314,13 @@
 </head>
 <body class="viz-root">
 <main>
-  <nav class="anchors" aria-label="Sections">
+  <nav class="anchors" data-aria="aria_sections">
     <a href="#story" data-i18n="nav_story"></a>
     <a href="#map-panel" data-i18n="nav_map"></a>
     <a href="#years" data-i18n="nav_years"></a>
     <a href="#sites-panel" data-i18n="nav_sites"></a>
     <a href="#records-panel" data-i18n="nav_records"></a>
+    <a href="#rates-panel" data-i18n="nav_rates"></a>
     <a href="#download-panel" data-i18n="nav_download"></a>
     <span class="lang-toggle" role="group" aria-label="Language / Dil">
       <button type="button" data-lang="tr" aria-pressed="false">Türkçe</button>
@@ -267,7 +335,8 @@
   </header>
 
   <!-- ---- Story prologue: one mark = one person, told in chapters -------- -->
-  <section id="story" aria-label="The record, told in order">
+  <section id="story" data-aria="aria_story">
+    <a class="skiplink" href="#map-panel" data-i18n="skip_data"></a>
     <div class="stage" id="stage" aria-hidden="true">
       <div class="era-label" id="era-label"></div>
       <div class="markfield" id="marks"></div>
@@ -281,7 +350,7 @@
   <div class="tiles" id="tiles" role="list"></div>
 
   <!-- ---- Filters: drive the map, the sites layer and both tables -------- -->
-  <div id="filters" role="group" aria-label="Filters">
+  <div id="filters" role="group" data-aria="aria_filters">
     <label><span data-i18n="f_province"></span>
       <select id="f-province"><option value=""></option></select>
     </label>
@@ -304,16 +373,25 @@
   <section class="panel" id="map-panel">
     <h2 data-i18n="map_h"></h2>
     <p class="caption" data-i18n="map_caption"></p>
-    <div class="layer-toggle" role="group" aria-label="Map layers">
-      <button type="button" data-layer="accidents" aria-pressed="false" data-i18n="layer_acc"></button>
-      <button type="button" data-layer="sites" aria-pressed="false" data-i18n="layer_sites"></button>
-      <button type="button" data-layer="both" aria-pressed="true" data-i18n="layer_both"></button>
+    <div class="map-controls">
+      <div class="layer-toggle" role="group" data-aria="aria_layers">
+        <button type="button" data-layer="accidents" aria-pressed="false" data-i18n="layer_acc"></button>
+        <button type="button" data-layer="sites" aria-pressed="false" data-i18n="layer_sites"></button>
+        <button type="button" data-layer="both" aria-pressed="true" data-i18n="layer_both"></button>
+      </div>
+      <div class="layer-toggle" role="group" data-aria="aria_view">
+        <button type="button" data-view="marks" aria-pressed="true" data-i18n="view_marks"></button>
+        <button type="button" data-view="shaded" aria-pressed="false" data-i18n="view_shaded"></button>
+      </div>
     </div>
     <div id="map-wrap">
-      <div id="map" role="region" aria-label="Map"></div>
+      <div id="map" role="region" data-aria="aria_map"></div>
       <div id="map-tip"></div>
     </div>
     <div class="maplegend" id="maplegend"></div>
+    <h3 class="sm-h" data-i18n="sm_h"></h3>
+    <p class="caption" data-i18n="sm_caption"></p>
+    <div class="smallmults" id="smallmults" role="group" data-aria="aria_sm"></div>
   </section>
 
   <section class="panel" id="years">
@@ -327,16 +405,15 @@
     <p class="caption" id="events-caption"></p>
   </section>
 
-  <section class="panel">
-    <h2 data-i18n="rates_h"></h2>
-    <p class="caption" data-i18n="rates_caption"></p>
-    <div id="rates"></div>
-  </section>
-
-  <section class="panel">
-    <h2 data-i18n="mech_h"></h2>
-    <p class="caption" data-i18n="mech_caption"></p>
-    <div id="mechanisms"></div>
+  <section class="panel" id="records-panel">
+    <h2 data-i18n="records_h"></h2>
+    <p class="caption" data-i18n="records_caption"></p>
+    <div class="table-scroll">
+      <table id="records">
+        <thead><tr id="records-head"></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </section>
 
   <section class="panel" id="sites-panel">
@@ -350,15 +427,16 @@
     </div>
   </section>
 
-  <section class="panel" id="records-panel">
-    <h2 data-i18n="records_h"></h2>
-    <p class="caption" data-i18n="records_caption"></p>
-    <div class="table-scroll">
-      <table id="records">
-        <thead><tr id="records-head"></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
+  <section class="panel" id="rates-panel">
+    <h2 data-i18n="rates_h"></h2>
+    <p class="caption" data-i18n="rates_caption"></p>
+    <div id="rates"></div>
+  </section>
+
+  <section class="panel" id="mech-panel">
+    <h2 data-i18n="mech_h"></h2>
+    <p class="caption" data-i18n="mech_caption"></p>
+    <div id="mechanisms"></div>
   </section>
 
   <section class="panel" id="download-panel">
@@ -370,6 +448,11 @@
       <button type="button" id="dl-json" data-i18n="dl_json"></button>
     </div>
   </section>
+
+  <aside id="detail" class="detail" hidden role="region" data-aria="aria_detail">
+    <button type="button" id="detail-close" data-aria="aria_close">&times;</button>
+    <div id="detail-body"></div>
+  </aside>
 
   <footer id="foot"></footer>
 </main>
@@ -389,6 +472,7 @@
       range: "{a} to {b}",
       nav_story: "Story", nav_map: "Map", nav_years: "Years",
       nav_sites: "Documented sites", nav_records: "Records", nav_download: "Download",
+      nav_rates: "Comparison",
       title: "Mining Accidents in Türkiye: A Public Research Register",
       lede: "This is a record of people who went to work in the mines and quarries of Türkiye and did not come home. Every published value is linked to the assessed source and the review decision used to select it. It exists for remembrance and documentation, not for comparison or spectacle.",
       note: "<strong>This is a partial, source-traceable research register, not a complete or fully validated national record.</strong> Most records are seeded from open tertiary sources (Wikidata, Wikipedia) and still await corroboration against official records and those of professional chambers. Coverage is partial: years without a mark are years without a <em>published, reviewed record</em>, not years without loss.",
@@ -396,6 +480,9 @@
       ch_open_k: "This is a record of people who went to work and did not come home.",
       ch_open_q: "Since {y}, this register has been able to publicly document <b>{d} deaths</b> in {n} mining and quarrying accidents in Türkiye. One red carnation is one person.",
       scroll: "Scroll.",
+      span_early: "1983 to 2009", span_recent: "2010 to today",
+      skip_data: "Skip to the data \u2193",
+      more: "Read more", less: "Show less",
       era_head: "{era}. <span class=\"n\">{d} people</span> in {n} published record(s).",
       worst_q: "The single largest loss in this record. Every lit carnation on this page is one of them.",
       worst_src: "{id}. Every value is linked to its cited sources.",
@@ -418,12 +505,30 @@
       f_all_prov: "All provinces", f_all_mech: "All mechanisms", f_all_comm: "All commodities",
       result: "<b>{r}</b> records · <b>{p}</b> people · <b>{s}</b> sites",
       map_h: "Accident locations and documented mining sites",
-      map_caption: "Every published record colors its province: the darker the red, the more people died there. Carnations mark the records whose sources state coordinates (approximate: the mine or its vicinity, never an exact point). Records without published coordinates are included in the shade of their province; rest on a province to see them. Diamonds are <em>documented mining sites</em> from open structured sources, colored by what is mined. A province can show accidents but no diamond: the sites layer contains only what open data documents, a fraction of licensed operations, so a missing diamond never means there is no mine. Province boundaries: Natural Earth (public domain).",
+      map_caption: "Each carnation is a published record, sized by the number of people lost (area scales with the count; see the size key). A <strong>solid</strong> carnation sits where the sources state coordinates, approximate to the facility and never an exact point. A <strong>hollow</strong> carnation is a province-level record: the province is known but no coordinate is published, so the mark rests on an interior point of the province and must not be read as the accident site. Provinces holding published records carry a light tint; switch to <em>Shaded provinces</em> to colour them by people lost instead, remembering that a large province is not a worse one. Diamonds are documented mining sites, coloured by what is mined, and a numbered diamond marks several sites at one location. Select any province to filter the whole page. A missing diamond never means there is no mine: the sites layer holds only what open data documents. Boundaries: Natural Earth (public domain), Albers equal-area projection.",
       layer_acc: "Accidents", layer_sites: "Documented sites", layer_both: "Both",
       lg_acc: "accident: one carnation per record (size shows people lost)",
       lg_ramp: "province shade: people lost there (all published records)",
       lg_coal: "coal and lignite site", lg_metal: "metal ore site",
       lg_mineral: "industrial mineral site", lg_other: "site, commodity not stated",
+      view_marks: "Marks", view_shaded: "Shaded provinces",
+      sm_h: "Where the loss sat, era by era",
+      sm_caption: "The same four maps, one per era, each showing only that era's published records. Reading them left to right shows the geography of loss shifting. Select an era to filter the page to those years; select it again to clear. Mark sizes are comparable across the four maps but not with the main map above.",
+      sm_people: "{n} people", aria_sm: "Maps by era",
+      lg_size: "people lost:", lg_located: "source states coordinates",
+      lg_provlevel: "province-level (exact site not published)",
+      prov_click: "Select this province to filter the page.",
+      prov_level_n: "{d} people in {n} record(s) without published coordinates",
+      prov_level_note: "Province-level mark: placed on an interior point of the province, not the accident site. The sources do not publish coordinates for these records.",
+      sites_here: "{n} documented sites at this location",
+      aria_sections: "Sections", aria_story: "The record, told in order",
+      aria_filters: "Filters", aria_map: "Map of accident records and mining sites",
+      aria_layers: "Map layers", aria_view: "Map view",
+      aria_detail: "Record detail", aria_close: "Close",
+      d_injured: "Injured", d_location: "Coordinates",
+      d_no_coords: "not published in the sources",
+      d_class: "Classifications",
+      d_traceable: "Every value above was selected from these sources by a recorded review decision.",
       chart_h: "People lost, year by year",
       chart_caption: "Red bars: people who died in the <em>published incident records</em> of this register. Gray line: annual miner work death totals for the whole sector, from İSİG Meclisi (all causes); a broader measure that cannot be compared with the bars directly. The pale gray columns between them are <strong>deaths counted by İSİG but not represented in this register</strong> (which is not the same as deaths no source recorded). Dashed vertical lines mark public record events (descriptive only; this chart makes no causal claim). Hover over a year for the figures. The chart always shows the full register; the filters above apply to the map and the tables.",
       lgc_bars: "published records (this register)", lgc_gap: "counted by İSİG, not in this register",
@@ -496,6 +601,7 @@
       range: "{a} ile {b} arası",
       nav_story: "Hikâye", nav_map: "Harita", nav_years: "Yıllar",
       nav_sites: "Maden sahaları", nav_records: "Kayıtlar", nav_download: "İndir",
+      nav_rates: "Karşılaştırma",
       title: "Türkiye'de Maden Kazaları: Kamuya Açık Bir Araştırma Kaydı",
       lede: "Bu sayfa, Türkiye'de maden ve taş ocaklarında işe gidip bir daha evine dönemeyen insanları anmak için tutuluyor. Burada yazan her bilginin hangi kaynağa dayandığı ve nasıl bir incelemeden geçtiği bellidir; hiçbir rakam havada değildir. Amacımız ölümleri kıyaslamak ya da acıyı gösteriye dönüştürmek değil; yaşananları kayda geçirmek ve hayatını kaybedenleri hatırlamaktır.",
       note: "<strong>Bu, kaynağı belli ama henüz tamamlanmamış bir araştırma çalışmasıdır; eksiksiz ya da resmî olarak onaylanmış bir ulusal kayıt değildir.</strong> Bilgilerin çoğu şimdilik açık kaynaklardan (Wikidata, Vikipedi) derlendi; resmî kurumların ve meslek odalarının kayıtlarıyla karşılaştırılıp doğrulanmayı bekliyor. Bir yılın bu sayfada boş görünmesi, o yıl kimsenin ölmediği anlamına gelmez; yalnızca o yıla ait <em>doğrulanmış bir kaydımızın henüz olmadığını</em> gösterir.",
@@ -503,6 +609,9 @@
       ch_open_k: "İşe gidip bir daha evine dönemeyenlerin kaydıdır bu.",
       ch_open_q: "Bu kayıt, {y} yılından bu yana Türkiye'de {n} maden ve taş ocağı kazasında hayatını kaybeden <b>{d} kişiyi</b> tek tek belgeledi. Her kırmızı karanfil bir can demek.",
       scroll: "Aşağı kaydırın.",
+      span_early: "1983 ile 2009 arası", span_recent: "2010'dan bugüne",
+      skip_data: "Veriye geç \u2193",
+      more: "Devamını oku", less: "Daha az göster",
       era_head: "{era}. {n} yayımlanmış kayıtta <span class=\"n\">{d} kişi</span>.",
       worst_q: "Bu kayıttaki en büyük kayıp. Sayfadaki yanan her karanfil, o gün hayatını kaybedenlerden birini simgeliyor.",
       worst_src: "{id}. Buradaki her bilgi, gösterilen kaynaklarına bağlanmıştır.",
@@ -525,12 +634,30 @@
       f_all_prov: "Tüm iller", f_all_mech: "Tüm olay türleri", f_all_comm: "Tüm cevherler",
       result: "<b>{r}</b> kayıt · <b>{p}</b> kişi · <b>{s}</b> saha",
       map_h: "Kaza konumları ve belgelenmiş maden sahaları",
-      map_caption: "Yayımlanmış her kayıt kendi ilini renklendirir: renk ne kadar koyuysa, o ilde o kadar çok kişi hayatını kaybetmiştir. Karanfiller, kaynaklarında koordinat verilen kayıtları gösterir (konum yaklaşıktır: madenin kendisi ya da çevresi, kesin bir nokta değil). Koordinatı yayımlanmamış kayıtlar ilin renginin içindedir; görmek için imleci ilin üzerine getirin. Eşkenar dörtgenler, açık veri kaynaklarında belgelenmiş <em>maden sahalarını</em> gösterir; rengi, çıkarılan cevheri belirtir. Bir ilde kaza görünüp saha işareti görünmeyebilir: saha katmanında yalnızca açık verinin belgelediği sahalar vardır ve bunlar, ruhsatlı işletmelerin küçük bir bölümüdür. Bu yüzden işaretin olmaması, orada maden olmadığı anlamına gelmez. İl sınırları: Natural Earth (kamu malı).",
+      map_caption: "Her karanfil yayımlanmış bir kaydı gösterir; büyüklüğü kaybedilen can sayısıyla orantılıdır (boyut anahtarına bakınız). <strong>Dolu</strong> karanfil, kaynakların koordinat verdiği kayıtlardır; bu konum tesise yakındır, kesin bir nokta değildir. <strong>İçi boş</strong> karanfil il düzeyinde bir kayıttır: ili bilinir ama koordinatı yayımlanmamıştır, bu yüzden işaret ilin içinde bir noktada durur ve kazanın yeri olarak okunmamalıdır. Yayımlanmış kaydı olan iller açık renkle belirtilir; <em>İlleri boya</em> görünümüne geçerek illeri kaybedilen cana göre renklendirebilirsiniz; ancak büyük bir il, daha kötü bir il demek değildir. Eşkenar dörtgenler belgelenmiş maden sahalarıdır, rengi çıkarılan cevheri gösterir; üzerinde sayı olan işaret aynı noktadaki birden çok sahayı belirtir. Sayfayı süzmek için bir ile tıklayın. İşaret yokluğu maden yokluğu demek değildir: saha katmanı yalnızca açık verinin belgelediklerini içerir. Sınırlar: Natural Earth (kamu malı), Albers eşit alan izdüşümü.",
       layer_acc: "Kazalar", layer_sites: "Maden sahaları", layer_both: "İkisi birlikte",
       lg_acc: "kaza: her kayıt için bir karanfil (büyüklüğü, kaybedilen kişi sayısını gösterir)",
       lg_ramp: "il rengi: o ilde hayatını kaybedenler (tüm yayımlanmış kayıtlar)",
       lg_coal: "kömür ve linyit sahası", lg_metal: "metal cevheri sahası",
       lg_mineral: "endüstriyel mineral sahası", lg_other: "cevheri belirtilmemiş saha",
+      view_marks: "İşaretler", view_shaded: "İlleri boya",
+      sm_h: "Kayıplar dönem dönem nerede yaşandı",
+      sm_caption: "Aynı harita, her dönem için bir kez: her biri yalnızca o dönemin yayımlanmış kayıtlarını gösterir. Soldan sağa bakıldığında kayıpların coğrafyasının nasıl değiştiği görülür. Sayfayı o yıllara göre süzmek için bir döneme tıklayın; temizlemek için tekrar tıklayın. İşaret boyutları bu dört harita arasında karşılaştırılabilir, yukarıdaki ana haritayla değil.",
+      sm_people: "{n} kişi", aria_sm: "Dönemlere göre haritalar",
+      lg_size: "kaybedilen can:", lg_located: "kaynakta koordinat var",
+      lg_provlevel: "il düzeyinde (kesin yeri yayımlanmamış)",
+      prov_click: "Sayfayı bu ile göre süzmek için tıklayın.",
+      prov_level_n: "koordinatı yayımlanmamış {n} kayıtta {d} kişi",
+      prov_level_note: "İl düzeyinde işaret: kazanın yerini değil, ilin içinde bir noktayı gösterir. Bu kayıtlar için kaynaklarda koordinat yayımlanmamıştır.",
+      sites_here: "Bu noktada {n} belgelenmiş saha",
+      aria_sections: "Bölümler", aria_story: "Kayıt, sırasıyla",
+      aria_filters: "Filtreler", aria_map: "Kaza kayıtları ve maden sahaları haritası",
+      aria_layers: "Harita katmanları", aria_view: "Harita görünümü",
+      aria_detail: "Kayıt ayrıntısı", aria_close: "Kapat",
+      d_injured: "Yaralı", d_location: "Koordinatlar",
+      d_no_coords: "kaynaklarda yayımlanmamış",
+      d_class: "Sınıflandırmalar",
+      d_traceable: "Yukarıdaki her bilgi, kayıt altına alınan bir inceleme kararıyla bu kaynaklardan seçilmiştir.",
       chart_h: "Yıllara göre can kayıpları",
       chart_caption: "Kırmızı çubuklar: bu kaydın <em>yayımlanmış kaza kayıtlarında</em> hayatını kaybedenler. Gri çizgi: İSİG Meclisi'nin madencilik sektörünün tamamı için derlediği yıllık işçi ölümü toplamları (bütün nedenlerle). Bu daha geniş bir ölçüdür ve çubuklarla doğrudan karşılaştırılamaz. Aradaki soluk gri sütunlar, <strong>İSİG'in saydığı ama bu kayıtta temsil edilmeyen ölümlerdir</strong> (bu, hiçbir kaynağın kaydetmediği ölümler demek değildir). Kesikli dikey çizgiler, kamuya açık bazı olayları işaretler (yalnızca bilgi amaçlıdır; grafik neden sonuç iddiası taşımaz). Rakamlar için bir yılın üzerine gelin. Grafik her zaman kaydın tamamını gösterir; yukarıdaki filtreler haritaya ve tablolara uygulanır.",
       lgc_bars: "yayımlanmış kayıtlar (bu veri tabanı)", lgc_gap: "İSİG'çe sayıldı, bu kayıtta yok",
@@ -651,32 +778,54 @@
     document.querySelectorAll("[data-i18n]").forEach(el => {
       el.innerHTML = t(el.dataset.i18n);
     });
+    // aria-labels are content too: localize them rather than pinning English.
+    document.querySelectorAll("[data-aria]").forEach(el => {
+      el.setAttribute("aria-label", t(el.dataset.aria));
+    });
     document.querySelector("#f-province option[value='']").textContent = t("f_all_prov");
     document.querySelector("#f-mechanism option[value='']").textContent = t("f_all_mech");
     document.querySelector("#f-commodity option[value='']").textContent = t("f_all_comm");
     document.getElementById("sites-head").innerHTML =
-      `<th>${t("sh_site")}</th><th>${t("sh_type")}</th><th>${t("sh_comm")}</th>` +
-      `<th>${t("sh_prov")}</th><th>${t("sh_op")}</th><th>${t("sh_country")}</th>` +
-      `<th>${t("sh_status")}</th><th>${t("sh_source")}</th>`;
+      `<th data-sort="site">${t("sh_site")}</th><th data-sort="type">${t("sh_type")}</th>` +
+      `<th data-sort="comm">${t("sh_comm")}</th><th data-sort="prov">${t("sh_prov")}</th>` +
+      `<th data-sort="op">${t("sh_op")}</th><th data-sort="country">${t("sh_country")}</th>` +
+      `<th data-sort="status">${t("sh_status")}</th><th>${t("sh_source")}</th>`;
+    markSorted("sites-head", sortState.sites);
     document.getElementById("records-head").innerHTML =
-      `<th>${t("rh_id")}</th><th>${t("rh_date")}</th><th>${t("rh_prov")}</th>` +
-      `<th>${t("rh_what")}</th><th class="num">${t("rh_people")}</th>` +
-      `<th>${t("rh_mech")}</th><th>${t("rh_sources")}</th>`;
-    document.getElementById("maplegend").innerHTML =
-      `<span><span class="sw-acc carn-mask"></span> ${t("lg_acc")}</span>` +
-      `<span>${t("lg_ramp")}
-        <span class="ramp" aria-hidden="true"><span style="background:#f6ddda"></span><span style="background:#eab5b0"></span><span style="background:#d97f77"></span><span style="background:#c24a42"></span><span style="background:#99231d"></span></span>
-        1&nbsp;·&nbsp;5&nbsp;·&nbsp;20&nbsp;·&nbsp;100&nbsp;·&nbsp;300+</span>` +
-      `<span><span class="sw-site" style="background:var(--c-coal)"></span> ${t("lg_coal")}</span>` +
-      `<span><span class="sw-site" style="background:var(--c-metal)"></span> ${t("lg_metal")}</span>` +
-      `<span><span class="sw-site" style="background:var(--c-mineral)"></span> ${t("lg_mineral")}</span>` +
-      `<span><span class="sw-site" style="background:var(--site)"></span> ${t("lg_other")}</span>`;
+      `<th data-sort="id">${t("rh_id")}</th><th data-sort="date">${t("rh_date")}</th>` +
+      `<th data-sort="prov">${t("rh_prov")}</th><th data-sort="what">${t("rh_what")}</th>` +
+      `<th class="num" data-sort="people">${t("rh_people")}</th>` +
+      `<th data-sort="mech">${t("rh_mech")}</th><th>${t("rh_sources")}</th>`;
+    markSorted("records-head", sortState.records);
     document.getElementById("chart-legend").innerHTML =
       `<span><span class="swatch bar-swatch"></span> ${t("lgc_bars")}</span>` +
       `<span><span class="swatch gap-swatch"></span> ${t("lgc_gap")}</span>` +
       `<span><span class="swatch line-swatch"></span> ${t("lgc_line")}</span>`;
     document.querySelectorAll(".lang-toggle button").forEach(b =>
       b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
+  }
+
+  // ---- Long captions on small screens --------------------------------------
+  function setupCaptions() {
+    const small = window.matchMedia("(max-width: 640px)").matches;
+    document.querySelectorAll("section.panel p.caption").forEach(cap => {
+      const sib = cap.nextElementSibling;
+      if (sib && sib.classList.contains("cap-toggle")) sib.remove();
+      cap.classList.remove("clamped");
+      if (!small || cap.textContent.trim().length < 260) return;
+      cap.classList.add("clamped");
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "cap-toggle";
+      btn.textContent = t("more");
+      btn.setAttribute("aria-expanded", "false");
+      btn.addEventListener("click", () => {
+        const open = !cap.classList.toggle("clamped");
+        btn.textContent = open ? t("less") : t("more");
+        btn.setAttribute("aria-expanded", String(open));
+      });
+      cap.insertAdjacentElement("afterend", btn);
+    });
   }
 
   // ---- On this day ----------------------------------------------------------
@@ -734,26 +883,43 @@
         ? `<p class="quiet" lang="tr">${s.deadliest.canonical_title_tr}</p><p class="quiet">${sentence(s.deadliest)}</p>` : "";
       return head + worstLine;
     };
+    // Five chapters, not eight: the prologue used to cost ~790vh (about seven
+    // screens) before the reader reached any data. Eras are combined into two
+    // spans and the deadliest loss is the closing beat of the recent span.
+    const span = (ks, labelKey) => {
+      const list = ks.flatMap(k => eraStats[k].list);
+      const deaths = list.reduce((a, i) => a + (i.fatalities_current || 0), 0);
+      const deadliest = list.reduce((w, i) =>
+        ((i.fatalities_current || 0) > (w?.fatalities_current || 0) ? i : w), null);
+      return { list, deaths, deadliest, label: t(labelKey) };
+    };
+    const early = span([0, 1], "span_early");
+    const recent = span([2, 3], "span_recent");
+    const spanCard = sp => {
+      if (!sp.list.length) return "";
+      return `<p class="k">${tf("era_head", { era: sp.label, d: fmt.format(sp.deaths), n: sp.list.length })}</p>` +
+        (sp.deadliest
+          ? `<p class="quiet" lang="tr">${sp.deadliest.canonical_title_tr}</p><p class="quiet">${sentence(sp.deadliest)}</p>`
+          : "");
+    };
     chapters = [
       { html: `<p class="k">${t("ch_open_k")}</p>` +
               `<p class="quiet">${tf("ch_open_q", { y: firstYear, d: fmt.format(totalDeaths), n: fmt.format(incidents.length) })}</p>` +
               `<p class="scrollhint">${t("scroll")}</p>`,
         cls: "first", state: { upTo: -1 } },
-      { html: eraCard(0), state: { upTo: 0, label: t("eras")[0], count: eraStats[0].deaths } },
-      { html: eraCard(1), state: { upTo: 1, label: t("eras")[1], count: eraStats[1].deaths } },
-      { html: eraCard(2), state: { upTo: 2, label: t("eras")[2], count: eraStats[2].deaths } },
-      worst && worst.public_incident_id ? {
-        html: `<p class="k" lang="tr">${worst.canonical_title_tr}</p>` +
-              `<p>${sentence(worst)}</p>` +
-              `<p class="quiet">${t("worst_q")}</p>` +
-              `<p class="src">${tf("worst_src", { id: worst.public_incident_id })}</p>`,
-        cls: "tall", state: { upTo: 2, focus: true, label: fmtDate(worst), count: worst.fatalities_current } } : null,
-      { html: eraCard(3), state: { upTo: 3, label: t("eras")[3], count: eraStats[3].deaths } },
+      { html: spanCard(early),
+        state: { upTo: 1, label: early.label, count: early.deaths } },
+      { html: spanCard(recent) +
+              (worst && worst.public_incident_id
+                ? `<p class="quiet">${t("worst_q")}</p><p class="src">${tf("worst_src", { id: worst.public_incident_id })}</p>`
+                : ""),
+        state: { upTo: 3, focus: !!(worst && worst.public_incident_id),
+                 label: recent.label, count: recent.deaths } },
       gap && gap.total_gap > 0 ? {
         html: `<p class="k">${t("gap_k")}</p>` +
               `<p>${tf("gap_p", { y0: gapY0, y1: gapY1, n: fmt.format(gap.total_gap) })}</p>` +
               `<p class="src">${t("gap_caveat")}</p>`,
-        cls: "tall", state: { upTo: 3, ghosts: true, label: tf("range", { a: gapY0, b: gapY1 }), count: gap.total_gap } } : null,
+        state: { upTo: 3, ghosts: true, label: tf("range", { a: gapY0, b: gapY1 }), count: gap.total_gap } } : null,
       { html: `<p class="k">${t("close_k")}</p>` +
               `<p class="quiet">${t("close_q")}</p>`,
         state: { upTo: 3, ghosts: gap && gap.total_gap > 0, label: t("the_record"), count: totalDeaths } },
@@ -834,7 +1000,8 @@
     ? (t("comms")[site.commodity_code] ||
        (site.commodity_label ? tf("comm_other_label", { l: site.commodity_label }) : t("comm_other")))
     : null;
-  const state = { province: "", mechanism: "", from: null, to: null, commodity: "", layer: "both" };
+  const state = { province: "", mechanism: "", from: null, to: null, commodity: "",
+                  layer: "both", view: "marks" };
 
   const provSel = document.getElementById("f-province");
   const mechSel = document.getElementById("f-mechanism");
@@ -893,13 +1060,14 @@
     renderRecords(fi);
     renderSites(fs);
     renderMap(fi, fs);
+    renderSmallMultiples();
     const people = fi.reduce((s, i) => s + (i.fatalities_current || 0), 0);
     document.getElementById("filter-result").innerHTML = tf("result",
       { r: fmt.format(fi.length), p: fmt.format(people), s: fmt.format(fs.length) });
   }
 
-  provSel.addEventListener("change", () => { state.province = provSel.value; applyFilters(); });
-  mechSel.addEventListener("change", () => { state.mechanism = mechSel.value; applyFilters(); });
+  provSel.addEventListener("change", () => { state.province = provSel.value; syncUrl(); applyFilters(); });
+  mechSel.addEventListener("change", () => { state.mechanism = mechSel.value; syncUrl(); applyFilters(); });
   fromSel.addEventListener("change", () => {
     state.from = +fromSel.value;
     if (state.from > state.to) { state.to = state.from; toSel.value = fromSel.value; }
@@ -910,22 +1078,73 @@
     if (state.to < state.from) { state.from = state.to; fromSel.value = toSel.value; }
     applyFilters();
   });
-  commSel.addEventListener("change", () => { state.commodity = commSel.value; applyFilters(); });
+  commSel.addEventListener("change", () => { state.commodity = commSel.value; syncUrl(); applyFilters(); });
   document.getElementById("f-clear").addEventListener("click", () => {
     state.province = ""; state.mechanism = ""; state.commodity = "";
     state.from = minY; state.to = maxY;
     provSel.value = ""; mechSel.value = ""; commSel.value = "";
     fromSel.value = String(minY); toSel.value = String(maxY);
+    syncUrl();
     applyFilters();
   });
   document.querySelectorAll(".layer-toggle button[data-layer]").forEach(btn => {
     btn.addEventListener("click", () => {
       state.layer = btn.dataset.layer;
-      document.querySelectorAll(".layer-toggle button[data-layer]").forEach(b =>
-        b.setAttribute("aria-pressed", String(b === btn)));
+      syncToggles();
+      syncUrl();
       applyFilters();
     });
   });
+  document.querySelectorAll(".layer-toggle button[data-view]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.view = btn.dataset.view;
+      syncToggles();
+      syncUrl();
+      applyFilters();
+    });
+  });
+  function syncToggles() {
+    document.querySelectorAll(".layer-toggle button[data-layer]").forEach(b =>
+      b.setAttribute("aria-pressed", String(b.dataset.layer === state.layer)));
+    document.querySelectorAll(".layer-toggle button[data-view]").forEach(b =>
+      b.setAttribute("aria-pressed", String(b.dataset.view === state.view)));
+  }
+
+  // ---- Shareable view state -------------------------------------------------
+  // The whole filter surface is reflected in the query string so a reader can
+  // send someone "Zonguldak, 1983 to 1992" as a link. Nothing else owns the
+  // URL, so this is purely additive.
+  const URL_KEYS = ["province", "mechanism", "from", "to", "commodity", "layer", "view"];
+  function syncUrl() {
+    const q = new URLSearchParams();
+    for (const k of URL_KEYS) {
+      const v = state[k];
+      if (v === "" || v == null) continue;
+      if (k === "from" && +v === minY) continue;
+      if (k === "to" && +v === maxY) continue;
+      if (k === "layer" && v === "both") continue;
+      if (k === "view" && v === "marks") continue;
+      q.set(k, String(v));
+    }
+    const qs = q.toString();
+    try {
+      history.replaceState(null, "", qs ? "?" + qs + location.hash : location.pathname + location.hash);
+    } catch (e) { /* file:// or sandboxed: state still works in-memory */ }
+  }
+  function hydrateFromUrl() {
+    let q;
+    try { q = new URLSearchParams(location.search); } catch (e) { return; }
+    const provCodes = new Set(incidents.map(i => i.province_code).concat(sites.map(s => s.province_code)));
+    if (q.has("province") && provCodes.has(q.get("province"))) state.province = q.get("province");
+    if (q.has("mechanism")) state.mechanism = q.get("mechanism");
+    if (q.has("commodity")) state.commodity = q.get("commodity");
+    const f = +q.get("from"), tt = +q.get("to");
+    if (Number.isFinite(f) && f >= minY && f <= maxY) state.from = f;
+    if (Number.isFinite(tt) && tt >= minY && tt <= maxY) state.to = tt;
+    if (state.from > state.to) { const a = state.from; state.from = state.to; state.to = a; }
+    if (["accidents", "sites", "both"].includes(q.get("layer"))) state.layer = q.get("layer");
+    if (["marks", "shaded"].includes(q.get("view"))) state.view = q.get("view");
+  }
 
   // ---- Language switch --------------------------------------------------------
   document.querySelectorAll(".lang-toggle button").forEach(btn => {
@@ -939,6 +1158,136 @@
   });
 
   // ---- Map ----------------------------------------------------------------
+  // Cartography: province rings are projected in the browser with an Albers
+  // Equal Area Conic fitted to Türkiye (standard parallels 37.5N/41.5N).
+  // Equal-area is the correct family for any map that fills areas with colour;
+  // the previous equirectangular projection sheared the country ~10% from
+  // north to south. Geometry is display-only, never evidence.
+  const CARN_D = "M12 1.5 L14.4 5.2 L17.8 3.4 L18.4 7.3 L22.3 8 L20.5 11.6 C18.8 15 15.6 16.8 12 16.8 C8.4 16.8 5.2 15 3.5 11.6 L1.7 8 L5.6 7.3 L6.2 3.4 L9.6 5.2 Z M9 16.3 L15 16.3 L13.3 22.3 L10.7 22.3 Z M11.2 21.8 L12.8 21.8 L12.8 34.5 L11.2 34.5 Z M12.8 27.5 C15.4 26.8 17 24.8 17.5 22.6 C14.9 23.3 13.3 25.3 12.8 27.5 Z";
+  const RAD = Math.PI / 180;
+  const _p1 = 37.5 * RAD, _p2 = 41.5 * RAD, _p0 = 39.0 * RAD, _l0 = 35.2 * RAD;
+  const _n = (Math.sin(_p1) + Math.sin(_p2)) / 2;
+  const _C = Math.cos(_p1) ** 2 + 2 * _n * Math.sin(_p1);
+  const _rho0 = Math.sqrt(_C - 2 * _n * Math.sin(_p0)) / _n;
+  function albers(lat, lon) {
+    const th = _n * (lon * RAD - _l0);
+    const rho = Math.sqrt(_C - 2 * _n * Math.sin(lat * RAD)) / _n;
+    return [rho * Math.sin(th), _rho0 - rho * Math.cos(th)];
+  }
+
+  // --- ring helpers (also used to place province-level marks) ---------------
+  function ringArea(r) {
+    let a = 0;
+    for (let i = 0, j = r.length - 1; i < r.length; j = i++)
+      a += r[j][0] * r[i][1] - r[i][0] * r[j][1];
+    return a / 2;
+  }
+  function ringCentroid(r) {
+    let a = 0, cx = 0, cy = 0;
+    for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+      const f = r[j][0] * r[i][1] - r[i][0] * r[j][1];
+      a += f; cx += (r[j][0] + r[i][0]) * f; cy += (r[j][1] + r[i][1]) * f;
+    }
+    a *= 0.5;
+    return Math.abs(a) < 1e-9 ? r[0].slice() : [cx / (6 * a), cy / (6 * a)];
+  }
+  function inRing(r, x, y) {
+    let inside = false;
+    for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+      const xi = r[i][0], yi = r[i][1], xj = r[j][0], yj = r[j][1];
+      if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+  // An interior point, never the province seat: `province_centroids.csv` holds
+  // Wikidata P625 seats (the capital city), and anchoring a province-level mark
+  // there would imply the accident happened in that city.
+  function interiorAnchor(rings) {
+    const big = rings.reduce((m, r) =>
+      Math.abs(ringArea(r)) > Math.abs(ringArea(m)) ? r : m, rings[0]);
+    const c = ringCentroid(big);
+    if (inRing(big, c[0], c[1])) return c;
+    const xs = big.map(p => p[0]);
+    const lo = Math.min(...xs), hi = Math.max(...xs);
+    let best = c, bestLen = -1, start = null;
+    for (let s = 0; s <= 140; s++) {
+      const x = lo + ((hi - lo) * s) / 140;
+      if (inRing(big, x, c[1])) { if (start === null) start = x; }
+      else if (start !== null) {
+        if (x - start > bestLen) { bestLen = x - start; best = [(start + x) / 2, c[1]]; }
+        start = null;
+      }
+    }
+    if (start !== null && hi - start > bestLen) best = [(start + hi) / 2, c[1]];
+    return best;
+  }
+
+  // Projected geometry, computed once from the payload's lat/lon rings.
+  const GEO = (() => {
+    const provs = (D.provinces_geo || []).map(p => ({
+      code: p.code,
+      rings: p.rings.map(r => r.map(pt => albers(pt[0], pt[1]))),
+    }));
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (const p of provs) for (const r of p.rings) for (const q of r) {
+      if (q[0] < minX) minX = q[0];
+      if (q[0] > maxX) maxX = q[0];
+      if (q[1] < minY) minY = q[1];
+      if (q[1] > maxY) maxY = q[1];
+    }
+    const W = 1000, k = W / (maxX - minX);
+    const H = Math.round((maxY - minY) * k);
+    const toPx = q => [(q[0] - minX) * k, (maxY - q[1]) * k];
+    const paths = {}, pathsSimple = {}, anchors = {};
+    const toD = rings => rings.map(r =>
+      "M" + r.map(q => q[0].toFixed(1) + "," + q[1].toFixed(1)).join(" L") + " Z").join(" ");
+    for (const p of provs) {
+      const px = p.rings.map(r => r.map(toPx));
+      paths[p.code] = toD(px);
+      // The small multiples draw the country four times; thin the rings so the
+      // DOM stays light at a size where the detail cannot be seen anyway.
+      pathsSimple[p.code] = toD(px.map(r => (r.length > 24 ? r.filter((_, k) => k % 3 === 0) : r)));
+      anchors[p.code] = interiorAnchor(px);
+    }
+    return { W, H, paths, pathsSimple, anchors, project: (lat, lon) => toPx(albers(lat, lon)) };
+  })();
+
+  // --- classification -------------------------------------------------------
+  // Fixed breaks (comparable while filtering), re-cut to the real distribution:
+  // the old 100-299 class was empty and 427 vs 304 shared one shade.
+  const BREAKS = [1, 5, 20, 50, 300];
+  const RAMP = ["#f6ddda", "#eab5b0", "#d97f77", "#c24a42", "#99231d"];
+  const rampColor = d => {
+    if (!d || d <= 0) return null;
+    let k = 0;
+    for (let i = 0; i < BREAKS.length; i++) if (d >= BREAKS[i]) k = i;
+    return RAMP[k];
+  };
+  const breakLabels = () => BREAKS.map((b, i) =>
+    i === BREAKS.length - 1 ? fmt.format(b) + "+" : fmt.format(b)).join(" · ");
+
+  // Proportional symbols: area scales with the number of people, so the linear
+  // size scales with the square root. The reference maximum is fixed over the
+  // whole register (not the filtered subset) so marks stay comparable while
+  // filtering. A small floor keeps single-death marks visible; the size legend
+  // shows what each step means.
+  const MARK_MIN = 7, MARK_MAX = 46;
+  const PROV_MAX = (() => {
+    const m = new Map();
+    for (const i of incidents)
+      if (i.province_code)
+        m.set(i.province_code, (m.get(i.province_code) || 0) + (i.fatalities_current || 0));
+    return Math.max(1, ...m.values());
+  })();
+  const markSize = d =>
+    !d || d <= 0 ? MARK_MIN : Math.max(MARK_MIN, MARK_MAX * Math.sqrt(d / PROV_MAX));
+
+  function carnationMark(x, y, h, cls, attrs) {
+    const s = h / 36;
+    return `<g class="${cls}" ${attrs} transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${s.toFixed(3)}) translate(-12,-18)">` +
+      `<path d="${CARN_D}"></path></g>`;
+  }
+
   function siteTip(s) {
     const orgLines = (s.organizations || []).map(o =>
       `${o.role === "owner" ? t("owner") : t("operator")}: ${o.name}` +
@@ -953,24 +1302,18 @@
       `<div class="t-meta">${t("partial_note")}</div>`;
   }
 
-  // Sequential red scale, fixed breaks so shades stay comparable while
-  // filtering: 0 · 1-4 · 5-19 · 20-99 · 100-299 · 300+ people.
-  const RAMP = ["#f6ddda", "#eab5b0", "#d97f77", "#c24a42", "#99231d"];
-  const rampColor = deaths => deaths <= 0 ? null
-    : deaths < 5 ? RAMP[0] : deaths < 20 ? RAMP[1] : deaths < 100 ? RAMP[2]
-    : deaths < 300 ? RAMP[3] : RAMP[4];
   function provinceStats(fi, fs) {
     const stats = new Map();
     const get = code => {
       if (!stats.has(code)) stats.set(code, { deaths: 0, records: 0, unlocated: [],
-                                              sites: 0, sitesUnlocated: 0 });
+                                              unlocatedDeaths: 0, sites: 0, sitesUnlocated: 0 });
       return stats.get(code);
     };
     for (const i of fi) {
       if (!i.province_code) continue;
       const e = get(i.province_code);
       e.deaths += i.fatalities_current || 0; e.records += 1;
-      if (i.latitude == null) e.unlocated.push(i);
+      if (i.latitude == null) { e.unlocated.push(i); e.unlocatedDeaths += i.fatalities_current || 0; }
     }
     for (const st of fs) {
       if (!st.province_code) continue;
@@ -980,7 +1323,10 @@
     }
     return stats;
   }
+
   function provinceTipHtml(code, e) {
+    if (!e) return `<div class="t-title">${provinceName(code)}</div>` +
+      `<div class="t-meta">${t("prov_none")}</div>`;
     const rows = e.unlocated.slice(0, 8).map(i =>
       `${i.public_incident_id} · ${fmtDate(i)} · ${fmt.format(i.fatalities_current)}`
     ).join("<br>");
@@ -991,166 +1337,302 @@
       (e.unlocated.length ? `<div class="t-meta">${tf("prov_unlocated", { n: e.unlocated.length })}<br>${rows}${e.unlocated.length > 8 ? "<br>…" : ""}</div>` : "") +
       (e.sites ? `<div class="t-meta">${tf("prov_sites", { n: e.sites })}` +
         (e.sitesUnlocated ? tf("prov_sites_unloc", { n: e.sitesUnlocated }) : "") +
-        `</div>` : "");
+        `</div>` : "") +
+      `<div class="t-meta">${t("prov_click")}</div>`;
   }
 
-  let leafletMap = null, leafletAccidents = null, leafletSites = null, leafletProvinces = null;
-  let mapMode = null;
   function renderMap(fi, fs) {
-    const wantLeaflet = !!window.L;
-    try {
-      if (wantLeaflet) { renderLeaflet(fi, fs); mapMode = "leaflet"; return; }
-    } catch (err) { /* fall through to SVG */ }
-    try { renderSvgMap(fi, fs); mapMode = "svg"; } catch (err2) {
-      console.error("svg map failed:", err2);
+    try { renderSvgMap(fi, fs); } catch (err) {
+      console.error("map failed:", err);
       document.getElementById("map").innerHTML =
         `<p style="padding:16px;color:var(--ink-2)">${t("map_failed")}</p>`;
     }
   }
 
   function renderSvgMap(fi, fs) {
-    const V = D.map_vector;
     const el = document.getElementById("map");
-    const byId = new Map(incidents.map(i => [i.public_incident_id, i]));
-    const okIds = new Set(fi.map(i => i.public_incident_id));
-    const okRefs = new Set(fs.filter(isOperational).map(s => s.ref));
+    const shaded = state.view === "shaded";
     const showAcc = state.layer !== "sites", showSites = state.layer !== "accidents";
-
     const stats = provinceStats(fi, fs);
-    const provParts = (V.provinces || []).map(p => {
-      const e = stats.get(p.code);
-      const fill = showAcc && e ? rampColor(e.deaths) : null;
-      const cls = "tr-prov" + (e ? " has-data" : "");
-      return `<path class="${cls}" data-prov="${p.code}" ${fill ? `style="fill:${fill}"` : ""} d="${p.d}"></path>`;
-    }).join("");
-    // One carnation per located record, scaled by the number of people
-    // (capped so the largest losses stay flowers, not blots; the popup and
-    // table carry the exact numbers).
-    const aParts = (V.markers || []).map(m => {
-      if (!showAcc || !okIds.has(m.id)) return "";
-      const s = Math.min(Math.max(Math.round((m.r / 12) * 100) / 100, 0.65), 1.9);
-      return `<use href="#carnation-fig" class="svg-marker" data-id="${m.id}" ` +
-        `transform="translate(${m.x},${m.y}) scale(${s})"></use>`;
-    }).join("");
-    const bySiteRefAll = new Map(sites.map(st => [st.ref, st]));
-    const seenXY = new Map();
-    const sParts = (V.siteMarks || []).map(m => {
-      if (!showSites || !okRefs.has(m.ref)) return "";
-      const key = `${m.x},${m.y}`;
-      const bump = seenXY.get(key) || 0;
-      seenXY.set(key, bump + 1);
-      const x = m.x + bump * 7;  // nudge identical points apart (both stay visible)
-      const fill = GROUP_HEX[groupOf(bySiteRefAll.get(m.ref) || {})];
-      return `<path class="svg-site" fill="${fill}" data-ref="${m.ref}" d="M${x},${m.y - 4.4} L${x + 4.4},${m.y} L${x},${m.y + 4.4} L${x - 4.4},${m.y} Z"></path>`;
-    }).join("");
-    el.innerHTML = `<svg viewBox="-8 -8 ${V.W + 16} ${V.H + 16}" role="img" ` +
-      `aria-label="Türkiye">` +
-      `<defs><g id="carnation-fig" transform="translate(-12,-9)">` +
-      `<path d="M12 1.5 L14.4 5.2 L17.8 3.4 L18.4 7.3 L22.3 8 L20.5 11.6 C18.8 15 15.6 16.8 12 16.8 C8.4 16.8 5.2 15 3.5 11.6 L1.7 8 L5.6 7.3 L6.2 3.4 L9.6 5.2 Z M9 16.3 L15 16.3 L13.3 22.3 L10.7 22.3 Z M11.2 21.8 L12.8 21.8 L12.8 34.5 L11.2 34.5 Z M12.8 27.5 C15.4 26.8 17 24.8 17.5 22.6 C14.9 23.3 13.3 25.3 12.8 27.5 Z"></path>` +
-      `</g></defs>` +
-      provParts + sParts + aParts + `</svg>`;
+    const byId = new Map(incidents.map(i => [i.public_incident_id, i]));
 
-    const bySiteRef = new Map(sites.map(s => [s.ref, s]));
+    // 1. provinces
+    const provParts = Object.keys(GEO.paths).map(code => {
+      const e = stats.get(code);
+      const hasRec = !!(e && e.records);
+      const fill = showAcc && shaded && e ? rampColor(e.deaths) : null;
+      const cls = "tr-prov" + (hasRec ? " has-rec" : "") + (state.province === code ? " is-sel" : "");
+      const name = provinceName(code);
+      const label = hasRec
+        ? `${name}: ${tf("prov_lost", { d: fmt.format(e.deaths), n: e.records })}`
+        : `${name}: ${t("prov_none")}`;
+      return `<path class="${cls}" data-prov="${code}" tabindex="0" role="button" ` +
+        `aria-label="${label.replace(/"/g, "&quot;")}" ${fill ? `style="fill:${fill}"` : ""} ` +
+        `d="${GEO.paths[code]}"><title>${label}</title></path>`;
+    }).join("");
+
+    // 2. site diamonds; co-located sites cluster into one mark rather than
+    //    being nudged sideways (the old +7px nudge moved marks ~17 km east).
+    let sParts = "";
+    if (showSites) {
+      const buckets = new Map();
+      for (const s of fs) {
+        if (!isOperational(s) || s.latitude == null || s.longitude == null) continue;
+        const p = GEO.project(s.latitude, s.longitude);
+        const key = p[0].toFixed(0) + "," + p[1].toFixed(0);
+        if (!buckets.has(key)) buckets.set(key, { x: p[0], y: p[1], list: [] });
+        buckets.get(key).list.push(s);
+      }
+      sParts = [...buckets.values()].map(b => {
+        const first = b.list[0];
+        const fill = GROUP_HEX[groupOf(first)];
+        const r = b.list.length > 1 ? 7 : 5.4;
+        const label = b.list.length > 1
+          ? tf("sites_here", { n: b.list.length })
+          : first.name;
+        return `<g class="svg-site" data-sitekey="${b.list.map(s => s.ref).join("|")}" tabindex="0" ` +
+          `role="button" aria-label="${String(label).replace(/"/g, "&quot;")}">` +
+          `<circle class="hit" cx="${b.x.toFixed(1)}" cy="${b.y.toFixed(1)}" r="40"></circle>` +
+          `<path fill="${fill}" d="M${b.x.toFixed(1)},${(b.y - r).toFixed(1)} L${(b.x + r).toFixed(1)},${b.y.toFixed(1)} L${b.x.toFixed(1)},${(b.y + r).toFixed(1)} L${(b.x - r).toFixed(1)},${b.y.toFixed(1)} Z"></path>` +
+          (b.list.length > 1 ? `<text class="site-n" x="${b.x.toFixed(1)}" y="${(b.y - r - 3).toFixed(1)}" text-anchor="middle">${b.list.length}</text>` : "") +
+          `<title>${String(label)}</title></g>`;
+      }).join("");
+    }
+
+    // 3. incident marks. Solid = the source states coordinates
+    //    (facility-approximate). Hollow = province-level: the record's province
+    //    is known but no coordinate is published, so the mark sits on an
+    //    interior point of the province and is never drawn as a filled pin
+    //    (data/vocabularies/coordinate_precisions.csv).
+    let aParts = "";
+    if (showAcc) {
+      const located = fi.filter(i => i.latitude != null && i.longitude != null);
+      for (const i of located) {
+        const p = GEO.project(i.latitude, i.longitude);
+        const h = markSize(i.fatalities_current);
+        const label = `${i.canonical_title_tr}: ${tf("stage_people", { n: fmt.format(i.fatalities_current) }).replace(/<[^>]+>/g, "")}`;
+        aParts += `<g class="mark-wrap" data-id="${i.public_incident_id}" tabindex="0" role="button" ` +
+          `aria-label="${label.replace(/"/g, "&quot;")}">` +
+          `<circle class="hit" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${Math.max(h * 0.6, 40).toFixed(0)}"></circle>` +
+          carnationMark(p[0], p[1], h, "svg-marker located", "") +
+          `<title>${label}</title></g>`;
+      }
+      if (!shaded) {
+        for (const [code, e] of stats) {
+          if (!e.unlocated.length) continue;
+          const a = GEO.anchors[code];
+          if (!a) continue;
+          const h = markSize(e.unlocatedDeaths);
+          const label = `${provinceName(code)}: ${tf("prov_level_n", { d: fmt.format(e.unlocatedDeaths), n: e.unlocated.length })}`;
+          aParts += `<g class="mark-wrap" data-prov-mark="${code}" tabindex="0" role="button" ` +
+            `aria-label="${label.replace(/"/g, "&quot;")}">` +
+            `<circle class="hit" cx="${a[0].toFixed(1)}" cy="${a[1].toFixed(1)}" r="${Math.max(h * 0.6, 40).toFixed(0)}"></circle>` +
+            carnationMark(a[0], a[1], h, "svg-marker province-level", "") +
+            `<title>${label}</title></g>`;
+        }
+      }
+    }
+
+    el.innerHTML = `<svg viewBox="-12 -12 ${GEO.W + 24} ${GEO.H + 24}" role="group" ` +
+      `aria-label="${t("map_h")}">` + provParts + sParts + aParts + `</svg>`;
+
+    bindMapInteraction(el, stats, byId, fs);
+    renderMapLegend(shaded);
+  }
+
+  // --- interaction: pointer, touch and keyboard ------------------------------
+  let tipPinned = false;
+  function bindMapInteraction(el, stats, byId, fs) {
     const tip = document.getElementById("map-tip");
     const wrapEl = document.getElementById("map-wrap");
     const svgEl = el.querySelector("svg");
-    svgEl.addEventListener("mousemove", ev => {
-      const hit = ev.target.closest(".svg-marker, .svg-site, .tr-prov.has-data");
-      svgEl.querySelectorAll(".is-hover").forEach(n => n.classList.remove("is-hover"));
-      if (!hit) { tip.style.display = "none"; return; }
-      hit.classList.add("is-hover");
-      if (hit.classList.contains("svg-site")) {
-        tip.innerHTML = siteTip(bySiteRef.get(hit.dataset.ref));
-      } else if (hit.classList.contains("tr-prov")) {
-        tip.innerHTML = provinceTipHtml(hit.dataset.prov, stats.get(hit.dataset.prov));
-      } else {
+    const bySiteRef = new Map(sites.map(s => [s.ref, s]));
+
+    const contentFor = hit => {
+      if (hit.dataset.sitekey) {
+        const refs = hit.dataset.sitekey.split("|");
+        return refs.map(r => siteTip(bySiteRef.get(r))).join('<hr style="border:none;border-top:1px solid var(--grid)">');
+      }
+      if (hit.dataset.id) {
         const i = byId.get(hit.dataset.id);
-        tip.innerHTML = `<div class="t-title" lang="tr">${i.canonical_title_tr}</div>` +
+        return `<div class="t-title" lang="tr">${i.canonical_title_tr}</div>` +
           `<div>${sentence(i)}</div>` +
           `<div class="t-meta">${i.public_incident_id} · ${t("loc_approx")}</div>`;
       }
-      tip.style.display = "block";
+      const code = hit.dataset.provMark || hit.dataset.prov;
+      const e = stats.get(code);
+      return provinceTipHtml(code, e) +
+        (hit.dataset.provMark ? `<div class="t-meta">${t("prov_level_note")}</div>` : "");
+    };
+
+    const place = (cx, cy) => {
       const box = wrapEl.getBoundingClientRect();
-      let tx = ev.clientX - box.left + 14, ty = ev.clientY - box.top + 14;
-      if (tx + tip.offsetWidth > box.width) tx -= tip.offsetWidth + 26;
+      let tx = cx - box.left + 14, ty = cy - box.top + 14;
+      if (tx + tip.offsetWidth > box.width) tx = Math.max(4, tx - tip.offsetWidth - 26);
+      if (ty + tip.offsetHeight > box.height) ty = Math.max(4, ty - tip.offsetHeight - 26);
       tip.style.left = tx + "px"; tip.style.top = ty + "px";
+    };
+    const show = (hit, cx, cy) => {
+      svgEl.querySelectorAll(".is-hover").forEach(n => n.classList.remove("is-hover"));
+      hit.classList.add("is-hover");
+      tip.innerHTML = contentFor(hit);
+      tip.style.display = "block";
+      place(cx, cy);
+    };
+    const hide = () => {
+      tipPinned = false;
+      tip.style.display = "none";
+      svgEl.querySelectorAll(".is-hover").forEach(n => n.classList.remove("is-hover"));
+    };
+    const SEL = ".mark-wrap, .svg-site, .tr-prov";
+
+    svgEl.addEventListener("mousemove", ev => {
+      if (tipPinned) return;
+      const hit = ev.target.closest(SEL);
+      if (!hit) { hide(); return; }
+      show(hit, ev.clientX, ev.clientY);
     });
-    svgEl.addEventListener("mouseleave", () => { tip.style.display = "none"; });
+    svgEl.addEventListener("mouseleave", () => { if (!tipPinned) hide(); });
+
+    // Tap / click: pin the tooltip open, and select a province.
+    svgEl.addEventListener("click", ev => {
+      // Selecting a province re-renders the SVG, which detaches ev.target; the
+      // document-level close handler would then fail its containment test and
+      // shut the tooltip we just opened. Keep the event to ourselves.
+      ev.stopPropagation();
+      const hit = ev.target.closest(SEL);
+      if (!hit) { hide(); return; }
+      const box = hit.getBoundingClientRect();
+      tipPinned = true;
+      show(hit, ev.clientX || box.left + box.width / 2, ev.clientY || box.top + box.height / 2);
+      const code = hit.dataset.prov || hit.dataset.provMark;
+      if (code) selectProvince(code);
+    });
+    svgEl.addEventListener("keydown", ev => {
+      if (ev.key !== "Enter" && ev.key !== " ") return;
+      const hit = ev.target.closest(SEL);
+      if (!hit) return;
+      ev.preventDefault();
+      const box = hit.getBoundingClientRect();
+      tipPinned = true;
+      show(hit, box.left + box.width / 2, box.top + box.height / 2);
+      const code = hit.dataset.prov || hit.dataset.provMark;
+      if (code) selectProvince(code);
+    });
+    svgEl.addEventListener("focusin", ev => {
+      const hit = ev.target.closest(SEL);
+      if (!hit || tipPinned) return;
+      const box = hit.getBoundingClientRect();
+      show(hit, box.left + box.width / 2, box.top + box.height / 2);
+    });
+  }
+  document.addEventListener("keydown", ev => {
+    if (ev.key === "Escape") {
+      tipPinned = false;
+      const tip = document.getElementById("map-tip");
+      if (tip) tip.style.display = "none";
+    }
+  });
+  document.addEventListener("click", ev => {
+    if (!ev.target.closest("#map-wrap")) {
+      tipPinned = false;
+      const tip = document.getElementById("map-tip");
+      if (tip) tip.style.display = "none";
+    }
+  });
+
+  // Clicking a province filters the whole page; clicking it again clears.
+  function selectProvince(code) {
+    state.province = state.province === code ? "" : code;
+    const sel = document.getElementById("f-province");
+    if (sel) sel.value = state.province;
+    syncUrl();
+    applyFilters();
   }
 
-  function renderLeaflet(fi, fs) {
-    if (!leafletMap) {
-      document.getElementById("map").style.height = "440px";
-      leafletMap = L.map("map", { scrollWheelZoom: false });
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 12,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(leafletMap);
-    }
-    if (leafletAccidents) leafletMap.removeLayer(leafletAccidents);
-    if (leafletSites) leafletMap.removeLayer(leafletSites);
-    if (leafletProvinces) leafletMap.removeLayer(leafletProvinces);
+  // --- legend ---------------------------------------------------------------
+  function renderMapLegend(shaded) {
+    const swatch = h => `<span class="sw-site" style="background:${h}"></span>`;
+    // True proportional swatches: same scale as the map, so the reader can
+    // measure a mark against them. Area tracks the count; the smallest marks
+    // share a floor so single losses stay visible.
+    const sizeDemo = [1, 50, 150, 400].map(d => {
+      const h = markSize(d);
+      const w = (h * 24) / 36;
+      return `<span class="szitem"><svg width="${w.toFixed(0)}" height="${h.toFixed(0)}" viewBox="0 0 24 36" aria-hidden="true">` +
+        `<path d="${CARN_D}" fill="var(--loss)"></path></svg><i>${fmt.format(d)}</i></span>`;
+    }).join("");
+    document.getElementById("maplegend").innerHTML =
+      (shaded
+        ? `<span>${t("lg_ramp")} <span class="ramp" aria-hidden="true">` +
+          RAMP.map(c => `<span style="background:${c}"></span>`).join("") +
+          `</span> ${breakLabels()}</span>`
+        : `<span class="lg-size">${t("lg_size")} ${sizeDemo}</span>` +
+          `<span><span class="sw-acc carn-mask"></span> ${t("lg_located")}</span>` +
+          `<span><span class="sw-acc carn-mask hollow"></span> ${t("lg_provlevel")}</span>`) +
+      `<span>${swatch("var(--c-coal)")} ${t("lg_coal")}</span>` +
+      `<span>${swatch("var(--c-metal)")} ${t("lg_metal")}</span>` +
+      `<span>${swatch("var(--c-mineral)")} ${t("lg_mineral")}</span>` +
+      `<span>${swatch("var(--site)")} ${t("lg_other")}</span>`;
+  }
 
-    const showAcc = state.layer !== "sites", showSites = state.layer !== "accidents";
-    const accMarkers = [];
-    const carnationSvg = (h, fill) =>
-      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 36" width="${(h * 24) / 36}" height="${h}">` +
-      `<path fill="${fill}" stroke="#fbfbfc" stroke-width="1.2" d="M12 1.5 L14.4 5.2 L17.8 3.4 L18.4 7.3 L22.3 8 L20.5 11.6 C18.8 15 15.6 16.8 12 16.8 C8.4 16.8 5.2 15 3.5 11.6 L1.7 8 L5.6 7.3 L6.2 3.4 L9.6 5.2 Z M9 16.3 L15 16.3 L13.3 22.3 L10.7 22.3 Z M11.2 21.8 L12.8 21.8 L12.8 34.5 L11.2 34.5 Z M12.8 27.5 C15.4 26.8 17 24.8 17.5 22.6 C14.9 23.3 13.3 25.3 12.8 27.5 Z"></path></svg>`;
-    if (showAcc) {
-      for (const i of fi.filter(i => i.latitude != null && i.longitude != null)) {
-        const h = Math.min(Math.round(16 + Math.sqrt(i.fatalities_current || 1) * 4.4), 54);
-        const w = Math.round((h * 24) / 36);
-        const m = L.marker([i.latitude, i.longitude], {
-          icon: L.divIcon({ className: "carnation-marker", html: carnationSvg(h, "#c22f2f"),
-                            iconSize: [w, h], iconAnchor: [w / 2, h / 2] }),
-        });
-        const cites = (D.citations[i.public_incident_id] || [])
-          .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}: ${c.title}</a>`)
-          .join("<br>");
-        m.bindPopup(
-          `<b lang="tr">${i.canonical_title_tr}</b><br>${sentence(i)}<br>` +
-          `<span class="meta">${i.public_incident_id} · ${t("loc_approx")}</span>` +
-          (cites ? `<hr style="border:none;border-top:1px solid #ddd">${cites}` : ""));
-        accMarkers.push(m);
+  // ---- Small multiples: where the loss sat, era by era ----------------------
+  // Filtered counts only, no new metric. Static, so it needs no animation and
+  // reads the same under prefers-reduced-motion.
+  const ERA_RANGE = k => [
+    k === 0 ? minY : [0, 2000, 2010, 2020][k],
+    k === 3 ? maxY : [1999, 2009, 2019, 9999][k],
+  ];
+  function renderSmallMultiples() {
+    const host = document.getElementById("smallmults");
+    if (!host) return;
+    const eraMax = (() => {
+      let m = 1;
+      for (let k = 0; k < 4; k++) {
+        const per = new Map();
+        for (const i of incidents) {
+          if (eraOf(i) !== k || !i.province_code) continue;
+          per.set(i.province_code, (per.get(i.province_code) || 0) + (i.fatalities_current || 0));
+        }
+        for (const v of per.values()) if (v > m) m = v;
       }
-    }
-    // Province choropleth: every record shades its province, located or not.
-    const stats = provinceStats(fi, fs);
-    const provPolys = [];
-    if (showAcc) {
-      for (const prov of (D.provinces_geo || [])) {
-        const e = stats.get(prov.code);
-        const fill = e ? rampColor(e.deaths) : null;
-        const poly = L.polygon(prov.rings, {
-          color: "#9aa0a6", weight: 0.6,
-          fillColor: fill || "#e8eaed", fillOpacity: fill ? 0.55 : 0.15,
-          interactive: !!e,
-        });
-        if (e) poly.bindPopup(provinceTipHtml(prov.code, e));
-        provPolys.push(poly);
+      return m;
+    })();
+    host.innerHTML = [0, 1, 2, 3].map(k => {
+      const list = incidents.filter(i => eraOf(i) === k);
+      const deaths = list.reduce((a, i) => a + (i.fatalities_current || 0), 0);
+      const per = new Map();
+      for (const i of list) {
+        if (!i.province_code) continue;
+        per.set(i.province_code, (per.get(i.province_code) || 0) + (i.fatalities_current || 0));
       }
-    }
-    const siteMarkers = [];
-    if (showSites) {
-      for (const s of fs.filter(s => isOperational(s) && s.latitude != null && s.longitude != null)) {
-        const m = L.marker([s.latitude, s.longitude], {
-          icon: L.divIcon({ className: "site-diamond",
-                            html: `<div style="background:${GROUP_HEX[groupOf(s)]}"></div>`,
-                            iconSize: [9, 9], iconAnchor: [4.5, 4.5] }),
-          keyboard: false,
-        });
-        m.bindPopup(siteTip(s) +
-          (s.source_url ? `<br><a href="${s.source_url}" target="_blank" rel="noopener">${t("wikidata_src")}</a>` : ""));
-        siteMarkers.push(m);
-      }
-    }
-    leafletProvinces = L.featureGroup(provPolys).addTo(leafletMap);
-    leafletSites = L.featureGroup(siteMarkers).addTo(leafletMap);
-    leafletAccidents = L.featureGroup(accMarkers).addTo(leafletMap);
-    const all = L.featureGroup([...accMarkers, ...siteMarkers, ...provPolys]);
-    if (accMarkers.length + siteMarkers.length + provPolys.length) {
-      leafletMap.fitBounds(all.getBounds().pad(0.1));
-    } else { leafletMap.setView([39.0, 35.2], 6); }
+      const provs = Object.keys(GEO.pathsSimple).map(code =>
+        `<path class="sm-prov${per.has(code) ? " on" : ""}" d="${GEO.pathsSimple[code]}"></path>`).join("");
+      const marks = [...per.entries()].map(([code, d]) => {
+        const a = GEO.anchors[code];
+        if (!a) return "";
+        const h = Math.max(26, 96 * Math.sqrt(d / eraMax));
+        return carnationMark(a[0], a[1], h, "sm-mark", "");
+      }).join("");
+      const [y0, y1] = ERA_RANGE(k);
+      const sel = state.from === y0 && state.to === y1 ? " is-sel" : "";
+      return `<button type="button" class="sm-item${sel}" data-era="${k}">` +
+        `<svg viewBox="0 0 ${GEO.W} ${GEO.H}" aria-hidden="true">${provs}${marks}</svg>` +
+        `<span class="sm-label">${t("eras")[k]}</span>` +
+        `<span class="sm-n">${tf("sm_people", { n: fmt.format(deaths) })}</span></button>`;
+    }).join("");
+    host.querySelectorAll(".sm-item").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const [y0, y1] = ERA_RANGE(+btn.dataset.era);
+        const already = state.from === y0 && state.to === y1;
+        state.from = already ? minY : y0;
+        state.to = already ? maxY : y1;
+        document.getElementById("f-from").value = String(state.from);
+        document.getElementById("f-to").value = String(state.to);
+        syncUrl();
+        applyFilters();
+      });
+    });
   }
 
   // ---- Chart (always the full register) --------------------------------------
@@ -1344,9 +1826,65 @@
     }).join("") || `<p class="caption">${t("mech_none")}</p>`;
   }
 
+  // ---- Table sorting -----------------------------------------------------------
+  const sortState = { records: { key: "date", dir: 1 }, sites: { key: "site", dir: 1 } };
+  const RECORD_SORTERS = {
+    id: i => i.public_incident_id,
+    date: i => i.incident_start_datetime || "",
+    prov: i => provinceName(i.province_code),
+    what: i => i.canonical_title_tr || "",
+    people: i => i.fatalities_current || 0,
+    mech: i => mechanismsOf(i.public_incident_id).map(mechLabel).join(", "),
+  };
+  const SITE_SORTERS = {
+    site: s => s.name || "",
+    type: s => typeLabel(s),
+    comm: s => commodityText(s) || "",
+    prov: s => (s.province_code ? provinceName(s.province_code) : ""),
+    op: s => (s.organizations || []).map(o => o.name).join(", "),
+    country: s => (s.organizations || []).map(o => o.country_label).filter(Boolean).join(", "),
+    status: s => statusLabel(s),
+  };
+  function sortRows(rows, sorters, st) {
+    const f = sorters[st.key];
+    if (!f) return rows;
+    const loc = LANG === "tr" ? "tr" : "en";
+    return rows.slice().sort((a, b) => {
+      const va = f(a), vb = f(b);
+      if (typeof va === "number" && typeof vb === "number") return (va - vb) * st.dir;
+      return String(va).localeCompare(String(vb), loc) * st.dir;
+    });
+  }
+  function markSorted(headRowId, st) {
+    document.querySelectorAll(`#${headRowId} th[data-sort]`).forEach(th => {
+      if (th.dataset.sort === st.key) {
+        th.setAttribute("aria-sort", st.dir === 1 ? "ascending" : "descending");
+        th.insertAdjacentHTML("beforeend", `<span class="arr">${st.dir === 1 ? "\u25b2" : "\u25bc"}</span>`);
+      } else {
+        th.removeAttribute("aria-sort");
+      }
+    });
+  }
+  // Delegated from the stable <table>, because applyStatic() rewrites the
+  // header row's innerHTML on every render.
+  function bindSort(tableId, which) {
+    document.getElementById(tableId).addEventListener("click", ev => {
+      const th = ev.target.closest("th[data-sort]");
+      if (!th) return;
+      const st = sortState[which];
+      if (st.key === th.dataset.sort) st.dir *= -1;
+      else { st.key = th.dataset.sort; st.dir = 1; }
+      applyStatic();   // rebuilds both header rows and their sort markers
+      syncToggles();
+      applyFilters();  // re-renders the rows in the new order
+    });
+  }
+  bindSort("records", "records");
+  bindSort("sites-table", "sites");
+
   // ---- Sites table -----------------------------------------------------------
   function renderSites(fs) {
-    document.querySelector("#sites-table tbody").innerHTML = fs.map(s => {
+    document.querySelector("#sites-table tbody").innerHTML = sortRows(fs, SITE_SORTERS, sortState.sites).map(s => {
       const orgs = (s.organizations || []);
       const orgNames = orgs.map(o =>
         `<span lang="tr">${o.name}</span> <span class="pill">${o.role === "owner" ? t("owner") : t("operator")} · ${o.assertion_status}</span>`).join("<br>") ||
@@ -1368,12 +1906,12 @@
 
   // ---- Records table -------------------------------------------------------------
   function renderRecords(fi) {
-    document.querySelector("#records tbody").innerHTML = fi.map(i => {
+    document.querySelector("#records tbody").innerHTML = sortRows(fi, RECORD_SORTERS, sortState.records).map(i => {
       const cites = (D.citations[i.public_incident_id] || [])
         .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}</a>`)
         .filter((v, k, arr) => arr.indexOf(v) === k).join(", ");
       const mech = mechanismsOf(i.public_incident_id).map(mechLabel).join(", ");
-      return `<tr>
+      return `<tr class="rec-row" data-id="${i.public_incident_id}" tabindex="0">
         <td>${i.public_incident_id}</td>
         <td>${fmtDate(i)}</td>
         <td>${provinceName(i.province_code)}</td>
@@ -1451,6 +1989,59 @@
     download(`mining-accidents-${stamp()}.json`, JSON.stringify(payload, null, 2), "application/json");
   });
 
+  // ---- Record detail -------------------------------------------------------
+  // Sources travel with the values: the panel shows every citation and the
+  // assertion status of each classification, per the evidence-flow rule.
+  function openDetail(id) {
+    const i = incidents.find(x => x.public_incident_id === id);
+    if (!i) return;
+    const cites = (D.citations[id] || []);
+    const cls = (D.classifications[id] || []);
+    const row = (label, value) => value
+      ? `<div class="d-sec"><b>${label}:</b> ${value}</div>` : "";
+    const body = document.getElementById("detail-body");
+    body.innerHTML =
+      `<h3 lang="tr">${i.canonical_title_tr}</h3>` +
+      `<p class="d-meta">${sentence(i)}</p>` +
+      row(t("rh_id"), i.public_incident_id) +
+      row(t("rh_date"), fmtDate(i) + (i.date_precision ? ` <span class="pill">${i.date_precision}</span>` : "")) +
+      row(t("rh_prov"), provinceName(i.province_code)) +
+      row(t("rh_people"), fmt.format(i.fatalities_current) +
+        (i.casualty_status === "disputed" ? ` <span class="pill pill-dispute">${t("pill_disputed")}</span>` : "")) +
+      (i.injuries_current != null ? row(t("d_injured"), fmt.format(i.injuries_current)) : "") +
+      row(t("d_location"), i.latitude != null
+        ? `${i.latitude.toFixed(4)}, ${i.longitude.toFixed(4)} <span class="pill">${i.coordinate_precision || ""}</span>`
+        : t("d_no_coords")) +
+      (cls.length ? `<div class="d-sec"><b>${t("d_class")}:</b><ul>` + cls.map(c =>
+        `<li>${LANG === "tr" ? (c.label_tr || c.label_en) : (c.label_en || c.label_tr)} ` +
+        `<span class="pill">${c.assertion_status}</span></li>`).join("") + `</ul></div>` : "") +
+      (cites.length ? `<div class="d-sec"><b>${t("rh_sources")}:</b><ul>` + cites.map(c =>
+        `<li><a href="${c.url}" target="_blank" rel="noopener">${c.organization}: ${c.title}</a></li>`
+      ).join("") + `</ul></div>` : "") +
+      `<div class="d-sec t-meta">${t("d_traceable")}</div>`;
+    const el = document.getElementById("detail");
+    el.hidden = false;
+    el.querySelector("#detail-close").focus();
+  }
+  function closeDetail() {
+    const el = document.getElementById("detail");
+    if (el) el.hidden = true;
+  }
+  document.getElementById("detail-close").addEventListener("click", closeDetail);
+  document.addEventListener("keydown", ev => { if (ev.key === "Escape") closeDetail(); });
+  // Delegated from the stable <table>: row bodies are re-rendered constantly.
+  document.getElementById("records").addEventListener("click", ev => {
+    const tr = ev.target.closest("tr.rec-row");
+    if (!tr || ev.target.closest("a")) return;   // let source links work
+    openDetail(tr.dataset.id);
+  });
+  document.getElementById("records").addEventListener("keydown", ev => {
+    const tr = ev.target.closest("tr.rec-row");
+    if (!tr || ev.key !== "Enter") return;
+    ev.preventDefault();
+    openDetail(tr.dataset.id);
+  });
+
   // ---- Footer ----------------------------------------------------------------------
   function renderFooter() {
     document.getElementById("foot").innerHTML =
@@ -1467,6 +2058,8 @@
   // ---- boot / re-render -------------------------------------------------------
   function renderAll() {
     applyStatic();
+    syncToggles();
+    setupCaptions();
     renderOnThisDay();
     buildStory();
     renderTiles();
@@ -1477,6 +2070,7 @@
     renderFooter();
     applyFilters();
   }
+  hydrateFromUrl();
   renderAll();
 })();
 </script>
