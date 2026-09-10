@@ -1,0 +1,13 @@
+{
+  "name": "mining-accidents-dashboard-checks",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/dashboard.test.cjs"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

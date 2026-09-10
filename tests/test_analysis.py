@@ -12,7 +12,7 @@ def _add_isig_year(conn: sqlite3.Connection, year: int, deaths: int) -> None:
     conn.execute(
         "INSERT INTO aggregate_occupational_statistics (reporting_institution, period_start, "
         "period_end, numerator, unit, comparability_notes) VALUES (?, ?, ?, ?, 'deaths', 'TEST')",
-        ("TEST kurum", f"{year}-01-01", f"{year}-12-31", float(deaths)),
+        (analysis.ISIG_INSTITUTION, f"{year}-01-01", f"{year}-12-31", float(deaths)),
     )
 
 
@@ -46,6 +46,18 @@ def test_coverage_gap_never_negative(conn: sqlite3.Connection) -> None:
     year = gap["years"][0]
     assert year["gap"] == 0
     assert year["coverage_pct"] == 100.0
+
+
+def test_dashboard_coverage_uses_export_snapshot(conn: sqlite3.Connection) -> None:
+    make_publishable_incident(conn)  # newer working DB record, absent from export
+    _add_isig_year(conn, 2099, 40)
+    public = [{"incident_start_datetime": "2099-01-01", "fatalities_current": 2}]
+    gap = analysis.coverage_gap(conn, public_incidents=public)
+    assert gap["years"][0]["register_deaths"] == 2
+    assert gap["total_gap"] == 38
+    empty = analysis.coverage_gap(conn, public_incidents=[])
+    assert empty["total_recorded"] == 0
+    assert empty["total_gap"] == 40
 
 
 def test_projection_requires_enough_years(conn: sqlite3.Connection) -> None:

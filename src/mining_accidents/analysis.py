@@ -15,6 +15,7 @@ import csv
 import math
 import sqlite3
 import statistics
+from collections.abc import Sequence
 from pathlib import Path
 
 POLICY_EVENTS_CSV = Path("data/vocabularies/policy_events.csv")
@@ -34,14 +35,53 @@ PROJECTION_METHOD = (
 )
 
 
-def _isig_series(conn: sqlite3.Connection) -> dict[int, int]:
-    return {
-        int(row["period_start"][:4]): int(row["numerator"])
-        for row in conn.execute(
-            "SELECT period_start, numerator FROM aggregate_occupational_statistics "
-            "WHERE unit = 'deaths' ORDER BY period_start"
+ISIG_INSTITUTION = "İSİG Meclisi (via tr.wikipedia list article)"
+
+
+def isig_aggregates(conn: sqlite3.Connection) -> list[dict[str, object]]:
+    """Read the explicitly identified legacy seed series; reject ambiguous years.
+
+    Only full calendar-year death counts with the original unclassified scope
+    are eligible. Other institutions, sectors and partial periods must not be
+    silently mixed into this series. A future direct-source series needs its
+    own explicit editorial selection, not a string-prefix match.
+    """
+    rows = conn.execute(
+        "SELECT period_start, period_end, numerator, reporting_institution, comparability_notes "
+        "FROM aggregate_occupational_statistics WHERE unit = 'deaths' "
+        "AND reporting_institution = ? AND classification_system IS NULL "
+        "AND classification_code IS NULL AND classification_version IS NULL "
+        "ORDER BY period_start, aggregate_id",
+        (ISIG_INSTITUTION,),
+    )
+    result = []
+    years = set()
+    for row in rows:
+        start, end = row["period_start"], row["period_end"]
+        if not start or not end:
+            continue
+        year = int(start[:4])
+        if start != f"{year}-01-01" or end != f"{year}-12-31":
+            continue
+        if year in years:
+            raise ValueError(f"Multiple selected İSİG observations for {year}; review required")
+        years.add(year)
+        count = row["numerator"]
+        if count is None or count < 0 or not float(count).is_integer():
+            raise ValueError(f"Invalid annual death count for {year}")
+        result.append(
+            {
+                "year": year,
+                "deaths": int(count),
+                "institution": row["reporting_institution"],
+                "comparability_notes": row["comparability_notes"],
+            }
         )
-    }
+    return result
+
+
+def _isig_series(conn: sqlite3.Connection) -> dict[int, int]:
+    return {row["year"]: row["deaths"] for row in isig_aggregates(conn)}
 
 
 def _register_deaths_by_year(conn: sqlite3.Connection) -> dict[int, int]:
@@ -61,14 +101,29 @@ def _register_deaths_by_year(conn: sqlite3.Connection) -> dict[int, int]:
     }
 
 
-def coverage_gap(conn: sqlite3.Connection) -> dict[str, object]:
+def coverage_gap(
+    conn: sqlite3.Connection,
+    *,
+    public_incidents: Sequence[dict[str, object]] | None = None,
+) -> dict[str, object]:
     """Per-year undercount: İSİG sector totals vs register-recorded deaths.
 
     Only years present in the İSİG series are compared; the caveat text is
     part of the result and must be displayed with it.
     """
     isig = _isig_series(conn)
-    register = _register_deaths_by_year(conn)
+    if public_incidents is None:
+        register = _register_deaths_by_year(conn)
+    else:
+        # The dashboard must compare the exact export it displays, even when
+        # the working database has newer records or publication blockers.
+        register: dict[int, int] = {}
+        for incident in public_incidents:
+            date = incident.get("incident_start_datetime")
+            deaths = incident.get("fatalities_current")
+            if date and deaths is not None:
+                year = int(str(date)[:4])
+                register[year] = register.get(year, 0) + int(deaths)
     years = []
     for year in sorted(isig):
         total = isig[year]

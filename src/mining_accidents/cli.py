@@ -267,16 +267,33 @@ def build_artifact_cmd(
     output: Path = typer.Option(
         Path("dashboard/artifact.html"), help="Self-contained artifact output."
     ),
+    from_data_js: Path | None = typer.Option(
+        None, help="Explicitly reuse a generated data.js for a template-only build."
+    ),
 ) -> None:
     """Build the self-contained artifact page from dashboard/index.html."""
     from mining_accidents import artifact as artifact_mod
 
-    conn = database.get_connection(db_path)
+    conn = None if from_data_js is not None else database.get_connection(db_path)
     try:
-        path = artifact_mod.build_artifact(conn, public_dir, output_path=output)
+        path = artifact_mod.build_artifact(
+            conn, public_dir, output_path=output, data_js_path=from_data_js
+        )
     finally:
-        conn.close()
+        if conn is not None:
+            conn.close()
     console.print(f"[green]Artifact written:[/green] {path}")
+
+
+@app.command("refresh-research-data")
+def refresh_research_data(
+    public_dir: Path = typer.Option(Path("data/public")),
+    data_js: Path = typer.Option(Path("dashboard/data.js")),
+) -> None:
+    """Verify public files and refresh presentation metadata without a working DB."""
+    from mining_accidents.research import refresh_snapshot
+
+    console.print(f"Updated presentation snapshot: {refresh_snapshot(public_dir, data_js)}")
 
 
 @app.command("import-registry")

@@ -28,3 +28,4 @@ build/
 .ruff_cache/
 .coverage
 htmlcov/
+node_modules/

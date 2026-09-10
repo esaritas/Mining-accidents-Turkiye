@@ -5,7 +5,7 @@ PYTHON ?= python3
 DB_PATH ?= database/mining_accidents.sqlite
 EXAMPLE_DB ?= database/staging_example.sqlite
 
-.PHONY: install db import-example ingest ingest-sites packets qc export dashboard test lint clean
+.PHONY: install db import-example ingest ingest-sites packets qc export dashboard artifact test test-dashboard lint clean
 
 install:
 	$(PYTHON) -m pip install -e ".[dev]"
@@ -45,6 +45,14 @@ ingest-sites:
 dashboard:
 	$(PYTHON) -m mining_accidents.cli build-dashboard --db-path $(DB_PATH)
 	$(PYTHON) -m mining_accidents.cli build-artifact --db-path $(DB_PATH)
+
+# Template-only build: explicitly reuse the committed public payload, no DB needed.
+artifact:
+	$(PYTHON) -m mining_accidents.cli build-artifact --from-data-js dashboard/data.js
+
+test-dashboard:
+	npm ci --ignore-scripts
+	npm test
 
 test:
 	$(PYTHON) -m pytest --cov=mining_accidents --cov-report=term-missing

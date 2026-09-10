@@ -42,6 +42,18 @@ make test      # pytest with coverage
 make lint      # ruff check + format check
 ```
 
+To work on the dashboard from a fresh clone, use its committed public payload;
+the populated working database is intentionally not committed:
+
+```bash
+make artifact        # template-only rebuild; explicitly reads dashboard/data.js
+make test-dashboard  # Node.js >= 20; installs locked test dependencies
+```
+
+For data changes, use the existing review pipeline, then `make export` and
+`make dashboard`. Database builds fail on missing files or database errors;
+they never silently substitute an older dashboard payload.
+
 ## Command reference
 
 | Command | What it does |
@@ -49,6 +61,8 @@ make lint      # ruff check + format check
 | `make db` | Apply migrations; regenerate `database/schema.sql` snapshot |
 | `make ingest REVIEWER="<name>"` | Fetch the Wikidata/Wikipedia seed through the pipeline (claims → bulk decisions → publication for complete records) |
 | `make dashboard` | Regenerate `dashboard/data.js` from the public export |
+| `make artifact` | Rebuild the self-contained page from the template and committed `data.js`, without a database |
+| `make test-dashboard` | Run dashboard interaction regressions using synthetic data (Node.js >= 20) |
 | `make import-example` | Import clearly-labeled synthetic `TEST-` demo data into a separate staging DB |
 | `make qc` | Run quality checks → `data/interim/quality_report.json` (non-zero exit on critical) |
 | `make export` | Build public export → `data/public/` (aborted by any critical QC finding) |
@@ -116,16 +130,19 @@ empty `PILOT-*` slot templates.
   ([`docs/privacy_and_persons_protocol.md`](docs/privacy_and_persons_protocol.md)).
 - **Respectful framing:** no leaderboards, no gamification, anywhere.
 
-## Next stage (not in this build)
+## Further evidence review
 
 1. **Assess the TBMM parliamentary research reports source first**
    (registry key `tbmm`): Tier-1 public record, long-form, low legal risk,
    rich in investigation findings and recommendations. Confirm access terms
    per [`docs/source_assessment_protocol.md`](docs/source_assessment_protocol.md)
    before writing any fetch code.
-2. Resolve open questions #1 (licence) and #9 (second reviewer) before any
-   real data enters the pipeline.
+2. Resolve open questions #1 (licence) and #9 (second reviewer); the seed
+   dataset is already present and these governance decisions remain open.
 3. Populate the twelve pilot review packets once source documents exist.
+
+See [`docs/repository_review.md`](docs/repository_review.md) for the latest
+technical review, applied fixes, validation, and remaining recommendations.
 
 ## Licence and citation
 
