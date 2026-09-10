@@ -12,7 +12,7 @@ def _add_isig_year(conn: sqlite3.Connection, year: int, deaths: int) -> None:
     conn.execute(
         "INSERT INTO aggregate_occupational_statistics (reporting_institution, period_start, "
         "period_end, numerator, unit, comparability_notes) VALUES (?, ?, ?, ?, 'deaths', 'TEST')",
-        ("TEST kurum", f"{year}-01-01", f"{year}-12-31", float(deaths)),
+        (analysis.ISIG_INSTITUTION, f"{year}-01-01", f"{year}-12-31", float(deaths)),
     )
 
 

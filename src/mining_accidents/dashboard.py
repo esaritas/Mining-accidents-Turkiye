@@ -14,7 +14,7 @@ import json
 import sqlite3
 from pathlib import Path
 
-from mining_accidents import analysis, vocabularies
+from mining_accidents import analysis, research, vocabularies
 
 DEFAULT_PUBLIC_DIR = Path("data/public")
 DEFAULT_OUTPUT = Path("dashboard/data.js")
@@ -36,6 +36,10 @@ def _citations(public_dir: Path) -> dict[str, list[dict[str, str]]]:
                 "organization": row["source_organization"],
                 "title": row["title"],
                 "url": row["url"],
+                "field_name": row["field_name"],
+                "source_tier": row["source_tier"],
+                "publication_date": row["publication_date"],
+                "retrieved_at": row["retrieved_at"],
             }
             bucket = citations.setdefault(row["public_incident_id"], [])
             if entry not in bucket:
@@ -63,19 +67,7 @@ def _classifications(public_dir: Path) -> dict[str, list[dict[str, str]]]:
 
 def _aggregates(conn: sqlite3.Connection) -> list[dict[str, object]]:
     """İSİG context series (aggregate table). Comparability notes travel along."""
-    return [
-        {
-            "year": int(row["period_start"][:4]),
-            "deaths": int(row["numerator"]),
-            "institution": row["reporting_institution"],
-            "comparability_notes": row["comparability_notes"],
-        }
-        for row in conn.execute(
-            "SELECT period_start, numerator, reporting_institution, comparability_notes "
-            "FROM aggregate_occupational_statistics WHERE unit = 'deaths' "
-            "ORDER BY period_start"
-        )
-    ]
+    return analysis.isig_aggregates(conn)
 
 
 def _sites(public_dir: Path) -> list[dict[str, object]]:
@@ -182,7 +174,7 @@ def _map_vector(
     located, by_province = [], {}
     for i in incidents:
         deaths = i.get("fatalities_current") or 0
-        if i.get("latitude") is not None and i.get("longitude") is not None:
+        if research.has_facility_location(i):
             x, y = px(i["longitude"], i["latitude"])
             located.append(
                 {
@@ -212,7 +204,7 @@ def _map_vector(
         )
     site_marks = []
     for site in sites or []:
-        if site.get("latitude") is None or site.get("longitude") is None:
+        if not research.has_facility_location(site):
             continue
         x, y = px(float(site["longitude"]), float(site["latitude"]))
         site_marks.append({"x": x, "y": y, "ref": site["ref"]})
@@ -279,6 +271,7 @@ def build_payload(
 ) -> dict[str, object]:
     """The full dashboard payload (shared by data.js and the artifact build)."""
     public_dir = Path(public_dir)
+    research.verify_public_export(public_dir)
     incidents = json.loads((public_dir / "incidents.json").read_text(encoding="utf-8"))
     manifest = json.loads((public_dir / "export_manifest.json").read_text(encoding="utf-8"))
     provinces = {e.code: e.label_tr for e in vocabularies.load_vocabulary("turkey_admin_areas")}
@@ -298,7 +291,7 @@ def build_payload(
         "province_centroids": _province_centroids(),
         "provinces_geo": _provinces_geo(),
         "map_vector": _map_vector(incidents, _province_centroids(), sites),
-        "coverage_gap": analysis.coverage_gap(conn, public_incidents=incidents),
+        "annual_context": research.annual_context(incidents, _aggregates(conn)),
         "policy_events": analysis.policy_events(),
         "rate_context": analysis.rate_context(conn),
         "pipeline": _pipeline_status(conn),

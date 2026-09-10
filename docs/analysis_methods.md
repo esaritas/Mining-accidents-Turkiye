@@ -6,17 +6,17 @@ Methods behind the derived findings shown on the dashboard
 None is a causal claim; raw counts are never labeled "risk"; rates appear
 only with a documented exposure denominator.
 
-## 1. Recording undercount (coverage gap)
+## 1. Parallel annual context (no inferred coverage gap)
 
 For each year in the İSİG Meclisi series (2012–), compare the sector-wide
 miner work-death total against deaths in this register's published incident
 records. **These are different measures** — İSİG counts all miner work
 deaths from all causes; the register counts deaths in publicly recorded,
-reviewed incidents — so the gap is not an error estimate: it is the loss
-that never became a publicly recorded incident. Register deaths are capped
-at the İSİG total per year for the aggregate coverage figure (an incident's
-deaths can span reporting conventions). The caveat text ships with the data
-and must be displayed with it.
+reviewed incidents. Their difference is neither an error estimate nor a count
+of deaths missing from this register. The dashboard now shows separate aligned
+panels, without subtraction or capping. Missing observations are not zeros.
+The legacy `coverage_gap()` helper is retained for compatibility but is not
+published in the dashboard payload or used for the visual narrative.
 
 *Why not incident-level ML/prediction:* the register currently holds ~50
 notability-biased records; any model trained on it would predict newsworthiness,
@@ -42,7 +42,7 @@ Official Gazette 2014-09-11), and the ratification of ILO Convention C176
 time series. The chart makes no before/after causal claim; readers can see
 what the series did around each event and draw their own questions.
 
-## 4. Cost-of-inaction baseline (the only forward-looking figure)
+## 4. Legacy continuation calculation (not displayed)
 
 `projection()` takes the mean of the most recent İSİG years (default 8) and
 a ~90% interval whose dispersion is never narrower than Poisson
@@ -50,7 +50,8 @@ a ~90% interval whose dispersion is never narrower than Poisson
 *if nothing changes, roughly how many miners should Türkiye expect to lose
 next year?* It is a naive continuation, not a forecast model and not fate —
 displayed with the sentence that every one of these deaths is preventable.
-Not suitable for any operational decision.
+Not suitable for any operational decision. This legacy helper is not shown on
+the redesigned dashboard; publication remains subject to editorial review.
 
 ## Open questions
 

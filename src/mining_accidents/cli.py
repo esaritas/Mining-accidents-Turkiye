@@ -285,6 +285,17 @@ def build_artifact_cmd(
     console.print(f"[green]Artifact written:[/green] {path}")
 
 
+@app.command("refresh-research-data")
+def refresh_research_data(
+    public_dir: Path = typer.Option(Path("data/public")),
+    data_js: Path = typer.Option(Path("dashboard/data.js")),
+) -> None:
+    """Verify public files and refresh presentation metadata without a working DB."""
+    from mining_accidents.research import refresh_snapshot
+
+    console.print(f"Updated presentation snapshot: {refresh_snapshot(public_dir, data_js)}")
+
+
 @app.command("import-registry")
 def import_registry(
     db_path: Path = DB_OPTION,

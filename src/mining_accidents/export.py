@@ -680,6 +680,7 @@ def build_public_export(
             name: _sha256(output_dir / name)
             for name, _ in [
                 *resources,
+                ("incidents.json", []),
                 ("datapackage.json", []),
                 ("validation_report.json", []),
             ]
