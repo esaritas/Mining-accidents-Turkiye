@@ -6,6 +6,70 @@ const fs = require('node:fs');
 const { JSDOM, VirtualConsole } = require('jsdom');
 
 const template = fs.readFileSync('dashboard/index.html', 'utf8');
+
+test('sites and commodity/type keys are visible by default, including contextual sites', async t => {
+  const data = fixture();
+  data.sites[0] = { ...data.sites[0], type: 'mine_unspecified', latitude: 38.5,
+    longitude: 30.5, coordinate_precision: 'facility_approximate' };
+  data.sites[1] = { ...data.sites[1], type: 'archaeological_quarry', latitude: 38.5,
+    longitude: 32.5, coordinate_precision: 'facility_approximate' };
+  const page = boot(t, { data });
+  assert.equal(page.document.querySelector('[data-layer="both"]').getAttribute('aria-pressed'), 'true');
+  assert.equal(page.document.querySelectorAll('#map [data-sitekey]').length, 2);
+  assert.match(page.document.getElementById('maplegend').textContent, /coal and lignite/);
+  page.change('f-site-type', 'archaeological_quarry');
+  assert.equal(page.document.querySelectorAll('#map [data-sitekey]').length, 1);
+  const output = JSON.parse(await page.download('dl-json'));
+  assert.equal(output.sites.length, 1);
+  assert.equal(output.incidents.length, 2, 'site type must not remove incident records');
+  assert.equal(new URL(page.window.location.href).searchParams.get('siteType'), 'archaeological_quarry');
+});
+
+test('coarse sites are grouped, unknown sites remain listed, and sites-only has no death legend', t => {
+  const data = fixture();
+  data.sites[1].province_code = '';
+  const page = boot(t, { data });
+  assert.equal(page.document.querySelectorAll('#map .site-group').length, 1);
+  assert.match(page.document.getElementById('site-coverage').textContent,
+    /0 with facility-level coordinates, 1 grouped by province, 1 without a usable map location/);
+  page.document.querySelector('[data-layer="sites"]').click();
+  assert.equal(page.document.querySelectorAll('#map .research-circle').length, 0);
+  assert.doesNotMatch(page.document.getElementById('maplegend').textContent, /people lost:/);
+  assert.match(page.document.querySelector('#sites-table tbody').textContent, /TEST saha B/);
+});
+
+test('timeline exposes small incidents and policies by year and can focus the map', t => {
+  const data = fixture();
+  data.policy_events = [{ date: '2099-06-01', kind: 'law', label_en: 'TEST policy',
+    label_tr: 'TEST politika', source_url: 'https://example.test/TEST-policy' }];
+  const page = boot(t, { data });
+  page.document.querySelector('[data-year="2099"]').dispatchEvent(new page.window.MouseEvent('click', { bubbles: true }));
+  const detail = page.document.getElementById('year-detail');
+  assert.match(detail.textContent, /TEST olay B/);
+  assert.match(detail.textContent, /TEST policy/);
+  detail.querySelector('[data-year-record]').click();
+  assert.equal(page.document.getElementById('detail').hidden, false);
+  page.document.getElementById('detail-close').click();
+  // The DOM harness does not implement scrolling; navigation remains optional.
+  page.document.getElementById('timeline-focus-map').click();
+  assert.equal(page.document.getElementById('f-from').value, '2099');
+  assert.equal(page.document.getElementById('f-to').value, '2099');
+  assert.equal(page.document.querySelectorAll('#records tbody tr').length, 1);
+  assert.equal(page.document.querySelectorAll('#chart .year-hit').length, 2,
+    'timeline keeps the full chronology after a map filter');
+});
+
+test('timeline keeps uncertain tolls visible and switches language with its selection', t => {
+  const data = fixture();
+  data.incidents[1].casualty_status = 'disputed';
+  const page = boot(t, { data });
+  assert.match(page.document.getElementById('timeline-events').textContent, /disputed/i);
+  page.document.querySelector('[data-year="2099"]').dispatchEvent(new page.window.MouseEvent('click', { bubbles: true }));
+  page.document.querySelector('[data-lang="tr"]').click();
+  assert.match(page.document.getElementById('year-detail').textContent, /2099/);
+  assert.match(page.document.getElementById('timeline-events').textContent, /tartışmalı/i);
+  assert.equal(page.document.querySelector('#sector-chart').closest('details').open, false);
+});
 function fixture() {
   const incidents = ['A', 'B'].map((id, n) => ({
     public_incident_id: `TEST-${id}`, canonical_title_tr: `TEST olay ${id}`,
