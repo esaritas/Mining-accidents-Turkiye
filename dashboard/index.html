@@ -724,7 +724,21 @@
     },
   };
 
-  let LANG = localStorage.getItem("ma_lang")
+  // Source fields are plain text, never trusted HTML or executable URLs.
+  const html = value => String(value ?? "").replace(/[&<>"']/g,
+    ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch]);
+  const sourceLink = (url, label) => {
+    try {
+      const parsed = new URL(url);
+      if (["https:", "http:"].includes(parsed.protocol)) {
+        return `<a href="${html(parsed.href)}" target="_blank" rel="noopener noreferrer">${html(label)}</a>`;
+      }
+    } catch (e) { /* Invalid or unsupported source URLs remain plain text. */ }
+    return html(label);
+  };
+  let savedLanguage;
+  try { savedLanguage = localStorage.getItem("ma_lang"); } catch (e) { /* optional storage */ }
+  let LANG = savedLanguage
     || ((navigator.language || "").toLowerCase().startsWith("tr") ? "tr" : "en");
   if (!I18N[LANG]) LANG = "en";
   let fmt = new Intl.NumberFormat(I18N[LANG].locale);
@@ -839,7 +853,7 @@
     el.hidden = !anniversaries.length;
     if (anniversaries.length) {
       el.innerHTML = `<b>${t("onthisday")}</b> ` + anniversaries.map(i =>
-        `${sentence(i)} (${i.public_incident_id}, ${(i.incident_start_datetime || "").slice(0, 4)})`).join(" ");
+        `${html(sentence(i))} (${html(i.public_incident_id)}, ${(i.incident_start_datetime || "").slice(0, 4)})`).join(" ");
     }
   }
 
@@ -880,7 +894,7 @@
       if (!s.list.length) return "";
       const head = `<p class="k">${tf("era_head", { era: t("eras")[k], d: fmt.format(s.deaths), n: s.list.length })}</p>`;
       const worstLine = s.deadliest && s.deadliest !== worst
-        ? `<p class="quiet" lang="tr">${s.deadliest.canonical_title_tr}</p><p class="quiet">${sentence(s.deadliest)}</p>` : "";
+        ? `<p class="quiet" lang="tr">${html(s.deadliest.canonical_title_tr)}</p><p class="quiet">${html(sentence(s.deadliest))}</p>` : "";
       return head + worstLine;
     };
     // Five chapters, not eight: the prologue used to cost ~790vh (about seven
@@ -899,7 +913,7 @@
       if (!sp.list.length) return "";
       return `<p class="k">${tf("era_head", { era: sp.label, d: fmt.format(sp.deaths), n: sp.list.length })}</p>` +
         (sp.deadliest
-          ? `<p class="quiet" lang="tr">${sp.deadliest.canonical_title_tr}</p><p class="quiet">${sentence(sp.deadliest)}</p>`
+          ? `<p class="quiet" lang="tr">${html(sp.deadliest.canonical_title_tr)}</p><p class="quiet">${html(sentence(sp.deadliest))}</p>`
           : "");
     };
     chapters = [
@@ -911,7 +925,7 @@
         state: { upTo: 1, label: early.label, count: early.deaths } },
       { html: spanCard(recent) +
               (worst && worst.public_incident_id
-                ? `<p class="quiet">${t("worst_q")}</p><p class="src">${tf("worst_src", { id: worst.public_incident_id })}</p>`
+                ? `<p class="quiet">${t("worst_q")}</p><p class="src">${tf("worst_src", { id: html(worst.public_incident_id) })}</p>`
                 : ""),
         state: { upTo: 3, focus: !!(worst && worst.public_incident_id),
                  label: recent.label, count: recent.deaths } },
@@ -1010,7 +1024,8 @@
   const commSel = document.getElementById("f-commodity");
 
   const yearsAll = incidents.map(yearOf).filter(Boolean);
-  const minY = Math.min(...yearsAll), maxY = Math.max(...yearsAll);
+  const minY = yearsAll.length ? Math.min(...yearsAll) : new Date().getFullYear();
+  const maxY = yearsAll.length ? Math.max(...yearsAll) : minY;
   state.from = minY; state.to = maxY;
 
   function fillSelects() {
@@ -1019,7 +1034,7 @@
       ...sites.map(s => s.province_code).filter(Boolean),
     ])].sort((a, b) => provinceName(a).localeCompare(provinceName(b), "tr"));
     provSel.innerHTML = `<option value="">${t("f_all_prov")}</option>` + provCodes.map(c =>
-      `<option value="${c}">${provinceName(c)}</option>`).join("");
+      `<option value="${html(c)}">${html(provinceName(c))}</option>`).join("");
     provSel.value = state.province;
 
     const mechs = new Map();
@@ -1028,13 +1043,14 @@
     }
     mechSel.innerHTML = `<option value="">${t("f_all_mech")}</option>` +
       [...mechs.entries()].sort((a, b) => a[1].localeCompare(b[1]))
-      .map(([code, label]) => `<option value="${code}">${label}</option>`).join("");
+      .map(([code, label]) => `<option value="${html(code)}">${html(label)}</option>`).join("");
     mechSel.value = state.mechanism;
 
     let yearOpts = "";
     for (let y = minY; y <= maxY; y++) yearOpts += `<option value="${y}">${y}</option>`;
     fromSel.innerHTML = yearOpts; toSel.innerHTML = yearOpts;
     fromSel.value = String(state.from); toSel.value = String(state.to);
+    fromSel.disabled = toSel.disabled = !yearsAll.length;
 
     const comms = new Map();
     for (const s of sites) {
@@ -1042,7 +1058,7 @@
     }
     commSel.innerHTML = `<option value="">${t("f_all_comm")}</option>` +
       [...comms.entries()].sort((a, b) => String(a[1]).localeCompare(String(b[1])))
-      .map(([code, label]) => `<option value="${code}">${label}</option>`).join("");
+      .map(([code, label]) => `<option value="${html(code)}">${html(label)}</option>`).join("");
     commSel.value = state.commodity;
   }
 
@@ -1071,11 +1087,13 @@
   fromSel.addEventListener("change", () => {
     state.from = +fromSel.value;
     if (state.from > state.to) { state.to = state.from; toSel.value = fromSel.value; }
+    syncUrl();
     applyFilters();
   });
   toSel.addEventListener("change", () => {
     state.to = +toSel.value;
     if (state.to < state.from) { state.from = state.to; fromSel.value = toSel.value; }
+    syncUrl();
     applyFilters();
   });
   commSel.addEventListener("change", () => { state.commodity = commSel.value; syncUrl(); applyFilters(); });
@@ -1151,7 +1169,7 @@
     btn.addEventListener("click", () => {
       if (btn.dataset.lang === LANG) return;
       LANG = btn.dataset.lang;
-      localStorage.setItem("ma_lang", LANG);
+      try { localStorage.setItem("ma_lang", LANG); } catch (e) { /* optional storage */ }
       fmt = new Intl.NumberFormat(I18N[LANG].locale);
       renderAll();
     });
@@ -1290,13 +1308,13 @@
 
   function siteTip(s) {
     const orgLines = (s.organizations || []).map(o =>
-      `${o.role === "owner" ? t("owner") : t("operator")}: ${o.name}` +
-      (o.country_label ? ` (${o.country_label})` : "") +
-      ` <span class="t-meta">[${o.assertion_status}]</span>`);
-    return `<div class="t-title" lang="tr">${s.name}</div>` +
-      `<div>${typeLabel(s)}` +
-      (commodityText(s) ? ` · ${commodityText(s)}` : "") +
-      (s.province_code ? ` · ${provinceName(s.province_code)}` : "") + `</div>` +
+      `${o.role === "owner" ? t("owner") : t("operator")}: ${html(o.name)}` +
+      (o.country_label ? ` (${html(o.country_label)})` : "") +
+      ` <span class="t-meta">[${html(o.assertion_status)}]</span>`);
+    return `<div class="t-title" lang="tr">${html(s.name)}</div>` +
+      `<div>${html(typeLabel(s))}` +
+      (commodityText(s) ? ` · ${html(commodityText(s))}` : "") +
+      (s.province_code ? ` · ${html(provinceName(s.province_code))}` : "") + `</div>` +
       (orgLines.length ? `<div>${orgLines.join("<br>")}</div>` : "") +
       `<div class="t-meta">${t("status_label")}: ${statusLabel(s)} · ${t("loc_approx")}</div>` +
       `<div class="t-meta">${t("partial_note")}</div>`;
@@ -1325,12 +1343,12 @@
   }
 
   function provinceTipHtml(code, e) {
-    if (!e) return `<div class="t-title">${provinceName(code)}</div>` +
+    if (!e) return `<div class="t-title">${html(provinceName(code))}</div>` +
       `<div class="t-meta">${t("prov_none")}</div>`;
     const rows = e.unlocated.slice(0, 8).map(i =>
-      `${i.public_incident_id} · ${fmtDate(i)} · ${fmt.format(i.fatalities_current)}`
+      `${html(i.public_incident_id)} · ${html(fmtDate(i))} · ${fmt.format(i.fatalities_current)}`
     ).join("<br>");
-    return `<div class="t-title">${provinceName(code)}</div>` +
+    return `<div class="t-title">${html(provinceName(code))}</div>` +
       (e.records
         ? `<div>${tf("prov_lost", { d: fmt.format(e.deaths), n: e.records })}</div>`
         : `<div class="t-meta">${t("prov_none")}</div>`) +
@@ -1367,8 +1385,8 @@
         ? `${name}: ${tf("prov_lost", { d: fmt.format(e.deaths), n: e.records })}`
         : `${name}: ${t("prov_none")}`;
       return `<path class="${cls}" data-prov="${code}" tabindex="0" role="button" ` +
-        `aria-label="${label.replace(/"/g, "&quot;")}" ${fill ? `style="fill:${fill}"` : ""} ` +
-        `d="${GEO.paths[code]}"><title>${label}</title></path>`;
+        `aria-label="${html(label)}" ${fill ? `style="fill:${fill}"` : ""} ` +
+        `d="${GEO.paths[code]}"><title>${html(label)}</title></path>`;
     }).join("");
 
     // 2. site diamonds; co-located sites cluster into one mark rather than
@@ -1390,12 +1408,12 @@
         const label = b.list.length > 1
           ? tf("sites_here", { n: b.list.length })
           : first.name;
-        return `<g class="svg-site" data-sitekey="${b.list.map(s => s.ref).join("|")}" tabindex="0" ` +
-          `role="button" aria-label="${String(label).replace(/"/g, "&quot;")}">` +
+        return `<g class="svg-site" data-sitekey="${html(b.list.map(s => s.ref).join("|"))}" tabindex="0" ` +
+          `role="button" aria-label="${html(label)}">` +
           `<circle class="hit" cx="${b.x.toFixed(1)}" cy="${b.y.toFixed(1)}" r="40"></circle>` +
           `<path fill="${fill}" d="M${b.x.toFixed(1)},${(b.y - r).toFixed(1)} L${(b.x + r).toFixed(1)},${b.y.toFixed(1)} L${b.x.toFixed(1)},${(b.y + r).toFixed(1)} L${(b.x - r).toFixed(1)},${b.y.toFixed(1)} Z"></path>` +
           (b.list.length > 1 ? `<text class="site-n" x="${b.x.toFixed(1)}" y="${(b.y - r - 3).toFixed(1)}" text-anchor="middle">${b.list.length}</text>` : "") +
-          `<title>${String(label)}</title></g>`;
+          `<title>${html(label)}</title></g>`;
       }).join("");
     }
 
@@ -1411,11 +1429,11 @@
         const p = GEO.project(i.latitude, i.longitude);
         const h = markSize(i.fatalities_current);
         const label = `${i.canonical_title_tr}: ${tf("stage_people", { n: fmt.format(i.fatalities_current) }).replace(/<[^>]+>/g, "")}`;
-        aParts += `<g class="mark-wrap" data-id="${i.public_incident_id}" tabindex="0" role="button" ` +
-          `aria-label="${label.replace(/"/g, "&quot;")}">` +
+        aParts += `<g class="mark-wrap" data-id="${html(i.public_incident_id)}" tabindex="0" role="button" ` +
+          `aria-label="${html(label)}">` +
           `<circle class="hit" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${Math.max(h * 0.6, 40).toFixed(0)}"></circle>` +
           carnationMark(p[0], p[1], h, "svg-marker located", "") +
-          `<title>${label}</title></g>`;
+          `<title>${html(label)}</title></g>`;
       }
       if (!shaded) {
         for (const [code, e] of stats) {
@@ -1425,10 +1443,10 @@
           const h = markSize(e.unlocatedDeaths);
           const label = `${provinceName(code)}: ${tf("prov_level_n", { d: fmt.format(e.unlocatedDeaths), n: e.unlocated.length })}`;
           aParts += `<g class="mark-wrap" data-prov-mark="${code}" tabindex="0" role="button" ` +
-            `aria-label="${label.replace(/"/g, "&quot;")}">` +
+            `aria-label="${html(label)}">` +
             `<circle class="hit" cx="${a[0].toFixed(1)}" cy="${a[1].toFixed(1)}" r="${Math.max(h * 0.6, 40).toFixed(0)}"></circle>` +
             carnationMark(a[0], a[1], h, "svg-marker province-level", "") +
-            `<title>${label}</title></g>`;
+            `<title>${html(label)}</title></g>`;
         }
       }
     }
@@ -1455,9 +1473,9 @@
       }
       if (hit.dataset.id) {
         const i = byId.get(hit.dataset.id);
-        return `<div class="t-title" lang="tr">${i.canonical_title_tr}</div>` +
-          `<div>${sentence(i)}</div>` +
-          `<div class="t-meta">${i.public_incident_id} · ${t("loc_approx")}</div>`;
+        return `<div class="t-title" lang="tr">${html(i.canonical_title_tr)}</div>` +
+          `<div>${html(sentence(i))}</div>` +
+          `<div class="t-meta">${html(i.public_incident_id)} · ${t("loc_approx")}</div>`;
       }
       const code = hit.dataset.provMark || hit.dataset.prov;
       const e = stats.get(code);
@@ -1737,14 +1755,14 @@
       const ex = x(idx) + bw / 2;
       parts.push(`<line class="event-line" x1="${ex}" x2="${ex}" y1="${M.t - 4}" y2="${M.t + ih}"></line>`);
       const anchor = idx > years.length * 0.75 ? "end" : "start";
-      labelParts.push(`<text class="event-label" x="${ex + (anchor === "start" ? 4 : -4)}" y="${M.t - 8 + (n % 2) * 12}" text-anchor="${anchor}">${evLabel(e).split("(")[0].trim()}</text>`);
+      labelParts.push(`<text class="event-label" x="${ex + (anchor === "start" ? 4 : -4)}" y="${M.t - 8 + (n % 2) * 12}" text-anchor="${anchor}">${html(evLabel(e).split("(")[0].trim())}</text>`);
     });
 
     parts.push(...labelParts);
     svg.innerHTML = parts.join("");
     document.getElementById("events-caption").innerHTML = t("marked_events") + " " +
       (D.policy_events || []).map(e =>
-        `<a href="${e.source_url}" rel="noopener" target="_blank">${e.date.slice(0, 4)} ${evLabel(e)}</a>`
+        sourceLink(e.source_url, `${e.date.slice(0, 4)} ${evLabel(e)}`)
       ).join(" · ");
 
     const tooltip = document.getElementById("tooltip");
@@ -1799,7 +1817,7 @@
       const text = r.low === r.high ? fmt.format(r.high)
         : tf("range", { a: fmt.format(r.low), b: fmt.format(r.high) });
       const cls = r.label === "Türkiye" ? "" : " other";
-      return `<div class="rrow"><div class="rlabel">${r.label} <span class="ry">${r.year}</span></div>` +
+      return `<div class="rrow"><div class="rlabel">${html(r.label)} <span class="ry">${html(r.year)}</span></div>` +
         `<div><div class="rfill${cls}" style="width:${(r.high / rateMax) * 100}%"></div></div>` +
         `<div class="rcount">${text}</div></div>`;
     }).join("");
@@ -1820,7 +1838,7 @@
       const [en, tr] = key.split("|");
       const main = LANG === "tr" ? tr : en, second = LANG === "tr" ? en : tr;
       return `<div class="mrow">` +
-        `<div class="mlabel">${main} <span class="tr">${second}</span></div>` +
+        `<div class="mlabel">${html(main)} <span class="tr">${html(second)}</span></div>` +
         `<div><div class="mfill" style="width:${(n / mechMax) * 100}%"></div></div>` +
         `<div class="mcount">${n}</div></div>`;
     }).join("") || `<p class="caption">${t("mech_none")}</p>`;
@@ -1887,19 +1905,19 @@
     document.querySelector("#sites-table tbody").innerHTML = sortRows(fs, SITE_SORTERS, sortState.sites).map(s => {
       const orgs = (s.organizations || []);
       const orgNames = orgs.map(o =>
-        `<span lang="tr">${o.name}</span> <span class="pill">${o.role === "owner" ? t("owner") : t("operator")} · ${o.assertion_status}</span>`).join("<br>") ||
+        `<span lang="tr">${html(o.name)}</span> <span class="pill">${o.role === "owner" ? t("owner") : t("operator")} · ${html(o.assertion_status)}</span>`).join("<br>") ||
         `<span class="pill">${t("pill_not_stated_src")}</span>`;
-      const countries = [...new Set(orgs.map(o => o.country_label).filter(Boolean))].join(", ") ||
+      const countries = [...new Set(orgs.map(o => o.country_label).filter(Boolean))].map(html).join(", ") ||
         `<span class="pill">${t("pill_not_stated")}</span>`;
       return `<tr>
-        <td lang="tr">${s.name}</td>
-        <td>${typeLabel(s)}</td>
-        <td title="${s.commodity_label || ""}"><span class="comm-chip" style="background:${GROUP_HEX[groupOf(s)]}"></span>${commodityText(s) || `<span class="pill">${t("pill_not_stated")}</span>`}</td>
-        <td>${s.province_code ? provinceName(s.province_code) : `<span class="pill">${t("pill_not_stated")}</span>`}</td>
+        <td lang="tr">${html(s.name)}</td>
+        <td>${html(typeLabel(s))}</td>
+        <td title="${html(s.commodity_label || "")}"><span class="comm-chip" style="background:${GROUP_HEX[groupOf(s)]}"></span>${html(commodityText(s)) || `<span class="pill">${t("pill_not_stated")}</span>`}</td>
+        <td>${s.province_code ? html(provinceName(s.province_code)) : `<span class="pill">${t("pill_not_stated")}</span>`}</td>
         <td>${orgNames}</td>
         <td>${countries}</td>
         <td>${statusLabel(s)}</td>
-        <td>${s.source_url ? `<a href="${s.source_url}" target="_blank" rel="noopener">Wikidata</a>` : ""}</td>
+        <td>${s.source_url ? sourceLink(s.source_url, "Wikidata") : ""}</td>
       </tr>`;
     }).join("") || `<tr><td colspan="8">${t("no_sites")}</td></tr>`;
   }
@@ -1908,16 +1926,16 @@
   function renderRecords(fi) {
     document.querySelector("#records tbody").innerHTML = sortRows(fi, RECORD_SORTERS, sortState.records).map(i => {
       const cites = (D.citations[i.public_incident_id] || [])
-        .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.organization}</a>`)
+        .map(c => sourceLink(c.url, c.organization))
         .filter((v, k, arr) => arr.indexOf(v) === k).join(", ");
       const mech = mechanismsOf(i.public_incident_id).map(mechLabel).join(", ");
-      return `<tr class="rec-row" data-id="${i.public_incident_id}" tabindex="0">
-        <td>${i.public_incident_id}</td>
-        <td>${fmtDate(i)}</td>
-        <td>${provinceName(i.province_code)}</td>
-        <td lang="tr">${i.canonical_title_tr}</td>
+      return `<tr class="rec-row" data-id="${html(i.public_incident_id)}" tabindex="0">
+        <td>${html(i.public_incident_id)}</td>
+        <td>${html(fmtDate(i))}</td>
+        <td>${html(provinceName(i.province_code))}</td>
+        <td lang="tr">${html(i.canonical_title_tr)}</td>
         <td class="num">${fmt.format(i.fatalities_current)}${i.casualty_status === "disputed" ? `<br><span class="pill pill-dispute">${t("pill_disputed")}</span>` : ""}${i.injuries_current != null ? `<br><span class="pill">${tf("pill_injured", { n: fmt.format(i.injuries_current) })}</span>` : ""}</td>
-        <td>${mech ? `<span class="pill">${mech}</span>` : `<span class="pill">${t("pill_no_mech")}</span>`}</td>
+        <td>${mech ? `<span class="pill">${html(mech)}</span>` : `<span class="pill">${t("pill_no_mech")}</span>`}</td>
         <td>${cites}</td>
       </tr>`;
     }).join("") || `<tr><td colspan="7">${t("no_records")}</td></tr>`;
@@ -1926,8 +1944,9 @@
   // ---- Downloads (filter-aware, built from the same payload) -----------------
   function toCsv(rows, columns) {
     const esc = v => {
-      const s = v == null ? "" : String(v);
-      return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+      let s = v == null ? "" : String(v);
+      if (typeof v === "string" && /^[\s]*[=+@-]/.test(s)) s = "'" + s;
+      return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
     };
     return [columns.join(",")]
       .concat(rows.map(r => columns.map(c => esc(r[c])).join(",")))
@@ -1941,6 +1960,12 @@
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 5000);
   }
+  const RECORD_COLUMNS = ["public_incident_id", "date", "date_display", "date_precision",
+    "province", "title_tr", "deaths", "casualty_status", "injuries", "mechanisms",
+    "latitude", "longitude", "coordinate_precision", "sources"];
+  const SITE_COLUMNS = ["site", "type", "commodity", "commodity_group", "province",
+    "operators", "operator_countries", "status", "latitude", "longitude",
+    "coordinate_precision", "source_url"];
   const stamp = () => (D.export_timestamp || "").slice(0, 10) || "export";
   document.getElementById("dl-records").addEventListener("click", () => {
     const rows = incidents.filter(incidentMatches).map(i => ({
@@ -1959,7 +1984,7 @@
       sources: (D.citations[i.public_incident_id] || []).map(c => c.url)
         .filter((v, k, arr) => arr.indexOf(v) === k).join("; "),
     }));
-    download(`mining-accident-records-${stamp()}.csv`, toCsv(rows, Object.keys(rows[0] || { public_incident_id: 1 })), "text/csv;charset=utf-8");
+    download(`mining-accident-records-${stamp()}.csv`, toCsv(rows, RECORD_COLUMNS), "text/csv;charset=utf-8");
   });
   document.getElementById("dl-sites").addEventListener("click", () => {
     const rows = sites.filter(siteMatches).map(st => ({
@@ -1975,16 +2000,25 @@
       coordinate_precision: st.coordinate_precision,
       source_url: st.source_url,
     }));
-    download(`mining-sites-${stamp()}.csv`, toCsv(rows, Object.keys(rows[0] || { site: 1 })), "text/csv;charset=utf-8");
+    download(`mining-sites-${stamp()}.csv`, toCsv(rows, SITE_COLUMNS), "text/csv;charset=utf-8");
   });
   document.getElementById("dl-json").addEventListener("click", () => {
+    const selectedIncidents = incidents.filter(incidentMatches);
+    const selectedIds = new Set(selectedIncidents.map(i => i.public_incident_id));
+    const selectedEntries = entries => Object.fromEntries(
+      Object.entries(entries || {}).filter(([id]) => selectedIds.has(id)));
     const payload = {
       note: t("dl_note"),
+      filters: { province: state.province, mechanism: state.mechanism,
+        from: state.from, to: state.to, commodity: state.commodity },
       export_timestamp: D.export_timestamp,
       schema_version: D.schema_version,
-      incidents: incidents, sites: sites, citations: D.citations,
-      classifications: D.classifications, aggregates: D.aggregates,
-      coverage_gap: D.coverage_gap, rate_context: D.rate_context,
+      incidents: selectedIncidents, sites: sites.filter(siteMatches),
+      citations: selectedEntries(D.citations),
+      classifications: selectedEntries(D.classifications),
+      // These series describe the full register/sector, independent of filters.
+      context: { scope: "full_register_and_sector", aggregates: D.aggregates,
+        coverage_gap: D.coverage_gap, rate_context: D.rate_context },
     };
     download(`mining-accidents-${stamp()}.json`, JSON.stringify(payload, null, 2), "application/json");
   });
@@ -2001,22 +2035,22 @@
       ? `<div class="d-sec"><b>${label}:</b> ${value}</div>` : "";
     const body = document.getElementById("detail-body");
     body.innerHTML =
-      `<h3 lang="tr">${i.canonical_title_tr}</h3>` +
-      `<p class="d-meta">${sentence(i)}</p>` +
-      row(t("rh_id"), i.public_incident_id) +
-      row(t("rh_date"), fmtDate(i) + (i.date_precision ? ` <span class="pill">${i.date_precision}</span>` : "")) +
-      row(t("rh_prov"), provinceName(i.province_code)) +
+      `<h3 lang="tr">${html(i.canonical_title_tr)}</h3>` +
+      `<p class="d-meta">${html(sentence(i))}</p>` +
+      row(t("rh_id"), html(i.public_incident_id)) +
+      row(t("rh_date"), fmtDate(i) + (i.date_precision ? ` <span class="pill">${html(i.date_precision)}</span>` : "")) +
+      row(t("rh_prov"), html(provinceName(i.province_code))) +
       row(t("rh_people"), fmt.format(i.fatalities_current) +
         (i.casualty_status === "disputed" ? ` <span class="pill pill-dispute">${t("pill_disputed")}</span>` : "")) +
       (i.injuries_current != null ? row(t("d_injured"), fmt.format(i.injuries_current)) : "") +
       row(t("d_location"), i.latitude != null
-        ? `${i.latitude.toFixed(4)}, ${i.longitude.toFixed(4)} <span class="pill">${i.coordinate_precision || ""}</span>`
+        ? `${i.latitude.toFixed(4)}, ${i.longitude.toFixed(4)} <span class="pill">${html(i.coordinate_precision || "")}</span>`
         : t("d_no_coords")) +
       (cls.length ? `<div class="d-sec"><b>${t("d_class")}:</b><ul>` + cls.map(c =>
-        `<li>${LANG === "tr" ? (c.label_tr || c.label_en) : (c.label_en || c.label_tr)} ` +
-        `<span class="pill">${c.assertion_status}</span></li>`).join("") + `</ul></div>` : "") +
+        `<li>${html(LANG === "tr" ? (c.label_tr || c.label_en) : (c.label_en || c.label_tr))} ` +
+        `<span class="pill">${html(c.assertion_status)}</span></li>`).join("") + `</ul></div>` : "") +
       (cites.length ? `<div class="d-sec"><b>${t("rh_sources")}:</b><ul>` + cites.map(c =>
-        `<li><a href="${c.url}" target="_blank" rel="noopener">${c.organization}: ${c.title}</a></li>`
+        `<li>${sourceLink(c.url, `${c.organization}: ${c.title}`)}</li>`
       ).join("") + `</ul></div>` : "") +
       `<div class="d-sec t-meta">${t("d_traceable")}</div>`;
     const el = document.getElementById("detail");

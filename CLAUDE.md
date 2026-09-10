@@ -3,10 +3,9 @@
 ## Purpose (two sentences)
 
 This project builds an evidence-based database of fatal mining and quarrying
-accidents in Türkiye (2010-present), where every published value is traceable
-to source documents through reviewed claims. This repository currently
-contains the **foundation only**: schema, vocabularies, review machinery, and
-protocols — no factual incident data, no scraping, no dashboard.
+accidents in Türkiye (1983-present), where every published value is traceable
+to source documents through reviewed claims. The repository includes the
+schema, review pipeline, a seed public dataset, and a bilingual dashboard.
 
 ## Seven global hard constraints (override everything else)
 

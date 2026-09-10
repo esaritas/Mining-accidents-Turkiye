@@ -1,5 +1,4 @@
-# CI for the foundation build. Note: the "no network access for data" rule
-# applies to data sources; installing Python dependencies is permitted.
+# Tests use synthetic records only; installing dependencies is permitted.
 name: CI
 
 on:
@@ -24,6 +23,18 @@ jobs:
         run: python -m mining_accidents.cli validate-vocabularies
       - name: Tests
         run: python -m pytest --cov=mining_accidents --cov-report=term
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Dashboard interaction tests
+        run: |
+          npm ci --ignore-scripts
+          npm test
+      - name: Published artifact matches the template and saved payload
+        run: |
+          python -m mining_accidents.cli build-artifact --from-data-js dashboard/data.js
+          git diff --exit-code dashboard/artifact.html
       - name: Schema snapshot is in sync
         run: |
           python -m mining_accidents.cli create-db --db-path /tmp/ci.sqlite

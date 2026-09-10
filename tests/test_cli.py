@@ -98,3 +98,25 @@ def test_qc_exits_nonzero_on_critical(db_path: Path, tmp_path: Path) -> None:
 def test_import_requires_input(db_path: Path) -> None:
     result = runner.invoke(app, ["import-manual", "--db-path", str(db_path)])
     assert result.exit_code == 2
+
+
+def test_template_only_artifact_needs_no_database(tmp_path: Path) -> None:
+    payload = tmp_path / "TEST-data.js"
+    payload.write_text('window.MINING_DATA = {"incidents": []};\n', encoding="utf-8")
+    absent_db = tmp_path / "TEST-absent.sqlite"
+    output = tmp_path / "nested" / "TEST-artifact.html"
+    result = runner.invoke(
+        app,
+        [
+            "build-artifact",
+            "--db-path",
+            str(absent_db),
+            "--from-data-js",
+            str(payload),
+            "--output",
+            str(output),
+        ],
+    )
+    assert result.exit_code == 0, result.output
+    assert output.exists()
+    assert not absent_db.exists()

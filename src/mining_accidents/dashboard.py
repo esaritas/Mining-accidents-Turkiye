@@ -298,13 +298,14 @@ def build_payload(
         "province_centroids": _province_centroids(),
         "provinces_geo": _provinces_geo(),
         "map_vector": _map_vector(incidents, _province_centroids(), sites),
-        "coverage_gap": analysis.coverage_gap(conn),
+        "coverage_gap": analysis.coverage_gap(conn, public_incidents=incidents),
         "policy_events": analysis.policy_events(),
         "rate_context": analysis.rate_context(conn),
         "pipeline": _pipeline_status(conn),
         "export_timestamp": manifest["export_timestamp"],
         "schema_version": manifest["db_schema_version"],
     }
+    payload["pipeline"]["published_incidents"] = len(incidents)
     return payload
 
 

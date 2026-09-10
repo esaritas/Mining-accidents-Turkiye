@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "mining-accidents"
 version = "0.1.0"
-description = "Evidence-management foundation for a database of fatal mining and quarrying accidents in Türkiye (2010-present). Foundation build: no scraping, no factual data, no dashboard."
+description = "Evidence-based mining and quarrying accident register for Türkiye, with reviewed source claims, public exports, and a bilingual dashboard."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { file = "LICENSE" }

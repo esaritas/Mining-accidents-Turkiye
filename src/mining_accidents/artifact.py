@@ -29,27 +29,17 @@ HEADER = (
 )
 
 
-def _payload(
-    conn: sqlite3.Connection,
-    public_dir: str | Path,
-    fallback_js: str | Path = DEFAULT_DATA_JS,
-) -> dict[str, object]:
-    """The dashboard payload, from the database or from the committed data.js.
+def _payload_from_js(path: str | Path) -> dict[str, object]:
+    """Read a previously built payload only when explicitly requested.
 
-    ``database/*.sqlite`` is gitignored, so a fresh clone has no populated
-    database. The committed ``dashboard/data.js`` holds the payload the last
-    successful build produced, which lets the artifact be rebuilt from a clean
-    checkout whenever only the page template changed. Falls back when the
-    database has no tables or the public export is absent; ``build-dashboard``
-    (the database-driven path) is unaffected and still fails loudly.
+    Never silently replace a failed database build with stale published data.
+    Parsing as JSON also avoids executing JavaScript from the input file.
     """
-    try:
-        return build_payload(conn, public_dir)
-    except (sqlite3.Error, FileNotFoundError):
-        text = Path(fallback_js).read_text(encoding="utf-8")
-        start = text.index("{")
-        end = text.rstrip().rstrip(";").rindex("}") + 1
-        return json.loads(text[start:end])
+    text = Path(path).read_text(encoding="utf-8")
+    match = re.fullmatch(r"(?:\s*//[^\n]*\n)*\s*window\.MINING_DATA\s*=\s*(\{.*\});\s*", text, re.S)
+    if not match:
+        raise ValueError(f"{path}: expected a generated window.MINING_DATA assignment")
+    return json.loads(match.group(1))
 
 
 def _extract(template_html: str, pattern: str, what: str) -> str:
@@ -60,10 +50,12 @@ def _extract(template_html: str, pattern: str, what: str) -> str:
 
 
 def build_artifact(
-    conn: sqlite3.Connection,
+    conn: sqlite3.Connection | None,
     public_dir: str | Path = DEFAULT_PUBLIC_DIR,
     template_path: str | Path = DEFAULT_TEMPLATE,
     output_path: str | Path = DEFAULT_ARTIFACT,
+    *,
+    data_js_path: str | Path | None = None,
 ) -> Path:
     template = Path(template_path).read_text(encoding="utf-8")
     title = _extract(template, r"<title>.*?</title>", "<title>")
@@ -75,13 +67,20 @@ def build_artifact(
     # gets attached — rebind the theme tokens/styles to body itself.
     style = style.replace("body.viz-root", "body").replace(".viz-root", "body")
 
-    payload = _payload(conn, public_dir)
-    embedded = (
-        "<script>window.MINING_DATA = "
-        + json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
-        + ";</script>\n"
+    if data_js_path is not None:
+        payload = _payload_from_js(data_js_path)
+    elif conn is not None:
+        payload = build_payload(conn, public_dir)
+    else:
+        raise ValueError("a database connection or explicit data_js_path is required")
+    # HTML parsers recognize </script> even inside a quoted JSON string.
+    # Escape '<' at this boundary; JSON decoding preserves the original text.
+    serialized = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace(
+        "<", "\\u003c"
     )
+    embedded = "<script>window.MINING_DATA = " + serialized + ";</script>\n"
     output = Path(output_path)
+    output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
         HEADER + title + "\n" + style + "\n" + embedded + main + "\n" + script + "\n",
         encoding="utf-8",

@@ -9,6 +9,7 @@ whole suite stayed green.
 
 from __future__ import annotations
 
+import json
 import re
 import sqlite3
 from pathlib import Path
@@ -71,13 +72,16 @@ def test_build_artifact_assembles_a_page(tmp_path: Path) -> None:
         encoding="utf-8",
     )
     out = tmp_path / "TEST-artifact.html"
-    conn = sqlite3.connect(":memory:")  # no tables: exercises the data.js fallback
+    data_js = tmp_path / "TEST-data.js"
+    data_js.write_text('window.MINING_DATA = {"incidents": []};\n', encoding="utf-8")
+    conn = sqlite3.connect(":memory:")
     try:
         artifact.build_artifact(
             conn,
             public_dir=tmp_path,
             template_path=template,
             output_path=out,
+            data_js_path=data_js,
         )
     finally:
         conn.close()
@@ -92,3 +96,38 @@ def test_build_artifact_assembles_a_page(tmp_path: Path) -> None:
     # no external references may survive into the self-contained artifact
     assert "<script src=" not in written
     assert "<link " not in written
+
+
+def test_database_build_does_not_silently_fall_back(tmp_path: Path) -> None:
+    with sqlite3.connect(":memory:") as conn, pytest.raises(FileNotFoundError):
+        artifact.build_artifact(conn, public_dir=tmp_path, output_path=tmp_path / "TEST.html")
+    assert not (tmp_path / "TEST.html").exists()
+
+
+def test_database_error_is_not_hidden(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    def broken(*args: object) -> dict[str, object]:
+        raise sqlite3.OperationalError("TEST database failure")
+
+    monkeypatch.setattr(artifact, "build_payload", broken)
+    with sqlite3.connect(":memory:") as conn, pytest.raises(sqlite3.OperationalError):
+        artifact.build_artifact(conn, output_path=tmp_path / "TEST.html")
+
+
+def test_embedded_source_text_cannot_close_script(tmp_path: Path) -> None:
+    payload = {"TEST-title": "</script><script>window.TEST_ATTACK = true</script><!--"}
+    data_js = tmp_path / "TEST-data.js"
+    data_js.write_text("window.MINING_DATA = " + json.dumps(payload) + ";\n", encoding="utf-8")
+    output = artifact.build_artifact(
+        None, data_js_path=data_js, output_path=tmp_path / "nested" / "TEST.html"
+    ).read_text(encoding="utf-8")
+    embedded = re.search(r"<script>window.MINING_DATA = (.*?);</script>", output, re.S)[1]
+    assert "<" not in embedded
+    assert json.loads(embedded) == payload
+    assert output.count("<script>") == 2
+
+
+def test_data_js_must_be_a_json_assignment(tmp_path: Path) -> None:
+    data_js = tmp_path / "TEST-data.js"
+    data_js.write_text('window.MINING_DATA = {}; alert("TEST");', encoding="utf-8")
+    with pytest.raises(ValueError, match="generated window.MINING_DATA"):
+        artifact._payload_from_js(data_js)

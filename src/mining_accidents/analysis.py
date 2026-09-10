@@ -15,6 +15,7 @@ import csv
 import math
 import sqlite3
 import statistics
+from collections.abc import Sequence
 from pathlib import Path
 
 POLICY_EVENTS_CSV = Path("data/vocabularies/policy_events.csv")
@@ -61,14 +62,29 @@ def _register_deaths_by_year(conn: sqlite3.Connection) -> dict[int, int]:
     }
 
 
-def coverage_gap(conn: sqlite3.Connection) -> dict[str, object]:
+def coverage_gap(
+    conn: sqlite3.Connection,
+    *,
+    public_incidents: Sequence[dict[str, object]] | None = None,
+) -> dict[str, object]:
     """Per-year undercount: İSİG sector totals vs register-recorded deaths.
 
     Only years present in the İSİG series are compared; the caveat text is
     part of the result and must be displayed with it.
     """
     isig = _isig_series(conn)
-    register = _register_deaths_by_year(conn)
+    if public_incidents is None:
+        register = _register_deaths_by_year(conn)
+    else:
+        # The dashboard must compare the exact export it displays, even when
+        # the working database has newer records or publication blockers.
+        register: dict[int, int] = {}
+        for incident in public_incidents:
+            date = incident.get("incident_start_datetime")
+            deaths = incident.get("fatalities_current")
+            if date and deaths is not None:
+                year = int(str(date)[:4])
+                register[year] = register.get(year, 0) + int(deaths)
     years = []
     for year in sorted(isig):
         total = isig[year]
