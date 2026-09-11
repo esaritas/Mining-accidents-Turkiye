@@ -387,6 +387,48 @@
     #filters { position:static; } .map-summary button { width:100%; margin:0; }
     #chart { min-height:320px; } }
 
+  .site-key { display:flex; flex-wrap:wrap; gap:10px 18px; width:100%; }
+  .site-key span { display:inline-flex; align-items:center; gap:6px; }
+  .site-key svg { width:22px; height:22px; overflow:visible; }
+  .site-coverage { padding:12px; background:#edf3f7; font-size:14px; line-height:1.6; }
+  .site-type-control { display:flex; gap:8px; align-items:center; font-size:14px; }
+  .site-type-control select { max-width:100%; padding:7px; }
+  .site-symbol { stroke:#fff; stroke-width:1.8; paint-order:stroke; }
+  .svg-site:focus .site-symbol, .svg-site.is-hover .site-symbol { stroke:var(--ink-1); stroke-width:3; }
+  .site-group { fill:#fff; stroke:#30495a; stroke-width:1.5; stroke-dasharray:3 2; }
+  .site-group-label { font:bold 12px system-ui; fill:#30495a; pointer-events:none; }
+  .site-summary { margin-top:18px; padding-top:16px; border-top:1px solid var(--grid); }
+  .site-summary ul { padding-left:18px; line-height:1.8; }
+  .timeline-chapters { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:22px 0 12px; }
+  .timeline-chapters button { background:#f3f6f8; border:1px solid var(--grid); text-align:left; padding:14px; color:var(--ink-1); cursor:pointer; font:14px/1.5 system-ui; }
+  .timeline-chapters button[aria-pressed=true] { border-color:var(--loss); box-shadow:inset 0 3px var(--loss); background:white; }
+  .timeline-chapters strong { display:block; font:21px/1.3 Georgia,serif; margin:6px 0; }
+  .timeline-chapters small { display:block; font-size:13px; }
+  .timeline-overview { font:16px/1.6 system-ui; padding:12px 0; }
+  .timeline-scroll { overflow-x:auto; }
+  #chart { min-width:780px; min-height:0; width:100%; display:block; }
+  .event-marker { font:bold 14px system-ui; fill:var(--ink-1); }
+  .event-leader { stroke:var(--ink-2); stroke-dasharray:3 3; }
+  .year-hit { cursor:pointer; }
+  .year-hit.is-active { fill:var(--loss); fill-opacity:.08; stroke:var(--loss); }
+  .timeline-events { list-style:none; padding:0; margin:16px 0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 28px; }
+  .timeline-event { border-left:2px solid #c8d1d6; padding:0 0 22px 20px; position:relative; }
+  .timeline-event::before { content:''; position:absolute; width:10px; height:10px; background:var(--loss); border:3px solid white; border-radius:50%; left:-9px; top:3px; }
+  .timeline-event.policy::before { background:#315c78; border-radius:0; }
+  .timeline-event h3 { font:22px/1.3 Georgia,serif; margin:6px 0; }
+  .timeline-event p { font-size:14px; line-height:1.6; margin:8px 0; }
+  .event-date { font:600 14px/1.5 system-ui; color:var(--ink-2); }
+  .event-number { color:var(--loss); margin-right:6px; }
+  .event-count { font-size:24px; color:var(--loss); }
+  .timeline-event button, .year-detail button, #timeline-reset { cursor:pointer; font:14px/1.5 system-ui; padding:6px 10px; background:white; color:var(--ink-1); border:1px solid var(--grid); border-radius:4px; }
+  .year-detail { background:#f2f6f8; padding:18px; margin:16px 0; font-size:14px; }
+  .year-detail h3 { margin:0 0 8px; font-size:20px; }
+  .year-detail li { margin:10px 0; }
+  .sector-context { border-top:1px solid var(--grid); margin-top:20px; padding-top:16px; }
+  .sector-context summary { cursor:pointer; font-size:16px; font-weight:600; }
+  #sector-chart { min-width:640px; width:100%; }
+  @media(max-width:700px) { .timeline-chapters { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .timeline-events { grid-template-columns:1fr; } .site-type-control { flex-wrap:wrap; } }
 </style>
 </head>
 <body class="viz-root">
@@ -454,7 +496,9 @@
         <button type="button" data-view="marks" aria-pressed="true" data-i18n="view_marks"></button>
         <button type="button" data-view="locations" aria-pressed="false" data-i18n="view_locations"></button>
       </div>
+      <label class="site-type-control"><span data-i18n="f_site_type"></span><select id="f-site-type"></select></label>
     </div>
+    <p class="site-coverage" id="site-coverage"></p>
     <div class="map-layout"><div class="map-canvas"><div id="map-wrap">
       <div id="map" role="region" data-aria="aria_map"></div>
       <div id="map-tip"></div>
@@ -469,12 +513,21 @@
   <section class="panel" id="years">
     <h2 data-i18n="chart_h"></h2>
     <p class="caption" id="chart-caption" data-i18n="chart_caption"></p>
+    <div class="timeline-chapters" id="timeline-chapters" role="group" data-aria="timeline_chapters"></div>
+    <button type="button" id="timeline-reset" data-i18n="timeline_all"></button>
+    <p class="timeline-overview" id="timeline-overview" aria-live="polite"></p>
     <div class="legend" aria-hidden="true" id="chart-legend"></div>
-    <div id="chart-wrap">
-      <svg id="chart" aria-describedby="chart-caption" role="img"></svg>
+    <div id="chart-wrap" class="timeline-scroll">
+      <svg id="chart" aria-describedby="chart-caption" role="group"></svg>
       <div id="tooltip"></div>
     </div>
+    <section class="year-detail" id="year-detail" aria-live="polite"></section>
+    <ol class="timeline-events" id="timeline-events"></ol>
     <p class="caption" id="events-caption"></p>
+    <details class="sector-context"><summary data-i18n="sector_context_title"></summary>
+      <p data-i18n="sector_context_note"></p>
+      <div class="timeline-scroll"><svg id="sector-chart" role="img" data-aria="lgc_line"></svg></div>
+    </details>
     <details class="annual-table"><summary data-i18n="annual_table"></summary><div class="table-scroll" id="annual-table"></div></details>
   </section>
 
@@ -538,6 +591,28 @@
   // ---- i18n -----------------------------------------------------------------
   const I18N = {
     en: {
+      f_site_type: "Site type", all_site_types: "All site types",
+      site_mine: "Mine", site_quarry: "Quarry", site_context: "Other / contextual feature",
+      site_coverage: "{n} matching sites: {points} with facility-level coordinates, {grouped} grouped by province, {unmapped} without a usable map location. Site type and commodity filters apply to sites only; accident dates do not establish whether a site was operating.",
+      site_hidden: "Site layer hidden. Choose Both or Documented sites to show it.",
+      site_group_key: "Dashed square + number: sites grouped by province, not a facility location",
+      site_unknown: "No usable location — retained in the site table",
+      site_summary: "Documented mining landscape", site_table_link: "Explore the matching site records",
+      site_caveat: "A site marker does not imply an accident occurred there. Contextual features are shown separately; operating status is not inferred.",
+      timeline_chapters: "Timeline chapters", timeline_all: "Show the full chronology",
+      timeline_chapter_titles: ["The early register", "Karadon and wider context", "Soma and policy milestones", "Later incidents, open questions"],
+      timeline_chapter_counts: "{n} incident records · {d} recorded deaths",
+      timeline_full: "Read the events behind the peaks. Numbered markers link the annual totals to selected incidents below; blue markers identify policy milestones. Select any year to inspect all its records, including smaller incidents.",
+      timeline_selected: "{from}–{to}: {n} published incidents record {d} deaths. The chart retains the full chronology; highlighted years and the event cards focus on this chapter.",
+      timeline_event: "Incident", timeline_policy: "Policy milestone", timeline_recorded: "recorded deaths",
+      timeline_open: "Read record and sources", timeline_focus: "Show this year on the map",
+      timeline_year_prompt: "Select a year in the chart to read every published incident for that year.",
+      timeline_year_help: "The timeline is independent of map filters. Use the button below to focus the map and record table on this year.",
+      timeline_selection_note: "Selected milestones, not a complete history: source-linked milestones, incidents recording 20 or more deaths, and the first/latest dated records. Smaller incidents remain available by year. Cards use current register values, including disputed tolls; policy markers describe chronology, not evidence of a policy effect.",
+      timeline_policy_note: "From the existing source-backed policy chronology. This marker does not establish an effect on subsequent deaths.",
+      timeline_empty: "No selected milestone in this chapter. Select its years above to inspect individual records.",
+      sector_context_title: "Wider context: the separate İSİG annual series",
+      sector_context_note: "Sector-wide worker deaths are not the same population as this incident register. These source-snapshot observations are shown separately, with the same death-count scale; do not subtract one series from the other or treat their difference as missing people.",
       months: ["January","February","March","April","May","June","July",
                "August","September","October","November","December"],
       locale: "en-US",
@@ -583,7 +658,7 @@
       lg_acc: "accident: one carnation per record (size shows people lost)",
       lg_ramp: "province shade: people lost there (all published records)",
       lg_coal: "coal and lignite site", lg_metal: "metal ore site",
-      lg_mineral: "industrial mineral site", lg_other: "site, commodity not stated",
+      lg_mineral: "industrial mineral site", lg_other: "other / unstated commodity",
       view_marks: "Province totals", view_shaded: "Shaded provinces",
       sm_h: "The same geography, across four periods",
       sm_caption: "All four maps use the same symbol scale and province-level anchors. Province and mechanism filters apply; the selected year range does not, so periods remain comparable. Differences reflect this partial register’s coverage as well as recorded events. Select a period to focus the main map and records.",
@@ -602,8 +677,8 @@
       d_no_coords: "not published in the sources",
       d_class: "Classifications",
       d_traceable: "Citations are grouped by the field they support. Source tier describes the project’s source classification; it is not a probability that a value is correct.",
-      chart_h: "02 / A record shaped by events—and coverage",
-      chart_caption: "The upper panel shows recorded deaths by incident year. The lower panel shows the separate, sector-wide İSİG series as transcribed in the source snapshot. Definitions and populations differ: their difference is not a count of identifiable missing deaths. A dash means no published incident record or no context observation, never a confirmed zero. Both panels show the full snapshot, independently of map filters.",
+      chart_h: "02 / The events behind the numbers",
+      chart_caption: "Follow the chronology from early coalfield disasters to Soma, policy milestones and later incidents. Bars show deaths in this partial register by incident year, not national totals. A dot means no published incident record—not zero deaths. On a small screen, scroll the chart horizontally; the event cards below remain readable without scrolling sideways.",
       lgc_bars: "Register: published incident records", lgc_gap: "counted by İSİG, not in this register",
       lgc_line: "Context: sector-wide İSİG series (via Wikipedia)",
       people_unit: "people", marked_events: "Marked events:",
@@ -706,6 +781,28 @@
       rate_notes: "Comparability notes",
     },
     tr: {
+      f_site_type: "Saha türü", all_site_types: "Tüm saha türleri",
+      site_mine: "Maden", site_quarry: "Taş ocağı", site_context: "Diğer / bağlamsal unsur",
+      site_coverage: "Filtreye uyan {n} saha: {points} tesis düzeyinde koordinatlı, {grouped} ile göre gruplanmış, {unmapped} haritada konumlandırılamıyor. Saha türü ve maden ürünü filtreleri yalnızca sahalara uygulanır; kaza tarihleri sahanın işletme durumunu göstermez.",
+      site_hidden: "Saha katmanı gizli. Göstermek için İkisi veya Belgelenmiş sahalar seçeneğini seçin.",
+      site_group_key: "Kesikli kare + sayı: ile göre gruplanmış sahalar; tesis konumu değil",
+      site_unknown: "Kullanılabilir konum yok — saha tablosunda korunuyor",
+      site_summary: "Belgelenmiş maden sahaları", site_table_link: "Filtreye uyan saha kayıtlarını inceleyin",
+      site_caveat: "Saha işareti, orada kaza yaşandığı anlamına gelmez. Bağlamsal unsurlar ayrı gösterilir; işletme durumu varsayılmaz.",
+      timeline_chapters: "Zaman çizelgesi bölümleri", timeline_all: "Tüm kronolojiyi göster",
+      timeline_chapter_titles: ["İlk dönem kayıtları", "Karadon ve genişleyen bağlam", "Soma ve politika dönüm noktaları", "Sonraki olaylar, açık sorular"],
+      timeline_chapter_counts: "{n} olay kaydı · {d} kayıtlı can kaybı",
+      timeline_full: "Zirvelerin arkasındaki olayları okuyun. Numaralı işaretler yıllık toplamları aşağıdaki seçili olaylara bağlar; mavi işaretler politika dönüm noktalarını gösterir. Küçük olaylar dahil tüm kayıtları incelemek için bir yıl seçin.",
+      timeline_selected: "{from}–{to}: yayımlanmış {n} olayda {d} can kaybı kayıtlı. Grafik tüm kronolojiyi korur; vurgulanan yıllar ve olay kartları bu bölüme odaklanır.",
+      timeline_event: "Olay", timeline_policy: "Politika dönüm noktası", timeline_recorded: "kayıtlı can kaybı",
+      timeline_open: "Kaydı ve kaynakları oku", timeline_focus: "Bu yılı haritada göster",
+      timeline_year_prompt: "O yılın yayımlanmış tüm olaylarını okumak için grafikte bir yıl seçin.",
+      timeline_year_help: "Zaman çizelgesi harita filtrelerinden bağımsızdır. Aşağıdaki düğme haritayı ve olay tablosunu bu yıla odaklar.",
+      timeline_selection_note: "Seçili dönüm noktaları; eksiksiz bir tarihçe değil: kaynaklı dönüm noktaları, 20 veya daha fazla can kaybı kayıtlı olaylar ve ilk/son tarihli kayıtlar. Küçük olaylar yıl seçilerek görülebilir. Kartlar tartışmalı sayılar dahil güncel kayıt değerlerini kullanır. Politika işaretleri kronolojiyi gösterir; etki kanıtı değildir.",
+      timeline_policy_note: "Mevcut kaynaklı politika kronolojisinden. Bu işaret, sonraki can kayıpları üzerinde bir etkiyi kanıtlamaz.",
+      timeline_empty: "Bu bölümde seçilmiş dönüm noktası yok. Tekil kayıtlar için yukarıdaki yılları seçin.",
+      sector_context_title: "Geniş bağlam: ayrı İSİG yıllık serisi",
+      sector_context_note: "Sektör genelindeki işçi ölümleri ile bu olay kaydı aynı topluluğu kapsamaz. Kaynak anlık görüntüsündeki gözlemler aynı can kaybı ölçeğiyle ayrı gösterilir; serileri birbirinden çıkarmayın veya farkı eksik kişilerin sayısı olarak yorumlamayın.",
       months: ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz",
                "Ağustos","Eylül","Ekim","Kasım","Aralık"],
       locale: "tr-TR",
@@ -770,8 +867,8 @@
       d_no_coords: "kaynaklarda yayımlanmamış",
       d_class: "Sınıflandırmalar",
       d_traceable: "Atıflar destekledikleri alana göre gruplanır. Kaynak kademesi projenin kaynak sınıflamasıdır; bilginin doğru olma olasılığı değildir.",
-      chart_h: "02 / Olayların ve kayıt kapsamının şekillendirdiği bir sicil",
-      chart_caption: "Üst panelde olay yılına göre kayıtlı can kayıpları, alt panelde ise kaynak anlık görüntüsünde aktarılan sektör genelindeki ayrı İSİG serisi yer alır. Tanımlar ve kapsanan topluluklar farklıdır; aradaki fark, kimliği belirli eksik can kayıplarının sayısı değildir. Çizgi işareti, yayımlanmış olay kaydı veya bağlam gözlemi bulunmadığını gösterir; doğrulanmış sıfır değildir. İki panel de harita filtrelerinden bağımsız olarak tüm anlık görüntüyü gösterir.",
+      chart_h: "02 / Sayıların arkasındaki olaylar",
+      chart_caption: "İlk dönem maden facialarından Soma'ya, politika dönüm noktalarına ve sonraki olaylara uzanan kronolojiyi izleyin. Sütunlar bu kısmi kayıttaki can kayıplarını olay yılına göre gösterir; ülke toplamı değildir. Nokta, yayımlanmış olay kaydı olmadığını gösterir; sıfır ölüm demek değildir. Küçük ekranda grafiği yatay kaydırın; alttaki olay kartları yatay kaydırmadan okunabilir.",
       lgc_bars: "Sicil: yayımlanan olay kayıtları", lgc_gap: "İSİG'çe sayıldı, bu kayıtta yok",
       lgc_line: "Bağlam: sektör geneli İSİG serisi (Vikipedi üzerinden)",
       people_unit: "kişi", marked_events: "İşaretlenen olaylar:",
@@ -964,7 +1061,7 @@
     markSorted("records-head", sortState.records);
     document.getElementById("chart-legend").innerHTML =
       `<span><span class="swatch bar-swatch"></span> ${t("lgc_bars")}</span>` +
-      `<span><span class="swatch line-swatch"></span> ${t("lgc_line")}</span>`;
+      `<span><span class="swatch line-swatch"></span> ${t("timeline_policy")}</span>`;
     document.querySelectorAll(".lang-toggle button").forEach(b =>
       b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
   }
@@ -1053,7 +1150,6 @@
   // ---- Filters ------------------------------------------------------------------
   const CONTEXT_TYPES = new Set(["archaeological_quarry", "mining_field",
     "operating_directorate", "regional_group", "deposit", "proposed_project"]);
-  const isOperational = s => !CONTEXT_TYPES.has(s.type);
   const typeLabel = s => t("types")[s.type] || s.type || "";
   const statusLabel = s => t("statuses")[s.status] || t("pill_not_stated");
   // Commodity groups (validated palette; gray = not stated in source).
@@ -1071,14 +1167,15 @@
     ? (t("comms")[site.commodity_code] ||
        (site.commodity_label ? tf("comm_other_label", { l: site.commodity_label }) : t("comm_other")))
     : null;
-  const state = { province: "", mechanism: "", from: null, to: null, commodity: "",
-                  layer: "accidents", view: "marks" };
+  const state = { province: "", mechanism: "", from: null, to: null, commodity: "", siteType: "",
+                  layer: "both", view: "marks" };
 
   const provSel = document.getElementById("f-province");
   const mechSel = document.getElementById("f-mechanism");
   const fromSel = document.getElementById("f-from");
   const toSel = document.getElementById("f-to");
   const commSel = document.getElementById("f-commodity");
+  const typeSel = document.getElementById("f-site-type");
 
   const yearsAll = incidents.map(yearOf).filter(Boolean);
   const minY = yearsAll.length ? Math.min(...yearsAll) : new Date().getFullYear();
@@ -1117,6 +1214,10 @@
       [...comms.entries()].sort((a, b) => String(a[1]).localeCompare(String(b[1])))
       .map(([code, label]) => `<option value="${html(code)}">${html(label)}</option>`).join("");
     commSel.value = state.commodity;
+    typeSel.innerHTML = `<option value="">${t("all_site_types")}</option>` +
+      [...new Set(sites.map(s => s.type || "unknown"))].sort().map(type =>
+        `<option value="${html(type)}">${html(typeLabel({type}))}</option>`).join("");
+    typeSel.value = state.siteType;
   }
 
   const incidentMatches = i =>
@@ -1125,6 +1226,7 @@
     (yearOf(i) == null || (yearOf(i) >= state.from && yearOf(i) <= state.to));
   const siteMatches = s =>
     (!state.province || s.province_code === state.province) &&
+    (!state.siteType || (s.type || "unknown") === state.siteType) &&
     (!state.commodity || s.commodity_code === state.commodity);
 
   function applyFilters() {
@@ -1154,10 +1256,11 @@
     applyFilters();
   });
   commSel.addEventListener("change", () => { state.commodity = commSel.value; syncUrl(); applyFilters(); });
+  typeSel.addEventListener("change", () => { state.siteType = typeSel.value; syncUrl(); applyFilters(); });
   document.getElementById("f-clear").addEventListener("click", () => {
-    state.province = ""; state.mechanism = ""; state.commodity = "";
+    state.province = ""; state.mechanism = ""; state.commodity = ""; state.siteType = "";
     state.from = minY; state.to = maxY;
-    provSel.value = ""; mechSel.value = ""; commSel.value = "";
+    provSel.value = ""; mechSel.value = ""; commSel.value = ""; typeSel.value = "";
     fromSel.value = String(minY); toSel.value = String(maxY);
     syncUrl();
     applyFilters();
@@ -1189,7 +1292,7 @@
   // The whole filter surface is reflected in the query string so a reader can
   // send someone "Zonguldak, 1983 to 1992" as a link. Nothing else owns the
   // URL, so this is purely additive.
-  const URL_KEYS = ["province", "mechanism", "from", "to", "commodity", "layer", "view"];
+  const URL_KEYS = ["province", "mechanism", "from", "to", "commodity", "siteType", "layer", "view"];
   function syncUrl() {
     const q = new URLSearchParams();
     for (const k of URL_KEYS) {
@@ -1197,7 +1300,7 @@
       if (v === "" || v == null) continue;
       if (k === "from" && +v === minY) continue;
       if (k === "to" && +v === maxY) continue;
-      if (k === "layer" && v === "accidents") continue;
+      if (k === "layer" && v === "both") continue;
       if (k === "view" && v === "marks") continue;
       q.set(k, String(v));
     }
@@ -1213,6 +1316,7 @@
     if (q.has("province") && provCodes.has(q.get("province"))) state.province = q.get("province");
     if (q.has("mechanism")) state.mechanism = q.get("mechanism");
     if (q.has("commodity")) state.commodity = q.get("commodity");
+    if (sites.some(s => (s.type || "unknown") === q.get("siteType"))) state.siteType = q.get("siteType");
     const f = +q.get("from"), tt = +q.get("to");
     if (Number.isFinite(f) && f >= minY && f <= maxY) state.from = f;
     if (Number.isFinite(tt) && tt >= minY && tt <= maxY) state.to = tt;
@@ -1373,8 +1477,8 @@
       (commodityText(s) ? ` · ${html(commodityText(s))}` : "") +
       (s.province_code ? ` · ${html(provinceName(s.province_code))}` : "") + `</div>` +
       (orgLines.length ? `<div>${orgLines.join("<br>")}</div>` : "") +
-      `<div class="t-meta">${t("status_label")}: ${statusLabel(s)} · ${t("loc_approx")}</div>` +
-      `<div class="t-meta">${t("partial_note")}</div>`;
+      `<div class="t-meta">${t("status_label")}: ${statusLabel(s)} · ${hasFacilityLocation(s) ? t("loc_approx") : (s.province_code ? t("site_group_key") : t("site_unknown"))}</div>` +
+      `<div class="t-meta">${t("partial_note")}</div>${sourceLink(s.source_url,t("wikidata_src"))}`;
   }
 
   function provinceStats(fi, fs) {
@@ -1436,13 +1540,6 @@
       return `<path class="tr-prov${e?.records ? " has-data" : ""}${state.province===code ? " is-selected" : ""}" data-prov="${html(code)}" tabindex="0" role="button" aria-label="${html(provinceName(code))}" d="${GEO.paths[code]}"><title>${html(provinceName(code))}</title></path>`;
     });
     const circle = (x,y,d,attr,label,cls) => `<g class="mark-wrap" ${attr} tabindex="0" role="button" aria-label="${html(label)}"><circle class="hit" cx="${x}" cy="${y}" r="${Math.max(radius(d),18)}" fill="transparent"></circle><circle class="research-circle ${cls}" cx="${x}" cy="${y}" r="${radius(d)}"></circle><title>${html(label)}</title></g>`;
-    if(showSites) {
-      for(const site of fs) {
-        if(!isOperational(site) || !hasFacilityLocation(site)) continue;
-        const [x,y]=GEO.project(site.latitude,site.longitude);
-        parts.push(`<g class="svg-site" data-sitekey="${html(site.ref)}" tabindex="0" role="button" aria-label="${html(site.name)}"><circle class="hit" cx="${x}" cy="${y}" r="16" fill="transparent"></circle><path d="M${x},${y-4} l4,4 -4,4 -4,-4 Z" fill="${GROUP_HEX[groupOf(site)]}"></path><title>${html(site.name)}</title></g>`);
-      }
-    }
     if(showAcc) {
       for(const [code,e] of [...stats].sort((a,b)=>b[1].deaths-a[1].deaths)) {
         const d=precisionView ? e.unlocatedDeaths : e.deaths;
@@ -1467,12 +1564,43 @@
         parts.push(`<text class="map-label" x="${x}" y="${y}" text-anchor="middle">${html(label)}</text>`);
       }
     }
+    // Draw sites last so province death circles cannot obscure them. Exact
+    // coordinate duplicates share one marker; no geographic jitter is invented.
+    if (showSites) {
+      const locations = new Map(), coarse = new Map();
+      for (const site of fs) {
+        if (hasFacilityLocation(site)) {
+          const key = `${site.latitude},${site.longitude}`;
+          if (!locations.has(key)) locations.set(key, []);
+          locations.get(key).push(site);
+        } else if (GEO.anchors[site.province_code]) {
+          if (!coarse.has(site.province_code)) coarse.set(site.province_code, []);
+          coarse.get(site.province_code).push(site);
+        }
+      }
+      for (const [code, list] of coarse) {
+        const [x,y] = GEO.anchors[code];
+        parts.push(`<g class="svg-site" data-sitekey="${html(list.map(s=>s.ref).join("|"))}" tabindex="0" role="button" aria-label="${html(provinceName(code))}: ${list.length} · ${t("site_group_key")}"><rect class="site-group" x="${x-13}" y="${y-12}" width="26" height="24" rx="3"></rect><text class="site-group-label" x="${x}" y="${y+4}" text-anchor="middle">${list.length}</text></g>`);
+      }
+      for (const list of locations.values()) {
+        const site = list[0], [x,y] = GEO.project(site.latitude,site.longitude);
+        const label = list.map(s=>`${s.name} · ${typeLabel(s)} · ${commodityText(s) || t("comm_other")}`).join("; ");
+        parts.push(`<g class="svg-site" data-sitekey="${html(list.map(s=>s.ref).join("|"))}" tabindex="0" role="button" aria-label="${html(label)}"><circle class="hit" cx="${x}" cy="${y}" r="13" fill="transparent"></circle>${siteSymbol(x,y,site,list.length>1)}${list.length>1 ? `<text class="map-label" x="${x+10}" y="${y-8}">${list.length}</text>` : ""}<title>${html(label)}</title></g>`);
+      }
+    }
     el.innerHTML=`<svg viewBox="-20 -20 ${GEO.W+40} ${GEO.H+60}" role="group" aria-label="${t("aria_map")}">${parts.join("")}</svg>`;
     bindMapInteraction(el,stats,byId,fs);
-    renderMapLegend();
-    renderMapSummary(fi);
+    renderMapLegend(fs);
+    renderMapSummary(fi, fs);
   }
-  function renderMapSummary(fi) {
+  function siteSymbol(x,y,site,mixed=false) {
+    const fill = mixed ? "#30495a" : GROUP_HEX[groupOf(site)];
+    if (mixed || CONTEXT_TYPES.has(site.type) || !["mine_unspecified","mine_underground","mine_openpit","quarry"].includes(site.type))
+      return `<circle class="site-symbol" cx="${x}" cy="${y}" r="7" fill="white" style="stroke:${fill};stroke-width:2.5"></circle>`;
+    if (site.type === "quarry") return `<rect class="site-symbol" x="${x-6}" y="${y-6}" width="12" height="12" fill="${fill}"></rect>`;
+    return `<path class="site-symbol" d="M${x},${y-8} l8,8 -8,8 -8,-8 Z" fill="${fill}"></path>`;
+  }
+  function renderMapSummary(fi, fs) {
     const count=fi.reduce((sum,i)=>sum+(i.fatalities_current || 0),0);
     const located=fi.filter(hasFacilityLocation).length;
     const disputed=fi.filter(i=>i.casualty_status==="disputed").length;
@@ -1481,6 +1609,20 @@
       (disputed ? `<p>${tf("sum_disputed",{n:disputed})}</p>` : "")+
       `<p>${t("sum_action")}</p>`+fi.slice().sort((a,b)=>(b.incident_start_datetime || "").localeCompare(a.incident_start_datetime || "")).slice(0,4).map(i=>`<button type="button" data-open="${html(i.public_incident_id)}">${html(displayTitle(i))}<br>${html(fmtDate(i))} · ${fmt.format(i.fatalities_current)}</button>`).join("");
     host.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",()=>openDetail(b.dataset.open)));
+    if (state.layer === "sites") host.innerHTML = "";
+    if (state.layer !== "accidents") {
+      const section = document.createElement("section");
+      section.className = "site-summary";
+      const counts = new Map();
+      for (const s of fs) counts.set(typeLabel(s),(counts.get(typeLabel(s)) || 0)+1);
+      section.innerHTML = `<h3>${t("site_summary")}</h3><strong>${fs.length} ${t("layer_sites")}</strong><ul>`+
+        [...counts].map(([type,n])=>`<li>${html(type)}: ${n}</li>`).join("")+`</ul><p>${t("site_caveat")}</p><a href="#sites-panel">${t("site_table_link")}</a>`;
+      host.append(section);
+    }
+    const points = fs.filter(hasFacilityLocation).length;
+    const grouped = fs.filter(s=>!hasFacilityLocation(s) && GEO.anchors[s.province_code]).length;
+    document.getElementById("site-coverage").textContent = (state.layer === "accidents" ? t("site_hidden")+" " : "") +
+      tf("site_coverage", {n:fs.length,points,grouped,unmapped:fs.length-points-grouped});
   }
 
   // --- interaction: pointer, touch and keyboard ------------------------------
@@ -1594,12 +1736,18 @@
   }
 
   // --- legend ---------------------------------------------------------------
-  function renderMapLegend() {
+  function renderMapLegend(fs) {
     const levels=[1,50,200].filter(d=>d<=PROV_MAX);
     const sample=levels.map(d=>{const r=42*Math.sqrt(d/PROV_MAX);return `<span class="szitem"><svg width="${2*r+4}" height="${2*r+4}" aria-hidden="true"><circle cx="${r+2}" cy="${r+2}" r="${r}" fill="var(--loss)" fill-opacity=".65"></circle></svg> ${fmt.format(d)}</span>`;}).join("");
-    document.getElementById("maplegend").innerHTML=`<span>${t("lg_size")}</span>${sample}<span>${t(state.view==="locations" ? "key_located" : "key_province")}</span>`+
+    const accLegend = `<span>${t("lg_size")}</span>${sample}<span>${t(state.view==="locations" ? "key_located" : "key_province")}</span>`+
       (state.view==="locations" ? `<span><i class="key-circle hollow"></i> ${t("key_coarse")}</span>` : "")+
-      (state.layer!=="accidents" ? `<span>◆ ${t("layer_sites")} · ${t("partial_note")}</span>` : "");
+      "";
+    const colorKey = ["coal","metal","mineral","other"].map(group =>
+      `<span><i class="comm-chip" style="background:${GROUP_HEX[group]}"></i>${t("lg_"+group)} (${fs.filter(s=>groupOf(s)===group).length})</span>`).join("");
+    const typeKey = [["mine_unspecified","site_mine"],["quarry","site_quarry"],["regional_group","site_context"]].map(([type,key])=>
+      `<span><svg viewBox="-12 -12 24 24" aria-hidden="true">${siteSymbol(0,0,{type})}</svg>${t(key)}</span>`).join("");
+    document.getElementById("maplegend").innerHTML = (state.layer!=="sites" ? accLegend : "")+
+      (state.layer!=="accidents" ? `<div class="site-key">${colorKey}</div><div class="site-key">${typeKey}</div><span>${t("site_group_key")}</span>` : "");
   }
 
   // ---- Small multiples: where the loss sat, era by era ----------------------
@@ -1690,34 +1838,168 @@
     return step * GRID_STEPS;
   })();
 
+  // Narrative selection is presentation only: all records remain in year detail.
+  // Include source-linked milestones, 20+ death records, and the first/latest
+  // dated record. Current tolls and their uncertainty always come from incidents.
+  const timelineState = { chapter: null, year: null };
+  const timelineRanges = () => [[minY,1999],[2000,2013],[2014,2016],[2017,maxY]];
+  // The second chapter includes the 2000s so every published year is covered.
+  function timelineEvents() {
+    const dated = incidents.filter(i => yearOf(i) != null);
+    const ids = new Set([dated[0]?.public_incident_id, dated.at(-1)?.public_incident_id]);
+    for (const e of D.policy_events || []) {
+      for (const i of dated) if ((e.notes || "").includes(i.public_incident_id)) ids.add(i.public_incident_id);
+    }
+    const events = dated.filter(i => ids.has(i.public_incident_id) || i.fatalities_current >= 20)
+      .map(i => ({date:i.incident_start_datetime.slice(0,10), kind:"disaster", incident:i}));
+    events.push(...(D.policy_events || []).filter(e=>e.kind !== "disaster"));
+    return events.sort((a,b)=>a.date.localeCompare(b.date)).map((e,k)=>({...e,number:k+1}));
+  }
+  function eventTitle(e) {
+    return e.incident ? displayTitle(e.incident) : (LANG==="tr" ? e.label_tr : e.label_en);
+  }
+  function renderTimelineNarrative() {
+    const ranges = timelineRanges();
+    const host = document.getElementById("timeline-chapters");
+    host.innerHTML = ranges.map(([from,to],k) => {
+      if (to < minY || from > maxY || to < from) return "";
+      const start=Math.max(from,minY), end=Math.min(to,maxY);
+      const list=incidents.filter(i=>yearOf(i)>=start && yearOf(i)<=end);
+      const deaths=list.reduce((sum,i)=>sum+(i.fatalities_current || 0),0);
+      return `<button type="button" data-chapter="${k}" aria-pressed="${timelineState.chapter===k}"><span>${start}–${end}</span><strong>${t("timeline_chapter_titles")[k]}</strong><small>${tf("timeline_chapter_counts",{n:list.length,d:fmt.format(deaths)})}</small></button>`;
+    }).join("");
+    host.querySelectorAll("[data-chapter]").forEach(b=>b.addEventListener("click",()=>{
+      timelineState.chapter=+b.dataset.chapter; timelineState.year=null; renderChart();
+    }));
+    document.getElementById("timeline-reset").onclick=()=>{
+      timelineState.chapter=null; timelineState.year=null; renderChart();
+    };
+    const range=timelineState.chapter===null ? null : ranges[timelineState.chapter];
+    const list=range ? incidents.filter(i=>yearOf(i)>=range[0] && yearOf(i)<=range[1]) : incidents;
+    document.getElementById("timeline-overview").textContent=range ? tf("timeline_selected",{
+      from:Math.max(minY,range[0]),to:Math.min(maxY,range[1]),n:list.length,
+      d:fmt.format(list.reduce((sum,i)=>sum+(i.fatalities_current || 0),0))
+    }) : t("timeline_full");
+    const events=timelineEvents().filter(e=>!range || (+e.date.slice(0,4)>=range[0] && +e.date.slice(0,4)<=range[1]));
+    document.getElementById("timeline-events").innerHTML=events.map(e=>{
+      const i=e.incident;
+      const mechanisms=i ? [...new Set(mechanismsOf(i.public_incident_id).map(mechLabel))].join(" · ") : "";
+      return `<li class="timeline-event ${i ? "" : "policy"}" id="timeline-event-${e.number}">
+        <div class="event-date"><span class="event-number">${String(e.number).padStart(2,"0")}</span>${html(i ? fmtDate(i) : fmtDate({incident_start_datetime:e.date,date_precision:"exact_date"}))} · ${t(i ? "timeline_event" : "timeline_policy")}</div>
+        <h3>${html(eventTitle(e))}</h3>
+        ${i ? `<p><strong class="event-count">${fmt.format(i.fatalities_current)}</strong> ${t("timeline_recorded")} · ${casualtyPill(i)}</p>
+          <p>${html(provinceName(i.province_code))}${mechanisms ? " · "+html(mechanisms) : ""}</p>
+          <button type="button" data-event-record="${html(i.public_incident_id)}">${t("timeline_open")}</button>`
+          : `<p>${t("timeline_policy_note")}</p>${sourceLink(e.source_url,t("rh_sources"))}`}
+        </li>`;
+    }).join("") || `<li>${t("timeline_empty")}</li>`;
+    document.querySelectorAll("[data-event-record]").forEach(b=>b.addEventListener("click",()=>openDetail(b.dataset.eventRecord)));
+    document.getElementById("events-caption").textContent=t("timeline_selection_note");
+    renderYearDetail();
+  }
+  function renderYearDetail() {
+    const host=document.getElementById("year-detail"),year=timelineState.year;
+    if(year===null) { host.innerHTML=`<p>${t("timeline_year_prompt")}</p>`; return; }
+    const list=incidents.filter(i=>yearOf(i)===year);
+    const events=(D.policy_events || []).filter(e=>e.kind!=="disaster" && +e.date.slice(0,4)===year);
+    host.innerHTML=`<h3>${year} · ${list.length} ${t("tt_records")}</h3><ul>`+
+      list.map(i=>`<li>${html(fmtDate(i))} · <button type="button" data-year-record="${html(i.public_incident_id)}">${html(displayTitle(i))}</button> · ${fmt.format(i.fatalities_current)} ${t("timeline_recorded")} ${casualtyPill(i)}</li>`).join("")+
+      events.map(e=>`<li>${t("timeline_policy")}: ${sourceLink(e.source_url,eventTitle(e))}</li>`).join("")+
+      `</ul>${!list.length ? `<p>${t("tt_none")}</p>` : ""}<p>${t("timeline_year_help")}</p>`+
+      (year>=minY && year<=maxY ? `<button type="button" id="timeline-focus-map">${t("timeline_focus")}</button>` : "");
+    host.querySelectorAll("[data-year-record]").forEach(b=>b.addEventListener("click",()=>openDetail(b.dataset.yearRecord)));
+    const focus=document.getElementById("timeline-focus-map");
+    if(focus) focus.onclick=()=>{
+      state.from=state.to=year; state.province=""; state.mechanism="";
+      fromSel.value=toSel.value=String(year); provSel.value=mechSel.value="";
+      syncUrl(); applyFilters();
+      const map=document.getElementById("map-panel"); map.tabIndex=-1; map.focus();
+      map.scrollIntoView?.({behavior:"smooth",block:"start"});
+    };
+  }
   function renderChart() {
-    const years=chartYears, W=1000,H=440,left=54,right=18,iw=W-left-right;
-    const step=iw/years.length,bw=Math.min(20,step*.72),top1=38,top2=253,ph=140;
-    const scale=v=>ph*v/axisMax;
-    const x=k=>left+step*(k+.5);
-    const parts=[`<rect class="context-band" x="${left}" y="${top2-25}" width="${iw}" height="${ph+36}"></rect>`];
-    [top1,top2].forEach(top=>{
-      for(let n=0;n<=4;n++) {const v=axisMax*n/4,y=top+ph-scale(v);parts.push(`<line class="gridline" x1="${left}" x2="${W-right}" y1="${y}" y2="${y}"></line><text class="ticklabel" x="${left-8}" y="${y+4}" text-anchor="end">${fmt.format(v)}</text>`);}
-    });
-    parts.push(`<text class="chart-label" x="${left}" y="20">${t("lgc_bars")}</text><text class="chart-label" x="${left}" y="235">${t("lgc_line")}</text>`);
+    const years=chartYears,W=1000,H=420,left=54,right=18,iw=W-left-right;
+    const step=iw/years.length,bw=Math.min(20,step*.72),top=112,ph=205,base=top+ph;
+    const scale=v=>ph*v/axisMax,x=k=>left+step*(k+.5);
+    const parts=[];
+    const range=timelineState.chapter===null ? null : timelineRanges()[timelineState.chapter];
+    if(range) {
+      const first=years.findIndex(y=>y>=range[0]),last=years.findLastIndex(y=>y<=range[1]);
+      if(first>=0 && last>=first) parts.push(`<rect x="${left+step*first}" y="${top}" width="${step*(last-first+1)}" height="${ph}" fill="#f8ecec"></rect>`);
+    }
+    for(let n=0;n<=4;n++) {
+      const value=axisMax*n/4,yy=base-scale(value);
+      parts.push(`<line class="gridline" x1="${left}" x2="${W-right}" y1="${yy}" y2="${yy}"></line><text class="ticklabel" x="${left-8}" y="${yy+4}" text-anchor="end">${fmt.format(value)}</text>`);
+    }
+    parts.push(`<text class="chart-label" x="${left}" y="22">${t("lgc_bars")} · ${t("timeline_recorded")}</text>`);
     years.forEach((year,k)=>{
-      const rec=byYear.get(year),sector=isigByYear.get(year),xx=x(k);
-      if(rec) parts.push(`<rect class="bar" x="${xx-bw/2}" y="${top1+ph-scale(rec.deaths)}" width="${bw}" height="${scale(rec.deaths)}"></rect>`);
-      else parts.push(`<text class="ticklabel" x="${xx}" y="${top1+ph-4}" text-anchor="middle">·</text>`);
-      if(sector!=null) parts.push(`<rect x="${xx-bw/2}" y="${top2+ph-scale(sector)}" width="${bw}" height="${scale(sector)}" fill="#627985"></rect>`);
-      if(year%5===0 || k===years.length-1) parts.push(`<text class="ticklabel" x="${xx}" y="${H-12}" text-anchor="middle">${year}</text>`);
-      const label=`${year}: ${t("tt_people")} ${rec ? rec.deaths : t("tt_none")}; ${t("tt_isig")} ${sector ?? t("no_observation")}`;
-      parts.push(`<rect class="year-hit" data-year="${year}" x="${xx-step/2}" y="${top1}" width="${step}" height="${top2+ph-top1}" fill="transparent" tabindex="0" role="img" aria-label="${html(label)}"><title>${html(label)}</title></rect>`);
+      const rec=byYear.get(year),xx=x(k);
+      if(rec) parts.push(`<rect class="bar" x="${xx-bw/2}" y="${base-scale(rec.deaths)}" width="${bw}" height="${scale(rec.deaths)}"></rect>`);
+      else parts.push(`<text class="ticklabel" x="${xx}" y="${base-4}" text-anchor="middle">·</text>`);
+      if(year%5===0 || k===0 || k===years.length-1) parts.push(`<text class="ticklabel" x="${xx}" y="${base+22}" text-anchor="middle">${year}</text>`);
+      const label=`${year}: ${rec ? rec.deaths+" "+t("timeline_recorded")+", "+rec.incidents+" "+t("tt_records") : t("tt_none")}`;
+      parts.push(`<rect class="year-hit${timelineState.year===year ? " is-active" : ""}" data-year="${year}" x="${xx-step/2}" y="${top}" width="${step}" height="${ph+26}" fill="transparent" tabindex="0" role="button" aria-pressed="${timelineState.year===year}" aria-label="${html(label)}"><title>${html(label)}</title></rect>`);
     });
-    const svg=document.getElementById("chart");svg.setAttribute("viewBox",`0 0 ${W} ${H}`);svg.innerHTML=parts.join("");
-    const tip=document.getElementById("tooltip");
-    const show=(hit)=>{const year=+hit.dataset.year,rec=byYear.get(year),sector=isigByYear.get(year);tip.innerHTML=`<b>${year}</b><p>${t("tt_people")}: ${rec ? fmt.format(rec.deaths) : t("tt_none")}</p><p>${t("tt_isig")}: ${sector == null ? t("no_observation") : fmt.format(sector)}</p>`;tip.style.display="block";tip.style.left="64px";tip.style.top="35px";};
-    svg.onmousemove=e=>{const hit=e.target.closest(".year-hit");if(hit)show(hit);};
-    svg.onfocusin=e=>{const hit=e.target.closest(".year-hit");if(hit)show(hit);};
-    svg.onmouseleave=svg.onfocusout=()=>{tip.style.display="none";};
-    svg.onkeydown=e=>{if(e.key==="Escape")tip.style.display="none";};
-    document.getElementById("events-caption").innerHTML=t("marked_events")+" "+(D.policy_events || []).map(e=>sourceLink(e.source_url,`${e.date.slice(0,4)} ${LANG==="tr" ? e.label_tr : e.label_en}`)).join(" · ");
-    document.getElementById("annual-table").innerHTML=`<table><thead><tr><th>${t("rate_year")}</th><th>${t("lgc_bars")}</th><th>${t("lgc_line")}</th></tr></thead><tbody>`+years.map(y=>`<tr><td>${y}</td><td>${byYear.has(y) ? fmt.format(byYear.get(y).deaths) : "—"}</td><td>${isigByYear.has(y) ? fmt.format(isigByYear.get(y)) : "—"}</td></tr>`).join("")+`</tbody></table>`;
+    const events=timelineEvents();
+    const taken=[];
+    for(const e of events) {
+      const k=years.indexOf(+e.date.slice(0,4)); if(k<0)continue;
+      const xx=x(k),policy=!e.incident;
+      let row=0;
+      while(taken.some(p=>p.row===row && Math.abs(p.x-xx)<145 && p.policy===policy)) row++;
+      taken.push({x:xx,row,policy});
+      const yy=policy ? 370+row*24 : 48+row*23;
+      const label=eventTitle(e);
+      const short=label.length>25 ? label.slice(0,24)+"…" : label;
+      const anchor=xx>W-170 ? "end" : "start",labelX=anchor==="end" ? xx-13 : xx+13;
+      if(!policy) parts.push(`<line class="event-leader" x1="${xx}" x2="${xx}" y1="${yy+7}" y2="${base-scale(byYear.get(+e.date.slice(0,4))?.deaths || 0)-3}"></line>`);
+      else parts.push(`<line class="event-leader" x1="${xx}" x2="${xx}" y1="${base+27}" y2="${yy-10}" style="stroke:#315c78"></line>`);
+      parts.push(`<a href="#timeline-event-${e.number}" data-marker="${e.number}" aria-label="${html(label)}">
+        ${policy ? `<rect x="${xx-7}" y="${yy-8}" width="14" height="14" fill="#315c78"></rect>` : `<circle cx="${xx}" cy="${yy-1}" r="10" fill="white" stroke="var(--loss)"></circle>`}
+        <text x="${xx}" y="${yy+3}" text-anchor="middle" style="font:600 11px system-ui;fill:${policy ? "white" : "var(--loss)"}">${e.number}</text>
+        <text class="event-marker" x="${labelX}" y="${yy+4}" text-anchor="${anchor}">${html(short)}</text><title>${html(label)}</title></a>`);
+    }
+    const svg=document.getElementById("chart"); svg.setAttribute("viewBox",`0 0 ${W} ${H}`);svg.innerHTML=parts.join("");
+    const selectYear=hit=>{
+      timelineState.year=+hit.dataset.year;
+      svg.querySelectorAll(".year-hit").forEach(n=>{
+        const active=n===hit;n.classList.toggle("is-active",active);n.setAttribute("aria-pressed",String(active));
+      });
+      renderYearDetail();
+    };
+    svg.onclick=e=>{const hit=e.target.closest(".year-hit");if(hit)selectYear(hit);};
+    svg.onkeydown=e=>{
+      const hit=e.target.closest(".year-hit");if(!hit)return;
+      if(e.key==="Enter" || e.key===" ") {e.preventDefault();selectYear(hit);}
+      if(e.key==="ArrowLeft" || e.key==="ArrowRight") {
+        e.preventDefault();const hits=[...svg.querySelectorAll(".year-hit")],k=hits.indexOf(hit)+(e.key==="ArrowRight" ? 1 : -1);
+        hits[Math.max(0,Math.min(hits.length-1,k))].focus();
+      }
+    };
+    svg.querySelectorAll("[data-marker]").forEach(a=>a.addEventListener("click",e=>{
+      e.preventDefault();
+      const number=+a.dataset.marker;
+      if(timelineState.chapter!==null) {timelineState.chapter=null;renderChart();}
+      const card=document.getElementById("timeline-event-"+number);
+      if(card) {card.tabIndex=-1;card.focus();card.scrollIntoView?.({behavior:"smooth",block:"nearest"});}
+    }));
+    const sectorParts=[];
+    for(let n=0;n<=4;n++) {
+      const value=axisMax*n/4,yy=230-180*value/axisMax;
+      sectorParts.push(`<line class="gridline" x1="${left}" x2="${W-right}" y1="${yy}" y2="${yy}"></line><text class="ticklabel" x="${left-8}" y="${yy+4}" text-anchor="end">${fmt.format(value)}</text>`);
+    }
+    const sectorYears=[...isigByYear.keys()].sort((a,b)=>a-b);
+    const sy0=sectorYears[0],sy1=sectorYears.at(-1);
+    const sectorSpan=sy0==null ? [] : Array.from({length:sy1-sy0+1},(_,k)=>sy0+k);
+    sectorSpan.forEach((year,k)=>{
+      const value=isigByYear.get(year),ss=iw/sectorSpan.length,xx=left+ss*(k+.5);
+      if(value!=null) sectorParts.push(`<rect x="${xx-Math.min(22,ss*.7)/2}" y="${230-180*value/axisMax}" width="${Math.min(22,ss*.7)}" height="${180*value/axisMax}" fill="#627985"><title>${year}: ${value}</title></rect>`);
+      sectorParts.push(`<text class="ticklabel" x="${xx}" y="255" text-anchor="middle">${year}</text>`);
+    });
+    const sector=document.getElementById("sector-chart");sector.setAttribute("viewBox","0 0 1000 280");sector.innerHTML=sectorParts.join("");
+    document.getElementById("annual-table").innerHTML=`<table><thead><tr><th>${t("rate_year")}</th><th>${t("lgc_bars")}</th><th>${t("lgc_line")}</th></tr></thead><tbody>`+
+      years.map(y=>`<tr><td>${y}</td><td>${byYear.has(y) ? fmt.format(byYear.get(y).deaths) : "—"}</td><td>${isigByYear.has(y) ? fmt.format(isigByYear.get(y)) : "—"}</td></tr>`).join("")+`</tbody></table>`;
+    renderTimelineNarrative();
   }
 
   // ---- Rate context -----------------------------------------------------------

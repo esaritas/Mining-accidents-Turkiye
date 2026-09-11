@@ -6,6 +6,7 @@ the decision, decider, and date here, then update the relevant protocol.
 
 | # | Question | Raised by | Status |
 |---|----------|-----------|--------|
+| 20 | **Timeline milestone selection. STATUS: PROPOSED — awaiting editorial decision.** The narrative highlights source-linked policy milestones, incidents with current recorded tolls of 20 or more, and the first/latest dated record. The threshold is an editorial navigation aid, not an importance or risk classification. All incidents, including smaller ones, remain accessible by selecting a year. Review selection and chapter boundaries with the project editor. | Dashboard revision 2026-09-10 | OPEN |
 | 1 | **Licence choice.** Code: MIT vs Apache-2.0. Data: CC BY 4.0 vs ODbL. Affects reuse and attribution machinery. | Spec §14 | OPEN |
 | 2 | **Person-level victim data & memorialization** vs KVKK/dignity constraints. MVP rule is *no names anywhere*; future memorialization needs editorial + legal review. | privacy_and_persons_protocol.md | OPEN |
 | 3 | **Rescue-worker deaths:** counted inside the originating incident total or separable in MVP counting? | research_protocol.md §7 | OPEN |
