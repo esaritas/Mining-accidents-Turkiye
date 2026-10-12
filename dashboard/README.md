@@ -67,15 +67,21 @@ review"), never as data points.
 - **Non-sensational design.** This data documents deaths. No leaderboards, no
   rankings framed as competition, no gamified counters. Sober framing, always
   linked to sources and methodology; coverage gaps are stated explicitly.
-- **Sites-layer honesty.** The documented-mining-sites layer (gray diamonds,
-  sites table) comes from open structured sources only and covers a fraction
-  of licensed operations; every display of it must say so. Operator/owner
-  and company-country entries appear only where the source states them, with
-  their assertion status; operating status is shown only when asserted
-  (never an implied "operating").
-- **Story prologue.** The scroll narrative adds nothing that is not in the
-  data below it; it must honor `prefers-reduced-motion` with a static
-  fallback and keep the memorial voice (no gamification, no photos).
+- **Sites-layer honesty.** The documented-mining-sites layer (diamonds, sites
+  table) comes from open structured sources only and covers a fraction of
+  licensed operations. Operator/owner and company-country entries appear only
+  where the source states them, with their assertion status; operating status
+  is shown only when asserted (never an implied "operating").
+- **One place for the limits.** Everything true of the whole register — partial
+  coverage, tertiary seed sources, what a gap means, why the İSİG series is
+  separate, what the register is not, how locations are shown, open work — is
+  stated once in the `#about` section ("What this register can and cannot tell
+  you"), in both languages, and the header links to it. A caption beside a view
+  carries only what is needed to read *that* view (what a symbol means, what the
+  filters cover). Adding a limitation means editing the box, not sprinkling the
+  same sentence through six captions, which is how it drifted before.
+- **Story cards.** The opening cards add nothing that is not in the data below
+  them and keep the memorial voice (no gamification, no photos).
 
 ## Verify integrity
 
