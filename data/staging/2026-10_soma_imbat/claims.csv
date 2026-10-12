@@ -1,0 +1,7 @@
+source_document_hash,claim_subject_type,field_name,raw_value,normalized_value,extraction_method,assertion_status,review_status,short_evidence_excerpt,confidence_score
+4cf87e9ce6d4d870cc470e4f1770793254a2617f29834ec195432ca43de71582,incident,incident_start_datetime,1 Ekim,2026-10-01,ai_assisted,reported,needs_review,"1 Ekim'de meydana gelen göçükte",0.8
+4cf87e9ce6d4d870cc470e4f1770793254a2617f29834ec195432ca43de71582,incident,date_precision,exact_date,exact_date,ai_assisted,reported,needs_review,"1 Ekim'de meydana gelen göçükte",0.8
+4cf87e9ce6d4d870cc470e4f1770793254a2617f29834ec195432ca43de71582,incident,province_code,Manisa,45,ai_assisted,reported,needs_review,"Manisa'nın Soma ilçesinde",0.9
+4cf87e9ce6d4d870cc470e4f1770793254a2617f29834ec195432ca43de71582,incident,fatalities_current,beş işçi,5,ai_assisted,reported,needs_review,"beş işçi hayatını kaybetmişti",0.85
+4cf87e9ce6d4d870cc470e4f1770793254a2617f29834ec195432ca43de71582,classification,event_mechanism,göçük,roof_or_ground_collapse,ai_assisted,reported,needs_review,"1 Ekim'de meydana gelen göçükte",0.8
+4cf87e9ce6d4d870cc470e4f1770793254a2617f29834ec195432ca43de71582,organization,operator_name,İmbat Madencilik,İmbat Madencilik,ai_assisted,reported,needs_review,"İmbat Madencilik'e ait maden ocağında",0.85
