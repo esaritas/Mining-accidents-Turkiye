@@ -73,10 +73,24 @@ _TR_MONTHS = {
 }
 _LIST_DATE = re.compile(r"(\d{1,2})\s+(" + "|".join(_TR_MONTHS) + r")\s+(\d{4})")
 _LIST_MONTH = re.compile(r"(" + "|".join(_TR_MONTHS) + r")\s+ayında")
+_DEATH_VERB = (
+    r"(?:yaşamını yitir|yaşamını kaybet|hayatını kaybet|öl(?:dü|müş|üm|ürken|erek)|can ver)"
+)
 _LIST_DEATHS = re.compile(
     r"(\d+)\s*(?:maden işçisi|işçi|kişi|madenci|mühendis|çalışan)"
-    r"[^.]{0,70}?(?:yaşamını yitir|yaşamını kaybet|hayatını kaybet"
-    r"|öl(?:dü|müş|üm|ürken|erek)|can ver)"
+    r"[^.]{0,70}?" + _DEATH_VERB
+)
+#: A single death is often written without a digit: "bir işçi hayatını
+#: kaybetti", or the person is named — "... isimli işçi yaşamını yitirdi".
+#: The numeric pattern above skips those lines, and because a bullet with no
+#: death count creates no incident at all, such records were silently absent
+#: from the register (found 2026-10-14: six published single-fatality records
+#: could not be reproduced from the same article). The count is one in both
+#: forms, so this stays a mechanical extraction.
+_LIST_DEATHS_ONE = re.compile(
+    r"(?:\bbir\s+(?:maden işçisi|işçi|kişi|madenci|mühendis|çalışan)"
+    r"|isimli\s+(?:maden işçisi|işçi|kişi|madenci|mühendis|çalışan))"
+    r"[^.]{0,70}?" + _DEATH_VERB
 )
 #: reference markup inside a bullet — access/archive dates in citations must
 #: never be read as event dates (audit finding, 2026-07-17).
@@ -656,6 +670,12 @@ def _bullet_date(line: str, section_year: str | None) -> tuple[str, str] | None:
             f"{int(year):04d}-{_TR_MONTHS[month_name]:02d}-{int(day):02d}T00:00:00+03:00",
             "exact_date",
         )
+    # A bullet giving only a day and month ("13 Ocak'ta …"), with the year in
+    # the section heading, is deliberately NOT read here. Tried on 2026-10-14:
+    # it recovered one record and damaged three, because a bare "<dd> <month>"
+    # also matches the tail of a year ("1987 Ocak" became day 87) and the
+    # nearest month in a sentence is not always the event's. Such bullets are
+    # better left to a reviewer than guessed at.
     match = _LIST_MONTH.search(line)
     if match and section_year:
         return (
@@ -701,17 +721,24 @@ def parse_list_article(wikitext: str) -> list[ClaimDraft]:
             continue  # monthly summary of several accidents — not one incident
         date = _bullet_date(line, section_year)
         deaths = _LIST_DEATHS.search(line)
-        if not date or not deaths:
+        single = None if deaths else _LIST_DEATHS_ONE.search(line)
+        if not date or not (deaths or single):
             continue
+        if single is not None:
+            deaths = single
         # Ambiguity guard: a death sentence carrying several (non-year)
         # numbers — "46 işçiden 13'ü…", "2 işçi yanarak 66 işçi…" — cannot be
         # resolved mechanically. It becomes an ai_assisted claim (mandatory
         # human review) carrying the last number as the candidate value.
-        span_numbers = [
-            n for n in re.findall(r"\d+", deaths.group(0)) if not 1900 <= int(n) <= 2099
-        ]
-        deaths_ambiguous = len(span_numbers) > 1
-        deaths_value = span_numbers[-1] if span_numbers else deaths.group(1)
+        if single is not None:
+            # "bir işçi" / "... isimli işçi": one person, written without a digit.
+            deaths_value, deaths_ambiguous = "1", False
+        else:
+            span_numbers = [
+                n for n in re.findall(r"\d+", deaths.group(0)) if not 1900 <= int(n) <= 2099
+            ]
+            deaths_ambiguous = len(span_numbers) > 1
+            deaths_value = span_numbers[-1] if span_numbers else deaths.group(1)
         key = sha256_bytes(line.strip().encode())[:12]
         section = f"Kazalar/{section_year}"
 

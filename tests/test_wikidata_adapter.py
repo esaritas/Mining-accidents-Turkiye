@@ -126,6 +126,30 @@ def test_list_bullet_parsing_mechanical() -> None:
     assert len({d.notes["group"] for d in drafts}) == 1
 
 
+def test_list_bullet_single_death_without_a_digit() -> None:
+    """ "bir işçi" and "... isimli işçi" are one death; the bullet must not be dropped."""
+    from mining_accidents.adapters.wikidata import parse_list_article
+
+    for sentence in (
+        "7 Şubat 2099'da TEST ocağında düşen kaya parçasının altında kalan bir işçi "
+        "hayatını kaybetti.",
+        "8 Ağustos 2099'da TEST ocağında meydana gelen göçükte toprak altında kalan "
+        "TEST Adı isimli işçi yaşamını yitirdi.",
+    ):
+        drafts = parse_list_article(f"== Kazalar ==\n=== 2099 ===\n* {sentence}\n")
+        deaths = next(d for d in drafts if d.field_name == "fatalities_current")
+        assert deaths.normalized_value == "1"
+        assert deaths.extraction_method == "html_parser"
+
+
+def test_list_bullet_single_death_needs_a_death_verb() -> None:
+    """An injury, or a named person with no death verb, creates no record."""
+    from mining_accidents.adapters.wikidata import parse_list_article
+
+    wikitext = "== Kazalar ==\n=== 2099 ===\n* 7 Şubat 2099'da TEST ocağında bir işçi yaralandı.\n"
+    assert parse_list_article(wikitext) == []
+
+
 def test_list_bullet_ambiguous_numbers_go_to_review() -> None:
     from mining_accidents.adapters.wikidata import parse_list_article
 
@@ -217,3 +241,23 @@ def test_lead_contributes_additional_mechanisms() -> None:
         d.normalized_value for d in _parse_article(wikitext) if d.field_name == "event_mechanism"
     }
     assert mechanisms == {"roof_or_ground_collapse", "landslide_or_slope_failure"}
+
+
+def test_bullet_with_only_a_day_and_month_is_left_to_a_reviewer() -> None:
+    """A bare "13 Ocak'ta" is not read as a date; see _bullet_date."""
+    from mining_accidents.adapters.wikidata import parse_list_article
+
+    wikitext = "== Kazalar ==\n=== 2099 ===\n*13 Ocak'ta TEST ilçesinde 1 işçi hayatını kaybetti.\n"
+    assert parse_list_article(wikitext) == []
+
+
+def test_full_date_is_used_in_preference_to_the_section_year() -> None:
+    from mining_accidents.adapters.wikidata import parse_list_article
+
+    wikitext = (
+        "== Kazalar ==\n=== 2099 ===\n"
+        "* 10 Mayıs 2098 tarihinde TEST ocağında 3 işçi hayatını kaybetti.\n"
+    )
+    drafts = parse_list_article(wikitext)
+    date = next(d for d in drafts if d.field_name == "incident_start_datetime")
+    assert date.normalized_value == "2098-05-10T00:00:00+03:00"
