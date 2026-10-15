@@ -114,6 +114,33 @@ def _sites(public_dir: Path) -> list[dict[str, object]]:
     return sites
 
 
+def _incident_organizations(public_dir: Path) -> dict[str, list[dict[str, object]]]:
+    """Who the sources say held or ran the mine when the accident happened.
+
+    Claim-backed statements, never a finding of responsibility, and never a
+    person: only organizations are recorded."""
+    import csv
+
+    roles_csv = public_dir / "incident_organization_roles.csv"
+    if not roles_csv.exists():
+        return {}
+    result: dict[str, list[dict[str, object]]] = {}
+    with roles_csv.open(encoding="utf-8", newline="") as fh:
+        for row in csv.DictReader(fh):
+            result.setdefault(row["public_incident_id"], []).append(
+                {
+                    "name": row["organization_name_tr"],
+                    "type": row["organization_type"],
+                    "country_code": row["organization_country_code"],
+                    "country_label": row["organization_country_label"],
+                    "role": row["role"],
+                    "at_incident_date": row["valid_at_incident_date"] == "1",
+                    "assertion_status": row["assertion_status"],
+                }
+            )
+    return result
+
+
 def _province_centroids() -> dict[str, dict[str, float | str]]:
     """Display-only reference points (Wikidata CC0) for province-level marks.
 
@@ -287,6 +314,7 @@ def build_payload(
         "province_names": provinces,
         "citations": _citations(public_dir),
         "classifications": _classifications(public_dir),
+        "incident_organizations": _incident_organizations(public_dir),
         "aggregates": _aggregates(conn),
         "province_centroids": _province_centroids(),
         "provinces_geo": _provinces_geo(),
@@ -294,6 +322,7 @@ def build_payload(
         "annual_context": research.annual_context(incidents, _aggregates(conn)),
         "policy_events": analysis.policy_events(),
         "rate_context": analysis.rate_context(conn),
+        "hazard_matrix": analysis.hazard_matrix(public_dir),
         "pipeline": _pipeline_status(conn),
         "export_timestamp": manifest["export_timestamp"],
         "schema_version": manifest["db_schema_version"],

@@ -213,7 +213,9 @@ test('empty selections retain CSV schemas and JSON contains no unrelated evidenc
   const page = boot(t, { query: '?province=TEST-A&from=2099&commodity=gold' });
   const csv = await page.download('dl-records');
   assert.equal(csv.trim().split('\n').length, 1);
-  assert.equal(csv.trim().split(',').length, 14);
+  // 16 columns since the records export carries who held or ran the mine at
+  // the time of the incident, and that organization's home country.
+  assert.equal(csv.trim().split(',').length, 16);
   assert.equal((await page.download('dl-sites')).trim().split(',').length, 12);
   const json = JSON.parse(await page.download('dl-json'));
   assert.deepEqual(json.incidents, []);

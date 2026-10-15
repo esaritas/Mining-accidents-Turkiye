@@ -1,40 +1,39 @@
 facility_ref,facility_name_tr,organization_name_tr,organization_country_code,organization_country_label,role,assertion_status
 wikidata:Q114678822,Amasra Kömür Madeni,Türkiye Taşkömürü Kurumu,TR,Türkiye,operator,reported
 wikidata:Q114678822,Amasra Kömür Madeni,Türkiye Taşkömürü Kurumu,TR,Türkiye,owner,reported
-wikidata:Q118874850,Tunçbilek coal mine,West Lignite Enterprise (Garp Linyitleri İşletmesi Müessesesi Müdürlüğü),TR,Turkey,operator,reported
-wikidata:Q122237641,Ömerler coal mine,West Lignite Enterprise (Garp Linyitleri İşletmesi Müessesesi Müdürlüğü),TR,Turkey,operator,reported
+wikidata:Q118874850,Tunçbilek coal mine,West Lignite Enterprise (Garp Linyitleri İşletmesi Müessesesi Müdürlüğü),TR,Türkiye,operator,reported
+wikidata:Q122237641,Ömerler coal mine,West Lignite Enterprise (Garp Linyitleri İşletmesi Müessesesi Müdürlüğü),TR,Türkiye,operator,reported
 wikidata:Q122790689,Kınık coal mine,Polyak Eynez Enerji Üretim Madencilik A.Ş.,,"Turkey, China",operator,reported
 wikidata:Q137925109,Gokirmak,Acacia Maden İşletmeleri A.Ş.,TR,Türkiye,operator,reported
-wikidata:Q16002015,Afşin-C coal mine,Çelikler Taahhüt İnşaat ve San. Tic,TR,Turkey,operator,reported
-wikidata:Q16002017,Afşin-D coal mine,Çelikler Taahhüt İnşaat ve San. Tic,TR,Turkey,operator,reported
-wikidata:Q16002019,Afşin-E coal mine,Çelikler Taahhüt İnşaat ve San. Tic,TR,Turkey,operator,reported
-wikidata:Q16251758,Armutçuk Kömür Madeni,Armutçuk Taşkömürü Isletme Müessesesi,TR,Turkey,operator,reported
-wikidata:Q16833789,Çöpler Altın Madeni,Anagold Inc,,,owner,reported
-wikidata:Q16834934,Deniş coal mine,TKİ,TR,Turkey,owner,reported
-wikidata:Q16852311,Karadon coal mine,Karadon Taşkömürü Işletme Müessesesi,TR,Turkey,operator,reported
-wikidata:Q16950634,Mardin madeni,Etibank,TR,Turkey,owner,reported
-wikidata:Q16957840,Hasançelebi Madeni,Etibank,TR,Turkey,owner,reported
+wikidata:Q16002015,Afşin-C coal mine,Çelikler Taahhüt İnşaat ve San. Tic,TR,Türkiye,operator,reported
+wikidata:Q16002017,Afşin-D coal mine,Çelikler Taahhüt İnşaat ve San. Tic,TR,Türkiye,operator,reported
+wikidata:Q16002019,Afşin-E coal mine,Çelikler Taahhüt İnşaat ve San. Tic,TR,Türkiye,operator,reported
+wikidata:Q16251758,Armutçuk Kömür Madeni,Armutçuk Taşkömürü Isletme Müessesesi,TR,Türkiye,operator,reported
+wikidata:Q16833789,Çöpler Altın Madeni,Anagold Madencilik A.Ş.,TR,Türkiye,owner,reported
+wikidata:Q16834934,Deniş coal mine,TKİ,TR,Türkiye,owner,reported
+wikidata:Q16852311,Karadon coal mine,Karadon Taşkömürü Işletme Müessesesi,TR,Türkiye,operator,reported
+wikidata:Q16950634,Mardin madeni,Etibank,TR,Türkiye,owner,reported
+wikidata:Q16957840,Hasançelebi Madeni,Etibank,TR,Türkiye,owner,reported
 wikidata:Q16958962,Kişladağ mine,Eldorado Gold,CA,Canada,owner,reported
-wikidata:Q16959210,Kozlu coal mine,Kozlu Taşkömürü Işletme Müessesesi,TR,Turkey,operator,reported
-wikidata:Q16959758,Üzülmez coal mine,Üzülmez Taşkömürü Işletme Müessesesi,TR,Turkey,operator,reported
-wikidata:Q16961925,Seydişehir mine,Etibank,TR,Turkey,owner,reported
+wikidata:Q16959210,Kozlu coal mine,Kozlu Taşkömürü Işletme Müessesesi,TR,Türkiye,operator,reported
+wikidata:Q16959758,Üzülmez coal mine,Üzülmez Taşkömürü Işletme Müessesesi,TR,Türkiye,operator,reported
+wikidata:Q16961925,Seydişehir mine,Etibank,TR,Türkiye,owner,reported
 wikidata:Q23755156,Çukuralan altın madeni,Koza İpek Holding,,,owner,reported
-wikidata:Q4705477,Aladağ madeni,Etibank,TR,Turkey,owner,reported
-wikidata:Q4818250,Attepe mine,Etibank,TR,Turkey,owner,reported
-wikidata:Q4829084,Avnik mine,Etibank,TR,Turkey,owner,reported
-wikidata:Q5211983,Damar mine,Etibank,TR,Turkey,owner,reported
-wikidata:Q5284687,Divriği A-Kafa mine,Etibank,TR,Turkey,owner,reported
-wikidata:Q5284688,Divriği B-Kafa mine,Etibank,TR,Turkey,owner,reported
+wikidata:Q4705477,Aladağ madeni,Etibank,TR,Türkiye,owner,reported
+wikidata:Q4818250,Attepe mine,Etibank,TR,Türkiye,owner,reported
+wikidata:Q4829084,Avnik mine,Etibank,TR,Türkiye,owner,reported
+wikidata:Q5211983,Damar mine,Etibank,TR,Türkiye,owner,reported
+wikidata:Q5284687,Divriği A-Kafa mine,Etibank,TR,Türkiye,owner,reported
+wikidata:Q5284688,Divriği B-Kafa mine,Etibank,TR,Türkiye,owner,reported
 wikidata:Q6009374,Mastra altın madeni,Koza İpek Holding,,,owner,reported
-wikidata:Q60745269,Silopi asphaltite mine,Ciner Group,TR,Turkey,owner,reported
+wikidata:Q60745269,Silopi asphaltite mine,Ciner Group,TR,Türkiye,owner,reported
 wikidata:Q61074517,Sart altın madeni,POMZA EXPORT,,,owner,reported
-wikidata:Q6374695,Kasrık mine,Etibank,TR,Turkey,owner,reported
-wikidata:Q6395082,Kesikköprü mine,Etibank,TR,Turkey,owner,reported
-wikidata:Q6938476,Murgul bakır madeni,Etibank,TR,Turkey,owner,reported
-wikidata:Q7102181,Orhaneli mine,Etibank,TR,Turkey,owner,reported
-wikidata:Q7809175,Tirebolu mine,Etibank,TR,Turkey,owner,reported
-wikidata:Q7880800,Ulukent mine,Etibank,TR,Turkey,owner,reported
-wikidata:Q8077429,Çakmakkaya bakır madeni,Etibank,TR,Turkey,owner,reported
+wikidata:Q6374695,Kasrık mine,Etibank,TR,Türkiye,owner,reported
+wikidata:Q6395082,Kesikköprü mine,Etibank,TR,Türkiye,owner,reported
+wikidata:Q6938476,Murgul bakır madeni,Etibank,TR,Türkiye,owner,reported
+wikidata:Q7102181,Orhaneli mine,Etibank,TR,Türkiye,owner,reported
+wikidata:Q7809175,Tirebolu mine,Etibank,TR,Türkiye,owner,reported
+wikidata:Q7880800,Ulukent mine,Etibank,TR,Türkiye,owner,reported
+wikidata:Q8077429,Çakmakkaya bakır madeni,Etibank,TR,Türkiye,owner,reported
 wikidata:Q8077449,Çaldağ madeni,European Nickel,,,owner,reported
-wikidata:Q8077592,Çayeli bakır madeni,Cengiz İnşaat,TR,Turkey,owner,reported
-wikidata:Q99791861,Gülşehir Tuz Madeni,Suat Bilgin,,,owner,reported
+wikidata:Q8077592,Çayeli bakır madeni,Cengiz İnşaat,TR,Türkiye,owner,reported

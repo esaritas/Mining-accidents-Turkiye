@@ -1,28 +1,28 @@
 {
   "db_schema_version": "002",
-  "export_timestamp": "2026-10-15T13:15:37Z",
+  "export_timestamp": "2026-10-15T19:31:29Z",
   "file_sha256": {
-    "datapackage.json": "a988fc4b702160c4b333fba9322e8f136d5a89a5e69d9d30723c3a0b1f7c8560",
+    "datapackage.json": "752367ec73b63cbd95acdcfc71243b29fd96b48588f907b4bd0f338ccec5311c",
     "facilities.csv": "9ce3d5a1c27198d5622668e4476c25759e871931423e7628c5c91bc0a4865252",
-    "facility_organization_roles.csv": "4c65ad8bc10134a09a3219f533767a90570a5ee94b71be7a5a62e8569656604f",
+    "facility_organization_roles.csv": "e0fe828236b59b2e2170368ca96a890252257b7fea2b1404e893fa4e8521a071",
     "incident_classifications.csv": "58f869c6ffabe16b70470d4ff2d364423ada40530d49af8f83d538da38d14e84",
-    "incident_organization_roles.csv": "34f228de008ec74abd5548cc27693dca1770aec84f8b95543f0085a8a8c9491e",
+    "incident_organization_roles.csv": "a6b4e044ed823ba8f28b1b50c32a98740724174960eff5d86eaabcefcc007e31",
     "incidents.csv": "18a74b99ff675453c70810d7ff2830762e004c4fa5872eacb9c4257c41b7d506",
     "incidents.json": "6d3768f2fdf3b598eb47868d2028e5dc2418f9c16e35ff7118a44ac1aca8f13b",
     "merged_id_redirects.csv": "26158d38632470f27afc9c5de47bc7f989785e46a81ee313d9cc05f737c7296b",
     "sources.csv": "99e330d9572198dd3343e7dcf69458cd9899f4334a2d80ab3a444788d1c8c3d8",
-    "validation_report.json": "01285da253bfd94f8c8eaa934059fbe9e842a5491968d67483133d3f1b645df0"
+    "validation_report.json": "4c76dd36dbf2f02331a6c73b6f4b95cec39ce86c2e11484dd43cd72f6587c1b8"
   },
-  "git_commit": "4cc02c42721a11642b7410c11055c9e35f45e0cf",
+  "git_commit": "9e324c39bd7fa17b0eb72f457848c0ac44dc4ed1",
   "quality_findings": {
     "critical": 0,
     "warning": 15
   },
   "row_counts": {
     "facilities": 74,
-    "facility_organization_roles": 39,
+    "facility_organization_roles": 38,
     "incident_classifications": 66,
-    "incident_organization_roles": 0,
+    "incident_organization_roles": 20,
     "incidents": 52,
     "merged_id_redirects": 0,
     "sources": 238

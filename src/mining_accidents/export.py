@@ -63,7 +63,10 @@ ROLE_COLUMNS = [
     "public_incident_id",
     "organization_name_tr",
     "organization_type",
+    "organization_country_code",
+    "organization_country_label",
     "role",
+    "valid_at_incident_date",
     "assertion_status",
 ]
 
@@ -266,7 +269,9 @@ def _collect_roles(conn: sqlite3.Connection, ids: list[int]) -> list[dict[str, o
     rows = conn.execute(
         f"""
         SELECT i.public_incident_id, o.organization_name_tr, o.organization_type,
-               r.role, r.assertion_status
+               o.country_code AS organization_country_code,
+               o.country_label AS organization_country_label,
+               r.role, r.valid_at_incident_date, r.assertion_status
         FROM incident_organization_roles r
         JOIN incidents i ON i.incident_id = r.incident_id
         JOIN organizations o ON o.organization_id = r.organization_id
@@ -394,6 +399,7 @@ _FIELD_TYPES: dict[str, dict[str, object]] = {
     "missing_current": {"type": "integer", "constraints": {"minimum": 0}},
     "casualty_status": {"type": "string"},
     "assertion_status": {"type": "string"},
+    "valid_at_incident_date": {"type": "integer", "constraints": {"minimum": 0, "maximum": 1}},
     "url": {"type": "string", "format": "uri"},
     "source_url": {"type": "string", "format": "uri"},
     "publication_date": {"type": "date"},

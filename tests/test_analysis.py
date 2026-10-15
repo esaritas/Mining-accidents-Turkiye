@@ -113,3 +113,130 @@ def test_rate_context_reads_only_denominated_rows(conn: sqlite3.Connection) -> N
             "comparability_notes": "TEST note",
         }
     ]
+
+
+def _write_export(tmp_path, incidents, classifications, facilities) -> object:
+    import csv
+    import json
+
+    (tmp_path / "incidents.json").write_text(json.dumps(incidents), encoding="utf-8")
+    with (tmp_path / "incident_classifications.csv").open("w", encoding="utf-8", newline="") as fh:
+        writer = csv.writer(fh)
+        writer.writerow(
+            [
+                "public_incident_id",
+                "classification_system",
+                "classification_level",
+                "classification_code",
+                "classification_label_tr",
+                "classification_label_en",
+                "assertion_status",
+            ]
+        )
+        writer.writerows(classifications)
+    with (tmp_path / "facilities.csv").open("w", encoding="utf-8", newline="") as fh:
+        writer = csv.writer(fh)
+        writer.writerow(["facility_ref", "province_code"])
+        writer.writerows(facilities)
+    return tmp_path
+
+
+def test_hazard_matrix_counts_bands_and_places(tmp_path) -> None:
+    incidents = [
+        {
+            "public_incident_id": "TEST-2099-0001",
+            "fatalities_current": 1,
+            "incident_start_datetime": "2099-01-01T00:00:00Z",
+            "province_code": "01",
+        },
+        {
+            "public_incident_id": "TEST-2099-0002",
+            "fatalities_current": 60,
+            "incident_start_datetime": "2099-02-01T00:00:00Z",
+            "province_code": "01",
+        },
+        {
+            "public_incident_id": "TEST-2099-0003",
+            "fatalities_current": 4,
+            "incident_start_datetime": "2099-03-01T00:00:00Z",
+            "province_code": "02",
+        },
+    ]
+    classifications = [
+        [
+            "TEST-2099-0001",
+            "project_event_mechanism",
+            "",
+            "roof_or_ground_collapse",
+            "TEST göçük",
+            "TEST collapse",
+            "reported",
+        ],
+        [
+            "TEST-2099-0002",
+            "project_event_mechanism",
+            "",
+            "roof_or_ground_collapse",
+            "TEST göçük",
+            "TEST collapse",
+            "reported",
+        ],
+        [
+            "TEST-2099-0002",
+            "project_event_mechanism",
+            "",
+            "fire",
+            "TEST yangın",
+            "TEST fire",
+            "reported",
+        ],
+        # A hazard row must never be read as a mechanism.
+        [
+            "TEST-2099-0002",
+            "project_hazard",
+            "",
+            "methane",
+            "TEST metan",
+            "TEST methane",
+            "reported",
+        ],
+    ]
+    facilities = [["TEST:1", "01"], ["TEST:2", "03"], ["TEST:3", "03"]]
+    matrix = analysis.hazard_matrix(_write_export(tmp_path, incidents, classifications, facilities))
+
+    rows = {row["code"]: row for row in matrix["mechanisms"]}
+    assert set(rows) == {"roof_or_ground_collapse", "fire", analysis.UNCODED}
+    # One record in the 1-death band, one in the 50+ band.
+    assert rows["roof_or_ground_collapse"]["cells"] == [1, 0, 0, 1]
+    assert rows["roof_or_ground_collapse"]["records"] == 2
+    assert rows["roof_or_ground_collapse"]["deaths"] == 61
+    assert rows["roof_or_ground_collapse"]["worst"] == 60
+    # A record with two mechanisms is counted in both rows, so the rows add up
+    # to more than the number of records; the caption says so.
+    assert sum(int(row["records"]) for row in matrix["mechanisms"]) == 4
+    assert matrix["totals"]["records"] == 3
+    assert matrix["totals"]["records_with_a_mechanism"] == 2
+    # The uncoded bucket is last, never among the mechanisms.
+    assert matrix["mechanism_order"][-1] == analysis.UNCODED
+
+    provinces = {p["province_code"]: p for p in matrix["provinces"]}
+    assert provinces["01"]["records"] == 2
+    assert provinces["01"]["deaths"] == 61
+    assert provinces["01"]["documented_sites"] == 1
+    assert provinces["02"]["documented_sites"] == 0
+    # Two sites sit in a province with no record of its own.
+    assert matrix["sites_outside_recorded_provinces"] == {"sites": 2, "provinces": 1}
+
+
+def test_hazard_matrix_survives_a_register_with_no_classifications(tmp_path) -> None:
+    incidents = [
+        {
+            "public_incident_id": "TEST-2099-0001",
+            "fatalities_current": 2,
+            "incident_start_datetime": "2099-01-01T00:00:00Z",
+            "province_code": "01",
+        },
+    ]
+    matrix = analysis.hazard_matrix(_write_export(tmp_path, incidents, [], []))
+    assert [row["code"] for row in matrix["mechanisms"]] == [analysis.UNCODED]
+    assert matrix["totals"]["records_with_a_mechanism"] == 0

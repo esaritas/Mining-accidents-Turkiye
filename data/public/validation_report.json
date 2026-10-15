@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T13:15:37Z",
+  "generated_at": "2026-10-15T19:31:29Z",
   "resources": {
     "facilities": {
       "error_count": 0,
@@ -9,7 +9,7 @@
     "facility_organization_roles": {
       "error_count": 0,
       "errors": [],
-      "rows": 39
+      "rows": 38
     },
     "incident_classifications": {
       "error_count": 0,
@@ -19,7 +19,7 @@
     "incident_organization_roles": {
       "error_count": 0,
       "errors": [],
-      "rows": 0
+      "rows": 20
     },
     "incidents": {
       "error_count": 0,

@@ -3013,7 +3013,649 @@ window.MINING_DATA = {
       }
     ]
   },
-  "export_timestamp": "2026-10-15T13:15:37Z",
+  "export_timestamp": "2026-10-15T19:31:29Z",
+  "hazard_matrix": {
+    "bands": [
+      {
+        "high": 1,
+        "key": "1",
+        "label_en": "1 death",
+        "label_tr": "1 ölüm",
+        "low": 1
+      },
+      {
+        "high": 9,
+        "key": "2-9",
+        "label_en": "2-9 deaths",
+        "label_tr": "2-9 ölüm",
+        "low": 2
+      },
+      {
+        "high": 49,
+        "key": "10-49",
+        "label_en": "10-49 deaths",
+        "label_tr": "10-49 ölüm",
+        "low": 10
+      },
+      {
+        "high": null,
+        "key": "50+",
+        "label_en": "50+ deaths",
+        "label_tr": "50+ ölüm",
+        "low": 50
+      }
+    ],
+    "mechanism_order": [
+      "gas_explosion",
+      "fire",
+      "roof_or_ground_collapse",
+      "landslide_or_slope_failure",
+      "flooding_or_inrush",
+      "loss_of_vehicle_control",
+      "not_yet_coded"
+    ],
+    "mechanisms": [
+      {
+        "cells": [
+          2,
+          6,
+          9,
+          3
+        ],
+        "code": "gas_explosion",
+        "deaths": 668,
+        "first_year": 1983,
+        "label_en": "gas explosion",
+        "label_tr": "gaz (grizu) patlaması",
+        "latest_year": 2022,
+        "records": 20,
+        "share_of_deaths": 61.2,
+        "worst": 263
+      },
+      {
+        "cells": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "code": "fire",
+        "deaths": 583,
+        "first_year": 1992,
+        "label_en": "fire",
+        "label_tr": "yangın",
+        "latest_year": 2014,
+        "records": 3,
+        "share_of_deaths": 53.4,
+        "worst": 301
+      },
+      {
+        "cells": [
+          6,
+          6,
+          2,
+          1
+        ],
+        "code": "roof_or_ground_collapse",
+        "deaths": 343,
+        "first_year": 1987,
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "latest_year": 2024,
+        "records": 15,
+        "share_of_deaths": 31.4,
+        "worst": 263
+      },
+      {
+        "cells": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "code": "landslide_or_slope_failure",
+        "deaths": 20,
+        "first_year": 2011,
+        "label_en": "landslide or slope failure",
+        "label_tr": "heyelan/şev duraysızlığı",
+        "latest_year": 2024,
+        "records": 2,
+        "share_of_deaths": 1.8,
+        "worst": 11
+      },
+      {
+        "cells": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "code": "flooding_or_inrush",
+        "deaths": 18,
+        "first_year": 2014,
+        "label_en": "flooding or inrush",
+        "label_tr": "su baskını/ani su geliri",
+        "latest_year": 2014,
+        "records": 1,
+        "share_of_deaths": 1.6,
+        "worst": 18
+      },
+      {
+        "cells": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "code": "loss_of_vehicle_control",
+        "deaths": 1,
+        "first_year": 2014,
+        "label_en": "loss of vehicle control",
+        "label_tr": "araç kontrol kaybı",
+        "latest_year": 2014,
+        "records": 1,
+        "share_of_deaths": 0.1,
+        "worst": 1
+      },
+      {
+        "cells": [
+          11,
+          3,
+          0,
+          0
+        ],
+        "code": "not_yet_coded",
+        "deaths": 23,
+        "first_year": 2010,
+        "label_en": "not yet coded",
+        "label_tr": "henüz kodlanmadı",
+        "latest_year": 2026,
+        "records": 14,
+        "share_of_deaths": 2.1,
+        "worst": 5
+      }
+    ],
+    "method": "Both axes are counts of what this register has documented, not probabilities and not a safety assessment of any site or company. Severity bands are the deaths recorded in a single incident. A record appears in every mechanism row its sources document, so rows sum to more than the number of records. An empty cell means nothing of that kind is documented here. STATUS: PROPOSED — see docs/analysis_methods.md and docs/open_questions.md #29.",
+    "provinces": [
+      {
+        "deaths": 427,
+        "documented_sites": 5,
+        "latest_year": 2024,
+        "mechanisms": {
+          "fire": 1,
+          "gas_explosion": 6,
+          "loss_of_vehicle_control": 1,
+          "roof_or_ground_collapse": 6
+        },
+        "province_code": "67",
+        "records": 11
+      },
+      {
+        "deaths": 309,
+        "documented_sites": 7,
+        "latest_year": 2026,
+        "mechanisms": {
+          "fire": 1,
+          "not_yet_coded": 4
+        },
+        "province_code": "45",
+        "records": 5
+      },
+      {
+        "deaths": 79,
+        "documented_sites": 0,
+        "latest_year": 2015,
+        "mechanisms": {
+          "gas_explosion": 2,
+          "not_yet_coded": 1,
+          "roof_or_ground_collapse": 1
+        },
+        "province_code": "05",
+        "records": 4
+      },
+      {
+        "deaths": 49,
+        "documented_sites": 1,
+        "latest_year": 2022,
+        "mechanisms": {
+          "gas_explosion": 2,
+          "roof_or_ground_collapse": 1
+        },
+        "province_code": "74",
+        "records": 3
+      },
+      {
+        "deaths": 38,
+        "documented_sites": 1,
+        "latest_year": 1995,
+        "mechanisms": {
+          "gas_explosion": 1
+        },
+        "province_code": "66",
+        "records": 1
+      },
+      {
+        "deaths": 34,
+        "documented_sites": 2,
+        "latest_year": 2010,
+        "mechanisms": {
+          "gas_explosion": 2
+        },
+        "province_code": "10",
+        "records": 2
+      },
+      {
+        "deaths": 28,
+        "documented_sites": 1,
+        "latest_year": 2014,
+        "mechanisms": {
+          "flooding_or_inrush": 1,
+          "gas_explosion": 1
+        },
+        "province_code": "70",
+        "records": 2
+      },
+      {
+        "deaths": 21,
+        "documented_sites": 1,
+        "latest_year": 2010,
+        "mechanisms": {
+          "gas_explosion": 1,
+          "not_yet_coded": 1
+        },
+        "province_code": "16",
+        "records": 2
+      },
+      {
+        "deaths": 19,
+        "documented_sites": 1,
+        "latest_year": 2024,
+        "mechanisms": {
+          "roof_or_ground_collapse": 2
+        },
+        "province_code": "56",
+        "records": 2
+      },
+      {
+        "deaths": 19,
+        "documented_sites": 1,
+        "latest_year": 2004,
+        "mechanisms": {
+          "fire": 1
+        },
+        "province_code": "37",
+        "records": 1
+      },
+      {
+        "deaths": 18,
+        "documented_sites": 5,
+        "latest_year": 2005,
+        "mechanisms": {
+          "gas_explosion": 1
+        },
+        "province_code": "43",
+        "records": 1
+      },
+      {
+        "deaths": 12,
+        "documented_sites": 5,
+        "latest_year": 2014,
+        "mechanisms": {
+          "landslide_or_slope_failure": 1,
+          "not_yet_coded": 1
+        },
+        "province_code": "46",
+        "records": 2
+      },
+      {
+        "deaths": 9,
+        "documented_sites": 1,
+        "latest_year": 2024,
+        "mechanisms": {
+          "landslide_or_slope_failure": 1,
+          "roof_or_ground_collapse": 1
+        },
+        "province_code": "24",
+        "records": 1
+      },
+      {
+        "deaths": 7,
+        "documented_sites": 0,
+        "latest_year": 2003,
+        "mechanisms": {
+          "gas_explosion": 1
+        },
+        "province_code": "25",
+        "records": 1
+      },
+      {
+        "deaths": 6,
+        "documented_sites": 0,
+        "latest_year": 2014,
+        "mechanisms": {
+          "gas_explosion": 1,
+          "roof_or_ground_collapse": 1
+        },
+        "province_code": "22",
+        "records": 2
+      },
+      {
+        "deaths": 4,
+        "documented_sites": 2,
+        "latest_year": 2014,
+        "mechanisms": {
+          "roof_or_ground_collapse": 2
+        },
+        "province_code": "73",
+        "records": 2
+      },
+      {
+        "deaths": 3,
+        "documented_sites": 0,
+        "latest_year": 2004,
+        "mechanisms": {
+          "gas_explosion": 1
+        },
+        "province_code": "19",
+        "records": 1
+      },
+      {
+        "deaths": 2,
+        "documented_sites": 3,
+        "latest_year": 2025,
+        "mechanisms": {
+          "not_yet_coded": 1,
+          "roof_or_ground_collapse": 1
+        },
+        "province_code": "58",
+        "records": 2
+      },
+      {
+        "deaths": 2,
+        "documented_sites": 0,
+        "latest_year": 2015,
+        "mechanisms": {
+          "not_yet_coded": 2
+        },
+        "province_code": "48",
+        "records": 2
+      },
+      {
+        "deaths": 1,
+        "documented_sites": 1,
+        "latest_year": 2014,
+        "mechanisms": {
+          "not_yet_coded": 1
+        },
+        "province_code": "23",
+        "records": 1
+      },
+      {
+        "deaths": 1,
+        "documented_sites": 1,
+        "latest_year": 2014,
+        "mechanisms": {
+          "not_yet_coded": 1
+        },
+        "province_code": "12",
+        "records": 1
+      },
+      {
+        "deaths": 1,
+        "documented_sites": 1,
+        "latest_year": 2014,
+        "mechanisms": {
+          "gas_explosion": 1
+        },
+        "province_code": "50",
+        "records": 1
+      },
+      {
+        "deaths": 1,
+        "documented_sites": 0,
+        "latest_year": 2015,
+        "mechanisms": {
+          "not_yet_coded": 1
+        },
+        "province_code": "06",
+        "records": 1
+      },
+      {
+        "deaths": 1,
+        "documented_sites": 0,
+        "latest_year": 2024,
+        "mechanisms": {
+          "not_yet_coded": 1
+        },
+        "province_code": "14",
+        "records": 1
+      }
+    ],
+    "sites_outside_recorded_provinces": {
+      "provinces": 21,
+      "sites": 30
+    },
+    "totals": {
+      "deaths": 1091,
+      "documented_sites": 69,
+      "records": 52,
+      "records_with_a_mechanism": 38
+    }
+  },
+  "incident_organizations": {
+    "TR-MINE-1983-0002": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Türkiye Taşkömürü Kurumu",
+        "role": "owner",
+        "type": "state_enterprise"
+      }
+    ],
+    "TR-MINE-1987-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Türkiye Taşkömürü Kurumu",
+        "role": "operator",
+        "type": "state_enterprise"
+      }
+    ],
+    "TR-MINE-1995-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Matsan Madencilik",
+        "role": "owner",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2006-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Şentaş Madencilik",
+        "role": "operator",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2010-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Türkiye Taşkömürü Kurumu",
+        "role": "operator",
+        "type": "state_enterprise"
+      },
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Yapı-Tek",
+        "role": "subcontractor",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2010-0004": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Şentaş Madencilik",
+        "role": "owner",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2011-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Park Teknik A.Ş.",
+        "role": "operator",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2013-0002": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Türkiye Taşkömürü Kurumu",
+        "role": "owner",
+        "type": "state_enterprise"
+      }
+    ],
+    "TR-MINE-2014-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Soma Kömür İşletmeleri A.Ş.",
+        "role": "operator",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2014-0004": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Has Şekerler Madencilik",
+        "role": "owner",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2015-0002": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Türkiye Taşkömürü Kurumu",
+        "role": "operator",
+        "type": "state_enterprise"
+      }
+    ],
+    "TR-MINE-2016-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Antlar İnşaat",
+        "role": "subcontractor",
+        "type": "private_company"
+      },
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Park Elektrik",
+        "role": "owner",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2022-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Türkiye Taşkömürü Kurumu",
+        "role": "operator",
+        "type": "state_enterprise"
+      }
+    ],
+    "TR-MINE-2024-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Anagold Madencilik A.Ş.",
+        "role": "operator",
+        "type": "private_company"
+      },
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "CA",
+        "country_label": "Canada",
+        "name": "SSR Mining",
+        "role": "owner",
+        "type": "private_company"
+      },
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Çalık Holding",
+        "role": "owner",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2024-0005": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Türkiye Taşkömürü Kurumu",
+        "role": "owner",
+        "type": "state_enterprise"
+      }
+    ],
+    "TR-MINE-2026-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "İmbat Madencilik",
+        "role": "operator",
+        "type": "private_company"
+      }
+    ]
+  },
   "incidents": [
     {
       "canonical_title_en": null,
@@ -5008,11 +5650,11 @@ window.MINING_DATA = {
   },
   "pipeline": {
     "claims_awaiting_review": 11,
-    "claims_total": 893,
+    "claims_total": 913,
     "decisions_total": 282,
     "published_incidents": 52,
     "records_in_review": 1,
-    "source_documents": 175,
+    "source_documents": 186,
     "withdrawn_records": 5
   },
   "policy_events": [
@@ -27525,7 +28167,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "West Lignite Enterprise (Garp Linyitleri İşletmesi Müessesesi Müdürlüğü)",
           "role": "operator"
         }
@@ -27548,7 +28190,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "West Lignite Enterprise (Garp Linyitleri İşletmesi Müessesesi Müdürlüğü)",
           "role": "operator"
         }
@@ -27707,7 +28349,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Çelikler Taahhüt İnşaat ve San. Tic",
           "role": "operator"
         }
@@ -27730,7 +28372,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Çelikler Taahhüt İnşaat ve San. Tic",
           "role": "operator"
         }
@@ -27753,7 +28395,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Çelikler Taahhüt İnşaat ve San. Tic",
           "role": "operator"
         }
@@ -27776,7 +28418,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Armutçuk Taşkömürü Isletme Müessesesi",
           "role": "operator"
         }
@@ -27858,9 +28500,9 @@ window.MINING_DATA = {
       "organizations": [
         {
           "assertion_status": "reported",
-          "country_code": "",
-          "country_label": "",
-          "name": "Anagold Inc",
+          "country_code": "TR",
+          "country_label": "Türkiye",
+          "name": "Anagold Madencilik A.Ş.",
           "role": "owner"
         }
       ],
@@ -27882,7 +28524,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "TKİ",
           "role": "owner"
         }
@@ -27950,7 +28592,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Karadon Taşkömürü Işletme Müessesesi",
           "role": "operator"
         }
@@ -28018,7 +28660,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28041,7 +28683,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28094,7 +28736,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Kozlu Taşkömürü Işletme Müessesesi",
           "role": "operator"
         }
@@ -28117,7 +28759,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Üzülmez Taşkömürü Işletme Müessesesi",
           "role": "operator"
         }
@@ -28140,7 +28782,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28201,7 +28843,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28224,7 +28866,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28247,7 +28889,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28465,7 +29107,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28488,7 +29130,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28511,7 +29153,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28557,7 +29199,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Ciner Group",
           "role": "owner"
         }
@@ -28603,7 +29245,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28626,7 +29268,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28664,7 +29306,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28687,7 +29329,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28710,7 +29352,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28733,7 +29375,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28756,7 +29398,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Etibank",
           "role": "owner"
         }
@@ -28802,7 +29444,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "country_code": "TR",
-          "country_label": "Turkey",
+          "country_label": "Türkiye",
           "name": "Cengiz İnşaat",
           "role": "owner"
         }
@@ -28851,15 +29493,7 @@ window.MINING_DATA = {
       "latitude": 38.773155,
       "longitude": 34.485397,
       "name": "Gülşehir Tuz Madeni",
-      "organizations": [
-        {
-          "assertion_status": "reported",
-          "country_code": "",
-          "country_label": "",
-          "name": "Suat Bilgin",
-          "role": "owner"
-        }
-      ],
+      "organizations": [],
       "province_code": "50",
       "province_name": "Nevşehir",
       "ref": "wikidata:Q99791861",

@@ -1,1 +1,21 @@
-public_incident_id,organization_name_tr,organization_type,role,assertion_status
+public_incident_id,organization_name_tr,organization_type,organization_country_code,organization_country_label,role,valid_at_incident_date,assertion_status
+TR-MINE-1983-0002,Türkiye Taşkömürü Kurumu,state_enterprise,TR,Türkiye,owner,1,reported
+TR-MINE-1987-0001,Türkiye Taşkömürü Kurumu,state_enterprise,TR,Türkiye,operator,1,reported
+TR-MINE-1995-0001,Matsan Madencilik,private_company,TR,Türkiye,owner,1,reported
+TR-MINE-2006-0001,Şentaş Madencilik,private_company,TR,Türkiye,operator,1,reported
+TR-MINE-2010-0001,Türkiye Taşkömürü Kurumu,state_enterprise,TR,Türkiye,operator,1,reported
+TR-MINE-2010-0001,Yapı-Tek,private_company,TR,Türkiye,subcontractor,1,reported
+TR-MINE-2010-0004,Şentaş Madencilik,private_company,TR,Türkiye,owner,1,reported
+TR-MINE-2011-0001,Park Teknik A.Ş.,private_company,TR,Türkiye,operator,1,reported
+TR-MINE-2013-0002,Türkiye Taşkömürü Kurumu,state_enterprise,TR,Türkiye,owner,1,reported
+TR-MINE-2014-0001,Soma Kömür İşletmeleri A.Ş.,private_company,TR,Türkiye,operator,1,reported
+TR-MINE-2014-0004,Has Şekerler Madencilik,private_company,TR,Türkiye,owner,1,reported
+TR-MINE-2015-0002,Türkiye Taşkömürü Kurumu,state_enterprise,TR,Türkiye,operator,1,reported
+TR-MINE-2016-0001,Antlar İnşaat,private_company,TR,Türkiye,subcontractor,1,reported
+TR-MINE-2016-0001,Park Elektrik,private_company,TR,Türkiye,owner,1,reported
+TR-MINE-2022-0001,Türkiye Taşkömürü Kurumu,state_enterprise,TR,Türkiye,operator,1,reported
+TR-MINE-2024-0001,Anagold Madencilik A.Ş.,private_company,TR,Türkiye,operator,1,reported
+TR-MINE-2024-0001,SSR Mining,private_company,CA,Canada,owner,1,reported
+TR-MINE-2024-0001,Çalık Holding,private_company,TR,Türkiye,owner,1,reported
+TR-MINE-2024-0005,Türkiye Taşkömürü Kurumu,state_enterprise,TR,Türkiye,owner,1,reported
+TR-MINE-2026-0001,İmbat Madencilik,private_company,TR,Türkiye,operator,1,reported

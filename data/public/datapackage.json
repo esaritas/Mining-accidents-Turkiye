@@ -195,8 +195,24 @@
             "type": "string"
           },
           {
+            "name": "organization_country_code",
+            "type": "string"
+          },
+          {
+            "name": "organization_country_label",
+            "type": "string"
+          },
+          {
             "name": "role",
             "type": "string"
+          },
+          {
+            "constraints": {
+              "maximum": 1,
+              "minimum": 0
+            },
+            "name": "valid_at_incident_date",
+            "type": "integer"
           },
           {
             "name": "assertion_status",

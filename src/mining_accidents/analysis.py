@@ -12,6 +12,7 @@ continuation, not a prediction of fate.
 from __future__ import annotations
 
 import csv
+import json
 import math
 import sqlite3
 import statistics
@@ -201,3 +202,169 @@ def rate_context(conn: sqlite3.Connection) -> list[dict[str, object]]:
             "ORDER BY classification_code, period_start"
         )
     ]
+
+
+HAZARD_MATRIX_METHOD = (
+    "Both axes are counts of what this register has documented, not "
+    "probabilities and not a safety assessment of any site or company. "
+    "Severity bands are the deaths recorded in a single incident. A record "
+    "appears in every mechanism row its sources document, so rows sum to more "
+    "than the number of records. An empty cell means nothing of that kind is "
+    "documented here. STATUS: PROPOSED — see docs/analysis_methods.md and "
+    "docs/open_questions.md #29."
+)
+
+#: Single-incident death bands. The edges are the natural breaks in the record
+#: (a single death; a small group; a whole shift; a national disaster), not a
+#: severity scale borrowed from elsewhere.
+SEVERITY_BANDS: tuple[dict[str, object], ...] = (
+    {"key": "1", "low": 1, "high": 1, "label_tr": "1 ölüm", "label_en": "1 death"},
+    {"key": "2-9", "low": 2, "high": 9, "label_tr": "2-9 ölüm", "label_en": "2-9 deaths"},
+    {"key": "10-49", "low": 10, "high": 49, "label_tr": "10-49 ölüm", "label_en": "10-49 deaths"},
+    {"key": "50+", "low": 50, "high": None, "label_tr": "50+ ölüm", "label_en": "50+ deaths"},
+)
+
+UNCODED = "not_yet_coded"
+MECHANISM_SYSTEM = "project_event_mechanism"
+
+
+def _band_index(deaths: int) -> int | None:
+    for index, band in enumerate(SEVERITY_BANDS):
+        low, high = band["low"], band["high"]
+        if deaths >= int(low) and (high is None or deaths <= int(high)):
+            return index
+    return None
+
+
+def hazard_matrix(public_dir: str | Path = Path("data/public")) -> dict[str, object]:
+    """What kind of event is documented, how deadly it was, and where.
+
+    Reads the public export only, so the matrix can be rebuilt by anyone from
+    the published files. Two views:
+
+    * ``mechanisms`` — event mechanism against the deaths in a single record.
+      This is the shape of a risk matrix (how often against how severe), but
+      both axes are documented counts, so it describes a record, not a risk.
+    * ``provinces`` — what is documented in each province, beside the number of
+      sites the register currently documents there. Provinces holding
+      documented sites and no record of their own are counted separately,
+      because that is a gap in this register and not a statement about safety.
+    """
+    public_dir = Path(public_dir)
+    incidents = json.loads((public_dir / "incidents.json").read_text(encoding="utf-8"))
+
+    mechanisms: dict[str, dict[str, str]] = {}
+    by_incident: dict[str, set[str]] = {}
+    classifications = public_dir / "incident_classifications.csv"
+    if classifications.exists():
+        with classifications.open(encoding="utf-8", newline="") as fh:
+            for row in csv.DictReader(fh):
+                if row["classification_system"] != MECHANISM_SYSTEM:
+                    continue
+                code = row["classification_code"]
+                mechanisms.setdefault(
+                    code,
+                    {
+                        "label_tr": row["classification_label_tr"],
+                        "label_en": row["classification_label_en"],
+                    },
+                )
+                by_incident.setdefault(row["public_incident_id"], set()).add(code)
+
+    site_counts: dict[str, int] = {}
+    facilities = public_dir / "facilities.csv"
+    if facilities.exists():
+        with facilities.open(encoding="utf-8", newline="") as fh:
+            for row in csv.DictReader(fh):
+                if row["province_code"]:
+                    site_counts[row["province_code"]] = site_counts.get(row["province_code"], 0) + 1
+
+    rows: dict[str, dict[str, object]] = {}
+    provinces: dict[str, dict[str, object]] = {}
+    for incident in incidents:
+        public_id = incident["public_incident_id"]
+        deaths = int(incident.get("fatalities_current") or 0)
+        year = int(str(incident.get("incident_start_datetime") or "0")[:4]) or None
+        codes = sorted(by_incident.get(public_id) or {UNCODED})
+        band = _band_index(deaths)
+        for code in codes:
+            row = rows.setdefault(
+                code,
+                {
+                    "code": code,
+                    "label_tr": mechanisms.get(code, {}).get("label_tr", "henüz kodlanmadı"),
+                    "label_en": mechanisms.get(code, {}).get("label_en", "not yet coded"),
+                    "cells": [0] * len(SEVERITY_BANDS),
+                    "records": 0,
+                    "deaths": 0,
+                    "worst": 0,
+                    "years": [],
+                },
+            )
+            row["records"] = int(row["records"]) + 1
+            row["deaths"] = int(row["deaths"]) + deaths
+            row["worst"] = max(int(row["worst"]), deaths)
+            if band is not None:
+                row["cells"][band] += 1  # type: ignore[index]
+            if year:
+                row["years"].append(year)  # type: ignore[attr-defined]
+        code_key = incident.get("province_code") or ""
+        province = provinces.setdefault(
+            code_key,
+            {
+                "province_code": code_key,
+                "records": 0,
+                "deaths": 0,
+                "latest_year": None,
+                "mechanisms": {},
+                "documented_sites": site_counts.get(code_key, 0),
+            },
+        )
+        province["records"] = int(province["records"]) + 1
+        province["deaths"] = int(province["deaths"]) + deaths
+        if year and (province["latest_year"] is None or year > int(province["latest_year"])):
+            province["latest_year"] = year
+        for code in codes:
+            counts: dict[str, int] = province["mechanisms"]  # type: ignore[assignment]
+            counts[code] = counts.get(code, 0) + 1
+
+    total_deaths = sum(int(i.get("fatalities_current") or 0) for i in incidents)
+    # Heaviest documented toll first, with the uncoded bucket always last: it
+    # is a gap in the coding, not a kind of event, and should not sit among the
+    # mechanisms as though it were one.
+    ordered = sorted(
+        rows.values(),
+        key=lambda r: (r["code"] == UNCODED, -int(r["deaths"]), -int(r["records"])),
+    )
+    for row in ordered:
+        years = sorted(row.pop("years"))  # type: ignore[arg-type]
+        row["first_year"] = years[0] if years else None
+        row["latest_year"] = years[-1] if years else None
+        row["share_of_deaths"] = (
+            round(100.0 * int(row["deaths"]) / total_deaths, 1) if total_deaths else None
+        )
+
+    sites_without_record = {
+        code: count for code, count in site_counts.items() if code not in provinces
+    }
+    return {
+        "bands": [dict(band) for band in SEVERITY_BANDS],
+        "mechanisms": ordered,
+        "provinces": sorted(
+            provinces.values(), key=lambda p: (-int(p["deaths"]), -int(p["records"]))
+        ),
+        "mechanism_order": [row["code"] for row in ordered],
+        "sites_outside_recorded_provinces": {
+            "sites": sum(sites_without_record.values()),
+            "provinces": len(sites_without_record),
+        },
+        "totals": {
+            "records": len(incidents),
+            "deaths": total_deaths,
+            "records_with_a_mechanism": sum(
+                1 for i in incidents if i["public_incident_id"] in by_incident
+            ),
+            "documented_sites": sum(site_counts.values()),
+        },
+        "method": HAZARD_MATRIX_METHOD,
+    }

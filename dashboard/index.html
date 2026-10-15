@@ -309,7 +309,9 @@
     .svg-site path { stroke-width: 2; } .tile .value { font-size: 26px; }
     .chapter .card p { font-size: 15px; } .chapter .card .k { font-size: 18px; }
     #filters select { max-width: 140px; }
-    #mechanisms .mrow, #rates .rrow { grid-template-columns: 130px 1fr 48px; } }
+    #mechanisms .mrow, #rates .rrow { grid-template-columns: 130px 1fr 48px; }
+    #hazards .table-scroll { max-height: 340px; }
+    #hazards h3 { font-size:18px; margin-top:20px; } }
 
   /* Research edition: concise narrative, explicit uncertainty, neutral geography. */
   .viz-root { --page:#f4f5f6; --surface-1:#fff; --ink-1:#17272c;
@@ -426,6 +428,17 @@
   .svg-site:focus .site-symbol, .svg-site.is-hover .site-symbol { stroke:var(--ink-1); stroke-width:3; }
   .site-group { fill:#fff; stroke:#30495a; stroke-width:1.5; stroke-dasharray:3 2; }
   .site-group-label { font:bold 12px system-ui; fill:#30495a; pointer-events:none; }
+  /* Documented-hazard matrix. Cell shade carries the record count; the
+     number is always printed, so the shade is decoration, not the data. */
+  #hazards h3 { font:19px/1.3 Georgia,serif; margin:26px 0 6px; }
+  #hazard-matrix td.hz, #hazard-provinces td.hz { text-align:center; padding:7px 8px;
+    font-variant-numeric:tabular-nums; }
+  #hazard-matrix td.hz-0, #hazard-provinces td.hz-0 { color:var(--ink-muted); }
+  #hazard-matrix th.hz, #hazard-provinces th.hz { text-align:center; }
+  #hazards td.num, #hazards th.num { text-align:right; font-variant-numeric:tabular-nums; }
+  #hazards tbody th { text-align:left; font-weight:600; color:var(--ink-1);
+    border-bottom:1px solid var(--grid); padding:8px 10px; }
+  #hazards .hz-span { color:var(--ink-muted); font-size:12px; white-space:nowrap; }
   .site-summary { margin:0 0 14px; font-size:13px; color:var(--ink-2); }
   .site-summary .row { display:flex; flex-wrap:wrap; gap:3px 16px; align-items:baseline; margin:0; }
   .site-summary strong { color:var(--ink-1); }
@@ -469,9 +482,10 @@
     <a href="#story" data-i18n="nav_story"></a>
     <a href="#map-panel" data-i18n="nav_map"></a>
     <a href="#years" data-i18n="nav_years"></a>
-    <a href="#sites-panel" data-i18n="nav_sites"></a>
     <a href="#records-panel" data-i18n="nav_records"></a>
+    <a href="#sites-panel" data-i18n="nav_sites"></a>
     <a href="#rates-panel" data-i18n="nav_rates"></a>
+    <a href="#hazards" data-i18n="nav_hazards"></a>
     <a href="#about" data-i18n="nav_about"></a>
     <a href="#download-panel" data-i18n="nav_download"></a>
     <span class="lang-toggle" role="group" aria-label="Language / Dil">
@@ -602,6 +616,31 @@
     <div id="mechanisms"></div>
   </section>
 
+  <!-- ---- What kind of event is documented, how deadly it was, and where.
+       Both axes are counts from this register, so the table describes a
+       documented record and not a probability. Built from the public export
+       at build time, which is why the filters above do not change it. --- -->
+  <section class="panel" id="hazards">
+    <h2 data-i18n="hz_h"></h2>
+    <p class="caption" data-i18n="hz_caption"></p>
+    <div class="table-scroll">
+      <table id="hazard-matrix">
+        <thead><tr id="hz-head"></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <h3 data-i18n="hz_prov_h"></h3>
+    <p class="caption" data-i18n="hz_prov_caption"></p>
+    <div class="table-scroll">
+      <table id="hazard-provinces">
+        <thead><tr id="hzp-head"></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="caption" id="hz-sites-note"></p>
+    <p class="caption" data-i18n="hz_method"></p>
+  </section>
+
   <!-- ---- One box for every limit of the work. Notes beside the views above
        explain how to read that view only; everything that is true of the
        whole register is stated here, once. ------------------------------- -->
@@ -650,13 +689,13 @@
       site_coverage: "{n} matching sites: {points} with facility-level coordinates, {grouped} grouped by province, {unmapped} without a usable map location. Site type and commodity filters apply to sites only.",
       site_hidden: "Site layer hidden. Choose Both or Documented sites to show it.",
       site_group_key: "Dashed square + number: sites grouped by province, not a facility location",
-      site_unknown: "No usable location — retained in the site table",
+      site_unknown: "No usable location; kept in the site table",
       site_caveat: "A site marker does not imply an accident occurred there. Contextual features are shown separately; operating status is not inferred.",
       timeline_chapters: "Timeline chapters", timeline_all: "Show the full chronology",
       timeline_chapter_titles: ["The early register", "Karadon and wider context", "Soma and policy milestones", "Later incidents, open questions"],
       timeline_chapter_counts: "{n} incident records · {d} recorded deaths",
       timeline_full: "Numbered markers link an annual total to a selected incident below; blue markers are policy milestones. Select any year to list all of its records, including the smaller ones.",
-      timeline_selected: "{from}–{to}: {n} published incidents record {d} deaths. The chart retains the full chronology; highlighted years and the event cards focus on this chapter.",
+      timeline_selected: "{from}-{to}: {n} published incidents record {d} deaths. The chart retains the full chronology; highlighted years and the event cards focus on this chapter.",
       timeline_event: "Incident", timeline_policy: "Policy milestone", timeline_recorded: "recorded deaths",
       timeline_open: "Read record and sources", timeline_focus: "Show this year on the map",
       timeline_year_prompt: "Select a year in the chart to read every published incident for that year.",
@@ -673,7 +712,7 @@
       range: "{a} to {b}",
       nav_story: "Overview", nav_map: "Map", nav_years: "Years",
       nav_sites: "Documented sites", nav_records: "Records", nav_download: "Download",
-      nav_rates: "Historical context", nav_about: "About",
+      nav_rates: "Historical context", nav_hazards: "Documented hazards", nav_about: "About",
       title: "A public register of mining accidents in Türkiye",
       lede: "Fatal mining and quarrying accidents in Türkiye, as far as open sources document them. Every published value links to the source it came from and the review decision that selected it.",
       note: "<strong>A partial research register.</strong> Missing records do not mean no accidents occurred. <a href=\"#about\">Scope and limits ↓</a>",
@@ -688,7 +727,7 @@
       ab4_t: "Why the İSİG series is kept separate",
       ab4_d: "İSİG Meclisi counts all miner work deaths from all causes; this register counts deaths in reviewed, published incidents. They are different populations, so the two series are never added or subtracted, and their difference means loss not yet represented here, not loss that no public source recorded.",
       ab5_t: "What it is not",
-      ab5_d: "Not a ranking, not a comparison between provinces or countries, not exposure-adjusted risk, and never a statement of cause or legal responsibility. Reported mechanisms describe what sources say happened. Policy markers describe chronology, not evidence of an effect.",
+      ab5_d: "Not a ranking, not a comparison between provinces or countries, not exposure-adjusted risk, and never a statement of cause or legal responsibility. Reported mechanisms describe what sources say happened. Where a company is named, it is the company the sources say held or ran the mine at the time; naming it records who was operating, not who was at fault. No individual is named anywhere, and no personal data of the people who died is stored or shown. Policy markers describe chronology, not evidence of an effect.",
       ab6_t: "How locations are shown",
       ab6_d: "Few records carry coordinates precise enough for a facility-level mark, and even those are approximate to the facility or its vicinity. Every other record is drawn at a representative point inside its province, which is never the accident site. Boundaries: Natural Earth (public domain), Albers equal-area projection.",
       ab7_t: "Corrections and open work",
@@ -772,6 +811,26 @@ tt_records: "Published records",
       foot1: "Export of {ts} · schema {v} · {rev} records in review · {wd} withdrawn after audit (docs/corrections_log.csv) · {docs} source documents · {claims} claims · {dec} recorded decisions.",
       foot2: "Seed sources: <a href=\"https://www.wikidata.org\" rel=\"noopener\">Wikidata</a> (CC0) and <a href=\"https://www.wikipedia.org\" rel=\"noopener\">Wikipedia</a> (text CC BY-SA 4.0; the article links above credit the source). <a href=\"#about\">Scope and limits</a> sets out the sources, the limits and how to send a correction.",
       owner: "Owner", operator: "Operator",
+      roles: { owner: "Owner", operator: "Operator", licence_holder: "Licence holder",
+        subcontractor: "Subcontractor", employer: "Employer",
+        public_authority: "Public authority", rescue_organization: "Rescue organization",
+        other: "Other", unknown: "Role not stated" },
+      rh_org: "In charge at the time",
+      org_at_date: "at the time of the accident",
+      hz_h: "Documented hazards: what happened, how deadly, and where",
+      hz_caption: "Rows are the event mechanism the sources report. Columns are the deaths recorded in a single incident. A number is the count of records in that cell. Both axes count what this register has documented, so this is a record of past events, not a probability and not a safety assessment of any site or company. A record appears in every row its sources document, so the rows add up to more than {n} records. This table covers the whole register and does not respond to the filters above.",
+      hz_prov_h: "Where it is documented, and the sites documented there now",
+      hz_prov_caption: "Each row is a province: what this register documents there, beside the number of mining sites the register currently documents in the same province. Site coverage comes from open sources only and is partial, so the two columns are not proportional to each other.",
+      hz_method: "Method proposed, not settled. Severity bands are deaths in one incident (1, 2-9, 10-49, 50 or more), chosen as the natural breaks in this record rather than taken from an external severity scale. Mechanisms are the reported event type, never a root cause. An empty cell means nothing of that kind is documented here. See docs/analysis_methods.md and open question 29.",
+      hz_sites_note: "{sites} documented sites sit in {provinces} provinces where this register holds no accident record at all. That is a gap in the register, not a statement that nothing happened there.",
+      hz_col_mech: "Event mechanism", hz_col_records: "Records", hz_col_deaths: "Deaths",
+      hz_col_worst: "Worst single record", hz_col_span: "First to latest",
+      hz_col_share: "Share of deaths",
+      hzp_col_prov: "Province", hzp_col_sites: "Documented sites now",
+      hzp_col_records: "Records", hzp_col_deaths: "Deaths", hzp_col_latest: "Latest record",
+      hz_short: { gas_explosion: "Gas", fire: "Fire", roof_or_ground_collapse: "Collapse",
+        landslide_or_slope_failure: "Slope", flooding_or_inrush: "Water",
+        loss_of_vehicle_control: "Vehicle", not_yet_coded: "Not coded" },
       wikidata_src: "Source (Wikidata)",
       types: { mine_underground: "Underground mine", mine_openpit: "Open pit mine",
         mine_unspecified: "Mine", quarry: "Quarry", processing_plant: "Processing plant",
@@ -791,7 +850,7 @@ tt_records: "Published records",
       view_locations: "Location precision",
       annual_table: "Read the annual figures as a table",
       snapshot: "Data snapshot: {date} · latest incident year: {year}",
-      hero_total: "recorded deaths across {n} published incidents, {from}–{to}. This is the sum of the current register values, including disputed figures; it is not a national total.",
+      hero_total: "recorded deaths across {n} published incidents, {from}-{to}. This is the sum of the current register values, including disputed figures; it is not a national total.",
       story_one: "What the register covers",
       story_one_body: "The two largest incidents account for {share}% of recorded deaths. A few large events dominate the total; most records are smaller ones.",
       story_two: "A province is not an accident site",
@@ -832,13 +891,13 @@ tt_records: "Published records",
       site_coverage: "Filtreye uyan {n} saha: {points} tesis düzeyinde koordinatlı, {grouped} ile göre gruplanmış, {unmapped} haritada konumlandırılamıyor. Saha türü ve maden ürünü filtreleri yalnızca sahalara uygulanır.",
       site_hidden: "Saha katmanı gizli. Göstermek için İkisi veya Belgelenmiş sahalar seçeneğini seçin.",
       site_group_key: "Kesikli kare + sayı: ile göre gruplanmış sahalar; tesis konumu değil",
-      site_unknown: "Kullanılabilir konum yok — saha tablosunda korunuyor",
+      site_unknown: "Kullanılabilir konum yok; saha tablosunda korunuyor",
       site_caveat: "Saha işareti, orada kaza yaşandığı anlamına gelmez. Bağlamsal unsurlar ayrı gösterilir; işletme durumu varsayılmaz.",
       timeline_chapters: "Zaman çizelgesi bölümleri", timeline_all: "Tüm kronolojiyi göster",
       timeline_chapter_titles: ["İlk dönem kayıtları", "Karadon ve genişleyen bağlam", "Soma ve politika dönüm noktaları", "Sonraki olaylar, açık sorular"],
       timeline_chapter_counts: "{n} olay kaydı · {d} kayıtlı can kaybı",
       timeline_full: "Numaralı işaretler yıllık toplamı aşağıdaki seçili olaya bağlar; mavi işaretler politika dönüm noktalarıdır. Küçükler dahil o yılın bütün kayıtlarını listelemek için bir yıl seçin.",
-      timeline_selected: "{from}–{to}: yayımlanmış {n} olayda {d} can kaybı kayıtlı. Grafik tüm kronolojiyi korur; vurgulanan yıllar ve olay kartları bu bölüme odaklanır.",
+      timeline_selected: "{from}-{to}: yayımlanmış {n} olayda {d} can kaybı kayıtlı. Grafik tüm kronolojiyi korur; vurgulanan yıllar ve olay kartları bu bölüme odaklanır.",
       timeline_event: "Olay", timeline_policy: "Politika dönüm noktası", timeline_recorded: "kayıtlı can kaybı",
       timeline_open: "Kaydı ve kaynakları oku", timeline_focus: "Bu yılı haritada göster",
       timeline_year_prompt: "O yılın yayımlanmış tüm olaylarını okumak için grafikte bir yıl seçin.",
@@ -855,7 +914,7 @@ tt_records: "Published records",
       range: "{a} ile {b} arası",
       nav_story: "Genel bakış", nav_map: "Harita", nav_years: "Yıllar",
       nav_sites: "Maden sahaları", nav_records: "Kayıtlar", nav_download: "İndir",
-      nav_rates: "Tarihsel bağlam", nav_about: "Hakkında",
+      nav_rates: "Tarihsel bağlam", nav_hazards: "Kayda geçen tehlikeler", nav_about: "Hakkında",
       title: "Türkiye maden kazaları açık kaydı",
       lede: "Türkiye'deki ölümlü maden ve taş ocağı kazaları, açık kaynakların belgelediği kadarıyla. Yayımlanan her bilgi, geldiği kaynağa ve o bilgiyi seçen inceleme kararına bağlıdır.",
       note: "<strong>Kısmi bir araştırma kaydıdır.</strong> Burada kayıt olmaması, o yerde ya da o yılda kaza yaşanmadığı anlamına gelmez. <a href=\"#about\">Kapsam ve sınırlar ↓</a>",
@@ -870,7 +929,7 @@ tt_records: "Published records",
       ab4_t: "İSİG serisi neden ayrı duruyor",
       ab4_d: "İSİG Meclisi, madencilikte her nedenle yaşanan bütün işçi ölümlerini sayar; bu kayıt ise yalnızca incelenip yayımlanmış olaylardaki can kayıplarını sayar. İkisi aynı topluluğu kapsamadığı için seriler ne toplanır ne de birbirinden çıkarılır. Aradaki fark, bu ölümlerin hiçbir kaynakta yer almadığını değil, bu kayıtta henüz karşılığının bulunmadığını gösterir.",
       ab5_t: "Bu kayıt ne değildir",
-      ab5_d: "Bir sıralama, iller veya ülkeler arasında bir karşılaştırma ya da maruziyete göre düzeltilmiş bir risk ölçüsü değildir; hiçbir biçimde neden ya da hukuki sorumluluk beyanı değildir. Olay türleri yalnızca kaynakların aktardığını tanımlar. Politika işaretleri ise kronolojiyi gösterir, bir etkiyi kanıtlamaz.",
+      ab5_d: "Bir sıralama, iller veya ülkeler arasında bir karşılaştırma ya da maruziyete göre düzeltilmiş bir risk ölçüsü değildir; hiçbir biçimde neden ya da hukuki sorumluluk beyanı değildir. Olay türleri yalnızca kaynakların aktardığını tanımlar. Bir şirket adı geçtiğinde, bu kaynakların o tarihte ocağı yürüttüğünü ya da elinde tuttuğunu bildirdiği şirkettir; adın kayda geçmesi kimin işlettiğini gösterir, kimin kusurlu olduğunu değil. Hiçbir yerde kişi adı geçmez; hayatını kaybedenlere ait kişisel veri tutulmaz ve gösterilmez. Politika işaretleri ise kronolojiyi gösterir, bir etkiyi kanıtlamaz.",
       ab6_t: "Konumlar nasıl gösteriliyor",
       ab6_d: "Kayıtların yalnızca birkaçında tesis düzeyinde işaretlemeye yetecek kesinlikte koordinat var; onlar da tesisin kendisine ya da yakın çevresine işaret eder. Diğer bütün kayıtlar, kendi illerinin içinde temsili bir noktada gösterilir; bu nokta hiçbir zaman kazanın yeri değildir. Sınırlar: Natural Earth (kamuya açık), Albers eşit alanlı izdüşüm.",
       ab7_t: "Düzeltmeler ve süren işler",
@@ -954,6 +1013,26 @@ tt_records: "Yayımlanmış kayıt",
       foot1: "{ts} tarihli veri seti · şema {v} · incelemede {rev} kayıt · denetim sonrası geri çekilen {wd} kayıt (docs/corrections_log.csv) · {docs} kaynak belge · {claims} iddia · {dec} kayıtlı karar.",
       foot2: "Başlangıç kaynakları: <a href=\"https://www.wikidata.org\" rel=\"noopener\">Wikidata</a> (CC0) ve <a href=\"https://www.wikipedia.org\" rel=\"noopener\">Vikipedi</a> (metin CC BY-SA 4.0; yukarıdaki makale bağlantıları kaynağı gösterir). Kaynaklar, sınırlar ve düzeltme yolu için <a href=\"#about\">kapsam ve sınırlar</a> bölümüne bakın.",
       owner: "Sahibi", operator: "İşletmeci",
+      roles: { owner: "Sahibi", operator: "İşletmeci", licence_holder: "Ruhsat sahibi",
+        subcontractor: "Taşeron", employer: "İşveren",
+        public_authority: "Kamu kurumu", rescue_organization: "Arama kurtarma",
+        other: "Diğer", unknown: "Rolü belirtilmemiş" },
+      rh_org: "Kaza anında ocağı yürüten",
+      org_at_date: "kaza tarihinde",
+      hz_h: "Kayda geçen tehlikeler: ne oldu, kaç can aldı, nerede",
+      hz_caption: "Satırlar kaynakların bildirdiği olay türü, kolonlar tek bir olayda kaydedilen ölüm sayısıdır. Hücredeki sayı o aralığa düşen kayıt sayısıdır. İki eksen de bu kaydın belgelediği olayları sayar; dolayısıyla tablo geçmişin dökümüdür, bir olasılık hesabı ya da herhangi bir saha veya şirket için güvenlik değerlendirmesi değildir. Bir olay, kaynaklarının bildirdiği her satırda görünür; bu yüzden satır toplamları {n} kaydı aşar. Tablo kaydın tamamını gösterir, yukarıdaki filtrelerden etkilenmez.",
+      hz_prov_h: "Nerede belgelenmiş, orada bugün kaç saha kayıtlı",
+      hz_prov_caption: "Her satır bir il: bu kaydın o ilde belgelediği olaylar ile aynı ilde bugün kayıtlı maden sahası sayısı yan yana. Saha katmanı yalnızca açık kaynaklardan gelir ve eksiktir; iki kolon birbirinin ölçüsü değildir.",
+      hz_method: "Yöntem öneri aşamasında, kesinleşmedi. Şiddet aralıkları tek olaydaki ölüm sayısıdır (1, 2-9, 10-49, 50 ve üzeri); dışarıdan alınmış bir ölçek değil, bu kaydın kendi doğal kırılma noktalarıdır. Olay türü bildirilen olayı anlatır, kök nedeni değil. Boş hücre, o türden bir olayın burada belgelenmediği anlamına gelir. docs/analysis_methods.md ve 29 numaralı açık soruya bakınız.",
+      hz_sites_note: "Kayıtlı {sites} sahanın bulunduğu {provinces} ilde bu kayıtta hiç kaza kaydı yok. Bu, kaydın eksiğidir; orada kaza olmadığı anlamına gelmez.",
+      hz_col_mech: "Olay türü", hz_col_records: "Kayıt", hz_col_deaths: "Ölüm",
+      hz_col_worst: "En ağır tek kayıt", hz_col_span: "İlk ve son",
+      hz_col_share: "Ölümlerdeki payı",
+      hzp_col_prov: "İl", hzp_col_sites: "Bugün kayıtlı saha",
+      hzp_col_records: "Kayıt", hzp_col_deaths: "Ölüm", hzp_col_latest: "Son kayıt",
+      hz_short: { gas_explosion: "Grizu", fire: "Yangın", roof_or_ground_collapse: "Göçük",
+        landslide_or_slope_failure: "Heyelan", flooding_or_inrush: "Su",
+        loss_of_vehicle_control: "Araç", not_yet_coded: "Kodsuz" },
       wikidata_src: "Kaynak (Wikidata)",
       types: { mine_underground: "Yeraltı madeni", mine_openpit: "Açık ocak",
         mine_unspecified: "Maden", quarry: "Taş ocağı", processing_plant: "İşleme tesisi",
@@ -973,7 +1052,7 @@ tt_records: "Yayımlanmış kayıt",
       view_locations: "Konum hassasiyeti",
       annual_table: "Yıllık sayıları tablo olarak incele",
       snapshot: "Veri anlık görüntüsü: {date} · en son olay yılı: {year}",
-      hero_total: "yayımlanan {n} olay kaydında kayıtlı can kaybı, {from}–{to}. Bu, ihtilaflı sayılar dâhil sicildeki mevcut değerlerin toplamıdır; ülke toplamı değildir.",
+      hero_total: "yayımlanan {n} olay kaydında kayıtlı can kaybı, {from}-{to}. Bu, ihtilaflı sayılar dâhil sicildeki mevcut değerlerin toplamıdır; ülke toplamı değildir.",
       story_one: "Kayıt neyi kapsıyor",
       story_one_body: "En büyük iki olay, kayıtlı ölümlerin %{share}'ini oluşturuyor. Toplamı birkaç büyük olay belirliyor; kayıtların çoğu ise daha küçük olaylar.",
       story_two: "Bir il, kaza yeri değildir",
@@ -1095,8 +1174,10 @@ tt_records: "Yayımlanmış kayıt",
       `<th data-sort="id">${t("rh_id")}</th><th data-sort="date">${t("rh_date")}</th>` +
       `<th data-sort="prov">${t("rh_prov")}</th><th data-sort="what">${t("rh_what")}</th>` +
       `<th class="num" data-sort="people">${t("rh_people")}</th>` +
-      `<th data-sort="mech">${t("rh_mech")}</th><th>${t("rh_sources")}</th>`;
+      `<th data-sort="mech">${t("rh_mech")}</th>` +
+      `<th data-sort="org">${t("rh_org")}</th><th>${t("rh_sources")}</th>`;
     markSorted("records-head", sortState.records);
+    renderHazardHeads();
     document.getElementById("chart-legend").innerHTML =
       `<span><span class="swatch bar-swatch"></span> ${t("lgc_bars")}</span>` +
       `<span><span class="swatch line-swatch"></span> ${t("timeline_policy")}</span>`;
@@ -1190,6 +1271,10 @@ tt_records: "Yayımlanmış kayıt",
     "operating_directorate", "regional_group", "deposit", "proposed_project"]);
   const typeLabel = s => t("types")[s.type] || s.type || "";
   const statusLabel = s => t("statuses")[s.status] || t("pill_not_stated");
+  const roleLabel = role => t("roles")[role] || role || t("roles").unknown;
+  // Who the sources say held or ran the mine when the accident happened.
+  // Organizations only: this register names no individual.
+  const orgsOf = id => (D.incident_organizations || {})[id] || [];
   // Commodity groups (validated palette; gray = not stated in source).
   const COMM_GROUPS = {
     coal: "coal", lignite: "coal",
@@ -1936,7 +2021,7 @@ tt_records: "Yayımlanmış kayıt",
       const start=Math.max(from,minY), end=Math.min(to,maxY);
       const list=incidents.filter(i=>yearOf(i)>=start && yearOf(i)<=end);
       const deaths=list.reduce((sum,i)=>sum+(i.fatalities_current || 0),0);
-      return `<button type="button" data-chapter="${k}" aria-pressed="${timelineState.chapter===k}"><span>${start}–${end}</span><strong>${t("timeline_chapter_titles")[k]}</strong><small>${tf("timeline_chapter_counts",{n:list.length,d:fmt.format(deaths)})}</small></button>`;
+      return `<button type="button" data-chapter="${k}" aria-pressed="${timelineState.chapter===k}"><span>${start}-${end}</span><strong>${t("timeline_chapter_titles")[k]}</strong><small>${tf("timeline_chapter_counts",{n:list.length,d:fmt.format(deaths)})}</small></button>`;
     }).join("");
     host.querySelectorAll("[data-chapter]").forEach(b=>b.addEventListener("click",()=>{
       timelineState.chapter=+b.dataset.chapter; timelineState.year=null; renderChart();
@@ -2101,6 +2186,79 @@ tt_records: "Yayımlanmış kayıt",
   }
 
   // ---- Mechanisms --------------------------------------------------------------
+  // ---- Documented-hazard matrix ---------------------------------------------
+  // Built at export time by analysis.hazard_matrix() from the public files, so
+  // the table can be rebuilt by anyone holding the export. It describes the
+  // whole register and deliberately ignores the filters: a severity profile
+  // computed from a filtered subset would read as a finding about that subset.
+  const HZ = () => D.hazard_matrix || null;
+  const mechShort = code => (t("hz_short") || {})[code] ||
+    (HZ()?.mechanisms || []).filter(m => m.code === code)
+      .map(m => LANG === "tr" ? m.label_tr : m.label_en)[0] || code;
+  const mechFull = code => (HZ()?.mechanisms || []).filter(m => m.code === code)
+      .map(m => LANG === "tr" ? m.label_tr : m.label_en)[0] || code;
+
+  function renderHazardHeads() {
+    const M = HZ();
+    if (!M) return;
+    const head = document.getElementById("hz-head");
+    if (head) head.innerHTML =
+      `<th>${t("hz_col_mech")}</th>` +
+      M.bands.map(b => `<th class="hz">${html(LANG === "tr" ? b.label_tr : b.label_en)}</th>`).join("") +
+      `<th class="num">${t("hz_col_records")}</th><th class="num">${t("hz_col_deaths")}</th>` +
+      `<th class="num">${t("hz_col_worst")}</th><th>${t("hz_col_span")}</th>`;
+    const phead = document.getElementById("hzp-head");
+    if (phead) phead.innerHTML =
+      `<th>${t("hzp_col_prov")}</th>` +
+      M.mechanism_order.map(c =>
+        `<th class="hz" title="${html(mechFull(c))}">${html(mechShort(c))}</th>`).join("") +
+      `<th class="num">${t("hzp_col_records")}</th><th class="num">${t("hzp_col_deaths")}</th>` +
+      `<th>${t("hzp_col_latest")}</th><th class="num">${t("hzp_col_sites")}</th>`;
+  }
+
+  function renderHazards() {
+    const M = HZ();
+    if (!M) return;
+    // Shade is a reading aid over the printed number, never the value itself.
+    const shade = (n, max) => n === 0 ? "" :
+      ` style="background:rgba(194,47,47,${(0.07 + 0.33 * (n / max)).toFixed(3)})"`;
+    const cell = (n, max) =>
+      `<td class="hz hz-${n === 0 ? "0" : "n"}"${shade(n, max)}>${n === 0 ? "·" : fmt.format(n)}</td>`;
+
+    const maxCell = Math.max(1, ...M.mechanisms.flatMap(r => r.cells));
+    document.querySelector("#hazard-matrix tbody").innerHTML = M.mechanisms.map(r => {
+      const main = LANG === "tr" ? r.label_tr : r.label_en;
+      const span = r.first_year === r.latest_year ? String(r.first_year ?? "")
+        : `${r.first_year ?? ""}-${r.latest_year ?? ""}`;
+      return `<tr><th scope="row">${html(main)}</th>` +
+        r.cells.map(n => cell(n, maxCell)).join("") +
+        `<td class="num">${fmt.format(r.records)}</td>` +
+        `<td class="num">${fmt.format(r.deaths)}</td>` +
+        `<td class="num">${fmt.format(r.worst)}</td>` +
+        `<td class="hz-span">${html(span)}</td></tr>`;
+    }).join("");
+
+    const maxProv = Math.max(1, ...M.provinces.flatMap(p =>
+      M.mechanism_order.map(c => p.mechanisms[c] || 0)));
+    document.querySelector("#hazard-provinces tbody").innerHTML = M.provinces.map(p => {
+      const name = p.province_code ? provinceName(p.province_code) : t("pill_not_stated");
+      return `<tr><th scope="row">${html(name)}</th>` +
+        M.mechanism_order.map(c => cell(p.mechanisms[c] || 0, maxProv)).join("") +
+        `<td class="num">${fmt.format(p.records)}</td>` +
+        `<td class="num">${fmt.format(p.deaths)}</td>` +
+        `<td class="hz-span">${p.latest_year ?? ""}</td>` +
+        `<td class="num">${p.documented_sites ? fmt.format(p.documented_sites)
+          : `<span class="pill">${t("pill_not_stated")}</span>`}</td></tr>`;
+    }).join("");
+
+    const outside = M.sites_outside_recorded_provinces || { sites: 0, provinces: 0 };
+    const note = document.getElementById("hz-sites-note");
+    if (note) note.innerHTML = tf("hz_sites_note",
+      { sites: fmt.format(outside.sites), provinces: fmt.format(outside.provinces) });
+    const caption = document.querySelector('#hazards [data-i18n="hz_caption"]');
+    if (caption) caption.innerHTML = tf("hz_caption", { n: fmt.format(M.totals.records) });
+  }
+
   function renderMechanisms() {
     const mechCounts = new Map();
     for (const i of incidents) {
@@ -2133,6 +2291,7 @@ tt_records: "Yayımlanmış kayıt",
     what: i => i.canonical_title_tr || "",
     people: i => i.fatalities_current || 0,
     mech: i => mechanismsOf(i.public_incident_id).map(mechLabel).join(", "),
+    org: i => orgsOf(i.public_incident_id).map(o => o.name).join(", "),
   };
   const SITE_SORTERS = {
     site: s => s.name || "",
@@ -2185,7 +2344,7 @@ tt_records: "Yayımlanmış kayıt",
     document.querySelector("#sites-table tbody").innerHTML = sortRows(fs, SITE_SORTERS, sortState.sites).map(s => {
       const orgs = (s.organizations || []);
       const orgNames = orgs.map(o =>
-        `<span lang="tr">${html(o.name)}</span> <span class="pill">${o.role === "owner" ? t("owner") : t("operator")} · ${html(o.assertion_status)}</span>`).join("<br>") ||
+        `<span lang="tr">${html(o.name)}</span> <span class="pill">${html(roleLabel(o.role))} · ${html(o.assertion_status)}</span>`).join("<br>") ||
         `<span class="pill">${t("pill_not_stated_src")}</span>`;
       const countries = [...new Set(orgs.map(o => o.country_label).filter(Boolean))].map(html).join(", ") ||
         `<span class="pill">${t("pill_not_stated")}</span>`;
@@ -2203,6 +2362,16 @@ tt_records: "Yayımlanmış kayıt",
   }
 
   // ---- Records table -------------------------------------------------------------
+  function orgCell(id) {
+    const orgs = orgsOf(id);
+    if (!orgs.length) return `<span class="pill">${t("pill_not_stated_src")}</span>`;
+    return orgs.map(o => {
+      const country = o.country_label ? ` · ${html(o.country_label)}` : "";
+      return `<span lang="tr">${html(o.name)}</span> ` +
+        `<span class="pill">${html(roleLabel(o.role))}${country}</span>`;
+    }).join("<br>");
+  }
+
   function renderRecords(fi) {
     document.querySelector("#records tbody").innerHTML = sortRows(fi, RECORD_SORTERS, sortState.records).map(i => {
       const cites = (D.citations[i.public_incident_id] || [])
@@ -2216,9 +2385,10 @@ tt_records: "Yayımlanmış kayıt",
         <td lang="tr">${html(displayTitle(i))}</td>
         <td class="num">${fmt.format(i.fatalities_current)}<br>${casualtyPill(i)}${i.injuries_current != null ? `<br><span class="pill">${tf("pill_injured", { n: fmt.format(i.injuries_current) })}</span>` : ""}</td>
         <td>${mech ? `<span class="pill">${html(mech)}</span>` : `<span class="pill">${t("pill_no_mech")}</span>`}</td>
+        <td>${orgCell(i.public_incident_id)}</td>
         <td>${cites}</td>
       </tr>`;
-    }).join("") || `<tr><td colspan="7">${t("no_records")}</td></tr>`;
+    }).join("") || `<tr><td colspan="8">${t("no_records")}</td></tr>`;
   }
 
   // ---- Downloads (filter-aware, built from the same payload) -----------------
@@ -2242,6 +2412,7 @@ tt_records: "Yayımlanmış kayıt",
   }
   const RECORD_COLUMNS = ["public_incident_id", "date", "date_display", "date_precision",
     "province", "title_tr", "deaths", "casualty_status", "injuries", "mechanisms",
+    "organizations_at_incident_date", "organization_countries",
     "latitude", "longitude", "coordinate_precision", "sources"];
   const SITE_COLUMNS = ["site", "type", "commodity", "commodity_group", "province",
     "operators", "operator_countries", "status", "latitude", "longitude",
@@ -2259,6 +2430,10 @@ tt_records: "Yayımlanmış kayıt",
       casualty_status: i.casualty_status,
       injuries: i.injuries_current,
       mechanisms: mechanismsOf(i.public_incident_id).map(mechLabel).join("; "),
+      organizations_at_incident_date: orgsOf(i.public_incident_id)
+        .map(o => `${o.name} (${roleLabel(o.role)})`).join("; "),
+      organization_countries: [...new Set(orgsOf(i.public_incident_id)
+        .map(o => o.country_label).filter(Boolean))].join("; "),
       latitude: i.latitude, longitude: i.longitude,
       coordinate_precision: i.coordinate_precision,
       sources: (D.citations[i.public_incident_id] || []).map(c => c.url)
@@ -2330,6 +2505,10 @@ tt_records: "Yayımlanmış kayıt",
       row(t("d_location"), i.latitude != null
         ? `${i.latitude.toFixed(4)}, ${i.longitude.toFixed(4)} <span class="pill">${html(i.coordinate_precision || "")}</span>`
         : t("d_no_coords")) +
+      (orgsOf(i.public_incident_id).length
+        ? row(t("rh_org"), orgCell(i.public_incident_id) +
+            `<br><span class="pill">${t("org_at_date")}</span>`)
+        : "") +
       (cls.length ? `<div class="d-sec"><b>${t("d_class")}:</b><ul>` + cls.map(c =>
         `<li>${html(LANG === "tr" ? (c.label_tr || c.label_en) : (c.label_en || c.label_tr))} ` +
         `<span class="pill">${html(c.assertion_status)}</span></li>`).join("") + `</ul></div>` : "") +
@@ -2388,6 +2567,7 @@ tt_records: "Yayımlanmış kayıt",
     renderChart();
     renderRates();
     renderMechanisms();
+    renderHazards();
     renderFooter();
     applyFilters();
   }
