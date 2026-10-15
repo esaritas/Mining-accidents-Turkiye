@@ -359,6 +359,10 @@ def _collect_redirects(conn: sqlite3.Connection) -> list[dict[str, object]]:
         FROM incident_merge_log m
         JOIN incidents i ON i.incident_id = m.surviving_incident_id
         WHERE m.merged_public_incident_id IS NOT NULL
+          -- A redirect to itself carries nothing. It arises when the surviving
+          -- record takes back the public id the merged duplicate was holding,
+          -- which the append-only merge log keeps recording.
+          AND m.merged_public_incident_id <> i.public_incident_id
         ORDER BY m.merged_public_incident_id
         """
     ).fetchall()

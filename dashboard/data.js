@@ -218,6 +218,11 @@ window.MINING_DATA = {
       "register_deaths": 1,
       "sector_deaths": 61,
       "year": 2025
+    },
+    {
+      "register_deaths": 5,
+      "sector_deaths": null,
+      "year": 2026
     }
   ],
   "citations": {
@@ -226,7 +231,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_tr",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -235,7 +240,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -244,7 +249,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -253,7 +258,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -262,7 +267,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -273,7 +278,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -282,7 +287,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -291,7 +296,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -300,7 +305,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -311,7 +316,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -320,7 +325,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -329,7 +334,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -338,7 +343,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -349,7 +354,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -358,7 +363,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -367,7 +372,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -376,7 +381,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -387,7 +392,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -396,7 +401,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -405,7 +410,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -414,7 +419,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -425,7 +430,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_tr",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -434,7 +439,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -443,7 +448,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -452,7 +457,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -461,48 +466,39 @@ window.MINING_DATA = {
     "TR-MINE-1992-0001": [
       {
         "field_name": "canonical_title_tr",
-        "organization": "Wikipedia (tr)",
+        "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
-      },
-      {
-        "field_name": "date_precision",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Wikidata item Q6067083: 1992 Kozlu kömür madeni faciası",
+        "url": "https://www.wikidata.org/wiki/Q6067083"
       },
       {
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
+        "organization": "TBMM",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "retrieved_at": "2026-10-14T10:42:00Z",
+        "source_tier": "1",
+        "title": "Genel Kurul konuşması (Özcan Ulupınar) — 3 Mart 1992 Kozlu faciası",
+        "url": "https://tbmm.gov.tr/milletvekili/UyeGenelKurulKonusmalariDetay?eid=38364"
       },
       {
         "field_name": "incident_start_datetime",
-        "organization": "Wikipedia (tr)",
+        "organization": "TBMM",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "retrieved_at": "2026-10-14T10:42:00Z",
+        "source_tier": "1",
+        "title": "Genel Kurul konuşması (Özcan Ulupınar) — 3 Mart 1992 Kozlu faciası",
+        "url": "https://tbmm.gov.tr/milletvekili/UyeGenelKurulKonusmalariDetay?eid=38364"
       },
       {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Kozlu maden faciası",
+        "url": "https://tr.wikipedia.org/wiki/Kozlu_maden_facias%C4%B1"
       }
     ],
     "TR-MINE-1995-0001": [
@@ -510,7 +506,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -519,7 +515,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -528,7 +524,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -537,7 +533,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -548,7 +544,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -557,7 +553,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -566,7 +562,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -575,7 +571,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -586,7 +582,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -595,7 +591,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -604,7 +600,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -613,7 +609,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -624,7 +620,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -633,7 +629,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -642,7 +638,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -651,7 +647,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -662,7 +658,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -671,7 +667,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -680,7 +676,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -689,7 +685,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -700,7 +696,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -709,7 +705,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -718,7 +714,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -727,7 +723,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -738,7 +734,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -747,7 +743,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -756,7 +752,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -765,7 +761,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -776,7 +772,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -785,7 +781,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -794,7 +790,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -803,7 +799,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -814,7 +810,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_en",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q4619016: Karadon Maden Kazası",
         "url": "https://www.wikidata.org/wiki/Q4619016"
@@ -823,7 +819,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_tr",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q4619016: Karadon Maden Kazası",
         "url": "https://www.wikidata.org/wiki/Q4619016"
@@ -832,7 +828,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Karadon maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
@@ -841,7 +837,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Karadon maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
@@ -850,7 +846,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Karadon maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
@@ -859,7 +855,7 @@ window.MINING_DATA = {
         "field_name": "injuries_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Karadon maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
@@ -868,7 +864,7 @@ window.MINING_DATA = {
         "field_name": "latitude",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Karadon maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
@@ -877,7 +873,7 @@ window.MINING_DATA = {
         "field_name": "longitude",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Karadon maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
@@ -886,7 +882,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Karadon maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
@@ -897,7 +893,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_en",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q6015822: Küçükdoğanca maden kazası",
         "url": "https://www.wikidata.org/wiki/Q6015822"
@@ -906,7 +902,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_tr",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q6015822: Küçükdoğanca maden kazası",
         "url": "https://www.wikidata.org/wiki/Q6015822"
@@ -915,7 +911,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q6015822: Küçükdoğanca maden kazası",
         "url": "https://www.wikidata.org/wiki/Q6015822"
@@ -924,7 +920,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -933,7 +929,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q6015822: Küçükdoğanca maden kazası",
         "url": "https://www.wikidata.org/wiki/Q6015822"
@@ -942,7 +938,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Küçükdoğanca maden kazası",
         "url": "https://tr.wikipedia.org/wiki/K%C3%BC%C3%A7%C3%BCkdo%C4%9Fanca_maden_kazas%C4%B1"
@@ -953,7 +949,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -962,7 +958,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -971,7 +967,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -980,7 +976,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -991,7 +987,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_en",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q6084742: Odaköy maden kazası",
         "url": "https://www.wikidata.org/wiki/Q6084742"
@@ -1000,7 +996,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_tr",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q6084742: Odaköy maden kazası",
         "url": "https://www.wikidata.org/wiki/Q6084742"
@@ -1009,7 +1005,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q6084742: Odaköy maden kazası",
         "url": "https://www.wikidata.org/wiki/Q6084742"
@@ -1018,7 +1014,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1027,7 +1023,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q6084742: Odaköy maden kazası",
         "url": "https://www.wikidata.org/wiki/Q6084742"
@@ -1036,7 +1032,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Odaköy maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Odak%C3%B6y_maden_kazas%C4%B1"
@@ -1047,7 +1043,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1056,7 +1052,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1065,7 +1061,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1076,7 +1072,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1085,7 +1081,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1094,7 +1090,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1103,7 +1099,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1114,7 +1110,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1123,7 +1119,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1132,7 +1128,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1141,7 +1137,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1152,7 +1148,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_en",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q16869476: Soma Faciası",
         "url": "https://www.wikidata.org/wiki/Q16869476"
@@ -1161,7 +1157,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_tr",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q16869476: Soma Faciası",
         "url": "https://www.wikidata.org/wiki/Q16869476"
@@ -1170,7 +1166,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Soma Faciası",
         "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
@@ -1179,7 +1175,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Soma Faciası",
         "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
@@ -1188,7 +1184,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Soma Faciası",
         "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
@@ -1197,7 +1193,7 @@ window.MINING_DATA = {
         "field_name": "injuries_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Soma Faciası",
         "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
@@ -1206,7 +1202,7 @@ window.MINING_DATA = {
         "field_name": "latitude",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Soma Faciası",
         "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
@@ -1215,7 +1211,7 @@ window.MINING_DATA = {
         "field_name": "longitude",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Soma Faciası",
         "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
@@ -1224,7 +1220,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Soma Faciası",
         "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
@@ -1235,7 +1231,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1244,7 +1240,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1253,7 +1249,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1262,7 +1258,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1270,40 +1266,49 @@ window.MINING_DATA = {
     ],
     "TR-MINE-2014-0004": [
       {
-        "field_name": "date_precision",
-        "organization": "Wikipedia (tr)",
+        "field_name": "canonical_title_en",
+        "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Wikidata item Q18389693: Ermenek maden kazası",
+        "url": "https://www.wikidata.org/wiki/Q18389693"
+      },
+      {
+        "field_name": "canonical_title_tr",
+        "organization": "Wikidata",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:47:04Z",
+        "source_tier": "3",
+        "title": "Wikidata item Q18389693: Ermenek maden kazası",
+        "url": "https://www.wikidata.org/wiki/Q18389693"
       },
       {
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
+        "organization": "TBMM",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "retrieved_at": "2026-10-14T10:42:00Z",
+        "source_tier": "1",
+        "title": "Genel Kurul konuşması — 28 Ekim 2014 Ermenek maden kazası",
+        "url": "https://tbmm.gov.tr/Milletvekili/UyeGenelKurulKonusmalariDetay?eid=71990"
       },
       {
         "field_name": "incident_start_datetime",
-        "organization": "Wikipedia (tr)",
+        "organization": "TBMM",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "retrieved_at": "2026-10-14T10:42:00Z",
+        "source_tier": "1",
+        "title": "Genel Kurul konuşması — 28 Ekim 2014 Ermenek maden kazası",
+        "url": "https://tbmm.gov.tr/Milletvekili/UyeGenelKurulKonusmalariDetay?eid=71990"
       },
       {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Ermenek maden kazası",
+        "url": "https://tr.wikipedia.org/wiki/Ermenek_maden_kazas%C4%B1"
       }
     ],
     "TR-MINE-2014-0005": [
@@ -1311,7 +1316,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1320,7 +1325,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1329,7 +1334,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1338,7 +1343,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1349,7 +1354,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1358,7 +1363,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1367,7 +1372,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1376,7 +1381,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1387,7 +1392,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1396,7 +1401,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1405,7 +1410,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1414,7 +1419,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1425,7 +1430,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1434,7 +1439,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1443,7 +1448,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1452,7 +1457,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1463,7 +1468,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1472,7 +1477,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1481,7 +1486,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1490,7 +1495,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1501,7 +1506,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1510,7 +1515,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1519,7 +1524,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1528,7 +1533,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1539,7 +1544,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1548,7 +1553,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1557,7 +1562,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1566,7 +1571,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1577,7 +1582,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1586,7 +1591,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1595,7 +1600,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1604,7 +1609,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1615,7 +1620,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1624,7 +1629,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1633,7 +1638,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1642,7 +1647,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1653,7 +1658,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1662,7 +1667,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1671,7 +1676,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1680,7 +1685,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1691,7 +1696,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1700,7 +1705,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1709,7 +1714,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1718,7 +1723,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1729,7 +1734,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1738,7 +1743,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1747,7 +1752,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1756,7 +1761,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1767,7 +1772,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1776,7 +1781,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1785,7 +1790,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1794,7 +1799,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1805,7 +1810,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1814,7 +1819,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1823,7 +1828,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1832,7 +1837,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1843,7 +1848,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1852,7 +1857,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1861,7 +1866,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1870,7 +1875,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1879,48 +1884,39 @@ window.MINING_DATA = {
     "TR-MINE-2016-0001": [
       {
         "field_name": "canonical_title_tr",
-        "organization": "Wikipedia (tr)",
+        "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
-      },
-      {
-        "field_name": "date_precision",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Wikidata item Q31189416: Şirvan maden kazası",
+        "url": "https://www.wikidata.org/wiki/Q31189416"
       },
       {
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "organization": "TRT Haber",
+        "publication_date": "2016-12-12",
+        "retrieved_at": "2026-10-14T10:42:00Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Şirvan'da son işçinin de cesedi çıkarıldı",
+        "url": "https://www.trthaber.com/haber/turkiye/sirvanda-son-iscinin-de-cesedi-cikarildi-287552.html"
       },
       {
         "field_name": "incident_start_datetime",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "organization": "TRT Haber",
+        "publication_date": "2016-12-12",
+        "retrieved_at": "2026-10-14T10:42:00Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Şirvan'da son işçinin de cesedi çıkarıldı",
+        "url": "https://www.trthaber.com/haber/turkiye/sirvanda-son-iscinin-de-cesedi-cikarildi-287552.html"
       },
       {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Şirvan maden kazası",
+        "url": "https://tr.wikipedia.org/wiki/%C5%9Eirvan_maden_kazas%C4%B1"
       }
     ],
     "TR-MINE-2019-0001": [
@@ -1928,7 +1924,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1937,7 +1933,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1946,7 +1942,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1955,7 +1951,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1966,7 +1962,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1975,7 +1971,25 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "field_name": "incident_start_datetime",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "field_name": "injuries_current",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1984,7 +1998,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1995,7 +2009,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_en",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q114670156: Amasra maden kazası",
         "url": "https://www.wikidata.org/wiki/Q114670156"
@@ -2004,7 +2018,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_tr",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q114670156: Amasra maden kazası",
         "url": "https://www.wikidata.org/wiki/Q114670156"
@@ -2013,7 +2027,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q114670156: Amasra maden kazası",
         "url": "https://www.wikidata.org/wiki/Q114670156"
@@ -2022,7 +2036,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Amasra maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Amasra_maden_kazas%C4%B1"
@@ -2031,7 +2045,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q114670156: Amasra maden kazası",
         "url": "https://www.wikidata.org/wiki/Q114670156"
@@ -2040,7 +2054,7 @@ window.MINING_DATA = {
         "field_name": "injuries_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Amasra maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Amasra_maden_kazas%C4%B1"
@@ -2049,7 +2063,7 @@ window.MINING_DATA = {
         "field_name": "latitude",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Amasra maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Amasra_maden_kazas%C4%B1"
@@ -2058,7 +2072,7 @@ window.MINING_DATA = {
         "field_name": "longitude",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Amasra maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Amasra_maden_kazas%C4%B1"
@@ -2067,7 +2081,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Amasra maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Amasra_maden_kazas%C4%B1"
@@ -2078,7 +2092,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_en",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q124522721: Erzincan maden kazası",
         "url": "https://www.wikidata.org/wiki/Q124522721"
@@ -2087,7 +2101,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_tr",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q124522721: Erzincan maden kazası",
         "url": "https://www.wikidata.org/wiki/Q124522721"
@@ -2096,7 +2110,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (en)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Çöpler mine disaster",
         "url": "https://en.wikipedia.org/wiki/%C3%87%C3%B6pler_mine_disaster"
@@ -2105,7 +2119,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "İliç maden kazası",
         "url": "https://tr.wikipedia.org/wiki/%C4%B0li%C3%A7_maden_kazas%C4%B1"
@@ -2114,7 +2128,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (en)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Çöpler mine disaster",
         "url": "https://en.wikipedia.org/wiki/%C3%87%C3%B6pler_mine_disaster"
@@ -2123,7 +2137,7 @@ window.MINING_DATA = {
         "field_name": "latitude",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q124522721: Erzincan maden kazası",
         "url": "https://www.wikidata.org/wiki/Q124522721"
@@ -2132,7 +2146,7 @@ window.MINING_DATA = {
         "field_name": "longitude",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q124522721: Erzincan maden kazası",
         "url": "https://www.wikidata.org/wiki/Q124522721"
@@ -2141,7 +2155,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "İliç maden kazası",
         "url": "https://tr.wikipedia.org/wiki/%C4%B0li%C3%A7_maden_kazas%C4%B1"
@@ -2152,7 +2166,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2161,7 +2175,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2170,7 +2184,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2179,7 +2193,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2190,7 +2204,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2199,7 +2213,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2208,7 +2222,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2217,7 +2231,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2228,7 +2242,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2237,7 +2251,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2246,7 +2260,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2255,7 +2269,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2266,7 +2280,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2275,7 +2289,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2284,7 +2298,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2293,7 +2307,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2304,7 +2318,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2313,7 +2327,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2322,7 +2336,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2331,7 +2345,7 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:38:18Z",
+        "retrieved_at": "2026-10-14T12:50:02Z",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2342,7 +2356,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_en",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q134584262: Zara maden kazası",
         "url": "https://www.wikidata.org/wiki/Q134584262"
@@ -2351,7 +2365,7 @@ window.MINING_DATA = {
         "field_name": "canonical_title_tr",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q134584262: Zara maden kazası",
         "url": "https://www.wikidata.org/wiki/Q134584262"
@@ -2360,7 +2374,7 @@ window.MINING_DATA = {
         "field_name": "date_precision",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q134584262: Zara maden kazası",
         "url": "https://www.wikidata.org/wiki/Q134584262"
@@ -2369,7 +2383,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Zara maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Zara_maden_kazas%C4%B1"
@@ -2378,7 +2392,7 @@ window.MINING_DATA = {
         "field_name": "incident_start_datetime",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q134584262: Zara maden kazası",
         "url": "https://www.wikidata.org/wiki/Q134584262"
@@ -2387,7 +2401,7 @@ window.MINING_DATA = {
         "field_name": "injuries_current",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Zara maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Zara_maden_kazas%C4%B1"
@@ -2396,7 +2410,7 @@ window.MINING_DATA = {
         "field_name": "latitude",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q134584262: Zara maden kazası",
         "url": "https://www.wikidata.org/wiki/Q134584262"
@@ -2405,7 +2419,7 @@ window.MINING_DATA = {
         "field_name": "longitude",
         "organization": "Wikidata",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Wikidata item Q134584262: Zara maden kazası",
         "url": "https://www.wikidata.org/wiki/Q134584262"
@@ -2414,10 +2428,48 @@ window.MINING_DATA = {
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
-        "retrieved_at": "2026-07-14T17:37:22Z",
+        "retrieved_at": "2026-10-14T12:47:04Z",
         "source_tier": "3",
         "title": "Zara maden kazası",
         "url": "https://tr.wikipedia.org/wiki/Zara_maden_kazas%C4%B1"
+      }
+    ],
+    "TR-MINE-2026-0001": [
+      {
+        "field_name": "date_precision",
+        "organization": "Euronews Türkçe",
+        "publication_date": "2026-10-06",
+        "retrieved_at": "2026-10-12T20:21:03Z",
+        "source_tier": "3",
+        "title": "Soma'da maden kazası: Genel müdür dahil 9 kişi tutuklandı",
+        "url": "https://tr.euronews.com/2026/10/06/somada-maden-kazasi-genel-mudur-dahil-9-kisi-tutuklandi"
+      },
+      {
+        "field_name": "fatalities_current",
+        "organization": "Evrensel",
+        "publication_date": "2026-10-01",
+        "retrieved_at": "2026-10-14T10:42:00Z",
+        "source_tier": "3",
+        "title": "Manisa Soma'da maden ocağında göçük: Yaşamını yitiren işçi sayısı 5'e yükseldi",
+        "url": "https://www.evrensel.net/haber/6002971/manisa-soma-da-maden-ocaginda-gocuk-yasamini-yitiren-isci-sayisi-5-e-yukseldi"
+      },
+      {
+        "field_name": "incident_start_datetime",
+        "organization": "Evrensel",
+        "publication_date": "2026-10-01",
+        "retrieved_at": "2026-10-14T10:42:00Z",
+        "source_tier": "3",
+        "title": "Manisa Soma'da maden ocağında göçük: Yaşamını yitiren işçi sayısı 5'e yükseldi",
+        "url": "https://www.evrensel.net/haber/6002971/manisa-soma-da-maden-ocaginda-gocuk-yasamini-yitiren-isci-sayisi-5-e-yukseldi"
+      },
+      {
+        "field_name": "province_code",
+        "organization": "Evrensel",
+        "publication_date": "2026-10-01",
+        "retrieved_at": "2026-10-14T10:42:00Z",
+        "source_tier": "3",
+        "title": "Manisa Soma'da maden ocağında göçük: Yaşamını yitiren işçi sayısı 5'e yükseldi",
+        "url": "https://www.evrensel.net/haber/6002971/manisa-soma-da-maden-ocaginda-gocuk-yasamini-yitiren-isci-sayisi-5-e-yukseldi"
       }
     ]
   },
@@ -2514,10 +2566,31 @@ window.MINING_DATA = {
     "TR-MINE-1992-0001": [
       {
         "assertion_status": "reported",
+        "code": "fire",
+        "label_en": "fire",
+        "label_tr": "yangın",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
         "code": "gas_explosion",
         "label_en": "gas explosion",
         "label_tr": "gaz (grizu) patlaması",
         "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "fire",
+        "label_en": "fire",
+        "label_tr": "yangın",
+        "system": "project_hazard"
       },
       {
         "assertion_status": "reported",
@@ -2741,22 +2814,6 @@ window.MINING_DATA = {
         "code": "fire",
         "label_en": "fire",
         "label_tr": "yangın",
-        "system": "project_hazard"
-      }
-    ],
-    "TR-MINE-2014-0003": [
-      {
-        "assertion_status": "reported",
-        "code": "gas_explosion",
-        "label_en": "gas explosion",
-        "label_tr": "gaz (grizu) patlaması",
-        "system": "project_event_mechanism"
-      },
-      {
-        "assertion_status": "reported",
-        "code": "methane",
-        "label_en": "methane",
-        "label_tr": "metan (grizu)",
         "system": "project_hazard"
       }
     ],
@@ -2871,6 +2928,15 @@ window.MINING_DATA = {
         "system": "project_event_mechanism"
       }
     ],
+    "TR-MINE-2016-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
     "TR-MINE-2019-0001": [
       {
         "assertion_status": "reported",
@@ -2947,7 +3013,7 @@ window.MINING_DATA = {
       }
     ]
   },
-  "export_timestamp": "2026-07-25T11:33:47Z",
+  "export_timestamp": "2026-10-15T09:58:04Z",
   "incidents": [
     {
       "canonical_title_en": null,
@@ -3077,7 +3143,7 @@ window.MINING_DATA = {
     },
     {
       "canonical_title_en": null,
-      "canonical_title_tr": "1992 Kozlu grizu faciası",
+      "canonical_title_tr": "1992 Kozlu kömür madeni faciası",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -3454,10 +3520,10 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Karaman (2014-10-28)",
+      "canonical_title_en": "Ermenek mine accident",
+      "canonical_title_tr": "Ermenek maden kazası",
       "casualty_status": null,
-      "coordinate_precision": null,
+      "coordinate_precision": "facility_approximate",
       "date_precision": "exact_date",
       "district_code": null,
       "fatalities_current": 18,
@@ -3465,9 +3531,9 @@ window.MINING_DATA = {
       "incident_start_datetime": "2014-10-28T00:00:00+03:00",
       "incident_status": "in_scope",
       "injuries_current": null,
-      "latitude": null,
+      "latitude": 36.65,
       "location_uncertainty_m": null,
-      "longitude": null,
+      "longitude": 32.798889,
       "missing_current": null,
       "province_code": "70",
       "province_name": "Karaman",
@@ -4019,6 +4085,27 @@ window.MINING_DATA = {
       "province_name": "Sivas",
       "public_incident_id": "TR-MINE-2025-0001",
       "settlement": null
+    },
+    {
+      "canonical_title_en": "Soma mining accident (İmbat Madencilik)",
+      "canonical_title_tr": "Soma maden kazası (İmbat Madencilik)",
+      "casualty_status": "initial",
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 5,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2026-10-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "45",
+      "province_name": "Manisa",
+      "public_incident_id": "TR-MINE-2026-0001",
+      "settlement": null
     }
   ],
   "map_vector": {
@@ -4036,6 +4123,12 @@ window.MINING_DATA = {
         "r": 47.6,
         "x": 79.6,
         "y": 152.8
+      },
+      {
+        "id": "TR-MINE-2014-0004",
+        "r": 16.2,
+        "x": 268.3,
+        "y": 264.5
       },
       {
         "id": "TR-MINE-2022-0001",
@@ -4197,14 +4290,15 @@ window.MINING_DATA = {
       },
       {
         "code": "45",
-        "deaths": 3,
+        "deaths": 8,
         "ids": [
           "TR-MINE-2013-0001",
           "TR-MINE-2019-0002",
-          "TR-MINE-2024-0002"
+          "TR-MINE-2024-0002",
+          "TR-MINE-2026-0001"
         ],
         "label": "Manisa",
-        "r": 10.2,
+        "r": 12.8,
         "x": 101.0,
         "y": 167.9
       },
@@ -4299,13 +4393,12 @@ window.MINING_DATA = {
       },
       {
         "code": "70",
-        "deaths": 28,
+        "deaths": 10,
         "ids": [
-          "TR-MINE-2003-0001",
-          "TR-MINE-2014-0004"
+          "TR-MINE-2003-0001"
         ],
         "label": "Karaman",
-        "r": 18.7,
+        "r": 13.6,
         "x": 278.4,
         "y": 247.6
       },
@@ -4864,13 +4957,13 @@ window.MINING_DATA = {
     ]
   },
   "pipeline": {
-    "claims_awaiting_review": 9,
-    "claims_total": 1475,
-    "decisions_total": 439,
-    "published_incidents": 51,
+    "claims_awaiting_review": 11,
+    "claims_total": 848,
+    "decisions_total": 282,
+    "published_incidents": 52,
     "records_in_review": 1,
-    "source_documents": 221,
-    "withdrawn_records": 36
+    "source_documents": 151,
+    "withdrawn_records": 5
   },
   "policy_events": [
     {
@@ -27410,8 +27503,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "gold",
-      "commodity_label": "gold",
+      "commodity_code": "other",
+      "commodity_label": "palladium",
       "coordinate_precision": "facility_approximate",
       "latitude": 41.618,
       "longitude": 34.401,
@@ -27434,7 +27527,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "other",
-      "commodity_label": "cobalt",
+      "commodity_label": "cobalt ore",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.495,
       "longitude": 39.74,
@@ -27584,7 +27677,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "copper",
-      "commodity_label": "copper",
+      "commodity_label": "copper ore",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.266669,
       "longitude": 39.6,
@@ -27614,7 +27707,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "gold",
-      "commodity_label": "gold",
+      "commodity_label": "altın",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.4813,
       "longitude": 29.1498,
@@ -27644,7 +27737,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "gold",
-      "commodity_label": "gold",
+      "commodity_label": "altın",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.426,
       "longitude": 38.522,
@@ -27703,8 +27796,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "silver",
-      "commodity_label": "silver",
+      "commodity_code": "other",
+      "commodity_label": "silver ore",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -27884,7 +27977,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "gold",
-      "commodity_label": "gold",
+      "commodity_label": "altın",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.209722,
       "longitude": 26.971944,
@@ -27899,7 +27992,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "gold",
-      "commodity_label": "gold",
+      "commodity_label": "altın",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.286667,
       "longitude": 26.973889,
@@ -28154,7 +28247,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "copper",
-      "commodity_label": "copper",
+      "commodity_label": "copper ore",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28199,7 +28292,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "gold",
-      "commodity_label": "gold",
+      "commodity_label": "altın",
       "coordinate_precision": "facility_approximate",
       "latitude": 40.501,
       "longitude": 39.387,
@@ -28319,7 +28412,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "copper",
-      "commodity_label": "copper",
+      "commodity_label": "copper ore",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28334,7 +28427,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "other",
-      "commodity_label": "manganese",
+      "commodity_label": "manganese ores",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28349,7 +28442,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "copper",
-      "commodity_label": "copper",
+      "commodity_label": "copper ore",
       "coordinate_precision": "facility_approximate",
       "latitude": 41.245547,
       "longitude": 41.580248,
@@ -28364,7 +28457,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "other",
-      "commodity_label": "nickel",
+      "commodity_label": "nickel ore",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.475,
       "longitude": 27.713889,
@@ -28394,7 +28487,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "gold",
-      "commodity_label": "gold",
+      "commodity_label": "altın",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28404,6 +28497,21 @@ window.MINING_DATA = {
       "province_name": "",
       "ref": "wikidata:Q97236653",
       "source_url": "https://www.wikidata.org/wiki/Q97236653",
+      "status": "unknown",
+      "type": "mine_unspecified"
+    },
+    {
+      "commodity_code": "chromium",
+      "commodity_label": "krom",
+      "coordinate_precision": "",
+      "latitude": null,
+      "longitude": null,
+      "name": "Guleman krom madeni",
+      "organizations": [],
+      "province_code": "",
+      "province_name": "",
+      "ref": "wikidata:Q97321089",
+      "source_url": "https://www.wikidata.org/wiki/Q97321089",
       "status": "unknown",
       "type": "mine_unspecified"
     },

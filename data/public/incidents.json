@@ -127,7 +127,7 @@
   },
   {
     "canonical_title_en": null,
-    "canonical_title_tr": "1992 Kozlu grizu faciası",
+    "canonical_title_tr": "1992 Kozlu kömür madeni faciası",
     "casualty_status": null,
     "coordinate_precision": null,
     "date_precision": "exact_date",
@@ -504,10 +504,10 @@
     "settlement": null
   },
   {
-    "canonical_title_en": null,
-    "canonical_title_tr": "Maden kazası, Karaman (2014-10-28)",
+    "canonical_title_en": "Ermenek mine accident",
+    "canonical_title_tr": "Ermenek maden kazası",
     "casualty_status": null,
-    "coordinate_precision": null,
+    "coordinate_precision": "facility_approximate",
     "date_precision": "exact_date",
     "district_code": null,
     "fatalities_current": 18,
@@ -515,9 +515,9 @@
     "incident_start_datetime": "2014-10-28T00:00:00+03:00",
     "incident_status": "in_scope",
     "injuries_current": null,
-    "latitude": null,
+    "latitude": 36.65,
     "location_uncertainty_m": null,
-    "longitude": null,
+    "longitude": 32.798889,
     "missing_current": null,
     "province_code": "70",
     "province_name": "Karaman",
@@ -1068,6 +1068,27 @@
     "province_code": "58",
     "province_name": "Sivas",
     "public_incident_id": "TR-MINE-2025-0001",
+    "settlement": null
+  },
+  {
+    "canonical_title_en": "Soma mining accident (İmbat Madencilik)",
+    "canonical_title_tr": "Soma maden kazası (İmbat Madencilik)",
+    "casualty_status": "initial",
+    "coordinate_precision": null,
+    "date_precision": "exact_date",
+    "district_code": null,
+    "fatalities_current": 5,
+    "incident_end_datetime": null,
+    "incident_start_datetime": "2026-10-01T00:00:00+03:00",
+    "incident_status": "in_scope",
+    "injuries_current": null,
+    "latitude": null,
+    "location_uncertainty_m": null,
+    "longitude": null,
+    "missing_current": null,
+    "province_code": "45",
+    "province_name": "Manisa",
+    "public_incident_id": "TR-MINE-2026-0001",
     "settlement": null
   }
 ]

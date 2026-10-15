@@ -213,25 +213,155 @@ def _create_soma(conn: sqlite3.Connection) -> int:
 #: Wikidata items that describe an event the list article already contributed.
 #: Entity resolution does not join them, so without this they publish twice and
 #: the register double-counts their deaths. Surviving title first.
-DUPLICATES = [
-    (
-        "1992 Kozlu grizu faciası",
-        "1992 Kozlu kömür madeni faciası",
-        "Same event: one incident on 3 March 1992 in Zonguldak, 263 deaths. The list-article "
-        "record was published first and keeps the canonical id; the Wikidata record brought "
-        "the TBMM and NTV corroboration.",
-    ),
-    (
-        "Maden kazası, Karaman (2014-10-28)",
-        "Ermenek maden kazası",
-        "Same event: one incident on 28 October 2014 in Karaman (Ermenek), 18 deaths.",
-    ),
-    (
-        "Şirvan maden kazası",
-        "Şirvan maden kazası",
-        "Same event: two records for the Şirvan (Siirt) landslide of 17 November 2016, 16 deaths.",
-    ),
+#: Records the published register carries that a clean rebuild does not
+#: reproduce, each with the list-article line that supports it. The parser
+#: skips these lines for reasons recorded in open questions 24 and 26: the
+#: date is written without a year, or the toll is a name rather than a count.
+#: The claims are ai_assisted because they are read out of prose, so each one
+#: is reviewed before it can be selected, exactly like any other extraction.
+#: No victim's name is copied into an excerpt (privacy protocol).
+LIST_URL = "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+RECOVER = [
+    {
+        "public_id": "TR-MINE-2014-0007",
+        "title_tr": "Maden kazası, Şırnak (2014-06-11)",
+        "date": "2014-06-11T00:00:00+03:00",
+        "province": "73",
+        "deaths": "3",
+        "mechanism": "roof_or_ground_collapse",
+        "excerpt": (
+            "11 Haziran 2014'te Şırnak'ın Kemerli mahallesinde bir maden ocağında "
+            "meydana gelen göçük sonucu 2'si kardeş 3 işçi öldü."
+        ),
+        "date_note": None,
+    },
+    {
+        "public_id": "TR-MINE-2014-0003",
+        "title_tr": "Maden kazası, Amasya (2014-06-29)",
+        "date": "2014-06-29T00:00:00+03:00",
+        "province": "05",
+        "deaths": "5",
+        "mechanism": "gas_explosion",
+        "excerpt": (
+            "Temmuz ayında, Amasya'nın Yeniçeltek maden ocağında meydana gelen grizu "
+            "patlamasında 5 işçi yaşamını yitirmiştir."
+        ),
+        "date_note": (
+            "The article line gives only a month, and says July; the register has published "
+            "29 June 2014 since the first export. The toll and place come from the line, the "
+            "date is carried over from the published record, and the disagreement is open "
+            "question 27 rather than resolved silently."
+        ),
+    },
+    {
+        "public_id": "TR-MINE-2019-0002",
+        "title_tr": "Maden kazası, Manisa (2019-01-13)",
+        "date": "2019-01-13T00:00:00+03:00",
+        "province": "45",
+        "deaths": "1",
+        "mechanism": None,
+        "excerpt": (
+            "13 Ocak'ta Manisa'nın Soma ilçesinde meydana gelen kaza sonucunda 1 işçi "
+            "hayatını kaybetti 1 işçi yaralandı."
+        ),
+        "date_note": None,
+    },
+    {
+        "public_id": "TR-MINE-2024-0002",
+        "title_tr": "Maden kazası, Manisa (2024-10-22)",
+        "date": "2024-10-22T00:00:00+03:00",
+        "province": "45",
+        "deaths": "1",
+        "mechanism": "roof_or_ground_collapse",
+        "excerpt": (
+            "22 Ekim 2024'te Manisa'nın Soma ilçesi Eynez mahallesinde faaliyet gösteren "
+            "özel bir maden ocağının tavanında çökme meydana geldi."
+        ),
+        "date_note": None,
+    },
 ]
+
+
+def _list_document_id(conn: sqlite3.Connection) -> int | None:
+    row = conn.execute(
+        "SELECT source_document_id FROM source_documents WHERE url = ? "
+        "ORDER BY source_document_id DESC LIMIT 1",
+        (LIST_URL,),
+    ).fetchone()
+    return int(row["source_document_id"]) if row else None
+
+
+def _recover_published_records(conn: sqlite3.Connection, reviewer: str) -> None:
+    """Re-enter the published records a rebuild drops, from the same article."""
+    document_id = _list_document_id(conn)
+    if document_id is None:
+        print("!! the list article is not in this database; nothing recovered")
+        return
+    for spec in RECOVER:
+        row = conn.execute(
+            "SELECT incident_id, publication_status FROM incidents "
+            "WHERE substr(incident_start_datetime,1,10) = ? AND province_code = ?",
+            (spec["date"][:10], spec["province"]),
+        ).fetchone()
+        if row and row["publication_status"] in ("publishable", "published"):
+            print(f"{spec['public_id']}: already present")
+            continue
+        if row:
+            incident_id = int(row["incident_id"])
+        else:
+            cur = conn.execute(
+                "INSERT INTO incidents (canonical_title_tr, canonical_title_tr_normalized, "
+                "incident_status, scope_rationale) VALUES (?, ?, 'scope_undetermined', ?)",
+                (
+                    spec["title_tr"],
+                    normalize_tr(spec["title_tr"]),
+                    "Recovered 2026-10-14 from the tr.wikipedia incident list, which the "
+                    "parser skips for this line; see open questions 24 and 26.",
+                ),
+            )
+            incident_id = int(cur.lastrowid)
+        values = {
+            "incident_start_datetime": spec["date"],
+            "date_precision": "exact_date",
+            "province_code": spec["province"],
+            "fatalities_current": spec["deaths"],
+        }
+        for field, value in values.items():
+            exists = conn.execute(
+                "SELECT 1 FROM claims WHERE incident_id = ? AND field_name = ? "
+                "AND normalized_value = ?",
+                (incident_id, field, value),
+            ).fetchone()
+            if exists:
+                continue
+            conn.execute(
+                "INSERT INTO claims (incident_id, source_document_id, claim_subject_type, "
+                "field_name, raw_value, normalized_value, short_evidence_excerpt, "
+                "extraction_method, assertion_status, review_status, confidence_score) "
+                "VALUES (?, ?, 'incident', ?, ?, ?, ?, 'ai_assisted', 'reported', "
+                "'needs_review', 0.8)",
+                (incident_id, document_id, field, value, value, spec["excerpt"]),
+            )
+        conn.commit()
+        rationale = (
+            f"Recovered 2026-10-14: this record is published as {spec['public_id']} but a "
+            "clean rebuild does not reproduce it, because the parser skips its line in the "
+            "source article. The values come from that line, quoted in each claim."
+        )
+        if spec["date_note"]:
+            rationale += " " + spec["date_note"]
+        decided = {
+            field: _accept(conn, incident_id, field, rationale, reviewer)
+            for field in (
+                "incident_start_datetime",
+                "date_precision",
+                "province_code",
+                "fatalities_current",
+            )
+        }
+        _set_scope(conn, incident_id, reviewer)
+        outcome = _publish_if_complete(conn, incident_id, reviewer)
+        print(f"{spec['public_id']}: decided {decided} -> {outcome}")
 
 
 def _published_ids() -> dict[tuple[str, str], str]:
@@ -244,34 +374,218 @@ def _published_ids() -> dict[tuple[str, str], str]:
     return out
 
 
-def _merge_duplicates(conn: sqlite3.Connection, reviewer: str) -> None:
-    """Merge each Wikidata/list-article pair for the same event.
+#: Values the published register carries that a rebuilt record loses, because
+#: the surviving record of a merge never had the field decided, or because the
+#: published value was a curator's wording rather than a claim. Each is put
+#: back explicitly: by accepting a claim that already states it, or as a
+#: manual_override that says where it came from.
+RESTORE = [
+    ("TR-MINE-1992-0001", "date_precision", "exact_date", None),
+    ("TR-MINE-2014-0004", "date_precision", "exact_date", None),
+    ("TR-MINE-2016-0001", "date_precision", "exact_date", None),
+    (
+        "TR-MINE-2019-0002",
+        "injuries_current",
+        "1",
+        "13 Ocak'ta Manisa'nın Soma ilçesinde meydana gelen kaza sonucunda 1 işçi "
+        "hayatını kaybetti 1 işçi yaralandı.",
+    ),
+    (
+        "TR-MINE-2011-0001",
+        "canonical_title_tr",
+        "Çöllolar maden kazası, Afşin-Elbistan (Şubat 2011)",
+        None,
+    ),
+]
 
-    The survivor is chosen by identity, never by insertion order: whichever of
-    the pair carries an id that appears in ``data/public/incidents.csv`` is the
-    one the world already cites, so it is the one that stays. A later ingest
-    republishes a merged record, so this runs after every ingest.
+
+def _restore_published_values(conn: sqlite3.Connection, reviewer: str) -> None:
+    document_id = _list_document_id(conn)
+    for public_id, field, value, excerpt in RESTORE:
+        row = conn.execute(
+            "SELECT incident_id FROM incidents WHERE public_incident_id = ? "
+            "AND publication_status IN ('publishable','published')",
+            (public_id,),
+        ).fetchone()
+        if row is None:
+            print(f"!! {public_id} is not published here; {field} not restored")
+            continue
+        incident_id = int(row["incident_id"])
+        if get_active_decision(conn, incident_id, field) is not None:
+            continue
+        claim = conn.execute(
+            "SELECT claim_id FROM claims WHERE incident_id = ? AND field_name = ? "
+            "AND normalized_value = ? ORDER BY claim_id LIMIT 1",
+            (incident_id, field, value),
+        ).fetchone()
+        if claim is None and excerpt and document_id is not None:
+            cur = conn.execute(
+                "INSERT INTO claims (incident_id, source_document_id, claim_subject_type, "
+                "field_name, raw_value, normalized_value, short_evidence_excerpt, "
+                "extraction_method, assertion_status, review_status, confidence_score) "
+                "VALUES (?, ?, 'incident', ?, ?, ?, ?, 'ai_assisted', 'reported', "
+                "'needs_review', 0.8)",
+                (incident_id, document_id, field, value, value, excerpt),
+            )
+            conn.commit()
+            claim = {"claim_id": int(cur.lastrowid)}
+        rationale = (
+            f"Restored 2026-10-14: the register publishes {field} as {value!r} for "
+            f"{public_id}, and a rebuilt record did not carry it."
+        )
+        if claim is not None:
+            got = _accept(conn, incident_id, field, rationale, reviewer)
+            print(f"{public_id}: {field} = {got}")
+            continue
+        # An override must cite what it looked at: the claims this register
+        # does hold for the field, or failing that for the incident.
+        support = [
+            int(r["claim_id"])
+            for r in conn.execute(
+                "SELECT claim_id FROM claims WHERE incident_id = ? AND field_name = ? "
+                "ORDER BY claim_id",
+                (incident_id, field),
+            )
+        ] or [
+            int(r["claim_id"])
+            for r in conn.execute(
+                "SELECT claim_id FROM claims WHERE incident_id = ? ORDER BY claim_id LIMIT 1",
+                (incident_id,),
+            )
+        ]
+        if not support:
+            print(f"!! {public_id}: no claim to cite for {field}; left as is")
+            continue
+        record_decision(
+            conn,
+            ClaimDecision(
+                incident_id=incident_id,
+                field_name=field,
+                decision="manual_override",
+                manual_value=value,
+                rationale=rationale
+                + " No claim states it: it is a curator's wording carried over from the "
+                "published export, recorded as an override rather than attributed to a source.",
+                rationale_claim_ids=support,
+                reviewer=reviewer,
+                decision_date="2026-10-14",
+            ),
+        )
+        print(f"{public_id}: {field} set by override to {value!r}")
+
+
+def _merge_duplicates(conn: sqlite3.Connection, reviewer: str) -> None:
+    """Merge records that describe one accident into the published one.
+
+    A Wikidata item and a list-article bullet for the same accident do not
+    resolve to one incident (open question 25), so both publish and the deaths
+    are counted twice. The survivor is never chosen by insertion order: for a
+    date and province the published register already names one record, and that
+    is the one that stays. Groups the register does not cover are left alone.
     """
-    for surviving_title, merged_title, reason in DUPLICATES:
-        rows = conn.execute(
-            "SELECT incident_id, public_incident_id, canonical_title_tr_normalized n "
-            "FROM incidents WHERE canonical_title_tr_normalized IN (?, ?) "
-            "AND publication_status IN ('publishable', 'published') ORDER BY incident_id",
-            (normalize_tr(surviving_title), normalize_tr(merged_title)),
-        ).fetchall()
+    published = _published_ids()
+    published_rows = {}
+    with Path("data/public/incidents.csv").open(encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            published_rows[((row["incident_start_datetime"] or "")[:10], row["province_code"])] = (
+                row
+            )
+    groups: dict[tuple[str, str], list[sqlite3.Row]] = {}
+    for row in conn.execute(
+        "SELECT incident_id, public_incident_id, substr(incident_start_datetime,1,10) d, "
+        "province_code pc, canonical_title_tr t, fatalities_current f FROM incidents "
+        "WHERE publication_status IN ('publishable','published')"
+    ):
+        groups.setdefault((row["d"], row["pc"]), []).append(row)
+    for key, rows in sorted(groups.items()):
         if len(rows) < 2:
             continue
-        # Which of two records for one event survives does not decide its
-        # identity: the survivor is the stable choice (lowest incident id) and
-        # _align_public_ids then gives it the id this event is published under.
-        survivor = rows[0]
+        target = published.get(key)
+        if target is None:
+            print(f"!! {len(rows)} records share {key} but the register has none; left alone")
+            continue
+        # The survivor is the record that matches what the register publishes:
+        # first on the toll, which distinguishes two records of one date and
+        # province better than an id a rebuild may have shuffled.
+        toll = str(published_rows[key]["fatalities_current"])
+        by_toll = [r for r in rows if str(r["f"]) == toll]
+        by_id = [r for r in rows if r["public_incident_id"] == target]
+        survivor = (by_toll or by_id or rows)[0]
+        if not by_toll and not by_id:
+            print(f"!! no record for {key} matches the register; left alone")
+            continue
         for duplicate in rows:
             if duplicate["incident_id"] == survivor["incident_id"]:
                 continue
+            reason = (
+                f"Same accident as {target}: one event on {key[0]} in province {key[1]}. "
+                f"{duplicate['t']!r} and {survivor['t']!r} are two records of it, and the "
+                "register publishes one. The surviving record keeps the published id."
+            )
             merge_incidents(
                 conn, survivor["incident_id"], duplicate["incident_id"], reason, reviewer
             )
-            print(f"merged {duplicate['public_incident_id']} -> {survivor['public_incident_id']}")
+            print(f"merged {duplicate['public_incident_id']} -> {target}")
+
+
+def _reclaim_published_ids(conn: sqlite3.Connection, reviewer: str) -> None:
+    """Take a published id back from the duplicate that was merged away.
+
+    When two records describe one accident, the published id may be the one on
+    the copy that loses the merge. The live record is what readers and
+    citations need to land on, so the two swap ids: the survivor takes the
+    published identifier and the withdrawn copy keeps a distinct one, which is
+    what the merge redirect then carries.
+    """
+    published = _published_ids()
+    live = conn.execute(
+        "SELECT incident_id, public_incident_id, substr(incident_start_datetime,1,10) d, "
+        "province_code pc FROM incidents WHERE publication_status IN ('publishable','published')"
+    ).fetchall()
+    holders = {
+        r["public_incident_id"]: int(r["incident_id"])
+        for r in conn.execute(
+            "SELECT incident_id, public_incident_id FROM incidents "
+            "WHERE publication_status = 'withdrawn' AND public_incident_id IS NOT NULL"
+        )
+    }
+    swapped = 0
+    for row in live:
+        target = published.get((row["d"], row["pc"]))
+        if not target or target == row["public_incident_id"]:
+            continue
+        other = holders.get(target)
+        if other is None:
+            continue
+        mine, park = row["public_incident_id"], f"PENDING-{other}"
+        conn.execute(
+            "UPDATE incidents SET public_incident_id = ? WHERE incident_id = ?", (park, other)
+        )
+        conn.execute(
+            "UPDATE incidents SET public_incident_id = ? WHERE incident_id = ?",
+            (target, int(row["incident_id"])),
+        )
+        conn.execute(
+            "UPDATE incidents SET public_incident_id = ? WHERE incident_id = ?", (mine, other)
+        )
+        # incident_merge_log is append-only, so the row keeps the id the
+        # duplicate held. That id now belongs to the survivor, which makes the
+        # redirect point at itself; export drops those.
+        log_review_action(
+            conn,
+            reviewer,
+            "public_id_reclaimed",
+            "incident",
+            int(row["incident_id"]),
+            after_summary=f"{mine} -> {target}",
+            notes="Taken back from the duplicate merged away, so the published id resolves "
+            "to the live record.",
+        )
+        swapped += 1
+        print(f"reclaimed {target} for the live record (was {mine})")
+    conn.commit()
+    if not swapped:
+        print("published ids: nothing to reclaim")
 
 
 def _align_public_ids(conn: sqlite3.Connection, reviewer: str) -> None:
@@ -371,9 +685,21 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db-path", default="database/mining_accidents.sqlite")
     parser.add_argument("--reviewer", required=True)
+    parser.add_argument(
+        "--align-only",
+        action="store_true",
+        help=(
+            "Only restore public ids. apply-audit identifies records by public id, so a "
+            "rebuilt database must be realigned BEFORE it runs or the corrections land on "
+            "the wrong accidents; run this, then apply-audit, then this script in full."
+        ),
+    )
     args = parser.parse_args()
     conn = get_connection(args.db_path)
     reviewer = args.reviewer
+    if args.align_only:
+        _align_public_ids(conn, reviewer)
+        return
 
     for staging in (SOMA_STAGING, STAGING):
         docs = staging / "source_documents.csv"
@@ -443,8 +769,11 @@ def main() -> None:
         else:
             print(f"{NESKO_TITLE}: already {row['incident_status']}")
 
+    _recover_published_records(conn, reviewer)
     _merge_duplicates(conn, reviewer)
+    _reclaim_published_ids(conn, reviewer)
     _align_public_ids(conn, reviewer)
+    _restore_published_values(conn, reviewer)
 
 
 if __name__ == "__main__":
