@@ -3013,7 +3013,7 @@ window.MINING_DATA = {
       }
     ]
   },
-  "export_timestamp": "2026-10-15T09:58:04Z",
+  "export_timestamp": "2026-10-15T13:15:37Z",
   "incidents": [
     {
       "canonical_title_en": null,
@@ -4760,6 +4760,21 @@ window.MINING_DATA = {
         "y": 31.1
       },
       {
+        "ref": "wikidata:Q118874850",
+        "x": 148.7,
+        "y": 127.2
+      },
+      {
+        "ref": "wikidata:Q122237641",
+        "x": 100.5,
+        "y": 222.2
+      },
+      {
+        "ref": "wikidata:Q122790689",
+        "x": 72.8,
+        "y": 152.5
+      },
+      {
         "ref": "wikidata:Q137925109",
         "x": 325.6,
         "y": 36.0
@@ -4795,6 +4810,26 @@ window.MINING_DATA = {
         "y": 119.0
       },
       {
+        "ref": "wikidata:Q16002015",
+        "x": 421.5,
+        "y": 186.7
+      },
+      {
+        "ref": "wikidata:Q16002017",
+        "x": 421.5,
+        "y": 186.7
+      },
+      {
+        "ref": "wikidata:Q16002019",
+        "x": 421.5,
+        "y": 186.7
+      },
+      {
+        "ref": "wikidata:Q16251758",
+        "x": 222.2,
+        "y": 48.8
+      },
+      {
         "ref": "wikidata:Q16256069",
         "x": 511.6,
         "y": 144.1
@@ -4813,6 +4848,11 @@ window.MINING_DATA = {
         "ref": "wikidata:Q16837830",
         "x": 79.6,
         "y": 152.8
+      },
+      {
+        "ref": "wikidata:Q16852311",
+        "x": 235.0,
+        "y": 42.2
       },
       {
         "ref": "wikidata:Q16950520",
@@ -4838,6 +4878,16 @@ window.MINING_DATA = {
         "ref": "wikidata:Q16958967",
         "x": 421.5,
         "y": 186.7
+      },
+      {
+        "ref": "wikidata:Q16959210",
+        "x": 231.0,
+        "y": 44.5
+      },
+      {
+        "ref": "wikidata:Q16959758",
+        "x": 234.2,
+        "y": 44.2
       },
       {
         "ref": "wikidata:Q23755156",
@@ -4958,11 +5008,11 @@ window.MINING_DATA = {
   },
   "pipeline": {
     "claims_awaiting_review": 11,
-    "claims_total": 848,
+    "claims_total": 893,
     "decisions_total": 282,
     "published_incidents": 52,
     "records_in_review": 1,
-    "source_documents": 151,
+    "source_documents": 175,
     "withdrawn_records": 5
   },
   "policy_events": [
@@ -27418,6 +27468,13 @@ window.MINING_DATA = {
           "country_label": "Türkiye",
           "name": "Türkiye Taşkömürü Kurumu",
           "role": "operator"
+        },
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Türkiye",
+          "name": "Türkiye Taşkömürü Kurumu",
+          "role": "owner"
         }
       ],
       "province_code": "74",
@@ -27460,13 +27517,21 @@ window.MINING_DATA = {
     {
       "commodity_code": "coal",
       "commodity_label": "coal",
-      "coordinate_precision": "",
-      "latitude": null,
-      "longitude": null,
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.634823,
+      "longitude": 29.455311,
       "name": "Tunçbilek coal mine",
-      "organizations": [],
-      "province_code": "",
-      "province_name": "",
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "West Lignite Enterprise (Garp Linyitleri İşletmesi Müessesesi Müdürlüğü)",
+          "role": "operator"
+        }
+      ],
+      "province_code": "43",
+      "province_name": "Kütahya",
       "ref": "wikidata:Q118874850",
       "source_url": "https://www.wikidata.org/wiki/Q118874850",
       "status": "unknown",
@@ -27475,13 +27540,21 @@ window.MINING_DATA = {
     {
       "commodity_code": "coal",
       "commodity_label": "coal",
-      "coordinate_precision": "",
-      "latitude": null,
-      "longitude": null,
+      "coordinate_precision": "facility_approximate",
+      "latitude": 37.57055,
+      "longitude": 28.11058,
       "name": "Ömerler coal mine",
-      "organizations": [],
-      "province_code": "",
-      "province_name": "",
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "West Lignite Enterprise (Garp Linyitleri İşletmesi Müessesesi Müdürlüğü)",
+          "role": "operator"
+        }
+      ],
+      "province_code": "43",
+      "province_name": "Kütahya",
       "ref": "wikidata:Q122237641",
       "source_url": "https://www.wikidata.org/wiki/Q122237641",
       "status": "unknown",
@@ -27490,13 +27563,21 @@ window.MINING_DATA = {
     {
       "commodity_code": "coal",
       "commodity_label": "coal",
-      "coordinate_precision": "",
-      "latitude": null,
-      "longitude": null,
+      "coordinate_precision": "facility_approximate",
+      "latitude": 39.085627,
+      "longitude": 27.335387,
       "name": "Kınık coal mine",
-      "organizations": [],
-      "province_code": "",
-      "province_name": "",
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "",
+          "country_label": "Turkey, China",
+          "name": "Polyak Eynez Enerji Üretim Madencilik A.Ş.",
+          "role": "operator"
+        }
+      ],
+      "province_code": "35",
+      "province_name": "İzmir",
       "ref": "wikidata:Q122790689",
       "source_url": "https://www.wikidata.org/wiki/Q122790689",
       "status": "unknown",
@@ -27618,13 +27699,21 @@ window.MINING_DATA = {
     {
       "commodity_code": "coal",
       "commodity_label": "coal",
-      "coordinate_precision": "",
-      "latitude": null,
-      "longitude": null,
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.340685,
+      "longitude": 37.082979,
       "name": "Afşin-C coal mine",
-      "organizations": [],
-      "province_code": "",
-      "province_name": "",
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Çelikler Taahhüt İnşaat ve San. Tic",
+          "role": "operator"
+        }
+      ],
+      "province_code": "46",
+      "province_name": "Kahramanmaraş",
       "ref": "wikidata:Q16002015",
       "source_url": "https://www.wikidata.org/wiki/Q16002015",
       "status": "unknown",
@@ -27633,13 +27722,21 @@ window.MINING_DATA = {
     {
       "commodity_code": "coal",
       "commodity_label": "coal",
-      "coordinate_precision": "",
-      "latitude": null,
-      "longitude": null,
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.340685,
+      "longitude": 37.082979,
       "name": "Afşin-D coal mine",
-      "organizations": [],
-      "province_code": "",
-      "province_name": "",
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Çelikler Taahhüt İnşaat ve San. Tic",
+          "role": "operator"
+        }
+      ],
+      "province_code": "46",
+      "province_name": "Kahramanmaraş",
       "ref": "wikidata:Q16002017",
       "source_url": "https://www.wikidata.org/wiki/Q16002017",
       "status": "unknown",
@@ -27648,13 +27745,21 @@ window.MINING_DATA = {
     {
       "commodity_code": "coal",
       "commodity_label": "coal",
-      "coordinate_precision": "",
-      "latitude": null,
-      "longitude": null,
+      "coordinate_precision": "facility_approximate",
+      "latitude": 38.340685,
+      "longitude": 37.082979,
       "name": "Afşin-E coal mine",
-      "organizations": [],
-      "province_code": "",
-      "province_name": "",
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Çelikler Taahhüt İnşaat ve San. Tic",
+          "role": "operator"
+        }
+      ],
+      "province_code": "46",
+      "province_name": "Kahramanmaraş",
       "ref": "wikidata:Q16002019",
       "source_url": "https://www.wikidata.org/wiki/Q16002019",
       "status": "unknown",
@@ -27663,11 +27768,19 @@ window.MINING_DATA = {
     {
       "commodity_code": "coal",
       "commodity_label": "coal",
-      "coordinate_precision": "",
-      "latitude": null,
-      "longitude": null,
+      "coordinate_precision": "facility_approximate",
+      "latitude": 41.34012,
+      "longitude": 31.510875,
       "name": "Armutçuk Kömür Madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Armutçuk Taşkömürü Isletme Müessesesi",
+          "role": "operator"
+        }
+      ],
       "province_code": "67",
       "province_name": "Zonguldak",
       "ref": "wikidata:Q16251758",
@@ -27742,7 +27855,15 @@ window.MINING_DATA = {
       "latitude": 39.426,
       "longitude": 38.522,
       "name": "Çöpler Altın Madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "",
+          "country_label": "",
+          "name": "Anagold Inc",
+          "role": "owner"
+        }
+      ],
       "province_code": "24",
       "province_name": "Erzincan",
       "ref": "wikidata:Q16833789",
@@ -27757,7 +27878,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Deniş coal mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "TKİ",
+          "role": "owner"
+        }
+      ],
       "province_code": "45",
       "province_name": "Manisa",
       "ref": "wikidata:Q16834934",
@@ -27813,11 +27942,19 @@ window.MINING_DATA = {
     {
       "commodity_code": "coal",
       "commodity_label": "coal",
-      "coordinate_precision": "",
-      "latitude": null,
-      "longitude": null,
+      "coordinate_precision": "facility_approximate",
+      "latitude": 41.483081,
+      "longitude": 31.868239,
       "name": "Karadon coal mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Karadon Taşkömürü Işletme Müessesesi",
+          "role": "operator"
+        }
+      ],
       "province_code": "67",
       "province_name": "Zonguldak",
       "ref": "wikidata:Q16852311",
@@ -27877,7 +28014,15 @@ window.MINING_DATA = {
       "latitude": 37.5153,
       "longitude": 40.5014,
       "name": "Mardin madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "47",
       "province_name": "Mardin",
       "ref": "wikidata:Q16950634",
@@ -27892,7 +28037,15 @@ window.MINING_DATA = {
       "latitude": 38.95444,
       "longitude": 37.89278,
       "name": "Hasançelebi Madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "44",
       "province_name": "Malatya",
       "ref": "wikidata:Q16957840",
@@ -27933,11 +28086,19 @@ window.MINING_DATA = {
     {
       "commodity_code": "coal",
       "commodity_label": "coal",
-      "coordinate_precision": "",
-      "latitude": null,
-      "longitude": null,
+      "coordinate_precision": "facility_approximate",
+      "latitude": 41.432342,
+      "longitude": 31.75826,
       "name": "Kozlu coal mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Kozlu Taşkömürü Işletme Müessesesi",
+          "role": "operator"
+        }
+      ],
       "province_code": "67",
       "province_name": "Zonguldak",
       "ref": "wikidata:Q16959210",
@@ -27948,11 +28109,19 @@ window.MINING_DATA = {
     {
       "commodity_code": "coal",
       "commodity_label": "coal",
-      "coordinate_precision": "",
-      "latitude": null,
-      "longitude": null,
+      "coordinate_precision": "facility_approximate",
+      "latitude": 41.438877,
+      "longitude": 31.84698,
       "name": "Üzülmez coal mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Üzülmez Taşkömürü Işletme Müessesesi",
+          "role": "operator"
+        }
+      ],
       "province_code": "67",
       "province_name": "Zonguldak",
       "ref": "wikidata:Q16959758",
@@ -27967,7 +28136,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Seydişehir mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "42",
       "province_name": "Konya",
       "ref": "wikidata:Q16961925",
@@ -27982,7 +28159,15 @@ window.MINING_DATA = {
       "latitude": 39.209722,
       "longitude": 26.971944,
       "name": "Çukuralan altın madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "",
+          "country_label": "",
+          "name": "Koza İpek Holding",
+          "role": "owner"
+        }
+      ],
       "province_code": "35",
       "province_name": "İzmir",
       "ref": "wikidata:Q23755156",
@@ -28012,7 +28197,15 @@ window.MINING_DATA = {
       "latitude": 37.54649,
       "longitude": 35.39873,
       "name": "Aladağ madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "01",
       "province_name": "Adana",
       "ref": "wikidata:Q4705477",
@@ -28027,7 +28220,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Attepe mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "51",
       "province_name": "Niğde",
       "ref": "wikidata:Q4818250",
@@ -28042,7 +28243,15 @@ window.MINING_DATA = {
       "latitude": 38.65,
       "longitude": 40.333061,
       "name": "Avnik mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "12",
       "province_name": "Bingöl",
       "ref": "wikidata:Q4829084",
@@ -28252,7 +28461,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Damar mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "08",
       "province_name": "Artvin",
       "ref": "wikidata:Q5211983",
@@ -28267,7 +28484,15 @@ window.MINING_DATA = {
       "latitude": 39.4247,
       "longitude": 38.0832,
       "name": "Divriği A-Kafa mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "58",
       "province_name": "Sivas",
       "ref": "wikidata:Q5284687",
@@ -28282,7 +28507,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Divriği B-Kafa mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "58",
       "province_name": "Sivas",
       "ref": "wikidata:Q5284688",
@@ -28297,7 +28530,15 @@ window.MINING_DATA = {
       "latitude": 40.501,
       "longitude": 39.387,
       "name": "Mastra altın madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "",
+          "country_label": "",
+          "name": "Koza İpek Holding",
+          "role": "owner"
+        }
+      ],
       "province_code": "29",
       "province_name": "Gümüşhane",
       "ref": "wikidata:Q6009374",
@@ -28312,7 +28553,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Silopi asphaltite mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Ciner Group",
+          "role": "owner"
+        }
+      ],
       "province_code": "73",
       "province_name": "Şırnak",
       "ref": "wikidata:Q60745269",
@@ -28327,9 +28576,17 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Sart altın madeni",
-      "organizations": [],
-      "province_code": "",
-      "province_name": "",
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "",
+          "country_label": "",
+          "name": "POMZA EXPORT",
+          "role": "owner"
+        }
+      ],
+      "province_code": "45",
+      "province_name": "Manisa",
       "ref": "wikidata:Q61074517",
       "source_url": "https://www.wikidata.org/wiki/Q61074517",
       "status": "unknown",
@@ -28342,7 +28599,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Kasrık mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "47",
       "province_name": "Mardin",
       "ref": "wikidata:Q6374695",
@@ -28357,7 +28622,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Kesikköprü mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "40",
       "province_name": "Kırşehir",
       "ref": "wikidata:Q6395082",
@@ -28387,7 +28660,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Murgul bakır madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "08",
       "province_name": "Artvin",
       "ref": "wikidata:Q6938476",
@@ -28402,7 +28683,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Orhaneli mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "16",
       "province_name": "Bursa",
       "ref": "wikidata:Q7102181",
@@ -28417,7 +28706,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Tirebolu mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "28",
       "province_name": "Giresun",
       "ref": "wikidata:Q7809175",
@@ -28432,7 +28729,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Ulukent mine",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "20",
       "province_name": "Denizli",
       "ref": "wikidata:Q7880800",
@@ -28447,7 +28752,15 @@ window.MINING_DATA = {
       "latitude": 41.245547,
       "longitude": 41.580248,
       "name": "Çakmakkaya bakır madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Etibank",
+          "role": "owner"
+        }
+      ],
       "province_code": "08",
       "province_name": "Artvin",
       "ref": "wikidata:Q8077429",
@@ -28462,7 +28775,15 @@ window.MINING_DATA = {
       "latitude": 38.475,
       "longitude": 27.713889,
       "name": "Çaldağ madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "",
+          "country_label": "",
+          "name": "European Nickel",
+          "role": "owner"
+        }
+      ],
       "province_code": "45",
       "province_name": "Manisa",
       "ref": "wikidata:Q8077449",
@@ -28477,7 +28798,15 @@ window.MINING_DATA = {
       "latitude": null,
       "longitude": null,
       "name": "Çayeli bakır madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "TR",
+          "country_label": "Turkey",
+          "name": "Cengiz İnşaat",
+          "role": "owner"
+        }
+      ],
       "province_code": "53",
       "province_name": "Rize",
       "ref": "wikidata:Q8077592",
@@ -28522,7 +28851,15 @@ window.MINING_DATA = {
       "latitude": 38.773155,
       "longitude": 34.485397,
       "name": "Gülşehir Tuz Madeni",
-      "organizations": [],
+      "organizations": [
+        {
+          "assertion_status": "reported",
+          "country_code": "",
+          "country_label": "",
+          "name": "Suat Bilgin",
+          "role": "owner"
+        }
+      ],
       "province_code": "50",
       "province_name": "Nevşehir",
       "ref": "wikidata:Q99791861",
