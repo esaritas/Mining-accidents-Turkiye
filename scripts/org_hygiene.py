@@ -14,6 +14,9 @@ they were written, because claims are append-only.
 * Çöpler's operator appeared twice: "Anagold Inc" from the structured site
   source and "Anagold Madencilik A.Ş." from the incident article. One body,
   two spellings. The Turkish legal name is kept.
+* Etibank likewise appeared as "Etibank" on sixteen historic site records and
+  as "Etibank A.Ş." on the Küre 2004 incident. The short form is kept, because
+  it is the one the site layer already uses.
 """
 
 from __future__ import annotations
@@ -56,12 +59,19 @@ def main() -> None:
         conn.commit()
         print(f"withdrew a personal name from the organizations table ({removed} role row)")
 
+    _merge(conn, args.reviewer, "Anagold Madencilik A.Ş.", "Anagold Inc")
+    _merge(conn, args.reviewer, "Etibank", "Etibank A.Ş.")
+
+
+def _merge(conn, reviewer: str, keep_name: str, dupe_name: str) -> None:
+    """Fold one spelling of a company into another, keeping every role."""
     keep = conn.execute(
-        "SELECT organization_id FROM organizations WHERE organization_name_tr = "
-        "'Anagold Madencilik A.Ş.'"
+        "SELECT organization_id FROM organizations WHERE organization_name_tr = ?",
+        (keep_name,),
     ).fetchone()
     dupe = conn.execute(
-        "SELECT organization_id FROM organizations WHERE organization_name_tr = 'Anagold Inc'"
+        "SELECT organization_id FROM organizations WHERE organization_name_tr = ?",
+        (dupe_name,),
     ).fetchone()
     if keep and dupe:
         keep_id, dupe_id = int(keep["organization_id"]), int(dupe["organization_id"])
@@ -72,8 +82,18 @@ def main() -> None:
             "facility_organization_roles.role)",
             (keep_id, dupe_id, keep_id),
         ).rowcount
+        moved += conn.execute(
+            "UPDATE incident_organization_roles SET organization_id = ? WHERE organization_id = ? "
+            "AND NOT EXISTS (SELECT 1 FROM incident_organization_roles x WHERE x.incident_id = "
+            "incident_organization_roles.incident_id AND x.organization_id = ? AND x.role = "
+            "incident_organization_roles.role)",
+            (keep_id, dupe_id, keep_id),
+        ).rowcount
         conn.execute(
             "DELETE FROM facility_organization_roles WHERE organization_id = ?", (dupe_id,)
+        )
+        conn.execute(
+            "DELETE FROM incident_organization_roles WHERE organization_id = ?", (dupe_id,)
         )
         conn.execute("DELETE FROM organizations WHERE organization_id = ?", (dupe_id,))
         log_review_action(
@@ -82,13 +102,13 @@ def main() -> None:
             "organization_merged",
             "organization",
             keep_id,
-            before_summary="Anagold Inc",
-            after_summary="Anagold Madencilik A.Ş.",
-            notes="One company under two spellings, from two sources. The Turkish legal name "
-            f"is kept; {moved} site role row(s) re-pointed.",
+            before_summary=dupe_name,
+            after_summary=keep_name,
+            notes="One company under two spellings, from two sources. The name already used "
+            f"across the register is kept; {moved} role row(s) re-pointed.",
         )
         conn.commit()
-        print(f"merged Anagold Inc into Anagold Madencilik A.Ş. ({moved} site role re-pointed)")
+        print(f"merged {dupe_name} into {keep_name} ({moved} role row(s) re-pointed)")
 
 
 if __name__ == "__main__":

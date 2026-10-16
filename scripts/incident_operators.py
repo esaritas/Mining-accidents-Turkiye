@@ -24,7 +24,13 @@ blank. Licence holders are mostly absent from open sources: MAPEG holds the
 licence register and does not publish it.
 
 Every excerpt below is checked against the live document before anything is
-written. A quote that cannot be found verbatim aborts the run.
+written. A quote that cannot be found verbatim aborts the run. Re-running the
+script adds only what is missing, so this file is the standing table of every
+role the register holds.
+
+A role carries the assertion status of its source: `reported` where the source
+states it, `alleged` where the source reports it as somebody's claim. The
+distinction is published, so a reader can see which is which.
 """
 
 from __future__ import annotations
@@ -101,6 +107,62 @@ SOURCES: dict[str, dict[str, object]] = {
         "published": "2014-06-01",
         "tier": 3,
     },
+    "halktv_kozlu": {
+        "url": "https://halktv.com.tr/turkiye/grizu-faciasinin-32-yildonumu-263-madenci-anildi-811987h",
+        "organization": "Halk TV",
+        "title": "Grizu faciasının 32. yıl dönümü: 263 madenci anıldı",
+        "published": "2024-03-04",
+        "tier": 3,
+    },
+    "dha_armutcuk": {
+        "url": "https://www.dha.com.tr/gundem/grizu-patlamasinda-olen-103-madenci-facianin-43uncu-yil-donumunde-dualarla-anildi-2831449",
+        "organization": "Demirören Haber Ajansı",
+        "title": "Grizu patlamasında ölen 103 madenci, facianın 43'üncü yıl dönümünde anıldı",
+        "published": "2026-03-06",
+        "tier": 3,
+    },
+    "mynet_yenicektek": {
+        "url": "https://www.mynet.com/23-yil-once-grizu-faciasinda-hayatini-kaybeden-68-madenci-dualarla-anildi-180100688470",
+        "organization": "Cihan Haber Ajansı (Mynet)",
+        "title": "23 yıl önce grizu faciasında hayatını kaybeden 68 madenci dualarla anıldı",
+        "published": "2013-02-07",
+        "tier": 3,
+    },
+    "hurriyet_kure": {
+        "url": "https://www.hurriyet.com.tr/gundem/tunel-yangini-faciasi-19-olu-38644954",
+        "organization": "Hürriyet",
+        "title": "Tünel yangını faciası: 19 ölü",
+        "published": "2004-09-08",
+        "tier": 3,
+    },
+    "dha_bukkoy": {
+        "url": "https://www.dha.com.tr/gundem/alpaguttaki-maden-ocaginda-olenlerin-yakinlari-13-yildir-o-aciyi-unutamiyor-2148007",
+        "organization": "Demirören Haber Ajansı",
+        "title": "Bükköy'deki maden ocağında ölenlerin yakınları 13 yıldır o acıyı unutamıyor",
+        "published": "2022-10-19",
+        "tier": 3,
+    },
+    "evrensel_gediz": {
+        "url": "https://www.evrensel.net/haber/170084/madenci-aileleri-adalet-istiyor",
+        "organization": "Evrensel",
+        "title": "Madenci aileleri adalet istiyor",
+        "published": "2006-02-10",
+        "tier": 3,
+    },
+    "evrensel_sirvan2023": {
+        "url": "https://www.evrensel.net/haber/504128/cengizin-madeninde-tesvikli-cinayet-siirtte-maden-ocaginda-gocuk-meydana-geldi-3-isci-hayatini-kaybetti",
+        "organization": "Evrensel",
+        "title": "Siirt'te maden ocağında göçük meydana geldi, 3 işçi hayatını kaybetti",
+        "published": "2023-11-23",
+        "tier": 3,
+    },
+    "medyascope_zara": {
+        "url": "https://medyascope.tv/2025/05/26/sivasta-kacak-komur-madeninde-patlama-meydana-geldi/",
+        "organization": "Medyascope",
+        "title": "Sivas'ta kaçak kömür madeninde patlama meydana geldi",
+        "published": "2025-05-26",
+        "tier": 3,
+    },
     "birgun_collolar": {
         "url": "https://www.birgun.net/haber/ciner-in-yarattigi-zarar-icin-zamanasimi-uyarisi-336407",
         "organization": "BirGün",
@@ -110,9 +172,10 @@ SOURCES: dict[str, dict[str, object]] = {
     },
 }
 
-#: public incident id -> (role, organization, country, source key, excerpt)
+#: public incident id -> role rows. Each row is
+#: (role, organization, country, source key, excerpt[, assertion status[, note]]).
 #: "[...]" marks text left out of a quote, always a personal name.
-ROLES: dict[str, list[tuple[str, str, tuple[str, str], str, str]]] = {
+ROLES: dict[str, list[tuple]] = {
     "TR-MINE-2014-0001": [
         (
             "operator",
@@ -294,6 +357,114 @@ ROLES: dict[str, list[tuple[str, str, tuple[str, str], str, str]]] = {
             "1'i yaşamını yitirdi",
         ),
     ],
+    "TR-MINE-1992-0001": [
+        (
+            "operator",
+            "Türkiye Taşkömürü Kurumu",
+            TR,
+            "halktv_kozlu",
+            "3 Mart 1992'de Türkiye Taşkömürü Kurumu (TTK) Kozlu Müessesesi'ndeki grizu "
+            "patlamasında yaşamını yitiren 263 madenci",
+        ),
+    ],
+    "TR-MINE-1983-0001": [
+        (
+            "operator",
+            "Türkiye Taşkömürü Kurumu",
+            TR,
+            "dha_armutcuk",
+            "TTK'ye bağlı Armutçuk Müessesesi'nde, 7 Mart 1983'te meydana gelen grizu "
+            "patlamasında yaşamını yitiren 103 maden işçisi",
+            "reported",
+            "The cited report is a present-day commemoration held by TTK, which names the "
+            "pit as its own. TTK itself was constituted by decree in 1983, so for the day "
+            "of the accident the corporate name is the one the source uses rather than one "
+            "a 1983 document was checked against.",
+        ),
+    ],
+    "TR-MINE-1990-0002": [
+        (
+            "operator",
+            "Yeni Çeltek Kömür İşletmesi",
+            TR,
+            "mynet_yenicektek",
+            "Amasya'nın Merzifon ilçesine bağlı Kayadüzü beldesindeki, Yeni Çeltek Kömür "
+            "İşletmesi'nde, 23 yıl önce meydana gelen grizu faciasında hayatını kaybeden "
+            "68 madenci",
+            "reported",
+            "Sources disagree on whether the works were state or private in 1990: the list "
+            "article calls it a private operation, while the Global Energy Monitor record "
+            "describes the company as state-owned from 1955 until the operating rights were "
+            "sold in 2013. The organization type is therefore left unknown.",
+        ),
+    ],
+    "TR-MINE-2004-0002": [
+        (
+            "owner",
+            "Etibank A.Ş.",
+            TR,
+            "hurriyet_kure",
+            "Kastamonu'nun Küre ilçesinde bulunan Etibank A.Ş adına maden çıkartan STFA "
+            "Tünel İnşaatı'nda kaynak yapılırken yangın çıktı",
+        ),
+        (
+            "subcontractor",
+            "STFA Tünel İnşaatı",
+            TR,
+            "hurriyet_kure",
+            "Etibank A.Ş adına maden çıkartan STFA Tünel İnşaatı'nda kaynak yapılırken "
+            "yangın çıktı",
+        ),
+    ],
+    "TR-MINE-2009-0001": [
+        (
+            "owner",
+            "Bükköy Madencilik",
+            TR,
+            "dha_bukkoy",
+            "Mustafakemalpaşa ilçesinde Bükköy Madencilik'e ait kömür ocağında, 10 Aralık "
+            "2009'da meydana gelen grizu patlamasında 19 madenci hayatını kaybetti",
+        ),
+    ],
+    "TR-MINE-2005-0001": [
+        (
+            "owner",
+            "Kömür İşletmeleri A.Ş. (KİAŞ)",
+            TR,
+            "evrensel_gediz",
+            "Gökler beldesinde bulunan, Kömür İşletmeleri AŞ'ye (KİAŞ) ait Gediz Linyit "
+            "İşletmesi ocağında meydana gelen grizu faciası",
+        ),
+    ],
+    "TR-MINE-2024-0004": [
+        (
+            "owner",
+            "Eti Bakır",
+            TR,
+            "evrensel_sirvan2023",
+            "Siirt'in Şirvan ilçesinin Maden köyünde Cengiz Holdinge ait Eti Bakır maden "
+            "sahasında henüz belirlenemeyen nedenle göçük oldu",
+            "reported",
+            "The cited report dates this collapse to 23 November 2023, while the register "
+            "currently carries 23 October 2024 from the list article. Place, toll and the "
+            "composition of the dead (two engineers and one worker) match, so this is taken "
+            "to be the same accident; the date conflict is open question 32 and is for a "
+            "reviewer to settle.",
+        ),
+    ],
+    "TR-MINE-2025-0001": [
+        (
+            "owner",
+            "HemGrup A.Ş.",
+            TR,
+            "medyascope_zara",
+            "Bağımsız Maden-İş Sendikası, HemGrup A.Ş'ye ait madende kaçak dinamit "
+            "patladığını ve işçilerin gayriresmi çalıştırıldığını iddia ederek",
+            "alleged",
+            "Attributed by the cited report to a trade union's statement, not to an "
+            "official or company source, and published as alleged for that reason.",
+        ),
+    ],
     "TR-MINE-2026-0001": [
         (
             "operator",
@@ -471,7 +642,7 @@ def main() -> None:
     conn = get_connection(args.db_path)
     reviewer = args.reviewer
 
-    needed = sorted({key for roles in ROLES.values() for *_, key, _ in roles})
+    needed = sorted({row[3] for roles in ROLES.values() for row in roles})
     texts: dict[str, tuple[str, str]] = {}
     for key in needed:
         text, digest, _ = _retrieve(key)
@@ -480,7 +651,7 @@ def main() -> None:
 
     failures = []
     for public_id, roles in ROLES.items():
-        for role, name, _country, key, excerpt in roles:
+        for role, name, _country, key, excerpt, *_rest in roles:
             if not _contains(texts[key][0], excerpt):
                 failures.append(f"{public_id} {role} {name}: not found in {key}")
     if failures:
@@ -502,8 +673,23 @@ def main() -> None:
             print(f"!! {public_id} is not in this database")
             continue
         incident_id = int(incident["incident_id"])
-        for role, name, country, key, excerpt in roles:
+        for role, name, country, key, excerpt, *rest in roles:
+            status = rest[0] if rest else "reported"
+            note = rest[1] if len(rest) > 1 else None
             code, label = country
+            evidence.append(
+                {
+                    "public_incident_id": public_id,
+                    "role": role,
+                    "organization_name": name,
+                    "country_code": code,
+                    "country_label": label,
+                    "assertion_status": status,
+                    "source_url": SOURCES[key]["url"],
+                    "content_sha256": texts[key][1],
+                    "short_evidence_excerpt": excerpt,
+                }
+            )
             org_id, created = _upsert_organization(conn, name, None, code, label)
             if created:
                 log_review_action(
@@ -533,7 +719,7 @@ def main() -> None:
                 "short_evidence_excerpt, extraction_method, extractor_version, "
                 "assertion_status, review_status, confidence_score) "
                 "VALUES (?, ?, 'organization', ?, ?, ?, ?, ?, 'ai_assisted', "
-                "'incident_operators_2026_10_15', 'reported', 'needs_review', 0.9)",
+                "'incident_operators', ?, 'needs_review', ?)",
                 (
                     incident_id,
                     document_id,
@@ -542,6 +728,8 @@ def main() -> None:
                     name,
                     name,
                     excerpt,
+                    status,
+                    0.9 if status == "reported" else 0.6,
                 ),
             )
             conn.commit()
@@ -562,31 +750,21 @@ def main() -> None:
             conn.execute(
                 "INSERT INTO incident_organization_roles (incident_id, organization_id, role, "
                 "valid_at_incident_date, source_claim_id, assertion_status, review_status, "
-                "notes) VALUES (?, ?, ?, 1, ?, 'reported', 'reviewed', ?)",
+                "notes) VALUES (?, ?, ?, 1, ?, ?, 'reviewed', ?)",
                 (
                     incident_id,
                     org_id,
                     role,
                     claim_id,
+                    status,
                     "As stated by the cited source for the time of this incident. Not a "
-                    "finding of responsibility.",
+                    "finding of responsibility." + (f" {note}" if note else ""),
                 ),
             )
             conn.commit()
             added += 1
-            print(f"   {public_id}: {role} = {name} ({label})")
-            evidence.append(
-                {
-                    "public_incident_id": public_id,
-                    "role": role,
-                    "organization_name": name,
-                    "country_code": code,
-                    "country_label": label,
-                    "source_url": SOURCES[key]["url"],
-                    "content_sha256": texts[key][1],
-                    "short_evidence_excerpt": excerpt,
-                }
-            )
+            flag = "" if status == "reported" else f" [{status}]"
+            print(f"   {public_id}: {role} = {name} ({label}){flag}")
 
     if evidence:
         out_dir = Path(args.evidence_dir)

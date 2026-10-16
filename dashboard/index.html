@@ -817,6 +817,8 @@ tt_records: "Published records",
         other: "Other", unknown: "Role not stated" },
       rh_org: "In charge at the time",
       org_at_date: "at the time of the accident",
+      prov_orgs: "Companies named in these records:",
+      sum_orgs: "{n} of these {total} records name the company that held or ran the mine.",
       hz_h: "Documented hazards: what happened, how deadly, and where",
       hz_caption: "Rows are the event mechanism the sources report. Columns are the deaths recorded in a single incident. A number is the count of records in that cell. Both axes count what this register has documented, so this is a record of past events, not a probability and not a safety assessment of any site or company. A record appears in every row its sources document, so the rows add up to more than {n} records. This table covers the whole register and does not respond to the filters above.",
       hz_prov_h: "Where it is documented, and the sites documented there now",
@@ -1019,6 +1021,8 @@ tt_records: "Yayımlanmış kayıt",
         other: "Diğer", unknown: "Rolü belirtilmemiş" },
       rh_org: "Kaza anında ocağı yürüten",
       org_at_date: "kaza tarihinde",
+      prov_orgs: "Bu kayıtlarda adı geçen şirketler:",
+      sum_orgs: "Bu {total} kaydın {n} tanesinde ocağı yürüten ya da elinde tutan şirket adıyla yer alıyor.",
       hz_h: "Kayda geçen tehlikeler: ne oldu, kaç can aldı, nerede",
       hz_caption: "Satırlar kaynakların bildirdiği olay türü, kolonlar tek bir olayda kaydedilen ölüm sayısıdır. Hücredeki sayı o aralığa düşen kayıt sayısıdır. İki eksen de bu kaydın belgelediği olayları sayar; dolayısıyla tablo geçmişin dökümüdür, bir olasılık hesabı ya da herhangi bir saha veya şirket için güvenlik değerlendirmesi değildir. Bir olay, kaynaklarının bildirdiği her satırda görünür; bu yüzden satır toplamları {n} kaydı aşar. Tablo kaydın tamamını gösterir, yukarıdaki filtrelerden etkilenmez.",
       hz_prov_h: "Nerede belgelenmiş, orada bugün kaç saha kayıtlı",
@@ -1590,9 +1594,20 @@ tt_records: "Yayımlanmış kayıt",
       `<path d="${CARN_D}"></path></g>`;
   }
 
+  // Who the sources say held or ran the mine, written the same way wherever it
+  // appears: the map tip, the records table and the record detail. The
+  // assertion status rides along, so an attribution a source only alleges is
+  // never shown as a settled one.
+  function orgLine(o) {
+    return `${html(roleLabel(o.role))}: <span lang="tr">${html(o.name)}</span>` +
+      (o.country_label ? ` (${html(o.country_label)})` : "") +
+      (o.assertion_status && o.assertion_status !== "reported"
+        ? ` <span class="t-meta">[${html(o.assertion_status)}]</span>` : "");
+  }
+
   function siteTip(s) {
     const orgLines = (s.organizations || []).map(o =>
-      `${o.role === "owner" ? t("owner") : t("operator")}: ${html(o.name)}` +
+      `${html(roleLabel(o.role))}: ${html(o.name)}` +
       (o.country_label ? ` (${html(o.country_label)})` : "") +
       ` <span class="t-meta">[${html(o.assertion_status)}]</span>`);
     return `<div class="t-title" lang="tr">${html(s.name)}</div>` +
@@ -1607,14 +1622,14 @@ tt_records: "Yayımlanmış kayıt",
   function provinceStats(fi, fs) {
     const stats = new Map();
     const get = code => {
-      if (!stats.has(code)) stats.set(code, { deaths: 0, records: 0, unlocated: [],
+      if (!stats.has(code)) stats.set(code, { deaths: 0, records: 0, all: [], unlocated: [],
                                               unlocatedDeaths: 0, sites: 0, sitesUnlocated: 0 });
       return stats.get(code);
     };
     for (const i of fi) {
       if (!i.province_code) continue;
       const e = get(i.province_code);
-      e.deaths += i.fatalities_current || 0; e.records += 1;
+      e.deaths += i.fatalities_current || 0; e.records += 1; e.all.push(i);
       if (!hasFacilityLocation(i)) { e.unlocated.push(i); e.unlocatedDeaths += i.fatalities_current || 0; }
     }
     for (const st of fs) {
@@ -1629,14 +1644,26 @@ tt_records: "Yayımlanmış kayıt",
   function provinceTipHtml(code, e) {
     if (!e) return `<div class="t-title">${html(provinceName(code))}</div>` +
       `<div class="t-meta">${t("prov_none")}</div>`;
-    const rows = e.unlocated.slice(0, 8).map(i =>
-      `${html(i.public_incident_id)} · ${html(fmtDate(i))} · ${fmt.format(i.fatalities_current)}`
-    ).join("<br>");
+    // Six rows rather than eight, because each now carries the company too.
+    const rows = e.unlocated.slice(0, 6).map(i => {
+      const who = orgsOf(i.public_incident_id).map(o => o.name).join(", ");
+      return `${html(i.public_incident_id)} · ${html(fmtDate(i))} · ` +
+        `${fmt.format(i.fatalities_current)}` +
+        (who ? ` · <span lang="tr">${html(who)}</span>` : "");
+    }).join("<br>");
+    // Every company named in this province's records, each counted once.
+    const companies = [...new Set(
+      (e.all || e.unlocated).flatMap(i =>
+        orgsOf(i.public_incident_id).map(o => o.name)))];
     return `<div class="t-title">${html(provinceName(code))}</div>` +
       (e.records
         ? `<div>${tf("prov_lost", { d: fmt.format(e.deaths), n: e.records })}</div>`
         : `<div class="t-meta">${t("prov_none")}</div>`) +
-      (e.unlocated.length ? `<div class="t-meta">${tf("prov_unlocated", { n: e.unlocated.length })}<br>${rows}${e.unlocated.length > 8 ? "<br>…" : ""}</div>` : "") +
+      (e.unlocated.length ? `<div class="t-meta">${tf("prov_unlocated", { n: e.unlocated.length })}<br>${rows}${e.unlocated.length > 6 ? "<br>…" : ""}</div>` : "") +
+      (companies.length
+        ? `<div class="t-meta">${t("prov_orgs")}<br><span lang="tr">` +
+          `${html(companies.join(", "))}</span></div>`
+        : "") +
       (e.sites ? `<div class="t-meta">${tf("prov_sites", { n: e.sites })}` +
         (e.sitesUnlocated ? tf("prov_sites_unloc", { n: e.sitesUnlocated }) : "") +
         `</div>` : "") +
@@ -1745,8 +1772,10 @@ tt_records: "Yayımlanmış kayıt",
     const count=fi.reduce((sum,i)=>sum+(i.fatalities_current || 0),0);
     const located=fi.filter(hasFacilityLocation).length;
     const disputed=fi.filter(i=>i.casualty_status==="disputed").length;
+    const named=fi.filter(i=>orgsOf(i.public_incident_id).length).length;
     const host=document.getElementById("map-summary");
     host.innerHTML=`<h3>${html(state.province ? provinceName(state.province) : t("overview"))}</h3><div class="summary-count">${fmt.format(count)}</div><div>${t("sum_deaths")}</div><p>${tf("sum_records",{n:fi.length})}</p><p>${tf("sum_geo",{n:located,coarse:fi.length-located})}</p>`+
+      (named ? `<p>${tf("sum_orgs",{n:named,total:fi.length})}</p>` : "")+
       (disputed ? `<p>${tf("sum_disputed",{n:disputed})}</p>` : "")+
       `<p>${t("sum_action")}</p>`+fi.slice().sort((a,b)=>(b.incident_start_datetime || "").localeCompare(a.incident_start_datetime || "")).slice(0,4).map(i=>`<button type="button" data-open="${html(i.public_incident_id)}">${html(displayTitle(i))}<br>${html(fmtDate(i))} · ${fmt.format(i.fatalities_current)}</button>`).join("");
     host.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",()=>openDetail(b.dataset.open)));
@@ -1780,8 +1809,13 @@ tt_records: "Yayımlanmış kayıt",
       }
       if (hit.dataset.id) {
         const i = byId.get(hit.dataset.id);
+        const orgs = orgsOf(i.public_incident_id);
         return `<div class="t-title" lang="tr">${html(displayTitle(i))}</div>` +
           `<div>${html(sentence(i))}</div>` +
+          (orgs.length
+            ? `<div><span class="t-meta">${t("rh_org")}</span><br>` +
+              orgs.map(orgLine).join("<br>") + `</div>`
+            : "") +
           `<div class="t-meta">${html(i.public_incident_id)} · ${t("loc_approx")}</div>`;
       }
       const code = hit.dataset.provMark || hit.dataset.prov;

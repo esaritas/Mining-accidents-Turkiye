@@ -81,6 +81,28 @@ TYPES: dict[str, tuple[str, str]] = {
         "private_company",
         'A private holding company: "Çalık Holding\'in yan kuruluşu Lidya Madencilik A.Ş.".',
     ),
+    "STFA Tünel İnşaatı": (
+        "private_company",
+        "A contractor extracting on another company's behalf: \"Etibank A.Ş adına maden "
+        'çıkartan STFA Tünel İnşaatı".',
+    ),
+    "Bükköy Madencilik": (
+        "private_company",
+        'Named as the company owning the pit: "Bükköy Madencilik\'e ait kömür ocağında".',
+    ),
+    "Kömür İşletmeleri A.Ş. (KİAŞ)": (
+        "private_company",
+        "A joint-stock company: \"Kömür İşletmeleri AŞ'ye (KİAŞ) ait Gediz Linyit "
+        'İşletmesi ocağı".',
+    ),
+    "Eti Bakır": (
+        "private_company",
+        'Held by a private group: "Cengiz Holdinge ait Eti Bakır maden sahası".',
+    ),
+    "HemGrup A.Ş.": (
+        "private_company",
+        "A joint-stock company, named in a trade union's statement about the site.",
+    ),
     "İmbat Madencilik": (
         "private_company",
         'Described as a mining company by the cited source: "maden şirketinin genel müdürü".',

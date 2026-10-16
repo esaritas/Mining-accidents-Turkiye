@@ -3013,7 +3013,7 @@ window.MINING_DATA = {
       }
     ]
   },
-  "export_timestamp": "2026-10-15T19:31:29Z",
+  "export_timestamp": "2026-10-16T20:30:41Z",
   "hazard_matrix": {
     "bands": [
       {
@@ -3443,6 +3443,17 @@ window.MINING_DATA = {
     }
   },
   "incident_organizations": {
+    "TR-MINE-1983-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Türkiye Taşkömürü Kurumu",
+        "role": "operator",
+        "type": "state_enterprise"
+      }
+    ],
     "TR-MINE-1983-0002": [
       {
         "assertion_status": "reported",
@@ -3465,6 +3476,28 @@ window.MINING_DATA = {
         "type": "state_enterprise"
       }
     ],
+    "TR-MINE-1990-0002": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Yeni Çeltek Kömür İşletmesi",
+        "role": "operator",
+        "type": "unknown"
+      }
+    ],
+    "TR-MINE-1992-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Türkiye Taşkömürü Kurumu",
+        "role": "operator",
+        "type": "state_enterprise"
+      }
+    ],
     "TR-MINE-1995-0001": [
       {
         "assertion_status": "reported",
@@ -3472,6 +3505,37 @@ window.MINING_DATA = {
         "country_code": "TR",
         "country_label": "Türkiye",
         "name": "Matsan Madencilik",
+        "role": "owner",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2004-0002": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Etibank",
+        "role": "owner",
+        "type": "unknown"
+      },
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "STFA Tünel İnşaatı",
+        "role": "subcontractor",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2005-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Kömür İşletmeleri A.Ş. (KİAŞ)",
         "role": "owner",
         "type": "private_company"
       }
@@ -3484,6 +3548,17 @@ window.MINING_DATA = {
         "country_label": "Türkiye",
         "name": "Şentaş Madencilik",
         "role": "operator",
+        "type": "private_company"
+      }
+    ],
+    "TR-MINE-2009-0001": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Bükköy Madencilik",
+        "role": "owner",
         "type": "private_company"
       }
     ],
@@ -3633,6 +3708,17 @@ window.MINING_DATA = {
         "type": "private_company"
       }
     ],
+    "TR-MINE-2024-0004": [
+      {
+        "assertion_status": "reported",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "Eti Bakır",
+        "role": "owner",
+        "type": "private_company"
+      }
+    ],
     "TR-MINE-2024-0005": [
       {
         "assertion_status": "reported",
@@ -3642,6 +3728,17 @@ window.MINING_DATA = {
         "name": "Türkiye Taşkömürü Kurumu",
         "role": "owner",
         "type": "state_enterprise"
+      }
+    ],
+    "TR-MINE-2025-0001": [
+      {
+        "assertion_status": "alleged",
+        "at_incident_date": true,
+        "country_code": "TR",
+        "country_label": "Türkiye",
+        "name": "HemGrup A.Ş.",
+        "role": "owner",
+        "type": "private_company"
       }
     ],
     "TR-MINE-2026-0001": [
@@ -5650,11 +5747,11 @@ window.MINING_DATA = {
   },
   "pipeline": {
     "claims_awaiting_review": 11,
-    "claims_total": 913,
+    "claims_total": 922,
     "decisions_total": 282,
     "published_incidents": 52,
     "records_in_review": 1,
-    "source_documents": 186,
+    "source_documents": 194,
     "withdrawn_records": 5
   },
   "policy_events": [
