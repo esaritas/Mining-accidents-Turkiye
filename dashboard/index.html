@@ -582,6 +582,7 @@
   <section class="panel" id="records-panel">
     <h2 data-i18n="records_h"></h2>
     <p class="caption" data-i18n="records_caption"></p>
+    <p class="caption" data-i18n="role_key"></p>
     <div class="table-scroll">
       <table id="records">
         <thead><tr id="records-head"></tr></thead>
@@ -655,6 +656,7 @@
       <div><dt data-i18n="ab5_t"></dt><dd data-i18n="ab5_d"></dd></div>
       <div><dt data-i18n="ab6_t"></dt><dd data-i18n="ab6_d"></dd></div>
       <div><dt data-i18n="ab7_t"></dt><dd data-i18n="ab7_d"></dd></div>
+      <div><dt data-i18n="ab8_t"></dt><dd data-i18n="ab8_d"></dd></div>
     </dl>
   </section>
 
@@ -727,9 +729,11 @@
       ab4_t: "Why the İSİG series is kept separate",
       ab4_d: "İSİG Meclisi counts all miner work deaths from all causes; this register counts deaths in reviewed, published incidents. They are different populations, so the two series are never added or subtracted, and their difference means loss not yet represented here, not loss that no public source recorded.",
       ab5_t: "What it is not",
-      ab5_d: "Not a ranking, not a comparison between provinces or countries, not exposure-adjusted risk, and never a statement of cause or legal responsibility. Reported mechanisms describe what sources say happened. Where a company is named, it is the company the sources say held or ran the mine at the time; naming it records who was operating, not who was at fault. No individual is named anywhere, and no personal data of the people who died is stored or shown. Policy markers describe chronology, not evidence of an effect.",
+      ab5_d: "Not a ranking, not a comparison between provinces or countries, not exposure-adjusted risk, and never a statement of cause or legal responsibility. Reported mechanisms describe what sources say happened. No individual is named anywhere, and no personal data of the people who died is stored or shown. Policy markers describe chronology, not evidence of an effect.",
       ab6_t: "How locations are shown",
       ab6_d: "Few records carry coordinates precise enough for a facility-level mark, and even those are approximate to the facility or its vicinity. Every other record is drawn at a representative point inside its province, which is never the accident site. Boundaries: Natural Earth (public domain), Albers equal-area projection.",
+      ab8_t: "Who was in charge",
+      ab8_d: "Where a company is named, it is the company the cited source places at the mine on the day of the accident, and the line says which it was: the company that ran the pit, the one that owned it, the licence holder, or a contractor working under the operator. They are not always the same company, which is why each is recorded separately rather than merged into one name. Where one organization appears under two of them, the two words come from two sources describing the same pit, not from two different arrangements. A company is shown as alleged where the source only relays somebody\u2019s claim. Naming a company records who was operating, never who was at fault: courts decide that and this register does not. 24 of 52 records name one; the rest are blank because no assessed source names a company, usually saying only \u201ca private operation\u201d.",
       ab7_t: "Corrections and open work",
       ab7_d: "Analysis methods are documented and provisional. Open tasks include corroboration against official records, a harmonised rates series from TÜİK and TKİ data, and fuller site registers (Global Energy Monitor, MAPEG licence data). Corrections go through the issue templates in the project repository. No personal data of victims is stored or shown.",
       onthisday: "On this day.",
@@ -811,10 +815,12 @@ tt_records: "Published records",
       foot1: "Export of {ts} · schema {v} · {rev} records in review · {wd} withdrawn after audit (docs/corrections_log.csv) · {docs} source documents · {claims} claims · {dec} recorded decisions.",
       foot2: "Seed sources: <a href=\"https://www.wikidata.org\" rel=\"noopener\">Wikidata</a> (CC0) and <a href=\"https://www.wikipedia.org\" rel=\"noopener\">Wikipedia</a> (text CC BY-SA 4.0; the article links above credit the source). <a href=\"#about\">Scope and limits</a> sets out the sources, the limits and how to send a correction.",
       owner: "Owner", operator: "Operator",
-      roles: { owner: "Owner", operator: "Operator", licence_holder: "Licence holder",
-        subcontractor: "Subcontractor", employer: "Employer",
-        public_authority: "Public authority", rescue_organization: "Rescue organization",
-        other: "Other", unknown: "Role not stated" },
+      roles: { operator: "Ran the mine", licence_holder: "Held the licence",
+        owner: "Owned the mine", subcontractor: "Contractor in the mine",
+        employer: "Employer", public_authority: "Public authority",
+        rescue_organization: "Rescue organization", other: "Other role",
+        unknown: "Role not stated" },
+      role_key: "Ran the mine is the company working the pit on the day. Owned the mine is the company the source says the pit belonged to, which is not always the same one. Contractor in the mine is a firm working under whoever ran it. Each line says which, because the sources distinguish them and so does this register.",
       rh_org: "In charge at the time",
       org_at_date: "at the time of the accident",
       prov_orgs: "Companies named in these records:",
@@ -931,9 +937,11 @@ tt_records: "Published records",
       ab4_t: "İSİG serisi neden ayrı duruyor",
       ab4_d: "İSİG Meclisi, madencilikte her nedenle yaşanan bütün işçi ölümlerini sayar; bu kayıt ise yalnızca incelenip yayımlanmış olaylardaki can kayıplarını sayar. İkisi aynı topluluğu kapsamadığı için seriler ne toplanır ne de birbirinden çıkarılır. Aradaki fark, bu ölümlerin hiçbir kaynakta yer almadığını değil, bu kayıtta henüz karşılığının bulunmadığını gösterir.",
       ab5_t: "Bu kayıt ne değildir",
-      ab5_d: "Bir sıralama, iller veya ülkeler arasında bir karşılaştırma ya da maruziyete göre düzeltilmiş bir risk ölçüsü değildir; hiçbir biçimde neden ya da hukuki sorumluluk beyanı değildir. Olay türleri yalnızca kaynakların aktardığını tanımlar. Bir şirket adı geçtiğinde, bu kaynakların o tarihte ocağı yürüttüğünü ya da elinde tuttuğunu bildirdiği şirkettir; adın kayda geçmesi kimin işlettiğini gösterir, kimin kusurlu olduğunu değil. Hiçbir yerde kişi adı geçmez; hayatını kaybedenlere ait kişisel veri tutulmaz ve gösterilmez. Politika işaretleri ise kronolojiyi gösterir, bir etkiyi kanıtlamaz.",
+      ab5_d: "Bir sıralama, iller veya ülkeler arasında bir karşılaştırma ya da maruziyete göre düzeltilmiş bir risk ölçüsü değildir; hiçbir biçimde neden ya da hukuki sorumluluk beyanı değildir. Olay türleri yalnızca kaynakların aktardığını tanımlar. Hiçbir yerde kişi adı geçmez; hayatını kaybedenlere ait kişisel veri tutulmaz ve gösterilmez. Politika işaretleri ise kronolojiyi gösterir, bir etkiyi kanıtlamaz.",
       ab6_t: "Konumlar nasıl gösteriliyor",
       ab6_d: "Kayıtların yalnızca birkaçında tesis düzeyinde işaretlemeye yetecek kesinlikte koordinat var; onlar da tesisin kendisine ya da yakın çevresine işaret eder. Diğer bütün kayıtlar, kendi illerinin içinde temsili bir noktada gösterilir; bu nokta hiçbir zaman kazanın yeri değildir. Sınırlar: Natural Earth (kamuya açık), Albers eşit alanlı izdüşüm.",
+      ab8_t: "Kaza anında ocağı kim yürütüyordu",
+      ab8_d: "Bir şirket adı geçtiğinde, bu, kaynağın kaza günü ocakla ilişkilendirdiği şirkettir ve satırda hangisi olduğu yazar: ocağı işleten şirket, sahibi, ruhsat sahibi ya da işleten şirkete bağlı çalışan taşeron. Bunlar her zaman aynı şirket değildir; bu yüzden tek bir ada indirgenmez, her biri ayrı kaydedilir. Aynı kurum iki ayrı rolde görünüyorsa, bu iki ayrı düzenleme olduğu için değil, iki kaynağın aynı ocağı farklı sözcüklerle anlatmasındandır. Kaynak yalnızca birinin iddiasını aktarıyorsa şirket \u201ciddia\u201d etiketiyle gösterilir. Bir şirketin adının kayda geçmesi kimin işlettiğini gösterir, kimin kusurlu olduğunu değil: ona mahkemeler karar verir, bu kayıt vermez. 52 kaydın 24\u2019ünde şirket adı var; kalanlarda yok, çünkü değerlendirilmiş hiçbir kaynak ad vermiyor, çoğunlukla yalnızca \u201cözel bir işletme\u201d diyor.",
       ab7_t: "Düzeltmeler ve süren işler",
       ab7_d: "Analiz yöntemleri belgelidir ve geçicidir. Süren işler arasında resmî kayıtlarla doğrulama, TÜİK ve TKİ verilerinden uyumlu bir oran serisi ve daha kapsamlı saha kaynakları (Global Energy Monitor, MAPEG ruhsat verisi) var. Düzeltme önerileri için proje deposundaki formları kullanabilirsiniz. Hayatını kaybedenlerin hiçbir kişisel verisi saklanmaz ve gösterilmez.",
       onthisday: "Bugün, bir yıl dönümü.",
@@ -1015,10 +1023,12 @@ tt_records: "Yayımlanmış kayıt",
       foot1: "{ts} tarihli veri seti · şema {v} · incelemede {rev} kayıt · denetim sonrası geri çekilen {wd} kayıt (docs/corrections_log.csv) · {docs} kaynak belge · {claims} iddia · {dec} kayıtlı karar.",
       foot2: "Başlangıç kaynakları: <a href=\"https://www.wikidata.org\" rel=\"noopener\">Wikidata</a> (CC0) ve <a href=\"https://www.wikipedia.org\" rel=\"noopener\">Vikipedi</a> (metin CC BY-SA 4.0; yukarıdaki makale bağlantıları kaynağı gösterir). Kaynaklar, sınırlar ve düzeltme yolu için <a href=\"#about\">kapsam ve sınırlar</a> bölümüne bakın.",
       owner: "Sahibi", operator: "İşletmeci",
-      roles: { owner: "Sahibi", operator: "İşletmeci", licence_holder: "Ruhsat sahibi",
-        subcontractor: "Taşeron", employer: "İşveren",
-        public_authority: "Kamu kurumu", rescue_organization: "Arama kurtarma",
-        other: "Diğer", unknown: "Rolü belirtilmemiş" },
+      roles: { operator: "Ocağı işleten", licence_holder: "Ruhsat sahibi",
+        owner: "Ocağın sahibi", subcontractor: "Ocaktaki taşeron",
+        employer: "İşveren", public_authority: "Kamu kurumu",
+        rescue_organization: "Arama kurtarma", other: "Diğer rol",
+        unknown: "Rolü belirtilmemiş" },
+      role_key: "Ocağı işleten, o gün ocakta üretimi yürüten şirkettir. Ocağın sahibi, kaynağın ocağın ait olduğunu söylediği şirkettir; bu her zaman aynı şirket değildir. Ocaktaki taşeron ise işleten şirkete bağlı çalışan firmadır. Her satırda hangisi olduğu yazar; kaynaklar bu ayrımı yapar, bu kayıt da yapar.",
       rh_org: "Kaza anında ocağı yürüten",
       org_at_date: "kaza tarihinde",
       prov_orgs: "Bu kayıtlarda adı geçen şirketler:",
@@ -1276,9 +1286,15 @@ tt_records: "Yayımlanmış kayıt",
   const typeLabel = s => t("types")[s.type] || s.type || "";
   const statusLabel = s => t("statuses")[s.status] || t("pill_not_stated");
   const roleLabel = role => t("roles")[role] || role || t("roles").unknown;
+  // One order wherever companies are listed, so the company that was working
+  // the pit is read first and a contractor is never mistaken for it.
+  const ROLE_ORDER = ["operator", "licence_holder", "owner", "subcontractor",
+    "employer", "public_authority", "rescue_organization", "other", "unknown"];
+  const byRole = (a, b) =>
+    (ROLE_ORDER.indexOf(a.role) + 1 || 99) - (ROLE_ORDER.indexOf(b.role) + 1 || 99);
   // Who the sources say held or ran the mine when the accident happened.
   // Organizations only: this register names no individual.
-  const orgsOf = id => (D.incident_organizations || {})[id] || [];
+  const orgsOf = id => ((D.incident_organizations || {})[id] || []).slice().sort(byRole);
   // Commodity groups (validated palette; gray = not stated in source).
   const COMM_GROUPS = {
     coal: "coal", lignite: "coal",
@@ -1644,25 +1660,40 @@ tt_records: "Yayımlanmış kayıt",
   function provinceTipHtml(code, e) {
     if (!e) return `<div class="t-title">${html(provinceName(code))}</div>` +
       `<div class="t-meta">${t("prov_none")}</div>`;
-    // Six rows rather than eight, because each now carries the company too.
+    // Six rows rather than eight, because each now carries the company too,
+    // with its role spelled out: a name on its own would leave the reader
+    // guessing whether that company was working the pit or merely held it.
     const rows = e.unlocated.slice(0, 6).map(i => {
-      const who = orgsOf(i.public_incident_id).map(o => o.name).join(", ");
+      const who = orgsOf(i.public_incident_id).map(o =>
+        `<span lang="tr">${html(o.name)}</span> <span class="t-meta">${html(roleLabel(o.role))}` +
+        `${o.assertion_status && o.assertion_status !== "reported"
+          ? ", " + html(o.assertion_status) : ""}</span>`).join("<br>");
       return `${html(i.public_incident_id)} · ${html(fmtDate(i))} · ` +
-        `${fmt.format(i.fatalities_current)}` +
-        (who ? ` · <span lang="tr">${html(who)}</span>` : "");
+        `${fmt.format(i.fatalities_current)}` + (who ? `<br>${who}` : "");
     }).join("<br>");
-    // Every company named in this province's records, each counted once.
-    const companies = [...new Set(
-      (e.all || e.unlocated).flatMap(i =>
-        orgsOf(i.public_incident_id).map(o => o.name)))];
+    // One line per company, with everything that company was in this
+    // province's records. Grouping by role instead would print the same
+    // company twice under two headings wherever two sources worded it
+    // differently, which reads as two different companies.
+    const seen = new Map();
+    for (const i of (e.all || e.unlocated)) {
+      for (const o of orgsOf(i.public_incident_id)) {
+        if (!seen.has(o.name)) seen.set(o.name, new Set());
+        seen.get(o.name).add(o.role);
+      }
+    }
+    const companies = [...seen.entries()].map(([name, roles]) => ({
+      name, roles: [...roles].sort((a, b) => byRole({ role: a }, { role: b })),
+    })).sort((a, b) => byRole({ role: a.roles[0] }, { role: b.roles[0] }))
+      .map(c => `<span lang="tr">${html(c.name)}</span> ` +
+        `${c.roles.map(r => html(roleLabel(r))).join(", ")}`);
     return `<div class="t-title">${html(provinceName(code))}</div>` +
       (e.records
         ? `<div>${tf("prov_lost", { d: fmt.format(e.deaths), n: e.records })}</div>`
         : `<div class="t-meta">${t("prov_none")}</div>`) +
       (e.unlocated.length ? `<div class="t-meta">${tf("prov_unlocated", { n: e.unlocated.length })}<br>${rows}${e.unlocated.length > 6 ? "<br>…" : ""}</div>` : "") +
       (companies.length
-        ? `<div class="t-meta">${t("prov_orgs")}<br><span lang="tr">` +
-          `${html(companies.join(", "))}</span></div>`
+        ? `<div class="t-meta">${t("prov_orgs")}<br>${companies.join("<br>")}</div>`
         : "") +
       (e.sites ? `<div class="t-meta">${tf("prov_sites", { n: e.sites })}` +
         (e.sitesUnlocated ? tf("prov_sites_unloc", { n: e.sitesUnlocated }) : "") +

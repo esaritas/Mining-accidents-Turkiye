@@ -1,19 +1,19 @@
 {
   "db_schema_version": "002",
-  "export_timestamp": "2026-10-16T20:30:41Z",
+  "export_timestamp": "2026-10-16T20:48:20Z",
   "file_sha256": {
     "datapackage.json": "752367ec73b63cbd95acdcfc71243b29fd96b48588f907b4bd0f338ccec5311c",
     "facilities.csv": "9ce3d5a1c27198d5622668e4476c25759e871931423e7628c5c91bc0a4865252",
     "facility_organization_roles.csv": "e0fe828236b59b2e2170368ca96a890252257b7fea2b1404e893fa4e8521a071",
     "incident_classifications.csv": "58f869c6ffabe16b70470d4ff2d364423ada40530d49af8f83d538da38d14e84",
     "incident_organization_roles.csv": "10deb0204c52c7d829dc963ab8e23d2c86fc4a1e9e16db00a0eaa1f1d155156d",
-    "incidents.csv": "18a74b99ff675453c70810d7ff2830762e004c4fa5872eacb9c4257c41b7d506",
-    "incidents.json": "6d3768f2fdf3b598eb47868d2028e5dc2418f9c16e35ff7118a44ac1aca8f13b",
+    "incidents.csv": "508a96d43840af50889abf20ed2058559c41a612c71f48d5848c0d5f0271c858",
+    "incidents.json": "3c9914a186a5a2151fb09aeeacfe282589ba9fe4dc954b2e8610c11751c33cd4",
     "merged_id_redirects.csv": "26158d38632470f27afc9c5de47bc7f989785e46a81ee313d9cc05f737c7296b",
-    "sources.csv": "99e330d9572198dd3343e7dcf69458cd9899f4334a2d80ab3a444788d1c8c3d8",
-    "validation_report.json": "67a72eb658028ebbd6e71c89ac0edea801217d1eaaafcbf2df2e7ebb5e94b661"
+    "sources.csv": "35f2b17dfa69ca98247fabdbc22a2e5108195bbc5de22652661f1259bb8de74d",
+    "validation_report.json": "0df7ef54a3605ccad0b629f5a55951a83972f77652d451ddb8c15a94544170e9"
   },
-  "git_commit": "fa2538696c65351093e2e81e4ae5c42a9259fa95",
+  "git_commit": "baef87a06efe92cae0f2fc4a695960d1187a6498",
   "quality_findings": {
     "critical": 0,
     "warning": 15

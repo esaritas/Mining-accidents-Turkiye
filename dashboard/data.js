@@ -205,12 +205,12 @@ window.MINING_DATA = {
       "year": 2022
     },
     {
-      "register_deaths": null,
+      "register_deaths": 3,
       "sector_deaths": 51,
       "year": 2023
     },
     {
-      "register_deaths": 16,
+      "register_deaths": 13,
       "sector_deaths": 75,
       "year": 2024
     },
@@ -618,12 +618,12 @@ window.MINING_DATA = {
     "TR-MINE-2004-0001": [
       {
         "field_name": "date_precision",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2004-09-01",
+        "retrieved_at": "2026-10-16T20:43:49Z",
+        "source_tier": "2",
+        "title": "Çorum'un Bayat ilçesi Karakaya köyü'nde grizu patlaması (Madencilik Bülteni, Eylül 2004)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/34e6bfcd358e25a_ek.pdf"
       },
       {
         "field_name": "fatalities_current",
@@ -636,12 +636,12 @@ window.MINING_DATA = {
       },
       {
         "field_name": "incident_start_datetime",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2004-09-01",
+        "retrieved_at": "2026-10-16T20:43:49Z",
+        "source_tier": "2",
+        "title": "Çorum'un Bayat ilçesi Karakaya köyü'nde grizu patlaması (Madencilik Bülteni, Eylül 2004)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/34e6bfcd358e25a_ek.pdf"
       },
       {
         "field_name": "province_code",
@@ -694,12 +694,12 @@ window.MINING_DATA = {
     "TR-MINE-2005-0001": [
       {
         "field_name": "date_precision",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
+        "organization": "Evrensel",
+        "publication_date": "2006-02-10",
+        "retrieved_at": "2026-10-16T20:43:49Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Madenci aileleri adalet istiyor",
+        "url": "https://www.evrensel.net/haber/170084/madenci-aileleri-adalet-istiyor"
       },
       {
         "field_name": "fatalities_current",
@@ -712,12 +712,12 @@ window.MINING_DATA = {
       },
       {
         "field_name": "incident_start_datetime",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
+        "organization": "Evrensel",
+        "publication_date": "2006-02-10",
+        "retrieved_at": "2026-10-16T20:43:49Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Madenci aileleri adalet istiyor",
+        "url": "https://www.evrensel.net/haber/170084/madenci-aileleri-adalet-istiyor"
       },
       {
         "field_name": "province_code",
@@ -2240,12 +2240,12 @@ window.MINING_DATA = {
     "TR-MINE-2024-0004": [
       {
         "field_name": "date_precision",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
+        "organization": "Evrensel",
+        "publication_date": "2023-11-23",
+        "retrieved_at": "2026-10-16T20:43:49Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Siirt'te maden ocağında göçük meydana geldi, 3 işçi hayatını kaybetti",
+        "url": "https://www.evrensel.net/haber/504128/cengizin-madeninde-tesvikli-cinayet-siirtte-maden-ocaginda-gocuk-meydana-geldi-3-isci-hayatini-kaybetti"
       },
       {
         "field_name": "fatalities_current",
@@ -2258,12 +2258,12 @@ window.MINING_DATA = {
       },
       {
         "field_name": "incident_start_datetime",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
+        "organization": "Evrensel",
+        "publication_date": "2023-11-23",
+        "retrieved_at": "2026-10-16T20:43:49Z",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Siirt'te maden ocağında göçük meydana geldi, 3 işçi hayatını kaybetti",
+        "url": "https://www.evrensel.net/haber/504128/cengizin-madeninde-tesvikli-cinayet-siirtte-maden-ocaginda-gocuk-meydana-geldi-3-isci-hayatini-kaybetti"
       },
       {
         "field_name": "province_code",
@@ -3013,7 +3013,7 @@ window.MINING_DATA = {
       }
     ]
   },
-  "export_timestamp": "2026-10-16T20:30:41Z",
+  "export_timestamp": "2026-10-16T20:48:20Z",
   "hazard_matrix": {
     "bands": [
       {
@@ -3269,7 +3269,7 @@ window.MINING_DATA = {
       {
         "deaths": 19,
         "documented_sites": 1,
-        "latest_year": 2024,
+        "latest_year": 2023,
         "mechanisms": {
           "roof_or_ground_collapse": 2
         },
@@ -3966,14 +3966,14 @@ window.MINING_DATA = {
     },
     {
       "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Çorum (2004-08-01)",
+      "canonical_title_tr": "Maden kazası, Çorum (2004-08-09)",
       "casualty_status": null,
       "coordinate_precision": null,
-      "date_precision": "month",
+      "date_precision": "exact_date",
       "district_code": null,
       "fatalities_current": 3,
       "incident_end_datetime": null,
-      "incident_start_datetime": "2004-08-01T00:00:00+03:00",
+      "incident_start_datetime": "2004-08-09T00:00:00+03:00",
       "incident_status": "in_scope",
       "injuries_current": null,
       "latitude": null,
@@ -4008,14 +4008,14 @@ window.MINING_DATA = {
     },
     {
       "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Kütahya (2005-04-01)",
+      "canonical_title_tr": "Maden kazası, Kütahya (2005-04-21)",
       "casualty_status": null,
       "coordinate_precision": null,
-      "date_precision": "month",
+      "date_precision": "exact_date",
       "district_code": null,
       "fatalities_current": 18,
       "incident_end_datetime": null,
-      "incident_start_datetime": "2005-04-01T00:00:00+03:00",
+      "incident_start_datetime": "2005-04-21T00:00:00+03:00",
       "incident_status": "in_scope",
       "injuries_current": null,
       "latitude": null,
@@ -4743,14 +4743,14 @@ window.MINING_DATA = {
     },
     {
       "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Siirt (2024-10-23)",
+      "canonical_title_tr": "Maden kazası, Siirt (2023-11-23)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
       "district_code": null,
       "fatalities_current": 3,
       "incident_end_datetime": null,
-      "incident_start_datetime": "2024-10-23T00:00:00+03:00",
+      "incident_start_datetime": "2023-11-23T00:00:00+03:00",
       "incident_status": "in_scope",
       "injuries_current": null,
       "latitude": null,
@@ -5747,11 +5747,11 @@ window.MINING_DATA = {
   },
   "pipeline": {
     "claims_awaiting_review": 11,
-    "claims_total": 922,
-    "decisions_total": 282,
+    "claims_total": 928,
+    "decisions_total": 291,
     "published_incidents": 52,
     "records_in_review": 1,
-    "source_documents": 194,
+    "source_documents": 197,
     "withdrawn_records": 5
   },
   "policy_events": [
