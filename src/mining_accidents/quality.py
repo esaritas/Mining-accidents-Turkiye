@@ -22,7 +22,7 @@ from rich.console import Console
 from rich.table import Table
 
 from mining_accidents import entity_resolution, geography, vocabularies
-from mining_accidents.models import PUBLICATION_CRITICAL_FIELDS
+from mining_accidents.models import ENVIRONMENTAL_CRITICAL_FIELDS, PUBLICATION_CRITICAL_FIELDS
 
 Severity = Literal["critical", "warning", "info"]
 
@@ -204,11 +204,18 @@ def check_publication_critical_decisions(
 ) -> list[QualityFinding]:
     findings = []
     for row in conn.execute(
-        "SELECT incident_id, public_incident_id FROM incidents "
+        "SELECT incident_id, public_incident_id, incident_kind FROM incidents "
         "WHERE publication_status IN ('publishable', 'published')"
     ):
         active = _active_decisions(conn, row["incident_id"])
-        for field in PUBLICATION_CRITICAL_FIELDS:
+        # An environmental record has no death toll to decide; its threshold is
+        # the place and the date (models.ENVIRONMENTAL_CRITICAL_FIELDS).
+        critical = (
+            ENVIRONMENTAL_CRITICAL_FIELDS
+            if row["incident_kind"] == "environmental"
+            else PUBLICATION_CRITICAL_FIELDS
+        )
+        for field in critical:
             decision = active.get(field)
             if decision is None:
                 findings.append(

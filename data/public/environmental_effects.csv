@@ -1,0 +1,12 @@
+public_incident_id,effect_type,measure_value,measure_unit,qualitative_value,assertion_status
+TR-ENV-2021-0001,containment_failure,,,İkinci atık barajının iç seti,reported
+TR-ENV-2021-0001,receiving_environment,,,Darabul Deresi ve Kılıçkaya Barajı,reported
+TR-ENV-2021-0001,receiving_environment,,,Kelkit Çayı ve ovası (tehdit altında olduğu bildirildi),alleged
+TR-ENV-2021-0001,released_material,4500.0,tonne,"Kimyasal atık (kurşun, çinko, bakır zenginleştirme tesisi)",reported
+TR-ENV-2022-0001,production_suspension,,,Bakanlık madenin faaliyetlerini durdurdu,official_finding
+TR-ENV-2022-0001,receiving_environment,,,Toprak; maden Fırat Nehri kıyısında kurulu,reported
+TR-ENV-2022-0001,released_material,20.0,m3,Siyanürlü solüsyon (şirket beyanı),reported
+TR-ENV-2022-0001,released_material,210.0,m3,Siyanürlü bileşik (bilirkişi raporuna atfen),technical_finding
+TR-ENV-2024-0001,containment_failure,,,Yığın liç alanı,reported
+TR-ENV-2024-0001,production_suspension,,,"Çevre izin ve lisans belgeleri iptal edildi, üretim durduruldu",official_finding
+TR-ENV-2024-0001,receiving_environment,,,Sabırlı Deresi,reported

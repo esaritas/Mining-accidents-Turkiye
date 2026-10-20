@@ -145,6 +145,24 @@ CREATE TABLE classification_concordance (
     updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
 );
 
+CREATE TABLE environmental_effects (
+    environmental_effect_id INTEGER PRIMARY KEY,
+    incident_id INTEGER NOT NULL REFERENCES incidents (incident_id),
+    effect_type TEXT NOT NULL,          -- vocabulary: environmental_effect_types.csv
+    measure_value REAL,                 -- nullable: many effects are stated without a number
+    measure_unit TEXT,                  -- tonne, m3, ha, km, day
+    qualitative_value TEXT,             -- e.g. the watercourse a release reached
+    source_claim_id INTEGER NOT NULL REFERENCES claims (claim_id),
+    assertion_status TEXT NOT NULL DEFAULT 'unknown' CHECK (assertion_status IN
+        ('reported', 'alleged', 'preliminary_finding', 'technical_finding',
+         'official_finding', 'judicial_finding', 'disputed', 'withdrawn', 'unknown')),
+    review_status TEXT NOT NULL DEFAULT 'pending' CHECK (review_status IN
+        ('pending', 'needs_review', 'reviewed')),
+    notes TEXT,
+    created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
+    updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
+);
+
 CREATE TABLE facilities (
     facility_id INTEGER PRIMARY KEY,
     facility_name_tr TEXT NOT NULL,
@@ -200,12 +218,13 @@ CREATE TABLE facility_organization_roles (
     UNIQUE (facility_id, organization_id, role)
 );
 
-CREATE TABLE incident_classifications (
+CREATE TABLE "incident_classifications" (
     classification_id INTEGER PRIMARY KEY,
     incident_id INTEGER NOT NULL REFERENCES incidents (incident_id),
     classification_system TEXT NOT NULL CHECK (classification_system IN
         ('project_hazard', 'project_event_mechanism', 'project_mode_of_harm',
-         'project_contributing_condition', 'ESAW', 'ICSE', 'NACE', 'other')),
+         'project_contributing_condition', 'project_environmental_mechanism',
+         'ESAW', 'ICSE', 'NACE', 'other')),
     classification_level TEXT,
     classification_code TEXT NOT NULL,       -- project_* codes validated against vocabularies
     classification_label_tr TEXT,
@@ -288,7 +307,9 @@ CREATE TABLE incidents (
         ('draft', 'internal', 'publishable', 'published', 'withdrawn')),
     created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
     updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
-);
+, incident_kind TEXT NOT NULL DEFAULT 'fatal_accident'
+    CHECK (incident_kind IN ('fatal_accident', 'environmental')), related_incident_id INTEGER
+    REFERENCES incidents (incident_id));
 
 CREATE TABLE ingestion_runs (
     run_id INTEGER PRIMARY KEY,
@@ -419,9 +440,13 @@ CREATE INDEX idx_claims_incident_field ON claims (incident_id, field_name);
 
 CREATE INDEX idx_claims_source_document ON claims (source_document_id);
 
+CREATE INDEX idx_environmental_effects_incident ON environmental_effects (incident_id);
+
 CREATE INDEX idx_facilities_external_ref ON facilities (external_ref);
 
 CREATE INDEX idx_facility_aliases_normalized ON facility_aliases (alias_normalized);
+
+CREATE INDEX idx_incidents_kind ON incidents (incident_kind);
 
 CREATE INDEX idx_incidents_province ON incidents (province_code);
 
@@ -503,6 +528,14 @@ CREATE TRIGGER trg_claims_no_delete
 BEFORE DELETE ON claims
 BEGIN
     SELECT RAISE(ABORT, 'claims are append-only: rows are never deleted');
+END;
+
+CREATE TRIGGER trg_environmental_effects_updated_at
+AFTER UPDATE ON environmental_effects
+BEGIN
+    UPDATE environmental_effects
+       SET updated_at = strftime('%Y-%m-%dT%H:%M:%SZ', 'now')
+     WHERE environmental_effect_id = NEW.environmental_effect_id;
 END;
 
 CREATE TRIGGER trg_facilities_updated_at

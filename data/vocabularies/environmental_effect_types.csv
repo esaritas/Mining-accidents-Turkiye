@@ -1,0 +1,10 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+released_material,salınan madde,released material,Material that left containment,tailings slurry; cyanide-bearing solution; heavy-metal waste,1.0,,quantity recorded only where a source states one
+receiving_environment,ulaştığı ortam,receiving environment,The water body or land the release reached or threatened,a stream; a reservoir; a river basin,1.0,,records what the source states was reached or threatened; never inferred
+affected_area,etkilenen alan,affected area,Extent of ground affected,hectares of land covered by released material,1.0,,
+affected_length,etkilenen uzunluk,affected length,Extent of a watercourse affected,kilometres of stream carrying released material,1.0,,
+containment_failure,muhafaza yapısının çökmesi,containment failure,Failure of a structure built to hold waste or solution,tailings dam breach; heap-leach pad collapse,1.0,,describes the structure that failed, not a cause or a finding of fault
+production_suspension,üretimin durdurulması,production suspension,Production stopped after the incident,ministry halts operations at the site,1.0,,recorded as a documented consequence, not as a sanction
+water_quality_finding,su kalitesi ölçümü,water quality finding,A measured or reported change in water quality,cyanide or heavy-metal concentration reported in a watercourse,1.0,,only where a source states a measurement or an official finding
+fish_or_wildlife_mortality,balık veya yaban hayatı ölümü,fish or wildlife mortality,Reported death of fish or other wildlife,fish die-off in a stream below a discharge,1.0,,
+other,diğer,other,An effect the vocabulary does not yet cover,,1.0,,use sparingly and describe in notes

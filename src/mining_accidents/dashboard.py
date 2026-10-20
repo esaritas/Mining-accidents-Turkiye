@@ -141,6 +141,81 @@ def _incident_organizations(public_dir: Path) -> dict[str, list[dict[str, object
     return result
 
 
+def _environmental(public_dir: Path) -> list[dict[str, object]]:
+    """Environmental records and what the sources say they did.
+
+    Kept apart from the fatal-accident register in the payload exactly as in
+    the export: these are a different kind of event, counted separately, and
+    never added to a death toll."""
+    import csv
+
+    incidents_csv = public_dir / "environmental_incidents.csv"
+    if not incidents_csv.exists():
+        return []
+    effects: dict[str, list[dict[str, object]]] = {}
+    effects_csv = public_dir / "environmental_effects.csv"
+    if effects_csv.exists():
+        with effects_csv.open(encoding="utf-8", newline="") as fh:
+            for row in csv.DictReader(fh):
+                effects.setdefault(row["public_incident_id"], []).append(
+                    {
+                        "type": row["effect_type"],
+                        "value": float(row["measure_value"]) if row["measure_value"] else None,
+                        "unit": row["measure_unit"] or None,
+                        "qualitative": row["qualitative_value"] or None,
+                        "assertion_status": row["assertion_status"],
+                    }
+                )
+    mechanisms: dict[str, list[dict[str, str]]] = {}
+    class_csv = public_dir / "environmental_classifications.csv"
+    if class_csv.exists():
+        with class_csv.open(encoding="utf-8", newline="") as fh:
+            for row in csv.DictReader(fh):
+                mechanisms.setdefault(row["public_incident_id"], []).append(
+                    {
+                        "code": row["classification_code"],
+                        "label_tr": row["classification_label_tr"],
+                        "label_en": row["classification_label_en"],
+                    }
+                )
+    citations: dict[str, list[dict[str, str]]] = {}
+    sources_csv = public_dir / "environmental_sources.csv"
+    if sources_csv.exists():
+        with sources_csv.open(encoding="utf-8", newline="") as fh:
+            for row in csv.DictReader(fh):
+                entry = {
+                    "organization": row["source_organization"],
+                    "title": row["title"],
+                    "url": row["url"],
+                }
+                bucket = citations.setdefault(row["public_incident_id"], [])
+                if entry not in bucket:
+                    bucket.append(entry)
+    records = []
+    with incidents_csv.open(encoding="utf-8", newline="") as fh:
+        for row in csv.DictReader(fh):
+            pid = row["public_incident_id"]
+            records.append(
+                {
+                    "public_incident_id": pid,
+                    "canonical_title_tr": row["canonical_title_tr"],
+                    "canonical_title_en": row["canonical_title_en"],
+                    "incident_start_datetime": row["incident_start_datetime"],
+                    "date_precision": row["date_precision"],
+                    "province_code": row["province_code"],
+                    "province_name": row["province_name"],
+                    "latitude": float(row["latitude"]) if row["latitude"] else None,
+                    "longitude": float(row["longitude"]) if row["longitude"] else None,
+                    "coordinate_precision": row["coordinate_precision"] or None,
+                    "related_public_incident_id": row["related_public_incident_id"] or None,
+                    "mechanisms": mechanisms.get(pid, []),
+                    "effects": effects.get(pid, []),
+                    "citations": citations.get(pid, []),
+                }
+            )
+    return records
+
+
 def _province_centroids() -> dict[str, dict[str, float | str]]:
     """Display-only reference points (Wikidata CC0) for province-level marks.
 
@@ -323,6 +398,7 @@ def build_payload(
         "policy_events": analysis.policy_events(),
         "rate_context": analysis.rate_context(conn),
         "hazard_matrix": analysis.hazard_matrix(public_dir),
+        "environmental": _environmental(public_dir),
         "pipeline": _pipeline_status(conn),
         "export_timestamp": manifest["export_timestamp"],
         "schema_version": manifest["db_schema_version"],

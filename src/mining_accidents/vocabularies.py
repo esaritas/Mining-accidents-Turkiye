@@ -45,12 +45,15 @@ VOCABULARY_FILES: dict[str, str] = {
     "nace_versions": "nace_versions.csv",
     "facility_types": "facility_types.csv",
     "commodities": "commodities.csv",
+    "environmental_effect_types": "environmental_effect_types.csv",
+    "environmental_mechanisms": "environmental_mechanisms.csv",
 }
 
 #: classification_system value -> vocabulary backing its codes.
 PROJECT_CLASSIFICATION_VOCABULARIES: dict[str, str] = {
     "project_hazard": "hazards",
     "project_event_mechanism": "event_mechanisms",
+    "project_environmental_mechanism": "environmental_mechanisms",
     "project_mode_of_harm": "modes_of_harm",
     "project_contributing_condition": "contributing_conditions",
 }

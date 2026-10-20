@@ -20,7 +20,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from mining_accidents import quality
-from mining_accidents.models import PUBLICATION_CRITICAL_FIELDS
+from mining_accidents.models import ENVIRONMENTAL_CRITICAL_FIELDS, PUBLICATION_CRITICAL_FIELDS
 from mining_accidents.provenance import get_git_commit
 from mining_accidents.validators import DEFAULT_EXCERPT_MAX_WORDS
 from mining_accidents.vocabularies import load_versions
@@ -109,6 +109,29 @@ FACILITY_ROLE_COLUMNS = [
     "assertion_status",
 ]
 
+ENVIRONMENTAL_COLUMNS = [
+    "public_incident_id",
+    "canonical_title_tr",
+    "canonical_title_en",
+    "incident_start_datetime",
+    "date_precision",
+    "province_code",
+    "province_name",
+    "latitude",
+    "longitude",
+    "coordinate_precision",
+    "related_public_incident_id",
+]
+
+EFFECT_COLUMNS = [
+    "public_incident_id",
+    "effect_type",
+    "measure_value",
+    "measure_unit",
+    "qualitative_value",
+    "assertion_status",
+]
+
 REDIRECT_COLUMNS = ["merged_public_incident_id", "surviving_public_incident_id"]
 
 CONFLICT_COLUMNS = ["public_incident_id", "field_name", "status"]
@@ -159,7 +182,12 @@ def publication_blockers(
         blockers.append("no public_incident_id assigned")
 
     active = _active_decisions(conn, incident_id)
-    for field in PUBLICATION_CRITICAL_FIELDS:  # rules 2, 3, 6
+    critical = (
+        ENVIRONMENTAL_CRITICAL_FIELDS
+        if row["incident_kind"] == "environmental"
+        else PUBLICATION_CRITICAL_FIELDS
+    )
+    for field in critical:  # rules 2, 3, 6
         decision = active.get(field)
         if decision is None:
             blockers.append(f"no accepted decision for {field}")
@@ -244,6 +272,52 @@ def _collect_incident_rows(conn: sqlite3.Connection, ids: list[int]) -> list[dic
         record["province_name"] = provinces.get(row["province_code"] or "", "")
         rows.append(record)
     return sorted(rows, key=lambda r: r["public_incident_id"])
+
+
+def _collect_environmental_rows(
+    conn: sqlite3.Connection, ids: list[int]
+) -> list[dict[str, object]]:
+    """Environmental records, with the fatal record they belong to where there
+    is one. Kept in their own file so the fatal-accident totals never silently
+    absorb a different kind of event."""
+    provinces = _province_labels()
+    rows = []
+    for incident_id in ids:
+        row = conn.execute(
+            "SELECT * FROM incidents WHERE incident_id = ?", (incident_id,)
+        ).fetchone()
+        record = {
+            col: row[col]
+            for col in ENVIRONMENTAL_COLUMNS
+            if col not in ("province_name", "related_public_incident_id")
+        }
+        record["province_name"] = provinces.get(row["province_code"] or "", "")
+        related = None
+        if row["related_incident_id"] is not None:
+            related = conn.execute(
+                "SELECT public_incident_id FROM incidents WHERE incident_id = ?",
+                (row["related_incident_id"],),
+            ).fetchone()
+        record["related_public_incident_id"] = related["public_incident_id"] if related else None
+        rows.append(record)
+    return sorted(rows, key=lambda r: r["public_incident_id"])
+
+
+def _collect_effects(conn: sqlite3.Connection, ids: list[int]) -> list[dict[str, object]]:
+    placeholders = ",".join("?" for _ in ids) or "NULL"
+    rows = conn.execute(
+        f"""
+        SELECT i.public_incident_id, e.effect_type, e.measure_value, e.measure_unit,
+               e.qualitative_value, e.assertion_status
+        FROM environmental_effects e
+        JOIN incidents i ON i.incident_id = e.incident_id
+        WHERE e.incident_id IN ({placeholders})
+          AND e.review_status = 'reviewed' AND e.source_claim_id IS NOT NULL
+        ORDER BY i.public_incident_id, e.effect_type, e.environmental_effect_id
+        """,
+        ids,
+    ).fetchall()
+    return [dict(row) for row in rows]
 
 
 def _collect_classifications(conn: sqlite3.Connection, ids: list[int]) -> list[dict[str, object]]:
@@ -440,6 +514,18 @@ _RESOURCE_KEYS: dict[str, dict[str, object]] = {
         ],
     },
     "disclosed_conflicts": {"foreignKeys": [_FK]},
+    "environmental_incidents": {"primaryKey": "public_incident_id"},
+    "environmental_effects": {
+        "foreignKeys": [
+            {
+                "fields": "public_incident_id",
+                "reference": {
+                    "resource": "environmental_incidents",
+                    "fields": "public_incident_id",
+                },
+            }
+        ],
+    },
 }
 
 
@@ -595,11 +681,19 @@ def build_public_export(
             "WHERE publication_status IN ('publishable', 'published')"
         )
     ]
-    eligible_ids = [
+    eligible_all = [
         incident_id
         for incident_id in candidate_ids
         if not publication_blockers(conn, incident_id, disclose_conflicts)
     ]
+    kinds = {
+        row["incident_id"]: row["incident_kind"]
+        for row in conn.execute("SELECT incident_id, incident_kind FROM incidents")
+    }
+    # incidents.csv is the fatal-accident register and stays that way; an
+    # environmental record never enters the death counts.
+    eligible_ids = [i for i in eligible_all if kinds.get(i) != "environmental"]
+    environmental_ids = [i for i in eligible_all if kinds.get(i) == "environmental"]
 
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -608,6 +702,10 @@ def build_public_export(
     classifications = _collect_classifications(conn, eligible_ids)
     roles = _collect_roles(conn, eligible_ids)
     sources = _collect_sources(conn, eligible_ids)
+    environmental = _collect_environmental_rows(conn, environmental_ids)
+    effects = _collect_effects(conn, environmental_ids)
+    environmental_classifications = _collect_classifications(conn, environmental_ids)
+    environmental_sources = _collect_sources(conn, environmental_ids)
     facilities = _collect_facilities(conn)
     facility_roles = _collect_facility_roles(conn)
     redirects = _collect_redirects(conn)
@@ -639,6 +737,14 @@ def build_public_export(
     _write_csv(
         output_dir / "facility_organization_roles.csv", FACILITY_ROLE_COLUMNS, facility_roles
     )
+    _write_csv(output_dir / "environmental_incidents.csv", ENVIRONMENTAL_COLUMNS, environmental)
+    _write_csv(output_dir / "environmental_effects.csv", EFFECT_COLUMNS, effects)
+    _write_csv(
+        output_dir / "environmental_classifications.csv",
+        CLASSIFICATION_COLUMNS,
+        environmental_classifications,
+    )
+    _write_csv(output_dir / "environmental_sources.csv", SOURCE_COLUMNS, environmental_sources)
     _write_csv(output_dir / "merged_id_redirects.csv", REDIRECT_COLUMNS, redirects)
     if disclose_conflicts:
         _write_csv(output_dir / "disclosed_conflicts.csv", CONFLICT_COLUMNS, conflicts)
@@ -651,6 +757,10 @@ def build_public_export(
         ("facilities.csv", FACILITY_COLUMNS),
         ("facility_organization_roles.csv", FACILITY_ROLE_COLUMNS),
         ("merged_id_redirects.csv", REDIRECT_COLUMNS),
+        ("environmental_incidents.csv", ENVIRONMENTAL_COLUMNS),
+        ("environmental_effects.csv", EFFECT_COLUMNS),
+        ("environmental_classifications.csv", CLASSIFICATION_COLUMNS),
+        ("environmental_sources.csv", SOURCE_COLUMNS),
     ]
     if disclose_conflicts:
         resources.append(("disclosed_conflicts.csv", CONFLICT_COLUMNS))
@@ -665,6 +775,14 @@ def build_public_export(
         ("facilities.csv", FACILITY_COLUMNS, facilities),
         ("facility_organization_roles.csv", FACILITY_ROLE_COLUMNS, facility_roles),
         ("merged_id_redirects.csv", REDIRECT_COLUMNS, redirects),
+        ("environmental_incidents.csv", ENVIRONMENTAL_COLUMNS, environmental),
+        ("environmental_effects.csv", EFFECT_COLUMNS, effects),
+        (
+            "environmental_classifications.csv",
+            CLASSIFICATION_COLUMNS,
+            environmental_classifications,
+        ),
+        ("environmental_sources.csv", SOURCE_COLUMNS, environmental_sources),
     ]
     if disclose_conflicts:
         datasets.append(("disclosed_conflicts.csv", CONFLICT_COLUMNS, conflicts))
@@ -684,6 +802,8 @@ def build_public_export(
             "facilities": len(facilities),
             "facility_organization_roles": len(facility_roles),
             "merged_id_redirects": len(redirects),
+            "environmental_incidents": len(environmental),
+            "environmental_effects": len(effects),
             **({"disclosed_conflicts": len(conflicts)} if disclose_conflicts else {}),
         },
         "file_sha256": {

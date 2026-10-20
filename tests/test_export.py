@@ -105,7 +105,8 @@ def test_manifest_contents(conn: sqlite3.Connection, tmp_path: Path) -> None:
     _build(conn, out)
     manifest = json.loads((out / "export_manifest.json").read_text(encoding="utf-8"))
     assert manifest["export_timestamp"] == "2100-01-01T00:00:00Z"
-    assert manifest["db_schema_version"] == "002"
+    # bumped by 003 (environmental incidents) and 004 (their classification system)
+    assert manifest["db_schema_version"] == "004"
     assert set(manifest["file_sha256"]) >= {"incidents.csv", "datapackage.json"}
     assert all(len(h) == 64 for h in manifest["file_sha256"].values())
     assert manifest["vocabulary_versions"]["hazards.csv"] == "1.0"
@@ -176,3 +177,58 @@ def test_pilot_slots_and_incident_packets(conn: sqlite3.Connection, tmp_path: Pa
     packet = generated[0].read_text(encoding="utf-8")
     assert "Extracted claims" in packet
     assert "TEST synthetic report A" in packet
+
+
+def test_environmental_records_never_enter_the_fatal_register(tmp_path) -> None:
+    """incidents.csv is the fatal-accident register and must stay that way.
+
+    The whole safety of putting two kinds of event in one table rests on this
+    filter, so it is asserted rather than assumed.
+    """
+    import csv
+    import json
+
+    public = Path("data/public")
+    if not (public / "environmental_incidents.csv").exists():
+        pytest.skip("no public export in the working tree")
+    fatal = list(csv.DictReader((public / "incidents.csv").open(encoding="utf-8")))
+    env = list(csv.DictReader((public / "environmental_incidents.csv").open(encoding="utf-8")))
+    fatal_ids = {row["public_incident_id"] for row in fatal}
+    env_ids = {row["public_incident_id"] for row in env}
+
+    assert not fatal_ids & env_ids, "a record appears in both registers"
+    assert all(i.startswith("TR-MINE-") for i in fatal_ids)
+    assert all(i.startswith("TR-ENV-") for i in env_ids)
+
+    manifest = json.loads((public / "export_manifest.json").read_text(encoding="utf-8"))
+    assert manifest["row_counts"]["incidents"] == len(fatal)
+    assert manifest["row_counts"]["environmental_incidents"] == len(env)
+
+    # Every environmental effect belongs to an environmental record, and an
+    # effect's quantity never looks like a casualty count.
+    effects = list(csv.DictReader((public / "environmental_effects.csv").open(encoding="utf-8")))
+    assert {row["public_incident_id"] for row in effects} <= env_ids
+    assert "fatalities_current" not in (effects[0].keys() if effects else {})
+
+
+def test_environmental_quantities_in_conflict_are_both_published(tmp_path) -> None:
+    """Where sources disagree on a quantity the register shows both figures.
+
+    Çöpler 2022 is the worked example: 20 m3 as the operator stated it, 210 m3
+    from an expert report. Selecting one would be resolving a conflict in code.
+    """
+    import csv
+
+    public = Path("data/public")
+    if not (public / "environmental_effects.csv").exists():
+        pytest.skip("no public export in the working tree")
+    rows = [
+        row
+        for row in csv.DictReader((public / "environmental_effects.csv").open(encoding="utf-8"))
+        if row["public_incident_id"] == "TR-ENV-2022-0001"
+        and row["effect_type"] == "released_material"
+    ]
+    if not rows:
+        pytest.skip("the Çöpler 2022 record is not in this export")
+    assert len(rows) == 2, "both disputed quantities must be published"
+    assert {row["assertion_status"] for row in rows} == {"reported", "technical_finding"}

@@ -1,8 +1,12 @@
 {
-  "db_schema_version": "002",
-  "export_timestamp": "2026-10-16T20:48:20Z",
+  "db_schema_version": "004",
+  "export_timestamp": "2026-10-20T10:40:17Z",
   "file_sha256": {
-    "datapackage.json": "752367ec73b63cbd95acdcfc71243b29fd96b48588f907b4bd0f338ccec5311c",
+    "datapackage.json": "7ce99095df5ea2455492aadb08809e652c78a06b83f0a43bfd416ed9c063e8af",
+    "environmental_classifications.csv": "4d22793bc250f0570d3e9b7bc78de049009acd8608ccdb51ee8f99563f156cfc",
+    "environmental_effects.csv": "236f7ac7018d26178002b7d2380d4951fff661b93bf23bb420287774623934a9",
+    "environmental_incidents.csv": "68df29588491aa5f385462e5669821c2f3aac9ba06807a6d252e902e134e9528",
+    "environmental_sources.csv": "823d116d8cf227eaae9c2ecf8f00010a5b53c7583df73c55b8b198bc8d179372",
     "facilities.csv": "9ce3d5a1c27198d5622668e4476c25759e871931423e7628c5c91bc0a4865252",
     "facility_organization_roles.csv": "e0fe828236b59b2e2170368ca96a890252257b7fea2b1404e893fa4e8521a071",
     "incident_classifications.csv": "58f869c6ffabe16b70470d4ff2d364423ada40530d49af8f83d538da38d14e84",
@@ -11,14 +15,16 @@
     "incidents.json": "3c9914a186a5a2151fb09aeeacfe282589ba9fe4dc954b2e8610c11751c33cd4",
     "merged_id_redirects.csv": "26158d38632470f27afc9c5de47bc7f989785e46a81ee313d9cc05f737c7296b",
     "sources.csv": "35f2b17dfa69ca98247fabdbc22a2e5108195bbc5de22652661f1259bb8de74d",
-    "validation_report.json": "0df7ef54a3605ccad0b629f5a55951a83972f77652d451ddb8c15a94544170e9"
+    "validation_report.json": "6b0b7f7974c4f1a6026d8c2cba2a1e6b6af12e2c81d429cdb635c18a06736b87"
   },
-  "git_commit": "baef87a06efe92cae0f2fc4a695960d1187a6498",
+  "git_commit": "d76ef470580b1ab4310537726c39a297717e9f35",
   "quality_findings": {
     "critical": 0,
     "warning": 15
   },
   "row_counts": {
+    "environmental_effects": 11,
+    "environmental_incidents": 3,
     "facilities": 74,
     "facility_organization_roles": 38,
     "incident_classifications": 66,
@@ -37,6 +43,8 @@
     "contributing_conditions.csv": "1.0",
     "coordinate_precisions.csv": "1.0",
     "date_precisions.csv": "1.0",
+    "environmental_effect_types.csv": "1.0",
+    "environmental_mechanisms.csv": "1.0",
     "event_mechanisms.csv": "1.0",
     "facility_types.csv": "1.1",
     "hazards.csv": "1.0",

@@ -1,0 +1,9 @@
+code,label_tr,label_en,definition,examples,version_added,deprecated_in_version,notes
+tailings_dam_failure,atık barajı çökmesi,tailings dam failure,Failure of a tailings storage facility,embankment breach releasing tailings,1.0,,not a root cause and not a statement of legal responsibility
+heap_leach_failure,yığın liç yapısının çökmesi,heap leach failure,Failure or collapse of a heap-leach pad or its containment,leach pad slope collapse,1.0,,
+chemical_release,kimyasal sızıntı,chemical release,Escape of process chemicals from containment,cyanide solution leak from a pipeline or pond,1.0,,
+waste_rock_slide,pasa yığını kayması,waste rock slide,Movement of a waste rock or spoil heap,spoil heap collapse into a watercourse,1.0,,
+water_discharge,su deşarjı,water discharge,Discharge of mine or process water to the environment,pit water released to a stream,1.0,,
+dust_or_air_release,toz veya hava salımı,dust or air release,Release of dust or gases to air,dust from an open pit reaching settlements,1.0,,
+subsidence,yer çökmesi,subsidence,Ground movement above or beside workings,surface subsidence over underground workings,1.0,,
+other,diğer,other,A mechanism the vocabulary does not yet cover,,1.0,,use sparingly and describe in notes

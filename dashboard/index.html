@@ -191,6 +191,10 @@
   .mark-wrap:focus-visible .svg-marker, .svg-site:focus-visible path,
   .tr-prov:focus-visible { stroke: var(--ink-1); stroke-width: 3; }
   .svg-site path { fill-opacity: .85; stroke: var(--surface-1); stroke-width: 1.2; }
+  .svg-env { cursor: pointer; }
+  .svg-env .hit { fill: transparent; stroke: none; }
+  .svg-env.is-hover .env-symbol, .svg-env:focus-visible .env-symbol {
+    stroke: var(--ink-1); stroke-width: 3; }
   .svg-site.is-hover path { fill-opacity: 1; }
   .svg-site .site-n { fill: var(--ink-2); font-size: 15px; font-weight: 600; }
   .maplegend .sw-acc.hollow { background: var(--loss); opacity: .45; }
@@ -431,6 +435,22 @@
   /* Documented-hazard matrix. Cell shade carries the record count; the
      number is always printed, so the shade is decoration, not the data. */
   #hazards h3 { font:19px/1.3 Georgia,serif; margin:26px 0 6px; }
+  /* Environmental records. Deliberately not red: red on this page means a
+     person died, and these records count no deaths. */
+  #env-list { display:grid; gap:14px; }
+  .env-card { border:1px solid var(--border); border-radius:10px; padding:14px 16px;
+    background:var(--surface-1); }
+  .env-card h3 { font:17px/1.3 Georgia,serif; margin:0 0 4px; }
+  .env-card .env-meta { color:var(--ink-muted); font-size:13px; margin-bottom:8px; }
+  .env-card dl { display:grid; grid-template-columns:auto 1fr; gap:4px 12px; margin:0;
+    font-size:14px; }
+  .env-card dt { color:var(--ink-2); }
+  .env-card dd { margin:0; color:var(--ink-1); }
+  .env-card .env-src { margin-top:8px; font-size:12px; }
+  .env-chip { display:inline-block; width:9px; height:9px; border-radius:2px;
+    background:var(--c-mineral); margin-right:6px; vertical-align:middle; }
+  @media (max-width:640px) { .env-card dl { grid-template-columns:1fr; gap:2px; }
+    .env-card dt { margin-top:6px; } }
   #hazard-matrix td.hz, #hazard-provinces td.hz { text-align:center; padding:7px 8px;
     font-variant-numeric:tabular-nums; }
   #hazard-matrix td.hz-0, #hazard-provinces td.hz-0 { color:var(--ink-muted); }
@@ -486,6 +506,7 @@
     <a href="#sites-panel" data-i18n="nav_sites"></a>
     <a href="#rates-panel" data-i18n="nav_rates"></a>
     <a href="#hazards" data-i18n="nav_hazards"></a>
+    <a href="#environmental" data-i18n="nav_env"></a>
     <a href="#about" data-i18n="nav_about"></a>
     <a href="#download-panel" data-i18n="nav_download"></a>
     <span class="lang-toggle" role="group" aria-label="Language / Dil">
@@ -642,6 +663,17 @@
     <p class="caption" data-i18n="hz_method"></p>
   </section>
 
+  <!-- ---- Environmental harm. A separate register with its own identifiers
+       (TR-ENV), its own critical fields and its own counts: these records
+       document material leaving containment, and they never enter a death
+       toll. ------------------------------------------------------------- -->
+  <section class="panel" id="environmental">
+    <h2 data-i18n="env_h"></h2>
+    <p class="caption" data-i18n="env_caption"></p>
+    <div id="env-list"></div>
+    <p class="caption" data-i18n="env_scope"></p>
+  </section>
+
   <!-- ---- One box for every limit of the work. Notes beside the views above
        explain how to read that view only; everything that is true of the
        whole register is stated here, once. ------------------------------- -->
@@ -714,7 +746,8 @@
       range: "{a} to {b}",
       nav_story: "Overview", nav_map: "Map", nav_years: "Years",
       nav_sites: "Documented sites", nav_records: "Records", nav_download: "Download",
-      nav_rates: "Historical context", nav_hazards: "Documented hazards", nav_about: "About",
+      nav_rates: "Historical context", nav_hazards: "Documented hazards",
+      nav_env: "Environmental harm", nav_about: "About",
       title: "A public register of mining accidents in Türkiye",
       lede: "Fatal mining and quarrying accidents in Türkiye, as far as open sources document them. Every published value links to the source it came from and the review decision that selected it.",
       note: "<strong>A partial research register.</strong> Missing records do not mean no accidents occurred. <a href=\"#about\">Scope and limits ↓</a>",
@@ -823,6 +856,25 @@ tt_records: "Published records",
       role_key: "Ran the mine is the company working the pit on the day. Owned the mine is the company the source says the pit belonged to, which is not always the same one. Contractor in the mine is a firm working under whoever ran it. Each line says which, because the sources distinguish them and so does this register.",
       rh_org: "In charge at the time",
       org_at_date: "at the time of the accident",
+      env_h: "Environmental harm at mining sites",
+      env_caption: "A separate register, with its own identifiers and its own counts. These records document material that left containment at a mining or processing site, and what the sources say it reached. They record no deaths and are never added to the death toll above, even where the same event appears in both: İliç 2024 is one accident that killed nine people and one heap-leach failure that reached a stream, and each is evidenced separately.",
+      env_scope: "Scope proposed, not settled. A record enters here when a source documents material leaving containment or reaching ground, water or air outside the site. Fines, prosecutions and licence cancellations as sanctions stay out, as everywhere in this register: what is recorded is what happened, not who should answer for it. A quantity is shown as the source states it, and where sources disagree both figures are shown with the standing of each. Coverage is thinner than for accidents: three records, from open sources only.",
+      lg_env: "{n} environmental record(s), counted separately",
+      env_effects: "What the sources record",
+      env_related: "Same event as",
+      env_mech: "What happened",
+      units: { tonne: "tonnes", m3: "m\u00b3", ha: "ha", km: "km", day: "days" },
+      env_sources: "Sources",
+      env_none: "No environmental records are published yet.",
+      eff_released_material: "Material released",
+      eff_receiving_environment: "Reached",
+      eff_affected_area: "Area affected",
+      eff_affected_length: "Length affected",
+      eff_containment_failure: "Structure that failed",
+      eff_production_suspension: "Production",
+      eff_water_quality_finding: "Water quality",
+      eff_fish_or_wildlife_mortality: "Fish or wildlife",
+      eff_other: "Other",
       prov_orgs: "Companies named in these records:",
       sum_orgs: "{n} of these {total} records name the company that held or ran the mine.",
       hz_h: "Documented hazards: what happened, how deadly, and where",
@@ -922,7 +974,8 @@ tt_records: "Published records",
       range: "{a} ile {b} arası",
       nav_story: "Genel bakış", nav_map: "Harita", nav_years: "Yıllar",
       nav_sites: "Maden sahaları", nav_records: "Kayıtlar", nav_download: "İndir",
-      nav_rates: "Tarihsel bağlam", nav_hazards: "Kayda geçen tehlikeler", nav_about: "Hakkında",
+      nav_rates: "Tarihsel bağlam", nav_hazards: "Kayda geçen tehlikeler",
+      nav_env: "Çevresel zarar", nav_about: "Hakkında",
       title: "Türkiye maden kazaları açık kaydı",
       lede: "Türkiye'deki ölümlü maden ve taş ocağı kazaları, açık kaynakların belgelediği kadarıyla. Yayımlanan her bilgi, geldiği kaynağa ve o bilgiyi seçen inceleme kararına bağlıdır.",
       note: "<strong>Kısmi bir araştırma kaydıdır.</strong> Burada kayıt olmaması, o yerde ya da o yılda kaza yaşanmadığı anlamına gelmez. <a href=\"#about\">Kapsam ve sınırlar ↓</a>",
@@ -1031,6 +1084,25 @@ tt_records: "Yayımlanmış kayıt",
       role_key: "Ocağı işleten, o gün ocakta üretimi yürüten şirkettir. Ocağın sahibi, kaynağın ocağın ait olduğunu söylediği şirkettir; bu her zaman aynı şirket değildir. Ocaktaki taşeron ise işleten şirkete bağlı çalışan firmadır. Her satırda hangisi olduğu yazar; kaynaklar bu ayrımı yapar, bu kayıt da yapar.",
       rh_org: "Kaza anında ocağı yürüten",
       org_at_date: "kaza tarihinde",
+      env_h: "Maden sahalarında çevresel zarar",
+      env_caption: "Kendi kimlik numaraları ve kendi sayımı olan ayrı bir kayıt. Buradaki kayıtlar, bir maden ya da zenginleştirme tesisinde muhafaza yapısının dışına çıkan maddeyi ve kaynakların bu maddenin nereye ulaştığını söylediğini belgeler. Can kaybı saymazlar ve yukarıdaki can kaybı toplamına hiçbir biçimde eklenmezler; aynı olay her iki kayıtta görünse bile: İliç 2024 hem dokuz kişinin öldüğü bir kaza hem de dereye ulaşan bir yığın liç çökmesidir ve her biri ayrı ayrı belgelenir.",
+      env_scope: "Kapsam öneri aşamasında, kesinleşmedi. Bir kayıt buraya, bir kaynak maddenin muhafaza dışına çıktığını ya da saha dışında toprağa, suya veya havaya ulaştığını belgelediğinde girer. Para cezaları, davalar ve yaptırım olarak lisans iptalleri bu kaydın her yerinde olduğu gibi kapsam dışıdır: kayda geçen, olanlardır; kimin hesap vermesi gerektiği değil. Miktar kaynağın söylediği gibi gösterilir; kaynaklar ayrışıyorsa her iki rakam da kendi dayanağıyla birlikte verilir. Kapsam kazalara göre daha dardır: yalnızca açık kaynaklardan üç kayıt.",
+      lg_env: "Ayrı sayılan {n} çevresel kayıt",
+      env_effects: "Kaynakların kaydettikleri",
+      env_related: "Aynı olay",
+      env_mech: "Olay türü",
+      units: { tonne: "ton", m3: "m\u00b3", ha: "hektar", km: "km", day: "gün" },
+      env_sources: "Kaynaklar",
+      env_none: "Henüz yayımlanmış çevresel kayıt yok.",
+      eff_released_material: "Çevreye çıkan madde",
+      eff_receiving_environment: "Ulaştığı yer",
+      eff_affected_area: "Etkilenen alan",
+      eff_affected_length: "Etkilenen uzunluk",
+      eff_containment_failure: "Çöken yapı",
+      eff_production_suspension: "Üretim",
+      eff_water_quality_finding: "Su kalitesi",
+      eff_fish_or_wildlife_mortality: "Balık veya yaban hayatı",
+      eff_other: "Diğer",
       prov_orgs: "Bu kayıtlarda adı geçen şirketler:",
       sum_orgs: "Bu {total} kaydın {n} tanesinde ocağı yürüten ya da elinde tutan şirket adıyla yer alıyor.",
       hz_h: "Kayda geçen tehlikeler: ne oldu, kaç can aldı, nerede",
@@ -1787,6 +1859,26 @@ tt_records: "Yayımlanmış kayıt",
         parts.push(`<g class="svg-site" data-sitekey="${html(list.map(s=>s.ref).join("|"))}" tabindex="0" role="button" aria-label="${html(label)}"><circle class="hit" cx="${x}" cy="${y}" r="13" fill="transparent"></circle>${siteSymbol(x,y,site,list.length>1)}${list.length>1 ? `<text class="map-label" x="${x+10}" y="${y-8}">${list.length}</text>` : ""}<title>${html(label)}</title></g>`);
       }
     }
+    // Environmental records, drawn last and never in red: on this map red
+    // means a person died, and these records count no deaths. A record with
+    // no coordinates is anchored on its province, like an unlocated accident.
+    for (const e of ENV()) {
+      const point = (e.latitude != null && e.longitude != null)
+        ? GEO.project(e.latitude, e.longitude)
+        : GEO.anchors[e.province_code];
+      if (!point) continue;
+      const [x, y] = point;
+      const exact = e.latitude != null;
+      const label = `${e.public_incident_id} · ${LANG === "tr"
+        ? (e.canonical_title_tr || "") : (e.canonical_title_en || e.canonical_title_tr || "")}`;
+      parts.push(`<g class="svg-env" data-envid="${html(e.public_incident_id)}" tabindex="0" ` +
+        `role="button" aria-label="${html(label)}">` +
+        `<circle class="hit" cx="${x}" cy="${y}" r="13" fill="transparent"></circle>` +
+        `<path class="env-symbol" d="M${x},${y-9} L${x+9},${y+6} L${x-9},${y+6} Z" ` +
+        `fill="${exact ? "var(--c-mineral)" : "none"}" stroke="var(--c-mineral)" ` +
+        `stroke-width="2.4" stroke-linejoin="round"></path>` +
+        `<title>${html(label)}</title></g>`);
+    }
     el.innerHTML=`<svg viewBox="-20 -20 ${GEO.W+40} ${GEO.H+60}" role="group" aria-label="${t("aria_map")}">${parts.join("")}</svg>`;
     bindMapInteraction(el,stats,byId,fs);
     renderMapLegend(fs);
@@ -1838,6 +1930,26 @@ tt_records: "Yayımlanmış kayıt",
         const refs = hit.dataset.sitekey.split("|");
         return refs.map(r => siteTip(bySiteRef.get(r))).join('<hr style="border:none;border-top:1px solid var(--grid)">');
       }
+      if (hit.dataset.envid) {
+        const e = ENV().find(x => x.public_incident_id === hit.dataset.envid);
+        if (!e) return "";
+        const title = LANG === "tr" ? (e.canonical_title_tr || e.canonical_title_en)
+                                    : (e.canonical_title_en || e.canonical_title_tr);
+        const rows = (e.effects || []).map(x => {
+          const measure = x.value != null ? `${fmt.format(x.value)}${unitLabel(x.unit)}` : "";
+          return `${html(effectLabel(x.type))}: ` +
+            [measure, x.qualitative ? html(x.qualitative) : ""].filter(Boolean).join(" · ") +
+            (x.assertion_status && x.assertion_status !== "reported"
+              ? ` <span class="t-meta">[${html(x.assertion_status)}]</span>` : "");
+        }).join("<br>");
+        return `<div class="t-title" lang="tr">${html(title)}</div>` +
+          `<div class="t-meta">${html(e.public_incident_id)} · ${html(fmtDate(e))} · ` +
+          `${html(e.province_name || provinceName(e.province_code))}</div>` +
+          (rows ? `<div>${rows}</div>` : "") +
+          (e.related_public_incident_id
+            ? `<div class="t-meta">${t("env_related")} ${html(e.related_public_incident_id)}</div>`
+            : "");
+      }
       if (hit.dataset.id) {
         const i = byId.get(hit.dataset.id);
         const orgs = orgsOf(i.public_incident_id);
@@ -1874,7 +1986,7 @@ tt_records: "Yayımlanmış kayıt",
       tip.style.display = "none";
       svgEl.querySelectorAll(".is-hover").forEach(n => n.classList.remove("is-hover"));
     };
-    const SEL = ".mark-wrap, .svg-site, .tr-prov";
+    const SEL = ".mark-wrap, .svg-site, .svg-env, .tr-prov";
 
     svgEl.addEventListener("mousemove", ev => {
       if (tipPinned) return;
@@ -1966,8 +2078,17 @@ tt_records: "Yayımlanmış kayıt",
       `<span><i class="comm-chip" style="background:${GROUP_HEX[group]}"></i>${t("lg_"+group)} (${fs.filter(s=>groupOf(s)===group).length})</span>`).join("");
     const typeKey = [["mine_unspecified","site_mine"],["quarry","site_quarry"],["regional_group","site_context"]].map(([type,key])=>
       `<span><svg viewBox="-12 -12 24 24" aria-hidden="true">${siteSymbol(0,0,{type})}</svg>${t(key)}</span>`).join("");
+    // The environmental key sits apart from the carnations and the site
+    // symbols, because it counts a different thing.
+    const envKey = ENV().length
+      ? `<div class="lg-row"><span><svg viewBox="-12 -12 24 24" aria-hidden="true">` +
+        `<path d="M0,-9 L9,6 L-9,6 Z" fill="var(--c-mineral)" stroke="var(--c-mineral)" ` +
+        `stroke-width="2.4" stroke-linejoin="round"></path></svg>` +
+        `${tf("lg_env", { n: ENV().length })}</span></div>`
+      : "";
     document.getElementById("maplegend").innerHTML = (state.layer!=="sites" ? accLegend : "")+
-      (state.layer!=="accidents" ? `<div class="lg-sites"><div class="site-key">${colorKey}${typeKey}</div><span class="lg-note">${t("site_group_key")}</span></div>` : "");
+      (state.layer!=="accidents" ? `<div class="lg-sites"><div class="site-key">${colorKey}${typeKey}</div><span class="lg-note">${t("site_group_key")}</span></div>` : "")+
+      envKey;
   }
 
   // ---- Small multiples: where the loss sat, era by era ----------------------
@@ -2324,6 +2445,50 @@ tt_records: "Yayımlanmış kayıt",
     if (caption) caption.innerHTML = tf("hz_caption", { n: fmt.format(M.totals.records) });
   }
 
+  // ---- Environmental records -----------------------------------------------
+  // A different kind of record with a different unit of harm, so it is drawn
+  // as cards rather than as rows beside the death counts, and never in red.
+  const ENV = () => D.environmental || [];
+  const effectLabel = type => t("eff_" + type) || type;
+  const unitLabel = unit => unit ? " " + html((t("units") || {})[unit] || unit) : "";
+
+  function renderEnvironmental() {
+    const host = document.getElementById("env-list");
+    if (!host) return;
+    const records = ENV();
+    if (!records.length) { host.innerHTML = `<p class="caption">${t("env_none")}</p>`; return; }
+    host.innerHTML = records.slice().sort((a, b) =>
+      (b.incident_start_datetime || "").localeCompare(a.incident_start_datetime || "")
+    ).map(e => {
+      const title = LANG === "tr"
+        ? (e.canonical_title_tr || e.canonical_title_en)
+        : (e.canonical_title_en || e.canonical_title_tr);
+      const mech = (e.mechanisms || []).map(m =>
+        html(LANG === "tr" ? (m.label_tr || m.label_en) : (m.label_en || m.label_tr))).join(", ");
+      const rows = (e.effects || []).map(x => {
+        const measure = x.value != null ? `${fmt.format(x.value)}${unitLabel(x.unit)}` : "";
+        const text = [measure, x.qualitative ? html(x.qualitative) : ""]
+          .filter(Boolean).join(" · ");
+        const flag = x.assertion_status && x.assertion_status !== "reported"
+          ? ` <span class="pill">${html(x.assertion_status)}</span>` : "";
+        return `<dt>${html(effectLabel(x.type))}</dt><dd lang="tr">${text}${flag}</dd>`;
+      }).join("");
+      const cites = (e.citations || []).map(c => sourceLink(c.url, c.organization))
+        .filter((v, k, arr) => arr.indexOf(v) === k).join(", ");
+      return `<article class="env-card">` +
+        `<h3><span class="env-chip"></span><span lang="tr">${html(title)}</span></h3>` +
+        `<div class="env-meta">${html(e.public_incident_id)} · ${html(fmtDate(e))} · ` +
+        `${html(e.province_name || provinceName(e.province_code))}` +
+        (mech ? ` · ${t("env_mech")}: ${mech}` : "") +
+        (e.related_public_incident_id
+          ? ` · ${t("env_related")} ${html(e.related_public_incident_id)}` : "") +
+        `</div>` +
+        (rows ? `<dl>${rows}</dl>` : "") +
+        (cites ? `<div class="env-src">${t("env_sources")}: ${cites}</div>` : "") +
+        `</article>`;
+    }).join("");
+  }
+
   function renderMechanisms() {
     const mechCounts = new Map();
     for (const i of incidents) {
@@ -2633,6 +2798,7 @@ tt_records: "Yayımlanmış kayıt",
     renderRates();
     renderMechanisms();
     renderHazards();
+    renderEnvironmental();
     renderFooter();
     applyFilters();
   }

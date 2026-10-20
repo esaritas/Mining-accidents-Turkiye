@@ -190,6 +190,41 @@ code, version, mapping quality, `source_document_id`, `comparability_notes`).
 tables; a concordance is a mapping, so it carries from/to columns instead of
 numerator/denominator. Logged in `open_questions.md` implementation notes.
 
+### Environmental incidents (migrations 003 and 004)
+
+`incidents.incident_kind` is `fatal_accident` or `environmental`. Every row
+written before 2026-10-20 is a fatal accident, and the public export keeps
+`incidents.csv` to that kind alone, so a death count never absorbs a different
+kind of event. Environmental records publish to `environmental_incidents.csv`
+with their own identifier series, `TR-ENV-YYYY-NNNN`.
+
+`incidents.related_incident_id` joins the two records one real event can
+produce: İliç 2024 is `TR-MINE-2024-0001` for the nine deaths and
+`TR-ENV-2024-0001` for the heap-leach failure. It is not a merge. Both records
+keep their own claims, decisions and identifiers, because the toll and the
+release are asserted by different sources and reviewed separately.
+
+`environmental_effects` holds what the sources record an incident did:
+`effect_type` from `environmental_effect_types.csv`, an optional
+`measure_value` with `measure_unit` (tonne, m3, ha, km, day), a
+`qualitative_value` for what cannot be a number (the stream a release
+reached), the mandatory `source_claim_id`, and its own `assertion_status` and
+`review_status`. Where sources disagree on a quantity, both are recorded as
+separate rows with the status each source carries; the register selects
+neither.
+
+Mechanisms use `classification_system = 'project_environmental_mechanism'`,
+backed by `environmental_mechanisms.csv`. Migration 004 rebuilt
+`incident_classifications` to admit that system: the table carries no
+immutability trigger, and rows were copied with their primary keys, so every
+`source_claim_id` reference still resolves.
+
+Publication threshold: `models.ENVIRONMENTAL_CRITICAL_FIELDS` is the date and
+the province. An environmental record has no death toll to decide, and
+`fatalities_current` is normally null on it. Scope rules and what is
+deliberately excluded: `docs/environmental_scope_protocol.md` (STATUS:
+PROPOSED).
+
 ## Open questions
 
 - Register #6 — district-level admin reference sourcing (schema supports

@@ -272,9 +272,10 @@ def record_decision(conn: sqlite3.Connection, decision: ClaimDecision) -> int:
 
 
 def assign_public_incident_id(conn: sqlite3.Connection, incident_id: int, actor: str) -> str:
-    """Assign TR-MINE-YYYY-NNNN once; never reused, preserved through merges."""
+    """Assign TR-MINE/TR-ENV-YYYY-NNNN once; never reused, kept through merges."""
     row = conn.execute(
-        "SELECT public_incident_id, incident_start_datetime FROM incidents WHERE incident_id = ?",
+        "SELECT public_incident_id, incident_start_datetime, incident_kind FROM incidents "
+        "WHERE incident_id = ?",
         (incident_id,),
     ).fetchone()
     if row is None:
@@ -284,7 +285,11 @@ def assign_public_incident_id(conn: sqlite3.Connection, incident_id: int, actor:
     if not row["incident_start_datetime"]:
         raise ReviewError("Cannot assign a public id before the incident start date is decided")
     year = row["incident_start_datetime"][:4]
-    prefix = f"TR-MINE-{year}-"
+    # The stem says what kind of record this is, so an identifier is never
+    # mistaken for the other kind: TR-MINE for a fatal accident, TR-ENV for
+    # environmental harm.
+    stem = "TR-ENV" if row["incident_kind"] == "environmental" else "TR-MINE"
+    prefix = f"{stem}-{year}-"
     used = [
         r[0]
         for r in conn.execute(

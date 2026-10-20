@@ -3013,7 +3013,178 @@ window.MINING_DATA = {
       }
     ]
   },
-  "export_timestamp": "2026-10-16T20:48:20Z",
+  "environmental": [
+    {
+      "canonical_title_en": "Nesko Şebinkarahisar tailings dam failure",
+      "canonical_title_tr": "Nesko Şebinkarahisar atık barajı çökmesi",
+      "citations": [
+        {
+          "organization": "Wikidata",
+          "title": "Wikidata item Q116082433: Nesko Şebinkarahisar Maden İşletmesi felaketi",
+          "url": "https://www.wikidata.org/wiki/Q116082433"
+        },
+        {
+          "organization": "Wikipedia (tr)",
+          "title": "Nesko Şebinkarahisar Maden İşletmesi felaketi",
+          "url": "https://tr.wikipedia.org/wiki/Nesko_%C5%9Eebinkarahisar_Maden_%C4%B0%C5%9Fletmesi_felaketi"
+        }
+      ],
+      "coordinate_precision": "facility_approximate",
+      "date_precision": "exact_date",
+      "effects": [
+        {
+          "assertion_status": "reported",
+          "qualitative": "İkinci atık barajının iç seti",
+          "type": "containment_failure",
+          "unit": null,
+          "value": null
+        },
+        {
+          "assertion_status": "reported",
+          "qualitative": "Darabul Deresi ve Kılıçkaya Barajı",
+          "type": "receiving_environment",
+          "unit": null,
+          "value": null
+        },
+        {
+          "assertion_status": "alleged",
+          "qualitative": "Kelkit Çayı ve ovası (tehdit altında olduğu bildirildi)",
+          "type": "receiving_environment",
+          "unit": null,
+          "value": null
+        },
+        {
+          "assertion_status": "reported",
+          "qualitative": "Kimyasal atık (kurşun, çinko, bakır zenginleştirme tesisi)",
+          "type": "released_material",
+          "unit": "tonne",
+          "value": 4500.0
+        }
+      ],
+      "incident_start_datetime": "2021-11-18T00:00:00+03:00",
+      "latitude": 40.291,
+      "longitude": 38.296778,
+      "mechanisms": [
+        {
+          "code": "tailings_dam_failure",
+          "label_en": "tailings dam failure",
+          "label_tr": "atık barajı çökmesi"
+        }
+      ],
+      "province_code": "28",
+      "province_name": "Giresun",
+      "public_incident_id": "TR-ENV-2021-0001",
+      "related_public_incident_id": null
+    },
+    {
+      "canonical_title_en": "Çöpler gold mine cyanide leak (2022)",
+      "canonical_title_tr": "Çöpler Altın Madeni siyanür sızıntısı (2022)",
+      "citations": [
+        {
+          "organization": "Medyascope",
+          "title": "Bakanlığa İliç itirazı: sızan siyanür 20 değil 210 metreküp",
+          "url": "https://medyascope.tv/2022/09/24/bakanliga-ilic-itirazi-bakanlik-siyanur-sizintisi-miktari-konusunda-bile-sirketin-beyanini-esas-aliyor-sizan-siyanur-20-degil-210-metrekup/"
+        }
+      ],
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "effects": [
+        {
+          "assertion_status": "official_finding",
+          "qualitative": "Bakanlık madenin faaliyetlerini durdurdu",
+          "type": "production_suspension",
+          "unit": null,
+          "value": null
+        },
+        {
+          "assertion_status": "reported",
+          "qualitative": "Toprak; maden Fırat Nehri kıyısında kurulu",
+          "type": "receiving_environment",
+          "unit": null,
+          "value": null
+        },
+        {
+          "assertion_status": "reported",
+          "qualitative": "Siyanürlü solüsyon (şirket beyanı)",
+          "type": "released_material",
+          "unit": "m3",
+          "value": 20.0
+        },
+        {
+          "assertion_status": "technical_finding",
+          "qualitative": "Siyanürlü bileşik (bilirkişi raporuna atfen)",
+          "type": "released_material",
+          "unit": "m3",
+          "value": 210.0
+        }
+      ],
+      "incident_start_datetime": "2022-06-21T00:00:00+03:00",
+      "latitude": null,
+      "longitude": null,
+      "mechanisms": [
+        {
+          "code": "chemical_release",
+          "label_en": "chemical release",
+          "label_tr": "kimyasal sızıntı"
+        }
+      ],
+      "province_code": "24",
+      "province_name": "Erzincan",
+      "public_incident_id": "TR-ENV-2022-0001",
+      "related_public_incident_id": null
+    },
+    {
+      "canonical_title_en": "Çöpler gold mine heap leach collapse (2024)",
+      "canonical_title_tr": "Çöpler Altın Madeni yığın liç alanı çökmesi (2024)",
+      "citations": [
+        {
+          "organization": "Wikipedia (tr)",
+          "title": "İliç maden kazası",
+          "url": "https://tr.wikipedia.org/wiki/%C4%B0li%C3%A7_maden_kazas%C4%B1"
+        }
+      ],
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "effects": [
+        {
+          "assertion_status": "reported",
+          "qualitative": "Yığın liç alanı",
+          "type": "containment_failure",
+          "unit": null,
+          "value": null
+        },
+        {
+          "assertion_status": "official_finding",
+          "qualitative": "Çevre izin ve lisans belgeleri iptal edildi, üretim durduruldu",
+          "type": "production_suspension",
+          "unit": null,
+          "value": null
+        },
+        {
+          "assertion_status": "reported",
+          "qualitative": "Sabırlı Deresi",
+          "type": "receiving_environment",
+          "unit": null,
+          "value": null
+        }
+      ],
+      "incident_start_datetime": "2024-02-13T00:00:00+03:00",
+      "latitude": null,
+      "longitude": null,
+      "mechanisms": [
+        {
+          "code": "heap_leach_failure",
+          "label_en": "heap leach failure",
+          "label_tr": "yığın liç yapısının çökmesi"
+        }
+      ],
+      "province_code": "24",
+      "province_name": "Erzincan",
+      "public_incident_id": "TR-ENV-2024-0001",
+      "related_public_incident_id": "TR-MINE-2024-0001"
+    }
+  ],
+  "export_timestamp": "2026-10-20T10:40:17Z",
   "hazard_matrix": {
     "bands": [
       {
@@ -5747,11 +5918,11 @@ window.MINING_DATA = {
   },
   "pipeline": {
     "claims_awaiting_review": 11,
-    "claims_total": 928,
-    "decisions_total": 291,
+    "claims_total": 954,
+    "decisions_total": 299,
     "published_incidents": 52,
-    "records_in_review": 1,
-    "source_documents": 197,
+    "records_in_review": 0,
+    "source_documents": 200,
     "withdrawn_records": 5
   },
   "policy_events": [
@@ -28191,7 +28362,7 @@ window.MINING_DATA = {
       "year": null
     }
   ],
-  "schema_version": "002",
+  "schema_version": "004",
   "sites": [
     {
       "commodity_code": "coal",

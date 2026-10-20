@@ -94,6 +94,10 @@ RunType = Literal["manual_import", "adapter", "migration", "export"]
 
 #: Fields whose decisions gate publication (spec §11 rule 6).
 PUBLICATION_CRITICAL_FIELDS = ("incident_start_datetime", "province_code", "fatalities_current")
+#: An environmental record has no death toll to decide, so its threshold is the
+#: place and the date. What it did lives in environmental_effects, which is
+#: claim-backed in its own right.
+ENVIRONMENTAL_CRITICAL_FIELDS = ("incident_start_datetime", "province_code")
 
 
 class _Model(BaseModel):

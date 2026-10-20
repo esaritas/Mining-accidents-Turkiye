@@ -1,0 +1,4 @@
+public_incident_id,classification_system,classification_level,classification_code,classification_label_tr,classification_label_en,assertion_status
+TR-ENV-2021-0001,project_environmental_mechanism,,tailings_dam_failure,atık barajı çökmesi,tailings dam failure,reported
+TR-ENV-2022-0001,project_environmental_mechanism,,chemical_release,kimyasal sızıntı,chemical release,reported
+TR-ENV-2024-0001,project_environmental_mechanism,,heap_leach_failure,yığın liç yapısının çökmesi,heap leach failure,reported

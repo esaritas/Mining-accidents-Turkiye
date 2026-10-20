@@ -447,6 +447,225 @@
         ],
         "primaryKey": "merged_public_incident_id"
       }
+    },
+    {
+      "name": "environmental_incidents",
+      "path": "environmental_incidents.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "constraints": {
+              "required": true
+            },
+            "name": "public_incident_id",
+            "type": "string"
+          },
+          {
+            "constraints": {
+              "required": true
+            },
+            "name": "canonical_title_tr",
+            "type": "string"
+          },
+          {
+            "name": "canonical_title_en",
+            "type": "string"
+          },
+          {
+            "name": "incident_start_datetime",
+            "type": "datetime"
+          },
+          {
+            "constraints": {
+              "enum": [
+                "exact_datetime",
+                "exact_date",
+                "month",
+                "year",
+                "approximate"
+              ]
+            },
+            "name": "date_precision",
+            "type": "string"
+          },
+          {
+            "name": "province_code",
+            "type": "string"
+          },
+          {
+            "name": "province_name",
+            "type": "string"
+          },
+          {
+            "constraints": {
+              "maximum": 90,
+              "minimum": -90
+            },
+            "name": "latitude",
+            "type": "number"
+          },
+          {
+            "constraints": {
+              "maximum": 180,
+              "minimum": -180
+            },
+            "name": "longitude",
+            "type": "number"
+          },
+          {
+            "name": "coordinate_precision",
+            "type": "string"
+          },
+          {
+            "name": "related_public_incident_id",
+            "type": "string"
+          }
+        ],
+        "primaryKey": "public_incident_id"
+      }
+    },
+    {
+      "name": "environmental_effects",
+      "path": "environmental_effects.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "constraints": {
+              "required": true
+            },
+            "name": "public_incident_id",
+            "type": "string"
+          },
+          {
+            "name": "effect_type",
+            "type": "string"
+          },
+          {
+            "name": "measure_value",
+            "type": "string"
+          },
+          {
+            "name": "measure_unit",
+            "type": "string"
+          },
+          {
+            "name": "qualitative_value",
+            "type": "string"
+          },
+          {
+            "name": "assertion_status",
+            "type": "string"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "fields": "public_incident_id",
+            "reference": {
+              "fields": "public_incident_id",
+              "resource": "environmental_incidents"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "environmental_classifications",
+      "path": "environmental_classifications.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "constraints": {
+              "required": true
+            },
+            "name": "public_incident_id",
+            "type": "string"
+          },
+          {
+            "name": "classification_system",
+            "type": "string"
+          },
+          {
+            "name": "classification_level",
+            "type": "string"
+          },
+          {
+            "name": "classification_code",
+            "type": "string"
+          },
+          {
+            "name": "classification_label_tr",
+            "type": "string"
+          },
+          {
+            "name": "classification_label_en",
+            "type": "string"
+          },
+          {
+            "name": "assertion_status",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "environmental_sources",
+      "path": "environmental_sources.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "constraints": {
+              "required": true
+            },
+            "name": "public_incident_id",
+            "type": "string"
+          },
+          {
+            "name": "field_name",
+            "type": "string"
+          },
+          {
+            "name": "source_organization",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "document_type",
+            "type": "string"
+          },
+          {
+            "format": "uri",
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "publication_date",
+            "type": "date"
+          },
+          {
+            "name": "retrieved_at",
+            "type": "datetime"
+          },
+          {
+            "name": "language",
+            "type": "string"
+          },
+          {
+            "name": "source_tier",
+            "type": "string"
+          },
+          {
+            "name": "short_evidence_excerpt",
+            "type": "string"
+          }
+        ]
+      }
     }
   ],
   "title": "Turkey Mining & Quarrying Accidents Database, public export"

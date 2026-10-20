@@ -1,6 +1,26 @@
 {
-  "generated_at": "2026-10-16T20:48:20Z",
+  "generated_at": "2026-10-20T10:40:17Z",
   "resources": {
+    "environmental_classifications": {
+      "error_count": 0,
+      "errors": [],
+      "rows": 3
+    },
+    "environmental_effects": {
+      "error_count": 0,
+      "errors": [],
+      "rows": 11
+    },
+    "environmental_incidents": {
+      "error_count": 0,
+      "errors": [],
+      "rows": 3
+    },
+    "environmental_sources": {
+      "error_count": 0,
+      "errors": [],
+      "rows": 11
+    },
     "facilities": {
       "error_count": 0,
       "errors": [],
