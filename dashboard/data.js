@@ -3035,6 +3035,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "qualitative": "İkinci atık barajının iç seti",
+          "qualitative_en": "Inner embankment of the second tailings dam",
           "type": "containment_failure",
           "unit": null,
           "value": null
@@ -3042,6 +3043,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "qualitative": "Darabul Deresi ve Kılıçkaya Barajı",
+          "qualitative_en": "Darabul Deresi stream and the Kılıçkaya reservoir",
           "type": "receiving_environment",
           "unit": null,
           "value": null
@@ -3049,6 +3051,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "alleged",
           "qualitative": "Kelkit Çayı ve ovası (tehdit altında olduğu bildirildi)",
+          "qualitative_en": "The Kelkit Çayı river and its plain, reported as threatened",
           "type": "receiving_environment",
           "unit": null,
           "value": null
@@ -3056,6 +3059,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "qualitative": "Kimyasal atık (kurşun, çinko, bakır zenginleştirme tesisi)",
+          "qualitative_en": "Chemical waste from a lead, zinc and copper concentrator",
           "type": "released_material",
           "unit": "tonne",
           "value": 4500.0
@@ -3092,6 +3096,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "official_finding",
           "qualitative": "Bakanlık madenin faaliyetlerini durdurdu",
+          "qualitative_en": "The ministry halted operations at the mine",
           "type": "production_suspension",
           "unit": null,
           "value": null
@@ -3099,6 +3104,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "qualitative": "Toprak; maden Fırat Nehri kıyısında kurulu",
+          "qualitative_en": "Ground; the mine stands on the bank of the Euphrates",
           "type": "receiving_environment",
           "unit": null,
           "value": null
@@ -3106,6 +3112,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "qualitative": "Siyanürlü solüsyon (şirket beyanı)",
+          "qualitative_en": "Cyanide solution, as the operator stated it",
           "type": "released_material",
           "unit": "m3",
           "value": 20.0
@@ -3113,6 +3120,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "technical_finding",
           "qualitative": "Siyanürlü bileşik (bilirkişi raporuna atfen)",
+          "qualitative_en": "Cyanide compound, per a court-appointed expert report",
           "type": "released_material",
           "unit": "m3",
           "value": 210.0
@@ -3149,6 +3157,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "qualitative": "Yığın liç alanı",
+          "qualitative_en": "The heap leach pad",
           "type": "containment_failure",
           "unit": null,
           "value": null
@@ -3156,6 +3165,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "official_finding",
           "qualitative": "Çevre izin ve lisans belgeleri iptal edildi, üretim durduruldu",
+          "qualitative_en": "Environmental permits and licences cancelled; production stopped",
           "type": "production_suspension",
           "unit": null,
           "value": null
@@ -3163,6 +3173,7 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "qualitative": "Sabırlı Deresi",
+          "qualitative_en": "Sabırlı Deresi stream",
           "type": "receiving_environment",
           "unit": null,
           "value": null
@@ -3184,7 +3195,7 @@ window.MINING_DATA = {
       "related_public_incident_id": "TR-MINE-2024-0001"
     }
   ],
-  "export_timestamp": "2026-10-20T10:40:17Z",
+  "export_timestamp": "2026-10-20T19:18:28Z",
   "hazard_matrix": {
     "bands": [
       {
@@ -5922,7 +5933,7 @@ window.MINING_DATA = {
     "decisions_total": 299,
     "published_incidents": 52,
     "records_in_review": 0,
-    "source_documents": 200,
+    "source_documents": 202,
     "withdrawn_records": 5
   },
   "policy_events": [
@@ -28362,11 +28373,11 @@ window.MINING_DATA = {
       "year": null
     }
   ],
-  "schema_version": "004",
+  "schema_version": "005",
   "sites": [
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 41.723056,
       "longitude": 32.350278,
@@ -28396,7 +28407,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28411,7 +28422,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28426,7 +28437,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.634823,
       "longitude": 29.455311,
@@ -28449,7 +28460,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 37.57055,
       "longitude": 28.11058,
@@ -28472,7 +28483,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.085627,
       "longitude": 27.335387,
@@ -28494,8 +28505,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "palladium",
+      "commodity_code": "platinum_group",
+      "commodity_label": "platin grubu",
       "coordinate_precision": "facility_approximate",
       "latitude": 41.618,
       "longitude": 34.401,
@@ -28517,8 +28528,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "cobalt ore",
+      "commodity_code": "cobalt",
+      "commodity_label": "kobalt",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.495,
       "longitude": 39.74,
@@ -28608,7 +28619,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.340685,
       "longitude": 37.082979,
@@ -28631,7 +28642,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.340685,
       "longitude": 37.082979,
@@ -28654,7 +28665,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.340685,
       "longitude": 37.082979,
@@ -28677,7 +28688,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 41.34012,
       "longitude": 31.510875,
@@ -28700,7 +28711,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "copper",
-      "commodity_label": "copper ore",
+      "commodity_label": "bakır",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.266669,
       "longitude": 39.6,
@@ -28715,7 +28726,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28745,7 +28756,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "boron",
-      "commodity_label": "boron",
+      "commodity_label": "bor",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28783,7 +28794,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28806,7 +28817,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28821,7 +28832,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.077194,
       "longitude": 27.525258,
@@ -28835,8 +28846,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "silver ore",
+      "commodity_code": "silver",
+      "commodity_label": "gümüş",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28851,7 +28862,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 41.483081,
       "longitude": 31.868239,
@@ -28874,7 +28885,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "kömür",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28889,7 +28900,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "boron",
-      "commodity_label": "boron",
+      "commodity_label": "bor",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -28904,7 +28915,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "kömür",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.077194,
       "longitude": 27.525258,
@@ -28918,8 +28929,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "phosphates",
+      "commodity_code": "phosphate",
+      "commodity_label": "fosfat",
       "coordinate_precision": "facility_approximate",
       "latitude": 37.5153,
       "longitude": 40.5014,
@@ -28942,7 +28953,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "iron",
-      "commodity_label": "iron ore",
+      "commodity_label": "demir",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.95444,
       "longitude": 37.89278,
@@ -28965,7 +28976,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "boron",
-      "commodity_label": "boron",
+      "commodity_label": "bor",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.295742,
       "longitude": 30.493194,
@@ -28980,7 +28991,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "kömür",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.340685,
       "longitude": 37.082979,
@@ -28995,7 +29006,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 41.432342,
       "longitude": 31.75826,
@@ -29018,7 +29029,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 41.438877,
       "longitude": 31.84698,
@@ -29040,8 +29051,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "bauxite",
+      "commodity_code": "bauxite",
+      "commodity_label": "boksit",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -29102,7 +29113,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "chromium",
-      "commodity_label": "chromium",
+      "commodity_label": "krom",
       "coordinate_precision": "facility_approximate",
       "latitude": 37.54649,
       "longitude": 35.39873,
@@ -29125,7 +29136,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "iron",
-      "commodity_label": "iron ore",
+      "commodity_label": "demir",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -29148,7 +29159,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "iron",
-      "commodity_label": "iron ore",
+      "commodity_label": "demir",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.65,
       "longitude": 40.333061,
@@ -29291,7 +29302,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "kömür",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 37.484722,
       "longitude": 42.419167,
@@ -29305,8 +29316,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "rock salt",
+      "commodity_code": "salt",
+      "commodity_label": "tuz",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.760278,
       "longitude": 33.115556,
@@ -29351,7 +29362,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "facility_approximate",
       "latitude": 36.65,
       "longitude": 32.798889,
@@ -29366,7 +29377,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "copper",
-      "commodity_label": "copper ore",
+      "commodity_label": "bakır",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -29389,7 +29400,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "iron",
-      "commodity_label": "iron ore",
+      "commodity_label": "demir",
       "coordinate_precision": "facility_approximate",
       "latitude": 39.4247,
       "longitude": 38.0832,
@@ -29412,7 +29423,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "iron",
-      "commodity_label": "iron ore",
+      "commodity_label": "demir",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -29458,7 +29469,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "coal",
-      "commodity_label": "coal",
+      "commodity_label": "taş kömürü",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -29503,8 +29514,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "phosphates",
+      "commodity_code": "phosphate",
+      "commodity_label": "fosfat",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -29527,7 +29538,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "iron",
-      "commodity_label": "iron ore",
+      "commodity_label": "demir",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -29588,7 +29599,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "chromium",
-      "commodity_label": "chromium",
+      "commodity_label": "krom",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -29611,7 +29622,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "copper",
-      "commodity_label": "copper ore",
+      "commodity_label": "bakır",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -29633,8 +29644,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "manganese ores",
+      "commodity_code": "manganese",
+      "commodity_label": "manganez",
       "coordinate_precision": "",
       "latitude": null,
       "longitude": null,
@@ -29657,7 +29668,7 @@ window.MINING_DATA = {
     },
     {
       "commodity_code": "copper",
-      "commodity_label": "copper ore",
+      "commodity_label": "bakır",
       "coordinate_precision": "facility_approximate",
       "latitude": 41.245547,
       "longitude": 41.580248,
@@ -29679,8 +29690,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "nickel ore",
+      "commodity_code": "nickel",
+      "commodity_label": "nikel",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.475,
       "longitude": 27.713889,
@@ -29755,8 +29766,8 @@ window.MINING_DATA = {
       "type": "mine_unspecified"
     },
     {
-      "commodity_code": "other",
-      "commodity_label": "rock salt",
+      "commodity_code": "salt",
+      "commodity_label": "tuz",
       "coordinate_precision": "facility_approximate",
       "latitude": 38.773155,
       "longitude": 34.485397,
@@ -29769,5 +29780,475 @@ window.MINING_DATA = {
       "status": "unknown",
       "type": "mine_unspecified"
     }
-  ]
+  ],
+  "vocabulary_labels": {
+    "assertion_statuses": {
+      "alleged": {
+        "en": "alleged",
+        "tr": "iddia edilen"
+      },
+      "disputed": {
+        "en": "disputed",
+        "tr": "ihtilaflı"
+      },
+      "judicial_finding": {
+        "en": "judicial finding",
+        "tr": "yargı bulgusu"
+      },
+      "official_finding": {
+        "en": "official finding",
+        "tr": "resmî bulgu"
+      },
+      "preliminary_finding": {
+        "en": "preliminary finding",
+        "tr": "ön bulgu"
+      },
+      "reported": {
+        "en": "reported",
+        "tr": "aktarılan"
+      },
+      "technical_finding": {
+        "en": "technical finding",
+        "tr": "teknik bulgu"
+      },
+      "unknown": {
+        "en": "unknown",
+        "tr": "bilinmiyor"
+      },
+      "withdrawn": {
+        "en": "withdrawn",
+        "tr": "geri çekilmiş"
+      }
+    },
+    "commodities": {
+      "bauxite": {
+        "en": "bauxite",
+        "tr": "boksit"
+      },
+      "boron": {
+        "en": "boron",
+        "tr": "bor"
+      },
+      "chromium": {
+        "en": "chromium",
+        "tr": "krom"
+      },
+      "coal": {
+        "en": "hard coal",
+        "tr": "taş kömürü"
+      },
+      "cobalt": {
+        "en": "cobalt",
+        "tr": "kobalt"
+      },
+      "copper": {
+        "en": "copper",
+        "tr": "bakır"
+      },
+      "gold": {
+        "en": "gold",
+        "tr": "altın"
+      },
+      "iron": {
+        "en": "iron ore",
+        "tr": "demir"
+      },
+      "lead": {
+        "en": "lead",
+        "tr": "kurşun"
+      },
+      "lignite": {
+        "en": "lignite",
+        "tr": "linyit"
+      },
+      "manganese": {
+        "en": "manganese",
+        "tr": "manganez"
+      },
+      "marble": {
+        "en": "marble",
+        "tr": "mermer"
+      },
+      "nickel": {
+        "en": "nickel",
+        "tr": "nikel"
+      },
+      "other": {
+        "en": "other",
+        "tr": "diğer"
+      },
+      "phosphate": {
+        "en": "phosphate",
+        "tr": "fosfat"
+      },
+      "platinum_group": {
+        "en": "platinum group",
+        "tr": "platin grubu"
+      },
+      "salt": {
+        "en": "salt",
+        "tr": "tuz"
+      },
+      "silver": {
+        "en": "silver",
+        "tr": "gümüş"
+      },
+      "unknown": {
+        "en": "unknown",
+        "tr": "bilinmiyor"
+      },
+      "zinc": {
+        "en": "zinc",
+        "tr": "çinko"
+      }
+    },
+    "coordinate_precisions": {
+      "district_centroid": {
+        "en": "district centroid",
+        "tr": "ilçe merkezi"
+      },
+      "exact_verified": {
+        "en": "exact verified",
+        "tr": "doğrulanmış kesin nokta"
+      },
+      "facility_approximate": {
+        "en": "facility approximate",
+        "tr": "tesis düzeyinde yaklaşık"
+      },
+      "province_centroid": {
+        "en": "province centroid",
+        "tr": "il merkezi"
+      },
+      "settlement": {
+        "en": "settlement",
+        "tr": "yerleşim"
+      },
+      "unknown": {
+        "en": "unknown",
+        "tr": "bilinmiyor"
+      }
+    },
+    "date_precisions": {
+      "approximate": {
+        "en": "approximate",
+        "tr": "yaklaşık"
+      },
+      "exact_date": {
+        "en": "exact date",
+        "tr": "tam tarih"
+      },
+      "exact_datetime": {
+        "en": "exact datetime",
+        "tr": "tam tarih-saat"
+      },
+      "month": {
+        "en": "month",
+        "tr": "ay"
+      },
+      "year": {
+        "en": "year",
+        "tr": "yıl"
+      }
+    },
+    "environmental_effect_types": {
+      "affected_area": {
+        "en": "affected area",
+        "tr": "etkilenen alan"
+      },
+      "affected_length": {
+        "en": "affected length",
+        "tr": "etkilenen uzunluk"
+      },
+      "containment_failure": {
+        "en": "containment failure",
+        "tr": "muhafaza yapısının çökmesi"
+      },
+      "fish_or_wildlife_mortality": {
+        "en": "fish or wildlife mortality",
+        "tr": "balık veya yaban hayatı ölümü"
+      },
+      "other": {
+        "en": "other",
+        "tr": "diğer"
+      },
+      "production_suspension": {
+        "en": "production suspension",
+        "tr": "üretimin durdurulması"
+      },
+      "receiving_environment": {
+        "en": "receiving environment",
+        "tr": "ulaştığı ortam"
+      },
+      "released_material": {
+        "en": "released material",
+        "tr": "salınan madde"
+      },
+      "water_quality_finding": {
+        "en": "water quality finding",
+        "tr": "su kalitesi ölçümü"
+      }
+    },
+    "environmental_mechanisms": {
+      "chemical_release": {
+        "en": "chemical release",
+        "tr": "kimyasal sızıntı"
+      },
+      "dust_or_air_release": {
+        "en": "dust or air release",
+        "tr": "toz veya hava salımı"
+      },
+      "heap_leach_failure": {
+        "en": "heap leach failure",
+        "tr": "yığın liç yapısının çökmesi"
+      },
+      "other": {
+        "en": "other",
+        "tr": "diğer"
+      },
+      "subsidence": {
+        "en": "subsidence",
+        "tr": "yer çökmesi"
+      },
+      "tailings_dam_failure": {
+        "en": "tailings dam failure",
+        "tr": "atık barajı çökmesi"
+      },
+      "waste_rock_slide": {
+        "en": "waste rock slide",
+        "tr": "pasa yığını kayması"
+      },
+      "water_discharge": {
+        "en": "water discharge",
+        "tr": "su deşarjı"
+      }
+    },
+    "event_mechanisms": {
+      "blasting_event": {
+        "en": "blasting event",
+        "tr": "patlatma olayı"
+      },
+      "chemical_release": {
+        "en": "chemical release",
+        "tr": "kimyasal salım"
+      },
+      "dust_explosion": {
+        "en": "dust explosion",
+        "tr": "toz patlaması"
+      },
+      "electrical_event": {
+        "en": "electrical event",
+        "tr": "elektrik olayı"
+      },
+      "fall_from_height": {
+        "en": "fall from height",
+        "tr": "yüksekten düşme"
+      },
+      "fall_of_object": {
+        "en": "fall of object",
+        "tr": "cisim düşmesi"
+      },
+      "fire": {
+        "en": "fire",
+        "tr": "yangın"
+      },
+      "flooding_or_inrush": {
+        "en": "flooding or inrush",
+        "tr": "su baskını/ani su geliri"
+      },
+      "gas_explosion": {
+        "en": "gas explosion",
+        "tr": "gaz (grizu) patlaması"
+      },
+      "landslide_or_slope_failure": {
+        "en": "landslide or slope failure",
+        "tr": "heyelan/şev duraysızlığı"
+      },
+      "loss_of_vehicle_control": {
+        "en": "loss of vehicle control",
+        "tr": "araç kontrol kaybı"
+      },
+      "machinery_entanglement": {
+        "en": "machinery entanglement",
+        "tr": "makineye kapılma"
+      },
+      "other": {
+        "en": "other",
+        "tr": "diğer"
+      },
+      "roof_or_ground_collapse": {
+        "en": "roof or ground collapse",
+        "tr": "tavan/göçük"
+      },
+      "tailings_dam_failure": {
+        "en": "tailings dam failure",
+        "tr": "atık barajı yıkılması"
+      },
+      "unknown": {
+        "en": "unknown",
+        "tr": "bilinmiyor"
+      }
+    },
+    "facility_types": {
+      "archaeological_quarry": {
+        "en": "archaeological quarry",
+        "tr": "antik taş ocağı"
+      },
+      "deposit": {
+        "en": "deposit",
+        "tr": "yatak/cevherleşme"
+      },
+      "mine_openpit": {
+        "en": "open-pit mine",
+        "tr": "açık ocak"
+      },
+      "mine_underground": {
+        "en": "underground mine",
+        "tr": "yeraltı madeni"
+      },
+      "mine_unspecified": {
+        "en": "mine (type unspecified)",
+        "tr": "maden (türü belirtilmemiş)"
+      },
+      "mining_field": {
+        "en": "mining field",
+        "tr": "maden sahası/havzası"
+      },
+      "operating_directorate": {
+        "en": "operating directorate",
+        "tr": "işletme müdürlüğü/müessese"
+      },
+      "other": {
+        "en": "other",
+        "tr": "diğer"
+      },
+      "processing_plant": {
+        "en": "processing plant",
+        "tr": "zenginleştirme/işleme tesisi"
+      },
+      "proposed_project": {
+        "en": "proposed project",
+        "tr": "önerilen proje"
+      },
+      "quarry": {
+        "en": "quarry",
+        "tr": "taş ocağı"
+      },
+      "regional_group": {
+        "en": "regional group",
+        "tr": "bölgesel grup"
+      },
+      "tailings_facility": {
+        "en": "tailings facility",
+        "tr": "atık (tailings) tesisi"
+      },
+      "unknown": {
+        "en": "unknown",
+        "tr": "bilinmiyor"
+      }
+    },
+    "hazards": {
+      "chemical_process": {
+        "en": "chemical process",
+        "tr": "kimyasal süreç"
+      },
+      "coal_dust": {
+        "en": "coal dust",
+        "tr": "kömür tozu"
+      },
+      "electrical_energy": {
+        "en": "electrical energy",
+        "tr": "elektrik enerjisi"
+      },
+      "explosive_material": {
+        "en": "explosive material",
+        "tr": "patlayıcı madde"
+      },
+      "fire": {
+        "en": "fire",
+        "tr": "yangın"
+      },
+      "heap_or_tailings_instability": {
+        "en": "heap or tailings instability",
+        "tr": "yığın/atık tesisi duraysızlığı"
+      },
+      "high_temperature": {
+        "en": "high temperature",
+        "tr": "yüksek sıcaklık"
+      },
+      "methane": {
+        "en": "methane",
+        "tr": "metan (grizu)"
+      },
+      "moving_machinery": {
+        "en": "moving machinery",
+        "tr": "hareketli makine"
+      },
+      "other": {
+        "en": "other",
+        "tr": "diğer"
+      },
+      "oxygen_deficient_atmosphere": {
+        "en": "oxygen-deficient atmosphere",
+        "tr": "oksijeni yetersiz atmosfer"
+      },
+      "rockburst_or_seismicity": {
+        "en": "rockburst or seismicity",
+        "tr": "kaya patlaması/sismisite"
+      },
+      "unknown": {
+        "en": "unknown",
+        "tr": "bilinmiyor"
+      },
+      "unstable_ground": {
+        "en": "unstable ground",
+        "tr": "duraysız zemin/kaya"
+      },
+      "vehicle": {
+        "en": "vehicle",
+        "tr": "araç"
+      },
+      "water_ingress": {
+        "en": "water ingress",
+        "tr": "su geliri"
+      }
+    },
+    "organization_roles": {
+      "employer": {
+        "en": "employer",
+        "tr": "işveren"
+      },
+      "licence_holder": {
+        "en": "licence holder",
+        "tr": "ruhsat sahibi"
+      },
+      "operator": {
+        "en": "operator",
+        "tr": "işletmeci"
+      },
+      "other": {
+        "en": "other",
+        "tr": "diğer"
+      },
+      "owner": {
+        "en": "owner",
+        "tr": "mal sahibi"
+      },
+      "public_authority": {
+        "en": "public authority",
+        "tr": "kamu otoritesi"
+      },
+      "rescue_organization": {
+        "en": "rescue organization",
+        "tr": "kurtarma kuruluşu"
+      },
+      "subcontractor": {
+        "en": "subcontractor",
+        "tr": "alt yüklenici"
+      },
+      "unknown": {
+        "en": "unknown",
+        "tr": "bilinmiyor"
+      }
+    }
+  }
 };

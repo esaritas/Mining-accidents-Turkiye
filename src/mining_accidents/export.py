@@ -129,6 +129,7 @@ EFFECT_COLUMNS = [
     "measure_value",
     "measure_unit",
     "qualitative_value",
+    "qualitative_value_en",
     "assertion_status",
 ]
 
@@ -308,7 +309,7 @@ def _collect_effects(conn: sqlite3.Connection, ids: list[int]) -> list[dict[str,
     rows = conn.execute(
         f"""
         SELECT i.public_incident_id, e.effect_type, e.measure_value, e.measure_unit,
-               e.qualitative_value, e.assertion_status
+               e.qualitative_value, e.qualitative_value_en, e.assertion_status
         FROM environmental_effects e
         JOIN incidents i ON i.incident_id = e.incident_id
         WHERE e.incident_id IN ({placeholders})
@@ -432,17 +433,35 @@ def _collect_facility_roles(conn: sqlite3.Connection) -> list[dict[str, object]]
 
 
 def _collect_redirects(conn: sqlite3.Connection) -> list[dict[str, object]]:
+    """Where a citation to a withdrawn identifier should now point.
+
+    Derived from the incident ids in the merge log and the records' own
+    publication status, never from ``merged_public_incident_id``. That column
+    was stamped with the *survivor's* identifier rather than the merged one,
+    so joining on it produced four self-redirects, the filter dropped them
+    all, and four published identifiers resolved to nothing (quality audit
+    2026-10-20, A1).
+
+    Reading the ids also settles the other defect the audit found: the
+    append-only log holds both directions for the same three merges, from a
+    correction made on 2026-10-14. Direction is taken from the records
+    themselves. A row counts only when the merged record really is withdrawn
+    and the survivor really is published, which is true of one direction and
+    false of the other.
+    """
     rows = conn.execute(
         """
-        SELECT m.merged_public_incident_id, i.public_incident_id AS surviving_public_incident_id
+        SELECT DISTINCT merged.public_incident_id AS merged_public_incident_id,
+               survivor.public_incident_id AS surviving_public_incident_id
         FROM incident_merge_log m
-        JOIN incidents i ON i.incident_id = m.surviving_incident_id
-        WHERE m.merged_public_incident_id IS NOT NULL
-          -- A redirect to itself carries nothing. It arises when the surviving
-          -- record takes back the public id the merged duplicate was holding,
-          -- which the append-only merge log keeps recording.
-          AND m.merged_public_incident_id <> i.public_incident_id
-        ORDER BY m.merged_public_incident_id
+        JOIN incidents merged ON merged.incident_id = m.merged_incident_id
+        JOIN incidents survivor ON survivor.incident_id = m.surviving_incident_id
+        WHERE merged.public_incident_id IS NOT NULL
+          AND survivor.public_incident_id IS NOT NULL
+          AND merged.public_incident_id <> survivor.public_incident_id
+          AND merged.publication_status = 'withdrawn'
+          AND survivor.publication_status IN ('publishable', 'published')
+        ORDER BY merged.public_incident_id
         """
     ).fetchall()
     return [dict(row) for row in rows]

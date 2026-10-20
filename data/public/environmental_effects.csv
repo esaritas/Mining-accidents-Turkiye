@@ -1,12 +1,12 @@
-public_incident_id,effect_type,measure_value,measure_unit,qualitative_value,assertion_status
-TR-ENV-2021-0001,containment_failure,,,İkinci atık barajının iç seti,reported
-TR-ENV-2021-0001,receiving_environment,,,Darabul Deresi ve Kılıçkaya Barajı,reported
-TR-ENV-2021-0001,receiving_environment,,,Kelkit Çayı ve ovası (tehdit altında olduğu bildirildi),alleged
-TR-ENV-2021-0001,released_material,4500.0,tonne,"Kimyasal atık (kurşun, çinko, bakır zenginleştirme tesisi)",reported
-TR-ENV-2022-0001,production_suspension,,,Bakanlık madenin faaliyetlerini durdurdu,official_finding
-TR-ENV-2022-0001,receiving_environment,,,Toprak; maden Fırat Nehri kıyısında kurulu,reported
-TR-ENV-2022-0001,released_material,20.0,m3,Siyanürlü solüsyon (şirket beyanı),reported
-TR-ENV-2022-0001,released_material,210.0,m3,Siyanürlü bileşik (bilirkişi raporuna atfen),technical_finding
-TR-ENV-2024-0001,containment_failure,,,Yığın liç alanı,reported
-TR-ENV-2024-0001,production_suspension,,,"Çevre izin ve lisans belgeleri iptal edildi, üretim durduruldu",official_finding
-TR-ENV-2024-0001,receiving_environment,,,Sabırlı Deresi,reported
+public_incident_id,effect_type,measure_value,measure_unit,qualitative_value,qualitative_value_en,assertion_status
+TR-ENV-2021-0001,containment_failure,,,İkinci atık barajının iç seti,Inner embankment of the second tailings dam,reported
+TR-ENV-2021-0001,receiving_environment,,,Darabul Deresi ve Kılıçkaya Barajı,Darabul Deresi stream and the Kılıçkaya reservoir,reported
+TR-ENV-2021-0001,receiving_environment,,,Kelkit Çayı ve ovası (tehdit altında olduğu bildirildi),"The Kelkit Çayı river and its plain, reported as threatened",alleged
+TR-ENV-2021-0001,released_material,4500.0,tonne,"Kimyasal atık (kurşun, çinko, bakır zenginleştirme tesisi)","Chemical waste from a lead, zinc and copper concentrator",reported
+TR-ENV-2022-0001,production_suspension,,,Bakanlık madenin faaliyetlerini durdurdu,The ministry halted operations at the mine,official_finding
+TR-ENV-2022-0001,receiving_environment,,,Toprak; maden Fırat Nehri kıyısında kurulu,Ground; the mine stands on the bank of the Euphrates,reported
+TR-ENV-2022-0001,released_material,20.0,m3,Siyanürlü solüsyon (şirket beyanı),"Cyanide solution, as the operator stated it",reported
+TR-ENV-2022-0001,released_material,210.0,m3,Siyanürlü bileşik (bilirkişi raporuna atfen),"Cyanide compound, per a court-appointed expert report",technical_finding
+TR-ENV-2024-0001,containment_failure,,,Yığın liç alanı,The heap leach pad,reported
+TR-ENV-2024-0001,production_suspension,,,"Çevre izin ve lisans belgeleri iptal edildi, üretim durduruldu",Environmental permits and licences cancelled; production stopped,official_finding
+TR-ENV-2024-0001,receiving_environment,,,Sabırlı Deresi,Sabırlı Deresi stream,reported

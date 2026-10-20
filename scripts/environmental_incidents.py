@@ -99,6 +99,7 @@ RECORDS: tuple[dict[str, object], ...] = (
             {
                 "type": "containment_failure",
                 "qualitative": "İkinci atık barajının iç seti",
+                "qualitative_en": "Inner embankment of the second tailings dam",
                 "status": "reported",
                 "source": "diken_sebinkarahisar",
                 "excerpt": "ikinci atık barajındaki iç set, 18 Kasım'da yıkılmıştı",
@@ -108,6 +109,7 @@ RECORDS: tuple[dict[str, object], ...] = (
                 "value": 4500.0,
                 "unit": "tonne",
                 "qualitative": "Kimyasal atık (kurşun, çinko, bakır zenginleştirme tesisi)",
+                "qualitative_en": "Chemical waste from a lead, zinc and copper concentrator",
                 "status": "reported",
                 "source": "diken_sebinkarahisar",
                 "excerpt": "4 bin 500 tondan fazla kimyasal atığın çevreye yayıldığı belirlendi",
@@ -115,6 +117,7 @@ RECORDS: tuple[dict[str, object], ...] = (
             {
                 "type": "receiving_environment",
                 "qualitative": "Darabul Deresi ve Kılıçkaya Barajı",
+                "qualitative_en": "Darabul Deresi stream and the Kılıçkaya reservoir",
                 "status": "reported",
                 "source": "diken_sebinkarahisar",
                 "excerpt": "atıklar, Darabul Deresi ile taşınarak Kılıçkaya Barajı'na ulaştı",
@@ -122,6 +125,7 @@ RECORDS: tuple[dict[str, object], ...] = (
             {
                 "type": "receiving_environment",
                 "qualitative": "Kelkit Çayı ve ovası (tehdit altında olduğu bildirildi)",
+                "qualitative_en": "The Kelkit Çayı river and its plain, reported as threatened",
                 "status": "alleged",
                 "source": "diken_kelkit",
                 "excerpt": "Kılıçkaya Barajı'nın bağlı olduğu Kelkit Çayı ve ovasını tehdit "
@@ -147,6 +151,7 @@ RECORDS: tuple[dict[str, object], ...] = (
                 "value": 20.0,
                 "unit": "m3",
                 "qualitative": "Siyanürlü solüsyon (şirket beyanı)",
+                "qualitative_en": "Cyanide solution, as the operator stated it",
                 "status": "reported",
                 "source": "medyascope_ilic2022",
                 "excerpt": "Şirket yaptığı ilk açıklamada, 20 metreküplük siyanür çözeltisinin "
@@ -157,6 +162,7 @@ RECORDS: tuple[dict[str, object], ...] = (
                 "value": 210.0,
                 "unit": "m3",
                 "qualitative": "Siyanürlü bileşik (bilirkişi raporuna atfen)",
+                "qualitative_en": "Cyanide compound, per a court-appointed expert report",
                 "status": "technical_finding",
                 "source": "medyascope_ilic2022",
                 "excerpt": "Bilirkişi raporuna göre, sızan siyanürlü bileşiğin gerçek miktarı "
@@ -167,6 +173,7 @@ RECORDS: tuple[dict[str, object], ...] = (
             {
                 "type": "receiving_environment",
                 "qualitative": "Toprak; maden Fırat Nehri kıyısında kurulu",
+                "qualitative_en": "Ground; the mine stands on the bank of the Euphrates",
                 "status": "reported",
                 "source": "medyascope_ilic2022",
                 "excerpt": "Erzincan'ın İliç ilçesinde, Fırat Nehri kıyısına kurulu Çöpler "
@@ -175,6 +182,7 @@ RECORDS: tuple[dict[str, object], ...] = (
             {
                 "type": "production_suspension",
                 "qualitative": "Bakanlık madenin faaliyetlerini durdurdu",
+                "qualitative_en": "The ministry halted operations at the mine",
                 "status": "official_finding",
                 "source": "medyascope_ilic2022",
                 "excerpt": "Çevre, Şehircilik ve İklim Değişikliği Bakanlığı madenin "
@@ -198,6 +206,7 @@ RECORDS: tuple[dict[str, object], ...] = (
             {
                 "type": "containment_failure",
                 "qualitative": "Yığın liç alanı",
+                "qualitative_en": "The heap leach pad",
                 "status": "reported",
                 "source": "wp_ilic",
                 "excerpt": "yığın liç alanındaki çökme sonrası acil durum planının devreye "
@@ -206,6 +215,7 @@ RECORDS: tuple[dict[str, object], ...] = (
             {
                 "type": "receiving_environment",
                 "qualitative": "Sabırlı Deresi",
+                "qualitative_en": "Sabırlı Deresi stream",
                 "status": "reported",
                 "source": "wp_ilic",
                 "excerpt": "liç işleminin yapıldığı bölgedeki toprağın, civar bölgede bulunan "
@@ -214,6 +224,8 @@ RECORDS: tuple[dict[str, object], ...] = (
             {
                 "type": "production_suspension",
                 "qualitative": "Çevre izin ve lisans belgeleri iptal edildi, üretim durduruldu",
+                "qualitative_en": "Environmental permits and licences cancelled; "
+                "production stopped",
                 "status": "official_finding",
                 "source": "wp_ilic",
                 "excerpt": "Anagold Madencilik'in bu maden için almış olduğu çevre izin ve "
@@ -571,7 +583,8 @@ def main() -> None:
             conn.execute(
                 "INSERT INTO environmental_effects (incident_id, effect_type, measure_value, "
                 "measure_unit, qualitative_value, source_claim_id, assertion_status, "
-                "review_status, notes) VALUES (?, ?, ?, ?, ?, ?, ?, 'reviewed', ?)",
+                "review_status, notes, qualitative_value_en) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, 'reviewed', ?, ?)",
                 (
                     incident_id,
                     effect["type"],
@@ -581,6 +594,7 @@ def main() -> None:
                     claim_id,
                     effect.get("status", "reported"),
                     effect.get("notes"),
+                    effect.get("qualitative_en"),
                 ),
             )
             conn.commit()

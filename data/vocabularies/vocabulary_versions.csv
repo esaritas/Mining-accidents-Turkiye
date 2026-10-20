@@ -13,6 +13,6 @@ coordinate_precisions.csv,1.0,2026-07-13,Initial vocabulary
 turkey_admin_areas.csv,1.0,2026-07-13,81 provinces with official plate codes (public reference data)
 nace_versions.csv,1.0,2026-07-13,Version identifiers only; no activity codes
 facility_types.csv,1.1,2026-07-17,"Entity-level codes added (archaeological_quarry, mining_field, operating_directorate, regional_group, deposit, proposed_project) per external audit"
-commodities.csv,1.0,2026-07-15,Initial vocabulary (active-sites layer)
+commodities.csv,1.1,2026-10-20,"Added bauxite, cobalt, manganese, nickel, platinum_group and salt so sites carrying these commodities are coded rather than binned as 'other' (quality audit 2026-10-20, B4)"
 environmental_effect_types.csv,1.0,2026-10-20,Initial vocabulary (environmental harm scope extension)
 environmental_mechanisms.csv,1.0,2026-10-20,Initial vocabulary (environmental harm scope extension)

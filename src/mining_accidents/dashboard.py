@@ -163,6 +163,7 @@ def _environmental(public_dir: Path) -> list[dict[str, object]]:
                         "value": float(row["measure_value"]) if row["measure_value"] else None,
                         "unit": row["measure_unit"] or None,
                         "qualitative": row["qualitative_value"] or None,
+                        "qualitative_en": row.get("qualitative_value_en") or None,
                         "assertion_status": row["assertion_status"],
                     }
                 )
@@ -214,6 +215,33 @@ def _environmental(public_dir: Path) -> list[dict[str, object]]:
                 }
             )
     return records
+
+
+#: Vocabularies whose codes reach the reader. Their labels travel in the
+#: payload so the page never prints a bare code, and never prints one
+#: language's word on the other language's page.
+LABELLED_VOCABULARIES = (
+    "assertion_statuses",
+    "date_precisions",
+    "coordinate_precisions",
+    "commodities",
+    "facility_types",
+    "environmental_effect_types",
+    "environmental_mechanisms",
+    "event_mechanisms",
+    "hazards",
+    "organization_roles",
+)
+
+
+def _vocabulary_labels() -> dict[str, dict[str, dict[str, str]]]:
+    return {
+        name: {
+            entry.code: {"tr": entry.label_tr, "en": entry.label_en}
+            for entry in vocabularies.load_vocabulary(name)
+        }
+        for name in LABELLED_VOCABULARIES
+    }
 
 
 def _province_centroids() -> dict[str, dict[str, float | str]]:
@@ -387,6 +415,7 @@ def build_payload(
         "incidents": incidents,
         "sites": sites,
         "province_names": provinces,
+        "vocabulary_labels": _vocabulary_labels(),
         "citations": _citations(public_dir),
         "classifications": _classifications(public_dir),
         "incident_organizations": _incident_organizations(public_dir),

@@ -555,6 +555,10 @@
             "type": "string"
           },
           {
+            "name": "qualitative_value_en",
+            "type": "string"
+          },
+          {
             "name": "assertion_status",
             "type": "string"
           }

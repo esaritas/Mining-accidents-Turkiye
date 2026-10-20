@@ -615,6 +615,7 @@
   <section class="panel" id="sites-panel">
     <h2 data-i18n="sites_h"></h2>
     <p class="caption" id="sites-caption" data-i18n="sites_caption"></p>
+    <p class="caption" data-i18n="sites_name_note"></p>
     <!-- The breakdown of what the site layer holds belongs with the site table,
          not beside the map, where it doubled the height of the map panel. -->
     <div class="site-summary" id="site-breakdown"></div>
@@ -766,7 +767,7 @@
       ab6_t: "How locations are shown",
       ab6_d: "Few records carry coordinates precise enough for a facility-level mark, and even those are approximate to the facility or its vicinity. Every other record is drawn at a representative point inside its province, which is never the accident site. Boundaries: Natural Earth (public domain), Albers equal-area projection.",
       ab8_t: "Who was in charge",
-      ab8_d: "Where a company is named, it is the company the cited source places at the mine on the day of the accident, and the line says which it was: the company that ran the pit, the one that owned it, the licence holder, or a contractor working under the operator. They are not always the same company, which is why each is recorded separately rather than merged into one name. Where one organization appears under two of them, the two words come from two sources describing the same pit, not from two different arrangements. A company is shown as alleged where the source only relays somebody\u2019s claim. Naming a company records who was operating, never who was at fault: courts decide that and this register does not. 24 of 52 records name one; the rest are blank because no assessed source names a company, usually saying only \u201ca private operation\u201d.",
+      ab8_d: "Where a company is named, it is the company the cited source places at the mine on the day of the accident, and the line says which it was: the company that ran the pit, the one that owned it, the licence holder, or a contractor working under the operator. They are not always the same company, which is why each is recorded separately rather than merged into one name. Where one organization appears under two of them, the two words come from two sources describing the same pit, not from two different arrangements. A company is shown as alleged where the source only relays somebody\u2019s claim. Naming a company records who was operating, never who was at fault: courts decide that and this register does not. {n} of {total} records name one; the rest are blank because no assessed source names a company, usually saying only \u201ca private operation\u201d.",
       ab7_t: "Corrections and open work",
       ab7_d: "Analysis methods are documented and provisional. Open tasks include corroboration against official records, a harmonised rates series from TÜİK and TKİ data, and fuller site registers (Global Energy Monitor, MAPEG licence data). Corrections go through the issue templates in the project repository. No personal data of victims is stored or shown.",
       onthisday: "On this day.",
@@ -809,12 +810,14 @@
 tt_records: "Published records",
       tt_none: "No published record",
       rates_h: "Historical deaths-per-output figures",
+      rates_undated: "{n} further figure(s) appear in the same source with no year attached. They are kept here because withholding them would hide part of what the source says, and set apart because a figure without a year cannot be compared with one that has a year.",
       rates_caption: "These historical deaths-per-100-million-tonnes figures come from different countries, years and definitions. They are kept as a source table, not plotted on a competitive scale.",
       year_unspec: "year unspecified",
       mech_h: "Reported mechanisms",
       mech_caption: "Number of distinct published records carrying each reported mechanism. Several labels can apply to one record, so the categories overlap. These describe reported events, not root causes.",
       mech_none: "No mechanism classifications backed by sources yet.",
       sites_h: "Documented mining sites",
+      sites_name_note: "Site names are as the source records them. Where no Turkish name is published for a site, the recorded name stands, which is why some read in English.",
       sites_caption: "Mining and quarrying sites documented in open structured sources, each row keeping its source link. Operator, ownership and operating status appear only where the source states them, with their assertion status. Context entities such as operating directorates, regional aggregates and archaeological quarries are listed with their type but kept off the operational map. The list scrolls.",
       sh_site: "Site", sh_type: "Type", sh_comm: "Commodity", sh_prov: "Province",
       sh_op: "Operator / owner", sh_country: "Company home country", sh_status: "Status",
@@ -858,7 +861,7 @@ tt_records: "Published records",
       org_at_date: "at the time of the accident",
       env_h: "Environmental harm at mining sites",
       env_caption: "A separate register, with its own identifiers and its own counts. These records document material that left containment at a mining or processing site, and what the sources say it reached. They record no deaths and are never added to the death toll above, even where the same event appears in both: İliç 2024 is one accident that killed nine people and one heap-leach failure that reached a stream, and each is evidenced separately.",
-      env_scope: "Scope proposed, not settled. A record enters here when a source documents material leaving containment or reaching ground, water or air outside the site. Fines, prosecutions and licence cancellations as sanctions stay out, as everywhere in this register: what is recorded is what happened, not who should answer for it. A quantity is shown as the source states it, and where sources disagree both figures are shown with the standing of each. Coverage is thinner than for accidents: three records, from open sources only.",
+      env_scope: "Scope proposed, not settled. A record enters here when a source documents material leaving containment or reaching ground, water or air outside the site. Fines, prosecutions and licence cancellations as sanctions stay out, as everywhere in this register: what is recorded is what happened, not who should answer for it. A quantity is shown as the source states it, and where sources disagree both figures are shown with the standing of each. Coverage is thinner than for accidents: {n} record(s), from open sources only.",
       lg_env: "{n} environmental record(s), counted separately",
       env_effects: "What the sources record",
       env_related: "Same event as",
@@ -879,14 +882,14 @@ tt_records: "Published records",
       sum_orgs: "{n} of these {total} records name the company that held or ran the mine.",
       hz_h: "Documented hazards: what happened, how deadly, and where",
       hz_caption: "Rows are the event mechanism the sources report. Columns are the deaths recorded in a single incident. A number is the count of records in that cell. Both axes count what this register has documented, so this is a record of past events, not a probability and not a safety assessment of any site or company. A record appears in every row its sources document, so the rows add up to more than {n} records. This table covers the whole register and does not respond to the filters above.",
-      hz_prov_h: "Where it is documented, and the sites documented there now",
-      hz_prov_caption: "Each row is a province: what this register documents there, beside the number of mining sites the register currently documents in the same province. Site coverage comes from open sources only and is partial, so the two columns are not proportional to each other.",
+      hz_prov_h: "Where it is documented, and the sites this register holds there",
+      hz_prov_caption: "Each row is a province: what this register documents there, beside the number of mining sites it holds in the same province. Site coverage comes from open sources only and is partial, so the two columns are not proportional to each other. The register does not know which of those sites are still working: operational status is unrecorded for every one of them, so these are sites it holds, not sites operating today.",
       hz_method: "Method proposed, not settled. Severity bands are deaths in one incident (1, 2-9, 10-49, 50 or more), chosen as the natural breaks in this record rather than taken from an external severity scale. Mechanisms are the reported event type, never a root cause. An empty cell means nothing of that kind is documented here. See docs/analysis_methods.md and open question 29.",
       hz_sites_note: "{sites} documented sites sit in {provinces} provinces where this register holds no accident record at all. That is a gap in the register, not a statement that nothing happened there.",
       hz_col_mech: "Event mechanism", hz_col_records: "Records", hz_col_deaths: "Deaths",
       hz_col_worst: "Worst single record", hz_col_span: "First to latest",
       hz_col_share: "Share of deaths",
-      hzp_col_prov: "Province", hzp_col_sites: "Documented sites now",
+      hzp_col_prov: "Province", hzp_col_sites: "Sites in this register",
       hzp_col_records: "Records", hzp_col_deaths: "Deaths", hzp_col_latest: "Latest record",
       hz_short: { gas_explosion: "Gas", fire: "Fire", roof_or_ground_collapse: "Collapse",
         landslide_or_slope_failure: "Slope", flooding_or_inrush: "Water",
@@ -902,7 +905,9 @@ tt_records: "Published records",
         unknown: "Not stated" },
       comms: { coal: "Coal", lignite: "Lignite", chromium: "Chromium", iron: "Iron",
         copper: "Copper", gold: "Gold", silver: "Silver", zinc: "Zinc", lead: "Lead",
-        phosphate: "Phosphate", boron: "Boron", marble: "Marble" },
+        phosphate: "Phosphate", boron: "Boron", marble: "Marble",
+        bauxite: "Bauxite", cobalt: "Cobalt", manganese: "Manganese", nickel: "Nickel",
+        platinum_group: "Platinum group", salt: "Salt", unknown: "Not stated" },
       comm_other: "Other", comm_other_label: "Other ({l})",
       countries: { TR: "Türkiye", CN: "China", US: "United States" },
       review_records: "incident records in review",
@@ -994,7 +999,7 @@ tt_records: "Published records",
       ab6_t: "Konumlar nasıl gösteriliyor",
       ab6_d: "Kayıtların yalnızca birkaçında tesis düzeyinde işaretlemeye yetecek kesinlikte koordinat var; onlar da tesisin kendisine ya da yakın çevresine işaret eder. Diğer bütün kayıtlar, kendi illerinin içinde temsili bir noktada gösterilir; bu nokta hiçbir zaman kazanın yeri değildir. Sınırlar: Natural Earth (kamuya açık), Albers eşit alanlı izdüşüm.",
       ab8_t: "Kaza anında ocağı kim yürütüyordu",
-      ab8_d: "Bir şirket adı geçtiğinde, bu, kaynağın kaza günü ocakla ilişkilendirdiği şirkettir ve satırda hangisi olduğu yazar: ocağı işleten şirket, sahibi, ruhsat sahibi ya da işleten şirkete bağlı çalışan taşeron. Bunlar her zaman aynı şirket değildir; bu yüzden tek bir ada indirgenmez, her biri ayrı kaydedilir. Aynı kurum iki ayrı rolde görünüyorsa, bu iki ayrı düzenleme olduğu için değil, iki kaynağın aynı ocağı farklı sözcüklerle anlatmasındandır. Kaynak yalnızca birinin iddiasını aktarıyorsa şirket \u201ciddia\u201d etiketiyle gösterilir. Bir şirketin adının kayda geçmesi kimin işlettiğini gösterir, kimin kusurlu olduğunu değil: ona mahkemeler karar verir, bu kayıt vermez. 52 kaydın 24\u2019ünde şirket adı var; kalanlarda yok, çünkü değerlendirilmiş hiçbir kaynak ad vermiyor, çoğunlukla yalnızca \u201cözel bir işletme\u201d diyor.",
+      ab8_d: "Bir şirket adı geçtiğinde, bu, kaynağın kaza günü ocakla ilişkilendirdiği şirkettir ve satırda hangisi olduğu yazar: ocağı işleten şirket, sahibi, ruhsat sahibi ya da işleten şirkete bağlı çalışan taşeron. Bunlar her zaman aynı şirket değildir; bu yüzden tek bir ada indirgenmez, her biri ayrı kaydedilir. Aynı kurum iki ayrı rolde görünüyorsa, bu iki ayrı düzenleme olduğu için değil, iki kaynağın aynı ocağı farklı sözcüklerle anlatmasındandır. Kaynak yalnızca birinin iddiasını aktarıyorsa şirket \u201ciddia\u201d etiketiyle gösterilir. Bir şirketin adının kayda geçmesi kimin işlettiğini gösterir, kimin kusurlu olduğunu değil: ona mahkemeler karar verir, bu kayıt vermez. {total} kaydın {n} tanesinde şirket adı var; kalanlarda yok, çünkü değerlendirilmiş hiçbir kaynak ad vermiyor, çoğunlukla yalnızca \u201cözel bir işletme\u201d diyor.",
       ab7_t: "Düzeltmeler ve süren işler",
       ab7_d: "Analiz yöntemleri belgelidir ve geçicidir. Süren işler arasında resmî kayıtlarla doğrulama, TÜİK ve TKİ verilerinden uyumlu bir oran serisi ve daha kapsamlı saha kaynakları (Global Energy Monitor, MAPEG ruhsat verisi) var. Düzeltme önerileri için proje deposundaki formları kullanabilirsiniz. Hayatını kaybedenlerin hiçbir kişisel verisi saklanmaz ve gösterilmez.",
       onthisday: "Bugün, bir yıl dönümü.",
@@ -1037,12 +1042,14 @@ tt_records: "Published records",
 tt_records: "Yayımlanmış kayıt",
       tt_none: "Yayımlanmış kayıt yok",
       rates_h: "Tarihsel üretim başına ölüm değerleri",
+      rates_undated: "Aynı kaynakta yıl bilgisi olmayan {n} değer daha var. Kaynağın söylediğinin bir kısmını gizlememek için burada tutuluyor; yılı olan bir değerle karşılaştırılamayacağı için de ayrı gösteriliyor.",
       rates_caption: "100 milyon ton başına ölüm sayılarına ilişkin bu tarihsel değerler, farklı ülke, yıl ve tanımlardan gelir. Yarışmacı bir ölçekte çizilmek yerine kaynak tablosunda korunurlar.",
       year_unspec: "yıl belirtilmemiş",
       mech_h: "Bildirilen olay türleri",
       mech_caption: "Her olay türünü taşıyan farklı yayımlanmış kayıt sayısı. Bir kayıtta birden fazla etiket bulunabilir; kategoriler örtüşür. Bunlar bildirilen olayları tanımlar, kök nedeni değil.",
       mech_none: "Henüz kaynağa dayalı olay türü sınıflandırması yok.",
       sites_h: "Belgelenmiş maden sahaları",
+      sites_name_note: "Saha adları kaynakta geçtiği gibidir. Bir saha için yayımlanmış Türkçe ad yoksa kayıttaki ad korunur; bazı adların İngilizce görünmesinin nedeni budur.",
       sites_caption: "Açık veri kaynaklarında belgelenen maden ve taş ocağı sahaları; her satır kendi kaynak bağlantısını taşır. İşletmeci, sahiplik ve faaliyet durumu yalnızca kaynak belirttiğinde, beyan durumuyla birlikte gösterilir. İşletme müdürlükleri, bölgesel gruplar ve antik taş ocakları gibi bağlam kayıtları türleriyle listelenir ama haritada gösterilmez. Liste kaydırılabilir.",
       sh_site: "Saha", sh_type: "Tür", sh_comm: "Cevher", sh_prov: "İl",
       sh_op: "İşletmeci / sahibi", sh_country: "Şirketin merkez ülkesi", sh_status: "Durum",
@@ -1086,7 +1093,7 @@ tt_records: "Yayımlanmış kayıt",
       org_at_date: "kaza tarihinde",
       env_h: "Maden sahalarında çevresel zarar",
       env_caption: "Kendi kimlik numaraları ve kendi sayımı olan ayrı bir kayıt. Buradaki kayıtlar, bir maden ya da zenginleştirme tesisinde muhafaza yapısının dışına çıkan maddeyi ve kaynakların bu maddenin nereye ulaştığını söylediğini belgeler. Can kaybı saymazlar ve yukarıdaki can kaybı toplamına hiçbir biçimde eklenmezler; aynı olay her iki kayıtta görünse bile: İliç 2024 hem dokuz kişinin öldüğü bir kaza hem de dereye ulaşan bir yığın liç çökmesidir ve her biri ayrı ayrı belgelenir.",
-      env_scope: "Kapsam öneri aşamasında, kesinleşmedi. Bir kayıt buraya, bir kaynak maddenin muhafaza dışına çıktığını ya da saha dışında toprağa, suya veya havaya ulaştığını belgelediğinde girer. Para cezaları, davalar ve yaptırım olarak lisans iptalleri bu kaydın her yerinde olduğu gibi kapsam dışıdır: kayda geçen, olanlardır; kimin hesap vermesi gerektiği değil. Miktar kaynağın söylediği gibi gösterilir; kaynaklar ayrışıyorsa her iki rakam da kendi dayanağıyla birlikte verilir. Kapsam kazalara göre daha dardır: yalnızca açık kaynaklardan üç kayıt.",
+      env_scope: "Kapsam öneri aşamasında, kesinleşmedi. Bir kayıt buraya, bir kaynak maddenin muhafaza dışına çıktığını ya da saha dışında toprağa, suya veya havaya ulaştığını belgelediğinde girer. Para cezaları, davalar ve yaptırım olarak lisans iptalleri bu kaydın her yerinde olduğu gibi kapsam dışıdır: kayda geçen, olanlardır; kimin hesap vermesi gerektiği değil. Miktar kaynağın söylediği gibi gösterilir; kaynaklar ayrışıyorsa her iki rakam da kendi dayanağıyla birlikte verilir. Kapsam kazalara göre daha dardır: yalnızca açık kaynaklardan {n} kayıt.",
       lg_env: "Ayrı sayılan {n} çevresel kayıt",
       env_effects: "Kaynakların kaydettikleri",
       env_related: "Aynı olay",
@@ -1107,14 +1114,14 @@ tt_records: "Yayımlanmış kayıt",
       sum_orgs: "Bu {total} kaydın {n} tanesinde ocağı yürüten ya da elinde tutan şirket adıyla yer alıyor.",
       hz_h: "Kayda geçen tehlikeler: ne oldu, kaç can aldı, nerede",
       hz_caption: "Satırlar kaynakların bildirdiği olay türü, kolonlar tek bir olayda kaydedilen ölüm sayısıdır. Hücredeki sayı o aralığa düşen kayıt sayısıdır. İki eksen de bu kaydın belgelediği olayları sayar; dolayısıyla tablo geçmişin dökümüdür, bir olasılık hesabı ya da herhangi bir saha veya şirket için güvenlik değerlendirmesi değildir. Bir olay, kaynaklarının bildirdiği her satırda görünür; bu yüzden satır toplamları {n} kaydı aşar. Tablo kaydın tamamını gösterir, yukarıdaki filtrelerden etkilenmez.",
-      hz_prov_h: "Nerede belgelenmiş, orada bugün kaç saha kayıtlı",
-      hz_prov_caption: "Her satır bir il: bu kaydın o ilde belgelediği olaylar ile aynı ilde bugün kayıtlı maden sahası sayısı yan yana. Saha katmanı yalnızca açık kaynaklardan gelir ve eksiktir; iki kolon birbirinin ölçüsü değildir.",
+      hz_prov_h: "Nerede belgelenmiş, o ilde bu kayıtta kaç saha var",
+      hz_prov_caption: "Her satır bir il: bu kaydın o ilde belgelediği olaylar ile aynı ilde kayıtlı maden sahası sayısı yan yana. Saha katmanı yalnızca açık kaynaklardan gelir ve eksiktir; iki kolon birbirinin ölçüsü değildir. Bu sahaların hangilerinin bugün çalıştığı kayıtta yoktur: hiçbirinin işletme durumu kayıtlı değil. Yani bunlar kayıttaki sahalardır, bugün çalışan sahalar değil.",
       hz_method: "Yöntem öneri aşamasında, kesinleşmedi. Şiddet aralıkları tek olaydaki ölüm sayısıdır (1, 2-9, 10-49, 50 ve üzeri); dışarıdan alınmış bir ölçek değil, bu kaydın kendi doğal kırılma noktalarıdır. Olay türü bildirilen olayı anlatır, kök nedeni değil. Boş hücre, o türden bir olayın burada belgelenmediği anlamına gelir. docs/analysis_methods.md ve 29 numaralı açık soruya bakınız.",
       hz_sites_note: "Kayıtlı {sites} sahanın bulunduğu {provinces} ilde bu kayıtta hiç kaza kaydı yok. Bu, kaydın eksiğidir; orada kaza olmadığı anlamına gelmez.",
       hz_col_mech: "Olay türü", hz_col_records: "Kayıt", hz_col_deaths: "Ölüm",
       hz_col_worst: "En ağır tek kayıt", hz_col_span: "İlk ve son",
       hz_col_share: "Ölümlerdeki payı",
-      hzp_col_prov: "İl", hzp_col_sites: "Bugün kayıtlı saha",
+      hzp_col_prov: "İl", hzp_col_sites: "Bu kayıttaki saha",
       hzp_col_records: "Kayıt", hzp_col_deaths: "Ölüm", hzp_col_latest: "Son kayıt",
       hz_short: { gas_explosion: "Grizu", fire: "Yangın", roof_or_ground_collapse: "Göçük",
         landslide_or_slope_failure: "Heyelan", flooding_or_inrush: "Su",
@@ -1130,7 +1137,9 @@ tt_records: "Yayımlanmış kayıt",
         unknown: "Belirtilmemiş" },
       comms: { coal: "Kömür", lignite: "Linyit", chromium: "Krom", iron: "Demir",
         copper: "Bakır", gold: "Altın", silver: "Gümüş", zinc: "Çinko", lead: "Kurşun",
-        phosphate: "Fosfat", boron: "Bor", marble: "Mermer" },
+        phosphate: "Fosfat", boron: "Bor", marble: "Mermer",
+        bauxite: "Boksit", cobalt: "Kobalt", manganese: "Manganez", nickel: "Nikel",
+        platinum_group: "Platin grubu", salt: "Tuz", unknown: "Belirtilmemiş" },
       comm_other: "Diğer", comm_other_label: "Diğer ({l})",
       countries: { TR: "Türkiye", CN: "Çin", US: "ABD" },
       review_records: "incelemedeki olay kaydı",
@@ -1372,15 +1381,25 @@ tt_records: "Yayımlanmış kayıt",
     coal: "coal", lignite: "coal",
     chromium: "metal", iron: "metal", copper: "metal", gold: "metal",
     silver: "metal", zinc: "metal", lead: "metal",
-    boron: "mineral", phosphate: "mineral", marble: "mineral",
+    cobalt: "metal", manganese: "metal", nickel: "metal", bauxite: "metal",
+    platinum_group: "metal",
+    boron: "mineral", phosphate: "mineral", marble: "mineral", salt: "mineral",
   };
   const GROUP_HEX = { coal: "#4a5fc1", metal: "#a08000", mineral: "#0f8a5f", other: "#8a8f96" };
   const groupOf = site => COMM_GROUPS[site.commodity_code] || "other";
+  // A code is never printed. Labels come from the project vocabularies, which
+  // carry both languages, so the reader sees one language throughout.
+  const vocab = (name, code) => {
+    if (!code) return "";
+    const entry = ((D.vocabulary_labels || {})[name] || {})[code];
+    return entry ? (entry[LANG] || entry.en || code) : String(code).replace(/_/g, " ");
+  };
+  const statusLabelOf = code => vocab("assertion_statuses", code);
   // Unified display labels per language; the source's own wording stays in the
   // tooltip (labels arrive in mixed languages: kömür / coal / altın).
   const commodityText = site => site.commodity_code
-    ? (t("comms")[site.commodity_code] ||
-       (site.commodity_label ? tf("comm_other_label", { l: site.commodity_label }) : t("comm_other")))
+    ? (t("comms")[site.commodity_code] || vocab("commodities", site.commodity_code) ||
+       t("comm_other"))
     : null;
   const state = { province: "", mechanism: "", from: null, to: null, commodity: "", siteType: "",
                   layer: "both", view: "marks" };
@@ -1690,14 +1709,14 @@ tt_records: "Yayımlanmış kayıt",
     return `${html(roleLabel(o.role))}: <span lang="tr">${html(o.name)}</span>` +
       (o.country_label ? ` (${html(o.country_label)})` : "") +
       (o.assertion_status && o.assertion_status !== "reported"
-        ? ` <span class="t-meta">[${html(o.assertion_status)}]</span>` : "");
+        ? ` <span class="t-meta">[${html(statusLabelOf(o.assertion_status))}]</span>` : "");
   }
 
   function siteTip(s) {
     const orgLines = (s.organizations || []).map(o =>
       `${html(roleLabel(o.role))}: ${html(o.name)}` +
       (o.country_label ? ` (${html(o.country_label)})` : "") +
-      ` <span class="t-meta">[${html(o.assertion_status)}]</span>`);
+      ` <span class="t-meta">[${html(statusLabelOf(o.assertion_status))}]</span>`);
     return `<div class="t-title" lang="tr">${html(s.name)}</div>` +
       `<div>${html(typeLabel(s))}` +
       (commodityText(s) ? ` · ${html(commodityText(s))}` : "") +
@@ -1739,7 +1758,7 @@ tt_records: "Yayımlanmış kayıt",
       const who = orgsOf(i.public_incident_id).map(o =>
         `<span lang="tr">${html(o.name)}</span> <span class="t-meta">${html(roleLabel(o.role))}` +
         `${o.assertion_status && o.assertion_status !== "reported"
-          ? ", " + html(o.assertion_status) : ""}</span>`).join("<br>");
+          ? ", " + html(statusLabelOf(o.assertion_status)) : ""}</span>`).join("<br>");
       return `${html(i.public_incident_id)} · ${html(fmtDate(i))} · ` +
         `${fmt.format(i.fatalities_current)}` + (who ? `<br>${who}` : "");
     }).join("<br>");
@@ -1938,9 +1957,9 @@ tt_records: "Yayımlanmış kayıt",
         const rows = (e.effects || []).map(x => {
           const measure = x.value != null ? `${fmt.format(x.value)}${unitLabel(x.unit)}` : "";
           return `${html(effectLabel(x.type))}: ` +
-            [measure, x.qualitative ? html(x.qualitative) : ""].filter(Boolean).join(" · ") +
+            [measure, html(effectText(x))].filter(Boolean).join(" · ") +
             (x.assertion_status && x.assertion_status !== "reported"
-              ? ` <span class="t-meta">[${html(x.assertion_status)}]</span>` : "");
+              ? ` <span class="t-meta">[${html(statusLabelOf(x.assertion_status))}]</span>` : "");
         }).join("<br>");
         return `<div class="t-title" lang="tr">${html(title)}</div>` +
           `<div class="t-meta">${html(e.public_incident_id)} · ${html(fmtDate(e))} · ` +
@@ -2365,10 +2384,24 @@ tt_records: "Yayımlanmış kayıt",
 
   // ---- Rate context -----------------------------------------------------------
   function renderRates() {
-    const rows = (D.rate_context || []).slice().sort((a,b)=>String(a.country).localeCompare(String(b.country)) || (a.year || 0)-(b.year || 0));
-    document.getElementById("rates").innerHTML = `<div class="table-scroll"><table><thead><tr>` +
+    const all = (D.rate_context || []).slice().sort((a,b)=>
+      String(a.country).localeCompare(String(b.country)) || (a.year || 0)-(b.year || 0));
+    // A figure whose source gives no year cannot be set beside one that has a
+    // year: the reader would read a comparison the data cannot carry. The
+    // undated figures are kept, below, under their own heading.
+    const dated = all.filter(r => r.year != null), undated = all.filter(r => r.year == null);
+    const table = rows => `<div class="table-scroll"><table><thead><tr>` +
       ["rate_country","rate_year","rate_value","rate_notes"].map(k=>`<th>${t(k)}</th>`).join("") +
-      `</tr></thead><tbody>` + rows.map(r=>`<tr><td>${html(t("countries")[r.country] || r.country)}</td><td>${r.year == null ? t("year_unspec") : html(r.year)}</td><td class="num">${fmt.format(r.value)}</td><td>${html(r.comparability_notes || t("no_observation"))}</td></tr>`).join("") + `</tbody></table></div>`;
+      `</tr></thead><tbody>` + rows.map(r=>`<tr>` +
+        `<td>${html(t("countries")[r.country] || r.country)}</td>` +
+        `<td>${r.year == null ? t("year_unspec") : html(r.year)}</td>` +
+        `<td class="num">${fmt.format(r.value)}</td>` +
+        `<td>${html(r.comparability_notes || t("no_observation"))}</td></tr>`).join("") +
+      `</tbody></table></div>`;
+    document.getElementById("rates").innerHTML = table(dated) +
+      (undated.length
+        ? `<p class="caption">${tf("rates_undated", { n: undated.length })}</p>` + table(undated)
+        : "");
   }
 
   // ---- Mechanisms --------------------------------------------------------------
@@ -2451,8 +2484,19 @@ tt_records: "Yayımlanmış kayıt",
   const ENV = () => D.environmental || [];
   const effectLabel = type => t("eff_" + type) || type;
   const unitLabel = unit => unit ? " " + html((t("units") || {})[unit] || unit) : "";
+  // Descriptions carry both languages; the place names inside them do not
+  // change, because they are names.
+  const effectText = x => (LANG === "tr" ? x.qualitative : (x.qualitative_en || x.qualitative))
+    || "";
 
   function renderEnvironmental() {
+    // Counts that appear in prose are filled from the payload, never written
+    // into the sentence, so they cannot go stale (quality audit 2026-10-20, A5).
+    const named = incidents.filter(i => orgsOf(i.public_incident_id).length).length;
+    const charge = document.querySelector('[data-i18n="ab8_d"]');
+    if (charge) charge.innerHTML = tf("ab8_d", { n: named, total: incidents.length });
+    const scope = document.querySelector('[data-i18n="env_scope"]');
+    if (scope) scope.innerHTML = tf("env_scope", { n: (D.environmental || []).length });
     const host = document.getElementById("env-list");
     if (!host) return;
     const records = ENV();
@@ -2467,10 +2511,9 @@ tt_records: "Yayımlanmış kayıt",
         html(LANG === "tr" ? (m.label_tr || m.label_en) : (m.label_en || m.label_tr))).join(", ");
       const rows = (e.effects || []).map(x => {
         const measure = x.value != null ? `${fmt.format(x.value)}${unitLabel(x.unit)}` : "";
-        const text = [measure, x.qualitative ? html(x.qualitative) : ""]
-          .filter(Boolean).join(" · ");
+        const text = [measure, html(effectText(x))].filter(Boolean).join(" · ");
         const flag = x.assertion_status && x.assertion_status !== "reported"
-          ? ` <span class="pill">${html(x.assertion_status)}</span>` : "";
+          ? ` <span class="pill">${html(statusLabelOf(x.assertion_status))}</span>` : "";
         return `<dt>${html(effectLabel(x.type))}</dt><dd lang="tr">${text}${flag}</dd>`;
       }).join("");
       const cites = (e.citations || []).map(c => sourceLink(c.url, c.organization))
@@ -2574,7 +2617,7 @@ tt_records: "Yayımlanmış kayıt",
     document.querySelector("#sites-table tbody").innerHTML = sortRows(fs, SITE_SORTERS, sortState.sites).map(s => {
       const orgs = (s.organizations || []);
       const orgNames = orgs.map(o =>
-        `<span lang="tr">${html(o.name)}</span> <span class="pill">${html(roleLabel(o.role))} · ${html(o.assertion_status)}</span>`).join("<br>") ||
+        `<span lang="tr">${html(o.name)}</span> <span class="pill">${html(roleLabel(o.role))} · ${html(statusLabelOf(o.assertion_status))}</span>`).join("<br>") ||
         `<span class="pill">${t("pill_not_stated_src")}</span>`;
       const countries = [...new Set(orgs.map(o => o.country_label).filter(Boolean))].map(html).join(", ") ||
         `<span class="pill">${t("pill_not_stated")}</span>`;
@@ -2727,13 +2770,15 @@ tt_records: "Yayımlanmış kayıt",
       `<h3 lang="tr">${html(displayTitle(i))}</h3>` +
       `<p class="d-meta">${html(sentence(i))}</p>` +
       row(t("rh_id"), html(i.public_incident_id)) +
-      row(t("rh_date"), html(fmtDate(i)) + (i.date_precision ? ` <span class="pill">${html(i.date_precision)}</span>` : "")) +
+      row(t("rh_date"), html(fmtDate(i)) + (i.date_precision
+        ? ` <span class="pill">${html(vocab("date_precisions", i.date_precision))}</span>` : "")) +
       row(t("rh_prov"), html(provinceName(i.province_code))) +
       row(t("rh_people"), fmt.format(i.fatalities_current) +
         ` ${casualtyPill(i)}`) +
       (i.injuries_current != null ? row(t("d_injured"), fmt.format(i.injuries_current)) : "") +
       row(t("d_location"), i.latitude != null
-        ? `${i.latitude.toFixed(4)}, ${i.longitude.toFixed(4)} <span class="pill">${html(i.coordinate_precision || "")}</span>`
+        ? `${i.latitude.toFixed(4)}, ${i.longitude.toFixed(4)} <span class="pill">` +
+          `${html(vocab("coordinate_precisions", i.coordinate_precision))}</span>`
         : t("d_no_coords")) +
       (orgsOf(i.public_incident_id).length
         ? row(t("rh_org"), orgCell(i.public_incident_id) +
@@ -2741,7 +2786,7 @@ tt_records: "Yayımlanmış kayıt",
         : "") +
       (cls.length ? `<div class="d-sec"><b>${t("d_class")}:</b><ul>` + cls.map(c =>
         `<li>${html(LANG === "tr" ? (c.label_tr || c.label_en) : (c.label_en || c.label_tr))} ` +
-        `<span class="pill">${html(c.assertion_status)}</span></li>`).join("") + `</ul></div>` : "") +
+        `<span class="pill">${html(statusLabelOf(c.assertion_status))}</span></li>`).join("") + `</ul></div>` : "") +
       (cites.length ? `<div class="d-sec"><b>${t("fields_sources")}</b><ul class="field-citations">` + cites.map(c =>
         `<li><b>${html(fieldLabel(c.field_name))}</b> · ${sourceLink(c.url, `${c.organization}: ${c.title}`)}` +
         `<small>${t("source_tier")}: ${html(c.source_tier || "—")} · ${t("retrieved")}: ${html((c.retrieved_at || "").slice(0,10) || "—")}</small></li>`
