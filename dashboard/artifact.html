@@ -430,7 +430,7 @@
      environmental triangle came to be drawn the size of a province. */
   .maplegend svg.lg-sym { width:18px; height:18px; overflow:visible; flex:0 0 auto; }
   .maplegend .lg-sitesize { display:inline-flex; align-items:center; gap:6px; }
-  .maplegend .lg-sitesize svg { width:auto; height:26px; overflow:visible; }
+  .maplegend .lg-sitesize svg { width:auto; height:40px; overflow:visible; }
   .comm-chip.round { transform:none; border-radius:50%; width:9px; height:9px; }
   /* Documented-hazard matrix. Cell shade carries the record count; the
      number is always printed, so the shade is decoration, not the data. */
@@ -719,13 +719,13 @@
     en: {
       f_site_type: "Site type", all_site_types: "All site types",
       site_mine: "Mine", site_quarry: "Quarry", site_context: "Other / contextual feature",
-      site_coverage: "{n} matching sites: {points} with facility-level coordinates, {grouped} grouped by province, {unmapped} without a usable map location. Site type and commodity filters apply to sites only.",
+      site_coverage: "{n} matching sites, {mapped} of them shown across {provinces} provinces; {unmapped} name no province and cannot be placed. Site type and commodity filters apply to sites only.",
       site_hidden: "Site layer hidden. Choose Both or Documented sites to show it.",
-      site_group_key: "Dashed outline: placed on the province, not at the site",
-      lg_site_size: "sites at this mark",
+      site_group_key: "Mining sites per province, coloured by what most of them produce",
+      lg_site_size: "sites in the province",
       lg_coal_s: "Coal", lg_metal_s: "Metal ore", lg_mineral_s: "Mineral",
       lg_other_s: "Not stated",
-      site_group_key_s: "On the province, not at the site",
+      site_group_key_s: "Sites per province",
       site_n: "{n} site(s)",
       site_unknown: "No usable location; kept in the site table",
       site_caveat: "A site marker does not imply an accident occurred there. Contextual features are shown separately; operating status is not inferred.",
@@ -923,12 +923,12 @@ tt_records: "Published records",
       story_one_body: "The two largest incidents account for {share}% of recorded deaths. A few large events dominate the total; most records are smaller ones.",
       story_two: "A province is not an accident site",
       story_two_body: "Only {located} of {n} records have coordinates precise enough for a facility-level mark. The rest must be shown at a coarser scale or left unlocated.",
-      story_three: "Stated uncertainty",
-      story_three_body: "{disputed} records carry disputed casualty figures; {unknown} have no stated casualty status. A count without a final-status label must not be presented as settled.",
+      story_three: "Where the sources disagree",
+      story_three_body: "Each toll here is the figure a reviewer selected from the sources and recorded a decision for. {disputed} of them are figures the sources themselves dispute, and those are marked wherever they appear.",
       go_years: "Records by year →",
       go_map: "Map →",
       go_records: "Records and sources →",
-      quality: "Evidence profile: <b>{located}/{n}</b> facility-level locations · <b>{precise}/{n}</b> dates known to the day · <b>{disputed}</b> disputed tolls · <b>{unknown}</b> casualty statuses not stated. These describe metadata completeness, not an accuracy score.",
+      quality: "Evidence profile: <b>{located}/{n}</b> facility-level locations · <b>{precise}/{n}</b> dates known to the day · <b>{disputed}</b> disputed tolls. These describe metadata completeness, not an accuracy score.",
       overview: "Current selection",
       sum_deaths: "recorded deaths",
       sum_records: "{n} published record(s)",
@@ -956,13 +956,13 @@ tt_records: "Published records",
     tr: {
       f_site_type: "Saha türü", all_site_types: "Tüm saha türleri",
       site_mine: "Maden", site_quarry: "Taş ocağı", site_context: "Diğer / bağlamsal unsur",
-      site_coverage: "Filtreye uyan {n} saha: {points} tesis düzeyinde koordinatlı, {grouped} ile göre gruplanmış, {unmapped} haritada konumlandırılamıyor. Saha türü ve maden ürünü filtreleri yalnızca sahalara uygulanır.",
+      site_coverage: "Filtreye uyan {n} saha; bunların {mapped} tanesi {provinces} ilde gösteriliyor, {unmapped} tanesi il bilgisi olmadığı için haritaya konulamıyor. Saha türü ve maden ürünü filtreleri yalnızca sahalara uygulanır.",
       site_hidden: "Saha katmanı gizli. Göstermek için İkisi veya Belgelenmiş sahalar seçeneğini seçin.",
-      site_group_key: "Kesikli çember: il üzerinde gösteriliyor, tesis konumunda değil",
-      lg_site_size: "bu işaretteki saha sayısı",
+      site_group_key: "İl başına maden sahaları; renk, çoğunun ürettiği madene göre",
+      lg_site_size: "ildeki saha sayısı",
       lg_coal_s: "Kömür", lg_metal_s: "Metal", lg_mineral_s: "Mineral",
       lg_other_s: "Belirtilmemiş",
-      site_group_key_s: "İl üzerinde, tesis konumunda değil",
+      site_group_key_s: "İl başına sahalar",
       site_n: "{n} saha",
       site_unknown: "Kullanılabilir konum yok; saha tablosunda korunuyor",
       site_caveat: "Saha işareti, orada kaza yaşandığı anlamına gelmez. Bağlamsal unsurlar ayrı gösterilir; işletme durumu varsayılmaz.",
@@ -1160,12 +1160,12 @@ tt_records: "Yayımlanmış kayıt",
       story_one_body: "En büyük iki olay, kayıtlı ölümlerin %{share}'ini oluşturuyor. Toplamı birkaç büyük olay belirliyor; kayıtların çoğu ise daha küçük olaylar.",
       story_two: "Bir il, kaza yeri değildir",
       story_two_body: "{n} kaydın yalnızca {located} tanesinde tesis düzeyinde simge için yeterince hassas koordinatlar var. Diğerleri daha kaba ölçekte gösterilmeli veya konumsuz bırakılmalı.",
-      story_three: "Belirtilen belirsizlik",
-      story_three_body: "{disputed} kayıttaki can kaybı sayısı ihtilaflı; {unknown} kayıtta sayının durumu belirtilmemiş. Kesinleşme etiketi bulunmayan bir sayı kesin sonuç gibi sunulmamalı.",
+      story_three: "Kaynakların ayrıştığı yerler",
+      story_three_body: "Buradaki her sayı, bir incelemecinin kaynaklar arasından seçip kararını kayda geçirdiği sayıdır. Bunların {disputed} tanesinde kaynaklar birbirinden ayrışıyor; o kayıtlar geçtikleri her yerde işaretli.",
       go_years: "Yıllara göre kayıtlar →",
       go_map: "Harita →",
       go_records: "Kayıtlar ve kaynaklar →",
-      quality: "Kanıt profili: <b>{located}/{n}</b> tesis düzeyinde konum · <b>{precise}/{n}</b> günü bilinen tarih · <b>{disputed}</b> ihtilaflı sayı · <b>{unknown}</b> durumu belirtilmemiş can kaybı sayısı. Bunlar metaveri tamlığını gösterir; doğruluk puanı değildir.",
+      quality: "Kanıt profili: <b>{located}/{n}</b> tesis düzeyinde konum · <b>{precise}/{n}</b> günü bilinen tarih · <b>{disputed}</b> ihtilaflı sayı. Bunlar metaveri tamlığını gösterir; doğruluk puanı değildir.",
       overview: "Mevcut seçim",
       sum_deaths: "kayıtlı can kaybı",
       sum_records: "{n} yayımlanmış kayıt",
@@ -1250,7 +1250,7 @@ tt_records: "Yayımlanmış kayıt",
     const mech = mechanismsOf(i.public_incident_id).map(mechLabel).join(", ");
     return tf("sent_body", { when, who, prov: provinceName(i.province_code) }) +
       (mech ? ` (${mech}).` : ".") +
-      (i.casualty_status === "disputed" ? t("sent_disputed") : i.casualty_status !== "final" ? " " + t("casualty_provisional") : "");
+      (i.casualty_status === "disputed" ? t("sent_disputed") : "");
   }
 
   // ---- static labels + language plumbing -----------------------------------
@@ -1333,7 +1333,10 @@ tt_records: "Yayımlanmış kayıt",
     && ["exact_verified", "facility_approximate"].includes(i.coordinate_precision);
   const casualtyLabel = i => i.casualty_status === "disputed" ? t("pill_disputed")
     : t(({initial:"casualty_initial",revised:"casualty_revised",final:"casualty_final"})[i.casualty_status] || "casualty_unknown");
-  const casualtyPill = i => `<span class="pill ${i.casualty_status === "disputed" ? "pill-dispute" : "pill-unknown"}">${casualtyLabel(i)}</span>`;
+  // No pill where the register has nothing to say about the toll's standing.
+  const casualtyPill = i => i.casualty_status
+    ? `<span class="pill ${i.casualty_status === "disputed" ? "pill-dispute" : "pill-unknown"}">${casualtyLabel(i)}</span>`
+    : "";
   const displayTitle = i => {
     const title = LANG === "en" && i.canonical_title_en ? i.canonical_title_en : i.canonical_title_tr || "";
     return ["month", "year", "approximate"].includes(i.date_precision)
@@ -1730,7 +1733,8 @@ tt_records: "Yayımlanmış kayıt",
       (commodityText(s) ? ` · ${html(commodityText(s))}` : "") +
       (s.province_code ? ` · ${html(provinceName(s.province_code))}` : "") + `</div>` +
       (orgLines.length ? `<div>${orgLines.join("<br>")}</div>` : "") +
-      `<div class="t-meta">${t("status_label")}: ${statusLabel(s)} · ${hasFacilityLocation(s) ? t("loc_approx") : (s.province_code ? t("site_group_key") : t("site_unknown"))}</div>` +
+      `<div class="t-meta">${t("status_label")}: ${statusLabel(s)}` +
+      `${s.province_code ? "" : " · " + t("site_unknown")}</div>` +
       sourceLink(s.source_url,t("wikidata_src"));
   }
 
@@ -1822,16 +1826,15 @@ tt_records: "Yayımlanmış kayıt",
     const circle = (x,y,d,attr,label,cls) => `<g class="mark-wrap" ${attr} tabindex="0" role="button" aria-label="${html(label)}"><circle class="hit" cx="${x}" cy="${y}" r="${Math.max(radius(d),18)}" fill="transparent"></circle><circle class="research-circle ${cls}" cx="${x}" cy="${y}" r="${radius(d)}"></circle><title>${html(label)}</title></g>`;
     // Site groupings are needed before the province labels are placed, so a
     // label is never printed over a marker it would make unreadable.
-    const locations = new Map(), coarse = new Map();
+    // Sites are shown per province, one mark each, whether or not the source
+    // published coordinates (project owner, 2026-10-22). Plotting some sites
+    // at a facility and others on a province anchor made the reader decode a
+    // distinction they do not need, and put two kinds of mark on one layer.
+    const coarse = new Map();
     if (showSites) for (const site of fs) {
-      if (hasFacilityLocation(site)) {
-        const key = `${site.latitude},${site.longitude}`;
-        if (!locations.has(key)) locations.set(key, []);
-        locations.get(key).push(site);
-      } else if (GEO.anchors[site.province_code]) {
-        if (!coarse.has(site.province_code)) coarse.set(site.province_code, []);
-        coarse.get(site.province_code).push(site);
-      }
+      if (!GEO.anchors[site.province_code]) continue;
+      if (!coarse.has(site.province_code)) coarse.set(site.province_code, []);
+      coarse.get(site.province_code).push(site);
     }
     if(showAcc) {
       for(const [code,e] of [...stats].sort((a,b)=>b[1].deaths-a[1].deaths)) {
@@ -1855,10 +1858,9 @@ tt_records: "Yayımlanmış kayıt",
         if(!a || !d) continue;
         const r=radius(d); boxes.push([a[0]-r,a[1]-r,a[0]+r,a[1]+r]);
       }
-      for(const [code,list] of coarse) { const [x,y]=GEO.anchors[code]; boxes.push([x-14,y-13,x+14,y+13]); }
-      for(const list of locations.values()) {
-        const [x,y]=GEO.project(list[0].latitude,list[0].longitude);
-        boxes.push([x-9,y-9,x+9,y+9]);
+      for(const [code,list] of coarse) {
+        const [x,y]=GEO.anchors[code], r=siteRadius(list.length)+2;
+        boxes.push([x-r,y-r,x+r,y+r]);
       }
       const ordered=[...stats].sort((a,b)=>
         (b[0]===state.province)-(a[0]===state.province) || b[1].deaths-a[1].deaths);
@@ -1878,17 +1880,10 @@ tt_records: "Yayımlanmış kayıt",
     if (showSites) {
       for (const [code, list] of coarse) {
         const [x,y] = GEO.anchors[code];
-        const label = `${provinceName(code)}: ${tf("site_n", { n: list.length })} · ${t("site_group_key")}`;
+        const label = `${provinceName(code)}: ${tf("site_n", { n: list.length })}`;
         parts.push(`<g class="svg-site" data-sitekey="${html(list.map(s=>s.ref).join("|"))}" tabindex="0" role="button" aria-label="${html(label)}">` +
           `<circle class="hit" cx="${x}" cy="${y}" r="${Math.max(siteRadius(list.length) + 6, 13)}" fill="transparent"></circle>` +
-          `${siteSymbol(x, y, list, false)}<title>${html(label)}</title></g>`);
-      }
-      for (const list of locations.values()) {
-        const site = list[0], [x,y] = GEO.project(site.latitude,site.longitude);
-        const label = list.map(s=>`${s.name} · ${typeLabel(s)} · ${commodityText(s) || t("comm_other")}`).join("; ");
-        parts.push(`<g class="svg-site" data-sitekey="${html(list.map(s=>s.ref).join("|"))}" tabindex="0" role="button" aria-label="${html(label)}">` +
-          `<circle class="hit" cx="${x}" cy="${y}" r="${Math.max(siteRadius(list.length) + 6, 13)}" fill="transparent"></circle>` +
-          `${siteSymbol(x, y, list, true)}<title>${html(label)}</title></g>`);
+          `${siteSymbol(x, y, list)}<title>${html(label)}</title></g>`);
       }
     }
     // Environmental records, drawn last and never in red: on this map red
@@ -1921,19 +1916,27 @@ tt_records: "Yayımlanmış kayıt",
   // type, plus a dashed box carrying a printed number for province groups,
   // put five visual vocabularies on one map; the type and the names now live
   // in the tooltip, where there is room to say them properly.
-  const siteRadius = n => 5 + Math.min(n - 1, 6) * 1.8;
-  function siteSymbol(x, y, list, exact) {
+  const siteRadius = n => 7 + Math.min(n - 1, 6) * 1.8;
+  function siteSymbol(x, y, list) {
     const sites = Array.isArray(list) ? list : [list];
-    const groups = new Set(sites.map(groupOf));
-    const colour = groups.size === 1 ? GROUP_HEX[[...groups][0]] : "#30495a";
+    // A province can hold more than one kind of mine. The mark takes the
+    // colour of whatever most of its sites produce, and the tooltip lists
+    // every one of them: a separate "mixed" colour made a third of the map a
+    // category that means nothing on its own.
+    const tally = new Map();
+    for (const site of sites) {
+      const g = groupOf(site);
+      tally.set(g, (tally.get(g) || 0) + 1);
+    }
+    const ranked = [...tally.entries()].sort((a, b) => b[1] - a[1]);
+    const colour = ranked.length && (ranked.length === 1 || ranked[0][1] > ranked[1][1])
+      ? GROUP_HEX[ranked[0][0]] : GROUP_HEX.other;
     const r = siteRadius(sites.length);
-    // Hollow means the same here as it does for an accident: a province
-    // anchor, not a place. Solid means the source published coordinates.
-    return exact
-      ? `<circle class="site-symbol" cx="${x}" cy="${y}" r="${r}" fill="${colour}"></circle>`
-      : `<circle class="site-symbol coarse" cx="${x}" cy="${y}" r="${r}" ` +
-        `fill="var(--surface-1)" ` +
-        `style="stroke:${colour};stroke-width:2;stroke-dasharray:3 2"></circle>`;
+    // A diamond, not a circle: a circle on this map is an accident, and the
+    // two layers should never be read as one. Size carries how many sites
+    // the province holds; the names are in the tooltip.
+    return `<path class="site-symbol" d="M${x},${y - r} L${x + r},${y} ` +
+      `L${x},${y + r} L${x - r},${y} Z" fill="${colour}"></path>`;
   }
   function renderMapSummary(fi, fs) {
     const count=fi.reduce((sum,i)=>sum+(i.fatalities_current || 0),0);
@@ -1955,10 +1958,11 @@ tt_records: "Yayımlanmış kayıt",
         [...counts].sort((a,b)=>b[1]-a[1]).map(([type,n])=>`<span>${html(type)}: ${n}</span>`).join("")+
         `</p><p class="note">${t("site_caveat")}</p>`;
     }
-    const points = fs.filter(hasFacilityLocation).length;
-    const grouped = fs.filter(s=>!hasFacilityLocation(s) && GEO.anchors[s.province_code]).length;
+    const mapped = fs.filter(s=>GEO.anchors[s.province_code]).length;
+    const provinces = new Set(fs.filter(s=>GEO.anchors[s.province_code])
+      .map(s=>s.province_code)).size;
     document.getElementById("site-coverage").textContent = (state.layer === "accidents" ? t("site_hidden")+" " : "") +
-      tf("site_coverage", {n:fs.length,points,grouped,unmapped:fs.length-points-grouped});
+      tf("site_coverage", {n:fs.length,mapped,provinces,unmapped:fs.length-mapped});
   }
 
   // --- interaction: pointer, touch and keyboard ------------------------------
@@ -2116,7 +2120,7 @@ tt_records: "Yayımlanmış kayıt",
   const coarseCounts = fs => {
     const counts = new Map();
     for (const s of fs) {
-      if (hasFacilityLocation(s) || !s.province_code) continue;
+      if (!s.province_code) continue;
       counts.set(s.province_code, (counts.get(s.province_code) || 0) + 1);
     }
     return counts;
@@ -2138,16 +2142,21 @@ tt_records: "Yayımlanmış kayıt",
     // a printed number. Counts are small, so two steps are the whole scale.
     const biggest = Math.max(1, ...[...coarseCounts(fs).values()]);
     const sizeSteps = biggest > 1 ? [1, biggest] : [1];
-    const siteSizeKey = `<span class="lg-sitesize"><svg viewBox="-2 -12 ${sizeSteps.length*26} 30" aria-hidden="true">` +
-      sizeSteps.map((n, k) =>
-        `<circle cx="${k*26+11}" cy="0" r="${siteRadius(n)}" fill="var(--site)" ` +
-        `stroke="none"></circle>` +
-        `<text x="${k*26+11}" y="17" text-anchor="middle" fill="var(--ink-muted)" ` +
-        `style="font:10px system-ui,sans-serif">${n}</text>`).join("") +
+    // The key is drawn with the mark's own shape, at the mark's own sizes.
+    const rMax = siteRadius(sizeSteps.at(-1)), step = 2 * rMax + 8;
+    const siteSizeKey = `<span class="lg-sitesize">` +
+      `<svg viewBox="0 ${-rMax - 2} ${sizeSteps.length * step} ${2 * rMax + 18}" ` +
+      `aria-hidden="true">` +
+      sizeSteps.map((n, k) => {
+        const cx = k * step + step / 2, r = siteRadius(n);
+        return `<path d="M${cx},${-r} L${cx + r},0 L${cx},${r} L${cx - r},0 Z" ` +
+          `fill="var(--site)"></path>` +
+          `<text x="${cx}" y="${rMax + 13}" text-anchor="middle" fill="var(--ink-muted)" ` +
+          `style="font:10px system-ui,sans-serif">${n}</text>`;
+      }).join("") +
       `</svg>${t("lg_site_size")}</span>`;
     const typeKey = `<span><svg class="lg-sym" viewBox="-9 -9 18 18" aria-hidden="true">` +
-      `<circle cx="0" cy="0" r="6" fill="var(--surface-1)" stroke="var(--site)" ` +
-      `stroke-width="2" stroke-dasharray="3 2"></circle></svg>` +
+      `<path d="M0,-7 L7,0 L0,7 L-7,0 Z" fill="var(--site)"></path></svg>` +
       `${t(tight ? "site_group_key_s" : "site_group_key")}</span>`;
     // The environmental key sits apart from the carnations and the site
     // symbols, because it counts a different thing.
@@ -2301,7 +2310,7 @@ tt_records: "Yayımlanmış kayıt",
       return `<li class="timeline-event ${i ? "" : "policy"}" id="timeline-event-${e.number}">
         <div class="event-date"><span class="event-number">${String(e.number).padStart(2,"0")}</span>${html(i ? fmtDate(i) : fmtDate({incident_start_datetime:e.date,date_precision:"exact_date"}))} · ${t(i ? "timeline_event" : "timeline_policy")}</div>
         <h3>${html(eventTitle(e))}</h3>
-        ${i ? `<p><strong class="event-count">${fmt.format(i.fatalities_current)}</strong> ${t("timeline_recorded")} · ${casualtyPill(i)}</p>
+        ${i ? `<p><strong class="event-count">${fmt.format(i.fatalities_current)}</strong> ${t("timeline_recorded")}${casualtyPill(i) ? " · " + casualtyPill(i) : ""}</p>
           <p>${html(provinceName(i.province_code))}${mechanisms ? " · "+html(mechanisms) : ""}</p>
           <button type="button" data-event-record="${html(i.public_incident_id)}">${t("timeline_open")}</button>`
           : `<p>${t("timeline_policy_note")}</p>${sourceLink(e.source_url,t("rh_sources"))}`}
@@ -2710,7 +2719,7 @@ tt_records: "Yayımlanmış kayıt",
         <td>${html(fmtDate(i))}</td>
         <td>${html(provinceName(i.province_code))}</td>
         <td lang="tr">${html(displayTitle(i))}</td>
-        <td class="num">${fmt.format(i.fatalities_current)}<br>${casualtyPill(i)}${i.injuries_current != null ? `<br><span class="pill">${tf("pill_injured", { n: fmt.format(i.injuries_current) })}</span>` : ""}</td>
+        <td class="num">${fmt.format(i.fatalities_current)}${casualtyPill(i) ? "<br>" + casualtyPill(i) : ""}${i.injuries_current != null ? `<br><span class="pill">${tf("pill_injured", { n: fmt.format(i.injuries_current) })}</span>` : ""}</td>
         <td>${mech ? `<span class="pill">${html(mech)}</span>` : `<span class="pill">${t("pill_no_mech")}</span>`}</td>
         <td>${orgCell(i.public_incident_id)}</td>
         <td>${cites}</td>

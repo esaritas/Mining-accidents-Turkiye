@@ -25,16 +25,15 @@ test('sites and commodity/type keys are visible by default, including contextual
   assert.equal(new URL(page.window.location.href).searchParams.get('siteType'), 'archaeological_quarry');
 });
 
-test('coarse sites are grouped, unknown sites remain listed, and sites-only has no death legend', t => {
+test('sites are grouped per province, unplaceable sites stay listed, sites-only has no death legend', t => {
   const data = fixture();
   data.sites[1].province_code = '';
   const page = boot(t, { data });
-  // One mark per province for sites without coordinates, drawn as a dashed
-  // circle sized by how many sites it stands for (the numbered dashed box
-  // it replaced put a printed digit on the map for every group).
-  assert.equal(page.document.querySelectorAll('#map .site-symbol.coarse').length, 1);
+  // One mark per province, whether or not the source published coordinates:
+  // a site is shown on its province and nowhere more precise.
+  assert.equal(page.document.querySelectorAll('#map .site-symbol').length, 1);
   assert.match(page.document.getElementById('site-coverage').textContent,
-    /0 with facility-level coordinates, 1 grouped by province, 1 without a usable map location/);
+    /1 of them shown across 1 provinces; 1 name no province/);
   page.document.querySelector('[data-layer="sites"]').click();
   assert.equal(page.document.querySelectorAll('#map .research-circle').length, 0);
   assert.doesNotMatch(page.document.getElementById('maplegend').textContent, /people lost:/);
