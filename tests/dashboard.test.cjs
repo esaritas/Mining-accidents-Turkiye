@@ -29,7 +29,10 @@ test('coarse sites are grouped, unknown sites remain listed, and sites-only has 
   const data = fixture();
   data.sites[1].province_code = '';
   const page = boot(t, { data });
-  assert.equal(page.document.querySelectorAll('#map .site-group').length, 1);
+  // One mark per province for sites without coordinates, drawn as a dashed
+  // circle sized by how many sites it stands for (the numbered dashed box
+  // it replaced put a printed digit on the map for every group).
+  assert.equal(page.document.querySelectorAll('#map .site-symbol.coarse').length, 1);
   assert.match(page.document.getElementById('site-coverage').textContent,
     /0 with facility-level coordinates, 1 grouped by province, 1 without a usable map location/);
   page.document.querySelector('[data-layer="sites"]').click();

@@ -185,12 +185,12 @@
   .mark-wrap:focus, .svg-site:focus, .tr-prov:focus { outline: none; }
   .mark-wrap:focus-visible .svg-marker, .svg-site:focus-visible path,
   .tr-prov:focus-visible { stroke: var(--ink-1); stroke-width: 3; }
-  .svg-site path { fill-opacity: .85; stroke: var(--surface-1); stroke-width: 1.2; }
+  .svg-site .site-symbol { fill-opacity: .92; }
   .svg-env { cursor: pointer; }
   .svg-env .hit { fill: transparent; stroke: none; }
   .svg-env.is-hover .env-symbol, .svg-env:focus-visible .env-symbol {
     stroke: var(--ink-1); stroke-width: 3; }
-  .svg-site.is-hover path { fill-opacity: 1; }
+  .svg-site.is-hover .site-symbol { fill-opacity: 1; }
   .svg-site .site-n { fill: var(--ink-2); font-size: 15px; font-weight: 600; }
   .maplegend .sw-acc.hollow { background: var(--loss); opacity: .45; }
   .sm-h { font-size: 14px; font-weight: 650; margin: 18px 0 2px; }
@@ -305,7 +305,7 @@
     .tr-prov { stroke-width: 2; }
     .svg-marker { stroke-width: 2.6; }
     .svg-marker.province-level { stroke-width: 4; }
-    .svg-site path { stroke-width: 2; } .tile .value { font-size: 26px; }
+    .svg-site .site-symbol { stroke-width: 2; } .tile .value { font-size: 26px; }
     .chapter .card p { font-size: 15px; } .chapter .card .k { font-size: 18px; }
     #filters select { max-width: 140px; }
     #mechanisms .mrow, #rates .rrow { grid-template-columns: 130px 1fr 48px; }
@@ -425,8 +425,13 @@
   .site-type-control select { max-width:100%; padding:7px; }
   .site-symbol { stroke:#fff; stroke-width:1.8; paint-order:stroke; }
   .svg-site:focus .site-symbol, .svg-site.is-hover .site-symbol { stroke:var(--ink-1); stroke-width:3; }
-  .site-group { fill:#fff; stroke:#30495a; stroke-width:1.5; stroke-dasharray:3 2; }
-  .site-group-label { font:bold 12px system-ui; fill:#30495a; pointer-events:none; }
+  /* Every legend symbol is sized here. An inline <svg> with only a viewBox
+     falls back to the browser default of 300x150, which is how the
+     environmental triangle came to be drawn the size of a province. */
+  .maplegend svg.lg-sym { width:18px; height:18px; overflow:visible; flex:0 0 auto; }
+  .maplegend .lg-sitesize { display:inline-flex; align-items:center; gap:6px; }
+  .maplegend .lg-sitesize svg { width:auto; height:26px; overflow:visible; }
+  .comm-chip.round { transform:none; border-radius:50%; width:9px; height:9px; }
   /* Documented-hazard matrix. Cell shade carries the record count; the
      number is always printed, so the shade is decoration, not the data. */
   #hazards h3 { font:19px/1.3 Georgia,serif; margin:26px 0 6px; }
@@ -716,7 +721,12 @@
       site_mine: "Mine", site_quarry: "Quarry", site_context: "Other / contextual feature",
       site_coverage: "{n} matching sites: {points} with facility-level coordinates, {grouped} grouped by province, {unmapped} without a usable map location. Site type and commodity filters apply to sites only.",
       site_hidden: "Site layer hidden. Choose Both or Documented sites to show it.",
-      site_group_key: "Dashed square + number: sites grouped by province, not a facility location",
+      site_group_key: "Dashed outline: placed on the province, not at the site",
+      lg_site_size: "sites at this mark",
+      lg_coal_s: "Coal", lg_metal_s: "Metal ore", lg_mineral_s: "Mineral",
+      lg_other_s: "Not stated",
+      site_group_key_s: "On the province, not at the site",
+      site_n: "{n} site(s)",
       site_unknown: "No usable location; kept in the site table",
       site_caveat: "A site marker does not imply an accident occurred there. Contextual features are shown separately; operating status is not inferred.",
       timeline_chapters: "Timeline chapters", timeline_all: "Show the full chronology",
@@ -948,7 +958,12 @@ tt_records: "Published records",
       site_mine: "Maden", site_quarry: "Taş ocağı", site_context: "Diğer / bağlamsal unsur",
       site_coverage: "Filtreye uyan {n} saha: {points} tesis düzeyinde koordinatlı, {grouped} ile göre gruplanmış, {unmapped} haritada konumlandırılamıyor. Saha türü ve maden ürünü filtreleri yalnızca sahalara uygulanır.",
       site_hidden: "Saha katmanı gizli. Göstermek için İkisi veya Belgelenmiş sahalar seçeneğini seçin.",
-      site_group_key: "Kesikli kare + sayı: ile göre gruplanmış sahalar; tesis konumu değil",
+      site_group_key: "Kesikli çember: il üzerinde gösteriliyor, tesis konumunda değil",
+      lg_site_size: "bu işaretteki saha sayısı",
+      lg_coal_s: "Kömür", lg_metal_s: "Metal", lg_mineral_s: "Mineral",
+      lg_other_s: "Belirtilmemiş",
+      site_group_key_s: "İl üzerinde, tesis konumunda değil",
+      site_n: "{n} saha",
       site_unknown: "Kullanılabilir konum yok; saha tablosunda korunuyor",
       site_caveat: "Saha işareti, orada kaza yaşandığı anlamına gelmez. Bağlamsal unsurlar ayrı gösterilir; işletme durumu varsayılmaz.",
       timeline_chapters: "Zaman çizelgesi bölümleri", timeline_all: "Tüm kronolojiyi göster",
@@ -1863,12 +1878,17 @@ tt_records: "Yayımlanmış kayıt",
     if (showSites) {
       for (const [code, list] of coarse) {
         const [x,y] = GEO.anchors[code];
-        parts.push(`<g class="svg-site" data-sitekey="${html(list.map(s=>s.ref).join("|"))}" tabindex="0" role="button" aria-label="${html(provinceName(code))}: ${list.length} · ${t("site_group_key")}"><rect class="site-group" x="${x-13}" y="${y-12}" width="26" height="24" rx="3"></rect><text class="site-group-label" x="${x}" y="${y+4}" text-anchor="middle">${list.length}</text></g>`);
+        const label = `${provinceName(code)}: ${tf("site_n", { n: list.length })} · ${t("site_group_key")}`;
+        parts.push(`<g class="svg-site" data-sitekey="${html(list.map(s=>s.ref).join("|"))}" tabindex="0" role="button" aria-label="${html(label)}">` +
+          `<circle class="hit" cx="${x}" cy="${y}" r="${Math.max(siteRadius(list.length) + 6, 13)}" fill="transparent"></circle>` +
+          `${siteSymbol(x, y, list, false)}<title>${html(label)}</title></g>`);
       }
       for (const list of locations.values()) {
         const site = list[0], [x,y] = GEO.project(site.latitude,site.longitude);
         const label = list.map(s=>`${s.name} · ${typeLabel(s)} · ${commodityText(s) || t("comm_other")}`).join("; ");
-        parts.push(`<g class="svg-site" data-sitekey="${html(list.map(s=>s.ref).join("|"))}" tabindex="0" role="button" aria-label="${html(label)}"><circle class="hit" cx="${x}" cy="${y}" r="13" fill="transparent"></circle>${siteSymbol(x,y,site,list.length>1)}${list.length>1 ? `<text class="map-label" x="${x+10}" y="${y-8}">${list.length}</text>` : ""}<title>${html(label)}</title></g>`);
+        parts.push(`<g class="svg-site" data-sitekey="${html(list.map(s=>s.ref).join("|"))}" tabindex="0" role="button" aria-label="${html(label)}">` +
+          `<circle class="hit" cx="${x}" cy="${y}" r="${Math.max(siteRadius(list.length) + 6, 13)}" fill="transparent"></circle>` +
+          `${siteSymbol(x, y, list, true)}<title>${html(label)}</title></g>`);
       }
     }
     // Environmental records, drawn last and never in red: on this map red
@@ -1886,7 +1906,7 @@ tt_records: "Yayımlanmış kayıt",
       parts.push(`<g class="svg-env" data-envid="${html(e.public_incident_id)}" tabindex="0" ` +
         `role="button" aria-label="${html(label)}">` +
         `<circle class="hit" cx="${x}" cy="${y}" r="13" fill="transparent"></circle>` +
-        `<path class="env-symbol" d="M${x},${y-9} L${x+9},${y+6} L${x-9},${y+6} Z" ` +
+        `<path class="env-symbol" d="M${x},${y-7} L${x+7},${y+5} L${x-7},${y+5} Z" ` +
         `fill="${exact ? "var(--c-mineral)" : "none"}" stroke="var(--c-mineral)" ` +
         `stroke-width="2.4" stroke-linejoin="round"></path>` +
         `<title>${html(label)}</title></g>`);
@@ -1896,12 +1916,24 @@ tt_records: "Yayımlanmış kayıt",
     renderMapLegend(fs);
     renderMapSummary(fi, fs);
   }
-  function siteSymbol(x,y,site,mixed=false) {
-    const fill = mixed ? "#30495a" : GROUP_HEX[groupOf(site)];
-    if (mixed || CONTEXT_TYPES.has(site.type) || !["mine_unspecified","mine_underground","mine_openpit","quarry"].includes(site.type))
-      return `<circle class="site-symbol" cx="${x}" cy="${y}" r="7" fill="white" style="stroke:${fill};stroke-width:2.5"></circle>`;
-    if (site.type === "quarry") return `<rect class="site-symbol" x="${x-6}" y="${y-6}" width="12" height="12" fill="${fill}"></rect>`;
-    return `<path class="site-symbol" d="M${x},${y-8} l8,8 -8,8 -8,-8 Z" fill="${fill}"></path>`;
+  // One symbol for every site, sized by how many sites it stands for and
+  // coloured by what they produce. Four shapes for mine, quarry and context
+  // type, plus a dashed box carrying a printed number for province groups,
+  // put five visual vocabularies on one map; the type and the names now live
+  // in the tooltip, where there is room to say them properly.
+  const siteRadius = n => 5 + Math.min(n - 1, 6) * 1.8;
+  function siteSymbol(x, y, list, exact) {
+    const sites = Array.isArray(list) ? list : [list];
+    const groups = new Set(sites.map(groupOf));
+    const colour = groups.size === 1 ? GROUP_HEX[[...groups][0]] : "#30495a";
+    const r = siteRadius(sites.length);
+    // Hollow means the same here as it does for an accident: a province
+    // anchor, not a place. Solid means the source published coordinates.
+    return exact
+      ? `<circle class="site-symbol" cx="${x}" cy="${y}" r="${r}" fill="${colour}"></circle>`
+      : `<circle class="site-symbol coarse" cx="${x}" cy="${y}" r="${r}" ` +
+        `fill="var(--surface-1)" ` +
+        `style="stroke:${colour};stroke-width:2;stroke-dasharray:3 2"></circle>`;
   }
   function renderMapSummary(fi, fs) {
     const count=fi.reduce((sum,i)=>sum+(i.fatalities_current || 0),0);
@@ -2081,26 +2113,55 @@ tt_records: "Yayımlanmış kayıt",
     }).join("");
     return `<span class="lg-size"><svg width="${Math.ceil(2*R+56)}" height="${Math.ceil(2*R+pad+3)}" aria-hidden="true">${body}</svg></span>`;
   }
+  const coarseCounts = fs => {
+    const counts = new Map();
+    for (const s of fs) {
+      if (hasFacilityLocation(s) || !s.province_code) continue;
+      counts.set(s.province_code, (counts.get(s.province_code) || 0) + 1);
+    }
+    return counts;
+  };
   function renderMapLegend(fs) {
+    // A phone gets the same key in fewer words: the legend was taller than the
+    // map it explains. What is dropped is the size key, which a tap answers
+    // better than a swatch can.
+    const tight = matchMedia("(max-width: 640px)").matches;
     const accLegend = `<div class="lg-row"><span>${t("lg_size")}</span>${sizeKey()}`+
       `<span>${t(state.view==="locations" ? "key_located" : "key_province")}</span>`+
       (state.view==="locations" ? `<span><i class="key-circle hollow"></i> ${t("key_coarse")}</span>` : "")+
       `</div>`;
     const colorKey = ["coal","metal","mineral","other"].map(group =>
-      `<span><i class="comm-chip" style="background:${GROUP_HEX[group]}"></i>${t("lg_"+group)} (${fs.filter(s=>groupOf(s)===group).length})</span>`).join("");
-    const typeKey = [["mine_unspecified","site_mine"],["quarry","site_quarry"],["regional_group","site_context"]].map(([type,key])=>
-      `<span><svg viewBox="-12 -12 24 24" aria-hidden="true">${siteSymbol(0,0,{type})}</svg>${t(key)}</span>`).join("");
+      `<span><i class="comm-chip round" style="background:${GROUP_HEX[group]}"></i>` +
+      `${t(tight ? "lg_" + group + "_s" : "lg_" + group)} ` +
+      `(${fs.filter(s=>groupOf(s)===group).length})</span>`).join("");
+    // How many sites a circle stands for, read from its size rather than from
+    // a printed number. Counts are small, so two steps are the whole scale.
+    const biggest = Math.max(1, ...[...coarseCounts(fs).values()]);
+    const sizeSteps = biggest > 1 ? [1, biggest] : [1];
+    const siteSizeKey = `<span class="lg-sitesize"><svg viewBox="-2 -12 ${sizeSteps.length*26} 30" aria-hidden="true">` +
+      sizeSteps.map((n, k) =>
+        `<circle cx="${k*26+11}" cy="0" r="${siteRadius(n)}" fill="var(--site)" ` +
+        `stroke="none"></circle>` +
+        `<text x="${k*26+11}" y="17" text-anchor="middle" fill="var(--ink-muted)" ` +
+        `style="font:10px system-ui,sans-serif">${n}</text>`).join("") +
+      `</svg>${t("lg_site_size")}</span>`;
+    const typeKey = `<span><svg class="lg-sym" viewBox="-9 -9 18 18" aria-hidden="true">` +
+      `<circle cx="0" cy="0" r="6" fill="var(--surface-1)" stroke="var(--site)" ` +
+      `stroke-width="2" stroke-dasharray="3 2"></circle></svg>` +
+      `${t(tight ? "site_group_key_s" : "site_group_key")}</span>`;
     // The environmental key sits apart from the carnations and the site
     // symbols, because it counts a different thing.
     const envKey = ENV().length
-      ? `<div class="lg-row"><span><svg viewBox="-12 -12 24 24" aria-hidden="true">` +
-        `<path d="M0,-9 L9,6 L-9,6 Z" fill="var(--c-mineral)" stroke="var(--c-mineral)" ` +
-        `stroke-width="2.4" stroke-linejoin="round"></path></svg>` +
-        `${tf("lg_env", { n: ENV().length })}</span></div>`
+      ? `<span><svg class="lg-sym" viewBox="-11 -11 22 22" aria-hidden="true">` +
+        `<path d="M0,-7 L7,5 L-7,5 Z" fill="var(--c-mineral)" stroke="var(--c-mineral)" ` +
+        `stroke-width="2" stroke-linejoin="round"></path></svg>` +
+        `${tf("lg_env", { n: ENV().length })}</span>`
       : "";
     document.getElementById("maplegend").innerHTML = (state.layer!=="sites" ? accLegend : "")+
-      (state.layer!=="accidents" ? `<div class="lg-sites"><div class="site-key">${colorKey}${typeKey}</div><span class="lg-note">${t("site_group_key")}</span></div>` : "")+
-      envKey;
+      (state.layer!=="accidents"
+        ? `<div class="lg-sites"><div class="site-key">${colorKey}</div>` +
+          `<div class="site-key">${tight ? "" : siteSizeKey}${typeKey}${envKey}</div></div>`
+        : (envKey ? `<div class="lg-sites"><div class="site-key">${envKey}</div></div>` : ""));
   }
 
   // ---- Small multiples: where the loss sat, era by era ----------------------
