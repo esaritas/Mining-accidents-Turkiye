@@ -5927,6 +5927,22 @@ window.MINING_DATA = {
       }
     ]
   },
+  "monitoring": {
+    "candidates_waiting": 3,
+    "isig_latest_month": {
+      "isig_mining_deaths": 7,
+      "period": "2026-09",
+      "register_deaths_published": 0
+    },
+    "last_checked": "2026-10-26T20:08:24Z",
+    "newest_published_incident": "2026-10-01",
+    "schedule": "monthly",
+    "swept_sources": [
+      "wikidata",
+      "wikipedia",
+      "isig_meclisi"
+    ]
+  },
   "pipeline": {
     "claims_awaiting_review": 11,
     "claims_total": 954,

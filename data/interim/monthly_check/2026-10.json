@@ -1,0 +1,146 @@
+{
+  "checked_at": "2026-10-26T20:08:24Z",
+  "swept_sources": [
+    "wikidata",
+    "wikipedia",
+    "isig_meclisi"
+  ],
+  "published_records": 55,
+  "published_deaths": 1091,
+  "newest_published_incident": "2026-10-01",
+  "candidates": [
+    {
+      "source_key": "wikidata",
+      "reason": "toll_differs",
+      "dates": [
+        "2014-11-01T00:00:00+03:00"
+      ],
+      "province_codes": [
+        "74"
+      ],
+      "fatalities": [
+        "1"
+      ],
+      "titles": [],
+      "published_incident_ids": [
+        "TR-MINE-2014-0012"
+      ],
+      "published_fatalities": "2",
+      "settled_by": null
+    },
+    {
+      "source_key": "wikidata",
+      "reason": "toll_differs",
+      "dates": [
+        "1990-02-07T00:00:00+03:00"
+      ],
+      "province_codes": [
+        "05"
+      ],
+      "fatalities": [
+        "66"
+      ],
+      "titles": [
+        "1990 Amasya grizu faciası"
+      ],
+      "published_incident_ids": [
+        "TR-MINE-1990-0002"
+      ],
+      "published_fatalities": "68",
+      "settled_by": null
+    },
+    {
+      "source_key": "wikidata",
+      "reason": "absent_from_register",
+      "dates": [
+        "2022-03-01T00:00:00+03:00"
+      ],
+      "province_codes": [
+        "48"
+      ],
+      "fatalities": [
+        "1"
+      ],
+      "titles": [],
+      "published_incident_ids": [],
+      "published_fatalities": null,
+      "settled_by": null
+    }
+  ],
+  "known_disagreements": [
+    {
+      "source_key": "wikidata",
+      "reason": "toll_differs",
+      "dates": [
+        "2010-02-23T00:00:00+03:00"
+      ],
+      "province_codes": [
+        "10"
+      ],
+      "fatalities": [
+        "13"
+      ],
+      "titles": [
+        "Odaköy maden kazası",
+        "Odaköy mining accident"
+      ],
+      "published_incident_ids": [
+        "TR-MINE-2010-0004"
+      ],
+      "published_fatalities": "17",
+      "settled_by": "TR-MINE-2010-0004 · disclosed · recorded 2026-07-17 · open question 31"
+    },
+    {
+      "source_key": "wikidata",
+      "reason": "absent_from_register",
+      "dates": [
+        "2024-10-23T00:00:00+03:00"
+      ],
+      "province_codes": [
+        "56"
+      ],
+      "fatalities": [
+        "3"
+      ],
+      "titles": [],
+      "published_incident_ids": [],
+      "published_fatalities": null,
+      "settled_by": "TR-MINE-2024-0004 · decided · recorded 2026-10-16 · open question 32"
+    }
+  ],
+  "thin_source_entries": [],
+  "isig_months": [
+    {
+      "period_start": "2026-09-01",
+      "period_end": "2026-09-30",
+      "isig_mining_deaths": 7,
+      "isig_all_branches_deaths": 226,
+      "register_deaths_published": 0,
+      "url": "https://isigmeclisi.org/21739-cocuk-isciligine-ve-is-cinayetlerine-karsi-mucadeleye-eylul-ayind",
+      "mining_excerpt": "Madencilik işkolunda 7 işçi"
+    },
+    {
+      "period_start": "2026-08-01",
+      "period_end": "2026-08-31",
+      "isig_mining_deaths": 5,
+      "isig_all_branches_deaths": 226,
+      "register_deaths_published": 0,
+      "url": "https://isigmeclisi.org/21728-cocuk-isciligine-ve-is-cinayetlerine-karsi-mucadeleye-agustos-ayi",
+      "mining_excerpt": "Madencilik işkolunda 5 işçi"
+    },
+    {
+      "period_start": "2026-07-01",
+      "period_end": "2026-07-31",
+      "isig_mining_deaths": 4,
+      "isig_all_branches_deaths": 214,
+      "register_deaths_published": 0,
+      "url": "https://isigmeclisi.org/21708-cocuk-isciligine-ve-is-cinayetlerine-karsi-mucadeleye-temmuz-ayind",
+      "mining_excerpt": "Madencilik işkolunda 4 işçi"
+    }
+  ],
+  "unreadable_documents": [],
+  "notes": [
+    "A candidate list that is empty means the swept sources published nothing this register does not already hold. It is not a statement that no accident happened. Incident-level recency rests on news reporting, which is retrieved article by article in review and is not swept here."
+  ],
+  "candidate_count": 3
+}

@@ -516,9 +516,9 @@ def write_report(
 
 
 def _candidate_line(candidate: Candidate) -> str:
+    title = " / ".join(t for t in candidate.titles if t) or "untitled in the source"
     bits = [
-        f"**{' / '.join(t for t in candidate.titles if t) or 'untitled in the source'}**",
-        f"({candidate.reason})",
+        f"**{title}** ({candidate.reason})",
         f"stated date {', '.join(candidate.dates) or 'none'}",
         f"province {', '.join(candidate.province_codes) or 'none'}",
         f"deaths stated {', '.join(candidate.fatalities) or 'none'}",
