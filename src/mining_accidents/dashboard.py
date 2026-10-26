@@ -14,7 +14,7 @@ import json
 import sqlite3
 from pathlib import Path
 
-from mining_accidents import analysis, research, vocabularies
+from mining_accidents import analysis, monitor, research, vocabularies
 
 DEFAULT_PUBLIC_DIR = Path("data/public")
 DEFAULT_OUTPUT = Path("dashboard/data.js")
@@ -429,6 +429,7 @@ def build_payload(
         "hazard_matrix": analysis.hazard_matrix(public_dir),
         "environmental": _environmental(public_dir),
         "pipeline": _pipeline_status(conn),
+        "monitoring": monitor.summary(export_dir=public_dir),
         "export_timestamp": manifest["export_timestamp"],
         "schema_version": manifest["db_schema_version"],
     }

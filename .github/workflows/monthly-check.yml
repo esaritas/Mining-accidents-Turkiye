@@ -1,0 +1,89 @@
+# Monthly check of the sources whose assessment permits automated collection:
+# Wikidata, Wikipedia and the İSİG Meclisi reports. Discovery only. The job
+# writes a report naming what the sources state and this register does not hold;
+# it records no reviewer decision, changes no published value, and never opens
+# the working register (the sweep writes into a throwaway database outside the
+# checkout). News is assessed for individual retrieval rather than crawling, so
+# news discovery happens in review and is not run from here.
+#
+# The report lands in data/interim/monthly_check/ only. dashboard/artifact.html
+# is deliberately untouched, so this job never triggers a Pages deployment.
+name: Monthly source check
+
+on:
+  schedule:
+    # 06:23 UTC on the 8th (09:23 in Türkiye): the Assembly publishes the
+    # previous month's report in the first week, so the 8th reliably catches it.
+    # Off the hour because schedules at :00 queue behind everyone else's.
+    - cron: "23 6 8 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: monthly-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: python -m pip install -e .
+      - name: Check the assessed sources
+        run: |
+          python -m mining_accidents.cli monthly-check \
+            --scratch-db "${RUNNER_TEMP}/monthly_check.sqlite" \
+            --export-dir data/public \
+            --report-dir data/interim/monthly_check \
+            --isig-pages 1 \
+            --isig-limit 3
+      - name: Read the result
+        id: result
+        run: |
+          latest=$(ls -1 data/interim/monthly_check/*.json | sort | tail -1)
+          echo "json=$latest" >> "$GITHUB_OUTPUT"
+          echo "month=$(basename "$latest" .json)" >> "$GITHUB_OUTPUT"
+          echo "candidates=$(python -c "import json,sys; print(json.load(open(sys.argv[1]))['candidate_count'])" "$latest")" >> "$GITHUB_OUTPUT"
+          echo "unreadable=$(python -c "import json,sys; print(len(json.load(open(sys.argv[1]))['unreadable_documents']))" "$latest")" >> "$GITHUB_OUTPUT"
+      - name: Commit the report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/interim/monthly_check
+          if git diff --cached --quiet; then
+            echo "No change to the report; nothing to commit."
+            exit 0
+          fi
+          git commit -m "chore(check): monthly source check ${{ steps.result.outputs.month }}"
+          for delay in 2 4 8 16; do
+            git push && exit 0
+            echo "push failed, retrying in ${delay}s"
+            sleep "$delay"
+          done
+          git push
+      - name: Put the report in the run summary
+        # Always, so the findings survive even if the issue step cannot run.
+        run: cat "data/interim/monthly_check/${{ steps.result.outputs.month }}.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Open the review queue
+        # Only when there is something for a human to look at. A quiet month
+        # leaves the committed report as its own record and says nothing.
+        if: steps.result.outputs.candidates != '0' || steps.result.outputs.unreadable != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          month="${{ steps.result.outputs.month }}"
+          title="Monthly source check: $month"
+          body=$(cat "data/interim/monthly_check/$month.md")
+          existing=$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number' || true)
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi

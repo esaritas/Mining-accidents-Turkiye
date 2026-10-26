@@ -14,7 +14,6 @@ import pytest
 from conftest import REPO_ROOT
 from mining_accidents.adapters import manual
 from mining_accidents.adapters.base import STUB_MESSAGE
-from mining_accidents.adapters.isig import ISIGAdapter
 from mining_accidents.adapters.sgk import SGKAdapter
 from mining_accidents.adapters.tbmm import TBMMAdapter
 from mining_accidents.adapters.tmmob import TMMOBAdapter
@@ -139,7 +138,8 @@ def test_yaml_import(conn: sqlite3.Connection, tmp_path: Path) -> None:
 
 
 def test_network_adapters_are_stubs() -> None:
-    for adapter_cls in (SGKAdapter, TMMOBAdapter, TBMMAdapter, ISIGAdapter):
+    """Unassessed sources stay stubs. İSİG was assessed 2026-10-26 and is live."""
+    for adapter_cls in (SGKAdapter, TMMOBAdapter, TBMMAdapter):
         adapter = adapter_cls()
         for method in (adapter.assess, adapter.fetch):
             with pytest.raises(NotImplementedError, match="source assessment"):

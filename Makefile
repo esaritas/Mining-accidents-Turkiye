@@ -5,7 +5,7 @@ PYTHON ?= python3
 DB_PATH ?= database/mining_accidents.sqlite
 EXAMPLE_DB ?= database/staging_example.sqlite
 
-.PHONY: install db import-example ingest ingest-sites packets qc export dashboard artifact test test-dashboard lint clean
+.PHONY: install db import-example ingest ingest-sites packets check qc export dashboard artifact test test-dashboard lint clean
 
 install:
 	$(PYTHON) -m pip install -e ".[dev]"
@@ -24,6 +24,11 @@ import-example:
 
 packets:
 	$(PYTHON) -m mining_accidents.cli packets --db-path $(DB_PATH)
+
+# Monthly check of the assessed sources. Discovery only: writes a report and
+# the İSİG aggregate context rows, never a decision or a published value.
+check:
+	$(PYTHON) -m mining_accidents.cli monthly-check --db-path $(DB_PATH)
 
 qc:
 	$(PYTHON) -m mining_accidents.cli qc --db-path $(DB_PATH)

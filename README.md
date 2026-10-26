@@ -64,6 +64,7 @@ they never silently substitute an older dashboard payload.
 | `make artifact` | Rebuild the self-contained page from the template and committed `data.js`, without a database |
 | `make test-dashboard` | Run dashboard interaction regressions using synthetic data (Node.js >= 20) |
 | `make import-example` | Import clearly-labeled synthetic `TEST-` demo data into a separate staging DB |
+| `make check` | Monthly check of the assessed sources → `data/interim/monthly_check/`. Discovery only: writes a review queue and the İSİG aggregate context, never a decision |
 | `make qc` | Run quality checks → `data/interim/quality_report.json` (non-zero exit on critical) |
 | `make export` | Build public export → `data/public/` (aborted by any critical QC finding) |
 | `make packets` | Generate review packets for incidents with claims |

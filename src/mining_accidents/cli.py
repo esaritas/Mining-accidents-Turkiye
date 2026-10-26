@@ -132,6 +132,80 @@ def export(
     )
 
 
+@app.command("monthly-check")
+def monthly_check(
+    scratch_db: Path = typer.Option(
+        Path("database/monthly_check_scratch.sqlite"),
+        help="Throwaway database the sweep writes evidence into. Recreated each run.",
+    ),
+    export_dir: Path = typer.Option(
+        Path("data/public"), help="Published export the candidates are compared against."
+    ),
+    report_dir: Path = typer.Option(
+        Path("data/interim/monthly_check"), help="Where the month's report is written."
+    ),
+    db_path: Path = typer.Option(
+        None,
+        "--db-path",
+        help="Working register. Given, the İSİG monthly figures are recorded into its "
+        "aggregate context table. Omitted, the check only reports.",
+    ),
+    isig_pages: int = typer.Option(1, help="Index pages of İSİG reports to look through."),
+    isig_limit: int = typer.Option(3, help="Most recent İSİG monthly reports to read."),
+    skip_seed: bool = typer.Option(
+        False, help="Skip the Wikidata and Wikipedia sweep (İSİG figures only)."
+    ),
+) -> None:
+    """Check the assessed sources for accidents this register does not hold.
+
+    Discovery only: no decision is recorded and no published value changes.
+    """
+    from mining_accidents import monitor
+
+    scratch_db.parent.mkdir(parents=True, exist_ok=True)
+    for suffix in ("", "-shm", "-wal"):
+        Path(f"{scratch_db}{suffix}").unlink(missing_ok=True)
+    database.create_database(scratch_db)
+    scratch_conn = database.get_connection(scratch_db)
+    try:
+        report, figures = monitor.run_check(
+            scratch_conn,
+            export_dir,
+            sweep_seed=not skip_seed,
+            isig_pages=isig_pages,
+            isig_limit=isig_limit,
+        )
+    finally:
+        scratch_conn.close()
+    json_path, md_path = monitor.write_report(report, report_dir)
+
+    recorded = 0
+    if db_path is not None and figures:
+        conn = database.get_connection(db_path)
+        try:
+            recorded = monitor.record_monthly_aggregates(conn, figures)
+        finally:
+            conn.close()
+
+    console.print(
+        f"[green]Check complete[/green] ({report.checked_at}): "
+        f"{report.candidate_count} for review, "
+        f"{len(report.known_disagreements)} already known, "
+        f"{len(report.thin_source_entries)} too thin to place, "
+        f"{len(report.isig_months)} İSİG month(s) read, "
+        f"{recorded} aggregate row(s) recorded."
+    )
+    console.print(f"Report: {md_path} and {json_path}")
+    for candidate in report.candidates:
+        console.print(
+            f"[yellow]candidate[/yellow] {candidate.reason}: "
+            f"{' / '.join(candidate.titles) or 'untitled'} "
+            f"({', '.join(candidate.dates) or 'no date stated'})"
+        )
+    for url in report.unreadable_documents:
+        console.print(f"[yellow]could not read[/yellow] {url}")
+
+
 @app.command("packets")
 def packets(
     db_path: Path = DB_OPTION,

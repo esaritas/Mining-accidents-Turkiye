@@ -149,13 +149,18 @@ _RETRY_STATUSES = {429, 500, 502, 503}
 _last_request_at = 0.0
 
 
-def _http_get(url: str, params: dict[str, str], timeout: int = 60, max_tries: int = 5) -> bytes:
+def _http_get(
+    url: str,
+    params: dict[str, str] | None = None,
+    timeout: int = 60,
+    max_tries: int = 5,
+    accept: str = "application/json",
+) -> bytes:
     """Polite GET: spaced requests, exponential backoff, Retry-After honored."""
     global _last_request_at
-    query = urllib.parse.urlencode(params)
-    request = urllib.request.Request(
-        f"{url}?{query}", headers={"User-Agent": USER_AGENT, "Accept": "application/json"}
-    )
+    query = urllib.parse.urlencode(params or {})
+    target = f"{url}?{query}" if query else url
+    request = urllib.request.Request(target, headers={"User-Agent": USER_AGENT, "Accept": accept})
     delay = 4.0
     for attempt in range(1, max_tries + 1):
         wait = _last_request_at + REQUEST_SPACING_S - time.monotonic()

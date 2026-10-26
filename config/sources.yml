@@ -28,8 +28,9 @@ sources:
   - key: isig_meclisi
     family: "İSİG Meclisi reports"
     tier_proposed: 2
+    tier_note: "aggregate only — monthly branch-of-work totals, never incident-level"
     adapter: mining_accidents.adapters.isig
-    status: TO_ASSESS
+    status: IMPLEMENTED     # assessed 2026-10-26; reuse with attribution
   - key: academic
     family: "Academic publications"
     tier_proposed: 2

@@ -694,6 +694,7 @@
       <div><dt data-i18n="ab5_t"></dt><dd data-i18n="ab5_d"></dd></div>
       <div><dt data-i18n="ab6_t"></dt><dd data-i18n="ab6_d"></dd></div>
       <div><dt data-i18n="ab7_t"></dt><dd data-i18n="ab7_d"></dd></div>
+      <div><dt data-i18n="ab9_t"></dt><dd data-i18n="ab9_d"></dd></div>
       <div><dt data-i18n="ab8_t"></dt><dd data-i18n="ab8_d"></dd></div>
     </dl>
   </section>
@@ -780,6 +781,11 @@
       ab8_d: "Where a company is named, it is the company the cited source places at the mine on the day of the accident, and the line says which it was: the company that ran the pit, the one that owned it, the licence holder, or a contractor working under the operator. They are not always the same company, which is why each is recorded separately rather than merged into one name. Where one organization appears under two of them, the two words come from two sources describing the same pit, not from two different arrangements. A company is shown as alleged where the source only relays somebody\u2019s claim. Naming a company records who was operating, never who was at fault: courts decide that and this register does not. {n} of {total} records name one; the rest are blank because no assessed source names a company, usually saying only \u201ca private operation\u201d.",
       ab7_t: "Corrections and open work",
       ab7_d: "Analysis methods are documented and provisional. Open tasks include corroboration against official records, a harmonised rates series from TÜİK and TKİ data, and fuller site registers (Global Energy Monitor, MAPEG licence data). Corrections go through the issue templates in the project repository. No personal data of victims is stored or shown.",
+      ab9_t: "How it is kept current",
+      ab9_d: "Once a month the sources whose assessment permits automated collection are swept again (Wikidata, Wikipedia and the İSİG Meclisi reports) and anything they state that this register does not hold is written into a review queue. The sweep only finds and reports. Nothing it finds becomes a published value until a reviewer decides on the claim, so a candidate waiting in that queue carries no standing here. News sits outside the sweep by design: it was assessed for retrieval article by article rather than crawling, so press reports are followed up by hand during review. Last swept {checked}. Waiting for review {waiting}. A month in which the sweep finds nothing means the swept sources published nothing new, not that nothing happened.",
+      mon_never: "not yet",
+      foot3: "Sources last swept {checked} ({sources}) \u00b7 {waiting} waiting for review \u00b7 the sweep reports and never publishes.",
+      foot3_isig: "İSİG Meclisi counted {isig} work deaths in the mining branch in {period}, against {reg} published here for that month. Different populations, so the figures are never added or subtracted.",
       onthisday: "On this day.",
 
       more: "Read more", less: "Show less",
@@ -1017,6 +1023,11 @@ tt_records: "Published records",
       ab8_d: "Bir şirket adı geçtiğinde, bu, kaynağın kaza günü ocakla ilişkilendirdiği şirkettir ve satırda hangisi olduğu yazar: ocağı işleten şirket, sahibi, ruhsat sahibi ya da işleten şirkete bağlı çalışan taşeron. Bunlar her zaman aynı şirket değildir; bu yüzden tek bir ada indirgenmez, her biri ayrı kaydedilir. Aynı kurum iki ayrı rolde görünüyorsa, bu iki ayrı düzenleme olduğu için değil, iki kaynağın aynı ocağı farklı sözcüklerle anlatmasındandır. Kaynak yalnızca birinin iddiasını aktarıyorsa şirket \u201ciddia\u201d etiketiyle gösterilir. Bir şirketin adının kayda geçmesi kimin işlettiğini gösterir, kimin kusurlu olduğunu değil: ona mahkemeler karar verir, bu kayıt vermez. {total} kaydın {n} tanesinde şirket adı var; kalanlarda yok, çünkü değerlendirilmiş hiçbir kaynak ad vermiyor, çoğunlukla yalnızca \u201cözel bir işletme\u201d diyor.",
       ab7_t: "Düzeltmeler ve süren işler",
       ab7_d: "Analiz yöntemleri belgelidir ve geçicidir. Süren işler arasında resmî kayıtlarla doğrulama, TÜİK ve TKİ verilerinden uyumlu bir oran serisi ve daha kapsamlı saha kaynakları (Global Energy Monitor, MAPEG ruhsat verisi) var. Düzeltme önerileri için proje deposundaki formları kullanabilirsiniz. Hayatını kaybedenlerin hiçbir kişisel verisi saklanmaz ve gösterilmez.",
+      ab9_t: "Güncel nasıl tutuluyor",
+      ab9_d: "Otomatik toplamaya izin verdiği saptanmış kaynaklar ayda bir yeniden taranıyor (Wikidata, Vikipedi ve İSİG Meclisi raporları). Bu kaynakların aktardığı ama bu kayıtta bulunmayan olaylar bir inceleme kuyruğuna yazılıyor. Tarama yalnızca bulur ve bildirir. Bir incelemeci iddia hakkında karar vermeden, bulduğu hiçbir şey yayımlanan bir değere dönüşmez; kuyrukta bekleyen bir adayın burada henüz bir hükmü yoktur. Haber kaynakları taramanın dışında bırakıldı, çünkü her haberin tek tek alınması koşuluyla değerlendirildiler; bu yüzden basın haberleri inceleme sırasında elle izleniyor. Son tarama {checked}. İncelemeyi bekleyen {waiting}. Taramanın hiçbir şey bulmadığı bir ay, taranan kaynakların yeni bir şey yayımlamadığı anlamına gelir; hiçbir şey olmadığı anlamına gelmez.",
+      mon_never: "henüz yapılmadı",
+      foot3: "Kaynakların son taranması {checked} ({sources}) \u00b7 incelemeyi bekleyen {waiting} \u00b7 tarama bildirir, asla yayımlamaz.",
+      foot3_isig: "İSİG Meclisi {period} döneminde madencilik işkolunda {isig} işçi ölümü saydı; bu kayıt aynı ay için {reg} ölüm yayımlıyor. İki sayı farklı toplulukları saydığı için birbirine eklenmez ya da çıkarılmaz.",
       onthisday: "Bugün, bir yıl dönümü.",
 
       more: "Devamını oku", less: "Daha az göster",
@@ -2887,8 +2898,44 @@ tt_records: "Yayımlanmış kayıt",
     openDetail(tr.dataset.id);
   });
 
+  // ---- How current the register is --------------------------------------------------
+  // The check's own facts, read from the payload so the page cannot claim a
+  // freshness it does not have. The source names are names: only Wikipedia has
+  // a Turkish title of its own.
+  const sourceLabel = key => key === "wikipedia"
+    ? (LANG === "tr" ? "Vikipedi" : "Wikipedia")
+    : key === "wikidata" ? "Wikidata" : "İSİG Meclisi";
+
+  function freshness() {
+    const m = D.monitoring || {};
+    const unknown = t("mon_never");
+    return {
+      checked: m.last_checked ? String(m.last_checked).slice(0, 10) : unknown,
+      waiting: m.candidates_waiting == null ? unknown : fmt.format(m.candidates_waiting),
+      sources: (m.swept_sources || []).map(sourceLabel).join(", "),
+      isig: m.isig_latest_month || null,
+    };
+  }
+
+  function renderFreshness() {
+    // applyStatic() has just written the template, placeholders and all.
+    const box = document.querySelector('[data-i18n="ab9_d"]');
+    if (!box) return;
+    const f = freshness();
+    box.innerHTML = tf("ab9_d", { checked: f.checked, waiting: f.waiting });
+  }
+
   // ---- Footer ----------------------------------------------------------------------
   function renderFooter() {
+    const f = freshness();
+    let stamp = tf("foot3", { checked: f.checked, sources: f.sources, waiting: f.waiting });
+    if (f.isig && f.isig.isig_mining_deaths != null) {
+      stamp += " " + tf("foot3_isig", {
+        isig: fmt.format(f.isig.isig_mining_deaths),
+        period: f.isig.period,
+        reg: fmt.format(f.isig.register_deaths_published || 0),
+      });
+    }
     document.getElementById("foot").innerHTML =
       tf("foot1", {
         ts: D.export_timestamp, v: D.schema_version,
@@ -2897,7 +2944,7 @@ tt_records: "Yayımlanmış kayıt",
         docs: fmt.format(D.pipeline.source_documents),
         claims: fmt.format(D.pipeline.claims_total),
         dec: fmt.format(D.pipeline.decisions_total),
-      }) + "<br>" + t("foot2");
+      }) + "<br>" + t("foot2") + "<br>" + stamp;
   }
 
   // ---- boot / re-render -------------------------------------------------------
@@ -2914,6 +2961,7 @@ tt_records: "Yayımlanmış kayıt",
     renderMechanisms();
     renderHazards();
     renderEnvironmental();
+    renderFreshness();
     renderFooter();
     applyFilters();
   }
