@@ -898,7 +898,9 @@ tt_records: "Published records",
       env_sources: "Sources",
       env_none: "No environmental records are published yet.",
       eff_released_material: "Material released",
-      eff_receiving_environment: "Reported or threatened receiving environment",
+      eff_receiving_environment: "Receiving environment",
+      est_observed: "observed", est_reported: "reported", est_threatened: "threatened",
+      est_modelled: "modelled", est_unknown: "status not stated",
       eff_affected_area: "Area affected",
       eff_affected_length: "Length affected",
       eff_containment_failure: "Structure that failed",
@@ -1148,7 +1150,9 @@ tt_records: "Yayımlanmış kayıt",
       env_sources: "Kaynaklar",
       env_none: "Henüz yayımlanmış çevresel kayıt yok.",
       eff_released_material: "Çevreye çıkan madde",
-      eff_receiving_environment: "Ulaştığı bildirilen veya tehdit altındaki ortam",
+      eff_receiving_environment: "Alıcı ortam",
+      est_observed: "gözlendi", est_reported: "bildirildi", est_threatened: "tehdit altında",
+      est_modelled: "modellendi", est_unknown: "durumu belirtilmemiş",
       eff_affected_area: "Etkilenen alan",
       eff_affected_length: "Etkilenen uzunluk",
       eff_containment_failure: "Çöken yapı",
@@ -1424,7 +1428,12 @@ tt_records: "Yayımlanmış kayıt",
     (ROLE_ORDER.indexOf(a.role) + 1 || 99) - (ROLE_ORDER.indexOf(b.role) + 1 || 99);
   // Who the sources say held or ran the mine when the accident happened.
   // Organizations only: this register names no individual.
-  const orgsOf = id => ((D.incident_organizations || {})[id] || []).slice().sort(byRole);
+  // Only roles the source places at the mine on the day. The payload has carried
+  // at_incident_date from the start and every reader of it ignored the flag, so a
+  // company that postdates an accident could be shown beside it: both 1983 records
+  // named TTK, founded in October 1983, as operator and owner on the day.
+  const orgsOf = id => ((D.incident_organizations || {})[id] || [])
+    .filter(o => o.at_incident_date).sort(byRole);
   // Commodity groups (validated palette; gray = not stated in source).
   const COMM_GROUPS = {
     coal: "coal", lignite: "coal",
@@ -2023,8 +2032,10 @@ tt_records: "Yayımlanmış kayıt",
                                     : (e.canonical_title_en || e.canonical_title_tr);
         const rows = (e.effects || []).map(x => {
           const measure = x.value != null ? `${fmt.format(x.value)}${unitLabel(x.unit)}` : "";
+          const est = effectStatusLabel(x);
           return `${html(effectLabel(x.type))}: ` +
             [measure, html(effectText(x))].filter(Boolean).join(" · ") +
+            (est ? ` <span class="t-meta">[${html(est)}]</span>` : "") +
             (x.assertion_status && x.assertion_status !== "reported"
               ? ` <span class="t-meta">[${html(statusLabelOf(x.assertion_status))}]</span>` : "");
         }).join("<br>");
@@ -2589,6 +2600,10 @@ tt_records: "Yayımlanmış kayıt",
   // change, because they are names.
   const effectText = x => (LANG === "tr" ? x.qualitative : (x.qualitative_en || x.qualitative))
     || "";
+  // Whether the effect was observed, reported, threatened or modelled. Shown on
+  // every row, because leaving the common case unlabelled is what let one label,
+  // "Reached", stand for a measured arrival and a reported threat alike.
+  const effectStatusLabel = x => x.effect_status ? t("est_" + x.effect_status) : "";
 
   function renderEnvironmental() {
     // Counts that appear in prose are filled from the payload, never written
@@ -2613,8 +2628,10 @@ tt_records: "Yayımlanmış kayıt",
       const rows = (e.effects || []).map(x => {
         const measure = x.value != null ? `${fmt.format(x.value)}${unitLabel(x.unit)}` : "";
         const text = [measure, html(effectText(x))].filter(Boolean).join(" · ");
-        const flag = x.assertion_status
-          ? ` <span class="pill">${html(statusLabelOf(x.assertion_status))}</span>` : "";
+        const est = effectStatusLabel(x);
+        const flag = (est ? ` <span class="pill">${html(est)}</span>` : "") +
+          (x.assertion_status && x.assertion_status !== "reported"
+            ? ` <span class="pill">${html(statusLabelOf(x.assertion_status))}</span>` : "");
         return `<dt>${html(effectLabel(x.type))}</dt><dd lang="tr">${text}${flag}</dd>`;
       }).join("");
       const cites = (e.citations || []).map(c => sourceLink(c.url, c.organization))

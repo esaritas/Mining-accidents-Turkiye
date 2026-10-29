@@ -161,7 +161,9 @@ CREATE TABLE environmental_effects (
     notes TEXT,
     created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
     updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
-, qualitative_value_en TEXT);
+, qualitative_value_en TEXT, effect_status TEXT
+    NOT NULL DEFAULT 'unknown'
+    CHECK (effect_status IN ('observed', 'reported', 'threatened', 'modelled', 'unknown')));
 
 CREATE TABLE facilities (
     facility_id INTEGER PRIMARY KEY,

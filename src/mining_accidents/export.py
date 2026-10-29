@@ -131,6 +131,7 @@ EFFECT_COLUMNS = [
     "qualitative_value",
     "qualitative_value_en",
     "assertion_status",
+    "effect_status",
 ]
 
 REDIRECT_COLUMNS = ["merged_public_incident_id", "surviving_public_incident_id"]
@@ -309,7 +310,8 @@ def _collect_effects(conn: sqlite3.Connection, ids: list[int]) -> list[dict[str,
     rows = conn.execute(
         f"""
         SELECT i.public_incident_id, e.effect_type, e.measure_value, e.measure_unit,
-               e.qualitative_value, e.qualitative_value_en, e.assertion_status
+               e.qualitative_value, e.qualitative_value_en, e.assertion_status,
+               e.effect_status
         FROM environmental_effects e
         JOIN incidents i ON i.incident_id = e.incident_id
         WHERE e.incident_id IN ({placeholders})
@@ -501,6 +503,7 @@ _FIELD_TYPES: dict[str, dict[str, object]] = {
     "missing_current": {"type": "integer", "constraints": {"minimum": 0}},
     "casualty_status": {"type": "string"},
     "assertion_status": {"type": "string"},
+    "effect_status": {"type": "string"},
     "valid_at_incident_date": {"type": "integer", "constraints": {"minimum": 0, "maximum": 1}},
     "url": {"type": "string", "format": "uri"},
     "source_url": {"type": "string", "format": "uri"},

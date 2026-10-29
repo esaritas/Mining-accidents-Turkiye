@@ -492,6 +492,17 @@ window.MINING_DATA = {
       },
       {
         "document_type": "other",
+        "field_name": "fatalities_current",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
         "field_name": "incident_start_datetime",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
@@ -517,6 +528,17 @@ window.MINING_DATA = {
       {
         "document_type": "other",
         "field_name": "canonical_title_tr",
+        "organization": "Wikidata",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:47:04Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Wikidata item Q6067083: 1992 Kozlu kömür madeni faciası",
+        "url": "https://www.wikidata.org/wiki/Q6067083"
+      },
+      {
+        "document_type": "other",
+        "field_name": "date_precision",
         "organization": "Wikidata",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:47:04Z",
@@ -654,6 +676,17 @@ window.MINING_DATA = {
     "TR-MINE-2003-0002": [
       {
         "document_type": "other",
+        "field_name": "casualty_status",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
@@ -698,6 +731,17 @@ window.MINING_DATA = {
       }
     ],
     "TR-MINE-2004-0001": [
+      {
+        "document_type": "bulletin",
+        "field_name": "canonical_title_tr",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2004-09-01",
+        "retrieved_at": "2026-10-16T20:43:49Z",
+        "short_evidence_excerpt": "Çorum'un Bayat İlçesi Karakaya Köyü'nde faaliyet gösteren özel bir şirkete ait kömür ocağında, 9 Ağustos 2004 tarihinde meydana gelen grizu patlaması sonucu 3 işçi yaşamını yitirmiş",
+        "source_tier": "2",
+        "title": "Çorum'un Bayat ilçesi Karakaya köyü'nde grizu patlaması (Madencilik Bülteni, Eylül 2004)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/34e6bfcd358e25a_ek.pdf"
+      },
       {
         "document_type": "bulletin",
         "field_name": "date_precision",
@@ -790,6 +834,17 @@ window.MINING_DATA = {
       }
     ],
     "TR-MINE-2005-0001": [
+      {
+        "document_type": "news_article",
+        "field_name": "canonical_title_tr",
+        "organization": "Evrensel",
+        "publication_date": "2006-02-10",
+        "retrieved_at": "2026-10-16T20:43:49Z",
+        "short_evidence_excerpt": "Gediz Linyit İşletmesi'nin 7 Numaralı ocağında, 21 Nisan 2005'te meydana gelen grizu patlamasında, 1'i maden mühendisi 18 kişi hayatını kaybetmiş",
+        "source_tier": "3",
+        "title": "Madenci aileleri adalet istiyor",
+        "url": "https://www.evrensel.net/haber/170084/madenci-aileleri-adalet-istiyor"
+      },
       {
         "document_type": "news_article",
         "field_name": "date_precision",
@@ -949,6 +1004,17 @@ window.MINING_DATA = {
         "source_tier": "3",
         "title": "Wikidata item Q4619016: Karadon Maden Kazası",
         "url": "https://www.wikidata.org/wiki/Q4619016"
+      },
+      {
+        "document_type": "other",
+        "field_name": "coordinate_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:47:04Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Karadon maden kazası",
+        "url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
       },
       {
         "document_type": "other",
@@ -1213,6 +1279,17 @@ window.MINING_DATA = {
     "TR-MINE-2011-0001": [
       {
         "document_type": "other",
+        "field_name": "canonical_title_tr",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
@@ -1236,6 +1313,17 @@ window.MINING_DATA = {
       {
         "document_type": "other",
         "field_name": "incident_start_datetime",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "province_code",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
@@ -1359,6 +1447,17 @@ window.MINING_DATA = {
         "source_tier": "3",
         "title": "Wikidata item Q16869476: Soma Faciası",
         "url": "https://www.wikidata.org/wiki/Q16869476"
+      },
+      {
+        "document_type": "other",
+        "field_name": "coordinate_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:47:04Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Soma Faciası",
+        "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
       },
       {
         "document_type": "other",
@@ -1508,6 +1607,28 @@ window.MINING_DATA = {
         "url": "https://www.wikidata.org/wiki/Q18389693"
       },
       {
+        "document_type": "other",
+        "field_name": "coordinate_precision",
+        "organization": "Wikidata",
+        "publication_date": "",
+        "retrieved_at": "2026-10-15T09:47:06Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Wikidata item Q49460461: Ermenek Kömür İşletmesi",
+        "url": "https://www.wikidata.org/wiki/Q49460461"
+      },
+      {
+        "document_type": "other",
+        "field_name": "date_precision",
+        "organization": "Wikidata",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:47:04Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Wikidata item Q18389693: Ermenek maden kazası",
+        "url": "https://www.wikidata.org/wiki/Q18389693"
+      },
+      {
         "document_type": "parliamentary_minutes",
         "field_name": "fatalities_current",
         "organization": "TBMM",
@@ -1528,6 +1649,28 @@ window.MINING_DATA = {
         "source_tier": "1",
         "title": "Genel Kurul konuşması — 28 Ekim 2014 Ermenek maden kazası",
         "url": "https://tbmm.gov.tr/Milletvekili/UyeGenelKurulKonusmalariDetay?eid=71990"
+      },
+      {
+        "document_type": "other",
+        "field_name": "latitude",
+        "organization": "Wikidata",
+        "publication_date": "",
+        "retrieved_at": "2026-10-15T09:47:06Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Wikidata item Q49460461: Ermenek Kömür İşletmesi",
+        "url": "https://www.wikidata.org/wiki/Q49460461"
+      },
+      {
+        "document_type": "other",
+        "field_name": "longitude",
+        "organization": "Wikidata",
+        "publication_date": "",
+        "retrieved_at": "2026-10-15T09:47:06Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Wikidata item Q49460461: Ermenek Kömür İşletmesi",
+        "url": "https://www.wikidata.org/wiki/Q49460461"
       },
       {
         "document_type": "other",
@@ -2244,6 +2387,17 @@ window.MINING_DATA = {
         "url": "https://www.wikidata.org/wiki/Q31189416"
       },
       {
+        "document_type": "other",
+        "field_name": "date_precision",
+        "organization": "Wikidata",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:47:04Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Wikidata item Q31189416: Şirvan maden kazası",
+        "url": "https://www.wikidata.org/wiki/Q31189416"
+      },
+      {
         "document_type": "news_article",
         "field_name": "fatalities_current",
         "organization": "TRT Haber",
@@ -2405,6 +2559,39 @@ window.MINING_DATA = {
       },
       {
         "document_type": "other",
+        "field_name": "casualty_status",
+        "organization": "Wikidata",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:47:04Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Wikidata item Q114670156: Amasra maden kazası",
+        "url": "https://www.wikidata.org/wiki/Q114670156"
+      },
+      {
+        "document_type": "other",
+        "field_name": "casualty_status",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:47:04Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Amasra maden kazası",
+        "url": "https://tr.wikipedia.org/wiki/Amasra_maden_kazas%C4%B1"
+      },
+      {
+        "document_type": "other",
+        "field_name": "coordinate_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:47:04Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Amasra maden kazası",
+        "url": "https://tr.wikipedia.org/wiki/Amasra_maden_kazas%C4%B1"
+      },
+      {
+        "document_type": "other",
         "field_name": "date_precision",
         "organization": "Wikidata",
         "publication_date": "",
@@ -2496,6 +2683,17 @@ window.MINING_DATA = {
       {
         "document_type": "other",
         "field_name": "canonical_title_tr",
+        "organization": "Wikidata",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:47:04Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Wikidata item Q124522721: Erzincan maden kazası",
+        "url": "https://www.wikidata.org/wiki/Q124522721"
+      },
+      {
+        "document_type": "other",
+        "field_name": "coordinate_precision",
         "organization": "Wikidata",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:47:04Z",
@@ -2666,6 +2864,17 @@ window.MINING_DATA = {
     "TR-MINE-2024-0004": [
       {
         "document_type": "news_article",
+        "field_name": "canonical_title_tr",
+        "organization": "Evrensel",
+        "publication_date": "2023-11-23",
+        "retrieved_at": "2026-10-16T20:43:49Z",
+        "short_evidence_excerpt": "Siirt Valisi Kemal Kızılkaya, yaptığı açıklamada, maden ocağında 01.25 sularında göçük meydana geldiğini söyledi",
+        "source_tier": "3",
+        "title": "Siirt'te maden ocağında göçük meydana geldi, 3 işçi hayatını kaybetti",
+        "url": "https://www.evrensel.net/haber/504128/cengizin-madeninde-tesvikli-cinayet-siirtte-maden-ocaginda-gocuk-meydana-geldi-3-isci-hayatini-kaybetti"
+      },
+      {
+        "document_type": "news_article",
         "field_name": "date_precision",
         "organization": "Evrensel",
         "publication_date": "2023-11-23",
@@ -2816,6 +3025,17 @@ window.MINING_DATA = {
       {
         "document_type": "other",
         "field_name": "canonical_title_tr",
+        "organization": "Wikidata",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:47:04Z",
+        "short_evidence_excerpt": "",
+        "source_tier": "3",
+        "title": "Wikidata item Q134584262: Zara maden kazası",
+        "url": "https://www.wikidata.org/wiki/Q134584262"
+      },
+      {
+        "document_type": "other",
+        "field_name": "coordinate_precision",
         "organization": "Wikidata",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:47:04Z",
@@ -3495,14 +3715,19 @@ window.MINING_DATA = {
       "canonical_title_tr": "Nesko Şebinkarahisar atık barajı çökmesi",
       "citations": [
         {
-          "organization": "Wikidata",
-          "title": "Wikidata item Q116082433: Nesko Şebinkarahisar Maden İşletmesi felaketi",
-          "url": "https://www.wikidata.org/wiki/Q116082433"
+          "organization": "Diken",
+          "title": "Çöken barajdan 4 bin 500 ton kimyasal atık yayılmış",
+          "url": "https://www.diken.com.tr/?p=1042329"
         },
         {
           "organization": "Wikipedia (tr)",
           "title": "Nesko Şebinkarahisar Maden İşletmesi felaketi",
           "url": "https://tr.wikipedia.org/wiki/Nesko_%C5%9Eebinkarahisar_Maden_%C4%B0%C5%9Fletmesi_felaketi"
+        },
+        {
+          "organization": "Wikidata",
+          "title": "Wikidata item Q116082433: Nesko Şebinkarahisar Maden İşletmesi felaketi",
+          "url": "https://www.wikidata.org/wiki/Q116082433"
         }
       ],
       "coordinate_precision": "facility_approximate",
@@ -3510,6 +3735,7 @@ window.MINING_DATA = {
       "effects": [
         {
           "assertion_status": "reported",
+          "effect_status": "reported",
           "qualitative": "İkinci atık barajının iç seti",
           "qualitative_en": "Inner embankment of the second tailings dam",
           "type": "containment_failure",
@@ -3518,6 +3744,7 @@ window.MINING_DATA = {
         },
         {
           "assertion_status": "reported",
+          "effect_status": "reported",
           "qualitative": "Darabul Deresi ve Kılıçkaya Barajı",
           "qualitative_en": "Darabul Deresi stream and the Kılıçkaya reservoir",
           "type": "receiving_environment",
@@ -3526,6 +3753,7 @@ window.MINING_DATA = {
         },
         {
           "assertion_status": "alleged",
+          "effect_status": "threatened",
           "qualitative": "Kelkit Çayı ve ovası (tehdit altında olduğu bildirildi)",
           "qualitative_en": "The Kelkit Çayı river and its plain, reported as threatened",
           "type": "receiving_environment",
@@ -3534,6 +3762,7 @@ window.MINING_DATA = {
         },
         {
           "assertion_status": "reported",
+          "effect_status": "reported",
           "qualitative": "Kimyasal atık (kurşun, çinko, bakır zenginleştirme tesisi)",
           "qualitative_en": "Chemical waste from a lead, zinc and copper concentrator",
           "type": "released_material",
@@ -3571,6 +3800,7 @@ window.MINING_DATA = {
       "effects": [
         {
           "assertion_status": "official_finding",
+          "effect_status": "reported",
           "qualitative": "Bakanlık madenin faaliyetlerini durdurdu",
           "qualitative_en": "The ministry halted operations at the mine",
           "type": "production_suspension",
@@ -3579,6 +3809,7 @@ window.MINING_DATA = {
         },
         {
           "assertion_status": "reported",
+          "effect_status": "reported",
           "qualitative": "Toprak; maden Fırat Nehri kıyısında kurulu",
           "qualitative_en": "Ground; the mine stands on the bank of the Euphrates",
           "type": "receiving_environment",
@@ -3587,6 +3818,7 @@ window.MINING_DATA = {
         },
         {
           "assertion_status": "reported",
+          "effect_status": "reported",
           "qualitative": "Siyanürlü solüsyon (şirket beyanı)",
           "qualitative_en": "Cyanide solution, as the operator stated it",
           "type": "released_material",
@@ -3595,6 +3827,7 @@ window.MINING_DATA = {
         },
         {
           "assertion_status": "technical_finding",
+          "effect_status": "reported",
           "qualitative": "Siyanürlü bileşik (bilirkişi raporuna atfen)",
           "qualitative_en": "Cyanide compound, per a court-appointed expert report",
           "type": "released_material",
@@ -3632,6 +3865,7 @@ window.MINING_DATA = {
       "effects": [
         {
           "assertion_status": "reported",
+          "effect_status": "reported",
           "qualitative": "Yığın liç alanı",
           "qualitative_en": "The heap leach pad",
           "type": "containment_failure",
@@ -3640,6 +3874,7 @@ window.MINING_DATA = {
         },
         {
           "assertion_status": "official_finding",
+          "effect_status": "reported",
           "qualitative": "Çevre izin ve lisans belgeleri iptal edildi, üretim durduruldu",
           "qualitative_en": "Environmental permits and licences cancelled; production stopped",
           "type": "production_suspension",
@@ -3648,6 +3883,7 @@ window.MINING_DATA = {
         },
         {
           "assertion_status": "reported",
+          "effect_status": "reported",
           "qualitative": "Sabırlı Deresi",
           "qualitative_en": "Sabırlı Deresi stream",
           "type": "receiving_environment",
@@ -3812,7 +4048,7 @@ window.MINING_DATA = {
       "text_tr": "Bu veri kesitindeki çevresel ifadeler Vikipedi’ye atıf yapıyor. Aktarılan resmî işlem, doğrudan incelenmiş resmî belge anlamına gelmez. Kayıtlı tarih alıntısı tarihi değil sahayı anlatıyor. Bu kayıt su/toprak ölçümlerini ve etkinin yayılımını ortaya koymuyor."
     }
   ],
-  "export_timestamp": "2026-10-20T19:18:28Z",
+  "export_timestamp": "2026-10-29T20:50:46Z",
   "hazard_matrix": {
     "bands": [
       {
@@ -4245,7 +4481,7 @@ window.MINING_DATA = {
     "TR-MINE-1983-0001": [
       {
         "assertion_status": "reported",
-        "at_incident_date": true,
+        "at_incident_date": false,
         "country_code": "TR",
         "country_label": "Türkiye",
         "name": "Türkiye Taşkömürü Kurumu",
@@ -4256,7 +4492,7 @@ window.MINING_DATA = {
     "TR-MINE-1983-0002": [
       {
         "assertion_status": "reported",
-        "at_incident_date": true,
+        "at_incident_date": false,
         "country_code": "TR",
         "country_label": "Türkiye",
         "name": "Türkiye Taşkömürü Kurumu",
@@ -6561,12 +6797,12 @@ window.MINING_DATA = {
     ]
   },
   "pipeline": {
-    "claims_awaiting_review": 11,
-    "claims_total": 954,
+    "claims_awaiting_review": 18,
+    "claims_total": 961,
     "decisions_total": 299,
     "published_incidents": 52,
     "records_in_review": 0,
-    "source_documents": 202,
+    "source_documents": 204,
     "withdrawn_records": 5
   },
   "policy_events": [
@@ -6599,7 +6835,7 @@ window.MINING_DATA = {
       "kind": "law",
       "label_en": "Law No. 6552 (post-Soma amendments incl. mining work conditions)",
       "label_tr": "6552 sayılı Kanun (maden çalışma koşulları değişiklikleri)",
-      "notes": "Existing Official Gazette publication marker retained. Direct source retrieval timed out on 29 October 2026; link recheck remains open. Chronology only; no causal claim.",
+      "notes": "Official Gazette publication marker. Link checked 2026-10-29 and returns HTTP 200. Chronology only; no causal claim.",
       "source_url": "https://www.resmigazete.gov.tr/eskiler/2014/09/20140911M1-1.htm"
     },
     {
@@ -29006,7 +29242,7 @@ window.MINING_DATA = {
       "year": null
     }
   ],
-  "schema_version": "005",
+  "schema_version": "006",
   "sites": [
     {
       "commodity_code": "coal",

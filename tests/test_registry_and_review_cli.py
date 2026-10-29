@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import csv
 import sqlite3
 from pathlib import Path
 
@@ -13,11 +14,20 @@ from mining_accidents.cli import app
 
 runner = CliRunner()
 
+REGISTRY_CSV = REPO_ROOT / "docs" / "source_registry.csv"
+
+
+def _registry_rows() -> int:
+    """How many sources the registry declares. Derived, so adding one source
+    does not need three test edits."""
+    with REGISTRY_CSV.open(encoding="utf-8", newline="") as fh:
+        return sum(1 for _ in csv.DictReader(fh))
+
 
 def test_registry_csv_loads_and_upserts(conn: sqlite3.Connection) -> None:
-    csv_path = REPO_ROOT / "docs" / "source_registry.csv"
-    created, updated = provenance.import_source_registry(conn, csv_path)
-    assert created == 15 and updated == 0
+    expected = _registry_rows()
+    created, updated = provenance.import_source_registry(conn, REGISTRY_CSV)
+    assert created == expected and updated == 0
 
     keys = {row["source_key"] for row in conn.execute("SELECT source_key FROM source_registry")}
     assert {
@@ -30,21 +40,22 @@ def test_registry_csv_loads_and_upserts(conn: sqlite3.Connection) -> None:
         "wikidata_sites",
         "gem_tracker",
         "mapeg",
+        "ttk",
     } <= keys
 
     # Second run updates in place instead of duplicating.
-    created, updated = provenance.import_source_registry(conn, csv_path)
-    assert created == 0 and updated == 15
-    assert conn.execute("SELECT COUNT(*) FROM source_registry").fetchone()[0] == 15
+    created, updated = provenance.import_source_registry(conn, REGISTRY_CSV)
+    assert created == 0 and updated == expected
+    assert conn.execute("SELECT COUNT(*) FROM source_registry").fetchone()[0] == expected
 
 
 def test_registry_entries_flagged_stale_by_qc(conn: sqlite3.Connection) -> None:
     from mining_accidents import quality
 
-    provenance.import_source_registry(conn, REPO_ROOT / "docs" / "source_registry.csv")
+    provenance.import_source_registry(conn, REGISTRY_CSV)
     findings = quality.check_source_registry_freshness(conn, "2100-01-01T00:00:00Z")
     # Unassessed entries + assessments stale relative to the pinned clock.
-    assert len(findings) == 15
+    assert len(findings) == _registry_rows()
     assert all(f.check_id == "QC-W05" for f in findings)
 
 
@@ -59,7 +70,7 @@ def test_import_registry_command(tmp_path: Path) -> None:
     db = _cli_db(tmp_path)
     result = runner.invoke(app, ["import-registry", "--db-path", str(db)])
     assert result.exit_code == 0, result.output
-    assert "15 created" in result.output
+    assert f"{_registry_rows()} created" in result.output
 
 
 def test_decide_assign_merge_flow(tmp_path: Path) -> None:

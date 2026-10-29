@@ -126,6 +126,9 @@ RECORDS: tuple[dict[str, object], ...] = (
                 "type": "receiving_environment",
                 "qualitative": "Kelkit Çayı ve ovası (tehdit altında olduğu bildirildi)",
                 "qualitative_en": "The Kelkit Çayı river and its plain, reported as threatened",
+                # The source reports a threat, not an arrival, and the page used
+                # to print it under "Reached" like every other receptor.
+                "effect_status": "threatened",
                 "status": "alleged",
                 "source": "diken_kelkit",
                 "excerpt": "Kılıçkaya Barajı'nın bağlı olduğu Kelkit Çayı ve ovasını tehdit "
@@ -319,14 +322,82 @@ def _reviewed_claim(
     return claim_id
 
 
+def _apply_effect_statuses(conn: sqlite3.Connection, reviewer: str) -> int:
+    """Set effect_status on rows already held, from the table in this file.
+
+    Touches one column and writes no claim, no decision and no new row. The
+    values come from what each cited source states, which is why a receptor a
+    source only reports as threatened stops being shown as one the material
+    reached.
+    """
+    changed = 0
+    for record in RECORDS:
+        row = conn.execute(
+            "SELECT incident_id FROM incidents WHERE canonical_title_tr = ?",
+            (record["title_tr"],),
+        ).fetchone()
+        if row is None:
+            print(f"   {record['key']}: not in this database, skipped")
+            continue
+        for effect in record["effects"]:  # type: ignore[union-attr]
+            status = str(effect.get("effect_status", "reported"))
+            held = conn.execute(
+                "SELECT environmental_effect_id AS eid, effect_status FROM "
+                "environmental_effects WHERE incident_id = ? AND effect_type = ? "
+                "AND IFNULL(qualitative_value,'') = ?",
+                (int(row["incident_id"]), effect["type"], effect.get("qualitative") or ""),
+            ).fetchone()
+            if held is None or held["effect_status"] == status:
+                continue
+            conn.execute(
+                "UPDATE environmental_effects SET effect_status = ?, "
+                "updated_at = strftime('%Y-%m-%dT%H:%M:%SZ','now') "
+                "WHERE environmental_effect_id = ?",
+                (status, held["eid"]),
+            )
+            conn.commit()
+            log_review_action(
+                conn,
+                reviewer,
+                "environmental_effect_status_set",
+                "environmental_effect",
+                int(held["eid"]),
+                before_summary=f"effect_status={held['effect_status']}",
+                after_summary=f"effect_status={status}",
+                notes="Set from what the cited source states, so a threatened receptor is "
+                "no longer displayed as one the material reached.",
+            )
+            changed += 1
+            print(f"   {record['key']}: {effect['type']} -> {status}")
+    return changed
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db-path", default="database/mining_accidents.sqlite")
     parser.add_argument("--reviewer", required=True)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--statuses-only",
+        action="store_true",
+        help="Bring effect_status into line with the table above without retrieving "
+        "anything. For a correction to a column on rows whose quotes were already "
+        "verified and whose document hashes are on file, where re-retrieval is either "
+        "unnecessary or impossible: Medyascope began refusing this project's requests "
+        "with HTTP 403 (checked 2026-10-29) and no local copy of its pages was kept, "
+        "so the Çöpler 2022 record cannot be re-verified from source at all "
+        "(open question 42).",
+    )
     args = parser.parse_args()
     conn = get_connection(args.db_path)
     reviewer = args.reviewer
+
+    if args.statuses_only:
+        print("statuses only: nothing retrieved, nothing verified, no new row written.\n")
+        changed = _apply_effect_statuses(conn, reviewer)
+        print(f"\n{changed} effect status(es) brought into line.")
+        conn.close()
+        return
 
     needed = {str(r["source"]) for r in RECORDS}
     needed |= {str(e["source"]) for r in RECORDS for e in r["effects"]}  # type: ignore[union-attr]
@@ -560,11 +631,33 @@ def main() -> None:
             print(f"   operator: {name}")
 
         for effect in record["effects"]:  # type: ignore[union-attr]
-            if conn.execute(
-                "SELECT 1 FROM environmental_effects WHERE incident_id = ? AND effect_type = ? "
-                "AND IFNULL(qualitative_value,'') = ?",
+            held = conn.execute(
+                "SELECT environmental_effect_id AS eid, effect_status FROM environmental_effects "
+                "WHERE incident_id = ? AND effect_type = ? AND IFNULL(qualitative_value,'') = ?",
                 (incident_id, effect["type"], effect.get("qualitative") or ""),
-            ).fetchone():
+            ).fetchone()
+            status = str(effect.get("effect_status", "reported"))
+            if held:
+                if held["effect_status"] != status:
+                    conn.execute(
+                        "UPDATE environmental_effects SET effect_status = ?, "
+                        "updated_at = strftime('%Y-%m-%dT%H:%M:%SZ','now') "
+                        "WHERE environmental_effect_id = ?",
+                        (status, held["eid"]),
+                    )
+                    conn.commit()
+                    log_review_action(
+                        conn,
+                        reviewer,
+                        "environmental_effect_status_set",
+                        "environmental_effect",
+                        int(held["eid"]),
+                        before_summary=f"effect_status={held['effect_status']}",
+                        after_summary=f"effect_status={status}",
+                        notes="Set from what the cited source states, so a threatened "
+                        "receptor is no longer displayed as one the material reached.",
+                    )
+                    print(f"   effect: {effect['type']} status -> {status}")
                 continue
             ekey = str(effect["source"])
             effect_document = _document(conn, ekey, texts[ekey][1])
@@ -583,8 +676,8 @@ def main() -> None:
             conn.execute(
                 "INSERT INTO environmental_effects (incident_id, effect_type, measure_value, "
                 "measure_unit, qualitative_value, source_claim_id, assertion_status, "
-                "review_status, notes, qualitative_value_en) "
-                "VALUES (?, ?, ?, ?, ?, ?, ?, 'reviewed', ?, ?)",
+                "review_status, notes, qualitative_value_en, effect_status) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, 'reviewed', ?, ?, ?)",
                 (
                     incident_id,
                     effect["type"],
@@ -595,6 +688,7 @@ def main() -> None:
                     effect.get("status", "reported"),
                     effect.get("notes"),
                     effect.get("qualitative_en"),
+                    status,
                 ),
             )
             conn.commit()

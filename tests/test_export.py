@@ -135,7 +135,7 @@ def test_manifest_contents(conn: sqlite3.Connection, tmp_path: Path) -> None:
     assert manifest["export_timestamp"] == "2100-01-01T00:00:00Z"
     # bumped by 003 (environmental incidents), 004 (their classification system)
     # and 005 (an English rendering for an effect's description)
-    assert manifest["db_schema_version"] == "005"
+    assert manifest["db_schema_version"] == "006"
     assert set(manifest["file_sha256"]) >= {"incidents.csv", "datapackage.json"}
     assert all(len(h) == 64 for h in manifest["file_sha256"].values())
     assert manifest["vocabulary_versions"]["hazards.csv"] == "1.0"

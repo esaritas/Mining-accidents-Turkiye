@@ -561,6 +561,10 @@
           {
             "name": "assertion_status",
             "type": "string"
+          },
+          {
+            "name": "effect_status",
+            "type": "string"
           }
         ],
         "foreignKeys": [

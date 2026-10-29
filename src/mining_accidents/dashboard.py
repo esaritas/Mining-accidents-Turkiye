@@ -167,6 +167,7 @@ def _environmental(public_dir: Path) -> list[dict[str, object]]:
                         "qualitative": row["qualitative_value"] or None,
                         "qualitative_en": row.get("qualitative_value_en") or None,
                         "assertion_status": row["assertion_status"],
+                        "effect_status": row.get("effect_status") or "unknown",
                     }
                 )
     mechanisms: dict[str, list[dict[str, str]]] = {}

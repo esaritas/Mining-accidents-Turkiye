@@ -17,7 +17,7 @@ every published incident. A year can explicitly focus the map; otherwise the
 timeline retains the full chronology independently of map filters. The separate
 İSİG series remains available as expandable context, not as a substitute story.
 Current toll status is retained in cards and year details. Milestone selection
-is **STATUS: PROPOSED — awaiting editorial decision** (open question #20).
+is **STATUS: PROPOSED — awaiting editorial decision** (open question #43).
 
 No canonical evidence or death counts changed in this follow-up.
 

@@ -75,9 +75,13 @@ def build_artifact(
         raise ValueError("a database connection or explicit data_js_path is required")
     # HTML parsers recognize </script> even inside a quoted JSON string.
     # Escape '<' at this boundary; JSON decoding preserves the original text.
-    serialized = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace(
-        "<", "\\u003c"
-    )
+    # Sorted, so the bytes do not depend on which path built them. Without this
+    # a payload read back from data.js (written sort_keys=True) serialises in a
+    # different key order from one built straight off the database, and CI's
+    # "artifact matches the saved payload" gate fails on a file that is correct.
+    serialized = json.dumps(
+        payload, ensure_ascii=False, separators=(",", ":"), sort_keys=True
+    ).replace("<", "\\u003c")
     embedded = "<script>window.MINING_DATA = " + serialized + ";</script>\n"
     output = Path(output_path)
     output.parent.mkdir(parents=True, exist_ok=True)

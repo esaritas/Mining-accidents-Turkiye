@@ -1,26 +1,26 @@
 {
-  "db_schema_version": "005",
-  "export_timestamp": "2026-10-20T19:18:28Z",
+  "db_schema_version": "006",
+  "export_timestamp": "2026-10-29T20:50:46Z",
   "file_sha256": {
-    "datapackage.json": "47a776fa30c070943a9037e9539f5da78d4ce191a035006ba2ef2d296446a7ca",
+    "datapackage.json": "a812655c86ffdf5e2fd5db2de22792044543e044ac92898ce5fb23bab791bb1f",
     "environmental_classifications.csv": "4d22793bc250f0570d3e9b7bc78de049009acd8608ccdb51ee8f99563f156cfc",
-    "environmental_effects.csv": "6312304ac9d44615c29311d42b1bfd725a56e7d2f4bff595b83b41a911e2fef5",
+    "environmental_effects.csv": "7c9b301a8deb1aa3b2e4eff4d0ba326dd747a663a05a83e4070fe6f997bfa35e",
     "environmental_incidents.csv": "68df29588491aa5f385462e5669821c2f3aac9ba06807a6d252e902e134e9528",
-    "environmental_sources.csv": "823d116d8cf227eaae9c2ecf8f00010a5b53c7583df73c55b8b198bc8d179372",
+    "environmental_sources.csv": "7ce3371d57692d19cb47852c212aa3e3ffceca432c785514f9b276bdae4da935",
     "facilities.csv": "5bfad34525a224f0abcffdc9da3d5cce0215eba0219cf00e00a739cb9d93829a",
     "facility_organization_roles.csv": "e0fe828236b59b2e2170368ca96a890252257b7fea2b1404e893fa4e8521a071",
     "incident_classifications.csv": "58f869c6ffabe16b70470d4ff2d364423ada40530d49af8f83d538da38d14e84",
-    "incident_organization_roles.csv": "10deb0204c52c7d829dc963ab8e23d2c86fc4a1e9e16db00a0eaa1f1d155156d",
+    "incident_organization_roles.csv": "a5d29681f51418ddd5e1749256389ec7745aaa3711a48059fdd97e99b5f775e9",
     "incidents.csv": "508a96d43840af50889abf20ed2058559c41a612c71f48d5848c0d5f0271c858",
     "incidents.json": "3c9914a186a5a2151fb09aeeacfe282589ba9fe4dc954b2e8610c11751c33cd4",
     "merged_id_redirects.csv": "02e62e86f4f8e1a23dea9ee354def04c0d827bccd8f490ed9421821873157215",
-    "sources.csv": "35f2b17dfa69ca98247fabdbc22a2e5108195bbc5de22652661f1259bb8de74d",
-    "validation_report.json": "89c4dc01d3252d9e5a01b1a943c073b90b54c04da3ba6d00ef435ba7f5ff2517"
+    "sources.csv": "4a3aea4c07a1cd65c5dcbebf2072771e9face3d9304338d40c9deb65a06d4c87",
+    "validation_report.json": "47f35a41b2979ab44e2ef7179ae859ef2bed0cf710c6c9a3e23567f0e238b4ea"
   },
-  "git_commit": "baa54e74aca31f380871557d1697a8ccd8fa555d",
+  "git_commit": "491c9424eee08ffe6f12f0856797c8793d57fd5c",
   "quality_findings": {
     "critical": 0,
-    "warning": 15
+    "warning": 12
   },
   "row_counts": {
     "environmental_effects": 11,
@@ -31,7 +31,7 @@
     "incident_organization_roles": 29,
     "incidents": 52,
     "merged_id_redirects": 4,
-    "sources": 238
+    "sources": 258
   },
   "schema_validation": {
     "total_errors": 0,
