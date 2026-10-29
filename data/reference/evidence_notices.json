@@ -1,0 +1,141 @@
+[
+  {
+    "id": "EV-20261029-01",
+    "public_incident_id": "TR-MINE-2022-0001",
+    "field": "fatalities_current",
+    "status": "pending_human_review",
+    "checked_at": "2026-10-29",
+    "text_en": "The snapshot selects 42 deaths. The TBMM transcript of 6 April 2023, printed page 74, reports the toll rising to 43 after a delayed death. Updating the canonical toll requires a dated casualty observation and a named human review decision.",
+    "text_tr": "Mevcut veri kesiti 42 can kaybını seçiyor. TBMM’nin 6 Nisan 2023 tutanağının 74. sayfası, sonradan gerçekleşen bir ölümle sayının 43’e yükseldiğini aktarıyor. Esas sayının güncellenmesi, tarihli bir can kaybı gözlemi ve adı kayıtlı bir insan incelemecinin kararını gerektirir.",
+    "sources": [
+      {
+        "label": "TBMM · 6 April 2023 · p. 74",
+        "url": "https://www5.tbmm.gov.tr/tutanaklar/TUTANAK/TBMM/d27/c129/tbmm27129086.pdf"
+      }
+    ]
+  },
+  {
+    "id": "EV-20261029-02",
+    "public_incident_id": "TR-MINE-1983-0001",
+    "field": "organization_role",
+    "status": "pending_human_review",
+    "checked_at": "2026-10-29",
+    "text_en": "The snapshot names TTK as operator on 7 March 1983. TTK’s institutional history places its establishment later in 1983 and describes predecessor EKİ under TKİ. The historical entity attribution is under review; the present organization name must not be treated as verified for March 1983.",
+    "text_tr": "Veri kesiti 7 Mart 1983 tarihinde işletmeci olarak TTK’yı gösteriyor. TTK’nın kurum tarihçesi kuruluşunu 1983’ün daha sonraki dönemine yerleştiriyor ve TKİ’ye bağlı önceki EKİ yapısını anlatıyor. Tarihsel kurum atfı incelemededir; bugünkü kurum adı Mart 1983 için doğrulanmış sayılmamalıdır.",
+    "sources": [
+      {
+        "label": "TTK · institutional legal history",
+        "url": "https://www.taskomuru.gov.tr/ttk/yasal-duzenleme/"
+      }
+    ]
+  },
+  {
+    "id": "EV-20261029-03",
+    "public_incident_id": "TR-MINE-1983-0002",
+    "field": "incident_start_datetime",
+    "status": "pending_human_review",
+    "checked_at": "2026-10-29",
+    "text_en": "The snapshot gives 10 April 1983; TTK’s chronology gives 11 April. The date remains unresolved pending review of contemporary records. TTK’s attribution to this early-1983 event also needs an effective-date check.",
+    "text_tr": "Veri kesiti 10 Nisan 1983, TTK tarihçesi ise 11 Nisan tarihini veriyor. Dönemin kayıtları incelenene kadar tarih uyuşmazlığı açıktır. TTK’nın bu erken 1983 olayına atfı da kuruluş ve geçerlilik tarihi açısından incelenmelidir.",
+    "sources": [
+      {
+        "label": "TTK · chronology, 1983",
+        "url": "https://www.taskomuru.gov.tr/ttk/tarihce/"
+      }
+    ]
+  },
+  {
+    "id": "EV-20261029-04",
+    "public_incident_id": "TR-MINE-1990-0002",
+    "field": "fatalities_current",
+    "status": "pending_human_review",
+    "checked_at": "2026-10-29",
+    "text_en": "The public fatality field lacks its own citation. A chamber statement dated 7 February 2023 supports the displayed 68 deaths; monitoring found a conflicting Wikidata value of 66. This supporting source is disclosed here pending a recorded citation/decision update, without treating repeated reports as independent confirmation.",
+    "text_tr": "Can kaybı alanının kamuya açık dışa aktarımında kendine ait atıf yoktur. Odanın 7 Şubat 2023 açıklaması gösterilen 68 sayısını destekliyor; izleme işlemi Vikiveri’de 66 buldu. Bu destekleyici kaynak, kayıtlı atıf ve karar güncellemesi beklenirken burada sunuluyor; tekrar eden haberler bağımsız doğrulama sayılmıyor.",
+    "sources": [
+      {
+        "label": "TMMOB Maden Mühendisleri Odası · 7 February 2023",
+        "url": "https://www.maden.org.tr/icerik/7-subat-1990-yeni-celtek-faciasi-12471"
+      }
+    ]
+  },
+  {
+    "id": "EV-20261029-05",
+    "public_incident_id": "TR-MINE-2014-0012",
+    "field": "fatalities_current",
+    "status": "pending_human_review",
+    "checked_at": "2026-10-29",
+    "text_en": "Monitoring flags 1 versus the published 2 deaths. The contemporaneous Bartın.info report records the second recovery in its 13:35 update on 1 November 2014, supporting 2. This appears to be a reporting-stage difference; a human decision must close the conflict.",
+    "text_tr": "İzleme işlemi yayımlanan 2 sayısına karşı 1 can kaybı buldu. Bartın.info’nun 1 Kasım 2014 tarihli haberinin 13.35 güncellemesi ikinci kişinin cansız bedenine ulaşıldığını bildirerek 2 sayısını destekliyor. Fark haberin güncellenme aşamasından kaynaklanıyor olabilir; uyuşmazlık insan incelemesiyle kapatılmalıdır.",
+    "sources": [
+      {
+        "label": "Bartın.info · 1 November 2014 · 13:35 update",
+        "url": "https://www.bartin.info/amasrada-maden-ocaginda-gocuk-2-olu-1-yarali"
+      }
+    ]
+  },
+  {
+    "id": "EV-20261029-06",
+    "public_incident_id": "TR-MINE-2026-0001",
+    "field": "injuries_current,event_mechanism",
+    "status": "pending_human_review",
+    "checked_at": "2026-10-29",
+    "text_en": "The snapshot has no injury figure or mechanism code. The chamber’s 2 October 2026 statement reports a collapse, 5 deaths and 2 injuries. Its team explicitly lacked underground access and plans needed for definitive causal findings. These additions are awaiting human review.",
+    "text_tr": "Veri kesitinde yaralı sayısı ve olay mekanizması kodu yoktur. Odanın 2 Ekim 2026 açıklaması göçük, 5 can kaybı ve 2 yaralı bildiriyor. Heyet, kesin neden tespiti için gerekli yeraltı erişimi ve planlara sahip olmadığını açıkça belirtiyor. Bu eklemeler insan incelemesi bekliyor.",
+    "sources": [
+      {
+        "label": "TMMOB Maden Mühendisleri Odası · 2 October 2026",
+        "url": "https://www.maden.org.tr/calismalar/basin-aciklamalari/detay/yasadigimiz-cagda-madenlerde-yasanan-gocukler-kabul-edilemez-soma-da-meydana-gelen-maden-gocukte-5-maden-emekcisi-hayatini-kaybetmis-2-isci-yaralanmistir-202610021438"
+      }
+    ]
+  },
+  {
+    "id": "EV-20261029-07",
+    "public_incident_id": "TR-ENV-2021-0001",
+    "field": "environmental_effects",
+    "status": "pending_human_review",
+    "checked_at": "2026-10-29",
+    "text_en": "The Kelkit river/plain assertion describes a threat, not a confirmed arrival or measured contamination. The release quantity also needs review of the original qualifier; the scope protocol describes more than 4,500 tonnes.",
+    "text_tr": "Kelkit Çayı ve ovasına ilişkin ifade, doğrulanmış bir ulaşımı veya ölçülmüş kirlenmeyi değil tehdidi anlatır. Miktarın özgün niteleyicisi de incelenmelidir; kapsam protokolü 4.500 tondan fazla ifadesini kullanır.",
+    "sources": [
+      {
+        "label": "Wikidata",
+        "url": "https://www.wikidata.org/wiki/Q116082433"
+      },
+      {
+        "label": "Wikipedia (tr)",
+        "url": "https://tr.wikipedia.org/wiki/Nesko_%C5%9Eebinkarahisar_Maden_%C4%B0%C5%9Fletmesi_felaketi"
+      }
+    ]
+  },
+  {
+    "id": "EV-20261029-08",
+    "public_incident_id": "TR-ENV-2022-0001",
+    "field": "environmental_effects",
+    "status": "pending_human_review",
+    "checked_at": "2026-10-29",
+    "text_en": "The 20 m³ operator estimate and 210 m³ estimate attributed to an expert report are competing claims relayed by a press article. The underlying report has not been verified here. Proximity to the Euphrates is not evidence of river contamination; the saved date excerpt does not establish the event date.",
+    "text_tr": "İşletmecinin 20 m³ tahmini ve bilirkişi raporuna atfedilen 210 m³ tahmini, basın haberinin aktardığı farklı iddialardır. Asıl rapor burada doğrulanmamıştır. Fırat’a yakınlık nehir kirlenmesinin kanıtı değildir; kayıtlı tarih alıntısı da olay tarihini belirlememektedir.",
+    "sources": [
+      {
+        "label": "Medyascope",
+        "url": "https://medyascope.tv/2022/09/24/bakanliga-ilic-itirazi-bakanlik-siyanur-sizintisi-miktari-konusunda-bile-sirketin-beyanini-esas-aliyor-sizan-siyanur-20-degil-210-metrekup/"
+      }
+    ]
+  },
+  {
+    "id": "EV-20261029-09",
+    "public_incident_id": "TR-ENV-2024-0001",
+    "field": "environmental_effects",
+    "status": "pending_human_review",
+    "checked_at": "2026-10-29",
+    "text_en": "Environmental assertions in this snapshot cite Wikipedia. A reported official action is not a directly inspected official document. The saved date excerpt describes the site, not the date. Water/soil measurements and impact extent are not established by this record.",
+    "text_tr": "Bu veri kesitindeki çevresel ifadeler Vikipedi’ye atıf yapıyor. Aktarılan resmî işlem, doğrudan incelenmiş resmî belge anlamına gelmez. Kayıtlı tarih alıntısı tarihi değil sahayı anlatıyor. Bu kayıt su/toprak ölçümlerini ve etkinin yayılımını ortaya koymuyor.",
+    "sources": [
+      {
+        "label": "Wikipedia (tr)",
+        "url": "https://tr.wikipedia.org/wiki/%C4%B0li%C3%A7_maden_kazas%C4%B1"
+      }
+    ]
+  }
+]

@@ -14,7 +14,7 @@ import json
 import sqlite3
 from pathlib import Path
 
-from mining_accidents import analysis, monitor, research, vocabularies
+from mining_accidents import analysis, evidence_notes, monitor, research, vocabularies
 
 DEFAULT_PUBLIC_DIR = Path("data/public")
 DEFAULT_OUTPUT = Path("dashboard/data.js")
@@ -40,6 +40,8 @@ def _citations(public_dir: Path) -> dict[str, list[dict[str, str]]]:
                 "source_tier": row["source_tier"],
                 "publication_date": row["publication_date"],
                 "retrieved_at": row["retrieved_at"],
+                "short_evidence_excerpt": row.get("short_evidence_excerpt") or "",
+                "document_type": row.get("document_type") or "",
             }
             bucket = citations.setdefault(row["public_incident_id"], [])
             if entry not in bucket:
@@ -413,6 +415,7 @@ def build_payload(
         site["province_name"] = provinces.get(site.get("province_code") or "", "")
     payload = {
         "incidents": incidents,
+        "evidence_notices": evidence_notes.load_notes(),
         "sites": sites,
         "province_names": provinces,
         "vocabulary_labels": _vocabulary_labels(),

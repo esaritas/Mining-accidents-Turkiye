@@ -1,0 +1,8 @@
+public_incident_id,source_document_hash,claim_subject_type,field_name,raw_value,normalized_value,extraction_method,assertion_status,review_status,short_evidence_excerpt
+TR-MINE-2022-0001,a6655d55806e74f1a9db3b1c060e0c39bba422dfb9f20c97f02d552b34efc7cc,incident,fatalities_current,43,43,ai_assisted,reported,needs_review,Amasra maden katliamında yaşamını yitiren madenci sayısı 42’den 43’e çıktı.
+TR-MINE-1983-0002,15de117a402f290ad6bb5e0940daa507329db648800f3c926c8c63d29d30dd41,incident,incident_start_datetime,1983-04-11T00:00:00+03:00,1983-04-11T00:00:00+03:00,ai_assisted,reported,needs_review,"Kozlu-İhsaniye Ocağında patlama oldu, 10 kişi öldü (11 Nisan)."
+TR-MINE-1990-0002,f292eea8efc5bfde0c0c8c3a466e07ea64bb254b76d2efd07dc42462ae7f6201,incident,fatalities_current,68,68,ai_assisted,reported,needs_review,"7 Şubat 1990 tarihinde yaşanan ""Yeni Çeltek Faciası""nda yaşamını yitiren 68 madenciyi saygıyla anıyoruz."
+TR-MINE-2014-0012,81d8dc3f329c983ce6ffa4e2f1d48d7874867caad53d78538f6360c514a2cf83,incident,fatalities_current,2,2,ai_assisted,reported,needs_review,İKİNCİ İŞÇİNİN DE CESEDİ ÇIKARILDI
+TR-MINE-2026-0001,413c0053b3fce9de3a81c4114355946a2b1545a0a5eb4d006232ebaafbd62ac8,incident,injuries_current,2,2,ai_assisted,reported,needs_review,meydana gelen göçükte 5 işçi hayatını kaybetmiş ve 2 işçi yaralanmıştır.
+TR-MINE-2026-0001,413c0053b3fce9de3a81c4114355946a2b1545a0a5eb4d006232ebaafbd62ac8,incident,event_mechanism,roof_or_ground_collapse,roof_or_ground_collapse,ai_assisted,reported,needs_review,
+TR-MINE-2026-0001,413c0053b3fce9de3a81c4114355946a2b1545a0a5eb4d006232ebaafbd62ac8,incident,fatalities_current,5,5,ai_assisted,reported,needs_review,

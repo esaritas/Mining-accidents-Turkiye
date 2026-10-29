@@ -139,6 +139,16 @@ def _guard_decision(conn: sqlite3.Connection, decision: ClaimDecision) -> None:
         claim = _claim_row(conn, claim_id)
         if claim["incident_id"] is not None and claim["incident_id"] != decision.incident_id:
             raise ReviewError(f"Claim {claim_id} is linked to a different incident")
+        if (
+            decision.decision in ("accept_claim", "manual_override")
+            and claim_id != decision.selected_claim_id
+            and claim["extraction_method"] in ("ai_assisted", "ocr_assisted")
+            and claim["review_status"] != "reviewed"
+        ):
+            raise ReviewError(
+                f"Claim {claim_id} is {claim['extraction_method']} and not "
+                "reviewed; it cannot support a canonical decision"
+            )
 
     if decision.selected_claim_id is not None:
         claim = _claim_row(conn, decision.selected_claim_id)

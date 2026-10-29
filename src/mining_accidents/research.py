@@ -82,6 +82,7 @@ def refresh_snapshot(public_dir: Path, data_js: Path) -> Path:
     The aggregate/pipeline snapshot cannot be regenerated without the working
     database. Its timestamp is retained and no new evidence review is implied.
     """
+    from mining_accidents import analysis, evidence_notes
     from mining_accidents.artifact import _payload_from_js
     from mining_accidents.dashboard import HEADER, _citations, _classifications, _sites
 
@@ -95,6 +96,8 @@ def refresh_snapshot(public_dir: Path, data_js: Path) -> Path:
     payload["citations"] = _citations(public_dir)
     payload["classifications"] = _classifications(public_dir)
     payload["sites"] = _sites(public_dir)
+    payload["evidence_notices"] = evidence_notes.load_notes()
+    payload["policy_events"] = analysis.policy_events()
     for row in [*payload["incidents"], *payload["sites"]]:
         row["province_name"] = payload["province_names"].get(row.get("province_code") or "", "")
     ids = {row["public_incident_id"] for row in payload["incidents"]}

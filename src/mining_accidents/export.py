@@ -360,8 +360,11 @@ def _collect_roles(conn: sqlite3.Connection, ids: list[int]) -> list[dict[str, o
 
 
 def _collect_sources(conn: sqlite3.Connection, ids: list[int]) -> list[dict[str, object]]:
-    """Per-value citations: the claims selected by active decisions, with
-    document metadata and capped excerpts only (never full texts)."""
+    """Sources for active accepted values, including manual-override support.
+
+    A manual override has no selected claim, but its supporting claims must
+    still reach readers. Deferred/rejected and superseded decisions never do.
+    """
     placeholders = ",".join("?" for _ in ids) or "NULL"
     rows = conn.execute(
         f"""
@@ -370,10 +373,16 @@ def _collect_sources(conn: sqlite3.Connection, ids: list[int]) -> list[dict[str,
                sd.source_tier, c.short_evidence_excerpt
         FROM claim_decisions d
         JOIN incidents i ON i.incident_id = d.incident_id
-        JOIN claims c ON c.claim_id = d.selected_claim_id
+        JOIN claims c ON (
+            (d.decision = 'accept_claim' AND c.claim_id = d.selected_claim_id)
+            OR (d.decision = 'manual_override' AND c.claim_id IN (
+                SELECT value FROM json_each(COALESCE(d.rationale_claim_ids, '[]'))
+            ))
+        )
         JOIN source_documents sd ON sd.source_document_id = c.source_document_id
         WHERE d.incident_id IN ({placeholders})
-          AND d.selected_claim_id IS NOT NULL
+          AND (c.extraction_method NOT IN ('ai_assisted', 'ocr_assisted')
+               OR c.review_status = 'reviewed')
           AND NOT EXISTS (
               SELECT 1 FROM claim_decisions s WHERE s.supersedes_decision_id = d.decision_id
           )

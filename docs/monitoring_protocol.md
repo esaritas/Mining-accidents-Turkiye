@@ -48,10 +48,11 @@ publishes **no per-incident rows**, and its province breakdown spans every
 branch together. So the reports are an aggregate source, like SGK: they feed
 `aggregate_occupational_statistics` and never incidents, claims or decisions.
 
-What they are worth is still considerable. They give a monthly denominator to
-measure this register's coverage against, they are the only swept source with a
-genuine monthly rhythm, and a month with an unusual mining figure is a lead for
-the review pass to follow in the press.
+They provide separate monthly sector context and leads for source discovery.
+They are not a denominator for register coverage: case definitions and worker
+populations differ. Neither a difference nor a ratio estimates missing eligible
+incidents without harmonized definitions and record-level matching. A month
+with an unusual mining figure is a lead for the press review pass.
 
 Two handling rules are enforced in `adapters/isig.py`:
 

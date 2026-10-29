@@ -8,10 +8,38 @@ from pathlib import Path
 
 import pytest
 
-from conftest import make_incident, make_publishable_incident
-from mining_accidents import export, packets
+from conftest import make_claim, make_incident, make_publishable_incident, make_source_document
+from mining_accidents import export, packets, review
+from mining_accidents.models import ClaimDecision
 
 NOW = "2100-01-01T00:00:00Z"
+
+
+def test_manual_override_keeps_supporting_field_citation(conn):
+    fixture = make_publishable_incident(conn, "A")
+    doc = make_source_document(conn, title="TEST override support", content_hash="c" * 64)
+    claim = make_claim(conn, doc, fixture["incident"], normalized_value="3")
+    previous = review.get_active_decision(conn, fixture["incident"], "fatalities_current")
+    review.record_decision(
+        conn,
+        ClaimDecision(
+            incident_id=fixture["incident"],
+            field_name="fatalities_current",
+            decision="manual_override",
+            manual_value="3",
+            rationale_claim_ids=[claim],
+            rationale="TEST supported override",
+            reviewer="TEST-human",
+            supersedes_decision_id=previous["decision_id"],
+        ),
+    )
+    citations = [
+        r
+        for r in export._collect_sources(conn, [fixture["incident"]])
+        if r["field_name"] == "fatalities_current"
+    ]
+    assert len(citations) == 1
+    assert citations[0]["title"] == "TEST override support"
 
 
 @pytest.fixture(autouse=True)

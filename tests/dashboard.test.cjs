@@ -215,9 +215,8 @@ test('empty selections retain CSV schemas and JSON contains no unrelated evidenc
   const page = boot(t, { query: '?province=TEST-A&from=2099&commodity=gold' });
   const csv = await page.download('dl-records');
   assert.equal(csv.trim().split('\n').length, 1);
-  // 16 columns since the records export carries who held or ran the mine at
-  // the time of the incident, and that organization's home country.
-  assert.equal(csv.trim().split(',').length, 16);
+  // Citation notices and their sources travel with the incident CSV.
+  assert.equal(csv.trim().split(',').length, 18);
   assert.equal((await page.download('dl-sites')).trim().split(',').length, 12);
   const json = JSON.parse(await page.download('dl-json'));
   assert.deepEqual(json.incidents, []);
@@ -232,4 +231,35 @@ test('an empty public export has finite, disabled year filters', t => {
   assert.equal(page.document.getElementById('f-from').disabled, true);
   assert.ok(Number.isFinite(+page.document.getElementById('f-from').value));
   assert.equal(page.document.querySelectorAll('#records .rec-row').length, 0);
+});
+
+test('correction notices travel with records without changing counts or claiming review', async t => {
+  const data = fixture();
+  const before = data.incidents[0].fatalities_current;
+  data.evidence_notices = [
+    { id:'TEST-notice-A', public_incident_id:'TEST-A', status:'pending_human_review',
+      checked_at:'2099-06-02', text_en:'TEST later source proposes 43 <b>not canonical</b>',
+      text_tr:'TEST daha sonraki kaynak; insan incelemesi bekliyor',
+      sources:[{label:'TEST source',url:'https://example.test/TEST-source'}] },
+    { id:'TEST-notice-B', public_incident_id:'TEST-B', status:'pending_human_review',
+      checked_at:'2099-06-02', text_en:'TEST unrelated notice',text_tr:'TEST diğer not',
+      sources:[{label:'TEST source B',url:'https://example.test/TEST-source-B'}] },
+  ];
+  data.pipeline.claims_awaiting_review = 11;
+  data.monitoring = {candidates_waiting:3};
+  const page = boot(t, {data});
+  assert.match(page.document.getElementById('tiles').textContent, /11 claims awaiting review/);
+  assert.match(page.document.getElementById('evidence-notices').textContent, /<b>not canonical<\/b>/);
+  page.document.querySelector('#records [data-id="TEST-A"]').click();
+  assert.match(page.document.getElementById('detail-body').textContent, /evidence review pending/);
+  assert.match(page.document.getElementById('detail-body').textContent, /No supporting field citation/);
+  page.change('f-province','TEST-A');
+  const exported = JSON.parse(await page.download('dl-json'));
+  assert.equal(exported.incidents[0].fatalities_current,before);
+  assert.equal(exported.evidence_notices.length,1);
+  assert.equal(exported.evidence_notices[0].status,'pending_human_review');
+  const csv = await page.download('dl-records');
+  assert.match(csv,/TEST later source proposes 43/);
+  page.document.querySelector('[data-lang="tr"]').click();
+  assert.match(page.document.getElementById('evidence-notices').textContent,/insan incelemesi bekliyor/);
 });

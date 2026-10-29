@@ -133,6 +133,11 @@ empty `PILOT-*` slot templates.
 
 ## Further evidence review
 
+The [29 October evidence correction record](docs/evidence_corrections_2026_10_29.md)
+separates applied presentation/pipeline fixes from canonical decisions still
+awaiting human review. The [source packet](data/staging/evidence_2026_10_29/README.md)
+can be staged into the original working database without changing published values.
+
 1. **Assess the TBMM parliamentary research reports source first**
    (registry key `tbmm`): Tier-1 public record, long-form, low legal risk,
    rich in investigation findings and recommendations. Confirm access terms
