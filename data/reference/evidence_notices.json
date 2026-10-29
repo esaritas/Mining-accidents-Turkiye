@@ -1,20 +1,5 @@
 [
   {
-    "id": "EV-20261029-01",
-    "public_incident_id": "TR-MINE-2022-0001",
-    "field": "fatalities_current",
-    "status": "pending_human_review",
-    "checked_at": "2026-10-29",
-    "text_en": "The snapshot selects 42 deaths. The TBMM transcript of 6 April 2023, printed page 74, reports the toll rising to 43 after a delayed death. Updating the canonical toll requires a dated casualty observation and a named human review decision.",
-    "text_tr": "Mevcut veri kesiti 42 can kaybını seçiyor. TBMM’nin 6 Nisan 2023 tutanağının 74. sayfası, sonradan gerçekleşen bir ölümle sayının 43’e yükseldiğini aktarıyor. Esas sayının güncellenmesi, tarihli bir can kaybı gözlemi ve adı kayıtlı bir insan incelemecinin kararını gerektirir.",
-    "sources": [
-      {
-        "label": "TBMM · 6 April 2023 · p. 74",
-        "url": "https://www5.tbmm.gov.tr/tutanaklar/TUTANAK/TBMM/d27/c129/tbmm27129086.pdf"
-      }
-    ]
-  },
-  {
     "id": "EV-20261029-02",
     "public_incident_id": "TR-MINE-1983-0001",
     "field": "organization_role",

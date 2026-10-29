@@ -42,7 +42,7 @@ TR-MINE-2015-0006,"Maden kazası, Muğla (2015-07-21)",,2015-07-21T00:00:00+03:0
 TR-MINE-2016-0001,Şirvan maden kazası,,2016-11-17T00:00:00+03:00,,exact_date,in_scope,56,Siirt,,,,,,,16,,,
 TR-MINE-2019-0001,"Maden kazası, Zonguldak (2019-12-01)",,2019-12-01T00:00:00+03:00,,month,in_scope,67,Zonguldak,,,,,,,1,,,
 TR-MINE-2019-0002,"Maden kazası, Manisa (2019-01-13)",,2019-01-13T00:00:00+03:00,,exact_date,in_scope,45,Manisa,,,,,,,1,1,,
-TR-MINE-2022-0001,Amasra maden kazası,Amasra mine explosion,2022-10-14T00:00:00+03:00,,exact_date,in_scope,74,Bartın,,,41.721848,32.349063,facility_approximate,,42,27,,disputed
+TR-MINE-2022-0001,Amasra maden kazası,Amasra mine explosion,2022-10-14T00:00:00+03:00,,exact_date,in_scope,74,Bartın,,,41.721848,32.349063,facility_approximate,,43,27,,revised
 TR-MINE-2024-0001,Erzincan maden kazası,Çöpler mine disaster,2024-02-13T00:00:00+03:00,,exact_date,in_scope,24,Erzincan,,,39.439234,38.536482,facility_approximate,,9,,,
 TR-MINE-2024-0002,"Maden kazası, Manisa (2024-10-22)",,2024-10-22T00:00:00+03:00,,exact_date,in_scope,45,Manisa,,,,,,,1,,,
 TR-MINE-2024-0003,"Maden kazası, Zonguldak (2024-08-08)",,2024-08-08T00:00:00+03:00,,exact_date,in_scope,67,Zonguldak,,,,,,,1,,,

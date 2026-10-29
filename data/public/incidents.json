@@ -905,11 +905,11 @@
   {
     "canonical_title_en": "Amasra mine explosion",
     "canonical_title_tr": "Amasra maden kazası",
-    "casualty_status": "disputed",
+    "casualty_status": "revised",
     "coordinate_precision": "facility_approximate",
     "date_precision": "exact_date",
     "district_code": null,
-    "fatalities_current": 42,
+    "fatalities_current": 43,
     "incident_end_datetime": null,
     "incident_start_datetime": "2022-10-14T00:00:00+03:00",
     "incident_status": "in_scope",

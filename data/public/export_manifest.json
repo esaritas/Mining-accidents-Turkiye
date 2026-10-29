@@ -1,6 +1,6 @@
 {
   "db_schema_version": "006",
-  "export_timestamp": "2026-10-29T20:50:46Z",
+  "export_timestamp": "2026-10-29T21:07:56Z",
   "file_sha256": {
     "datapackage.json": "a812655c86ffdf5e2fd5db2de22792044543e044ac92898ce5fb23bab791bb1f",
     "environmental_classifications.csv": "4d22793bc250f0570d3e9b7bc78de049009acd8608ccdb51ee8f99563f156cfc",
@@ -11,16 +11,16 @@
     "facility_organization_roles.csv": "e0fe828236b59b2e2170368ca96a890252257b7fea2b1404e893fa4e8521a071",
     "incident_classifications.csv": "58f869c6ffabe16b70470d4ff2d364423ada40530d49af8f83d538da38d14e84",
     "incident_organization_roles.csv": "a5d29681f51418ddd5e1749256389ec7745aaa3711a48059fdd97e99b5f775e9",
-    "incidents.csv": "508a96d43840af50889abf20ed2058559c41a612c71f48d5848c0d5f0271c858",
-    "incidents.json": "3c9914a186a5a2151fb09aeeacfe282589ba9fe4dc954b2e8610c11751c33cd4",
+    "incidents.csv": "d9f15344856466c644a204252612981ada073b2e4654f92ab79033aa6c58c84a",
+    "incidents.json": "1a64b09cb8af961b50b7c64a7be0e114f8be0618ba14ab1b237139b28072df66",
     "merged_id_redirects.csv": "02e62e86f4f8e1a23dea9ee354def04c0d827bccd8f490ed9421821873157215",
-    "sources.csv": "4a3aea4c07a1cd65c5dcbebf2072771e9face3d9304338d40c9deb65a06d4c87",
-    "validation_report.json": "47f35a41b2979ab44e2ef7179ae859ef2bed0cf710c6c9a3e23567f0e238b4ea"
+    "sources.csv": "fd2db64ac32a4fe715946e84d77bbde80af316cd8436e42ef1c16d64343b39ca",
+    "validation_report.json": "b47843102a0ad8adddacce0a0468101ba4df51585df74145fc7518dea089bf73"
   },
-  "git_commit": "491c9424eee08ffe6f12f0856797c8793d57fd5c",
+  "git_commit": "931fa6bd93a82d0bb87a017dcfc91090f4a50d73",
   "quality_findings": {
     "critical": 0,
-    "warning": 12
+    "warning": 11
   },
   "row_counts": {
     "environmental_effects": 11,

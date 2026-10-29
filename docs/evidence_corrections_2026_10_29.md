@@ -65,7 +65,13 @@ That packet gives the exact sources, proposals and guarded staging command.
 ## What did not change
 
 The 52 canonical fatal-incident records, 1,091 recorded deaths, original export
-timestamp and existing canonical evidence files are unchanged. The site map,
+timestamp and existing canonical evidence files are unchanged.
+
+> **Superseded later the same day.** The Amasra toll has since moved from 42 to
+> 43 by a reviewer decision on the Assembly's record of 6 April 2023, so the
+> register publishes 52 records and 1,092 deaths, and the pending casualty
+> notice `EV-20261029-01` has retired as resolved. See open question 20 and
+> `scripts/amasra_casualty_revision.py`. The site map,
 site types and timeline selection/layout are preserved. New notices do not
 contribute to sums, classification counts or maps.
 

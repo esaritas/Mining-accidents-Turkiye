@@ -164,6 +164,12 @@ class ClaimDecision(_Model):
     reviewer: str = Field(min_length=1)
     decision_date: str | None = None
     supersedes_decision_id: int | None = None
+    #: When the casualty figure was observed, as against when this decision was
+    #: taken. A toll revised by a later death was observed on the day a source
+    #: recorded it, and dating the observation to the pipeline run loses that.
+    #: Casualty observations are immutable once written, so the date has to be
+    #: right at the point of writing. Ignored for non-casualty fields.
+    observed_as_of: str | None = None
 
     @model_validator(mode="after")
     def _decision_shape(self) -> ClaimDecision:

@@ -200,7 +200,7 @@ window.MINING_DATA = {
       "year": 2021
     },
     {
-      "register_deaths": 42,
+      "register_deaths": 43,
       "sector_deaths": 105,
       "year": 2022
     },
@@ -2602,15 +2602,15 @@ window.MINING_DATA = {
         "url": "https://www.wikidata.org/wiki/Q114670156"
       },
       {
-        "document_type": "other",
+        "document_type": "parliamentary_minutes",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:47:04Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Amasra maden kazası",
-        "url": "https://tr.wikipedia.org/wiki/Amasra_maden_kazas%C4%B1"
+        "organization": "TBMM",
+        "publication_date": "2023-04-06",
+        "retrieved_at": "2026-10-29T21:05:54Z",
+        "short_evidence_excerpt": "Üzülerek söylemeliyim ki Amasra maden katliamında yaşamını yitiren madenci sayısı 42’den 43’e çıktı.",
+        "source_tier": "1",
+        "title": "TBMM Tutanak Dergisi, Dönem 27, Yasama Yılı 6, Cilt 129, 86'ncı Birleşim, 6 Nisan 2023 (printed page 74)",
+        "url": "https://www5.tbmm.gov.tr/tutanaklar/TUTANAK/TBMM/d27/c129/tbmm27129086.pdf"
       },
       {
         "document_type": "other",
@@ -3910,21 +3910,6 @@ window.MINING_DATA = {
   "evidence_notices": [
     {
       "checked_at": "2026-10-29",
-      "field": "fatalities_current",
-      "id": "EV-20261029-01",
-      "public_incident_id": "TR-MINE-2022-0001",
-      "sources": [
-        {
-          "label": "TBMM · 6 April 2023 · p. 74",
-          "url": "https://www5.tbmm.gov.tr/tutanaklar/TUTANAK/TBMM/d27/c129/tbmm27129086.pdf"
-        }
-      ],
-      "status": "pending_human_review",
-      "text_en": "The snapshot selects 42 deaths. The TBMM transcript of 6 April 2023, printed page 74, reports the toll rising to 43 after a delayed death. Updating the canonical toll requires a dated casualty observation and a named human review decision.",
-      "text_tr": "Mevcut veri kesiti 42 can kaybını seçiyor. TBMM’nin 6 Nisan 2023 tutanağının 74. sayfası, sonradan gerçekleşen bir ölümle sayının 43’e yükseldiğini aktarıyor. Esas sayının güncellenmesi, tarihli bir can kaybı gözlemi ve adı kayıtlı bir insan incelemecinin kararını gerektirir."
-    },
-    {
-      "checked_at": "2026-10-29",
       "field": "organization_role",
       "id": "EV-20261029-02",
       "public_incident_id": "TR-MINE-1983-0001",
@@ -4048,7 +4033,7 @@ window.MINING_DATA = {
       "text_tr": "Bu veri kesitindeki çevresel ifadeler Vikipedi’ye atıf yapıyor. Aktarılan resmî işlem, doğrudan incelenmiş resmî belge anlamına gelmez. Kayıtlı tarih alıntısı tarihi değil sahayı anlatıyor. Bu kayıt su/toprak ölçümlerini ve etkinin yayılımını ortaya koymuyor."
     }
   ],
-  "export_timestamp": "2026-10-29T20:50:46Z",
+  "export_timestamp": "2026-10-29T21:07:56Z",
   "hazard_matrix": {
     "bands": [
       {
@@ -4098,13 +4083,13 @@ window.MINING_DATA = {
           3
         ],
         "code": "gas_explosion",
-        "deaths": 668,
+        "deaths": 669,
         "first_year": 1983,
         "label_en": "gas explosion",
         "label_tr": "gaz (grizu) patlaması",
         "latest_year": 2022,
         "records": 20,
-        "share_of_deaths": 61.2,
+        "share_of_deaths": 61.3,
         "worst": 263
       },
       {
@@ -4249,7 +4234,7 @@ window.MINING_DATA = {
         "records": 4
       },
       {
-        "deaths": 49,
+        "deaths": 50,
         "documented_sites": 1,
         "latest_year": 2022,
         "mechanisms": {
@@ -4471,7 +4456,7 @@ window.MINING_DATA = {
       "sites": 30
     },
     "totals": {
-      "deaths": 1091,
+      "deaths": 1092,
       "documented_sites": 69,
       "records": 52,
       "records_with_a_mechanism": 38
@@ -5695,11 +5680,11 @@ window.MINING_DATA = {
     {
       "canonical_title_en": "Amasra mine explosion",
       "canonical_title_tr": "Amasra maden kazası",
-      "casualty_status": "disputed",
+      "casualty_status": "revised",
       "coordinate_precision": "facility_approximate",
       "date_precision": "exact_date",
       "district_code": null,
-      "fatalities_current": 42,
+      "fatalities_current": 43,
       "incident_end_datetime": null,
       "incident_start_datetime": "2022-10-14T00:00:00+03:00",
       "incident_status": "in_scope",
@@ -5906,7 +5891,7 @@ window.MINING_DATA = {
       },
       {
         "id": "TR-MINE-2022-0001",
-        "r": 21.6,
+        "r": 21.7,
         "x": 252.2,
         "y": 31.2
       },
@@ -6798,11 +6783,11 @@ window.MINING_DATA = {
   },
   "pipeline": {
     "claims_awaiting_review": 18,
-    "claims_total": 961,
-    "decisions_total": 299,
+    "claims_total": 963,
+    "decisions_total": 301,
     "published_incidents": 52,
     "records_in_review": 0,
-    "source_documents": 204,
+    "source_documents": 206,
     "withdrawn_records": 5
   },
   "policy_events": [
@@ -6849,9 +6834,9 @@ window.MINING_DATA = {
     {
       "date": "2022-10-14",
       "kind": "disaster",
-      "label_en": "Amasra mine explosion",
-      "label_tr": "Amasra maden kazası",
-      "notes": "Register record TR-MINE-2022-0001; consult its dated casualty evidence notice.",
+      "label_en": "Amasra mine explosion (43 deaths)",
+      "label_tr": "Amasra maden kazası (43 can kaybı)",
+      "notes": "Register record TR-MINE-2022-0001. Toll revised from 42 to 43 by reviewer decision on 2026-10-29, on the Assembly's record of 6 April 2023.",
       "source_url": "https://tr.wikipedia.org/wiki/Amasra_maden_kazas%C4%B1"
     }
   ],

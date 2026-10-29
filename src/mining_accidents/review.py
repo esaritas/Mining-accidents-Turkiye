@@ -223,7 +223,7 @@ def _append_canonical_observation(
             row["fatalities_current"],
             row["injuries_current"],
             row["missing_current"],
-            utc_now_iso(),
+            decision.observed_as_of or utc_now_iso(),
             source_claim_id,
             f"set via claim decision on {decision.field_name}",
         ),
