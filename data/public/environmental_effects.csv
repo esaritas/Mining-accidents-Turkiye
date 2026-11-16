@@ -2,7 +2,7 @@ public_incident_id,effect_type,measure_value,measure_unit,qualitative_value,qual
 TR-ENV-2021-0001,containment_failure,,,İkinci atık barajının iç seti,Inner embankment of the second tailings dam,reported,reported
 TR-ENV-2021-0001,receiving_environment,,,Darabul Deresi ve Kılıçkaya Barajı,Darabul Deresi stream and the Kılıçkaya reservoir,reported,reported
 TR-ENV-2021-0001,receiving_environment,,,Kelkit Çayı ve ovası (tehdit altında olduğu bildirildi),"The Kelkit Çayı river and its plain, reported as threatened",alleged,threatened
-TR-ENV-2021-0001,released_material,4500.0,tonne,"Kimyasal atık (kurşun, çinko, bakır zenginleştirme tesisi)","Chemical waste from a lead, zinc and copper concentrator",reported,reported
+TR-ENV-2021-0001,released_material,4500.0,tonne,"Yaklaşık 4.500 ton kimyasal atık (kurşun, çinko, bakır zenginleştirme tesisi)","About 4,500 tonnes of chemical waste from a lead, zinc and copper concentrator",reported,reported
 TR-ENV-2022-0001,production_suspension,,,Bakanlık madenin faaliyetlerini durdurdu,The ministry halted operations at the mine,official_finding,reported
 TR-ENV-2022-0001,receiving_environment,,,Toprak; maden Fırat Nehri kıyısında kurulu,Ground; the mine stands on the bank of the Euphrates,reported,reported
 TR-ENV-2022-0001,released_material,20.0,m3,Siyanürlü solüsyon (şirket beyanı),"Cyanide solution, as the operator stated it",reported,reported

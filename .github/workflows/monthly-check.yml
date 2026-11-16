@@ -30,8 +30,8 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Install
@@ -52,6 +52,7 @@ jobs:
           echo "month=$(basename "$latest" .json)" >> "$GITHUB_OUTPUT"
           echo "candidates=$(python -c "import json,sys; print(json.load(open(sys.argv[1]))['candidate_count'])" "$latest")" >> "$GITHUB_OUTPUT"
           echo "unreadable=$(python -c "import json,sys; print(len(json.load(open(sys.argv[1]))['unreadable_documents']))" "$latest")" >> "$GITHUB_OUTPUT"
+          echo "failed=$(python -c "import json,sys; print(len(json.load(open(sys.argv[1])).get('failed_sources', [])))" "$latest")" >> "$GITHUB_OUTPUT"
       - name: Commit the report
         run: |
           git config user.name "github-actions[bot]"
@@ -73,8 +74,9 @@ jobs:
         run: cat "data/interim/monthly_check/${{ steps.result.outputs.month }}.md" >> "$GITHUB_STEP_SUMMARY"
       - name: Open the review queue
         # Only when there is something for a human to look at. A quiet month
-        # leaves the committed report as its own record and says nothing.
-        if: steps.result.outputs.candidates != '0' || steps.result.outputs.unreadable != '0'
+        # leaves the committed report as its own record and says nothing. A
+        # source that could not be swept is always something to look at.
+        if: steps.result.outputs.candidates != '0' || steps.result.outputs.unreadable != '0' || steps.result.outputs.failed != '0'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -87,3 +89,25 @@ jobs:
           else
             gh issue create --title "$title" --body "$body"
           fi
+      - name: Say so when the check itself could not run
+        # The first scheduled run, on 2026-11-08, failed and told nobody. A run
+        # that breaks before it can write a report opens an issue instead.
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Monthly source check did not run: $(date -u +%Y-%m)"
+          body="The scheduled check failed before it could write a report. Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          existing=$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number' || true)
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi
+      - name: Mark the run failed when a source could not be swept
+        # After the report is committed and the issue is open, so nothing is
+        # lost, the run still shows red: a partial sweep is not a clean one.
+        if: steps.result.outputs.failed != '0' && steps.result.outputs.failed != ''
+        run: |
+          echo "${{ steps.result.outputs.failed }} source(s) could not be swept; see the report."
+          exit 1

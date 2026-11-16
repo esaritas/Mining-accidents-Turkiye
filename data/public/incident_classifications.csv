@@ -34,9 +34,11 @@ TR-MINE-2009-0001,project_hazard,,methane,metan (grizu),methane,reported
 TR-MINE-2010-0001,project_event_mechanism,,gas_explosion,gaz (grizu) patlaması,gas explosion,reported
 TR-MINE-2010-0001,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
 TR-MINE-2010-0001,project_hazard,,methane,metan (grizu),methane,reported
+TR-MINE-2010-0002,project_event_mechanism,,fire,yangın,fire,reported
 TR-MINE-2010-0002,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
 TR-MINE-2010-0004,project_event_mechanism,,gas_explosion,gaz (grizu) patlaması,gas explosion,reported
 TR-MINE-2010-0004,project_hazard,,methane,metan (grizu),methane,reported
+TR-MINE-2010-0005,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
 TR-MINE-2011-0001,project_event_mechanism,,landslide_or_slope_failure,heyelan/şev duraysızlığı,landslide or slope failure,reported
 TR-MINE-2013-0002,project_event_mechanism,,gas_explosion,gaz (grizu) patlaması,gas explosion,reported
 TR-MINE-2013-0002,project_hazard,,methane,metan (grizu),methane,reported
@@ -55,9 +57,20 @@ TR-MINE-2014-0013,project_event_mechanism,,loss_of_vehicle_control,araç kontrol
 TR-MINE-2015-0001,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
 TR-MINE-2015-0002,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
 TR-MINE-2015-0004,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
+TR-MINE-2016-0001,project_event_mechanism,,landslide_or_slope_failure,heyelan/şev duraysızlığı,landslide or slope failure,reported
 TR-MINE-2016-0001,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
+TR-MINE-2017-0001,project_hazard,,methane,metan (grizu),methane,reported
+TR-MINE-2017-0002,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
+TR-MINE-2017-0003,project_event_mechanism,,landslide_or_slope_failure,heyelan/şev duraysızlığı,landslide or slope failure,reported
 TR-MINE-2019-0001,project_event_mechanism,,gas_explosion,gaz (grizu) patlaması,gas explosion,reported
 TR-MINE-2019-0001,project_hazard,,methane,metan (grizu),methane,reported
+TR-MINE-2019-0003,project_event_mechanism,,landslide_or_slope_failure,heyelan/şev duraysızlığı,landslide or slope failure,reported
+TR-MINE-2019-0004,project_event_mechanism,,fall_of_object,cisim düşmesi,fall of object,reported
+TR-MINE-2020-0001,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
+TR-MINE-2021-0004,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
+TR-MINE-2021-0005,project_contributing_condition,,informal_or_illegal_operation,kayıt dışı/ruhsatsız işletme,informal or illegal operation,reported
+TR-MINE-2021-0005,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
+TR-MINE-2021-0006,project_event_mechanism,,loss_of_vehicle_control,araç kontrol kaybı,loss of vehicle control,reported
 TR-MINE-2022-0001,project_event_mechanism,,gas_explosion,gaz (grizu) patlaması,gas explosion,reported
 TR-MINE-2022-0001,project_hazard,,methane,metan (grizu),methane,reported
 TR-MINE-2024-0001,project_event_mechanism,,landslide_or_slope_failure,heyelan/şev duraysızlığı,landslide or slope failure,reported
@@ -65,3 +78,4 @@ TR-MINE-2024-0001,project_event_mechanism,,roof_or_ground_collapse,tavan/göçü
 TR-MINE-2024-0003,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
 TR-MINE-2024-0004,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
 TR-MINE-2024-0005,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported
+TR-MINE-2026-0001,project_event_mechanism,,roof_or_ground_collapse,tavan/göçük,roof or ground collapse,reported

@@ -254,3 +254,156 @@ def test_a_month_with_no_candidates_still_says_what_it_cannot_tell_you(
     prose = md_path.read_text(encoding="utf-8")
     assert "It is not a statement that no accident happened" in prose
     assert report.to_dict()["candidate_count"] == 0
+
+
+# -- a source that cannot be reached -----------------------------------------
+
+
+def _seed_finds_one(scratch_conn, records, report, known_path) -> None:
+    report.candidates = [
+        monitor.Candidate(
+            source_key="wikidata",
+            reason="absent_from_register",
+            dates=("2099-09-01T00:00:00+03:00",),
+            province_codes=("45",),
+            fatalities=("5",),
+            titles=(),
+        )
+    ]
+
+
+def test_one_unreachable_source_does_not_discard_the_others(
+    conn: sqlite3.Connection, tmp_path: Path, monkeypatch
+) -> None:
+    def unreachable(*args, **kwargs):
+        raise OSError("TEST network is unreachable")
+
+    monkeypatch.setattr(monitor, "_sweep_seed", _seed_finds_one)
+    monkeypatch.setattr(monitor, "sweep_isig", unreachable)
+    report, figures = monitor.run_check(conn, _published_csv(tmp_path))
+
+    assert [c.reason for c in report.candidates] == ["absent_from_register"]
+    assert figures == []
+    assert report.failed_sources == [
+        {"source": "isig_meclisi", "error": "OSError: TEST network is unreachable"}
+    ]
+    assert report.swept_sources == ["wikidata", "wikipedia"]
+    _, md_path = monitor.write_report(report, tmp_path / "reports")
+    prose = md_path.read_text(encoding="utf-8")
+    assert "Sources that could not be swept (1)" in prose
+    assert "isig_meclisi: OSError" in prose
+
+
+def test_a_failed_seed_sweep_is_reported_and_the_figures_still_arrive(
+    conn: sqlite3.Connection, tmp_path: Path, monkeypatch
+) -> None:
+    def broken(*args, **kwargs):
+        raise RuntimeError("TEST seed failure")
+
+    monkeypatch.setattr(monitor, "_sweep_seed", broken)
+    monkeypatch.setattr(
+        monitor, "sweep_isig", lambda *a, **k: ([{"period_start": "2099-01"}], [], [])
+    )
+    report, _ = monitor.run_check(conn, _published_csv(tmp_path))
+    assert report.swept_sources == ["isig_meclisi"]
+    assert report.failed_sources[0]["source"] == "wikidata, wikipedia"
+    assert report.isig_months == [{"period_start": "2099-01"}]
+
+
+def _report(tmp_path: Path, stamp: str, failed: list[str], candidates: int = 0) -> None:
+    report = monitor.CheckReport(
+        checked_at=stamp,
+        swept_sources=[],
+        published_records=1,
+        published_deaths=3,
+        newest_published_incident="2099-05-10",
+    )
+    report.failed_sources = [{"source": key, "error": "TEST"} for key in failed]
+    report.candidates = [
+        monitor.Candidate(
+            source_key="wikidata",
+            reason="absent_from_register",
+            dates=(f"2099-09-0{n + 1}T00:00:00+03:00",),
+            province_codes=("45",),
+            fatalities=("5",),
+            titles=(),
+        )
+        for n in range(candidates)
+    ]
+    monitor.write_report(report, tmp_path / "reports")
+
+
+def test_the_page_is_told_an_attempt_from_a_success(tmp_path: Path) -> None:
+    from datetime import date
+
+    export_dir = _published_csv(tmp_path)
+    _report(tmp_path, "2099-03-08T06:30:00Z", failed=[], candidates=2)
+    _report(tmp_path, "2099-04-08T06:30:00Z", failed=["isig_meclisi"], candidates=1)
+    block = monitor.summary(tmp_path / "reports", export_dir, today=date(2099, 4, 9))
+    assert block["last_attempted"] == "2099-04-08T06:30:00Z"
+    assert block["last_checked"] == "2099-03-08T06:30:00Z"
+    assert block["failed_sources"] == ["isig_meclisi"]
+    assert block["overdue"] is False
+    # The April run did sweep the seed sources, so its queue is the current one.
+    assert block["candidates_waiting"] == 1
+
+
+def test_a_seed_failure_keeps_the_last_real_queue(tmp_path: Path) -> None:
+    from datetime import date
+
+    export_dir = _published_csv(tmp_path)
+    _report(tmp_path, "2099-03-08T06:30:00Z", failed=[], candidates=2)
+    _report(tmp_path, "2099-04-08T06:30:00Z", failed=["wikidata, wikipedia"], candidates=0)
+    block = monitor.summary(tmp_path / "reports", export_dir, today=date(2099, 6, 1))
+    assert block["candidates_waiting"] == 2
+    assert block["overdue"] is True  # no complete sweep for more than 45 days
+
+
+def test_no_report_at_all_reads_as_overdue(tmp_path: Path) -> None:
+    block = monitor.summary(tmp_path / "none", _published_csv(tmp_path))
+    assert block["overdue"] is True and block["last_attempted"] is None
+
+
+def test_the_http_client_retries_when_nothing_answers(monkeypatch) -> None:
+    import urllib.error
+
+    from mining_accidents.adapters import wikidata
+
+    calls = {"n": 0}
+
+    class _Reply:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+        def read(self) -> bytes:
+            return b"TEST"
+
+    def flaky(request, timeout=0):
+        calls["n"] += 1
+        if calls["n"] < 3:
+            raise urllib.error.URLError("TEST network is unreachable")
+        return _Reply()
+
+    monkeypatch.setattr(wikidata.urllib.request, "urlopen", flaky)
+    monkeypatch.setattr(wikidata.time, "sleep", lambda seconds: None)
+    assert wikidata._http_get("https://example.invalid/TEST") == b"TEST"
+    assert calls["n"] == 3
+
+
+def test_the_http_client_gives_up_after_its_last_try(monkeypatch) -> None:
+    import urllib.error
+
+    import pytest
+
+    from mining_accidents.adapters import wikidata
+
+    def dead(request, timeout=0):
+        raise urllib.error.URLError("TEST network is unreachable")
+
+    monkeypatch.setattr(wikidata.urllib.request, "urlopen", dead)
+    monkeypatch.setattr(wikidata.time, "sleep", lambda seconds: None)
+    with pytest.raises(urllib.error.URLError):
+        wikidata._http_get("https://example.invalid/TEST", max_tries=2)

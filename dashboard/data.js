@@ -140,7 +140,7 @@ window.MINING_DATA = {
       "year": 2009
     },
     {
-      "register_deaths": 52,
+      "register_deaths": 53,
       "sector_deaths": null,
       "year": 2010
     },
@@ -150,7 +150,7 @@ window.MINING_DATA = {
       "year": 2011
     },
     {
-      "register_deaths": null,
+      "register_deaths": 1,
       "sector_deaths": 81,
       "year": 2012
     },
@@ -165,7 +165,7 @@ window.MINING_DATA = {
       "year": 2014
     },
     {
-      "register_deaths": 6,
+      "register_deaths": 8,
       "sector_deaths": 67,
       "year": 2015
     },
@@ -175,7 +175,7 @@ window.MINING_DATA = {
       "year": 2016
     },
     {
-      "register_deaths": null,
+      "register_deaths": 11,
       "sector_deaths": 93,
       "year": 2017
     },
@@ -185,17 +185,17 @@ window.MINING_DATA = {
       "year": 2018
     },
     {
-      "register_deaths": 2,
+      "register_deaths": 7,
       "sector_deaths": 63,
       "year": 2019
     },
     {
-      "register_deaths": null,
+      "register_deaths": 3,
       "sector_deaths": 61,
       "year": 2020
     },
     {
-      "register_deaths": null,
+      "register_deaths": 10,
       "sector_deaths": 70,
       "year": 2021
     },
@@ -250,15 +250,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "institutional_history",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
+        "organization": "Türkiye Taşkömürü Kurumu",
         "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "retrieved_at": "2026-11-15T19:26:42Z",
+        "short_evidence_excerpt": "Armutçuk Ocağında, gaz ve toz patlaması oldu, 103 kişi öldü (7 Mart).",
+        "source_tier": "1",
+        "title": "Türkiye Taşkömürü Kurumu — Tarihçe",
+        "url": "https://www.taskomuru.gov.tr/ttk/tarihce/"
       },
       {
         "document_type": "other",
@@ -296,15 +296,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "institutional_history",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
+        "organization": "Türkiye Taşkömürü Kurumu",
         "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "retrieved_at": "2026-11-15T19:26:42Z",
+        "short_evidence_excerpt": "Kozlu-İhsaniye Ocağında patlama oldu, 10 kişi öldü (11 Nisan).",
+        "source_tier": "1",
+        "title": "Türkiye Taşkömürü Kurumu — Tarihçe",
+        "url": "https://www.taskomuru.gov.tr/ttk/tarihce/"
       },
       {
         "document_type": "other",
@@ -347,7 +347,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "5 işçi yaşamını yitirmiştir",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -393,7 +393,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "8 işçi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -439,7 +439,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "5 işçi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -491,15 +491,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "chamber_statement",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2023-02-07",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "yaşamını yitiren 68 madenciyi saygıyla anıyoruz",
+        "source_tier": "2",
+        "title": "7 Şubat 1990 Yeni Çeltek Faciası",
+        "url": "https://www.maden.org.tr/icerik/7-subat-1990-yeni-celtek-faciasi-12471"
       },
       {
         "document_type": "other",
@@ -555,7 +555,7 @@ window.MINING_DATA = {
         "retrieved_at": "2026-10-14T10:42:00Z",
         "short_evidence_excerpt": "3 Mart 1992 tarihinde Kozlu Taş Kömürü Maden Ocağı'nda 263 maden işçimizi",
         "source_tier": "1",
-        "title": "Genel Kurul konuşması (Özcan Ulupınar) — 3 Mart 1992 Kozlu faciası",
+        "title": "TBMM Genel Kurul konuşması, 3 Mart 1992 Kozlu faciası",
         "url": "https://tbmm.gov.tr/milletvekili/UyeGenelKurulKonusmalariDetay?eid=38364"
       },
       {
@@ -566,7 +566,7 @@ window.MINING_DATA = {
         "retrieved_at": "2026-10-14T10:42:00Z",
         "short_evidence_excerpt": "3 Mart 1992 tarihinde Kozlu Taş Kömürü Maden Ocağı'nda 263 maden işçimizi",
         "source_tier": "1",
-        "title": "Genel Kurul konuşması (Özcan Ulupınar) — 3 Mart 1992 Kozlu faciası",
+        "title": "TBMM Genel Kurul konuşması, 3 Mart 1992 Kozlu faciası",
         "url": "https://tbmm.gov.tr/milletvekili/UyeGenelKurulKonusmalariDetay?eid=38364"
       },
       {
@@ -599,7 +599,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "38 kişi göçük altına kalarak can vermiştir",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -645,7 +645,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "10 işçi yaşamını yitirmiştir",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -702,7 +702,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "7 işçi hayatını kaybetmiştir",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -805,7 +805,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "19 çalışan ölmüştür",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -908,7 +908,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "17 kişi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -954,7 +954,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "19 işçi grizu patlaması ile oluşan göçük sonucunda ölmüştür",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1028,15 +1028,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
       },
       {
-        "document_type": "other",
+        "document_type": "report",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:47:04Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Karadon maden kazası",
-        "url": "https://tr.wikipedia.org/wiki/Karadon_maden_kazas%C4%B1"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "30 maden emekçisi grizu patlaması nedeniyle hayatını kaybetmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
       },
       {
         "document_type": "other",
@@ -1129,15 +1129,15 @@ window.MINING_DATA = {
         "url": "https://www.wikidata.org/wiki/Q6015822"
       },
       {
-        "document_type": "other",
+        "document_type": "report",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "yangın ve oluşan göçük nedeniyle 3 maden emekçisi hayatını kaybetmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
       },
       {
         "document_type": "other",
@@ -1180,7 +1180,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "2 işçi hayatını kaybetmiştir",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1232,6 +1232,17 @@ window.MINING_DATA = {
         "url": "https://www.wikidata.org/wiki/Q6084742"
       },
       {
+        "document_type": "report",
+        "field_name": "casualty_status",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "da olmak üzere 17 maden emekçisi hayatını kaybetmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
         "document_type": "other",
         "field_name": "date_precision",
         "organization": "Wikidata",
@@ -1243,15 +1254,15 @@ window.MINING_DATA = {
         "url": "https://www.wikidata.org/wiki/Q6084742"
       },
       {
-        "document_type": "other",
+        "document_type": "report",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "da olmak üzere 17 maden emekçisi hayatını kaybetmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
       },
       {
         "document_type": "other",
@@ -1276,6 +1287,52 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/Odak%C3%B6y_maden_kazas%C4%B1"
       }
     ],
+    "TR-MINE-2010-0005": [
+      {
+        "document_type": "report",
+        "field_name": "date_precision",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "22 Aralık 2010 Uzunköprü",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "fatalities_current",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "göçük sonucu 1 meslektaşımız hayatını kaybetmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "incident_start_datetime",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "22 Aralık 2010 Uzunköprü",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "province_code",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "22 Aralık 2010 Uzunköprü",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      }
+    ],
     "TR-MINE-2011-0001": [
       {
         "document_type": "other",
@@ -1289,37 +1346,48 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "report",
         "field_name": "date_precision",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "6 Şubat 2011 Afşin-Elbistan",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
       },
       {
-        "document_type": "other",
+        "document_type": "report",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "mühendisi olmak üzere toplamda 11 maden emekçisi yaşamını yitirmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
       },
       {
-        "document_type": "other",
+        "document_type": "report",
+        "field_name": "incident_end_datetime",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "Kısa süre 10 Şubat 2011 arayla meydana gelen bu iki şev kaymasında",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
         "field_name": "incident_start_datetime",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "6 Şubat 2011 Afşin-Elbistan",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
       },
       {
         "document_type": "other",
@@ -1331,6 +1399,52 @@ window.MINING_DATA = {
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2012-0001": [
+      {
+        "document_type": "report",
+        "field_name": "date_precision",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "14 Eylül 2012 Soma - MANİSA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "fatalities_current",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "1 meslektaşımız hayatını kaybetmiş",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "incident_start_datetime",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "14 Eylül 2012 Soma - MANİSA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "province_code",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "14 Eylül 2012 Soma - MANİSA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
       }
     ],
     "TR-MINE-2013-0001": [
@@ -1351,7 +1465,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 işçi yaşamını yitirdi",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1392,15 +1506,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "report",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "ani metan degajı sebebiyle 8 maden emekçisi hayatını kaybetmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
       },
       {
         "document_type": "other",
@@ -1471,15 +1585,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
       },
       {
-        "document_type": "other",
+        "document_type": "report",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:47:04Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Soma Faciası",
-        "url": "https://tr.wikipedia.org/wiki/Soma_Facias%C4%B1"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "maden mühendisi meslektaşımız olmak üzere 301 maden",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
       },
       {
         "document_type": "other",
@@ -1702,7 +1816,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 işçi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1748,7 +1862,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 işçi öldü",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1794,7 +1908,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "3 işçi öldü",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1840,7 +1954,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 işçi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1886,7 +2000,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 işçi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1932,7 +2046,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 işçi öldü",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -1978,7 +2092,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "3 işçi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2019,15 +2133,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "news_article",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "organization": "Bartın.info",
+        "publication_date": "2014-11-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "İKİNCİ İŞÇİNİN DE CESEDİ ÇIKARILDI",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Amasra'da Maden Ocağında Göçük: 2 Ölü 1 Yaralı",
+        "url": "https://www.bartin.info/amasrada-maden-ocaginda-gocuk-2-olu-1-yarali"
       },
       {
         "document_type": "other",
@@ -2116,7 +2230,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 işçi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2162,7 +2276,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "bir işçi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2208,7 +2322,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "bir işçi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2254,7 +2368,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 işçi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2300,7 +2414,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 işçi öldü",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2346,7 +2460,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 işçi öldü",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2372,6 +2486,52 @@ window.MINING_DATA = {
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2015-0007": [
+      {
+        "document_type": "report",
+        "field_name": "date_precision",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "17 Mayıs 2015 Yeşilova-BURDUR",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "fatalities_current",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "gaz zehirlenmesi sonucu 2 maden emekçisi hayatını kaybetti",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "incident_start_datetime",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "17 Mayıs 2015 Yeşilova-BURDUR",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "province_code",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "17 Mayıs 2015 Yeşilova-BURDUR",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
       }
     ],
     "TR-MINE-2016-0001": [
@@ -2398,15 +2558,15 @@ window.MINING_DATA = {
         "url": "https://www.wikidata.org/wiki/Q31189416"
       },
       {
-        "document_type": "news_article",
+        "document_type": "report",
         "field_name": "fatalities_current",
-        "organization": "TRT Haber",
-        "publication_date": "2016-12-12",
-        "retrieved_at": "2026-10-14T10:42:00Z",
-        "short_evidence_excerpt": "Hayatını kaybeden 16 işçinin",
-        "source_tier": "3",
-        "title": "Şirvan'da son işçinin de cesedi çıkarıldı",
-        "url": "https://www.trthaber.com/haber/turkiye/sirvanda-son-iscinin-de-cesedi-cikarildi-287552.html"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "meydana gelen heyelanda 16 maden emekçisi hayatını kaybetmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
       },
       {
         "document_type": "news_article",
@@ -2431,6 +2591,144 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/%C5%9Eirvan_maden_kazas%C4%B1"
       }
     ],
+    "TR-MINE-2017-0001": [
+      {
+        "document_type": "report",
+        "field_name": "date_precision",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "17 Mayıs 2017 Kemer - ANTALYA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "fatalities_current",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "parlaması sonucu 2 maden emekçisi hayatını kaybetmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "incident_start_datetime",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "17 Mayıs 2017 Kemer - ANTALYA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "province_code",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "17 Mayıs 2017 Kemer - ANTALYA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      }
+    ],
+    "TR-MINE-2017-0002": [
+      {
+        "document_type": "report",
+        "field_name": "date_precision",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "31 Mayıs 2017 Kilimli- ZONGULDAK",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "fatalities_current",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "cu 2 maden emekçisi öldü",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "incident_start_datetime",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "31 Mayıs 2017 Kilimli- ZONGULDAK",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "province_code",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "31 Mayıs 2017 Kilimli- ZONGULDAK",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      }
+    ],
+    "TR-MINE-2017-0003": [
+      {
+        "document_type": "report",
+        "field_name": "date_precision",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "17 Ekim 2017 Şırnak",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "fatalities_current",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "heyelanda 7 maden emekçisi hayatını kaybetmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "incident_start_datetime",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "17 Ekim 2017 Şırnak",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "province_code",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "17 Ekim 2017 Şırnak",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      }
+    ],
     "TR-MINE-2019-0001": [
       {
         "document_type": "other",
@@ -2449,7 +2747,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 işçi hayatını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2534,6 +2832,558 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       }
     ],
+    "TR-MINE-2019-0003": [
+      {
+        "document_type": "report",
+        "field_name": "date_precision",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "18 Şubat 2019 Milas – MUĞLA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "fatalities_current",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "kayması sonucu 3 maden emekçisi hayatını kaybetmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "incident_start_datetime",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "18 Şubat 2019 Milas – MUĞLA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "province_code",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "18 Şubat 2019 Milas – MUĞLA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      }
+    ],
+    "TR-MINE-2019-0004": [
+      {
+        "document_type": "report",
+        "field_name": "date_precision",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "01 Mayıs 2019 Ağlı - KASTAMONU",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "fatalities_current",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "Mermer ocağında taş düşmesi sonucu 2 maden emekçisi hayatını kaybetti",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "incident_start_datetime",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "01 Mayıs 2019 Ağlı - KASTAMONU",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "province_code",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "01 Mayıs 2019 Ağlı - KASTAMONU",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      }
+    ],
+    "TR-MINE-2020-0001": [
+      {
+        "document_type": "report",
+        "field_name": "date_precision",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "10 Nisan 2020 Soma - MANİSA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "fatalities_current",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "göçük sonucu 3 maden emekçisi hayatını kaybetmiştir",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "incident_start_datetime",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "10 Nisan 2020 Soma - MANİSA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      },
+      {
+        "document_type": "report",
+        "field_name": "province_code",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2021-03-01",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "10 Nisan 2020 Soma - MANİSA",
+        "source_tier": "2",
+        "title": "Madencilikte Yaşanan İş Kazaları Raporu (2010-2020)",
+        "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/f4e5d6912a_2079309069_ek.pdf"
+      }
+    ],
+    "TR-MINE-2021-0001": [
+      {
+        "document_type": "other",
+        "field_name": "date_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Aydın Karpuzlu ilçesi Güney köyü yakınındaki madende 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "fatalities_current",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Aydın Karpuzlu ilçesi Güney köyü yakınındaki madende 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "incident_start_datetime",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Aydın Karpuzlu ilçesi Güney köyü yakınındaki madende 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "province_code",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Aydın Karpuzlu ilçesi Güney köyü yakınındaki madende 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2021-0002": [
+      {
+        "document_type": "other",
+        "field_name": "date_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Palu ilçesindeki krom madeni çıkarılan özel maden ocağında 2 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "fatalities_current",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Palu ilçesindeki krom madeni çıkarılan özel maden ocağında 2 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "incident_start_datetime",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Palu ilçesindeki krom madeni çıkarılan özel maden ocağında 2 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "province_code",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Palu ilçesindeki krom madeni çıkarılan özel maden ocağında 2 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2021-0003": [
+      {
+        "document_type": "other",
+        "field_name": "date_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Söke ilçesindeki maden ocağında ise 1 işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "fatalities_current",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Söke ilçesindeki maden ocağında ise 1 işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "incident_start_datetime",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Söke ilçesindeki maden ocağında ise 1 işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "province_code",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Söke ilçesindeki maden ocağında ise 1 işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2021-0004": [
+      {
+        "document_type": "other",
+        "field_name": "date_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "kömür üretimi sırasında meydana gelen göçükte 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "fatalities_current",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "kömür üretimi sırasında meydana gelen göçükte 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "incident_start_datetime",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "kömür üretimi sırasında meydana gelen göçükte 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "province_code",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "kömür üretimi sırasında meydana gelen göçükte 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2021-0005": [
+      {
+        "document_type": "other",
+        "field_name": "date_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "kaçak işletilen maden ocağında meydana gelen göçük sonucu 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "fatalities_current",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "kaçak işletilen maden ocağında meydana gelen göçük sonucu 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "incident_start_datetime",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "kaçak işletilen maden ocağında meydana gelen göçük sonucu 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "province_code",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "kaçak işletilen maden ocağında meydana gelen göçük sonucu 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2021-0006": [
+      {
+        "document_type": "other",
+        "field_name": "date_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "iş makinesinin uçurumdan yuvarlanmasıyla bir işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "fatalities_current",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "iş makinesinin uçurumdan yuvarlanmasıyla bir işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "incident_start_datetime",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "iş makinesinin uçurumdan yuvarlanmasıyla bir işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "province_code",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "iş makinesinin uçurumdan yuvarlanmasıyla bir işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2021-0007": [
+      {
+        "document_type": "other",
+        "field_name": "date_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "maden yolundaki döküm sahasında meydana gelen kazada 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "fatalities_current",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "maden yolundaki döküm sahasında meydana gelen kazada 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "incident_start_datetime",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "maden yolundaki döküm sahasında meydana gelen kazada 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "province_code",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "maden yolundaki döküm sahasında meydana gelen kazada 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2021-0008": [
+      {
+        "document_type": "other",
+        "field_name": "date_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Çal ilçesinde mermer ocağında meydana gelen iş kazasında 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "fatalities_current",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Çal ilçesinde mermer ocağında meydana gelen iş kazasında 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "incident_start_datetime",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Çal ilçesinde mermer ocağında meydana gelen iş kazasında 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "province_code",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "Çal ilçesinde mermer ocağında meydana gelen iş kazasında 1 işçi",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
+    "TR-MINE-2021-0009": [
+      {
+        "document_type": "other",
+        "field_name": "date_precision",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "vinç kazası nedeniyle 1 işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "fatalities_current",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "vinç kazası nedeniyle 1 işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "incident_start_datetime",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "vinç kazası nedeniyle 1 işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      },
+      {
+        "document_type": "other",
+        "field_name": "province_code",
+        "organization": "Wikipedia (tr)",
+        "publication_date": "",
+        "retrieved_at": "2026-10-14T12:50:02Z",
+        "short_evidence_excerpt": "vinç kazası nedeniyle 1 işçi hayatını kaybetti",
+        "source_tier": "3",
+        "title": "Türkiye'deki madencilik kazaları listesi",
+        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+      }
+    ],
     "TR-MINE-2022-0001": [
       {
         "document_type": "other",
@@ -2606,7 +3456,7 @@ window.MINING_DATA = {
         "field_name": "fatalities_current",
         "organization": "TBMM",
         "publication_date": "2023-04-06",
-        "retrieved_at": "2026-10-29T21:05:54Z",
+        "retrieved_at": "2026-11-15T19:26:28Z",
         "short_evidence_excerpt": "Üzülerek söylemeliyim ki Amasra maden katliamında yaşamını yitiren madenci sayısı 42’den 43’e çıktı.",
         "source_tier": "1",
         "title": "TBMM Tutanak Dergisi, Dönem 27, Yasama Yılı 6, Cilt 129, 86'ncı Birleşim, 6 Nisan 2023 (printed page 74)",
@@ -2833,7 +3683,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "isimli işçi yaşamını yitirdi",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -2982,7 +3832,7 @@ window.MINING_DATA = {
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "1 maden işçisi yaşamını kaybetti",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -3135,15 +3985,15 @@ window.MINING_DATA = {
         "url": "https://tr.euronews.com/2026/10/06/somada-maden-kazasi-genel-mudur-dahil-9-kisi-tutuklandi"
       },
       {
-        "document_type": "news_article",
+        "document_type": "chamber_statement",
         "field_name": "fatalities_current",
-        "organization": "Evrensel",
-        "publication_date": "2026-10-01",
-        "retrieved_at": "2026-10-14T10:42:00Z",
-        "short_evidence_excerpt": "Göçük altında kalan 3 işçinin daha cansız bedenine ulaşıldı, can kaybı sayısı 5'e yükseldi",
-        "source_tier": "3",
-        "title": "Manisa Soma'da maden ocağında göçük: Yaşamını yitiren işçi sayısı 5'e yükseldi",
-        "url": "https://www.evrensel.net/haber/6002971/manisa-soma-da-maden-ocaginda-gocuk-yasamini-yitiren-isci-sayisi-5-e-yukseldi"
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2026-10-02",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "meydana gelen göçükte 5 işçi hayatını kaybetmiş ve 2 işçi yaralanmıştır",
+        "source_tier": "2",
+        "title": "Yaşadığımız çağda madenlerde yaşanan göçükler kabul edilemez",
+        "url": "https://www.maden.org.tr/calismalar/basin-aciklamalari/detay/yasadigimiz-cagda-madenlerde-yasanan-gocukler-kabul-edilemez-soma-da-meydana-gelen-gocukte-5-maden-emekcisi-hayatini-kaybetmis-2-isci-yaralanmistir-202610021438"
       },
       {
         "document_type": "news_article",
@@ -3155,6 +4005,17 @@ window.MINING_DATA = {
         "source_tier": "3",
         "title": "Manisa Soma'da maden ocağında göçük: Yaşamını yitiren işçi sayısı 5'e yükseldi",
         "url": "https://www.evrensel.net/haber/6002971/manisa-soma-da-maden-ocaginda-gocuk-yasamini-yitiren-isci-sayisi-5-e-yukseldi"
+      },
+      {
+        "document_type": "chamber_statement",
+        "field_name": "injuries_current",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "2026-10-02",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "meydana gelen göçükte 5 işçi hayatını kaybetmiş ve 2 işçi yaralanmıştır",
+        "source_tier": "2",
+        "title": "Yaşadığımız çağda madenlerde yaşanan göçükler kabul edilemez",
+        "url": "https://www.maden.org.tr/calismalar/basin-aciklamalari/detay/yasadigimiz-cagda-madenlerde-yasanan-gocukler-kabul-edilemez-soma-da-meydana-gelen-gocukte-5-maden-emekcisi-hayatini-kaybetmis-2-isci-yaralanmistir-202610021438"
       },
       {
         "document_type": "news_article",
@@ -3450,6 +4311,13 @@ window.MINING_DATA = {
     "TR-MINE-2010-0002": [
       {
         "assertion_status": "reported",
+        "code": "fire",
+        "label_en": "fire",
+        "label_tr": "yangın",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
         "code": "roof_or_ground_collapse",
         "label_en": "roof or ground collapse",
         "label_tr": "tavan/göçük",
@@ -3470,6 +4338,15 @@ window.MINING_DATA = {
         "label_en": "methane",
         "label_tr": "metan (grizu)",
         "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2010-0005": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
       }
     ],
     "TR-MINE-2011-0001": [
@@ -3627,9 +4504,43 @@ window.MINING_DATA = {
     "TR-MINE-2016-0001": [
       {
         "assertion_status": "reported",
+        "code": "landslide_or_slope_failure",
+        "label_en": "landslide or slope failure",
+        "label_tr": "heyelan/şev duraysızlığı",
+        "system": "project_event_mechanism"
+      },
+      {
+        "assertion_status": "reported",
         "code": "roof_or_ground_collapse",
         "label_en": "roof or ground collapse",
         "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2017-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "methane",
+        "label_en": "methane",
+        "label_tr": "metan (grizu)",
+        "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2017-0002": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2017-0003": [
+      {
+        "assertion_status": "reported",
+        "code": "landslide_or_slope_failure",
+        "label_en": "landslide or slope failure",
+        "label_tr": "heyelan/şev duraysızlığı",
         "system": "project_event_mechanism"
       }
     ],
@@ -3647,6 +4558,67 @@ window.MINING_DATA = {
         "label_en": "methane",
         "label_tr": "metan (grizu)",
         "system": "project_hazard"
+      }
+    ],
+    "TR-MINE-2019-0003": [
+      {
+        "assertion_status": "reported",
+        "code": "landslide_or_slope_failure",
+        "label_en": "landslide or slope failure",
+        "label_tr": "heyelan/şev duraysızlığı",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2019-0004": [
+      {
+        "assertion_status": "reported",
+        "code": "fall_of_object",
+        "label_en": "fall of object",
+        "label_tr": "cisim düşmesi",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2020-0001": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2021-0004": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2021-0005": [
+      {
+        "assertion_status": "reported",
+        "code": "informal_or_illegal_operation",
+        "label_en": "informal or illegal operation",
+        "label_tr": "kayıt dışı/ruhsatsız işletme",
+        "system": "project_contributing_condition"
+      },
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2021-0006": [
+      {
+        "assertion_status": "reported",
+        "code": "loss_of_vehicle_control",
+        "label_en": "loss of vehicle control",
+        "label_tr": "araç kontrol kaybı",
+        "system": "project_event_mechanism"
       }
     ],
     "TR-MINE-2022-0001": [
@@ -3700,6 +4672,15 @@ window.MINING_DATA = {
       }
     ],
     "TR-MINE-2024-0005": [
+      {
+        "assertion_status": "reported",
+        "code": "roof_or_ground_collapse",
+        "label_en": "roof or ground collapse",
+        "label_tr": "tavan/göçük",
+        "system": "project_event_mechanism"
+      }
+    ],
+    "TR-MINE-2026-0001": [
       {
         "assertion_status": "reported",
         "code": "roof_or_ground_collapse",
@@ -3763,8 +4744,8 @@ window.MINING_DATA = {
         {
           "assertion_status": "reported",
           "effect_status": "reported",
-          "qualitative": "Kimyasal atık (kurşun, çinko, bakır zenginleştirme tesisi)",
-          "qualitative_en": "Chemical waste from a lead, zinc and copper concentrator",
+          "qualitative": "Yaklaşık 4.500 ton kimyasal atık (kurşun, çinko, bakır zenginleştirme tesisi)",
+          "qualitative_en": "About 4,500 tonnes of chemical waste from a lead, zinc and copper concentrator",
           "type": "released_material",
           "unit": "tonne",
           "value": 4500.0
@@ -3909,22 +4890,7 @@ window.MINING_DATA = {
   ],
   "evidence_notices": [
     {
-      "checked_at": "2026-10-29",
-      "field": "organization_role",
-      "id": "EV-20261029-02",
-      "public_incident_id": "TR-MINE-1983-0001",
-      "sources": [
-        {
-          "label": "TTK · institutional legal history",
-          "url": "https://www.taskomuru.gov.tr/ttk/yasal-duzenleme/"
-        }
-      ],
-      "status": "pending_human_review",
-      "text_en": "The snapshot names TTK as operator on 7 March 1983. TTK’s institutional history places its establishment later in 1983 and describes predecessor EKİ under TKİ. The historical entity attribution is under review; the present organization name must not be treated as verified for March 1983.",
-      "text_tr": "Veri kesiti 7 Mart 1983 tarihinde işletmeci olarak TTK’yı gösteriyor. TTK’nın kurum tarihçesi kuruluşunu 1983’ün daha sonraki dönemine yerleştiriyor ve TKİ’ye bağlı önceki EKİ yapısını anlatıyor. Tarihsel kurum atfı incelemededir; bugünkü kurum adı Mart 1983 için doğrulanmış sayılmamalıdır."
-    },
-    {
-      "checked_at": "2026-10-29",
+      "checked_at": "2026-11-15",
       "field": "incident_start_datetime",
       "id": "EV-20261029-03",
       "public_incident_id": "TR-MINE-1983-0002",
@@ -3935,72 +4901,8 @@ window.MINING_DATA = {
         }
       ],
       "status": "pending_human_review",
-      "text_en": "The snapshot gives 10 April 1983; TTK’s chronology gives 11 April. The date remains unresolved pending review of contemporary records. TTK’s attribution to this early-1983 event also needs an effective-date check.",
-      "text_tr": "Veri kesiti 10 Nisan 1983, TTK tarihçesi ise 11 Nisan tarihini veriyor. Dönemin kayıtları incelenene kadar tarih uyuşmazlığı açıktır. TTK’nın bu erken 1983 olayına atfı da kuruluş ve geçerlilik tarihi açısından incelenmelidir."
-    },
-    {
-      "checked_at": "2026-10-29",
-      "field": "fatalities_current",
-      "id": "EV-20261029-04",
-      "public_incident_id": "TR-MINE-1990-0002",
-      "sources": [
-        {
-          "label": "TMMOB Maden Mühendisleri Odası · 7 February 2023",
-          "url": "https://www.maden.org.tr/icerik/7-subat-1990-yeni-celtek-faciasi-12471"
-        }
-      ],
-      "status": "pending_human_review",
-      "text_en": "The public fatality field lacks its own citation. A chamber statement dated 7 February 2023 supports the displayed 68 deaths; monitoring found a conflicting Wikidata value of 66. This supporting source is disclosed here pending a recorded citation/decision update, without treating repeated reports as independent confirmation.",
-      "text_tr": "Can kaybı alanının kamuya açık dışa aktarımında kendine ait atıf yoktur. Odanın 7 Şubat 2023 açıklaması gösterilen 68 sayısını destekliyor; izleme işlemi Vikiveri’de 66 buldu. Bu destekleyici kaynak, kayıtlı atıf ve karar güncellemesi beklenirken burada sunuluyor; tekrar eden haberler bağımsız doğrulama sayılmıyor."
-    },
-    {
-      "checked_at": "2026-10-29",
-      "field": "fatalities_current",
-      "id": "EV-20261029-05",
-      "public_incident_id": "TR-MINE-2014-0012",
-      "sources": [
-        {
-          "label": "Bartın.info · 1 November 2014 · 13:35 update",
-          "url": "https://www.bartin.info/amasrada-maden-ocaginda-gocuk-2-olu-1-yarali"
-        }
-      ],
-      "status": "pending_human_review",
-      "text_en": "Monitoring flags 1 versus the published 2 deaths. The contemporaneous Bartın.info report records the second recovery in its 13:35 update on 1 November 2014, supporting 2. This appears to be a reporting-stage difference; a human decision must close the conflict.",
-      "text_tr": "İzleme işlemi yayımlanan 2 sayısına karşı 1 can kaybı buldu. Bartın.info’nun 1 Kasım 2014 tarihli haberinin 13.35 güncellemesi ikinci kişinin cansız bedenine ulaşıldığını bildirerek 2 sayısını destekliyor. Fark haberin güncellenme aşamasından kaynaklanıyor olabilir; uyuşmazlık insan incelemesiyle kapatılmalıdır."
-    },
-    {
-      "checked_at": "2026-10-29",
-      "field": "injuries_current,event_mechanism",
-      "id": "EV-20261029-06",
-      "public_incident_id": "TR-MINE-2026-0001",
-      "sources": [
-        {
-          "label": "TMMOB Maden Mühendisleri Odası · 2 October 2026",
-          "url": "https://www.maden.org.tr/calismalar/basin-aciklamalari/detay/yasadigimiz-cagda-madenlerde-yasanan-gocukler-kabul-edilemez-soma-da-meydana-gelen-maden-gocukte-5-maden-emekcisi-hayatini-kaybetmis-2-isci-yaralanmistir-202610021438"
-        }
-      ],
-      "status": "pending_human_review",
-      "text_en": "The snapshot has no injury figure or mechanism code. The chamber’s 2 October 2026 statement reports a collapse, 5 deaths and 2 injuries. Its team explicitly lacked underground access and plans needed for definitive causal findings. These additions are awaiting human review.",
-      "text_tr": "Veri kesitinde yaralı sayısı ve olay mekanizması kodu yoktur. Odanın 2 Ekim 2026 açıklaması göçük, 5 can kaybı ve 2 yaralı bildiriyor. Heyet, kesin neden tespiti için gerekli yeraltı erişimi ve planlara sahip olmadığını açıkça belirtiyor. Bu eklemeler insan incelemesi bekliyor."
-    },
-    {
-      "checked_at": "2026-10-29",
-      "field": "environmental_effects",
-      "id": "EV-20261029-07",
-      "public_incident_id": "TR-ENV-2021-0001",
-      "sources": [
-        {
-          "label": "Wikidata",
-          "url": "https://www.wikidata.org/wiki/Q116082433"
-        },
-        {
-          "label": "Wikipedia (tr)",
-          "url": "https://tr.wikipedia.org/wiki/Nesko_%C5%9Eebinkarahisar_Maden_%C4%B0%C5%9Fletmesi_felaketi"
-        }
-      ],
-      "status": "pending_human_review",
-      "text_en": "The Kelkit river/plain assertion describes a threat, not a confirmed arrival or measured contamination. The release quantity also needs review of the original qualifier; the scope protocol describes more than 4,500 tonnes.",
-      "text_tr": "Kelkit Çayı ve ovasına ilişkin ifade, doğrulanmış bir ulaşımı veya ölçülmüş kirlenmeyi değil tehdidi anlatır. Miktarın özgün niteleyicisi de incelenmelidir; kapsam protokolü 4.500 tondan fazla ifadesini kullanır."
+      "text_en": "The register dates this accident 10 April 1983, from the list article. TTK’s own chronology dates it 11 April and gives the same toll of 10, which is now the cited source for the toll. The two differ by one day and no record from the time has been read, so the date stays as published until one is.",
+      "text_tr": "Kayıt bu kazayı liste maddesine dayanarak 10 Nisan 1983 olarak tarihliyor. TTK’nın kendi tarihçesi 11 Nisan tarihini ve aynı can kaybını (10) veriyor; can kaybının kaynağı artık TTK tarihçesidir. İki tarih arasında bir gün fark var ve dönemin bir kaydı okunmadı; okunana kadar tarih yayımlandığı gibi kalıyor."
     },
     {
       "checked_at": "2026-10-29",
@@ -4029,11 +4931,11 @@ window.MINING_DATA = {
         }
       ],
       "status": "pending_human_review",
-      "text_en": "Environmental assertions in this snapshot cite Wikipedia. A reported official action is not a directly inspected official document. The saved date excerpt describes the site, not the date. Water/soil measurements and impact extent are not established by this record.",
-      "text_tr": "Bu veri kesitindeki çevresel ifadeler Vikipedi’ye atıf yapıyor. Aktarılan resmî işlem, doğrudan incelenmiş resmî belge anlamına gelmez. Kayıtlı tarih alıntısı tarihi değil sahayı anlatıyor. Bu kayıt su/toprak ölçümlerini ve etkinin yayılımını ortaya koymuyor."
+      "text_en": "Environmental assertions in this snapshot cite Wikipedia. A reported official action is not a directly inspected official document. The saved date excerpt describes the site, not the date. Water and soil measurements and impact extent are not established by this record.",
+      "text_tr": "Bu veri kesitindeki çevresel ifadeler Vikipedi’ye atıf yapıyor. Aktarılan resmî işlem, doğrudan incelenmiş resmî belge anlamına gelmez. Kayıtlı tarih alıntısı tarihi değil sahayı anlatıyor. Bu kayıt su ve toprak ölçümlerini ve etkinin yayılımını ortaya koymuyor."
     }
   ],
-  "export_timestamp": "2026-10-29T21:07:56Z",
+  "export_timestamp": "2026-11-16T11:30:56Z",
   "hazard_matrix": {
     "bands": [
       {
@@ -4072,6 +4974,7 @@ window.MINING_DATA = {
       "landslide_or_slope_failure",
       "flooding_or_inrush",
       "loss_of_vehicle_control",
+      "fall_of_object",
       "not_yet_coded"
     ],
     "mechanisms": [
@@ -4089,59 +4992,59 @@ window.MINING_DATA = {
         "label_tr": "gaz (grizu) patlaması",
         "latest_year": 2022,
         "records": 20,
-        "share_of_deaths": 61.3,
+        "share_of_deaths": 59.5,
         "worst": 263
       },
       {
         "cells": [
           0,
-          0,
+          1,
           1,
           2
         ],
         "code": "fire",
-        "deaths": 583,
+        "deaths": 586,
         "first_year": 1992,
         "label_en": "fire",
         "label_tr": "yangın",
         "latest_year": 2014,
-        "records": 3,
-        "share_of_deaths": 53.4,
+        "records": 4,
+        "share_of_deaths": 52.1,
         "worst": 301
       },
       {
         "cells": [
-          6,
-          6,
+          9,
+          9,
           2,
           1
         ],
         "code": "roof_or_ground_collapse",
-        "deaths": 343,
+        "deaths": 356,
         "first_year": 1987,
         "label_en": "roof or ground collapse",
         "label_tr": "tavan/göçük",
-        "latest_year": 2024,
-        "records": 15,
-        "share_of_deaths": 31.4,
+        "latest_year": 2026,
+        "records": 21,
+        "share_of_deaths": 31.6,
         "worst": 263
       },
       {
         "cells": [
           0,
-          1,
-          1,
+          3,
+          2,
           0
         ],
         "code": "landslide_or_slope_failure",
-        "deaths": 20,
+        "deaths": 46,
         "first_year": 2011,
         "label_en": "landslide or slope failure",
         "label_tr": "heyelan/şev duraysızlığı",
         "latest_year": 2024,
-        "records": 2,
-        "share_of_deaths": 1.8,
-        "worst": 11
+        "records": 5,
+        "share_of_deaths": 4.1,
+        "worst": 16
       },
       {
         "cells": [
@@ -4162,64 +5065,82 @@ window.MINING_DATA = {
       },
       {
         "cells": [
-          1,
+          2,
           0,
           0,
           0
         ],
         "code": "loss_of_vehicle_control",
-        "deaths": 1,
+        "deaths": 2,
         "first_year": 2014,
         "label_en": "loss of vehicle control",
         "label_tr": "araç kontrol kaybı",
-        "latest_year": 2014,
-        "records": 1,
-        "share_of_deaths": 0.1,
+        "latest_year": 2021,
+        "records": 2,
+        "share_of_deaths": 0.2,
         "worst": 1
       },
       {
         "cells": [
-          11,
-          3,
+          0,
+          1,
+          0,
+          0
+        ],
+        "code": "fall_of_object",
+        "deaths": 2,
+        "first_year": 2019,
+        "label_en": "fall of object",
+        "label_tr": "cisim düşmesi",
+        "latest_year": 2019,
+        "records": 1,
+        "share_of_deaths": 0.2,
+        "worst": 2
+      },
+      {
+        "cells": [
+          17,
+          5,
           0,
           0
         ],
         "code": "not_yet_coded",
-        "deaths": 23,
+        "deaths": 30,
         "first_year": 2010,
         "label_en": "not yet coded",
         "label_tr": "henüz kodlanmadı",
-        "latest_year": 2026,
-        "records": 14,
-        "share_of_deaths": 2.1,
+        "latest_year": 2025,
+        "records": 22,
+        "share_of_deaths": 2.7,
         "worst": 5
       }
     ],
     "method": "Both axes are counts of what this register has documented, not probabilities and not a safety assessment of any site or company. Severity bands are the deaths recorded in a single incident. A record appears in every mechanism row its sources document, so rows sum to more than the number of records. An empty cell means nothing of that kind is documented here. STATUS: PROPOSED — see docs/analysis_methods.md and docs/open_questions.md #29.",
     "provinces": [
       {
-        "deaths": 427,
+        "deaths": 431,
         "documented_sites": 5,
         "latest_year": 2024,
         "mechanisms": {
           "fire": 1,
           "gas_explosion": 6,
           "loss_of_vehicle_control": 1,
-          "roof_or_ground_collapse": 6
+          "roof_or_ground_collapse": 9
         },
         "province_code": "67",
-        "records": 11
+        "records": 14
       },
       {
-        "deaths": 309,
+        "deaths": 314,
         "documented_sites": 7,
         "latest_year": 2026,
         "mechanisms": {
           "fire": 1,
-          "not_yet_coded": 4
+          "not_yet_coded": 5,
+          "roof_or_ground_collapse": 2
         },
         "province_code": "45",
-        "records": 5
+        "records": 8
       },
       {
         "deaths": 79,
@@ -4276,14 +5197,26 @@ window.MINING_DATA = {
         "records": 2
       },
       {
-        "deaths": 21,
+        "deaths": 23,
         "documented_sites": 1,
-        "latest_year": 2010,
+        "latest_year": 2021,
         "mechanisms": {
           "gas_explosion": 1,
-          "not_yet_coded": 1
+          "loss_of_vehicle_control": 1,
+          "not_yet_coded": 2
         },
         "province_code": "16",
+        "records": 4
+      },
+      {
+        "deaths": 21,
+        "documented_sites": 1,
+        "latest_year": 2019,
+        "mechanisms": {
+          "fall_of_object": 1,
+          "fire": 1
+        },
+        "province_code": "37",
         "records": 2
       },
       {
@@ -4291,20 +5224,11 @@ window.MINING_DATA = {
         "documented_sites": 1,
         "latest_year": 2023,
         "mechanisms": {
+          "landslide_or_slope_failure": 1,
           "roof_or_ground_collapse": 2
         },
         "province_code": "56",
         "records": 2
-      },
-      {
-        "deaths": 19,
-        "documented_sites": 1,
-        "latest_year": 2004,
-        "mechanisms": {
-          "fire": 1
-        },
-        "province_code": "37",
-        "records": 1
       },
       {
         "deaths": 18,
@@ -4328,6 +5252,17 @@ window.MINING_DATA = {
         "records": 2
       },
       {
+        "deaths": 11,
+        "documented_sites": 2,
+        "latest_year": 2017,
+        "mechanisms": {
+          "landslide_or_slope_failure": 1,
+          "roof_or_ground_collapse": 2
+        },
+        "province_code": "73",
+        "records": 3
+      },
+      {
         "deaths": 9,
         "documented_sites": 1,
         "latest_year": 2024,
@@ -4341,6 +5276,18 @@ window.MINING_DATA = {
       {
         "deaths": 7,
         "documented_sites": 0,
+        "latest_year": 2014,
+        "mechanisms": {
+          "fire": 1,
+          "gas_explosion": 1,
+          "roof_or_ground_collapse": 2
+        },
+        "province_code": "22",
+        "records": 3
+      },
+      {
+        "deaths": 7,
+        "documented_sites": 0,
         "latest_year": 2003,
         "mechanisms": {
           "gas_explosion": 1
@@ -4349,24 +5296,24 @@ window.MINING_DATA = {
         "records": 1
       },
       {
-        "deaths": 6,
+        "deaths": 5,
         "documented_sites": 0,
-        "latest_year": 2014,
+        "latest_year": 2019,
         "mechanisms": {
-          "gas_explosion": 1,
-          "roof_or_ground_collapse": 1
+          "landslide_or_slope_failure": 1,
+          "not_yet_coded": 2
         },
-        "province_code": "22",
-        "records": 2
+        "province_code": "48",
+        "records": 3
       },
       {
-        "deaths": 4,
-        "documented_sites": 2,
-        "latest_year": 2014,
+        "deaths": 3,
+        "documented_sites": 1,
+        "latest_year": 2021,
         "mechanisms": {
-          "roof_or_ground_collapse": 2
+          "not_yet_coded": 2
         },
-        "province_code": "73",
+        "province_code": "23",
         "records": 2
       },
       {
@@ -4392,22 +5339,32 @@ window.MINING_DATA = {
       },
       {
         "deaths": 2,
-        "documented_sites": 0,
-        "latest_year": 2015,
+        "documented_sites": 1,
+        "latest_year": 2021,
         "mechanisms": {
           "not_yet_coded": 2
         },
-        "province_code": "48",
+        "province_code": "09",
         "records": 2
       },
       {
-        "deaths": 1,
+        "deaths": 2,
         "documented_sites": 1,
-        "latest_year": 2014,
+        "latest_year": 2015,
         "mechanisms": {
           "not_yet_coded": 1
         },
-        "province_code": "23",
+        "province_code": "15",
+        "records": 1
+      },
+      {
+        "deaths": 2,
+        "documented_sites": 1,
+        "latest_year": 2017,
+        "mechanisms": {
+          "not_yet_coded": 1
+        },
+        "province_code": "07",
         "records": 1
       },
       {
@@ -4442,6 +5399,16 @@ window.MINING_DATA = {
       },
       {
         "deaths": 1,
+        "documented_sites": 1,
+        "latest_year": 2021,
+        "mechanisms": {
+          "not_yet_coded": 1
+        },
+        "province_code": "20",
+        "records": 1
+      },
+      {
+        "deaths": 1,
         "documented_sites": 0,
         "latest_year": 2024,
         "mechanisms": {
@@ -4452,14 +5419,14 @@ window.MINING_DATA = {
       }
     ],
     "sites_outside_recorded_provinces": {
-      "provinces": 21,
-      "sites": 30
+      "provinces": 17,
+      "sites": 26
     },
     "totals": {
-      "deaths": 1092,
+      "deaths": 1125,
       "documented_sites": 69,
-      "records": 52,
-      "records_with_a_mechanism": 38
+      "records": 70,
+      "records_with_a_mechanism": 48
     }
   },
   "incident_organizations": {
@@ -4775,7 +5742,7 @@ window.MINING_DATA = {
   },
   "incidents": [
     {
-      "canonical_title_en": null,
+      "canonical_title_en": "1983 Armutçuk firedamp disaster",
       "canonical_title_tr": "1983 Armutçuk grizu faciası",
       "casualty_status": null,
       "coordinate_precision": null,
@@ -4796,8 +5763,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Zonguldak (1983-04-10)",
+      "canonical_title_en": "Mine accident, Zonguldak (10 April 1983)",
+      "canonical_title_tr": "Maden kazası, Zonguldak (10 Nisan 1983)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -4817,8 +5784,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Amasya (1983-07-01)",
+      "canonical_title_en": "Mine accident, Amasya (July 1983)",
+      "canonical_title_tr": "Maden kazası, Amasya (Temmuz 1983)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "month",
@@ -4838,8 +5805,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Zonguldak (1987-01-01)",
+      "canonical_title_en": "Mine accident, Zonguldak (January 1987)",
+      "canonical_title_tr": "Maden kazası, Zonguldak (Ocak 1987)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "month",
@@ -4859,8 +5826,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Bartın (1990-01-31)",
+      "canonical_title_en": "Mine accident, Bartın (31 January 1990)",
+      "canonical_title_tr": "Maden kazası, Bartın (31 Ocak 1990)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -4880,7 +5847,7 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
+      "canonical_title_en": "1990 Amasya firedamp disaster",
       "canonical_title_tr": "1990 Amasya grizu faciası",
       "casualty_status": null,
       "coordinate_precision": null,
@@ -4901,7 +5868,7 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
+      "canonical_title_en": "1992 Kozlu coal mine disaster",
       "canonical_title_tr": "1992 Kozlu kömür madeni faciası",
       "casualty_status": null,
       "coordinate_precision": null,
@@ -4922,8 +5889,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Yozgat (1995-03-26)",
+      "canonical_title_en": "Mine accident, Yozgat (26 March 1995)",
+      "canonical_title_tr": "Maden kazası, Yozgat (26 Mart 1995)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -4943,8 +5910,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Karaman (2003-11-22)",
+      "canonical_title_en": "Mine accident, Karaman (22 November 2003)",
+      "canonical_title_tr": "Maden kazası, Karaman (22 Kasım 2003)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -4964,8 +5931,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Erzurum (2003-08-08)",
+      "canonical_title_en": "Mine accident, Erzurum (8 August 2003)",
+      "canonical_title_tr": "Maden kazası, Erzurum (8 Ağustos 2003)",
       "casualty_status": "disputed",
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -4985,8 +5952,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Çorum (2004-08-09)",
+      "canonical_title_en": "Mine accident, Çorum (9 August 2004)",
+      "canonical_title_tr": "Maden kazası, Çorum (9 Ağustos 2004)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5006,8 +5973,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Kastamonu (2004-09-08)",
+      "canonical_title_en": "Mine accident, Kastamonu (8 September 2004)",
+      "canonical_title_tr": "Maden kazası, Kastamonu (8 Eylül 2004)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5027,8 +5994,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Kütahya (2005-04-21)",
+      "canonical_title_en": "Mine accident, Kütahya (21 April 2005)",
+      "canonical_title_tr": "Maden kazası, Kütahya (21 Nisan 2005)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5048,8 +6015,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Balıkesir (2006-06-01)",
+      "canonical_title_en": "Mine accident, Balıkesir (1 June 2006)",
+      "canonical_title_tr": "Maden kazası, Balıkesir (1 Haziran 2006)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5069,8 +6036,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Bursa (2009-12-10)",
+      "canonical_title_en": "Mine accident, Bursa (10 December 2009)",
+      "canonical_title_tr": "Maden kazası, Bursa (10 Aralık 2009)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5132,8 +6099,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Bursa (2010-10-26)",
+      "canonical_title_en": "Mine accident, Bursa (26 October 2010)",
+      "canonical_title_tr": "Maden kazası, Bursa (26 Ekim 2010)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5155,7 +6122,7 @@ window.MINING_DATA = {
     {
       "canonical_title_en": "Odaköy mining accident",
       "canonical_title_tr": "Odaköy maden kazası",
-      "casualty_status": null,
+      "casualty_status": "revised",
       "coordinate_precision": null,
       "date_precision": "exact_date",
       "district_code": null,
@@ -5174,15 +6141,36 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
+      "canonical_title_en": "Mine accident, Uzunköprü, Edirne (22 December 2010)",
+      "canonical_title_tr": "Maden kazası, Uzunköprü, Edirne (22 Aralık 2010)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2010-12-22T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "22",
+      "province_name": "Edirne",
+      "public_incident_id": "TR-MINE-2010-0005",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Çöllolar mine accident, Afşin-Elbistan (February 2011)",
       "canonical_title_tr": "Çöllolar maden kazası, Afşin-Elbistan (Şubat 2011)",
       "casualty_status": null,
       "coordinate_precision": null,
-      "date_precision": "month",
+      "date_precision": "exact_date",
       "district_code": null,
       "fatalities_current": 11,
-      "incident_end_datetime": null,
-      "incident_start_datetime": "2011-02-01T00:00:00+03:00",
+      "incident_end_datetime": "2011-02-10T00:00:00+03:00",
+      "incident_start_datetime": "2011-02-06T00:00:00+03:00",
       "incident_status": "in_scope",
       "injuries_current": null,
       "latitude": null,
@@ -5195,8 +6183,29 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Manisa (2013-01-18)",
+      "canonical_title_en": "Mine accident, Soma, Manisa (14 September 2012)",
+      "canonical_title_tr": "Maden kazası, Soma, Manisa (14 Eylül 2012)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2012-09-14T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "45",
+      "province_name": "Manisa",
+      "public_incident_id": "TR-MINE-2012-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Manisa (18 January 2013)",
+      "canonical_title_tr": "Maden kazası, Manisa (18 Ocak 2013)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5216,8 +6225,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Zonguldak (2013-01-08)",
+      "canonical_title_en": "Mine accident, Zonguldak (8 January 2013)",
+      "canonical_title_tr": "Maden kazası, Zonguldak (8 Ocak 2013)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5258,8 +6267,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Amasya (2014-06-29)",
+      "canonical_title_en": "Mine accident, Amasya (29 June 2014)",
+      "canonical_title_tr": "Maden kazası, Amasya (29 Haziran 2014)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5300,8 +6309,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Elazığ (2014-11-06)",
+      "canonical_title_en": "Mine accident, Elazığ (6 November 2014)",
+      "canonical_title_tr": "Maden kazası, Elazığ (6 Kasım 2014)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5321,8 +6330,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Kahramanmaraş (2014-06-01)",
+      "canonical_title_en": "Mine accident, Kahramanmaraş (1 June 2014)",
+      "canonical_title_tr": "Maden kazası, Kahramanmaraş (1 Haziran 2014)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5342,8 +6351,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Şırnak (2014-06-11)",
+      "canonical_title_en": "Mine accident, Şırnak (11 June 2014)",
+      "canonical_title_tr": "Maden kazası, Şırnak (11 Haziran 2014)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5363,8 +6372,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Bingöl (2014-11-19)",
+      "canonical_title_en": "Mine accident, Bingöl (19 November 2014)",
+      "canonical_title_tr": "Maden kazası, Bingöl (19 Kasım 2014)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5384,8 +6393,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Nevşehir (2014-04-26)",
+      "canonical_title_en": "Mine accident, Nevşehir (26 April 2014)",
+      "canonical_title_tr": "Maden kazası, Nevşehir (26 Nisan 2014)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5405,8 +6414,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Şırnak (2014-06-18)",
+      "canonical_title_en": "Mine accident, Şırnak (18 June 2014)",
+      "canonical_title_tr": "Maden kazası, Şırnak (18 Haziran 2014)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5426,8 +6435,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Edirne (2014-11-13)",
+      "canonical_title_en": "Mine accident, Edirne (13 November 2014)",
+      "canonical_title_tr": "Maden kazası, Edirne (13 Kasım 2014)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5447,8 +6456,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Amasra, Bartın (2014-11-01)",
+      "canonical_title_en": "Mine accident, Amasra, Bartın (1 November 2014)",
+      "canonical_title_tr": "Maden kazası, Amasra, Bartın (1 Kasım 2014)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5468,8 +6477,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Gelik, Zonguldak (2014-11-01)",
+      "canonical_title_en": "Mine accident, Gelik, Zonguldak (1 November 2014)",
+      "canonical_title_tr": "Maden kazası, Gelik, Zonguldak (1 Kasım 2014)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5489,8 +6498,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Sivas (2015-01-21)",
+      "canonical_title_en": "Mine accident, Sivas (21 January 2015)",
+      "canonical_title_tr": "Maden kazası, Sivas (21 Ocak 2015)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5510,8 +6519,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Zonguldak (2015-03-10)",
+      "canonical_title_en": "Mine accident, Zonguldak (10 March 2015)",
+      "canonical_title_tr": "Maden kazası, Zonguldak (10 Mart 2015)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5531,8 +6540,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Muğla (2015-02-07)",
+      "canonical_title_en": "Mine accident, Muğla (7 February 2015)",
+      "canonical_title_tr": "Maden kazası, Muğla (7 Şubat 2015)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5552,8 +6561,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Amasya (2015-06-08)",
+      "canonical_title_en": "Mine accident, Amasya (8 June 2015)",
+      "canonical_title_tr": "Maden kazası, Amasya (8 Haziran 2015)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5573,8 +6582,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Ankara (2015-07-27)",
+      "canonical_title_en": "Mine accident, Ankara (27 July 2015)",
+      "canonical_title_tr": "Maden kazası, Ankara (27 Temmuz 2015)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5594,8 +6603,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Muğla (2015-07-21)",
+      "canonical_title_en": "Mine accident, Muğla (21 July 2015)",
+      "canonical_title_tr": "Maden kazası, Muğla (21 Temmuz 2015)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5615,7 +6624,28 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
+      "canonical_title_en": "Mine accident, Yeşilova, Burdur (17 May 2015)",
+      "canonical_title_tr": "Maden kazası, Yeşilova, Burdur (17 Mayıs 2015)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 2,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2015-05-17T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "15",
+      "province_name": "Burdur",
+      "public_incident_id": "TR-MINE-2015-0007",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Şirvan mine accident",
       "canonical_title_tr": "Şirvan maden kazası",
       "casualty_status": null,
       "coordinate_precision": null,
@@ -5636,8 +6666,71 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Zonguldak (2019-12-01)",
+      "canonical_title_en": "Mine accident, Kemer, Antalya (17 May 2017)",
+      "canonical_title_tr": "Maden kazası, Kemer, Antalya (17 Mayıs 2017)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 2,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2017-05-17T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "07",
+      "province_name": "Antalya",
+      "public_incident_id": "TR-MINE-2017-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Kilimli, Zonguldak (31 May 2017)",
+      "canonical_title_tr": "Maden kazası, Kilimli, Zonguldak (31 Mayıs 2017)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 2,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2017-05-31T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-2017-0002",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Şırnak (17 October 2017)",
+      "canonical_title_tr": "Maden kazası, Şırnak (17 Ekim 2017)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 7,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2017-10-17T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "73",
+      "province_name": "Şırnak",
+      "public_incident_id": "TR-MINE-2017-0003",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Zonguldak (December 2019)",
+      "canonical_title_tr": "Maden kazası, Zonguldak (Aralık 2019)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "month",
@@ -5657,8 +6750,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Manisa (2019-01-13)",
+      "canonical_title_en": "Mine accident, Manisa (13 January 2019)",
+      "canonical_title_tr": "Maden kazası, Manisa (13 Ocak 2019)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5675,6 +6768,258 @@ window.MINING_DATA = {
       "province_code": "45",
       "province_name": "Manisa",
       "public_incident_id": "TR-MINE-2019-0002",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Milas, Muğla (18 February 2019)",
+      "canonical_title_tr": "Maden kazası, Milas, Muğla (18 Şubat 2019)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 3,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2019-02-18T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "48",
+      "province_name": "Muğla",
+      "public_incident_id": "TR-MINE-2019-0003",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Ağlı, Kastamonu (1 May 2019)",
+      "canonical_title_tr": "Maden kazası, Ağlı, Kastamonu (1 Mayıs 2019)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 2,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2019-05-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "37",
+      "province_name": "Kastamonu",
+      "public_incident_id": "TR-MINE-2019-0004",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Soma, Manisa (10 April 2020)",
+      "canonical_title_tr": "Maden kazası, Soma, Manisa (10 Nisan 2020)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "exact_date",
+      "district_code": null,
+      "fatalities_current": 3,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2020-04-10T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "45",
+      "province_name": "Manisa",
+      "public_incident_id": "TR-MINE-2020-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Karpuzlu, Aydın (February 2021)",
+      "canonical_title_tr": "Maden kazası, Karpuzlu, Aydın (Şubat 2021)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2021-02-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "09",
+      "province_name": "Aydın",
+      "public_incident_id": "TR-MINE-2021-0001",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Palu, Elazığ (February 2021)",
+      "canonical_title_tr": "Maden kazası, Palu, Elazığ (Şubat 2021)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 2,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2021-02-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "23",
+      "province_name": "Elazığ",
+      "public_incident_id": "TR-MINE-2021-0002",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Söke, Aydın (February 2021)",
+      "canonical_title_tr": "Maden kazası, Söke, Aydın (Şubat 2021)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2021-02-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "09",
+      "province_name": "Aydın",
+      "public_incident_id": "TR-MINE-2021-0003",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, İnağzı, Zonguldak (April 2021)",
+      "canonical_title_tr": "Maden kazası, İnağzı, Zonguldak (Nisan 2021)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2021-04-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-2021-0004",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Kilimli, Zonguldak (April 2021)",
+      "canonical_title_tr": "Maden kazası, Kilimli, Zonguldak (Nisan 2021)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2021-04-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "67",
+      "province_name": "Zonguldak",
+      "public_incident_id": "TR-MINE-2021-0005",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Harmancık, Bursa (April 2021)",
+      "canonical_title_tr": "Maden kazası, Harmancık, Bursa (Nisan 2021)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2021-04-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "16",
+      "province_name": "Bursa",
+      "public_incident_id": "TR-MINE-2021-0006",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Soma, Manisa (May 2021)",
+      "canonical_title_tr": "Maden kazası, Soma, Manisa (Mayıs 2021)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2021-05-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "45",
+      "province_name": "Manisa",
+      "public_incident_id": "TR-MINE-2021-0007",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Çal, Denizli (May 2021)",
+      "canonical_title_tr": "Maden kazası, Çal, Denizli (Mayıs 2021)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2021-05-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "20",
+      "province_name": "Denizli",
+      "public_incident_id": "TR-MINE-2021-0008",
+      "settlement": null
+    },
+    {
+      "canonical_title_en": "Mine accident, Yenişehir, Bursa (May 2021)",
+      "canonical_title_tr": "Maden kazası, Yenişehir, Bursa (Mayıs 2021)",
+      "casualty_status": null,
+      "coordinate_precision": null,
+      "date_precision": "month",
+      "district_code": null,
+      "fatalities_current": 1,
+      "incident_end_datetime": null,
+      "incident_start_datetime": "2021-05-01T00:00:00+03:00",
+      "incident_status": "in_scope",
+      "injuries_current": null,
+      "latitude": null,
+      "location_uncertainty_m": null,
+      "longitude": null,
+      "missing_current": null,
+      "province_code": "16",
+      "province_name": "Bursa",
+      "public_incident_id": "TR-MINE-2021-0009",
       "settlement": null
     },
     {
@@ -5720,8 +7065,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Manisa (2024-10-22)",
+      "canonical_title_en": "Mine accident, Manisa (22 October 2024)",
+      "canonical_title_tr": "Maden kazası, Manisa (22 Ekim 2024)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5741,8 +7086,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Zonguldak (2024-08-08)",
+      "canonical_title_en": "Mine accident, Zonguldak (8 August 2024)",
+      "canonical_title_tr": "Maden kazası, Zonguldak (8 Ağustos 2024)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5762,8 +7107,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Siirt (2023-11-23)",
+      "canonical_title_en": "Mine accident, Siirt (23 November 2023)",
+      "canonical_title_tr": "Maden kazası, Siirt (23 Kasım 2023)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5783,8 +7128,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Zonguldak (2024-06-04)",
+      "canonical_title_en": "Mine accident, Zonguldak (4 June 2024)",
+      "canonical_title_tr": "Maden kazası, Zonguldak (4 Haziran 2024)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5804,8 +7149,8 @@ window.MINING_DATA = {
       "settlement": null
     },
     {
-      "canonical_title_en": null,
-      "canonical_title_tr": "Maden kazası, Bolu (2024-09-19)",
+      "canonical_title_en": "Mine accident, Bolu (19 September 2024)",
+      "canonical_title_tr": "Maden kazası, Bolu (19 Eylül 2024)",
       "casualty_status": null,
       "coordinate_precision": null,
       "date_precision": "exact_date",
@@ -5856,7 +7201,7 @@ window.MINING_DATA = {
       "incident_end_datetime": null,
       "incident_start_datetime": "2026-10-01T00:00:00+03:00",
       "incident_status": "in_scope",
-      "injuries_current": null,
+      "injuries_current": 2,
       "latitude": null,
       "location_uncertainty_m": null,
       "longitude": null,
@@ -5935,6 +7280,29 @@ window.MINING_DATA = {
         "y": 113.8
       },
       {
+        "code": "07",
+        "deaths": 2,
+        "ids": [
+          "TR-MINE-2017-0001"
+        ],
+        "label": "Antalya",
+        "r": 9.4,
+        "x": 201.5,
+        "y": 240.0
+      },
+      {
+        "code": "09",
+        "deaths": 2,
+        "ids": [
+          "TR-MINE-2021-0001",
+          "TR-MINE-2021-0003"
+        ],
+        "label": "Aydın",
+        "r": 9.4,
+        "x": 94.3,
+        "y": 214.9
+      },
+      {
         "code": "10",
         "deaths": 34,
         "ids": [
@@ -5969,14 +7337,27 @@ window.MINING_DATA = {
         "y": 79.2
       },
       {
+        "code": "15",
+        "deaths": 2,
+        "ids": [
+          "TR-MINE-2015-0007"
+        ],
+        "label": "Burdur",
+        "r": 9.4,
+        "x": 171.2,
+        "y": 228.9
+      },
+      {
         "code": "16",
-        "deaths": 21,
+        "deaths": 23,
         "ids": [
           "TR-MINE-2009-0001",
-          "TR-MINE-2010-0003"
+          "TR-MINE-2010-0003",
+          "TR-MINE-2021-0006",
+          "TR-MINE-2021-0009"
         ],
         "label": "Bursa",
-        "r": 17.0,
+        "r": 17.5,
         "x": 133.1,
         "y": 103.5
       },
@@ -5992,25 +7373,38 @@ window.MINING_DATA = {
         "y": 85.0
       },
       {
+        "code": "20",
+        "deaths": 1,
+        "ids": [
+          "TR-MINE-2021-0008"
+        ],
+        "label": "Denizli",
+        "r": 8.4,
+        "x": 134.9,
+        "y": 209.8
+      },
+      {
         "code": "22",
-        "deaths": 6,
+        "deaths": 7,
         "ids": [
           "TR-MINE-2010-0002",
+          "TR-MINE-2010-0005",
           "TR-MINE-2014-0011"
         ],
         "label": "Edirne",
-        "r": 11.9,
+        "r": 12.3,
         "x": 43.7,
         "y": 58.9
       },
       {
         "code": "23",
-        "deaths": 1,
+        "deaths": 3,
         "ids": [
-          "TR-MINE-2014-0005"
+          "TR-MINE-2014-0005",
+          "TR-MINE-2021-0002"
         ],
         "label": "Elazığ",
-        "r": 8.4,
+        "r": 10.2,
         "x": 503.0,
         "y": 171.7
       },
@@ -6027,12 +7421,13 @@ window.MINING_DATA = {
       },
       {
         "code": "37",
-        "deaths": 19,
+        "deaths": 21,
         "ids": [
-          "TR-MINE-2004-0002"
+          "TR-MINE-2004-0002",
+          "TR-MINE-2019-0004"
         ],
         "label": "Kastamonu",
-        "r": 16.5,
+        "r": 17.0,
         "x": 300.1,
         "y": 40.5
       },
@@ -6049,15 +7444,18 @@ window.MINING_DATA = {
       },
       {
         "code": "45",
-        "deaths": 8,
+        "deaths": 13,
         "ids": [
+          "TR-MINE-2012-0001",
           "TR-MINE-2013-0001",
           "TR-MINE-2019-0002",
+          "TR-MINE-2020-0001",
+          "TR-MINE-2021-0007",
           "TR-MINE-2024-0002",
           "TR-MINE-2026-0001"
         ],
         "label": "Manisa",
-        "r": 12.8,
+        "r": 14.7,
         "x": 101.0,
         "y": 167.9
       },
@@ -6075,13 +7473,14 @@ window.MINING_DATA = {
       },
       {
         "code": "48",
-        "deaths": 2,
+        "deaths": 5,
         "ids": [
           "TR-MINE-2015-0003",
-          "TR-MINE-2015-0006"
+          "TR-MINE-2015-0006",
+          "TR-MINE-2019-0003"
         ],
         "label": "Muğla",
-        "r": 9.4,
+        "r": 11.4,
         "x": 114.7,
         "y": 247.0
       },
@@ -6132,7 +7531,7 @@ window.MINING_DATA = {
       },
       {
         "code": "67",
-        "deaths": 397,
+        "deaths": 401,
         "ids": [
           "TR-MINE-1983-0001",
           "TR-MINE-1983-0002",
@@ -6141,12 +7540,15 @@ window.MINING_DATA = {
           "TR-MINE-2013-0002",
           "TR-MINE-2014-0013",
           "TR-MINE-2015-0002",
+          "TR-MINE-2017-0002",
           "TR-MINE-2019-0001",
+          "TR-MINE-2021-0004",
+          "TR-MINE-2021-0005",
           "TR-MINE-2024-0003",
           "TR-MINE-2024-0005"
         ],
         "label": "Zonguldak",
-        "r": 53.8,
+        "r": 54.1,
         "x": 230.2,
         "y": 49.7
       },
@@ -6163,13 +7565,14 @@ window.MINING_DATA = {
       },
       {
         "code": "73",
-        "deaths": 4,
+        "deaths": 11,
         "ids": [
           "TR-MINE-2014-0007",
-          "TR-MINE-2014-0010"
+          "TR-MINE-2014-0010",
+          "TR-MINE-2017-0003"
         ],
         "label": "Şırnak",
-        "r": 10.8,
+        "r": 14.0,
         "x": 613.7,
         "y": 224.5
       },
@@ -6766,14 +8169,17 @@ window.MINING_DATA = {
     ]
   },
   "monitoring": {
-    "candidates_waiting": 3,
+    "candidates_waiting": 0,
+    "failed_sources": [],
     "isig_latest_month": {
-      "isig_mining_deaths": 7,
-      "period": "2026-09",
-      "register_deaths_published": 0
+      "isig_mining_deaths": 12,
+      "period": "2026-10",
+      "register_deaths_published": 5
     },
-    "last_checked": "2026-10-26T20:08:24Z",
+    "last_attempted": "2026-11-16T07:59:48Z",
+    "last_checked": "2026-11-16T07:59:48Z",
     "newest_published_incident": "2026-10-01",
+    "overdue": false,
     "schedule": "monthly",
     "swept_sources": [
       "wikidata",
@@ -6782,12 +8188,14 @@ window.MINING_DATA = {
     ]
   },
   "pipeline": {
-    "claims_awaiting_review": 18,
-    "claims_total": 963,
-    "decisions_total": 301,
-    "published_incidents": 52,
+    "claims_awaiting_review": 5,
+    "claims_total": 632,
+    "decisions_delegated": 117,
+    "decisions_restored": 271,
+    "decisions_total": 390,
+    "published_incidents": 70,
     "records_in_review": 0,
-    "source_documents": 206,
+    "source_documents": 127,
     "withdrawn_records": 5
   },
   "policy_events": [
@@ -29181,50 +30589,6 @@ window.MINING_DATA = {
           ]
         ]
       ]
-    }
-  ],
-  "rate_context": [
-    {
-      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
-      "country": "CN",
-      "unit": "deaths_per_100M_tonnes_coal",
-      "value": 127.0,
-      "year": 2008
-    },
-    {
-      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
-      "country": "CN",
-      "unit": "deaths_per_100M_tonnes_coal",
-      "value": 37.0,
-      "year": 2013
-    },
-    {
-      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
-      "country": "TR",
-      "unit": "deaths_per_100M_tonnes_coal",
-      "value": 710.0,
-      "year": 2000
-    },
-    {
-      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
-      "country": "TR",
-      "unit": "deaths_per_100M_tonnes_coal",
-      "value": 722.0,
-      "year": 2008
-    },
-    {
-      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article; year unspecified in source. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
-      "country": "US",
-      "unit": "deaths_per_100M_tonnes_coal",
-      "value": 1.0,
-      "year": null
-    },
-    {
-      "comparability_notes": "Coal-mining deaths per 100 million tonnes produced, as cited by press sources referenced in the Wikipedia list article; year unspecified in source. Methodologies differ across countries; indicative comparison only, pending TÜİK/TKİ-based series (see docs/open_questions.md #18).",
-      "country": "US",
-      "unit": "deaths_per_100M_tonnes_coal",
-      "value": 6.0,
-      "year": null
     }
   ],
   "schema_version": "006",

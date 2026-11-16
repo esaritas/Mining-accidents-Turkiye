@@ -396,6 +396,16 @@ def _pipeline_status(conn: sqlite3.Connection) -> dict[str, int]:
         "source_documents": count("SELECT COUNT(*) FROM source_documents"),
         "claims_total": count("SELECT COUNT(*) FROM claims"),
         "decisions_total": count("SELECT COUNT(*) FROM claim_decisions"),
+        # Said on the page in so many words: how many decisions repeat the
+        # last export after the loss of 2026-11-11, and how many were prepared
+        # under the owner's delegation rather than taken by the owner.
+        "decisions_restored": count(
+            "SELECT COUNT(*) FROM claim_decisions "
+            "WHERE rationale LIKE 'Restored from the public export%'"
+        ),
+        "decisions_delegated": count(
+            "SELECT COUNT(*) FROM claim_decisions WHERE reviewer LIKE '%delegated%'"
+        ),
     }
 
 
@@ -429,7 +439,6 @@ def build_payload(
         "map_vector": _map_vector(incidents, _province_centroids(), sites),
         "annual_context": research.annual_context(incidents, _aggregates(conn)),
         "policy_events": analysis.policy_events(),
-        "rate_context": analysis.rate_context(conn),
         "hazard_matrix": analysis.hazard_matrix(public_dir),
         "environmental": _environmental(public_dir),
         "pipeline": _pipeline_status(conn),

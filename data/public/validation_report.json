@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T21:07:56Z",
+  "generated_at": "2026-11-16T11:30:56Z",
   "resources": {
     "environmental_classifications": {
       "error_count": 0,
@@ -29,12 +29,12 @@
     "facility_organization_roles": {
       "error_count": 0,
       "errors": [],
-      "rows": 38
+      "rows": 37
     },
     "incident_classifications": {
       "error_count": 0,
       "errors": [],
-      "rows": 66
+      "rows": 80
     },
     "incident_organization_roles": {
       "error_count": 0,
@@ -44,7 +44,7 @@
     "incidents": {
       "error_count": 0,
       "errors": [],
-      "rows": 52
+      "rows": 70
     },
     "merged_id_redirects": {
       "error_count": 0,
@@ -54,7 +54,7 @@
     "sources": {
       "error_count": 0,
       "errors": [],
-      "rows": 258
+      "rows": 333
     }
   },
   "total_errors": 0,

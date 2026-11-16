@@ -2,8 +2,8 @@
   "db_schema_version": "006",
   "tables": {
     "aggregate_occupational_statistics": {
-      "rows": 20,
-      "sha256": "6e0b4107cb6b584f5e4b5b9033a9d7a3dfda5249a3883f60d7cd3e86c8dd6644"
+      "rows": 26,
+      "sha256": "40130cee68bc053bb17c64b8fe38f552b5d96fae56b0f826cdd2a8a8c4807840"
     },
     "casualty_observations": {
       "rows": 118,

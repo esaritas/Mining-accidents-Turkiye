@@ -1,37 +1,37 @@
 {
   "db_schema_version": "006",
-  "export_timestamp": "2026-10-29T21:07:56Z",
+  "export_timestamp": "2026-11-16T11:30:56Z",
   "file_sha256": {
     "datapackage.json": "a812655c86ffdf5e2fd5db2de22792044543e044ac92898ce5fb23bab791bb1f",
     "environmental_classifications.csv": "4d22793bc250f0570d3e9b7bc78de049009acd8608ccdb51ee8f99563f156cfc",
-    "environmental_effects.csv": "7c9b301a8deb1aa3b2e4eff4d0ba326dd747a663a05a83e4070fe6f997bfa35e",
+    "environmental_effects.csv": "711b469f35923d6176449c46af41057ea271d7a4cc44b0e25aa4cb8168dea516",
     "environmental_incidents.csv": "68df29588491aa5f385462e5669821c2f3aac9ba06807a6d252e902e134e9528",
     "environmental_sources.csv": "7ce3371d57692d19cb47852c212aa3e3ffceca432c785514f9b276bdae4da935",
     "facilities.csv": "5bfad34525a224f0abcffdc9da3d5cce0215eba0219cf00e00a739cb9d93829a",
-    "facility_organization_roles.csv": "e0fe828236b59b2e2170368ca96a890252257b7fea2b1404e893fa4e8521a071",
-    "incident_classifications.csv": "58f869c6ffabe16b70470d4ff2d364423ada40530d49af8f83d538da38d14e84",
+    "facility_organization_roles.csv": "5fa6a78492cad2488c3f0c83eabdc336f0af79171737aa71d2b972c74ef65d49",
+    "incident_classifications.csv": "9aeb8d508f540b22a9f8ca2f5bdd6143abf1f0251302fdd51a84f11fcdd18610",
     "incident_organization_roles.csv": "a5d29681f51418ddd5e1749256389ec7745aaa3711a48059fdd97e99b5f775e9",
-    "incidents.csv": "d9f15344856466c644a204252612981ada073b2e4654f92ab79033aa6c58c84a",
-    "incidents.json": "1a64b09cb8af961b50b7c64a7be0e114f8be0618ba14ab1b237139b28072df66",
+    "incidents.csv": "4ddfb9cd888c9ecc53d35b548a7078c59b7821ef592174dc105cb1e80a0f7d0c",
+    "incidents.json": "015c9a762c90401466ef700af6f18e0c7582b6486bbb0fa99e80b1fe5da76fc9",
     "merged_id_redirects.csv": "02e62e86f4f8e1a23dea9ee354def04c0d827bccd8f490ed9421821873157215",
-    "sources.csv": "fd2db64ac32a4fe715946e84d77bbde80af316cd8436e42ef1c16d64343b39ca",
-    "validation_report.json": "b47843102a0ad8adddacce0a0468101ba4df51585df74145fc7518dea089bf73"
+    "sources.csv": "c980dfbe0984e6b4ddc1c0fad940dd963f9dd7649462b8923d52bad3ba6b206d",
+    "validation_report.json": "9875a5cf88a7c87b99c54d9f4138df7c2e2d8ca2757cf64b37b4c8b2590fe3ec"
   },
-  "git_commit": "931fa6bd93a82d0bb87a017dcfc91090f4a50d73",
+  "git_commit": "9ae6fb4bdc1b37fb26663f3a10573e1800381e29",
   "quality_findings": {
     "critical": 0,
-    "warning": 11
+    "warning": 22
   },
   "row_counts": {
     "environmental_effects": 11,
     "environmental_incidents": 3,
     "facilities": 74,
-    "facility_organization_roles": 38,
-    "incident_classifications": 66,
+    "facility_organization_roles": 37,
+    "incident_classifications": 80,
     "incident_organization_roles": 29,
-    "incidents": 52,
+    "incidents": 70,
     "merged_id_redirects": 4,
-    "sources": 258
+    "sources": 333
   },
   "schema_validation": {
     "total_errors": 0,

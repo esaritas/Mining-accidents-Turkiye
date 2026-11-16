@@ -9,8 +9,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Install
@@ -23,7 +23,7 @@ jobs:
         run: python -m mining_accidents.cli validate-vocabularies
       - name: Tests
         run: python -m pytest --cov=mining_accidents --cov-report=term
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: "22"
           cache: npm
@@ -39,3 +39,8 @@ jobs:
         run: |
           python -m mining_accidents.cli create-db --db-path /tmp/ci.sqlite
           git diff --exit-code database/schema.sql
+      - name: The ledger rebuilds the database behind the published export
+        # The working database is not in git. The ledger is, and this proves
+        # it is the same register as the export: load it, dump it again
+        # (byte-identical), export from it (every data file identical).
+        run: python -m mining_accidents.cli ledger-verify
