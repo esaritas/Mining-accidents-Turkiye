@@ -5,7 +5,7 @@ PYTHON ?= python3
 DB_PATH ?= database/mining_accidents.sqlite
 EXAMPLE_DB ?= database/staging_example.sqlite
 
-.PHONY: install db import-example ingest ingest-sites packets check qc export dashboard artifact test test-dashboard lint clean
+.PHONY: install db import-example ingest ingest-sites packets check qc export ledger restore verify-ledger dashboard artifact test test-dashboard lint clean
 
 install:
 	$(PYTHON) -m pip install -e ".[dev]"
@@ -33,8 +33,21 @@ check:
 qc:
 	$(PYTHON) -m mining_accidents.cli qc --db-path $(DB_PATH)
 
+# Writes data/public/ and, beside it, the ledger in data/ledger/. Commit both.
 export:
 	$(PYTHON) -m mining_accidents.cli export --db-path $(DB_PATH)
+
+# The database is not in git; the ledger is its durable copy
+# (docs/database_recovery.md). `ledger` writes it for work not yet exported,
+# `restore` rebuilds the database from it, `verify-ledger` proves the two agree.
+ledger:
+	$(PYTHON) -m mining_accidents.cli ledger-dump --db-path $(DB_PATH)
+
+restore:
+	$(PYTHON) -m mining_accidents.cli ledger-load --db-path $(DB_PATH)
+
+verify-ledger:
+	$(PYTHON) -m mining_accidents.cli ledger-verify
 
 # Fetch the Wikidata/Wikipedia seed through the evidence pipeline.
 # REVIEWER identifies the human authorizing the bulk decisions.

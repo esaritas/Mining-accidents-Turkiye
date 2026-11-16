@@ -13,7 +13,7 @@ nowhere. Two consequences, both found by the quality audit of the same date:
   cyanide heap-leach failure whose material reached a stream in the Euphrates
   basin was recorded as an event mechanism and nothing else.
 - The Şebinkarahisar tailings-dam collapse of 18 November 2021 was held out of
-  scope with the rationale "no reported fatalities", so more than 4,500 tonnes
+  scope with the rationale "no reported fatalities", so about 4,500 tonnes
   of chemical waste reaching a reservoir appeared nowhere.
 
 A reader could not tell whether the absence of environmental incidents was a

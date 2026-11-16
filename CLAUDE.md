@@ -58,7 +58,9 @@ make ingest REVIEWER="<name>"  # Wikidata/Wikipedia seed via the pipeline
 make import-example  # synthetic TEST- demo data into a separate staging DB
 make check           # monthly source check -> data/interim/monthly_check/ (reports only)
 make qc              # quality checks -> data/interim/quality_report.json
-make export          # public export -> data/public/ (blocked by critical QC)
+make export          # public export -> data/public/ and ledger -> data/ledger/
+make restore         # rebuild the database from data/ledger/ (it is not in git)
+make ledger          # write the ledger for work not yet exported
 make dashboard       # regenerate dashboard/data.js from the public export
 make packets         # generate review packets
 make test            # pytest with coverage

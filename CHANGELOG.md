@@ -6,6 +6,53 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Recovery, evidence and presentation (2026-11-16)
+
+The working database was lost on 2026-11-11 with the container that held it.
+This entry covers its recovery and the work the quality audit of that date
+called for (`docs/qc_audit_2026_11_11.md`, with its follow-up section).
+
+- **The database is back and has a committed copy.** `restore.py` rebuilds it
+  from the public export; exporting the rebuilt database reproduced all 14
+  published files byte for byte. `ledger.py` writes every table to
+  `data/ledger/` with each export and rebuilds the database from it. CI proves
+  the round trip on every push. `make restore` on a fresh checkout gives a
+  working database. See `docs/database_recovery.md`.
+- **Sources are stronger.** Eleven death tolls now cite TTK's chronology or the
+  Chamber of Mining Engineers in place of a tertiary source stating the same
+  figure. Deaths resting on Wikipedia or the press: 206 of 1,125, from 768 of
+  1,092. 63 of 70 toll citations carry the supporting passage, from 8 of 52.
+  The 26 Wikipedia and Wikidata revisions behind the citations are archived
+  with permanent links.
+- **Disagreements settled.** Dursunbey 2010: 13 on the day, 17 in the chamber's
+  later report, a revised toll. Yeni Çeltek 1990: 68. Amasra 2014: 2. Soma
+  2026: two injured, reported collapse. Afşin-Elbistan 2011: two slope failures
+  on 6 and 10 February. Left open with the reason stated: the Kozlu 1983 date,
+  Sorgun 1995.
+- **18 records added**, 70 in all, 1,125 deaths. Nine from the chamber's
+  2010-2020 accident report, nine for February, April and May 2021 from the
+  list article. 2012, 2017, 2020 and 2021 are no longer empty.
+- **Decisions in this pass were delegated** by the owner to an AI assistant and
+  are marked as such on each decision and counted on the page (open question
+  44).
+- **The page states the 2010 break.** One period scheme; the change from
+  multi-death events only to single deaths too is marked on the maps and the
+  chart; a second series keeps only events of three or more deaths.
+- **Removed:** the rates panel (third-hand figures side by side), the "toll
+  status unrecorded" label, the always-empty Status column of the sites table.
+- **Fixed on the page:** Zonguldak and Manisa unlabelled on the map; truncated
+  chart annotations; overprinted axis labels; the chart opening on 1983 on a
+  phone; phone tables showing two columns (rows are now cards); 22 screens on a
+  phone (now 13); the province table ordered by deaths (now alphabetical);
+  links, small text and target sizes; a skip link and table captions.
+- **Monitoring:** each source swept on its own, connection errors retried, a
+  report always written, an issue on failure, the review session after the
+  sweep and with the repository. The November sweep was run: nothing waiting.
+- **Tests:** 221, from 186. The modules that make and correct decisions are
+  now tested; coverage 74%, from 66%.
+- **Privacy:** a parliamentary citation that named the member who spoke now
+  reads without the name.
+
 ### Changed: map and narrative redesign (2026-09-05, owner request)
 - **The published map now works on a phone.** Its only listeners were
   `mousemove`/`mouseleave`, so tapping did nothing and the map carried no

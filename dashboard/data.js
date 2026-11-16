@@ -4935,7 +4935,7 @@ window.MINING_DATA = {
       "text_tr": "Bu veri kesitindeki çevresel ifadeler Vikipedi’ye atıf yapıyor. Aktarılan resmî işlem, doğrudan incelenmiş resmî belge anlamına gelmez. Kayıtlı tarih alıntısı tarihi değil sahayı anlatıyor. Bu kayıt su ve toprak ölçümlerini ve etkinin yayılımını ortaya koymuyor."
     }
   ],
-  "export_timestamp": "2026-11-16T11:30:56Z",
+  "export_timestamp": "2026-11-16T11:37:00Z",
   "hazard_matrix": {
     "bands": [
       {

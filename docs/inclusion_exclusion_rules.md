@@ -15,7 +15,7 @@ Two kinds of record, kept apart and never combined into one count.
 
 | Kind | Identifier | Publication threshold | Published |
 |---|---|---|---|
-| Fatal mining or quarrying accident | `TR-MINE-YYYY-NNNN` | date, province and a death toll, each from a recorded decision | 52 records, 1983-03-07 to 2026-10-01, every one with at least one death |
+| Fatal mining or quarrying accident | `TR-MINE-YYYY-NNNN` | date, province and a death toll, each from a recorded decision | 70 records, 1983-03-07 to 2026-10-01, every one with at least one death |
 | Environmental harm at a mining site | `TR-ENV-YYYY-NNNN` | date and province; **no death toll** | 3 records, 2021 to 2024 |
 
 Where an environmental event and a fatal accident are the same occurrence, the
@@ -26,7 +26,7 @@ deaths are counted once, in the fatal record, and the two are joined by
 
 1983 is where the assessed sources' coverage begins, not a judgement that
 nothing earlier belongs here. The earliest published record is Armutçuk,
-7 March 1983. Twenty-two of the forty-four calendar years from 1983 to 2026
+7 March 1983. Eighteen of the forty-four calendar years from 1983 to 2026
 hold no record at all, which is a statement about coverage and not about
 safety.
 

@@ -50,8 +50,9 @@ make artifact        # template-only rebuild; explicitly reads dashboard/data.js
 make test-dashboard  # Node.js >= 20; installs locked test dependencies
 ```
 
-For data changes, use the existing review pipeline, then `make export` and
-`make dashboard`. Database builds fail on missing files or database errors;
+On a fresh checkout, `make install` then `make restore` gives you the working
+database. For data changes, use the existing review pipeline, then `make export`
+and `make dashboard`, and commit `data/public/` and `data/ledger/` together. Database builds fail on missing files or database errors;
 they never silently substitute an older dashboard payload.
 
 ## Command reference
@@ -66,7 +67,9 @@ they never silently substitute an older dashboard payload.
 | `make import-example` | Import clearly-labeled synthetic `TEST-` demo data into a separate staging DB |
 | `make check` | Monthly check of the assessed sources → `data/interim/monthly_check/`. Discovery only: writes a review queue and the İSİG aggregate context, never a decision |
 | `make qc` | Run quality checks → `data/interim/quality_report.json` (non-zero exit on critical) |
-| `make export` | Build public export → `data/public/` (aborted by any critical QC finding) |
+| `make export` | Build public export → `data/public/` (aborted by any critical QC finding) and write the ledger → `data/ledger/` |
+| `make restore` | Rebuild the working database from the committed ledger. The database is not in git; see [`docs/database_recovery.md`](docs/database_recovery.md) |
+| `make ledger` / `make verify-ledger` | Write the ledger for work not yet exported / prove the ledger rebuilds the database behind the export |
 | `make packets` | Generate review packets for incidents with claims |
 | `make test` / `make lint` / `make clean` | Test suite / lint / cleanup |
 

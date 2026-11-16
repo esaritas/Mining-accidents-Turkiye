@@ -1,6 +1,6 @@
 {
   "db_schema_version": "006",
-  "export_timestamp": "2026-11-16T11:30:56Z",
+  "export_timestamp": "2026-11-16T11:37:00Z",
   "file_sha256": {
     "datapackage.json": "a812655c86ffdf5e2fd5db2de22792044543e044ac92898ce5fb23bab791bb1f",
     "environmental_classifications.csv": "4d22793bc250f0570d3e9b7bc78de049009acd8608ccdb51ee8f99563f156cfc",
@@ -15,9 +15,9 @@
     "incidents.json": "015c9a762c90401466ef700af6f18e0c7582b6486bbb0fa99e80b1fe5da76fc9",
     "merged_id_redirects.csv": "02e62e86f4f8e1a23dea9ee354def04c0d827bccd8f490ed9421821873157215",
     "sources.csv": "c980dfbe0984e6b4ddc1c0fad940dd963f9dd7649462b8923d52bad3ba6b206d",
-    "validation_report.json": "9875a5cf88a7c87b99c54d9f4138df7c2e2d8ca2757cf64b37b4c8b2590fe3ec"
+    "validation_report.json": "4a0c27ba10b5c84dd0f4ab4c27efd113291ca234ca3efb676654cad75142ff72"
   },
-  "git_commit": "9ae6fb4bdc1b37fb26663f3a10573e1800381e29",
+  "git_commit": "20e8f998ba8fe8b868e55c0f2e0c82dc345ae749",
   "quality_findings": {
     "critical": 0,
     "warning": 22

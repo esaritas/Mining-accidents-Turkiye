@@ -102,6 +102,34 @@ counted without the check having to run again.
 A candidate has no reviewed standing, so it is never named, dated or given a
 death toll on the page. Only the count appears.
 
+The page is given three dates, because they are three facts: when a sweep was
+last attempted, when every source was last swept, and whether that is more than
+45 days ago. A failed run must never read as a quiet month.
+
+## 6a. When a source cannot be reached
+
+The first scheduled run, on 8 November 2026, failed: one source was unreachable
+from the runner, the error ended the whole run, the results already gathered
+from the other sources were discarded, and nobody was told. The review session
+had also started before the sweep and without the repository.
+
+Since 16 November 2026:
+
+- Each source is swept on its own. One that cannot be reached is named in the
+  report under "Sources that could not be swept" and the others are reported
+  as usual.
+- A request that gets no answer at all is retried with the same patience as one
+  that answers 503.
+- A report is always written and committed. A run with a failed source opens an
+  issue and is marked failed after the report is safe. A run that breaks before
+  it can write a report opens an issue saying so.
+- The review session runs on the 10th, two days after the sweep. It attaches
+  the repository itself, rebuilds the database from the ledger, and runs the
+  sweep from its own environment if this month's report is missing or names a
+  failed source.
+- The queue shown on the page comes from the newest run that actually swept the
+  seed sources, so a failed run cannot empty it.
+
 ## 7. Limits stated on the page
 
 - A month in which the sweep finds nothing means the swept sources published
