@@ -1,0 +1,69 @@
+{
+  "db_schema_version": "006",
+  "tables": {
+    "aggregate_occupational_statistics": {
+      "rows": 20,
+      "sha256": "6e0b4107cb6b584f5e4b5b9033a9d7a3dfda5249a3883f60d7cd3e86c8dd6644"
+    },
+    "casualty_observations": {
+      "rows": 118,
+      "sha256": "adf9e0c2a07568e1afe0543313b2eab8620aedd152da1c2b207720c0b1003d52"
+    },
+    "claim_decisions": {
+      "rows": 390,
+      "sha256": "e0096f4aa62208912fbe8681ddc7f250e8b82f8995a6c90ebf393c12df4cc39b"
+    },
+    "claims": {
+      "rows": 632,
+      "sha256": "afa79195008aff034c72e464cbed9bc9372fba3522f63a3aa88570a49ea50f39"
+    },
+    "environmental_effects": {
+      "rows": 11,
+      "sha256": "0e6dde9d9348be984caf969399bb44b977e3c71eb86e54e576021c1ba74a15ac"
+    },
+    "facilities": {
+      "rows": 75,
+      "sha256": "65d486a4029953a7b05337b923ea47946c58a919f8766ea31c32ecf56516db10"
+    },
+    "facility_organization_roles": {
+      "rows": 38,
+      "sha256": "fbd58d4548414c900990f68f855be429546f516a959cd7738c1798fa29334c5f"
+    },
+    "incident_classifications": {
+      "rows": 83,
+      "sha256": "249e5b295ed912f5350736053307a7e3e817945569adba359ff14e20efd9deb6"
+    },
+    "incident_merge_log": {
+      "rows": 4,
+      "sha256": "e3b4320a5f1ca688b1a30129d259b2230d85a07de55d1f671df45b4ba76d8a26"
+    },
+    "incident_organization_roles": {
+      "rows": 29,
+      "sha256": "81fad9a7d550c654af9fd18518719ccabf51af0ad8a6c936274c407aee02d358"
+    },
+    "incidents": {
+      "rows": 78,
+      "sha256": "8e2e463ae104192a7aef5ce6cb8b48b3520c8883949ea8ccbb9d4b5e6b9255d5"
+    },
+    "ingestion_runs": {
+      "rows": 1,
+      "sha256": "6d8a93fd82d13ad6dad33bd006eecaf646c5d9ab41b581038d0a33a55f3328b9"
+    },
+    "organizations": {
+      "rows": 35,
+      "sha256": "31eb60b30ff5bda04ccd72ad4738d4f2709762f3a6f93fc09e35790a176f6fc9"
+    },
+    "review_log": {
+      "rows": 710,
+      "sha256": "fe6cab71d077f9e7ecaea54b6e06d314952d11df9a011aaa53edf1a73947c69f"
+    },
+    "source_documents": {
+      "rows": 127,
+      "sha256": "4cae080deab7574f6f963d1a90071bffbc9fab6a5aaebd03e2567480d1c5d29f"
+    },
+    "source_registry": {
+      "rows": 16,
+      "sha256": "674a16bc9411a71e89e01ebcac41d5b270aa1d1451aae0e4e3217c6ea6099b73"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{{Olay bilgi kutusu
+| başlık            = Zara maden kazası
+| resim             =
+| harita            = {{Konum haritası | Turkey
+| pozisyon          = right
+| border            = none
+| genişlik          = 250
+| enlem_der         = 39.69449
+| boylam_der        = 38.00883
+| altyazı           =
+| işaret            = Mining symbol.svg
+| etiket            = Zara kömür madeni
+| etiket_boyutu     = 75
+| etiket_genişlik   = 7
+}}
+| haritaaltyazısı   = Maden ocağının Türkiye'deki konumu
+| altbaşlık         = 
+| tarih             = 26 Mayıs 2025
+| saat              = 15.55 ([[UTC+03.00]])
+| yer               = [[Zara, Sivas|Zara]], [[Sivas (il)|Sivas]], [[Türkiye]]
+| koordinatlar      = 
+| neden             = 
+| ölüsayısı         = 1<ref name="halktv1"/>
+| yaralısayısı      = 2<ref name="halktv1"/>
+}}
+26 Mayıs 2025 tarihinde [[Sivas]]'ın [[Zara, Sivas|Zara]] ilçesine bağlı [[Kardere, Zara|Kardere]] köyü yakınlarında bulunan kömür madeninde patlama yaşandı. Kazada bir maden işçisi ölürken, iki işçi ağır yaralandı.
+
+== Kaza ==
+26 Mayıs 2025 [[Türkiye Saati|TSİ]] 15.55'te, [[Sivas]]'ın [[Zara, Sivas|Zara]] ilçesine bağlı [[Kardere, Zara|Kardere]] köyü yakınlarındaki bir kömür madeni, genişletme sırasında kullanılacak dinamit hazırlanırken patladı ve yangın çıktı. Olaya tanık olan köylülere göre bir işçinin öldüğü, iki işçinin ağır yaralandığı belirtildi. Sivas Valiliği, yaralanan işçilerin yabancı uyruklu olduğunu ifade etti.<ref name="halktv1">{{Web kaynağı|url=https://halktv.com.tr/gundem/sivasta-maden-faciasi-olu-ve-yaralilar-var-941909h|başlık=SON DAKİKA! Sivas'ta Maden faciası: Ölü ve yaralılar var|erişimtarihi=26 Mayıs 2025|tarih=26 Mayıs 2025|dil=Türkçe|çalışma=Halk TV|arşivurl=https://web.archive.org/web/20250527080938/https://halktv.com.tr/gundem/sivasta-maden-faciasi-olu-ve-yaralilar-var-941909h|arşivtarihi=27 Mayıs 2025|ölüurl=hayır}}</ref>
+
+== Ayrıca bakınız ==
+* [[Türkiye'de kömür]]
+* [[Türkiye'deki madencilik kazaları listesi]]
+
+== Kaynakça ==
+{{kaynakça}}
+
+{{Madencilik-taslak}}
+
+{{Türkiye'deki maden kazaları ve felaketleri}}
+
+[[Kategori:Sivas ili tarihi|Maden kazası]]
+[[Kategori:Zara]]
+[[Kategori:Türkiye'deki madencilik faciaları|Zara]]
+[[Kategori:2025'te Türkiye|Zara maden kazası]]
+[[Kategori:2025'teki afetler|Zara maden kazası]]
+[[Kategori:2025'teki patlamalar|Zaramaden kazası]]
+[[Kategori:2025'teki yangınlar]]

@@ -1,0 +1,158 @@
+{{Short description|2024 collapse of a gold mine leach tip in Turkey}}
+{{Infobox event
+| name             = Çöpler mine disaster
+| image            = 
+| image_upright    = 
+| image_alt        = 
+| image_caption    = 
+| native_name      = 2024 Çöpler Altın Madeni faciası
+| native_name_lang = 
+| english_name     = 
+| time             = 14:28
+| timezone         = [[Time in Turkey|TRT]]
+| duration         = <!-- {{duration|h=x|m=x|s=x}} or {{time interval|date1|date2|options}} -->
+| date             = {{start date and age|df=y|2024|02|13}}
+| venue            = 
+| location         = [[Çöpler Gold Mine]], [[Çöpler, İliç]], [[Erzincan Province]], Turkey
+| coordinates      = {{coord|39.426|N|38.522|E|region:TR_type:city_source:GNS-enwiki|display=it}}
+| also_known_as    = 
+| type             = 
+| theme            = 
+| cause            = [[Landslide]]
+| motive           = 
+| target           = 
+| perpetrator      = 
+| first_reporter   = 
+| budget           = 
+| patrons          = 
+| organisers       = <!-- or |organizers= -->
+| filmed_by        = 
+| participants     = 
+| outcome          = 
+| deaths           = 9
+| injuries         = 
+| missing          = 
+| property_damage  = 
+| burial           = 
+| displaced        = 
+| inquiries        = 
+| inquest          = 
+| coroner          = 
+| arrests          = 
+| suspects         = 
+| accused          = 
+| convicted        = 
+| charges          = 
+| trial            = 
+| verdict          = 
+| convictions      = 
+| sentence         = 
+| publication_bans = 
+| litigation       = 
+| awards           = 
+| website          = <!-- {{URL|example.com}} -->
+| notes            = 
+}}
+
+On 13 February 2024, at the [[Çöpler Gold Mine]] in [[Erzincan Province]], eastern Turkey, a mass of [[heap leaching|heap leach]] material collapsed, trapping a group of nine miners as it slid toward a creek.
+
+== Background ==
+The [[Çöpler mine|Çöpler Gold Mine]] is near [[Çöpler, İliç|Çöpler]] village in the [[İliç]] district of [[Erzincan Province]], eastern Turkey,<ref name="aa1" /> and is operated by [[Ankara]]-based<ref name="agm1" /> Anagold Mining Inc. ({{langx|tr|Anagold Madencilik San. ve Tic. A.Ş.}}).  The company was established in 2009 as Alacer Anagold Inc. by the Turkish Lidya Mining Co. of [[Ahmet Çalık]]'s owner [[Çalık Holding]] and the American  Alacer Gold Corp.<ref name="aa1"/><ref name="ch"/> That same year construction works at the mine started, and gold production began in 2010.<ref name="agm1"/> In 2020, Alacer Gold Corp. merged with the Canadian [[SSR Mining Inc.]], which moved its headquarters from Canada to [[Denver]], [[Colorado]], United States.<ref name="tb"/> The company's main shareholder is SSR Mining Inc.<ref name="fmn1"/>
+
+In 2012, the company stated that it planned to extract more than 10 million [[ounce]]s of gold by 2019.<ref name="aa1"/> In 2022, the proven and probable mineral reserves were estimated at 47.7 million tonnes at an average grade of 2.11 g/t, or 3.2 million ounces of contained gold excluding stockpiles.<ref name="ssr1"/>
+
+On 21 June 2022, a flange on a [[cyanide]] pipeline in the [[heap leaching]] field separated causing leakage, and cyanide spread into the environment. The company was fined 16 million [[Turkish lira|lira]] (about 1 million US$),<ref name="bg1"/> and the mine was closed for three months. Operation resumed in September the same year.<ref name="m1"/>
+
+== Landslide ==
+At 14:28 local time (11:28 [[Greenwich Mean Time|GMT]]) on 13 February 2024, a huge mass of mud from the gold mine flowed through the valley in a large area.<ref name="bbcn1"/> The movement was along a slope with a height of around {{cvt|200|m}}. It is currently estimated that the total volume of the sliding mass was about 10 million m<sup>3</sup> (350 million cu ft), which moved approximately {{cvt|800|m}} with an average speed of {{cvt|10|m/s}}.<ref name="e1"/> The mass of the landslide was equivalent to about 400,000 dump truck loads.<ref name="ntv1"/>
+
+According to the mine workers, during routine checks at the mine site around 9 a.m., cracks were observed in the heap leaching area and reported to management. The area, where dozens of miners would normally work, was evacuated. Three mine supervisors, who went to the area in a vehicle to check, five miners in a container in the area and a driver in his truck were caught by the mud flowing down like a stream and trapped under the landslide.<ref name="ntv1"/><ref name="m2"/>
+
+== Search and rescue operation ==
+Identities of seven of nine missing miners have been revealed. Search and rescue efforts for workers were initiated immediately. A total of 827 personnel, including 339 professionals consisting of [[Disaster and Emergency Management Presidency]] (AFAD), [[Gendarmerie Search and Rescue Battalion Command]] (JAK), [[Turkish Armed Forces]] (TSK), [[General Directorate of Security (Turkey)|General Directorate of Security]] (EGM), miners and [[non-governmental organization|NGO]] members, took part in the search and rescue operation. In addition, 562 vehicles, five drones, two [[CBRN defense|chemical defense]] vehicles, five [[ground-penetrating radar]] devices and five [[search and rescue dog]]s supported the operation. A vehicle tracking system was installed, and decontamination and mobile coordination trucks were deployed.<ref name="e1"/>
+
+AFAD said on 15 February that search and rescue operation continued day and night without interruption; more than 2,700 personnel, aided by equipment including ground-penetrating radar and light towers, were involved in the operation.<ref name="m2"/> On 19 February the search and rescue operation was stopped due to increasing risk of another landslide.<ref name="bg3" />
+
+After resuming the search operations, the body of the first of nine victims, a truck driver of the subcontractor company, was found in the manganese mine field after 53 days from the disaster on 6 April 2024.<ref name="ntv2"/><ref name="sol1"/> On 19 April, the body of the second miner was recovered.<ref name="ntv3"/> Two more bodies of mine disaster victims were recovered on 4 May 2024.<ref name="trth1"/> On 4 June 2024, it was reported that one more body of a miner as the fifth victim was recovered.<ref name="ntv4"/> With the recovery of the last victims on 10 June 2024, the search operation of the mine disaster victims ended.<ref name="dkn1"/>
+
+== Environment pollution ==
+As the first precaution to the cyanide danger, the [[culvert]] covers of Sabırlı Stream were closed to prevent the material flowing during the landslide from reaching the [[Euphrates|Euphrates River]].<ref name="m1"/> A sealed pool for the surface water was created as a precaution to collect runoff water due to rain.<ref name="kp"/> Scientists stated that there were other risks, not just cyanide.<ref name="bg2"/>
+
+In order to take samples from the region and monitor them continuously, a team of ten experts from the [[Ministry of Environment, Urbanisation and Climate Change]], including two [[ground-penetrating radar|georadars]], one multistation, two mobile devices with two sets of monitoring devices and a mobile laboratory, were immediately dispatched to the region.<ref name="kp"/>
+
+== Investigation and judicial proceedings == 
+Four public prosecutors were assigned to investigate the cause of the accident. An eight-member committee consisting of experts in geology, occupational health, mining, construction, agriculture, environment, mapping and chemistry, was set up to report to them.<ref name="m2"/> Four employees were detained immediately, and later three more mine officials, among them a company manager of Canadian nationality, were taken into custody.<ref name="kp"/> On 15 February the number of detainees was increased to eight.<ref name="ntv1"/><ref name="m2"/>
+
+The eight suspects were put before the [[magistrates' court]] after their statements at the prosecutor's office. Six of the suspects, including the Canadian national company manager, were arrested, and two suspects were released on probation.<ref name="d1"/>
+
+On 7 March, the [[Turkish Bars Association]] stated, referring to the [[Constitution of Turkey]] and the [[European Convention on Human Rights]], that "the mine disaster clearly violated the rights to life, health and living in a healthy environment and caused nine miners to lose their lives". It called for public and company officials to be tried "according to the private law, administrative law and the [[Turkish Penal Code]]. It is clear that it should be evaluated within the scope of pollution crimes."<ref name="tbb1"/>
+
+A 262-page expert report concluded that 13 mine officials are seen as primary negligent and 26 people as secondary negligent in duty. The court ordered the arrest of four primary responsibles on 24 May 2024 among them, the [[occupational safety and health]] manager, the mine operations supervisor, the project coordinator and the drilling and blasting engineer. The number of arrested people rose to 12 including the Canadian executive of the mining company.<ref name="ag1"/>
+
+== Cause ==
+It is claimed that according to a 67-page report, prepared by an international auditing company, and forwarded to all mining company officials, "the signal system indicating the vibrations on the ground was broken."{{Clarify|reason=the report was circulated before the accident?|date=March 2024}} It was noted that a signal disturbance was detected in the leach field one day before the landslide.<ref name="bg2"/>
+
+The prosecutor's office stated that "the most important reasons for the landslide are increasing the amount of solution introduced into the soil, the leach heap is twice as large as it should be, and regular dynamite explosions every day at 12 hours." It was added that "dynamite was detonated at noon, and the violence gradually increased even the area was evacuated due to the detection of a crack."<ref name="bg2"/>
+
+Scientists from the Landslide Application and Research Center at [[Karadeniz Technical University]] used a [[unmanned aerial vehicle|drone]] to measure the height of the leach pile remaining after the landslide as {{cvt|257|m}}, much higher than the world standard controllable level of {{cvt|150|m}}.<ref name="bbcn2"/>
+
+== Aftermath ==
+Immediately after the disaster, a delegation from the Chamber of Mining Engineers of Turkey went to the mine to investigate. The delegation was not permitted to enter the mine area, and was refused technical information. The Chamber said the mine should be closed and its operating licenses cancelled because:
+* The main reason is the increased load on the leach pile, resulting from a doubling of mining capacity, to a level of making it very difficult to ensure stability.
+* A second and third heap leach area was not created to avoid costs and with the ambition of more profit, despite the warnings of the workers and the occupational safety expert. The [[Ministry of Environment, Urbanisation and Climate Change]], which gave permission and did not fulfill these duties despite having the responsibility of monitoring, is the main responsible for the disaster.
+* In order to monitor the possible effects on the environment and human health of approximately 10 million m<sup>3</sup> of cyanide and heavy metal-containing heap flowing from the heap leach area onto the permeable natural environment, a groundwater map of the region should be prepared, and samples should be taken periodically from the impact area, control wells, Sabırlı stream and the [[Euphrates|Euphrates River]]. Measurements need to be made and the results must be shared transparently with the public.
+* Subcontractors in the mining operation disrupt the integrity of the business, prevent coordination, and cause irreparable problems.
+* Search and rescue activities must be carried out by expert miner teams under the supervision of mining engineers and not by AFAD personnel, who do not have any professional experience and expertise.
+* Gold mining should be included in the scope of strategic mines and operated by the public.<ref name="tmmo1"/>
+
+[[Republican People's Party]] Chairman [[Özgür Özel]] criticised [[Ahmet Çalık]], the owner of [[Çalık Holding]] which operates the mine, over his possible culpability for the disaster".<ref>{{Cite news |title=Özel'den Çalık Holding'e: Milletin canı pahasına İliç'i sömürenler sorumluluktan kaçamaz |url=https://www.indyturk.com/node/699196/haber/%C3%B6zelden-%C3%A7al%C4%B1k-holdinge-milletin-can%C4%B1-pahas%C4%B1na-i%CC%87li%C3%A7i-s%C3%B6m%C3%BCrenler-sorumluluktan}}</ref>
+
+=== Compensation ===
+A new regulation that came into force on 19 March 2024, increased the compensation amount to be paid to the relatives of miners, who lost their lives in mining accidents, from {{Turkish lira}} 150,000 (approx. US$4,600)  to  {{Turkish lira}} one million (approx. US$30,800). However, the relatives of the nine miners, who remain under the landslide, can not benefit from this regulation because the accident occurred before the date of entry into force. Additionally, compensation payments can be made to the relatives of the nine miners through the Social Security Institution and private insurance.<ref name="szc1"/>
+
+== References ==
+<references>
+
+<ref name="agm1">{{cite web |url=http://www.anagold.com.tr/ |publisher=Anagold Madencilik |title=Hakkımızda |language=tr |access-date=14 February 2024 }}</ref>
+<ref name="fmn1">{{cite news |url=https://finans.mynet.com/haber/detay/ekonomi/altin-madeni-faciasinin-ardindan-abd-li-sirket-borsada-cakildi-anagold-madencilik-in-buyuk-ortagi-ssr-mining-in-degeri-1-5-milyar-dolar-eridi/477588/ |newspaper=Finans |title= Altı madeni faciasının ardından ABD'li şirket borsada çakıldı! Anagold Madencilik'in büyü ortağı SS Mining in değeri 1,5 milyar dolar eridi|author=Eryılmaz, Sinem |date=14 February 2024 |language=tr |access-date=14 February 2024 }}</ref>
+<ref name="bbcn1">{{cite news |url=https://www.bbc.com/news/world-europe-68287504 |newspaper=[[BBC News]] |title=Turkey gold mine: Nine workers missing after landslide |author=Vock, Ido |date=13 February 2024 |access-date=14 February 2024 }}</ref>
+<ref name="bbcn2">{{cite news |url=https://www.bbc.com/turkce/articles/czvq2y9k7q7o |newspaper=[[BBC News]] |title=Erzincan altın madeninde bilim insanlarından inceleme: Liç yığınının yüksekliği dünya standartlarının üstündeydi |date=18 February 2024 |language=tr |access-date=11 March 2024 }}</ref>
+<ref name="ssr1">{{cite web |url=https://www.ssrmining.com/operations/production/copler-mine/ |publisher=SSR Mining |title=Our Operations Çöpler |access-date=14 February 2024 }}</ref>
+<ref name="ch">{{cite web |url=https://www.calik.com/tr/sektorler/madencilik-sektoru/lidya-madencilik |publisher=Çalık Holding |title=Lidya Madencilik |language=tr |access-date=15 February 2024 }}</ref>
+<ref name="tb">{{cite web |url=https://ticaret.gov.tr/blog/ulkelerden-ticari-haberler/kanada/kanadali-ssr-mining-sirketi-2-4-milyar-dolar-karsiliginda-alacer-goldu-satin-ali |publisher=Ticaret Bakanlığı |title=Kanadalı SSR Mining Şirketi 2,4 milyar Dolar Karşılığında Alacer Gold'u Satın Alıyor |date=17 May 2020 |language=tr |access-date=15 February 2024 }}</ref>
+<ref name="aa1">{{cite news |url=https://www.aa.com.tr/tr/sirkethaberleri/genel/coplerde-10-milyon-onsun-uzerinde-altin-cikarilmasi-hedefleniyor-alacer-anagold-as-yonetim-kurulu-baskani-dowling-ilicte-isletmekte-oldugumuz-altin-madeni-dunya-sinifinda-bir-altin-madeni-/620581# |newspaper=[[Anadolu News Agency]] |title=
+Çöpler'de 10 milyon onsun üzerinde altın çıkarılması hedefleniyor -Alacer Anagold A.Ş Yönetim Kurulu Başkanı Dowling: ''İliç'te işletmekte olduğumuz altın madeni, dünya sınıfında bir altın madeni'' |date=27 June 2012 |language=tr |access-date=15 February 2024 }}</ref>
+<ref name="e1">{{cite news |url=https://www.ekonomim.com/gundem/erzincandaki-madende-toprak-kaymasi-9-isciden-haber-alinamiyor-yerlikaya-son-durumu-acikladi-haberi-729614 |newspaper=Ekınımim |title=Erzincan'daki altın madeni faciasında yeni görüntü! Çığ gibi geldi... 9 işçi bulunamıyor! |date=14 February 2024 |language=tr |access-date=15 February 2024 }}</ref>
+<ref name="kp">{{cite news |url=https://www.kibrispostasi.com/c36-TURKIYE/n507530-erzincan-ilicte-altin-madeni-faciasi-iscilerden-5i-konteynerde-3u-aracta-1i-kamyonda |newspaper=Kıbrıs Postası |title=Erzincan İliç'te altın madeni faciası: İşçilerden 5'i konteynerde, 3'ü araçta, 1'i kamyonda |date=14 February 2024 |language=tr |access-date=15 February 2024 }}</ref>
+<ref name="bg1">{{cite news |url=https://www.birgun.net/haber/siyanur-borusu-patlamisti-erzincan-daki-altin-madenine-16-4-milyon-lira-para-cezasi-393208 |newspaper=[[BirGün]] |title=Siyanür borusu patlamıştı: Erzincan'daki altın madenine 16,4 milyon lira para cezası |date= |language=tr |access-date=15 February 2024 }}</ref>
+<ref name="bg2">{{cite news |url=https://www.birgun.net/haber/facianin-yasandigi-madende-titresim-sistemi-bozukmus-506996 |newspaper=[[BirGün]] |title=Facianın yaşandığı madende 'titreşim sistemi' bozukmuş <date=16 February 2024 |language=tr |access-date=16 February 2024 }}</ref>
+<ref name="bg3">{{cite news |url=https://www.birgun.net/haber/bakan-bayraktar-ilic-te-arama-faaliyetleri-durduruldu-507929 |newspaper=[[BirGün]] |title=Bakan Bayraktar: İliç'te arama faaliyetleri durduruldu |date=19 February 2024 |language=tr |access-date=21 February 2024 }}</ref>
+<ref name="m1">{{cite news |url=https://www.milliyet.com.tr/gundem/tonlarca-toprak-9-isciyi-yuttu-7078702 |newspaper=[[Milliyet]] |title=Erzincan'da tonlarca toprak 9 işçiyi yuttu! Haziranda kapatıldı, Eylülde açıldı |date=14 February 2024 |language=tr |access-date=15 February 2024 }}</ref>
+<ref name="m2">{{cite news |url=https://www.milliyet.com.tr/gundem/live-son-dakika-erzincanda-altin-madeninde-toprak-kaymasi-catlak-raporuyla-alan-bosaltilmis-7079274#post-13 |newspaper=[[Milliyet]] |title=Erzincan'da altın madeninde toprak kayması! 'Çatlak raporuyla alan boşaltılmış' |date=15 February 2024 |language=tr |access-date=16 February 2024 }}</ref>
+<ref name="ntv1">{{cite news |url=https://www.ntv.com.tr/galeri/turkiye/erzincan-ilicte-altin-madeni-faciasi-enerji-bakani-heyelan-alaninda-400-bin-kamyonluk-toprak-kutlesi-var,sFc_MijyPkOg26ENnmGeqQ/UrlGQhjTR02R76hgQO0eBA |newspaper=[[NTV (Turkey)|NTV]] |title=Erzincan İliç'te altın maden faciası – Enerji Bakanı: Heyelan alanında 400 bin kamyonluk toprak kütlesi var |date=15 February 2024 |language=tr |access-date=15 February 2024 }}</ref>
+<ref name="ntv2">{{cite news |url=https://www.ntv.com.tr/turkiye/son-dakika-haberi-erzincan-ilicteki-maden-faciasi-bir-iscinin-cansiz-bedenine-ulasildi,iceD1rk3PUy2eoaKNaKS5Q |newspaper=[[NTV (Turkey)|NTV]] |title=Erzincan İliç'teki maden faciası: Bir işçinin cansız bedenine ulaşıldı |date=6 April 2024 |language=tr |access-date=7 April 2024 }}</ref>
+<ref name="ntv3">{{cite news |url=https://www.ntv.com.tr/turkiye/erzincan-ilicteki-maden-faciasi-bir-iscinin-daha-cansiz-bedenine-ulasildi,wCEnswH_LEaiqsnnQUpNFg# |newspaper=[[NTV (Turkey)|NTV]] |title=Erzincan İliç'teki maden faciası: Bir işçinin daha cansız bedenine ulaşıldı |date=19 April 2024 |language=tr |access-date=20 April 2024 }}</ref>
+<ref name="ntv4">{{cite news |url=https://www.ntv.com.tr/turkiye/ilicte-bir-iscinin-daha-cansiz-bedenine-ulasildi,38QLywA6Z0SvbvxZhEUHiQ |newspaper=[[NTV (Turkey)|NTV]] |title=Erzincan İliç'teki maden faciası: Bir işçinin daha cansız bedenine ulaşıldı ate=4 June 2024 |language=tr |access-date=12 June 2024 }}</ref>
+<ref name="d1">{{cite news |url=https://www.dunya.com/gundem/ilicteki-toprak-kaymasi-sorusturmasinda-alti-tutuklama-haberi-718201 |newspaper=[[Dünya (newspaper)|Dünya]] |title=İliç'teki toprak kayması soruşturmasında altı tutuklama |date=17 February 2024 |language=tr |access-date=17 February 2024 }}</ref>
+<ref name="tmmo1">{{cite web |url=https://www.maden.org.tr/icerik/ilic-coepler-altin-madeni-kapatilmali-isletme-ruhsatlari-iptal-edilmelidir-202402201145 |publisher=TMMOB Maden Mühendisleri Odası |title=İliç Çöpler Altın Madeni Kapatılmalı, İşletme Ruhsatları İptal Edilmelidir! |date=20 February 2024 |language=tr |access-date=11 March 2024 }}</ref>
+<ref name="tbb1">{{cite web |url=https://www.barobirlik.org.tr/Haberler/ilic-copler-altin-madeni-faciasi-aciklamasi-olasi-zararlarin-onlenmesinin-mumkun-oldugu-durumlarda-84596 |publisher=Türkiye Barolar Birliği |title=İliç Çöpler Altın Madeni Faciası Açıklaması: "Olası Zararların ÖnlenmwsininMümkün Olduğu Durumlards Hukuken Kazadan Söz Edilemez" |date=7 March 2024 |language=tr |access-date=11 March 2024 }}</ref>
+<ref name="szc1">{{cite news |url=https://www.sozcu.com.tr/toprak-altindaki-9-isciye-sigorta-ayibi-p30959 |newspaper=[[Sözcü]] |title=Toprak altındaki 9 işçiye sigorta ayıbı |author=Süzer, Erdoğan |date=21 March 2024 |language=tr |access-date=22 March 2024 }}</ref>
+<ref name="sol1">{{cite news |url=https://haber.sol.org.tr/haber/53-gun-sonra-ilic-faciasinda-toprak-altinda-kalan-iscinin-cesedine-ulasildi-392773#google_vignette |newspaper=SoL |title=53 gün sonra: İliç faciasında toprak altında kalan işçinin cesedine ulaşıldı |date= |language=tr |access-date=7 April 2024 }}</ref>
+<ref name="trth1">{{cite news |url=https://www.trthaber.com/haber/gundem/ilicteki-maden-ocaginda-2-iscinin-daha-cansiz-bedenine-ulasildi-855214.html |newspaper=[[TRT Haber]] |title=İliç’teki maden ocağında 2 işçinin daha cansız bedenine ulaşıldı |date=4 May 2024 |language=tr |access-date=8 May 2024 }}</ref>
+<ref name="ag1">{{cite news |url=https://artigercek.com/emek/ilic-maden-faciasinda-dort-kisi-daha-tutuklandi-305676h |newspaper=Artı Gerçek |title=İliç maden faciasında dört kişi daha tutuklandı ate=24 May 2024 |language=tr |access-date=12 June 2024 }}</ref>
+<ref name="dkn1">{{cite news |url=https://www.diken.com.tr/ilicte-bes-iscinin-daha-cansiz-bedenine-ulasildi/ |newspaper=Diken |title=İliç’te beş işçinin daha cansız bedenine ulaşıldı |date=10 June 2024 |language=tr |access-date=12 June 2024 }}</ref>
+
+</references>
+
+{{DEFAULTSORT:Copler mine disaster}}
+[[Category:Gold mining in Turkey|Copler Gold Mine disaster, 2024]]
+[[Category:History of Erzincan Province|Disaster]]
+[[Category:Mining disasters in Turkey]]
+[[Category:Pollution in Turkey]]
+[[Category:2024 disasters in Turkey]]
+[[Category:2024 mining disasters|Copler Gold Mine disaster, 20240]]
+[[Category:Environmental disasters in 2024]]
+[[Category:Gold mining disasters]]
+[[Category:Waste disposal incidents]]
+[[Category:İliç District]]
+[[Category:February 2024 in Turkey]]

@@ -23,6 +23,7 @@ from rich.table import Table
 
 from mining_accidents import entity_resolution, geography, vocabularies
 from mining_accidents.models import ENVIRONMENTAL_CRITICAL_FIELDS, PUBLICATION_CRITICAL_FIELDS
+from mining_accidents.provenance import RESTORED_MARK
 
 Severity = Literal["critical", "warning", "info"]
 
@@ -277,7 +278,7 @@ def check_cited_documents_complete(conn: sqlite3.Connection) -> list[QualityFind
     findings = []
     for row in conn.execute(
         """
-        SELECT DISTINCT sd.source_document_id, sd.retrieved_at, sd.content_hash
+        SELECT DISTINCT sd.source_document_id, sd.retrieved_at, sd.content_hash, sd.notes
         FROM claims c
         JOIN source_documents sd ON sd.source_document_id = c.source_document_id
         WHERE c.claim_id IN (
@@ -298,7 +299,21 @@ def check_cited_documents_complete(conn: sqlite3.Connection) -> list[QualityFind
             )
             if not value
         ]
-        if missing:
+        # A document re-created from the public export after the loss of
+        # 2026-11-11 cannot have a hash: its bytes are gone. That is reported,
+        # not treated as a defect of the record (docs/database_recovery.md).
+        restored = (row["notes"] or "").startswith(RESTORED_MARK)
+        if missing == ["content_hash"] and restored:
+            findings.append(
+                QualityFinding(
+                    "QC-W08",
+                    "warning",
+                    f"source_document:{row['source_document_id']}",
+                    "cited document restored from the public export; original bytes "
+                    "and content hash were lost",
+                )
+            )
+        elif missing:
             findings.append(
                 QualityFinding(
                     "QC-C08",

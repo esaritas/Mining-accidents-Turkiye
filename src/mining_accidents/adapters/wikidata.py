@@ -177,6 +177,15 @@ def _http_get(
             sleep_for = float(retry_after) if retry_after else delay
             time.sleep(min(sleep_for, 60.0))
             delay *= 2
+        except (urllib.error.URLError, TimeoutError, ConnectionError):
+            # No answer at all (unreachable network, reset, timeout). On
+            # 2026-11-08 one such error ended a scheduled sweep on its first
+            # try; a host that is briefly unreachable deserves the same
+            # patience as one that answers 503.
+            if attempt == max_tries:
+                raise
+            time.sleep(min(delay, 60.0))
+            delay *= 2
     raise RuntimeError("unreachable")
 
 

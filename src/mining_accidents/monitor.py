@@ -117,6 +117,9 @@ class CheckReport:
     thin_source_entries: list[Candidate] = field(default_factory=list)
     isig_months: list[dict[str, object]] = field(default_factory=list)
     unreadable_documents: list[str] = field(default_factory=list)
+    #: Sources this run could not sweep at all, each with the error. A failed
+    #: source never discards what the others found.
+    failed_sources: list[dict[str, str]] = field(default_factory=list)
     notes: list[str] = field(default_factory=lambda: [ABSENCE_NOTE])
 
     @property
@@ -591,6 +594,16 @@ def _as_markdown(report: CheckReport) -> str:
     if report.unreadable_documents:
         lines += ["", "## Documents that could not be read", ""]
         lines += [f"- {url}" for url in report.unreadable_documents]
+    if report.failed_sources:
+        lines += [
+            "",
+            f"## Sources that could not be swept ({len(report.failed_sources)})",
+            "",
+            "This run reached nothing from the sources below, so it says nothing "
+            "about them. What the other sources returned is reported above as usual.",
+            "",
+        ]
+        lines += [f"- {entry['source']}: {entry['error']}" for entry in report.failed_sources]
     lines += ["", "## What this check does not tell you", ""]
     lines += [f"- {note}" for note in report.notes]
     return "\n".join(lines) + "\n"
@@ -601,13 +614,25 @@ def _as_markdown(report: CheckReport) -> str:
 # ----------------------------------------------------------------------
 
 
+def load_reports(report_dir: str | Path = DEFAULT_REPORT_DIR) -> list[dict[str, object]]:
+    """Every month's report, newest first."""
+    directory = Path(report_dir)
+    reports = sorted(directory.glob("*.json"), reverse=True) if directory.is_dir() else []
+    return [json.loads(path.read_text(encoding="utf-8")) for path in reports]
+
+
 def load_latest_report(report_dir: str | Path = DEFAULT_REPORT_DIR) -> dict[str, object] | None:
     """The most recent month's report, or None when the check has never run."""
-    directory = Path(report_dir)
-    reports = sorted(directory.glob("*.json")) if directory.is_dir() else []
-    if not reports:
-        return None
-    return json.loads(reports[-1].read_text(encoding="utf-8"))
+    reports = load_reports(report_dir)
+    return reports[0] if reports else None
+
+
+def _failed(report: dict[str, object]) -> set[str]:
+    """Source keys a report says it could not sweep (older reports list none)."""
+    keys: set[str] = set()
+    for entry in report.get("failed_sources") or []:  # type: ignore[union-attr]
+        keys.update(part.strip() for part in str(entry.get("source", "")).split(","))
+    return keys
 
 
 def outstanding_candidates(
@@ -636,28 +661,44 @@ def outstanding_candidates(
 def summary(
     report_dir: str | Path = DEFAULT_REPORT_DIR,
     export_dir: str | Path = DEFAULT_EXPORT_DIR,
+    today: date | None = None,
 ) -> dict[str, object]:
     """The check's own facts, for the page: when it ran and what is waiting.
 
     Counts only. A candidate has no reviewed standing, so it is never named,
-    dated or given a death toll here.
+    dated or given a death toll here. The page is told three different dates
+    because they are three different facts: when a sweep was last attempted,
+    when every source was last swept, and whether that is longer ago than a
+    monthly check allows. A failed run must never read as a quiet month.
     """
     records = published_records(export_dir)
     block: dict[str, object] = {
         "schedule": "monthly",
         "swept_sources": list(SWEPT_SOURCES),
         "newest_published_incident": newest_published(records),
+        "last_attempted": None,
         "last_checked": None,
+        "failed_sources": [],
+        "overdue": True,
         "candidates_waiting": None,
         "isig_latest_month": None,
     }
-    report = load_latest_report(report_dir)
-    if report is None:
+    reports = load_reports(report_dir)
+    if not reports:
         return block
-    block["last_checked"] = report.get("checked_at")
-    block["candidates_waiting"] = len(outstanding_candidates(report, records))
-    months = report.get("isig_months") or []
-    if months:
+    block["last_attempted"] = reports[0].get("checked_at")
+    block["failed_sources"] = sorted(_failed(reports[0]))
+    complete = next((r for r in reports if not _failed(r)), None)
+    if complete is not None:
+        block["last_checked"] = complete.get("checked_at")
+    block["overdue"] = stale_after(str(block["last_checked"] or "") or None, today=today)
+    # The queue comes from the newest run that actually swept the seed sources.
+    seeded = next((r for r in reports if not (_failed(r) & {"wikidata", "wikipedia"})), None)
+    if seeded is not None:
+        block["candidates_waiting"] = len(outstanding_candidates(seeded, records))
+    with_months = next((r for r in reports if r.get("isig_months")), None)
+    if with_months is not None:
+        months = with_months["isig_months"]
         latest = max(months, key=lambda m: str(m.get("period_start")))  # type: ignore[union-attr]
         block["isig_latest_month"] = {
             "period": str(latest.get("period_start"))[:7],
@@ -696,25 +737,55 @@ def run_check(
         published_deaths=total_published_deaths(records),
         newest_published_incident=newest_published(records),
     )
+    # Each source is swept on its own. One that cannot be reached is named in
+    # the report and the others are reported as usual: on 2026-11-08 a single
+    # unreachable host discarded a seed sweep that had already succeeded.
+    figures: list[MonthlyFigures] = []
     if sweep_seed:
-        from mining_accidents import ingest
-
-        ingest.ingest_wikidata(scratch_conn, reviewer=None, publish=False)
-        queue, settled, thin = find_candidates(
-            scratch_conn, records, known=load_known_disagreements(known_path)
+        try:
+            _sweep_seed(scratch_conn, records, report, known_path)
+        except Exception as exc:  # noqa: BLE001 - any failure is reported, never raised
+            scratch_conn.rollback()
+            report.failed_sources.append({"source": "wikidata, wikipedia", "error": _error(exc)})
+    try:
+        months, unreadable, figures = sweep_isig(
+            scratch_conn, records, pages=isig_pages, limit=isig_limit, raw_dir=raw_dir
         )
-        report.candidates = queue
-        report.known_disagreements = settled
-        report.thin_source_entries = thin
-    months, unreadable, figures = sweep_isig(
-        scratch_conn, records, pages=isig_pages, limit=isig_limit, raw_dir=raw_dir
-    )
-    report.isig_months = months
-    report.unreadable_documents = unreadable
+        report.isig_months = months
+        report.unreadable_documents = unreadable
+    except Exception as exc:  # noqa: BLE001
+        scratch_conn.rollback()
+        report.failed_sources.append({"source": "isig_meclisi", "error": _error(exc)})
+    failed = {part.strip() for e in report.failed_sources for part in e["source"].split(",")}
+    report.swept_sources = [
+        key for key in SWEPT_SOURCES if key not in failed and (sweep_seed or key == "isig_meclisi")
+    ]
     return report, figures
 
 
-def stale_after(reference: str | None, days: int = 45) -> bool:
-    """Has the check gone quiet for longer than a month and a half?"""
+def _sweep_seed(
+    scratch_conn: sqlite3.Connection,
+    records: list[dict[str, str]],
+    report: CheckReport,
+    known_path: str | Path,
+) -> None:
+    from mining_accidents import ingest
+
+    ingest.ingest_wikidata(scratch_conn, reviewer=None, publish=False)
+    queue, settled, thin = find_candidates(
+        scratch_conn, records, known=load_known_disagreements(known_path)
+    )
+    report.candidates = queue
+    report.known_disagreements = settled
+    report.thin_source_entries = thin
+
+
+def _error(exc: Exception) -> str:
+    """One line a reader can act on, without a traceback."""
+    return f"{type(exc).__name__}: {' '.join(str(exc).split())[:300]}"
+
+
+def stale_after(reference: str | None, days: int = 45, today: date | None = None) -> bool:
+    """Has it been longer than a month and a half since every source was swept?"""
     start = _as_date(reference)
-    return start is None or (datetime.now().date() - start) > timedelta(days=days)
+    return start is None or ((today or datetime.now().date()) - start) > timedelta(days=days)

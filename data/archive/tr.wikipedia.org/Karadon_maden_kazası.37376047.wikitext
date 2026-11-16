@@ -1,0 +1,86 @@
+{{Olay bilgi kutusu
+| parçası = 
+| ad = 
+| resim = 
+| resimboyutu = 
+| resimaçıklaması = 
+| resimaltyazısı = 
+| harita ={{Konum haritası | Turkey
+| width    = 250
+| lat_deg  = 41.485865
+| lon_deg  = 31.864072
+| mark     = Mining symbol.svg
+| float    = right
+| label    = Karadon madeni
+}} 
+| haritaboyutu = 
+| haritaaçıklaması = 
+| haritaaltyazısı =Madenin Türkiye'deki konumu 
+| kendidilindekiadı = 
+| türkçeadı = 
+| tarih = {{Başlangıç tarihi|2010|05|17}}
+| saat = 13:28
+| süre = 
+| mekan = 
+| konum = 
+| koordinatlar = {{Koordinat|41|29|9.114|N|31|51|50.6592|E|type:landmark|display=inline,title}}
+| diğeradı = 
+| tür = Grizu patlaması
+| konu = 
+| neden = 
+| etken = 
+| amaç = 
+| ilkduyuran = 
+| bütçe = 
+| patron =    
+| düzenleyenler  =
+| filmealan = 
+| katılanlar = 
+| sonuç = 
+| zayiat1 = 
+| zayiat2 = 
+| zayiat3 = 
+| ölüsayısı = 30
+| yaralısayısı = 11
+| kayıpsayısı = 
+| maddihasar = 
+| defnedilensayısı = 
+| sorgulanan = 
+| soruşturma = 
+| sorguyargıcı = 
+| tutuklu = 
+| şüpheli = 
+| sanık = 
+| hükümlü = 3 TTK yöneticisinin de aralarında bulunduğu 5 sanığa
+| suçlama = 
+| dava = 
+| mahkemekararı = 
+| mahkûm = 
+| hüküm = 5 ile 10 yıl arasında hapis cezası<ref>{{Web kaynağı|başlık = 30 kişinin öldüğü Karadon maden faciasında karar|url = https://www.sabah.com.tr/gundem/2014/10/31/30-kisinin-oldugu-karadon-maden-faciasinda-karar|website = sabah.com.tr|yayıncı = [[Sabah (gazete)|Sabah]]|erişimtarihi = 17 Ağustos 2019|tarih = 31 Ekim 2014|arşivurl = https://web.archive.org/web/20190817081813/https://www.sabah.com.tr/gundem/2014/10/31/30-kisinin-oldugu-karadon-maden-faciasinda-karar|arşivtarihi = 17 Ağustos 2019|ölüurl =evet}}</ref>
+| yayınyasağı = 
+| litigation = 
+| ödüller = 
+| görselkayıt = 
+| boşetiket1 = 
+| boşetiket2 = 
+| boşetiket3 = 
+| resmîsite = 
+| dipnot    =
+}}
+
+'''Karadon maden kazası''', 17 Mayıs 2010 tarihinde yerel saatle 13:28'de ([[UTC+03.00]]), [[Türkiye]]'nin [[Zonguldak (il)|Zonguldak]] ilinin [[Kilimli, Zonguldak|Kilimli]] ilçesindeki [[Türkiye Taşkömürü Kurumu]]na ait Karadon Müessese Müdürlüğü'nün [[kömür]] ocağında meydana gelen kaza.<ref>{{Web kaynağı|url = http://www.haberalemi.net/haber.php?haber_id=136725|başlık = 28 işçinin cesedine ulaşıldı|erişimtarihi = 28 Ağustos 2010|çalışma = haberalemi|tarih = 20 Mayıs 2010|arşivengelli = evet}}{{Ölü bağlantı|tarih=Nisan 2020 }}</ref>
+
+Yerin 540 metre altında meydana gelen [[grizu]] patlamasında 30 işçi göçük altında kaldı.<ref name="rapor">{{Web kaynağı|url = http://zaman.com.tr/haber.do?haberno=1020992|başlık = Maden faciasıyla ilgili 11 kişiye tutuklama talebi|erişimtarihi = 28 Ağustos 2010|çalışma = Zaman Gazetesi|tarih = 26 Ağustos 2010|arşivengelli = evet}}{{Ölü bağlantı|tarih=Nisan 2020 }}</ref> Yapılan çalışmalar sonucu 20 Mayıs 2010 tarihinde 28 işçinin cesedine ulaşıldı.<ref>{{Web kaynağı|url = http://www.hurriyet.com.tr/gundem/14780517.asp?top=1|başlık = 28 işçinin cesedine ulaşıldı|erişimtarihi = 28 Ağustos 2010|çalışma = Hürriyet|tarih = 20 Mayıs 2010|arşivurl = https://web.archive.org/web/20140202155446/http://www.hurriyet.com.tr/gundem/14780517.asp?top=1|arşivtarihi = 2 Şubat 2014|ölüurl =hayır}}</ref> 735 metre derinliğindeki kuyuya düştüklerinden şüphelenilen diğer iki işçiye ise olay gününden 100 gün geçmesine rağmen ulaşılamadı.<ref>{{Web kaynağı|url = http://zaman.com.tr/haber.do?haberno=1020152|başlık = İki madenciye 100 gündür ulaşılamadı|erişimtarihi = 28 Ağustos 2010|çalışma = Zaman Gazetesi|tarih = 26 Ağustos 2010|arşivurl = https://web.archive.org/web/20100901214024/http://www.zaman.com.tr/haber.do?haberno=1020152|arşivtarihi = 1 Eylül 2010|ölüurl =evet}}</ref>
+
+Kaza sonrası hazırlanan rapora göre, galeri açmak için yapılan [[dinamit]] patlatma işleminden sonra açığa çıkan metan gazının tahliye edilmemesi patlamaya sebep oldu. Gerekli yalıtımı yapılmayan makinelerden çıkan elektrik ise madendeki gazın alev almasına yol açtı.<ref name="rapor"/>
+
+Patlamanın ardından iki işçi Engin Düzcük ve Dursun Kartal'ın cesedi düştükleri kuyunun 720 metre derinliğinde 8 ay sonra bulunarak yer üstüne çıkartıldı.<ref>{{Web kaynağı|url = http://www.zaman.com.tr/haber.do?haberno=1080839|başlık = 2-madencinin-cesedine-ulasildi|erişimtarihi = 19 Ocak 2011|çalışma = Zaman Gazetesi|tarih = 19 Ocak 2011|arşivurl = https://web.archive.org/web/20120314014156/http://www.zaman.com.tr/haber.do?haberno=1080839|arşivtarihi = 14 Mart 2012|ölüurl =evet}}</ref>
+
+== Kaynakça ==
+{{Kaynakça}}
+{{Türkiye'deki maden kazaları ve felaketleri}}
+
+[[Kategori:Zonguldak ili tarihi]]
+[[Kategori:2010'da Türkiye]]
+[[Kategori:Türkiye'deki patlamalar]]
+[[Kategori:2010'daki patlamalar]]

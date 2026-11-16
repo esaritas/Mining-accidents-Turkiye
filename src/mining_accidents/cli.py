@@ -113,6 +113,9 @@ def qc(
 def export(
     db_path: Path = DB_OPTION,
     output_dir: Path = typer.Option(Path("data/public"), help="Public export directory."),
+    ledger_dir: Path | None = typer.Option(
+        None, help="Ledger directory. Default: 'ledger' beside the export directory."
+    ),
 ) -> None:
     """Build the public export. Aborts (non-zero) on any critical QC failure."""
     from mining_accidents import export as export_mod
@@ -124,12 +127,70 @@ def export(
         except export_mod.ExportBlockedError as exc:
             console.print(f"[red]Export blocked:[/red] {exc}")
             raise typer.Exit(code=1) from exc
+        # The ledger travels with the export: the database is not in git, so
+        # an export without its ledger is a register that cannot be changed
+        # again if the database is lost (docs/database_recovery.md).
+        from mining_accidents import ledger
+
+        ledger.dump(conn, ledger_dir or output_dir.parent / "ledger")
     finally:
         conn.close()
     console.print(
         f"[green]Export complete:[/green] {manifest['row_counts']['incidents']} incidents "
         f"-> {output_dir}"
     )
+
+
+@app.command("ledger-dump")
+def ledger_dump(
+    db_path: Path = DB_OPTION,
+    ledger_dir: Path = typer.Option(Path("data/ledger"), help="Ledger directory."),
+) -> None:
+    """Write the working database to the text ledger (commit it with the export)."""
+    from mining_accidents import ledger
+
+    conn = database.get_connection(db_path)
+    try:
+        manifest = ledger.dump(conn, ledger_dir)
+    finally:
+        conn.close()
+    rows = sum(int(entry["rows"]) for entry in manifest["tables"].values())
+    console.print(f"[green]Ledger written:[/green] {rows} rows -> {ledger_dir}")
+
+
+@app.command("ledger-load")
+def ledger_load(
+    db_path: Path = DB_OPTION,
+    ledger_dir: Path = typer.Option(Path("data/ledger"), help="Ledger directory."),
+) -> None:
+    """Rebuild the working database from the ledger. Never overwrites one."""
+    from mining_accidents import ledger
+
+    try:
+        counts = ledger.load(ledger_dir, db_path)
+    except ledger.LedgerError as exc:
+        console.print(f"[red]Not loaded:[/red] {exc}")
+        raise typer.Exit(code=1) from exc
+    console.print(f"[green]Database rebuilt:[/green] {sum(counts.values())} rows -> {db_path}")
+
+
+@app.command("ledger-verify")
+def ledger_verify(
+    ledger_dir: Path = typer.Option(Path("data/ledger"), help="Ledger directory."),
+    public_dir: Path = typer.Option(Path("data/public"), help="Committed public export."),
+) -> None:
+    """Check that the ledger rebuilds a database whose export is the committed one."""
+    from mining_accidents import ledger
+
+    try:
+        problems = ledger.verify(ledger_dir, public_dir)
+    except ledger.LedgerError as exc:
+        problems = [str(exc)]
+    if problems:
+        for problem in problems:
+            console.print(f"[red]{problem}[/red]")
+        raise typer.Exit(code=1)
+    console.print("[green]Ledger and export agree.[/green]")
 
 
 @app.command("monthly-check")
@@ -204,6 +265,8 @@ def monthly_check(
         )
     for url in report.unreadable_documents:
         console.print(f"[yellow]could not read[/yellow] {url}")
+    for entry in report.failed_sources:
+        console.print(f"[red]could not sweep[/red] {entry['source']}: {entry['error']}")
 
 
 @app.command("packets")

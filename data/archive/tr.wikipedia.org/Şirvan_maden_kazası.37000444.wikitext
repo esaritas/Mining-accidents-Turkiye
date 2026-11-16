@@ -1,0 +1,88 @@
+{{Olay bilgi kutusu
+| başlık                     = <!-- Sayfa adından farklı bir şey ise girilmeli -->
+| resim                      = [[Dosya:Siirt_in_Turkey.svg|Border|350px]]
+| resim_adı                  = 
+| resim_boyutu               = 
+| altbaşlık                  = [[Türkiye|Türkiye'de bulunduğu yer]]
+| tarih                      = <!-- {{başlama tarihi|2016|11|17}} -->
+| saat                       = 20:30 [[UTC+03.00]]
+| yer                        = [[Madenköy, Şirvan|Madenköy]], [[Şirvan, Siirt|Şirvan]], [[Siirt]], [[Türkiye]]
+| koordinatlar               = <!-- {{Koordinat|LAT|LON|region:XXXX_type:event|display=inline,title}} -->
+| diğer adı                  = 
+| neden                      = Heyalan, Göçük
+| ilk bildiren               = 
+| film eden                  = 
+| katılımcılar               = 
+| sonuç                      = 16 işçi göçük altında kaldı
+| yaralanmalar               = 
+| ölümler                    = 16
+| kayıp                      = 
+| mal kayıpları              = İşletmeci şirkete ait iş makineleri
+| toprağa verme              = 
+| sorgular                   = 8 gözaltı<ref>{{Web kaynağı|url=http://www.haberturk.com/gundem/haber/1332865-siirtte-yasanan-maden-kazasina-7-tutuklama |başlık=Siirt'te yaşanan maden kazasına 7 tutuklama|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161220180554/http://www.haberturk.com/gundem/haber/1332865-siirtte-yasanan-maden-kazasina-7-tutuklama |arşivtarihi=20 Aralık 2016 |ölüurl=hayır}}</ref>
+| soruşturma                 = 
+| sorgu yargıcı              = 
+| şüpheliler                 = 
+| suçlamalar                 = İhmal
+| mahkeme kararı             = 7 tutuklu
+| hükümler                   = 
+| yayınlama yasakları        = 
+| dava                       = 
+| ödüller                    = 
+| url                        = 
+| internet_sitesi            = <!-- {{URL|ornek.com}} -->
+| notlar= 
+}}
+'''Şirvan maden kazası''' 17 Kasım 2016 tarihinde [[Siirt]]'in [[Şirvan, Siirt|Şirvan]] ilçesindeki [[Madenköy, Şirvan|Madenköy]] yakınlarındaki [[bakır madeni]]nde meydana gelen ve 16 işçinin ölümüyle sonuçlanan kaza.<ref name="milliyet.com.tr">{{Web kaynağı|url=http://www.milliyet.com.tr/sirvan-da-bakir-madeninde-gocuk--gundem-2346755/ |başlık=Siirt|erişimtarihi=17 Kasım 2016 |arşivurl=https://web.archive.org/web/20161118042758/http://www.milliyet.com.tr/sirvan-da-bakir-madeninde-gocuk--gundem-2346755/ |arşivtarihi=18 Kasım 2016 |ölüurl=hayır}}</ref>
+
+== Maden sahası ve işletmesi ==
+Siirt ilinin Şirvan ilçesine bulunan bakır sahasının kaynaklarını arama ve değerlendirme çalışmaları 1969 yılında [[MTA]]’nın gerçekleştirdiği jeolojik ve jeofizik yöntemlerle başlamış, sonraki yıllarda gerçekleştirilen arama sondajları ile devam etmiştir. Şirvan ilçesinin kuzeydoğusundaki Madenköy'ün güneyinde işletilen bu maden sahası [[Ciner Holding]]'e bağlı [[Park Elektrik]] tarafından 2004'te devralındı. 2005 yılında madencilik faaliyetlerine başlanan tesiste, Haziran 2006'da bakır cevheri zenginleştirme tesisinin kurulmasıyla üretime başlandı.
+
+2005-2012 yılları arasında ara katlı göçertme madencilik yöntemi uygulanan maden sahasında 2012 yılında madenin üzerindeki toprak örtüsü kaldırılarak ve kademeli bir şekilde kazılarak çıkarılan açık ocak yöntemi ile üretime geçildi.<ref>{{Web kaynağı|url=http://www.cinergroup.com.tr/enerji-madencilik/park-elektrik |başlık=Park Elektrik|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161220142256/http://www.cinergroup.com.tr/enerji-madencilik/park-elektrik |arşivtarihi=20 Aralık 2016 |ölüurl=hayır}}</ref> Zamanla genişleyen çalışmaların sonucunda bu alan [[Türkiye]]'nin en büyük bakır maden sahalarından biri haline geldi.<ref>{{Web kaynağı|url=https://tr.sputniknews.com/turkiye/201611271026022958-sirvan-bbc-turkce-muhabir-kamer-serbest/ |başlık=Şirvan|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161220161319/https://tr.sputniknews.com/turkiye/201611271026022958-sirvan-bbc-turkce-muhabir-kamer-serbest/ |arşivtarihi=20 Aralık 2016 |ölüurl=hayır}}</ref>
+
+== Kaza öncesi ==
+Kazanın olduğu gün 12 yıldır işletilen madende daha önce de çeşitli kazalar yaşandı. Yapılan incelemelerde 25 Temmuz 2016'da da madende toprak kayması yaşandığı ve mal kayıplarının yaşandığı, ayrıca maden sahasında çeşitli büyüklüklerde çatlaklar açıldığı ancak maden işletmecilerin bu durumu dikkate almadıkları ifade edildi.<ref>{{Web kaynağı|url=http://www.bbc.com/turkce/haberler-turkiye-38090216 |başlık=Şirvan'daki maden kazasının muhtemel sebepleri neler?|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161221053848/http://www.bbc.com/turkce/haberler-turkiye-38090216 |arşivtarihi=21 Aralık 2016 |ölüurl=hayır}}</ref>
+
+Şirket, 19 Ağustos'ta yaptığı açıklamada Siirt Madenköy bölgesindeki bakır madeninde uzun üretim sürecinin yarattığı yıpranmalar ve teknolojik eskimenin neden olmaya başladığı verimlilik düşüşüne karşı önlem almak için tesiste kapsamlı bir bakım-onarım sürecine ihtiyaç duyulduğu ve 19 Ağustos'tan başlayarak üretime altmış gün ara verilmesine karar verildiği bildirildi.<ref>{{Web kaynağı|url=https://www.kap.org.tr/tr/Bildirim/553926|başlık=KAP|website=www.kap.org.tr}}</ref> Maden sahasındaki çalışmaların ardından 19 Ekim'de yeniden üretime başladı.<ref>{{Web kaynağı|url=https://www.kap.org.tr/tr/Bildirim/563107|başlık=KAP|website=www.kap.org.tr}}</ref>
+
+17 Kasım'daki kazanın ardından madende çalışan işçiler iki hafta önce maden sahasında dinamitle patlatma yapıldığı için toprak kayması yaşandığını ve Fatih Durak (22) adlı işçinin kafasına kaya parçası çarpması sonucu hayatını kaybettiğini söylediler.<ref name="aljazeera.com.tr">{{Web kaynağı|url=http://www.aljazeera.com.tr/al-jazeera-ozel/isciler-maden-sirketini-sucladi |başlık=Today's latest from Al Jazeera|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161119191956/http://www.aljazeera.com.tr/al-jazeera-ozel/isciler-maden-sirketini-sucladi |arşivtarihi=19 Kasım 2016 |ölüurl=hayır}}</ref> Kazadan bir hafta önce de işçilerin maden sahasındaki basamaklarda gözle görülen çatlakların açılması üzerine, Açık Alan İşletme Müdürünü uyardıkları; ancak müdürün ''“Bir şey olmaz. Çalışmaya devam edin”'' dediği iddia edildi.<ref>{{Web kaynağı|url=http://www.cumhuriyet.com.tr/haber/turkiye/632955/Goruntuler_ortaya_cikti..._Siirt_Sirvan_daki_madende_olum_goz_gore_gore_gelmis.html |başlık=Görüntüler ortaya çıktı.. Siirt Şirvan|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161220125113/http://www.cumhuriyet.com.tr/haber/turkiye/632955/Goruntuler_ortaya_cikti..._Siirt_Sirvan_daki_madende_olum_goz_gore_gore_gelmis.html |arşivtarihi=20 Aralık 2016 |ölüurl=hayır}}</ref>
+
+== Kaza ve sonrası ==
+Şirvan'da bakır maden sahasında 17 Kasım 2016 Perşembe günü saat 20.30 sıralarında Park Elektrik'e bağlı taşeron şirket Antlar İnşaat'ın maden sahasındaki çalışmaları sürerken [[heyelan]] meydana geldi. Maden ocağında 16 işçi, 8 kamyon ve 3 iş makinesi göçük altında kaldı. Kazanın olduğu gece 4 işçinin cansız bedeni göçük altından çıkartıldı, 12 işçi ise toprak altında kaldı.
+
+Siirt Valiliği'nden yapılan yazılı açıklamada, Şirvan ilçesi Maden köyünde bulunan bakır madenlerinde meydana gelen heyelan nedeniyle göçük meydana geldiği ve bunun sonucunda 1 milyon m<sup>3</sup>’lük bir toprak hareketi oluştuğu,<ref>{{Web kaynağı|url=http://siirt.gov.tr/basin-aciklamasi-4-siirt---sirvanda-meydana-gelen-gocuk |başlık=ŞİRVAN’DA MEYDANA GELEN GÖÇÜK|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161220173525/http://siirt.gov.tr/basin-aciklamasi-4-siirt---sirvanda-meydana-gelen-gocuk |arşivtarihi=20 Aralık 2016 |ölüurl=hayır}}</ref> Valilik bünyesinde kriz Merkezi faaliyete geçirildiği,<ref>{{Web kaynağı|url=http://siirt.gov.tr/basin-aciklamasi3 |başlık=T.C Siirt Valiliği|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161220173915/http://siirt.gov.tr/basin-aciklamasi3 |arşivtarihi=20 Aralık 2016 |ölüurl=hayır}}</ref> çevre illerden yardım ekiplerinin olay yerine hareket ettiği<ref>{{Web kaynağı|url=http://siirt.gov.tr/basin-aciklamasi-2 |başlık=BASIN AÇIKLAMASI (2)|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161220173618/http://siirt.gov.tr/basin-aciklamasi-2 |arşivtarihi=20 Aralık 2016 |ölüurl=hayır}}</ref> bilgisi verildi.
+
+Kazadan bir gün sonra halka açık bir şirket olan Park Elektrik, [[Kamuyu Aydınlatma Platformu]]'na yaptığı açıklamada "Şirketimizin Siirt'in Şirvan ilçesinde bulunan Madenköy bakır madeni sahasında ilk belirlemelere göre aşırı yağışlar nedeniyle heyelan meydana gelmiştir. Kurulan kriz masasının çalışmaları devam etmektedir. Bölgede toprak kayması riskinin devam ettiği de dikkate alınarak üretime ara verilmiştir. Gelişmeler kamuoyu ile paylaşılacaktır" ifadelerini kullandı.<ref>{{Web kaynağı|url=https://www.kap.org.tr/tr/Bildirim/568735|başlık=KAP|website=www.kap.org.tr}}</ref>
+
+Kazanın 19, 20 ve 22 Kasım tarihlerinde birer işçinin daha cesetlerine ulaşıldı. Ayrıca 20 Kasım günü daha önce işçilerin uyarılarını dikkate almadığı öne sürülen Açık Alan İşletme Müdürü tutuklandı.{{Kaynak belirt}}
+
+19 Kasım günü Enerji ve Tabii Kaynaklar Bakanı [[Berat Albayrak]], bölgeye gelerek yetkililerden bilgi aldı ve hayatını kaybeden ve göçük altında kalan işçilerin aileleriyle görüştü.
+
+21 Kasım günü maden sahasını ziyaret eden Sağlık Bakanı [[Recep Akdağ]], herhangi bir ihmalin olup olmadığı sorusuna, düşüncesini açıklamasının doğru olmayacağını, maden sahasında kazaya neden olacak bir ihmal görmediğini, ancak uzmanların ve savcılığın soruşturması ile bu konuya açıklık getirileceğini söyledi.{{Kaynak belirt}}
+
+27 Kasım gününe gelindiğinde toprak altından 14. işçinin cesedi çıkartıldı.
+
+8 Aralık günü devam eden soruşturmaya ilişkin bilirkişi raporunda kazadan 1 ay önce heyelan riskine karşı uyarı yapıldığı ancak hiçbir önlemin alınmadığı belirtildi.{{Kaynak belirt}}
+
+10 Aralık'ta Halil Başer (27) adlı işçi, 12 Aralık'ta da İbrahim Kılınç (21) adlı işçilerin cansız bedenleri bulundu ve kazanın yaşanmasından 25 gün sonra arama çalışmaları sonlandırıldı.<ref>{{Web kaynağı|url=http://www.aljazeera.com.tr/haber/siirtte-son-madenci-cikarildi |başlık=Today's latest from Al Jazeera|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161214115035/http://www.aljazeera.com.tr/haber/siirtte-son-madenci-cikarildi |arşivtarihi=14 Aralık 2016 |ölüurl=hayır}}</ref>
+
+== Tepkiler ==
+Kazanın ardından çeşitli yetkililer, birlik ve oda temsilcileriyle hayatını kaybeden işçilerin yakınları yaşanan kazaya tepki gösterdiler.
+
+Kazadan iki gün sonra [[Maden Mühendisleri Odası]] Yönetim Kurulu Üyesi Necmi Ergin madenin proje dışı çalıştığını iddia etti.<ref>{{Web kaynağı|url=http://www.cumhuriyet.com.tr/haber/turkiye/632868/Maden_Muhendisleri_Odasi__Siirt_teki_maden_proje_disi_calisiyordu.html |başlık=Maden Mühendisleri Odası|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161220124735/http://www.cumhuriyet.com.tr/haber/turkiye/632868/Maden_Muhendisleri_Odasi__Siirt_teki_maden_proje_disi_calisiyordu.html |arşivtarihi=20 Aralık 2016 |ölüurl=hayır}}</ref>
+
+21 Kasım günü [[Cumhuriyet Halk Partisi]]'nden bir heyetin hazırladığı raporda maden sahasında toprak kayması yaşanabileceğine dair madenciler ve göçük altında kalan işçilerin aileleri tarafından uyarılar yapıldığı, göçüğün olduğu bölgede heyelan öncesi 80&nbsp;cm büyüklüğünde çatlaklar olduğu, bu çatlakların tehlike arz ettiğinin iş yeri yetkililerine bildirildiği, ancak bir önlem alınmadığını ve bu kazanın meydana geldiğini ve kazanın meydana geldiği gün, heyelanın olduğu alanda patlayıcı kullanıldığı belirtilerek konuyla ilgili Meclis Araştırma Komisyonu kurulması istendi.<ref>{{Web kaynağı|url=http://www.sozcu.com.tr/2016/gundem/sirvan-maden-faciasinda-vahim-iddialar-1520963/ |başlık=Şirvan Maden faciasında vahim iddialar|erişimtarihi=17 Aralık 2016 |arşivurl=https://web.archive.org/web/20161222201538/http://www.sozcu.com.tr/2016/gundem/sirvan-maden-faciasinda-vahim-iddialar-1520963/ |arşivtarihi=22 Aralık 2016 |ölüurl=hayır}}</ref>
+
+İşçiler ve hayatını kaybeden işçilerin yakınları ise madende daha önce benzer kazalar olduğunu, meydana gelen çatlakların toprakla kapatıldığını ve kazanın göz göre göre geldiğini söyleyerek maden şirketini suçladılar. Pazar günü dışında her gün maden sahasında dinamit patlatıldığını söyleyen bir işçi, ''"Köy ve çevresinde yer yerinden oynuyor. Göçüğün olduğu yerdeki tepenin yamacı haftalardır gözle görünür şekilde çatlaktı. Önlem almak yerine kamyonlarla toprak taşıyıp çatlakları kapatıyorlardı"'' açıklamasında bulundu.
+
+Diğer işçiler ve yakınları da benzer açıklamalarda bulunarak, kazada işletmeci şirketin ihmalinin bulunduğuna inandıklarını belirttiler.<ref name="aljazeera.com.tr"/>
+
+== Kaynakça ==
+{{Kaynakça}}
+{{Türkiye'deki maden kazaları ve felaketleri}}
+{{Otorite kontrolü}}
+
+[[Kategori:Siirt ili tarihi]]
+[[Kategori:Şirvan]]
+[[Kategori:2016'da Türkiye]]
+[[Kategori:2016'daki afetler]]

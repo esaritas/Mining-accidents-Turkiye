@@ -437,6 +437,9 @@ def _collect_facility_roles(conn: sqlite3.Connection) -> list[dict[str, object]]
         JOIN facilities f ON f.facility_id = r.facility_id
         JOIN organizations o ON o.organization_id = r.organization_id
         WHERE r.review_status = 'reviewed' AND f.external_ref IS NOT NULL
+          AND f.source_claim_id IS NOT NULL
+          AND (f.notes IS NULL OR (f.notes NOT LIKE 'DUPLICATE of%'
+               AND f.notes NOT LIKE 'OUT_OF_SCOPE%'))
         ORDER BY f.external_ref, o.organization_name_tr, r.role
         """
     ).fetchall()

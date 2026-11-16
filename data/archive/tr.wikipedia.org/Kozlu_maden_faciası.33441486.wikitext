@@ -1,0 +1,29 @@
+'''1992 Kozlu kömür madeni faciası''', 3 Mart 1992 tarihinde [[Türkiye]]'nin [[Zonguldak (il)|Zonguldak]] ilinin [[Kozlu]] ilçesindeki [[kömür|taş kömürü]] maden ocağında saat 19.45 - 20.00 arasındaki zincirleme [[grizu]] patlamaları nedeniyle meydana gelen bir madencilik kazasıdır. Olay sonucunda 263 madenci yaşamını yitirmiştir.
+
+Patlama ile yer altında çıkan yangınların denetim altına alınamaması ve ocağın bütün katlarındaki göçükler ve ulaşım yolları tahribatı nedeniyle ocak yüzey açıklıklarından kapatılmış, bu nedenle kazadan kurtulanların ifadelerini temel alan soruşturmada kazanın oluşma nedenleri tam olarak açıklığa kavuşturulamamıştır. Ocak, 26 Mart 1992 günü tekrar açılmış ise de, yangının kızışması üzerine bir kere daha kapatılmıştır.
+
+Dünya madencilik tarihinin en büyük kazaları arasında yer alan faciada ölen işçilerden 147'sinin cesedi, yer altında devam eden yangınlar nedeniyle günler sonra gruplar halinde çıkarılabilmiştir. En son 2 madencinin cesedi, Mayıs 1997'de ocaktan çıkarılmıştır.<ref>{{Web kaynağı | url = https://www.hurriyet.com.tr/ekonomi/263-madencinin-oldugu-kozlu-faciasinin-yil-donumu-28347483 | başlık = Kozlu faciasının yıl dönümü/Hürriyet | arşivurl = https://web.archive.org/web/20180306120617/https://www.hurriyet.com.tr/ekonomi/263-madencinin-oldugu-kozlu-faciasinin-yil-donumu-28347483 | arşivtarihi = 6 Mart 2018}}</ref>
+
+Olay özellikle Zonguldak ve Türk madencilik sektörü çalışanları açısından belleklerde canlılığını sürdürmekte, 7 Mart 1983'te 103 işçinin yaşamını yitirdiği [[Armutçuk]] kömür madeni faciası gibi, her yıl dönümünde törenlerle anılmaktadır.<ref>{{Web kaynağı | url = http://www.radikal.com.tr/ek_haber.php?ek=r2&haberno=5615 | başlık = Her Mart'ta kanıyor yürekler | erişimtarihi =  | yayımcı = ''[[Radikal (gazete)|Radikal]]'' | tarih = 5 Mart 2006 | yazar = Ahmet Öztürk | arşivurl = https://web.archive.org/web/20140516182043/http://www.radikal.com.tr/ek_haber.php?ek=r2&haberno=5615 | arşivtarihi = 16 Mayıs 2014 | ölüurl = hayır }}</ref>
+
+== Ayrıca bakınız ==
+* [[Türkiye'deki madencilik kazaları listesi]]
+* [[Soma Faciası]]
+
+== Notlar ==
+{{Kaynakça}}
+
+== Kaynakça ==
+<div class="references-small">
+* {{Web kaynağı | url = http://www.maden.org.tr/resimler/ekler/be278a9e02bed92_ek.pdf | başlık = Kozlu faciasıyla ilgili ön rapor | erişimtarihi =  | yayımcı = [[Türk Mühendis ve Mimar Odaları Birliği]] Maden Mühendisleri Odası Yayını | tarih = 1992 | dil = Türkçe | arşivengelli = evet }}{{Ölü bağlantı|date=Temmuz 2023 }}
+</div>
+
+== Dış bağlantılar ==
+* {{YouTube|kim=ETOSyD5BfFk|'''TRT'de yayınlanan "Anadolu'dan Görünüm" programında maden kazası haberi''}}
+{{Türkiye'deki maden kazaları ve felaketleri}}
+
+[[Kategori:Zonguldak ili tarihi|Kozlu kömür madeni faciası]]
+[[Kategori:Kozlu|Kömür madeni faciası]]
+[[Kategori:Türkiye'deki patlamalar]]
+[[Kategori:1992'deki afetler|Kozlu kömür madeni faciası]]
+[[Kategori:1992'de Türkiye|Kozlu kömür madeni faciası]]

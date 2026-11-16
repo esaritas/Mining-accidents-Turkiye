@@ -23,6 +23,11 @@ from mining_accidents.models import IngestionRun, SourceRegistryEntry
 DEFAULT_REGISTRY_CSV = Path("docs/source_registry.csv")
 
 
+#: Leading mark in the notes of every row re-created from the public export
+#: after the working database was lost on 2026-11-11 (docs/database_recovery.md).
+RESTORED_MARK = "RESTORED_FROM_EXPORT"
+
+
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
