@@ -342,15 +342,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "journal_article",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "5 işçi yaşamını yitirmiştir",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "Yeni Çeltek 1983 Grizu 5 Kamu",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
       },
       {
         "document_type": "other",
@@ -388,15 +388,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "journal_article",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "8 işçi hayatını kaybetti",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "Kozlu 1987 Göçük 8 Kamu",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
       },
       {
         "document_type": "other",
@@ -434,15 +434,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "journal_article",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "5 işçi hayatını kaybetti",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "Amasra 1990 Grizu 5 Kamu",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
       },
       {
         "document_type": "other",
@@ -570,6 +570,17 @@ window.MINING_DATA = {
         "url": "https://tbmm.gov.tr/milletvekili/UyeGenelKurulKonusmalariDetay?eid=38364"
       },
       {
+        "document_type": "journal_article",
+        "field_name": "injuries_current",
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "sırasında ocaklardan 77 yaralı işçi",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
+      },
+      {
         "document_type": "other",
         "field_name": "province_code",
         "organization": "Wikipedia (tr)",
@@ -583,6 +594,28 @@ window.MINING_DATA = {
     ],
     "TR-MINE-1995-0001": [
       {
+        "document_type": "journal_article",
+        "field_name": "casualty_status",
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "Sorgun 1995 Grizu 37 Özel",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
+      },
+      {
+        "document_type": "news_article",
+        "field_name": "casualty_status",
+        "organization": "Yozgat Hakimiyet",
+        "publication_date": "",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "45 madenciden yalnızca 7’si yaralı olarak kurtarılabilmiş, 38 madenci ise hayatını kaybetmişti",
+        "source_tier": "3",
+        "title": "Yozgat'ta 26 Mart 1995'in Kara Günü: 30 Yıl Sonra Bile Silinmedi",
+        "url": "https://www.yozgathakimiyet.com.tr/yozgatta-26-mart-1995in-kara-gunu-30-yil-sonra-bile-silinmedi"
+      },
+      {
         "document_type": "other",
         "field_name": "date_precision",
         "organization": "Wikipedia (tr)",
@@ -594,15 +627,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "news_article",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
+        "organization": "Yozgat Hakimiyet",
         "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "38 kişi göçük altına kalarak can vermiştir",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "45 madenciden yalnızca 7’si yaralı olarak kurtarılabilmiş, 38 madenci ise hayatını kaybetmişti",
         "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "title": "Yozgat'ta 26 Mart 1995'in Kara Günü: 30 Yıl Sonra Bile Silinmedi",
+        "url": "https://www.yozgathakimiyet.com.tr/yozgatta-26-mart-1995in-kara-gunu-30-yil-sonra-bile-silinmedi"
       },
       {
         "document_type": "other",
@@ -640,15 +673,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "journal_article",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "10 işçi yaşamını yitirmiştir",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "Ermenek 2003 Grizu 10 Taşeron",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
       },
       {
         "document_type": "other",
@@ -675,12 +708,23 @@ window.MINING_DATA = {
     ],
     "TR-MINE-2003-0002": [
       {
+        "document_type": "journal_article",
+        "field_name": "casualty_status",
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "Aşkale 2003 Grizu 8 Taşeron",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
+      },
+      {
         "document_type": "other",
         "field_name": "casualty_status",
         "organization": "Wikipedia (tr)",
         "publication_date": "",
         "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
+        "short_evidence_excerpt": "7 işçi hayatını kaybetmiştir",
         "source_tier": "3",
         "title": "Türkiye'deki madencilik kazaları listesi",
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
@@ -754,15 +798,15 @@ window.MINING_DATA = {
         "url": "https://api.maden.org.tr/uploads/portal/resimler/ekler/34e6bfcd358e25a_ek.pdf"
       },
       {
-        "document_type": "other",
+        "document_type": "journal_article",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "Bayat 2004 Grizu 3 Özel",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
       },
       {
         "document_type": "bulletin",
@@ -800,15 +844,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "journal_article",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "19 çalışan ölmüştür",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "Küre 2004 Yangın 19 Taşeron",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
       },
       {
         "document_type": "other",
@@ -857,15 +901,15 @@ window.MINING_DATA = {
         "url": "https://www.evrensel.net/haber/170084/madenci-aileleri-adalet-istiyor"
       },
       {
-        "document_type": "other",
+        "document_type": "journal_article",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "Gediz 2005 Grizu 18 Kamu",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
       },
       {
         "document_type": "news_article",
@@ -903,15 +947,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "journal_article",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "17 kişi hayatını kaybetti",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "Dursunbey 2006 Grizu 17 Özel",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
       },
       {
         "document_type": "other",
@@ -949,15 +993,15 @@ window.MINING_DATA = {
         "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
       },
       {
-        "document_type": "other",
+        "document_type": "journal_article",
         "field_name": "fatalities_current",
-        "organization": "Wikipedia (tr)",
-        "publication_date": "",
-        "retrieved_at": "2026-10-14T12:50:02Z",
-        "short_evidence_excerpt": "19 işçi grizu patlaması ile oluşan göçük sonucunda ölmüştür",
-        "source_tier": "3",
-        "title": "Türkiye'deki madencilik kazaları listesi",
-        "url": "https://tr.wikipedia.org/wiki/T%C3%BCrkiye%27deki_madencilik_kazalar%C4%B1_listesi"
+        "organization": "TMMOB Maden Mühendisleri Odası (Bilimsel Madencilik Dergisi)",
+        "publication_date": "2015-06-01",
+        "retrieved_at": "2026-11-17T12:36:27Z",
+        "short_evidence_excerpt": "M. Kemalpaşa 2009 Grizu 19 Özel",
+        "source_tier": "2",
+        "title": "Geçmişten Günümüze Büyük Maden Kazaları, Madencilik 54(2), 33-43",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
       },
       {
         "document_type": "other",
@@ -1274,6 +1318,17 @@ window.MINING_DATA = {
         "source_tier": "3",
         "title": "Wikidata item Q6084742: Odaköy maden kazası",
         "url": "https://www.wikidata.org/wiki/Q6084742"
+      },
+      {
+        "document_type": "chamber_statement",
+        "field_name": "injuries_current",
+        "organization": "TMMOB Maden Mühendisleri Odası",
+        "publication_date": "",
+        "retrieved_at": "2026-11-15T19:39:05Z",
+        "short_evidence_excerpt": "13 kişi hayatını kaybetmiş, 6‘ sı ağır, 20 işçi de yaralanmıştır",
+        "source_tier": "2",
+        "title": "Kazaların kader olarak gösterilmesine son verilsin",
+        "url": "https://www.maden.org.tr/icerik/kazalarin-kader-olarak-gosterilmesine-son-verilsin-4064"
       },
       {
         "document_type": "other",
@@ -4933,9 +4988,43 @@ window.MINING_DATA = {
       "status": "pending_human_review",
       "text_en": "Environmental assertions in this snapshot cite Wikipedia. A reported official action is not a directly inspected official document. The saved date excerpt describes the site, not the date. Water and soil measurements and impact extent are not established by this record.",
       "text_tr": "Bu veri kesitindeki çevresel ifadeler Vikipedi’ye atıf yapıyor. Aktarılan resmî işlem, doğrudan incelenmiş resmî belge anlamına gelmez. Kayıtlı tarih alıntısı tarihi değil sahayı anlatıyor. Bu kayıt su ve toprak ölçümlerini ve etkinin yayılımını ortaya koymuyor."
+    },
+    {
+      "checked_at": "2026-11-17",
+      "field": "fatalities_current",
+      "id": "EV-20261117-01",
+      "public_incident_id": "TR-MINE-1995-0001",
+      "sources": [
+        {
+          "label": "Yozgat Hakimiyet · 30th anniversary",
+          "url": "https://www.yozgathakimiyet.com.tr/yozgatta-26-mart-1995in-kara-gunu-30-yil-sonra-bile-silinmedi"
+        },
+        {
+          "label": "Madencilik 54(2), 2015 · Çizelge 1",
+          "url": "https://dergipark.org.tr/tr/download/article-file/374472"
+        }
+      ],
+      "status": "pending_human_review",
+      "text_en": "Sources give two tolls. A local report on the 30th anniversary gives 38, with 45 miners trapped and 7 rescued injured; the list article also gives 38. The Chamber of Mining Engineers' journal (2015) gives 37 in a table that cites no source for the row. The register keeps 38 and marks it disputed until a record from the time is read.",
+      "text_tr": "Kaynaklar iki farklı sayı veriyor. 30. yıl dönümündeki yerel haber 38 diyor; göçük altında kalan 45 madenciden 7’si yaralı kurtarılmış. Liste maddesi de 38 diyor. Maden Mühendisleri Odası dergisi (2015) ise satır için kaynak göstermeyen bir tabloda 37 veriyor. Kayıt, dönemin bir belgesi okunana kadar 38’i koruyor ve sayıyı ihtilaflı olarak işaretliyor."
+    },
+    {
+      "checked_at": "2026-11-17",
+      "field": "fatalities_current",
+      "id": "EV-20261117-02",
+      "public_incident_id": "TR-MINE-2003-0002",
+      "sources": [
+        {
+          "label": "Madencilik 54(2), 2015 · Çizelge 1",
+          "url": "https://dergipark.org.tr/tr/download/article-file/374472"
+        }
+      ],
+      "status": "pending_human_review",
+      "text_en": "Reports of this accident give 7, 8 and 9 deaths. The register publishes 7, from the list article and the news report it cites; the Chamber of Mining Engineers' journal (2015) gives 8. The toll is marked disputed until a record from the time is read.",
+      "text_tr": "Bu kazaya ilişkin haberler 7, 8 ve 9 can kaybından söz ediyor. Kayıt, liste maddesine ve onun dayandığı habere göre 7 yayımlıyor; Maden Mühendisleri Odası dergisi (2015) 8 veriyor. Dönemin bir belgesi okunana kadar sayı ihtilaflı olarak işaretli."
     }
   ],
-  "export_timestamp": "2026-11-16T11:37:00Z",
+  "export_timestamp": "2026-11-17T12:41:13Z",
   "hazard_matrix": {
     "bands": [
       {
@@ -5878,7 +5967,7 @@ window.MINING_DATA = {
       "incident_end_datetime": null,
       "incident_start_datetime": "1992-03-03T00:00:00+03:00",
       "incident_status": "in_scope",
-      "injuries_current": null,
+      "injuries_current": 77,
       "latitude": null,
       "location_uncertainty_m": null,
       "longitude": null,
@@ -5891,7 +5980,7 @@ window.MINING_DATA = {
     {
       "canonical_title_en": "Mine accident, Yozgat (26 March 1995)",
       "canonical_title_tr": "Maden kazası, Yozgat (26 Mart 1995)",
-      "casualty_status": null,
+      "casualty_status": "disputed",
       "coordinate_precision": null,
       "date_precision": "exact_date",
       "district_code": null,
@@ -6130,7 +6219,7 @@ window.MINING_DATA = {
       "incident_end_datetime": null,
       "incident_start_datetime": "2010-02-23T00:00:00+03:00",
       "incident_status": "in_scope",
-      "injuries_current": null,
+      "injuries_current": 20,
       "latitude": null,
       "location_uncertainty_m": null,
       "longitude": null,
@@ -8189,13 +8278,13 @@ window.MINING_DATA = {
   },
   "pipeline": {
     "claims_awaiting_review": 5,
-    "claims_total": 632,
-    "decisions_delegated": 117,
+    "claims_total": 646,
+    "decisions_delegated": 131,
     "decisions_restored": 271,
-    "decisions_total": 390,
+    "decisions_total": 404,
     "published_incidents": 70,
     "records_in_review": 0,
-    "source_documents": 127,
+    "source_documents": 129,
     "withdrawn_records": 5
   },
   "policy_events": [

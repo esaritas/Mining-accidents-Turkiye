@@ -5,7 +5,13 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const { JSDOM, VirtualConsole } = require('jsdom');
 
-const template = fs.readFileSync('dashboard/index.html', 'utf8');
+// The page as published: index.html with the parts it links inlined, the way
+// src/mining_accidents/artifact.py assembles it. data.js stays a reference.
+const part = name => fs.readFileSync(`dashboard/${name}`, 'utf8');
+const template = fs.readFileSync('dashboard/index.html', 'utf8')
+  .replace(/<link rel="stylesheet" href="([^"/]+\.css)">/g, (_, n) => `<style>\n${part(n)}</style>`)
+  .replace(/<script src="([^"/]+\.js)"><\/script>/g,
+    (m, n) => (n === 'data.js' ? m : `<script>\n${part(n)}</script>`));
 
 test('sites and commodity/type keys are visible by default, including contextual sites', async t => {
   const data = fixture();

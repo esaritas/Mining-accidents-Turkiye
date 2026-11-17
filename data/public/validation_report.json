@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-16T11:37:00Z",
+  "generated_at": "2026-11-17T12:41:13Z",
   "resources": {
     "environmental_classifications": {
       "error_count": 0,
@@ -54,7 +54,7 @@
     "sources": {
       "error_count": 0,
       "errors": [],
-      "rows": 333
+      "rows": 338
     }
   },
   "total_errors": 0,

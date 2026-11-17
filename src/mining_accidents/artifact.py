@@ -3,9 +3,10 @@
 Role in the evidence flow: packages the same reviewed public payload as the
 dashboard into one dependency-free HTML file (``dashboard/artifact.html``)
 for hosting environments that block external requests. The page template is
-``dashboard/index.html`` itself — the artifact strips the Leaflet/vendor
-references and embeds the data inline, so the page's built-in SVG map
-fallback renders instead of tiles. One template, two outputs.
+``dashboard/index.html`` with the files it links (``styles.css``,
+``strings.js``, ``app.js``), which this build inlines, and the data embedded in
+place of ``data.js``. One template, two outputs: opened locally, the page reads
+its parts from disk; published, it is one file that makes no requests.
 """
 
 from __future__ import annotations
@@ -42,6 +43,31 @@ def _payload_from_js(path: str | Path) -> dict[str, object]:
     return json.loads(match.group(1))
 
 
+_LINKED_STYLE = re.compile(r'<link rel="stylesheet" href="([^"/]+\.css)">')
+_LINKED_SCRIPT = re.compile(r'<script src="([^"/]+\.js)"></script>')
+
+
+def assemble_template(template_path: str | Path = DEFAULT_TEMPLATE) -> str:
+    """The template with its linked parts inlined, ``data.js`` excepted.
+
+    Only files beside the template are inlined: a name with a slash is not
+    matched, so nothing outside the dashboard directory is ever read in.
+    """
+    template_path = Path(template_path)
+    html = template_path.read_text(encoding="utf-8")
+
+    def part(name: str) -> str:
+        return (template_path.parent / name).read_text(encoding="utf-8")
+
+    html = _LINKED_STYLE.sub(lambda m: "<style>\n" + part(m.group(1)) + "</style>", html)
+    return _LINKED_SCRIPT.sub(
+        lambda m: (
+            m.group(0) if m.group(1) == "data.js" else "<script>\n" + part(m.group(1)) + "</script>"
+        ),
+        html,
+    )
+
+
 def _extract(template_html: str, pattern: str, what: str) -> str:
     match = re.search(pattern, template_html, re.DOTALL)
     if not match:
@@ -57,11 +83,14 @@ def build_artifact(
     *,
     data_js_path: str | Path | None = None,
 ) -> Path:
-    template = Path(template_path).read_text(encoding="utf-8")
+    template = assemble_template(template_path)
     title = _extract(template, r"<title>.*?</title>", "<title>")
     style = _extract(template, r"<style>.*?</style>", "<style> block")
     main = _extract(template, r"<main>.*?</main>", "<main> block")
-    script = _extract(template, r"<script>\s*\(function.*?</script>", "page script")
+    # Every inline script after the page body, in order: the strings, then the
+    # code that reads them.
+    tail = template[template.index("</main>") :]
+    script = _extract(tail, r"<script>.*</script>", "page script")
 
     # The artifact host owns <body>, so the template's .viz-root class never
     # gets attached — rebind the theme tokens/styles to body itself.

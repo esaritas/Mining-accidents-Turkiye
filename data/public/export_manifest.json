@@ -1,6 +1,6 @@
 {
   "db_schema_version": "006",
-  "export_timestamp": "2026-11-16T11:37:00Z",
+  "export_timestamp": "2026-11-17T12:41:13Z",
   "file_sha256": {
     "datapackage.json": "a812655c86ffdf5e2fd5db2de22792044543e044ac92898ce5fb23bab791bb1f",
     "environmental_classifications.csv": "4d22793bc250f0570d3e9b7bc78de049009acd8608ccdb51ee8f99563f156cfc",
@@ -11,13 +11,13 @@
     "facility_organization_roles.csv": "5fa6a78492cad2488c3f0c83eabdc336f0af79171737aa71d2b972c74ef65d49",
     "incident_classifications.csv": "9aeb8d508f540b22a9f8ca2f5bdd6143abf1f0251302fdd51a84f11fcdd18610",
     "incident_organization_roles.csv": "a5d29681f51418ddd5e1749256389ec7745aaa3711a48059fdd97e99b5f775e9",
-    "incidents.csv": "4ddfb9cd888c9ecc53d35b548a7078c59b7821ef592174dc105cb1e80a0f7d0c",
-    "incidents.json": "015c9a762c90401466ef700af6f18e0c7582b6486bbb0fa99e80b1fe5da76fc9",
+    "incidents.csv": "8b34d76a0c3698d12a8dd194a7fd0bf66d7fb71146676c9b0d765021ba478e6c",
+    "incidents.json": "514ffdeb77121d5564131761e80e2f3801ed0210f0f57efc3ed557ed449ebf17",
     "merged_id_redirects.csv": "02e62e86f4f8e1a23dea9ee354def04c0d827bccd8f490ed9421821873157215",
-    "sources.csv": "c980dfbe0984e6b4ddc1c0fad940dd963f9dd7649462b8923d52bad3ba6b206d",
-    "validation_report.json": "4a0c27ba10b5c84dd0f4ab4c27efd113291ca234ca3efb676654cad75142ff72"
+    "sources.csv": "4f928c236663eb91ee48bf5d574617ba0c777a4485eb2d61dfa0cc2b6aa96167",
+    "validation_report.json": "58ba3634531f08ab73787a53c9dce7c94d6099fbc58ff7c58a611a9580995e7f"
   },
-  "git_commit": "20e8f998ba8fe8b868e55c0f2e0c82dc345ae749",
+  "git_commit": "a3edbedb0ec51be9d7961e53eadba6f22c46ee48",
   "quality_findings": {
     "critical": 0,
     "warning": 22
@@ -31,7 +31,7 @@
     "incident_organization_roles": 29,
     "incidents": 70,
     "merged_id_redirects": 4,
-    "sources": 333
+    "sources": 338
   },
   "schema_validation": {
     "total_errors": 0,

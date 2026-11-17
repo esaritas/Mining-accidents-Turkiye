@@ -14,12 +14,19 @@ a claim whose source is the export file itself, hashed, because that file is
 now the only evidence that the register held them.
 
 What it cannot restore is said in the database rather than hidden: restored
-documents have no content hash (the retrieved bytes are gone) and carry
-``RESTORED_FROM_EXPORT`` in their notes; restored decisions say in their
+documents carry ``RESTORED_FROM_EXPORT`` in their notes, and have a content hash
+only where an archived copy of the same revision exists (``archive_index``);
+restored decisions say in their
 rationale that the original rationale and the unselected claims were not
 recoverable. Decisions are recorded through :mod:`mining_accidents.review`
 under the reviewer who authorises the restoration, never invented by this
 code: each one repeats a decision that was active at the export.
+
+Length: this module runs past the project's ~400 line guide because every
+restore step reads and writes the same state (the document, organization and
+incident maps), and the steps are only correct in one order. It is a recovery
+tool proved by one property, that its export equals the export it was built
+from; splitting it would spread that property across files.
 """
 
 from __future__ import annotations

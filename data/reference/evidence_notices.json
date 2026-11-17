@@ -43,5 +43,39 @@
         "url": "https://tr.wikipedia.org/wiki/%C4%B0li%C3%A7_maden_kazas%C4%B1"
       }
     ]
+  },
+  {
+    "id": "EV-20261117-01",
+    "public_incident_id": "TR-MINE-1995-0001",
+    "field": "fatalities_current",
+    "status": "pending_human_review",
+    "checked_at": "2026-11-17",
+    "text_en": "Sources give two tolls. A local report on the 30th anniversary gives 38, with 45 miners trapped and 7 rescued injured; the list article also gives 38. The Chamber of Mining Engineers' journal (2015) gives 37 in a table that cites no source for the row. The register keeps 38 and marks it disputed until a record from the time is read.",
+    "text_tr": "Kaynaklar iki farklı sayı veriyor. 30. yıl dönümündeki yerel haber 38 diyor; göçük altında kalan 45 madenciden 7’si yaralı kurtarılmış. Liste maddesi de 38 diyor. Maden Mühendisleri Odası dergisi (2015) ise satır için kaynak göstermeyen bir tabloda 37 veriyor. Kayıt, dönemin bir belgesi okunana kadar 38’i koruyor ve sayıyı ihtilaflı olarak işaretliyor.",
+    "sources": [
+      {
+        "label": "Yozgat Hakimiyet · 30th anniversary",
+        "url": "https://www.yozgathakimiyet.com.tr/yozgatta-26-mart-1995in-kara-gunu-30-yil-sonra-bile-silinmedi"
+      },
+      {
+        "label": "Madencilik 54(2), 2015 · Çizelge 1",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
+      }
+    ]
+  },
+  {
+    "id": "EV-20261117-02",
+    "public_incident_id": "TR-MINE-2003-0002",
+    "field": "fatalities_current",
+    "status": "pending_human_review",
+    "checked_at": "2026-11-17",
+    "text_en": "Reports of this accident give 7, 8 and 9 deaths. The register publishes 7, from the list article and the news report it cites; the Chamber of Mining Engineers' journal (2015) gives 8. The toll is marked disputed until a record from the time is read.",
+    "text_tr": "Bu kazaya ilişkin haberler 7, 8 ve 9 can kaybından söz ediyor. Kayıt, liste maddesine ve onun dayandığı habere göre 7 yayımlıyor; Maden Mühendisleri Odası dergisi (2015) 8 veriyor. Dönemin bir belgesi okunana kadar sayı ihtilaflı olarak işaretli.",
+    "sources": [
+      {
+        "label": "Madencilik 54(2), 2015 · Çizelge 1",
+        "url": "https://dergipark.org.tr/tr/download/article-file/374472"
+      }
+    ]
   }
 ]

@@ -6,6 +6,26 @@ semantic versioning once the project reaches a first release.
 
 ## [Unreleased]
 
+### Sources, page files, corrections module (2026-11-17)
+
+- **Nine more tolls cite the Chamber of Mining Engineers** through its journal
+  (Bilimsel Madencilik Dergisi, June 2015, Çizelge 1). Deaths resting on
+  Wikipedia or the press: 102 of 1,125, from 206. Every quote checked verbatim
+  (`scripts/evidence_2026_11_17.py`).
+- **Two disputes put on the record, not settled.** Sorgun 1995: 38 kept, now
+  cited to a local report that gives the breakdown; the journal's 37 is on file
+  and the toll is marked disputed. Aşkale 2003: the journal's 8 is on file
+  beside the published 7. Both carry a dated note on the page.
+- **Injuries:** Kozlu 1992 (77 injured rescued) and Dursunbey 2010 (20). 8 of
+  70 records now carry an injury figure.
+- **The page file is split** into `index.html` (markup), `styles.css`,
+  `strings.js` and `app.js`. The build inlines them, so the published page is
+  still one self-contained file. Tests read the assembled page.
+- **`corrections.py` is split** into the programme, `corrections_data.py`
+  (the audit's tables), `correction_tools.py` (shared building blocks) and
+  `corrections_review2.py`. Every definition moved unchanged, which was checked
+  against the original source; the old names still import from `corrections`.
+
 ### Recovery, evidence and presentation (2026-11-16)
 
 The working database was lost on 2026-11-11 with the container that held it.

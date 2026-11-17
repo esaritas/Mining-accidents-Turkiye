@@ -1,7 +1,8 @@
 """Contract tests for the dashboard template and its two build outputs.
 
 Role in the evidence flow: none directly — these guard the *presentation*
-build. ``artifact.py`` extracts four regions from ``dashboard/index.html`` by
+build. ``artifact.py`` inlines the parts ``dashboard/index.html`` links
+(styles.css, strings.js, app.js) and then extracts four regions from it by
 regular expression, and until now nothing checked that those regions still
 exist. A template edit could silently ship a partial public page while the
 whole suite stayed green.
@@ -23,7 +24,31 @@ TEMPLATE = Path("dashboard/index.html")
 
 @pytest.fixture(scope="module")
 def template_html() -> str:
-    return TEMPLATE.read_text(encoding="utf-8")
+    return artifact.assemble_template(TEMPLATE)
+
+
+def test_the_template_links_its_parts_and_inlines_nothing() -> None:
+    """The markup file holds markup; styles, strings and code live beside it."""
+    raw = TEMPLATE.read_text(encoding="utf-8")
+    assert "<style>" not in raw and "<script>" not in raw
+    for name in ("styles.css", "strings.js", "app.js"):
+        assert name in raw and (TEMPLATE.parent / name).exists()
+    assert raw.index("strings.js") < raw.index("app.js"), "strings must load first"
+
+
+def test_assembly_reads_only_files_beside_the_template(tmp_path: Path) -> None:
+    (tmp_path / "TEST.css").write_text("a { b: c; }\n", encoding="utf-8")
+    template = tmp_path / "TEST.html"
+    template.write_text(
+        '<link rel="stylesheet" href="TEST.css">\n'
+        '<link rel="stylesheet" href="../TEST-outside.css">\n'
+        '<script src="data.js"></script>',
+        encoding="utf-8",
+    )
+    html = artifact.assemble_template(template)
+    assert "<style>\na { b: c; }\n</style>" in html
+    assert "../TEST-outside.css" in html  # left as written, never read
+    assert '<script src="data.js"></script>' in html
 
 
 @pytest.mark.parametrize(
@@ -57,6 +82,7 @@ def test_title_is_single_line(template_html: str) -> None:
 def test_page_script_opens_with_bare_iife(template_html: str) -> None:
     """The extraction requires a bare <script> whose body starts with `(function`."""
     assert re.search(r"<script>\s*\(function", template_html)
+    assert template_html.index("window.MINING_I18N =") < template_html.index("(function ()")
 
 
 def test_build_artifact_assembles_a_page(tmp_path: Path) -> None:
@@ -123,7 +149,8 @@ def test_embedded_source_text_cannot_close_script(tmp_path: Path) -> None:
     embedded = re.search(r"<script>window.MINING_DATA = (.*?);</script>", output, re.S)[1]
     assert "<" not in embedded
     assert json.loads(embedded) == payload
-    assert output.count("<script>") == 2
+    # Data, strings, code: no more. The payload text opened no script of its own.
+    assert output.count("<script>") == 3
 
 
 def test_data_js_must_be_a_json_assignment(tmp_path: Path) -> None:

@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-TEMPLATE = Path("dashboard/index.html")
+TEMPLATE = Path("dashboard/strings.js")
 
 
 def _block(source: str, lang: str) -> str:
